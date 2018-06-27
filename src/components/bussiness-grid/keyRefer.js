@@ -9,7 +9,7 @@ const keyRefer = {
     "hidden": "resourcecolumnHidden",//是否显示
 
     "cell-Config": "eidtConfig",//特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
-    "lockIcon": "lockIcon",//锁的图标类型
+    "fixed": "fixed",//锁定
 
   },
   scope: {
