@@ -3,9 +3,7 @@ export default {
   components: {},
 
   data() {
-    return {
-
-    };
+    return {};
   },
   props: {
     scope: {
@@ -16,10 +14,10 @@ export default {
       }
     },
     item: {type: Object},
-    keyRefer:{type: Object},//指代属性
+    keyRefer: {type: Object},//指代属性
   },
   computed: {
-    headRefer(){
+    headRefer() {
       return this.keyRefer.head;
     }
   },
@@ -39,7 +37,8 @@ export default {
             break;
           case 'input':
             return (
-              <el-input class="grid-cell" v-model={scope.row[item[refer['model-key']]]} size="mini" placeholder={item[refer['model-key']].placeHolder}
+              <el-input class="grid-cell" v-model={scope.row[item[refer['model-key']]]} size="mini"
+                        placeholder={item[refer['model-key']].placeHolder}
                         disabled={item[refer['cell-Config']].disabled} clearable={true}>
               </el-input>
             );
@@ -55,8 +54,10 @@ export default {
             break;
           case 'date':
             return (
-              <el-date-picker class="grid-cell" v-model={scope.row[item[refer['model-key']]]} disabled={item[refer['cell-Config']].disabled}
-                              size="mini" type="date" editable={false} placeholder={item[refer['model-key']].placeHolder} value-format="yyyy-MM-dd 00:00:00">
+              <el-date-picker class="grid-cell" v-model={scope.row[item[refer['model-key']]]}
+                              disabled={item[refer['cell-Config']].disabled}
+                              size="mini" type="date" editable={false}
+                              placeholder={item[refer['model-key']].placeHolder} value-format="yyyy-MM-dd 00:00:00">
               </el-date-picker>
             );
             break;
@@ -75,10 +76,6 @@ export default {
     )
   },
   created() {
-  },
-
-  mounted() {
-
   },
   watch: {},
   methods: {
@@ -109,9 +106,5 @@ export default {
       this.houseDetailVisible.visible = true;
     },
   },
-  beforeDestroy() {
-
-  },
-
 };
 
