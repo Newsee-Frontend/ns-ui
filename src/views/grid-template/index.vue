@@ -3,25 +3,29 @@
     <div class="template-btn">
       <el-button type="primary" size="small" @click="shower(basicVisible)">基础用法示例</el-button>
       <el-button type="primary" size="small" @click="shower(bussinessVisible)">业务二次封装示例</el-button>
+      <el-button type="primary" size="small" @click="shower(testVisible)">测试操作示例</el-button>
     </div>
-    <basicGridTemplate :visible="basicVisible" v-if="basicVisible.visible"></basicGridTemplate>
-    <bussinessGridTemplate :visible="bussinessVisible" v-if="bussinessVisible.visible"></bussinessGridTemplate>
+    <basic-grid-template :visible="basicVisible" v-if="basicVisible.visible"></basic-grid-template>
+    <bussiness-grid-template :visible="bussinessVisible" v-if="bussinessVisible.visible"></bussiness-grid-template>
+    <test-grid-template :visible="testVisible" v-if="testVisible.visible"></test-grid-template>
   </div>
 </template>
 
 <script>
-  import basicGridTemplate from './basic-grid-template'
-  import bussinessGridTemplate from './bussiness-grid-template'
+  import basicGridTemplate from './basic-grid/basic-grid-template'
+  import bussinessGridTemplate from './bussiness-grid/bussiness-grid-template'
+  import testGridTemplate from './test-grid/test-grid-template'
 
   export default {
     name: 'grid-template',
     data() {
       return {
         basicVisible: {visible: false},
-        bussinessVisible: {visible: false}
+        bussinessVisible: {visible: false},
+        testVisible: {visible: false}
       }
     },
-    components: {basicGridTemplate, bussinessGridTemplate},
+    components: {basicGridTemplate, bussinessGridTemplate, testGridTemplate},
     created() {
 
     },
