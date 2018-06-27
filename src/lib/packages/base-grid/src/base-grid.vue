@@ -14,12 +14,12 @@
                            :width="firstColConfig[headRefer['width']]" align="center" :fixed="true"
                            :class-name="'grid-head-'+firstColConfig[headRefer['model-key']]">
           </el-table-column>
-          <!--circulation part-->
+
           <!-- normal-column -->
-          <el-table-column v-if="item[headRefer['hidden']]" v-for="(item,index) in gridHead" :index="index" :key="index"
+          <el-table-column v-if="!item[headRefer['hidden']]" v-for="(item,index) in gridHead" :index="index" :key="index"
                            :label="item[headRefer['label']]" :min-width="item[headRefer['width']]" :align="align"
                            :resizable="resizable"
-                           sortable="custom" :fixed="false" :show-overflow-tooltip="true"
+                           sortable="custom" :fixed="item[headRefer['fixed']]" :show-overflow-tooltip="true"
                            :class-name="'grid-head-'+item[headRefer['model-key']]">
             <!--table cell content-->
             <template slot-scope="scope">
@@ -27,6 +27,7 @@
               <slot-scope :scope="scope" :item="item" :keyRefer="keyRefer" @cell-action="cellAction"></slot-scope>
             </template>
           </el-table-column>
+
           <!-- handle-column -->
           <el-table-column v-if="actionRender" :label="ationColConfig[headRefer['label']]"
                            :width="ationColConfig[headRefer['width']]"
@@ -39,6 +40,7 @@
               </template>
             </template>
           </el-table-column>
+
           <!-- head operation setting modules column -->
           <el-table-column v-if="headOperation" :width="headOperationColConfig[headRefer['width']]" fixed="right"
                            :align="align"
@@ -46,6 +48,7 @@
                            :class-name="'grid-head-'+headOperationColConfig[headRefer['model-key']]">>
             <template slot-scope="scope"></template>
           </el-table-column>
+
         </el-table>
         <!-- total command modules -->
         <action-total :command="command"></action-total>
