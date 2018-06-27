@@ -15,9 +15,9 @@
   </div>
 </template>
 <script>
-  import {arrContainObj} from '../../utils'
+  import {judgeType, arrContainObj} from '../../utils'
   import {tableHeaderFetch} from '../../api/table/table'
-  import keyRefer from '../../keyRefer';
+  import keyRefer from './keyRefer';
   import sw from '../../switch';
 
   export default {
@@ -162,7 +162,7 @@
           return head.map(item => {
             const code = item[this.headRefer['model-code']];
             const hidden = this.headRefer['hidden'];
-            const lockIconKey = this.headRefer['lockIcon'];
+            const fixedKey = this.headRefer['fixed'];
             //为特殊字段对应单元格增加配置字段信息
             if (arrContainObj(this.linkCodeConfig, code)) {
               item[this.headRefer['cell-Config']] = {
@@ -179,7 +179,9 @@
               }
             }
             item[hidden] = this.showStateCover(type, item[hidden]);
-            item[lockIconKey] = false;
+            if (!item.hasOwnProperty(fixedKey)) {
+              item[fixedKey] = false;
+            }
             return item;
           });
         }
@@ -200,10 +202,13 @@
        */
       showStateCover(type, val) {
         if (type === 'tofront') {
-          return val === "0" ? true : false;
+          if (judgeType(val) === 'boolean') {
+            return val;
+          }
+          return val !== "0";
         }
         else if (type === 'toback') {
-          return val ? '0' : '1';
+          return val ? '1' : '0';
         }
         else {
           return val;
@@ -275,7 +280,7 @@
        */
       settingSubmit(query) {
         console.log('表头操作设置提交抛出回调');
-        this.gridHead = JSON.parse(JSON.stringify(query))//刷新表头数据
+        this.gridHead = JSON.parse(JSON.stringify(query));//刷新表头数据
         const requestData = this.headerHandle('toback', query);//处理好的返回给后台的表头数据
         console.log('提交给后台的表头数据');
         console.log(requestData);
