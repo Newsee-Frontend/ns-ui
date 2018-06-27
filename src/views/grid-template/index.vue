@@ -38,8 +38,10 @@
 </script>
 <style rel="stylesheet/scss" lang="scss">
   .grid-template {
+    position: absolute;
+    top: 40%;
+    width: 100%;
     .template-btn {
-      margin-top: 200px;
       text-align: center;
     }
   }
