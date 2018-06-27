@@ -46,8 +46,8 @@ export default {
                   <el-checkbox class="header-drag_checkbox fl"
                                v-model={item.resourcecolumnHidden}>{item.resourcecolumnName}</el-checkbox>
                   <grid-icon
-                    class={['header-drag_svg fr', {'suo': item[this.headRefer['lockIcon']]}]}
-                    icon-class={item[this.headRefer['lockIcon']] ? 'suo ' : 'suoopen'}
+                    class={['header-drag_svg fr', {'suo': item[this.headRefer['fixed']]==='left'}]}
+                    icon-class={item[this.headRefer['fixed']]==='left' ? 'suo ' : 'suoopen'}
                     on-click={this.dropLock.bind(this, $index)}>
                   </grid-icon>
                 </li>
@@ -91,8 +91,10 @@ export default {
     init() {
       this.dropList = JSON.parse(JSON.stringify(this.headList));
     },
-    //排序/显隐操作 点击提交
+    //表头设置（排序/显隐操作 ）- 点击提交
     setHeadSubmit() {
+      console.log('setHeadSubmit - 表头设置（排序/显隐操作 ）- 点击提交');
+      console.log(this.dropList);
       const query = JSON.parse(JSON.stringify(this.dropList));
       this.$emit("setting-submit", query);
       this.headSetSw.set = false;//close header-drag modules
@@ -127,11 +129,11 @@ export default {
      */
     dropLock($index) {
       console.log('dropLock');
-      const key = this.headRefer['lockIcon'];
-      const active = this.dropList[$index][key];
+      const key = this.headRefer['fixed'];
+      const fixedType = this.dropList[$index][key];
       const len = this.dropList.length;
       //修改前为true
-      if (active) {
+      if (fixedType === 'left') {
         this.dropList[$index][key] = false;//去反
         for (let i = $index; i < len; i++) {
           this.dropList[i][key] = false;
@@ -140,7 +142,7 @@ export default {
       //修改前为false
       else {
         for (let i = 0; i <= $index; i++) {
-          this.dropList[i][key] = true;
+          this.dropList[i][key] = 'left';
         }
       }
     },
