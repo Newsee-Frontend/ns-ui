@@ -1,18 +1,26 @@
 <template>
   <div id="app">
-    <grid-template></grid-template>
+    <!--spot-wave / glittering-stars-->
+    <canvas-back type="stars" :width="innerWidth" :height="innerHeight">
+      <!--grid-template module-->
+      <grid-template></grid-template>
+    </canvas-back>
   </div>
 </template>
 
 <script>
+  import canvasBack from "./components/canvas-back/index";
   import gridTemplate from './views/grid-template/index'
 
   export default {
     name: 'app',
     data() {
-      return {}
+      return {
+        innerWidth: window.innerWidth,
+        innerHeight: window.innerHeight,
+      }
     },
-    components: {gridTemplate},
+    components: {gridTemplate, canvasBack},
   }
 </script>
 <style rel="stylesheet/scss" lang="scss">
@@ -21,5 +29,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    .canvas-back {
+      position: relative;
+    }
   }
 </style>
