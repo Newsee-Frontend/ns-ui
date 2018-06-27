@@ -1,0 +1,40 @@
+$--color-black: #000; //纯黑
+$--color-text-primary: #333333; //重要文字
+$--color-text-regular: #666666; //主力文字色系
+$--color-text-secondary: #999999; //辅助文字颜色
+$--color-text-placeholder: #CCCCCC; //失效文字颜色
+$--color-text-supply: #e3e3e3; //补充色系
+$--border-color-light: #d9d9d9; //边框颜色-浅
+$--border-color-lighter: #EEEEEE; //边框颜色-更浅
+$--background-color-base: #f4f4f4; //base background-color
+$--color-white: #FFF; //纯白
+//---------- 基础主色 ----------
+$--color-primary: #0A7AF8;
+$--color-ns-form-hover: #33a1ff; //本项目中表单控件鼠标移入边框基础颜色 inpu / select
+$--color-primary-light: #4097f9; //基础主色-浅色
+//---------- 主题色系 ----------
+$--color-success: #16CA37;
+$--color-warning: #FFAE00;
+$--color-danger: #FF5131;
+$--color-info: #0A7AF8;
+
+//---------- dialog - 弹窗  ----------
+$dialog-default-width: 650px; //基础默认宽度
+$dialog-line-height: 24px; //基础默认行高
+$dialog-padding-left: 32px; //左边间距留白
+$dialog-padding-right: 32px; //右边间距留白
+$dialog-padding-top: 24px; //右边间距留白
+$dialog-padding-bottom: 24px; //右边间距留白
+$dialog-body-max-height: 550px; //body内容实际部分最大高度
+$dialog-body-min-height: 350px; //body内容实际部分最小高度
+
+
+.borderBox{
+  box-sizing: border-box;
+}
+
+
+
+
+
+
