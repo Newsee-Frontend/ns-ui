@@ -127,29 +127,6 @@ export function removeEventHandler(target, type, func) {
   }
 }
 
-
-/**
- * get current page data total list
- * @param tableList     （ table data List ）
- * @param attrList      （ aggregate attribute list ）
- * @returns {{}}
- * @private
- */
-export function getTotalList(tableList, attrList) {
-  let obj = {};
-  tableList.forEach((item, index) => {
-    for (let key in item) {
-      if (arrContainObj(attrList, key)) {
-        obj[key] = Number(obj[key] ? obj[key] : 0) + Number(item[key])
-      }
-      else {
-        obj[key] = '';
-      }
-    }
-  });
-  return obj;
-}
-
 /**
  * get query
  * @param url
@@ -307,10 +284,7 @@ export function countRange(holderInfo) {
     return faNodeH - childTotalH;
   }
 
-  const H = _realTotalHeight(fatherCls, childClsList);
-  // console.log('渲染的表格高度如下：');
-  // console.log(H);
-  return H;
+  return _realTotalHeight(fatherCls, childClsList);
 }
 
 /**
@@ -319,4 +293,35 @@ export function countRange(holderInfo) {
  */
 export function renderRange(holderInfo) {
   eventBus.$emit('buildRange', countRange(holderInfo));
+}
+
+/**
+ * get current page data total list
+ * @param keyRefer
+ * @param tableList     （ table data List ）
+ * @param headList      （ table head List ）
+ * @returns {{}}
+ * @private
+ */
+export function getTotalList(keyRefer, tableList, headList) {
+  let obj = {};
+  let attrList = [];
+  //get attrList
+  headList.forEach(item => {
+    if (item[keyRefer['xtype']] === 'number') {
+      attrList.push(item[keyRefer['model-key']]);
+    }
+  });
+  //get Total list
+  tableList.forEach((item, index) => {
+    for (let key in item) {
+      if (arrContainObj(attrList, key)) {
+        obj[key] = Number(obj[key] ? obj[key] : 0) + Number(item[key])
+      }
+      else {
+        obj[key] = '';
+      }
+    }
+  });
+  return obj;
 }
