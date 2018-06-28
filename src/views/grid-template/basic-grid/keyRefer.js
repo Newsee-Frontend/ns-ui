@@ -4,12 +4,12 @@ const keyRefer = {
     "width": "resourcecolumnWidth",//表头 宽度
     "model-key": "resourcecolumnNameEn",//表头 对应字段名
     "model-code": "resourcecolumnCode",//表头 编码名称
-
+    "xtype": "resourcecolumnXtype",//筛选列 类型
     "col-type": "col-type",//列的类型
     "hidden": "resourcecolumnHidden",//是否显示
 
     "cell-Config": "eidtConfig",//特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
-    "lockIcon": "lockIcon",//锁的图标类型
+    "fixed": "fixed",//锁定
 
   },
   scope: {
