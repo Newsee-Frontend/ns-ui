@@ -44,10 +44,10 @@ export default {
               [
                 <li>
                   <el-checkbox class="header-drag_checkbox fl"
-                               v-model={item.resourcecolumnHidden}>{item.resourcecolumnName}</el-checkbox>
+                               v-model={item[this.headRefer['hidden']]}>{item[this.headRefer['label']]}</el-checkbox>
                   <grid-icon
-                    class={['header-drag_svg fr', {'suo': item[this.headRefer['fixed']]==='left'}]}
-                    icon-class={item[this.headRefer['fixed']]==='left' ? 'suo ' : 'suoopen'}
+                    class={['header-drag_svg fr', {'suo': item[this.headRefer['fixed']] === 'left'}]}
+                    icon-class={item[this.headRefer['fixed']] === 'left' ? 'suo ' : 'suoopen'}
                     on-click={this.dropLock.bind(this, $index)}>
                   </grid-icon>
                 </li>
@@ -90,11 +90,23 @@ export default {
   methods: {
     init() {
       this.dropList = JSON.parse(JSON.stringify(this.headList));
+      this.toggleHiden(this.dropList);//toggle property hiden
+    },
+    /**
+     * toggle property hiden
+     * @param dropList
+     */
+    toggleHiden(dropList) {
+      const hidden = this.headRefer['hidden'];
+      dropList.forEach(item => {
+        item[hidden] = !item[hidden];
+      });
     },
     //表头设置（排序/显隐操作 ）- 点击提交
     setHeadSubmit() {
       console.log('setHeadSubmit - 表头设置（排序/显隐操作 ）- 点击提交');
       console.log(this.dropList);
+      this.toggleHiden(this.dropList);//toggle property hiden
       const query = JSON.parse(JSON.stringify(this.dropList));
       this.$emit("setting-submit", query);
       this.headSetSw.set = false;//close header-drag modules
