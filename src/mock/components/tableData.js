@@ -1,15 +1,24 @@
-import {arrContainObj} from '../../index'
+import {arrContainObj} from '../../utils/index'
 import Mock from 'mockjs'
+import headList from './headData'
 
 /**
  * get current page data total list
  * @param tableList     （ table data List ）
- * @param attrList      （ aggregate attribute list ）
+ * @param headList      （ table head List ）
  * @returns {{}}
  * @private
  */
-function _getTotalList(tableList, attrList) {
+function _getTotalList(tableList, headList) {
   let obj = {};
+  let attrList = [];
+  //get attrList
+  headList.forEach(item => {
+    if (item.resourcecolumnXtype === 'number') {
+      attrList.push(item.resourcecolumnNameEn);
+    }
+  });
+  //get Total list
   tableList.forEach((item, index) => {
     for (let key in item) {
       if (arrContainObj(attrList, key)) {
@@ -41,7 +50,10 @@ let mockTableFn_normal = (min, max) => {
       address: Mock.Random.county(true),//地址
       zip: Mock.Random.zip(),//右边
       Remark: '',//备注
-      fnsclick: [{label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'}, {label: '锁定', value: 'lock'}]//操作栏数据
+      fnsclick: [{label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'}, {
+        label: '锁定',
+        value: 'lock'
+      }]//操作栏数据
     }))
   }
   return {list: list, total: count};
@@ -77,20 +89,21 @@ export default {
      * @param max         数据最大长度
      * @param start       分页条目开始索引
      * @param end         分页条目结束索引
-     * @param attrList    合计字段配置列表
+     * @param headList    表头数据
      * @returns {{resultCode: string, resultMsg: string, resultData: {pageNum: number, pageSize: number, size: number, total: number, totalInfo: Array, list: Array}}}
      * @private
      */
-    function _response(min, max, start, end, attrList) {
+    function _response(min, max, start, end, headList) {
       const info = mockTableFn_normal(min, max);//获取表格模拟数据
       const tableList = info.list.slice(start - 1, end);//通过分页条件获取表格范围数据
-      tableData.resultData.allTotal = _getTotalList(info.list, attrList);//获取表格全部 - 合计对象信息
-      tableData.resultData.totalInfo = _getTotalList(tableList, attrList);//获取表格当前页 - 合计对象信息
+      tableData.resultData.allTotal = _getTotalList(info.list, headList);//获取表格全部 - 合计对象信息
+      tableData.resultData.totalInfo = _getTotalList(tableList, headList);//获取表格当前页 - 合计对象信息
       tableData.resultData.total = info.total;//总条目
       tableData.resultData.list = tableList;//表格范围数据
       return tableData;
     }
-    return _response(30, 30, start, end, ['sum', 'actualSum'])
+
+    return _response(30, 30, start, end, headList)
   },
 }
 
