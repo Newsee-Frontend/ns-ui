@@ -16,7 +16,8 @@
           </el-table-column>
 
           <!-- normal-column -->
-          <el-table-column v-if="!item[headRefer['hidden']]" v-for="(item,index) in gridHead" :index="index" :key="index"
+          <el-table-column v-if="!item[headRefer['hidden']]" v-for="(item,index) in gridHead" :index="index"
+                           :key="index"
                            :label="item[headRefer['label']]" :min-width="item[headRefer['width']]" :align="align"
                            :resizable="resizable"
                            sortable="custom" :fixed="item[headRefer['fixed']]" :show-overflow-tooltip="true"
@@ -66,7 +67,7 @@
 </template>
 <script>
   import eventBus from '../../../utils/eventBus'
-  import {arrContainObj, debounce, addEventHandler, countRange, renderRange} from '../../../utils/index'
+  import {arrContainObj, debounce, addEventHandler, countRange, renderRange, getTotalList} from '../../../utils/index'
   import {actionDrop, actionTotal, actionScope, slotScope, actionPanel} from './ComReg'
 
   export default {
@@ -163,45 +164,34 @@
       finalHead() {
         const d = JSON.parse(JSON.stringify(this.gridHead));
         const h = this.headMachining(d);
-        console.log('处理后的表头数据！！！');
-        console.log(h);
         return h
       },
       //当前页 - 分页合计列表数据
       getTotalList() {
         let totalInfo;
         if (this.command.order === 'current') {
-
-//          console.log('开始计算分页合计列表数据！！！！！！');
-//
-//          let keyList = []
-//          this.gridHead.forEach(item => {
-//            if (item.resourcecolumnXtype === 'number') {
-//              keyList.push(item.resourcecolumnNameEn);
-//            }
-//          })
-//          console.log('key列表数据！！！！！！');
-//          console.log(keyList);
-//          console.log('合计对象数据');
-//          totalInfo = getTotalList(this.gridData, keyList)
-//          console.log(totalInfo);
-          totalInfo = this.gridData.totalInfo;
+          //get current page data total list
+          totalInfo = getTotalList(this.headRefer, this.gridData.list, this.gridHead);
+          console.log('计算当前合计列 - current');
+          console.log(totalInfo);
+          // totalInfo = this.gridData.totalInfo;
         }
         if (this.command.order === 'total') {
           totalInfo = this.gridData.allTotal;
+          console.log('计算全部合计列 - total');
+          console.log(totalInfo);
         }
 
         let arr = [];
-        //表头数组数据长度为0 的情况下，合计行数组直接输出[]
-        if (this.gridHead.length === 0) {
-          return arr;
-        }
-
+        const hidden = this.headRefer['hidden'];//key - hidden
         //否则从表格数据的相应字段中 获取各个表格字段值所对应的值 推入到合计行数组中
         for (let item of this.gridHead) {
-          const key = item[this.headRefer['model-key']];
-          const totalVal = totalInfo[key];
-          arr.push(totalVal ? totalVal : '');
+          //只有在当前表头列显示的情况下才进行如下操作
+          if (item[hidden] === false) {
+            const key = item[this.headRefer['model-key']];
+            const totalVal = totalInfo[key];
+            arr.push(totalVal ? totalVal : '');
+          }
         }
         //如果首列为 'index' 或 'selection' 的情况下，则在合计行数组头部插入一个空字符串
         if (this.firstColType) {
@@ -309,7 +299,7 @@
               validateRule: null
             }
           }
-        })
+        });
         return head;
       },
 
