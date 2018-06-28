@@ -9,7 +9,7 @@ import './assets/css/public.scss'
 import './lib/utils/svgConfig'//iconfont - config
 import ElementUI from 'element-ui';//element-ui js
 //other
-import './utils/mock/index';//mock
+import './mock/index';//mock
 import GlobalCom from './components';//components
 import mounts from './utils/mounts';
 //use
