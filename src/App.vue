@@ -2,7 +2,6 @@
   <div id="app">
     <!--spot-wave / glittering-stars-->
     <canvas-back type="stars" :width="innerWidth" :height="innerHeight">
-      <!--grid-template module-->
       <grid-template></grid-template>
     </canvas-back>
   </div>
