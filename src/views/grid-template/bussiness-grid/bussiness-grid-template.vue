@@ -84,11 +84,17 @@
       refreshGrid() {
         this.loadState.data = false;
         this.grid.fetch(
-          {url: '/table/tableData/normal', query: this.searchConditions},
+          {url: '/table/tableData/fnsclick', query: this.searchConditions},
           res => {
             this.gridData = res;
             console.log('表格数据请求成功！！');
             console.log(this.gridData);
+            this.gridData.list.forEach(item => {
+              item.fnsclick = [
+                {label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'},
+                {label: '停用', value: 'stop'}, {label: '启用', value: 'work'},
+              ];
+            });
             this.loadState.data = true;
           }
         );
