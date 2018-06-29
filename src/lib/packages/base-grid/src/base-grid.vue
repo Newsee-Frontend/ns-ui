@@ -37,7 +37,7 @@
           >
             <template slot-scope="scope">
               <template v-if="ationColConfig[headRefer['col-type']] === 'handle'">
-                <action-scope :scope="scope" @grid-ation="gridAtion"></action-scope>
+                <action-scope :scope="scope" :keyRefer="keyRefer" @grid-ation="gridAtion"></action-scope>
               </template>
             </template>
           </el-table-column>
