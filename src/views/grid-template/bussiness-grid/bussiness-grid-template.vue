@@ -15,7 +15,8 @@
       </div>
       <!--grid-->
       <bussiness-grid gridID="bussiness-grid" :gridData="gridData" firstColType="selection" handleColType="handle"
-                      :loadState="loadState" :searchConditions="searchConditions" :holderInfo="holderInfo"
+                      :loadState="loadState" :searchConditions="searchConditions"
+                      :showSummary="true" :holderInfo="holderInfo"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
                       @selection-change="selectionChange">
