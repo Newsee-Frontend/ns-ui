@@ -10,12 +10,9 @@ const keyRefer = {
 
     "cell-Config": "eidtConfig",//特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
     "fixed": "fixed",//锁定
-
   },
   scope: {
     'actionBtnList': 'fnsclick',//操作列操作按钮列表
-
-
   }
 };
 export default keyRefer;
