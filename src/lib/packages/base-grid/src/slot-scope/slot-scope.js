@@ -69,7 +69,7 @@ export default {
       else {
         return (<div>{scope.row[item[refer['model-key']]]}</div>);
       }
-    }
+    };
 
     return (
       cellRender(this.scope, this.item, this.headRefer)
