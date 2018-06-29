@@ -32,12 +32,40 @@ function _getTotalList(tableList, headList) {
   return obj;
 }
 
+/**
+ * 表格输出信息
+ * @param type        输出类型
+ * @param min         数据最小长度
+ * @param max         数据最大长度
+ * @param start       分页条目开始索引
+ * @param end         分页条目结束索引
+ * @param headList    表头数据
+ * @returns {{resultCode: string, resultMsg: string, resultData: {pageNum: number, pageSize: number, size: number, total: number, totalInfo: Array, list: Array}}}
+ * @private
+ */
+function _response(type, min, max, start, end, headList) {
+  const gridInfo = mockTableFn_normal(min, max, type);//获取表格模拟数据
+  const tableList = gridInfo.list.slice(start - 1, end);//通过分页条件获取表格范围数据
+  tableData.resultData.allTotal = _getTotalList(gridInfo.list, headList);//获取表格全部 - 合计对象信息
+  tableData.resultData.totalInfo = _getTotalList(tableList, headList);//获取表格当前页 - 合计对象信息
+  tableData.resultData.total = gridInfo.total;//总条目
+  tableData.resultData.list = tableList;//表格范围数据
+  return tableData;
+}
 
-let mockTableFn_normal = (min, max) => {
+
+/**
+ * mockTableFn_normal
+ * @param min
+ * @param max
+ * @param type
+ * @returns {{list: Array, total: *}}
+ */
+let mockTableFn_normal = (min, max, type) => {
   const list = [];
   const count = Mock.Random.float(min, max, 0, 0);
   for (let i = 0; i < count; i++) {
-    list.push(Mock.mock({
+    const obj = Mock.mock({
       index: i + 1,//序号
       taskName: '@cname',//项目名称
       date: '@datetime',//成立日期
@@ -50,14 +78,17 @@ let mockTableFn_normal = (min, max) => {
       address: Mock.Random.county(true),//地址
       zip: Mock.Random.zip(),//右边
       Remark: '',//备注
-      fnsclick: [{label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'}, {
+    });
+    if (type === 'fnsclick') {
+      obj.fnsclick = [{label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'}, {
         label: '锁定',
         value: 'lock'
       }]//操作栏数据
-    }))
+    }
+    list.push(obj);
   }
   return {list: list, total: count};
-}
+};
 
 
 const tableData = {
@@ -71,39 +102,24 @@ const tableData = {
     "totalInfo": [],
     "allTotal": [],
     "list": [],
-
   },
 };
 
 
 export default {
-  tableData: config => {
+  normal_tableData: config => {
     const {pageNum} = JSON.parse(config.body);//当前页数
     const {pageSize} = JSON.parse(config.body);//每页显示条目个数
     const start = (pageNum - 1) * pageSize + 1;//分页条目开始索引
     const end = pageNum * pageSize;//分页条目结束索引
-
-    /**
-     * 表格输出信息
-     * @param min         数据最小长度
-     * @param max         数据最大长度
-     * @param start       分页条目开始索引
-     * @param end         分页条目结束索引
-     * @param headList    表头数据
-     * @returns {{resultCode: string, resultMsg: string, resultData: {pageNum: number, pageSize: number, size: number, total: number, totalInfo: Array, list: Array}}}
-     * @private
-     */
-    function _response(min, max, start, end, headList) {
-      const info = mockTableFn_normal(min, max);//获取表格模拟数据
-      const tableList = info.list.slice(start - 1, end);//通过分页条件获取表格范围数据
-      tableData.resultData.allTotal = _getTotalList(info.list, headList);//获取表格全部 - 合计对象信息
-      tableData.resultData.totalInfo = _getTotalList(tableList, headList);//获取表格当前页 - 合计对象信息
-      tableData.resultData.total = info.total;//总条目
-      tableData.resultData.list = tableList;//表格范围数据
-      return tableData;
-    }
-
-    return _response(30, 30, start, end, headList)
+    return _response('fnsclick', 30, 30, start, end, headList);
+  },
+  fnsclick_tableData: config => {
+    const {pageNum} = JSON.parse(config.body);//当前页数
+    const {pageSize} = JSON.parse(config.body);//每页显示条目个数
+    const start = (pageNum - 1) * pageSize + 1;//分页条目开始索引
+    const end = pageNum * pageSize;//分页条目结束索引
+    return _response(null, 30, 30, start, end, headList);
   },
 }
 
