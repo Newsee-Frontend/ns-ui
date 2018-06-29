@@ -6,13 +6,13 @@
       <div class="grid-container">
         <!-- el table encapsulation -->
         <el-table :data="gridData.list" style="width: 100%" :border="border" :max-height="maxHeight" :height="maxHeight"
-                  :show-summary="true" :summary-method="getSummaries" @selection-change="selectionChange"
+                  :show-summary="showSummary" :summary-method="getSummaries" @selection-change="selectionChange"
                   @sort-change="sortChange">
           <!-- show index / selectionprops -column -->
-          <el-table-column v-if="firstColRender" :type="firstColConfig[headRefer['col-type']]"
-                           :label="firstColConfig[headRefer['label']]"
-                           :width="firstColConfig[headRefer['width']]" align="center" :fixed="true"
-                           :class-name="'grid-head-'+firstColConfig[headRefer['model-key']]">
+          <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
+                           :label="firstColInfo[headRefer['label']]"
+                           :width="firstColInfo[headRefer['width']]" align="center" :fixed="true"
+                           :class-name="'grid-head-'+firstColInfo[headRefer['model-key']]">
           </el-table-column>
 
           <!-- normal-column -->
@@ -30,29 +30,29 @@
           </el-table-column>
 
           <!-- handle-column -->
-          <el-table-column v-if="actionRender" :label="ationColConfig[headRefer['label']]"
-                           :width="ationColConfig[headRefer['width']]"
-                           fixed="right" :align="align"
-                           :class-name="'grid-head-'+ationColConfig[headRefer['model-key']]"
+          <el-table-column v-if="actionRender" :label="ationColInfo[headRefer['label']]"
+                           :width="ationColInfo[headRefer['width']]"
+                           fixed="right" :align="ationColInfo[headRefer['align']]"
+                           :class-name="'grid-head-'+ationColInfo[headRefer['model-key']]"
           >
             <template slot-scope="scope">
-              <template v-if="ationColConfig[headRefer['col-type']] === 'handle'">
+              <template v-if="ationColInfo[headRefer['col-type']] === 'handle'">
                 <action-scope :scope="scope" :keyRefer="keyRefer" @grid-ation="gridAtion"></action-scope>
               </template>
             </template>
           </el-table-column>
 
           <!-- head operation setting modules column -->
-          <el-table-column v-if="headOperation" :width="headOperationColConfig[headRefer['width']]" fixed="right"
+          <el-table-column v-if="showHeadOperation" :width="headOperationColInfo[headRefer['width']]" fixed="right"
                            :align="align"
                            :render-header="renderHeader"
-                           :class-name="'grid-head-'+headOperationColConfig[headRefer['model-key']]">>
+                           :class-name="'grid-head-'+headOperationColInfo[headRefer['model-key']]">>
             <template slot-scope="scope"></template>
           </el-table-column>
 
         </el-table>
         <!-- total command modules -->
-        <action-total :command="command"></action-total>
+        <action-total :command="command" v-if="showSummary"></action-total>
       </div>
       <!--dropdown handle modules-->
       <action-drop :head-list="gridHead" :headSetSw="headSetSw" :keyRefer="keyRefer"
@@ -109,7 +109,16 @@
       border: {type: Boolean, default: true},//是否有边框
       firstColType: {type: String, default: 'selection'},//第一列固定列类型（非自动表头配置）
       handleColType: {type: String, default: 'handle'},//固定操作列类型（非自动表头配置）
-      headOperation: {type: Boolean, default: true},//表头设置操作模块开关
+      ationColConfig: {
+        type: Object, default: function () {
+          return {
+            label: '操作',
+            width: '150'
+          }
+        }
+      },//固定操作列自定义配置
+      showSummary: {type: Boolean, default: false},//合计行模块显示开关
+      showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
       mockQuery: {
         type: Object, default: function () {
           return {
@@ -212,30 +221,31 @@
         return arrContainObj(this.handleCol, this.handleColType);
       },
       //首列的配置
-      firstColConfig() {
+      firstColInfo() {
         return {
           [this.headRefer['col-type']]: this.firstColType,
           [this.headRefer['label']]: this.firstColType === 'index' ? "#" : null,//label
           [this.headRefer['model-key']]: 'firstCol',
-          "resourcecolumnWidth": "60",
+          [this.headRefer['width']]: "60",
         }
       },
       //操作列的配置
-      ationColConfig() {
+      ationColInfo() {
         return {
           [this.headRefer['col-type']]: this.handleColType,
-          [this.headRefer['label']]: '操作',
+          [this.headRefer['label']]: this.ationColConfig.label || '操作',
           [this.headRefer['model-key']]: 'fnsclick',
-          "resourcecolumnWidth": "150",
+          [this.headRefer['width']]: this.ationColConfig.width || "150",
+          [this.headRefer['align']]: this.ationColConfig.align || "center",
         }
       },
       //表头设置列的配置
-      headOperationColConfig() {
+      headOperationColInfo() {
         return {
           [this.headRefer['col-type']]: 'headOperation',
           [this.headRefer['label']]: '',
           [this.headRefer['model-key']]: 'headOperation',
-          "resourcecolumnWidth": "23",
+          [this.headRefer['width']]: "23",
         }
       }
     },
