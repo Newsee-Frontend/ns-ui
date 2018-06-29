@@ -15,7 +15,8 @@
       </div>
       <!--grid-->
       <cx-base-grid :gridID="gridID" :gridHead="gridHead" :gridData="gridData" :loadState="loadState"
-                    :firstColType="firstColType" :handleColType="handleColType" :align="align" :border="border"
+                    :firstColType="firstColType" :handleColType="handleColType" :showSummary="showSummary"
+                    :align="align" :border="border"
                     :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
                     :keyRefer="keyRefer" :holderInfo="holderInfo"
                     @refreshGrid="refreshGrid"
@@ -61,6 +62,7 @@
         border: true,//表格是否有边框
         firstColType: 'selection',//第一列固定列类型（非自动表头配置）
         handleColType: 'handle',//固定操作列类型（非自动表头配置）
+        showSummary:true,//合计行模块显示开关
         searchConditions: {
           companyId: "", //公司id
           departmentId: "", //部门id
