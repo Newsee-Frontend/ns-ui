@@ -250,6 +250,7 @@
       }
     },
     created() {
+      alert(this.showHeadOperation);
       //获取 指代属性 head 对象
       this.headRefer = this.keyRefer.head;
     },
