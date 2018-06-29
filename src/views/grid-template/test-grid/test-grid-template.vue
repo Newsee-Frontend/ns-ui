@@ -22,6 +22,9 @@
 
                       :firstColType="null"
                       handleColType="handle"
+                      :ationColConfig="{width:'200'}"
+                      :showHeadOperation="true"
+                      :showSummary="false"
 
                       align="left"
                       :border="true"
