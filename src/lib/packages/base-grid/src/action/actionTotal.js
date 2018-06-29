@@ -20,7 +20,6 @@ export default {
       }
     },
   },
-
   render(h) {
     return (
       <div id="total-command" class="total-command">
@@ -40,10 +39,6 @@ export default {
   },
   created() {
   },
-  computed: {},
-  mounted() {
-
-  },
   watch: {},
   methods: {
     /**
@@ -54,10 +49,6 @@ export default {
       this.dropTit = this.titMap[param];
       this.command.order = param;
     }
-  },
-  beforeDestroy() {
-
-  },
-
+  }
 };
 
