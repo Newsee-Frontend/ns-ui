@@ -135,6 +135,29 @@ $set-part_color_active: #d6e2ed; //表头设置按钮图标颜色 - active
           color: #0a7af8;
           cursor: pointer;
         }
+        //表头固定操作列
+        .action-scope {
+          height: inherit;
+          line-height: inherit;
+          .el-button {
+            padding: 0 10px 0 0;
+            height: inherit;
+            border: none;
+            &:hover {
+              background-color: transparent;
+            }
+          }
+          .el-dropdown {
+            margin: 0;
+            span {
+              color: #409eff;
+              cursor: pointer;
+              &:hover {
+                color: #0A7AF8;
+              }
+            }
+          }
+        }
       }
 
       //表格底部固定合计栏
@@ -142,29 +165,7 @@ $set-part_color_active: #d6e2ed; //表头设置按钮图标颜色 - active
         background-color: transparent;
       }
 
-      //表头固定操作列设置列下拉菜单
-      .action-scope {
-        height: inherit;
-        line-height: inherit;
-        .el-button {
-          padding: 0 10px 0 0;
-          height: inherit;
-          border: none;
-          &:hover {
-            background-color: transparent;
-          }
-        }
-        .el-dropdown {
-          margin: 0;
-          span {
-            color: #409eff;
-            cursor: pointer;
-            &:hover {
-              color: #0A7AF8;
-            }
-          }
-        }
-      }
+
 
       //表头设置模块所在列，演示修改
       /*.el-table__body tr.hover-row > td.grid-head-headOperation {*/
