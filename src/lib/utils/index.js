@@ -259,8 +259,8 @@ export function countRange(holderInfo) {
     if (fbs === 'border-box') {
       faNodeH = faNode.offsetHeight - _getInHeight(faNode, ['paddingTop', 'paddingBottom']);
     }
-    // console.log('容器父级高度：');
-    // console.log(faNodeH);
+    console.log('容器父级高度：');
+    console.log(faNodeH);
     /*===========================================================================*/
 
     /*
@@ -284,7 +284,10 @@ export function countRange(holderInfo) {
     return faNodeH - childTotalH;
   }
 
-  return _realTotalHeight(fatherCls, childClsList);
+  const hh = _realTotalHeight(fatherCls, childClsList);
+  console.log('计算出的高度');
+  console.log(hh);
+  return hh
 }
 
 /**
