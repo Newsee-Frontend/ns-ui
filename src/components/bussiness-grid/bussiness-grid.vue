@@ -66,7 +66,7 @@
       firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection
       handleColType: {type: String},//固定操作列类型（非自动表头配置） handle
       ationColConfig: {type: Object},//固定操作列自定义配置
-      showHeadOperation: {type: Boolean},//表头设置操作模块开关
+      showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
       showSummary: {type: Boolean},//合计行模块显示开关
 
       searchConditions: {
@@ -116,8 +116,8 @@
         return this.gridHead.length > 0 && this.gridData.list;
       },
     },
-    watch: {},
     created() {
+
       //table header data fetch（ 获取表头数据请求 ）
       this.headerFetch();
     },
