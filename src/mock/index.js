@@ -16,9 +16,9 @@ import tableData from './components/tableData'
 
 let registerList = [
   {url: /\/system\/column\/list-column/, method: 'get', target: tableHead.tableHead, remarks: 'get table head'},
-  {url: /\/table\/tableData\/normal/, method: 'post', target: tableData.tableData, remarks: 'get table data'},
+  {url: /\/table\/tableData\/normal/, method: 'post', target: tableData.normal_tableData, remarks: 'get table data'},
+  {url: /\/table\/tableData\/fnsclick/, method: 'post', target: tableData.fnsclick_tableData, remarks: 'get fnsclick table data'},
 ];
-
 
 
 if (sw['local-debug']) {
