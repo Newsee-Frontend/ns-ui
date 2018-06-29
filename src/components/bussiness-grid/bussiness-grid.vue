@@ -2,7 +2,9 @@
   <div class="bussiness-grid">
     <!--grid-->
     <cx-base-grid :gridID="gridID" :gridHead="gridHead" :gridData="gridData" :loadState="loadState"
-                  :firstColType="firstColType" :handleColType="handleColType" :align="align" :border="border"
+                  :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
+                  :showSummary="showSummary" :showHeadOperation="showHeadOperation"
+                  :align="align" :border="border"
                   :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
                   :keyRefer="keyRefer" :holderInfo="holderInfo"
                   @refreshGrid="refreshGrid"
@@ -60,8 +62,13 @@
       LocalHead: {type: Array},//本地表头数据
       align: {type: String},//内容位置（居中，左、右)
       border: {type: Boolean},//表格是否有边框
+
       firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection
       handleColType: {type: String},//固定操作列类型（非自动表头配置） handle
+      ationColConfig: {type: Object},//固定操作列自定义配置
+      showHeadOperation: {type: Boolean},//表头设置操作模块开关
+      showSummary: {type: Boolean},//合计行模块显示开关
+
       searchConditions: {
         type: Object,
         default() {
