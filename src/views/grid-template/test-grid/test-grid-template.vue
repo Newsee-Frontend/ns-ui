@@ -21,7 +21,7 @@
                       :LocalHead="loaclHead"
 
                       :firstColType="null"
-                      :handleColType="null"
+                      handleColType="handle"
 
                       align="left"
                       :border="true"
@@ -109,7 +109,6 @@
           }
         );
       },
-
       /**
        * grid ation event （操作列操作回调事件）
        * @param info
