@@ -89,6 +89,7 @@
           };
         }
       },  //搜索条件 searchConditions
+
       holderInfo: {
         type: Object, default() {
           return {
@@ -97,6 +98,7 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
+
       mockQuery: {
         type: Object, default: function () {
           return {
@@ -105,6 +107,7 @@
           }
         }
       },//mock query
+
       //============== 分页器部分 =================
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
@@ -117,7 +120,6 @@
       },
     },
     created() {
-
       //table header data fetch（ 获取表头数据请求 ）
       this.headerFetch();
     },
