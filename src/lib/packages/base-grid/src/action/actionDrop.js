@@ -3,7 +3,7 @@ import gridIcon from '../../../Icon/grid-icon';
 import {hasClass, stopPropagation, addEventHandler} from '../../../../utils/index';
 
 export default {
-  name: 'table-dropdown',
+  name: 'action-drop',
   components: {
     draggable, gridIcon
   },
@@ -36,7 +36,7 @@ export default {
   },
   render(h) {
     return (
-      <div id={"header-drag"} class={[{"opened": this.headSetSw.set}]} on-click={($event) => this.dragClick($event)}>
+      <div id={"header-drag"} class={{"opened": this.headSetSw.set}} on-click={($event) => this.dragClick($event)}>
         <draggable class="header-drag_content" v-model={this.dropList} options={{disabled: this.isLocked}}
                    on-start={this.dragHandle} on-end={this.dropHandle}>
           {
