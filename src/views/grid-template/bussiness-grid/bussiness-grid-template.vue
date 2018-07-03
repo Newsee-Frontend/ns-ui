@@ -90,12 +90,14 @@
             this.gridData = res;
             console.log('表格数据请求成功！！');
             console.log(this.gridData);
+
             this.gridData.list.forEach(item => {
               item.fnsclick = [
                 {label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'},
                 {label: '停用', value: 'stop'}, {label: '启用', value: 'work'},
               ];
             });
+
             this.loadState.data = true;
           }
         );
@@ -112,16 +114,7 @@
         console.log(scope);
       },
 
-      /**
-       * cell-action （ 表格单元格点击行为事件 ）
-       * @param scope
-       * @param item
-       */
-      cellAction(scope, item) {
-        console.log('cell-action-event - 表格单元格点击行为事件抛出');
-        console.log(scope);
-        console.log(item);
-      },
+
 
       /**
        * selection change （表数据 checkbox 选择的时候）
