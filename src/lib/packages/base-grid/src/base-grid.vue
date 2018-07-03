@@ -2,11 +2,11 @@
 <template>
   <div class="cx-grid" :id="gridID" v-loading="!isLoading" element-loading-text="拼命加载中">
     <!--grid container-->
-    <template v-if="isRender">
-      <div class="grid-container">
+    <template>
+      <div class="grid-container" v-if="isRender">
         <!-- el table encapsulation -->
         <el-table :data="gridData.list" style="width: 100%" :border="border" :max-height="maxHeight" :height="maxHeight"
-                  :show-summary="showSummary" :summary-method="getSummaries" @selection-change="selectionChange"
+                  :show-summary="showSummaryFinal" :summary-method="getSummaries" @selection-change="selectionChange"
                   @sort-change="sortChange">
           <!-- show index / selectionprops -column -->
           <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
@@ -16,12 +16,11 @@
           </el-table-column>
 
           <!-- normal-column -->
-          <el-table-column v-if="!item[headRefer['hidden']]" v-for="(item,index) in gridHead" :index="index"
-                           :key="index"
-                           :label="item[headRefer['label']]" :min-width="item[headRefer['width']]" :align="align"
-                           :resizable="resizable"
-                           sortable="custom" :fixed="item[headRefer['fixed']]" :show-overflow-tooltip="true"
-                           :class-name="'grid-head-'+item[headRefer['model-key']]">
+          <el-table-column v-if="!item[headRefer['hidden']]" :class-name="'grid-head-'+item[headRefer['model-key']]"
+                           v-for="(item,index) in gridHead" :index="index" :key="index"
+                           :min-width="item[headRefer['width']]" :align="align" :label="item[headRefer['label']]"
+                           :resizable="resizable" sortable="custom" :show-overflow-tooltip="true"
+                           :fixed="errorType === 'noError' && item[headRefer['fixed']]">
             <!--table cell content-->
             <template slot-scope="scope">
               <!--form components in table-->
@@ -43,32 +42,39 @@
           </el-table-column>
 
           <!-- head operation setting modules column -->
-          <el-table-column v-if="showHeadOperation" :width="headOperationColInfo[headRefer['width']]" fixed="right"
-                           :align="align"
-                           :render-header="renderHeader"
-                           :class-name="'grid-head-'+headOperationColInfo[headRefer['model-key']]">>
+          <el-table-column v-if="showHeadOperation && errorType === 'noError'"
+                           :class-name="'grid-head-'+headOperationColInfo[headRefer['model-key']]"
+                           :width="headOperationColInfo[headRefer['width']]" fixed="right"
+                           :align="align" :render-header="renderHeader"
+          >
             <template slot-scope="scope"></template>
           </el-table-column>
 
         </el-table>
         <!-- total command modules -->
-        <action-total :command="command" v-if="showSummary"></action-total>
+        <action-summary :command="command" v-if="showSummaryFinal"></action-summary>
       </div>
+
       <!--dropdown handle modules-->
       <action-drop :head-list="gridHead" :headSetSw="headSetSw" :keyRefer="keyRefer"
                    @setting-submit="settingSubmit"></action-drop>
+
+      <!-- error status display -->
+      <error-prompt :errorType="errorType" @refreshGrid="refreshGrid"></error-prompt>
+
     </template>
     <!--pagination for table componetn-->
     <actionPanel :gridID="gridID" :total="gridData.total" :layout="layout" :pageSizes="pageSizes"
                  :searchConditions="searchConditions"
-                 @refreshGrid="refreshGrid" :style="{visibility: isRender?'visible':'hidden'}">
+                 @refreshGrid="refreshGrid"
+                 v-if="isRender" :style="{display: errorType !== 'error'?'block':'none'}">
     </actionPanel>
   </div>
 </template>
 <script>
   import eventBus from '../../../utils/eventBus'
   import {arrContainObj, debounce, addEventHandler, countRange, renderRange, getTotalList} from '../../../utils/index'
-  import {actionDrop, actionTotal, actionScope, slotScope, actionPanel} from './ComReg'
+  import {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt} from './ComReg'
 
   export default {
     name: 'default-base-grid',
@@ -88,9 +94,7 @@
         resizeRate: 50,//表格渲染刷新频率
       }
     },
-    components: {
-      actionDrop, actionTotal, actionScope, slotScope, actionPanel
-    },
+    components: {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt},
     props: {
       keyRefer: {type: Object},  //指代属性
       loadState: {type: Object, default: {data: false, head: false}},   //表格数据加载状态
@@ -158,7 +162,7 @@
             childClsList: ['search', 'panel-page'],
           }
         }
-      }//表格容器信息（包含父级容器和所包含的子级容器列表)
+      },//表格容器信息（包含父级容器和所包含的子级容器列表)
     },
     computed: {
       //是否处于加载状态中
@@ -169,11 +173,69 @@
       isRender() {
         return this.gridHead.length > 0 && this.gridData.list;
       },
+      //错误类型
+      errorType() {
+        //只有在加载状态中结束后（ 即：表头和表数据都请求完成后，无论请求是否成功 ），才会去判断是否错误以及具体是哪种错误类型
+        if (this.isLoading) {
+          if (this.gridHead.length === 0) {
+            return 'error';
+          }
+          if (!this.gridData.list) {
+            return 'noData';
+          }
+          if (this.gridData.list.length === 0) {
+            return 'noResult';
+          }
+          return 'noError';
+        }
+        else {
+          return 'noError';//初始状态都为 ‘noError’
+        }
+      },
+      //是否显示合计行 （ 根据用户属性开关和数据状态 ）
+      showSummaryFinal() {
+        return this.showSummary && this.errorType === 'noError';
+      },
+      //首列渲染开关
+      firstColRender() {
+        return arrContainObj(this.firstCol, this.firstColType) && this.errorType === 'noError';
+      },
+      //操作列渲染开关
+      actionRender() {
+        return arrContainObj(this.handleCol, this.handleColType) && this.errorType === 'noError';
+      },
+      //首列的配置
+      firstColInfo() {
+        return {
+          [this.headRefer['col-type']]: this.firstColType,
+          [this.headRefer['label']]: this.firstColType === 'index' ? "#" : null,//label
+          [this.headRefer['model-key']]: 'firstCol',
+          [this.headRefer['width']]: "60",
+        }
+      },
+      //操作列的配置
+      ationColInfo() {
+        return {
+          [this.headRefer['col-type']]: this.handleColType,
+          [this.headRefer['label']]: this.ationColConfig.label || '操作',
+          [this.headRefer['model-key']]: 'fnsclick',
+          [this.headRefer['width']]: this.ationColConfig.width || "150",
+          [this.headRefer['align']]: this.ationColConfig.align || "center",
+        }
+      },
+      //表头设置列的配置
+      headOperationColInfo() {
+        return {
+          [this.headRefer['col-type']]: 'headOperation',
+          [this.headRefer['label']]: '',
+          [this.headRefer['model-key']]: 'headOperation',
+          [this.headRefer['width']]: "23",
+        }
+      },
       //处理后表头数据
       finalHead() {
         const d = JSON.parse(JSON.stringify(this.gridHead));
-        const h = this.headMachining(d);
-        return h
+        return this.headMachining(d);
       },
       //当前页 - 分页合计列表数据
       getTotalList() {
@@ -212,45 +274,8 @@
         }
         return arr;
       },
-      //首列渲染开关
-      firstColRender() {
-        return arrContainObj(this.firstCol, this.firstColType);
-      },
-      //操作列渲染开关
-      actionRender() {
-        return arrContainObj(this.handleCol, this.handleColType);
-      },
-      //首列的配置
-      firstColInfo() {
-        return {
-          [this.headRefer['col-type']]: this.firstColType,
-          [this.headRefer['label']]: this.firstColType === 'index' ? "#" : null,//label
-          [this.headRefer['model-key']]: 'firstCol',
-          [this.headRefer['width']]: "60",
-        }
-      },
-      //操作列的配置
-      ationColInfo() {
-        return {
-          [this.headRefer['col-type']]: this.handleColType,
-          [this.headRefer['label']]: this.ationColConfig.label || '操作',
-          [this.headRefer['model-key']]: 'fnsclick',
-          [this.headRefer['width']]: this.ationColConfig.width || "150",
-          [this.headRefer['align']]: this.ationColConfig.align || "center",
-        }
-      },
-      //表头设置列的配置
-      headOperationColInfo() {
-        return {
-          [this.headRefer['col-type']]: 'headOperation',
-          [this.headRefer['label']]: '',
-          [this.headRefer['model-key']]: 'headOperation',
-          [this.headRefer['width']]: "23",
-        }
-      }
     },
     created() {
-      alert(this.showHeadOperation);
       //获取 指代属性 head 对象
       this.headRefer = this.keyRefer.head;
     },
@@ -260,7 +285,7 @@
       //listen to renderRange change
       this.listenRenderRange();
       //listen to window resize and adjust the height of the table
-      this.listenResize()
+      this.listenResize();
     },
     updated() {
       //when component updated，calculating the height of the table ，then run and render gird.
@@ -316,9 +341,9 @@
 
       //排序
       sortChange({column, prop, order}) {
-//        console.log(column)
-//        console.log(prop)
-//        console.log(order)
+        //        console.log(column)
+        //        console.log(prop)
+        //        console.log(order)
         //升序排序
         if (order === "ascending") {
           this.searchConditions.orderBy = "ASC";
@@ -380,7 +405,9 @@
        */
       getSummaries(param) {
         const {columns, data} = param;
-        return this.getTotalList;
+        if (this.showSummaryFinal) {
+          return this.getTotalList;
+        }
       },
       //listen to renderRange change
       listenRenderRange() {
@@ -420,7 +447,6 @@
           this.throw("the object of the judgment must be a array format ，you better find it");
         }
       },
-
     }
   }
 </script>
