@@ -68,7 +68,7 @@
     <actionPanel :gridID="gridID" :total="gridData.total" :layout="layout" :pageSizes="pageSizes"
                  :searchConditions="searchConditions"
                  @refreshGrid="refreshGrid"
-                 :style="{display: errorType !== 'error'?'block':'none'}">
+                 :style="{display: showActionPanel?'block':'none'}">
     </actionPanel>
   </div>
 </template>
@@ -206,6 +206,10 @@
       showSummaryFinal() {
         return this.showSummary && this.errorType === 'noError';
       },
+      //是否分页器 （ 根据数据状态判断 ）
+      showActionPanel() {
+        return this.errorType !== 'error' && this.errorType !== 'noData';
+      },
       //首列渲染开关
       firstColRender() {
         return arrContainObj(this.firstCol, this.firstColType) && this.errorType === 'noError';
@@ -290,7 +294,7 @@
       this.headRefer = this.keyRefer.head;
     },
     mounted() {
-     this.initMounted();//初始化挂载
+      this.initMounted();//初始化挂载
     },
     updated() {
       //when component updated，calculating the height of the table ，then run and render gird.
@@ -309,7 +313,7 @@
       /**
        * init mounted
        */
-      initMounted(){
+      initMounted() {
         if (this.initDynamicSize) {
           // get init render height
           this.sizeInfo.maxHeight = countRange(this.holderInfo);
