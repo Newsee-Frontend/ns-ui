@@ -4,9 +4,9 @@
              top="7%" :modal-append-to-body="true" append-to-body
   >
     <!--temple container-->
-    <div class="template-container">
+    <div class="dialog-container" :id="gridID + '-holder'">
       <!--temple secrch modules-->
-      <div class="search">
+      <div class="search" :id="gridID + '-search'">
         <el-input v-model="inputModel" placeholder="请输入内容" size="small" style="width: 200px"></el-input>
         <el-select v-model="selectModel" placeholder="请选择" size="small">
           <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"></el-option>
@@ -54,7 +54,7 @@
         keyRefer: keyRefer,
         headRefer: keyRefer.head,
         //---- table组件属性部分 ----
-        gridID: 'template-grid',//表个唯一ID值
+        gridID: 'basic-grid',//表个唯一ID值
         loadState: {data: false, head: false}, //表格数据加载状态
         gridData: {}, //列表数据
         gridHead: [],//表头数据
@@ -81,11 +81,14 @@
         mockQuery: {page: 'normal', type: 'normal'},//固定操作列类型（非自动表头配置）
         layout: "slot,sizes, prev, pager, next, jumper", //分页器组件组件布局，子组件名用逗号分隔
         pageSizes: [10, 20, 50, 100],  //每页显示个数选择器的选项设置
-        holderInfo: {fatherCls: 'template-container', childClsList: ['search', 'panel-page']},//表格容器信息（包含父级容器和所包含的子级容器列表)
-
         //---- table数据处理部分 ----
         linkCodeConfig: ['houseShortName', 'houseName', 'ownerName', 'lesseeName', 'custorName', 'taskName'],
-
+      }
+    },
+    computed: {
+      //表格容器信息（包含父级容器和所包含的子级容器列表)
+      holderInfo() {
+        return {fatherID: this.gridID + '-holder', childIDList: [this.gridID + '-search', this.gridID + '-panel']};
       }
     },
     props: {
@@ -270,7 +273,7 @@
     .el-dialog__body {
       padding-bottom: 0;
     }
-    .template-container {
+    .dialog-container {
       height: 100%;
       box-sizing: border-box;
       .search {
