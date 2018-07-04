@@ -27,7 +27,6 @@ export default {
       }
     }
   },
-
   computed: {
     //pagination total information
     panelDescribe() {
@@ -37,7 +36,7 @@ export default {
   },
   render(h) {
     return (
-      <div class={["panel-page", this.gridID + '-panel']}>
+      <div class={"panel-page"} id={this.gridID + '-panel'}>
         {
           <span class="panel-pre_text fl">{this.panelDescribe}</span>
         }
