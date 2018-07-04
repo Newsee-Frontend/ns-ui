@@ -4,9 +4,9 @@
              top="7%" :modal-append-to-body="true" append-to-body
   >
     <!--temple container-->
-    <div class="template-container">
+    <div class="dialog-container" :id="gridID + '-holder'">
       <!--temple secrch modules-->
-      <div class="search">
+      <div class="search" :id="gridID + '-search'">
         <el-input v-model="inputModel" placeholder="请输入内容" size="small" style="width: 200px"></el-input>
         <el-select v-model="selectModel" placeholder="请选择" size="small">
           <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"></el-option>
@@ -14,7 +14,7 @@
         <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
       </div>
       <!--grid-->
-      <bussiness-grid gridID="bussiness-grid" :gridData="gridData" :loadState="loadState"
+      <bussiness-grid :gridID="gridID" :gridData="gridData" :loadState="loadState"
                       :searchConditions="searchConditions" :holderInfo="holderInfo"
 
                       headSource="Local"
@@ -78,7 +78,12 @@
           organizationId: "",
           totalType: 1
         },//搜索条件
-        holderInfo: {fatherCls: 'template-container', childClsList: ['search', 'panel-page']},//表格容器信息（包含父级容器和所包含的子级容器列表)
+      }
+    },
+    computed: {
+      //表格容器信息（包含父级容器和所包含的子级容器列表)
+      holderInfo() {
+        return {fatherID: this.gridID + '-holder', childIDList: [this.gridID + '-search', this.gridID + '-panel']};
       }
     },
     props: {
@@ -157,7 +162,7 @@
     .el-dialog__body {
       padding-bottom: 0;
     }
-    .template-container {
+    .dialog-container {
       height: 100%;
       box-sizing: border-box;
       .search {
