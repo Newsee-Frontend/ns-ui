@@ -2,11 +2,13 @@
   <div class="bussiness-grid">
     <!--grid-->
     <cx-base-grid :gridID="gridID" :gridHead="gridHead" :gridData="gridData" :loadState="loadState"
+                  :sizeInfo="sizeInfo" :initDynamicSize="initDynamicSize"
+                  :autoResize="autoResize" :holderInfo="holderInfo"
                   :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
                   :showSummary="showSummary" :showHeadOperation="showHeadOperation"
                   :align="align" :border="border"
                   :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
-                  :keyRefer="keyRefer" :holderInfo="holderInfo"
+                  :keyRefer="keyRefer"
                   @refreshGrid="refreshGrid"
                   @cell-action="cellAction"
                   @grid-ation="gridAtion"
@@ -90,15 +92,6 @@
         }
       },  //搜索条件 searchConditions
 
-      holderInfo: {
-        type: Object, default() {
-          return {
-            fatherCls: 'table-body',
-            childClsList: ['search', 'panel-page']
-          }
-        }
-      },//表格容器信息（包含父级容器和所包含的子级容器列表)
-
       mockQuery: {
         type: Object, default: function () {
           return {
@@ -107,6 +100,26 @@
           }
         }
       },//mock query
+
+      sizeInfo: {
+        type: Object, default: function () {
+          return {
+            maxHeight: 500//表格渲染高度默认值
+          }
+        }
+      },//尺寸信息
+      initDynamicSize: {type: Boolean, default: true},//是否为动态尺寸 （初始化渲染动态）
+      autoResize: {type: Boolean, default: true},//表格高度是否自适应窗口变化
+      holderInfo: {
+        type: Object, default() {
+          return {
+            fatherID: 'table-body',
+            childIDList: ['search', 'panel-page']
+          }
+        }
+      },//表格容器信息（包含父级容器和所包含的子级容器列表)
+
+
 
       //============== 分页器部分 =================
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
