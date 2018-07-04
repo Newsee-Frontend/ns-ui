@@ -31,43 +31,38 @@ export default {
               <div class="grid-cell grid-cell_link" title={scope.row[item[refer['model-code']]]}
                    on-click={this.cellAction.bind(this, scope, item)}
               >
-                {scope.row[item[refer['model-key']]]}
+                {scope.row[item[refer['model-code']]]}
               </div>
             );
-            break;
           case 'input':
             return (
-              <el-input class="grid-cell" v-model={scope.row[item[refer['model-key']]]} size="mini"
-                        placeholder={item[refer['model-key']].placeHolder}
+              <el-input class="grid-cell" v-model={scope.row[item[refer['model-code']]]} size="mini"
+                        placeholder={item[refer['model-code']].placeHolder}
                         disabled={item[refer['cell-Config']].disabled} clearable={true}>
               </el-input>
             );
-            break;
           case 'rate':
             return (
-              <el-input-number class="grid-cell" v-model={scope.row[item[refer['model-key']]]}
+              <el-input-number class="grid-cell" v-model={scope.row[item[refer['model-code']]]}
                                size="mini" min={item[refer['cell-Config']].min} max={item[refer['cell-Config']].max}
                                disabled={item[refer['cell-Config']].disabled}
               >
               </el-input-number>
             );
-            break;
           case 'date':
             return (
-              <el-date-picker class="grid-cell" v-model={scope.row[item[refer['model-key']]]}
+              <el-date-picker class="grid-cell" v-model={scope.row[item[refer['model-code']]]}
                               disabled={item[refer['cell-Config']].disabled}
                               size="mini" type="date" editable={false}
-                              placeholder={item[refer['model-key']].placeHolder} value-format="yyyy-MM-dd 00:00:00">
+                              placeholder={item[refer['model-code']].placeHolder} value-format="yyyy-MM-dd 00:00:00">
               </el-date-picker>
             );
-            break;
           default:
-            return (<div>{scope.row[item[refer['model-key']]]}</div>);
-            break;
+            return (<div>{scope.row[item[refer['model-code']]]}</div>);
         }
       }
       else {
-        return (<div>{scope.row[item[refer['model-key']]]}</div>);
+        return (<div>{scope.row[item[refer['model-code']]]}</div>);
       }
     };
 
