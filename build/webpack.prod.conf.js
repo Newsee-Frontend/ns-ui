@@ -71,10 +71,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     // duplicated CSS from different components can be deduped.
     new OptimizeCSSPlugin({
       cssProcessorOptions: config.build.productionSourceMap
-        ? { safe: true, map: { inline: false } }
-        : { safe: true }
+        ? {safe: true, map: {inline: false}}
+        : {safe: true}
     }),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
     // // generate dist index.html with correct asset hash for caching.
     // // you can customize output by editing /index.html
     // // see https://github.com/ampedandwired/html-webpack-plugin
@@ -126,14 +126,14 @@ const webpackConfig = merge(baseWebpackConfig, {
     //   minChunks: 3
     // }),
     //
-    // // copy custom static assets
-    // new CopyWebpackPlugin([
-    //   {
-    //     from: path.resolve(__dirname, '../static'),
-    //     to: config.build.assetsSubDirectory,
-    //     ignore: ['.*']
-    //   }
-    // ])
+    // copy custom static assets
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../static'),
+        to: config.build.assetsSubDirectory,
+        ignore: ['.*']
+      }
+    ])
   ]
 });
 
