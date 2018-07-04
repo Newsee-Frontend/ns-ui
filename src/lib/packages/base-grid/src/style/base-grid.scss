@@ -319,6 +319,7 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
   }
   //分页模块
   .panel-page {
+    display: none;
     padding: 10px 5px;
     z-index: 99;
     background-color: #f5f7fa;
