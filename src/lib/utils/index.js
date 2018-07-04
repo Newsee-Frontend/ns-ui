@@ -197,8 +197,10 @@ export function removeClass(elements, cName) {
  * @returns {number}
  */
 export function countRange(holderInfo) {
-  const fatherCls = holderInfo.fatherCls;//father element className
-  const childClsList = holderInfo.childClsList;//children elements className list
+  console.log('holderInfoholderInfoholderInfo');
+  console.log(holderInfo);
+  const fatherID = holderInfo.fatherID;//father element className
+  const childIDList = holderInfo.childIDList;//children elements className list
 
   /**
    * get style
@@ -233,12 +235,12 @@ export function countRange(holderInfo) {
 
   /**
    * real total height
-   * @param fatherCls
-   * @param childClsList
+   * @param fatherID
+   * @param childIDList
    * @returns {number}
    * @private
    */
-  function _realTotalHeight(fatherCls, childClsList) {
+  function _realTotalHeight(fatherID, childIDList) {
 
     /*
     * 判断父级内部容器高度时候，只需计算内部控件即可
@@ -246,9 +248,9 @@ export function countRange(holderInfo) {
     * 2、border-box  => 取 offsetHeight 高度后取出 padding 高度
     * ===========================================================================
     */
-    const faNode = document.getElementsByClassName(fatherCls)[0]; //父级容器
+    const faNode = document.getElementById(fatherID); //父级容器
     if (!faNode) {
-      throw 'the father element whitch classNmae is ' + fatherCls + 'is not found, find it in grid component.';
+      throw 'the father element whitch ID is "' + fatherID + '" is not found, find it in grid component.';
     }
     const fbs = _getStyle(faNode, 'boxSizing');//get style of box-sizing
     let faNodeH = 0;//init height
@@ -259,8 +261,8 @@ export function countRange(holderInfo) {
     if (fbs === 'border-box') {
       faNodeH = faNode.offsetHeight - _getInHeight(faNode, ['paddingTop', 'paddingBottom']);
     }
-    // console.log('容器父级高度：');
-    // console.log(faNodeH);
+    console.log('容器父级高度：');
+    console.log(faNodeH);
     /*===========================================================================*/
 
     /*
@@ -270,23 +272,22 @@ export function countRange(holderInfo) {
      * ===========================================================================
     */
     let childTotalH = 0;
-    childClsList.forEach(cls => {
-      const clsNode = document.getElementsByClassName(cls)[0]; //容器
+    childIDList.forEach(id => {
+      const node = document.getElementById(id); //容器
       let realH = 0;
-      if (clsNode) {
-        addClass(clsNode, 'borderBox');//add className => add style box-size ( borderBox )
-        const clsNodeH = clsNode.offsetHeight; //child element height
-        realH = clsNodeH + _getInHeight(clsNode, ['marginTop', 'marginBottom']);//add margin height
+      if (node) {
+        addClass(node, 'borderBox');//add className => add style box-size ( borderBox )
+        const nodeH = node.offsetHeight; //child element height
+        realH = nodeH + _getInHeight(node, ['marginTop', 'marginBottom']);//add margin height
       }
-
       childTotalH = childTotalH + realH;
     });
     return faNodeH - childTotalH;
   }
 
-  const hh = _realTotalHeight(fatherCls, childClsList);
-  // console.log('计算出的高度');
-  // console.log(hh);
+  const hh = _realTotalHeight(fatherID, childIDList);
+  console.log('计算出的高度');
+  console.log(hh);
   return hh
 }
 
