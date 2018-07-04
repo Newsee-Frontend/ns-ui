@@ -112,7 +112,7 @@ export default {
     const {pageSize} = JSON.parse(config.body);//每页显示条目个数
     const start = (pageNum - 1) * pageSize + 1;//分页条目开始索引
     const end = pageNum * pageSize;//分页条目结束索引
-    return _response('fnsclick', 30, 30, start, end, headList);
+    return _response('fnsclick', 0, 0, start, end, headList);
   },
   fnsclick_tableData: config => {
     const {pageNum} = JSON.parse(config.body);//当前页数
