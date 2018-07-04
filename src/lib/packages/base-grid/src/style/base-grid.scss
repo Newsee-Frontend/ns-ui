@@ -68,11 +68,13 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
   position: relative;
   //遮罩层样式修改
   .el-loading-mask {
+    background-color: hsla(0, 0%, 100%, .98);
     .el-loading-spinner {
-      top: 0%;
+      top: 0;
       margin-top: 140px;
     }
   }
+
   //无数据时表格内部填充块 - empty-block - 文字隐藏
   .el-table__empty-block {
     span.el-table__empty-text {
