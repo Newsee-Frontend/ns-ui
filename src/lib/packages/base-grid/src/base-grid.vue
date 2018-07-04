@@ -5,18 +5,19 @@
     <template>
       <div class="grid-container" v-if="isRender">
         <!-- el table encapsulation -->
-        <el-table :data="gridData.list" style="width: 100%" :border="border" :max-height="maxHeight" :height="maxHeight"
+        <el-table :data="gridData.list" style="width: 100%" :border="border" :max-height="sizeInfo.maxHeight"
+                  :height="sizeInfo.maxHeight"
                   :show-summary="showSummaryFinal" :summary-method="getSummaries" @selection-change="selectionChange"
                   @sort-change="sortChange">
           <!-- show index / selectionprops -column -->
           <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
                            :label="firstColInfo[headRefer['label']]"
                            :width="firstColInfo[headRefer['width']]" align="center" :fixed="true"
-                           :class-name="'grid-head-'+firstColInfo[headRefer['model-key']]">
+                           :class-name="'grid-head-'+firstColInfo[headRefer['model-code']]">
           </el-table-column>
 
           <!-- normal-column -->
-          <el-table-column v-if="!item[headRefer['hidden']]" :class-name="'grid-head-'+item[headRefer['model-key']]"
+          <el-table-column v-if="!item[headRefer['hidden']]" :class-name="'grid-head-'+item[headRefer['model-code']]"
                            v-for="(item,index) in gridHead" :index="index" :key="index"
                            :min-width="item[headRefer['width']]" :align="align" :label="item[headRefer['label']]"
                            :resizable="resizable" sortable="custom" :show-overflow-tooltip="true"
@@ -32,7 +33,7 @@
           <el-table-column v-if="actionRender" :label="ationColInfo[headRefer['label']]"
                            :width="ationColInfo[headRefer['width']]"
                            fixed="right" :align="ationColInfo[headRefer['align']]"
-                           :class-name="'grid-head-'+ationColInfo[headRefer['model-key']]"
+                           :class-name="'grid-head-'+ationColInfo[headRefer['model-code']]"
           >
             <template slot-scope="scope">
               <template v-if="ationColInfo[headRefer['col-type']] === 'handle'">
@@ -43,7 +44,7 @@
 
           <!-- head operation setting modules column -->
           <el-table-column v-if="showHeadOperation && errorType === 'noError'"
-                           :class-name="'grid-head-'+headOperationColInfo[headRefer['model-key']]"
+                           :class-name="'grid-head-'+headOperationColInfo[headRefer['model-code']]"
                            :width="headOperationColInfo[headRefer['width']]" fixed="right"
                            :align="align" :render-header="renderHeader"
           >
@@ -67,7 +68,7 @@
     <actionPanel :gridID="gridID" :total="gridData.total" :layout="layout" :pageSizes="pageSizes"
                  :searchConditions="searchConditions"
                  @refreshGrid="refreshGrid"
-                 v-if="isRender" :style="{display: errorType !== 'error'?'block':'none'}">
+                 :style="{display: errorType !== 'error'?'block':'none'}">
     </actionPanel>
   </div>
 </template>
@@ -80,7 +81,6 @@
     name: 'default-base-grid',
     data() {
       return {
-        maxHeight: 500,//表格渲染高度默认值
         headRefer: {},
         firstCol: ['index', 'selection'], //special-column
         handleCol: ['handle'], //special-column
@@ -153,16 +153,26 @@
       },//搜索条件 searchConditions
       layout: {type: String}, //组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
-      autoResize: {type: Boolean, default: true},//表格高度是否自适应窗口变化
       resizable: {type: Boolean, default: true}, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
+
+      sizeInfo: {
+        type: Object, default: function () {
+          return {
+            maxHeight: 500//表格渲染高度默认值
+          }
+        }
+      },//尺寸信息
+      initDynamicSize: {type: Boolean, default: true},//是否为动态尺寸 （初始化渲染动态）
+      autoResize: {type: Boolean, default: true},//表格高度是否自适应窗口变化
       holderInfo: {
         type: Object, default() {
           return {
-            fatherCls: 'table-body',
-            childClsList: ['search', 'panel-page'],
+            fatherID: 'table-body',
+            childIDList: ['search', 'panel-page'],
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
+
     },
     computed: {
       //是否处于加载状态中
@@ -209,7 +219,7 @@
         return {
           [this.headRefer['col-type']]: this.firstColType,
           [this.headRefer['label']]: this.firstColType === 'index' ? "#" : null,//label
-          [this.headRefer['model-key']]: 'firstCol',
+          [this.headRefer['model-code']]: 'firstCol',
           [this.headRefer['width']]: "60",
         }
       },
@@ -218,7 +228,7 @@
         return {
           [this.headRefer['col-type']]: this.handleColType,
           [this.headRefer['label']]: this.ationColConfig.label || '操作',
-          [this.headRefer['model-key']]: 'fnsclick',
+          [this.headRefer['model-code']]: 'fnsclick',
           [this.headRefer['width']]: this.ationColConfig.width || "150",
           [this.headRefer['align']]: this.ationColConfig.align || "center",
         }
@@ -228,7 +238,7 @@
         return {
           [this.headRefer['col-type']]: 'headOperation',
           [this.headRefer['label']]: '',
-          [this.headRefer['model-key']]: 'headOperation',
+          [this.headRefer['model-code']]: 'headOperation',
           [this.headRefer['width']]: "23",
         }
       },
@@ -259,7 +269,7 @@
         for (let item of this.gridHead) {
           //只有在当前表头列显示的情况下才进行如下操作
           if (item[hidden] === false) {
-            const key = item[this.headRefer['model-key']];
+            const key = item[this.headRefer['model-code']];
             const totalVal = totalInfo[key];
             arr.push(totalVal ? totalVal : '');
           }
@@ -280,24 +290,38 @@
       this.headRefer = this.keyRefer.head;
     },
     mounted() {
-      // get init render height
-      this.maxHeight = countRange(this.holderInfo);
-      //listen to renderRange change
-      this.listenRenderRange();
-      //listen to window resize and adjust the height of the table
-      this.listenResize();
+     this.initMounted();//初始化挂载
     },
     updated() {
       //when component updated，calculating the height of the table ，then run and render gird.
-      renderRange(this.holderInfo);
+      // renderRange(this.holderInfo);
     },
     beforeDestroy() {
       //remove event Listener
       if (this.autoResize) {
         window.removeEventListener('resize', this.__resizeHanlder);
       }
+      if (this.initDynamicSize) {
+        eventBus.$off('buildRange')
+      }
     },
     methods: {
+      /**
+       * init mounted
+       */
+      initMounted(){
+        if (this.initDynamicSize) {
+          // get init render height
+          this.sizeInfo.maxHeight = countRange(this.holderInfo);
+          //listen to renderRange change
+          this.listenRenderRange();
+        }
+        if (this.autoResize) {
+          //listen to window resize and adjust the height of the table
+          this.listenResize();
+        }
+      },
+
       /**
        * render header (渲染列头设置模块)
        * @param h
@@ -412,20 +436,19 @@
       //listen to renderRange change
       listenRenderRange() {
         eventBus.$on('buildRange', (val) => {
-          this.maxHeight = val;
+          console.log('buildRange222222');
+          console.log(val);
+          this.sizeInfo.maxHeight = val;
         });
       },
 
       //listen to window resize and adjust the height of the table
       listenResize() {
-        if (this.autoResize) {
-          this.__resizeHanlder = debounce(() => {
-            //calculating the height of the table ，then run and render gird.
-            renderRange(this.holderInfo);
-          }, this.resizeRate);
-
-          addEventHandler(window, 'resize', this.__resizeHanlder);
-        }
+        this.__resizeHanlder = debounce(() => {
+          //calculating the height of the table ，then run and render gird.
+          renderRange(this.holderInfo);
+        }, this.resizeRate);
+        addEventHandler(window, 'resize', this.__resizeHanlder);
       },
       /**
        * judge array contain another Obj
