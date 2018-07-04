@@ -4,19 +4,21 @@
              top="7%" :modal-append-to-body="true" append-to-body
   >
     <!--temple container-->
-    <div class="template-container">
+    <div class="dialog-container" :id="gridID + '-holder'">
       <!--temple secrch modules-->
-      <div class="search">
+      <div class="search" :id="gridID + '-search'">
         <el-input v-model="inputModel" placeholder="请输入内容" size="small" style="width: 200px"></el-input>
         <el-select v-model="selectModel" placeholder="请选择" size="small">
           <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
         <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
+        <span @click="click">改变表格高度</span>
       </div>
       <!--grid-->
-      <bussiness-grid gridID="bussiness-grid" :gridData="gridData" firstColType="selection" handleColType="handle"
+      <bussiness-grid :gridID="gridID" :gridData="gridData" firstColType="selection" handleColType="handle"
                       :loadState="loadState" :searchConditions="searchConditions"
                       :showSummary="true" :holderInfo="holderInfo"
+                      :sizeInfo="sizeInfo"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
                       @selection-change="selectionChange">
@@ -30,10 +32,13 @@
 </template>
 
 <script>
+  import {renderRange} from '../../../lib/utils/index'
+
   export default {
     name: 'bussiness-grid-template',
     data() {
       return {
+        height: '70px',
         //============= basic data =============
         funcId: '',
         //============= select modeules =============
@@ -42,7 +47,7 @@
         selectModel: '',
         //============= grid modeules =============
         //---- table组件属性部分 ----
-        gridID: 'template-grid',//表个唯一ID值
+        gridID: 'bussiness-grid',//表个唯一ID值
         loadState: {data: false, head: false}, //表格数据加载状态
         gridData: {}, //列表数据
         searchConditions: {
@@ -60,7 +65,15 @@
           organizationId: "",
           totalType: 1
         },//搜索条件
-        holderInfo: {fatherCls: 'template-container', childClsList: ['search', 'panel-page']},//表格容器信息（包含父级容器和所包含的子级容器列表)
+        sizeInfo: {
+          maxHeight: 300
+        }
+      }
+    },
+    computed: {
+      //表格容器信息（包含父级容器和所包含的子级容器列表)
+      holderInfo() {
+        return {fatherID: this.gridID + '-holder', childIDList: [this.gridID + '-search', this.gridID + '-panel']};
       }
     },
     props: {
@@ -79,6 +92,10 @@
       this.refreshGrid();
     },
     methods: {
+      click() {
+        this.sizeInfo.maxHeight = 350;
+        console.log(this.sizeInfo.maxHeight)
+      },
       /**
        * refresh grid （ 表格数据获取 / 刷新表格数据 ）
        */
@@ -115,7 +132,6 @@
       },
 
 
-
       /**
        * selection change （表数据 checkbox 选择的时候）
        * @param selection
@@ -139,7 +155,7 @@
     .el-dialog__body {
       padding-bottom: 0;
     }
-    .template-container {
+    .dialog-container {
       height: 100%;
       box-sizing: border-box;
       .search {
