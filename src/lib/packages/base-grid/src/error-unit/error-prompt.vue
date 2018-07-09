@@ -3,7 +3,7 @@
   <div :class="['error-prompt',{'trans':errorType === 'error'}]" v-if="errorType !=='noError'">
     <img :class="['error-prompt_img',{'fl':errorType === 'error'}]" :src="imgSrc" :alt="errorType"/>
     <div :class="['error-prompt_content',{'fl':errorType === 'error'}]">
-      <span v-if="errorType === 'noData'">暂无数据</span>
+      <span v-if="errorType === 'noData'">服务器获取错误数据，请联系管理员</span>
       <!--<span class="" @click=“”>去新增</span>-->
       <span v-if="errorType === 'noResult'">抱歉,没有搜索到你要的结果</span>
       <div v-if="errorType === 'error'">
