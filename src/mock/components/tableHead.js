@@ -1,5 +1,6 @@
 import {getMockQuery} from '../../utils/index'
 import headList from './headData'
+import errorMap from '../error/error'
 
 export const tableHead = {
   "resultCode": "200",
@@ -16,5 +17,8 @@ export default {
     if (pageName === 'normal') {
       return tableHead;
     }
+  },
+  grid_error: config => {
+    return errorMap.grid_error;
   },
 }
