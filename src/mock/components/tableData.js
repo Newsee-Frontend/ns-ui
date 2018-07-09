@@ -1,6 +1,7 @@
 import {arrContainObj} from '../../utils/index'
 import Mock from 'mockjs'
 import headList from './headData'
+import errorMap from '../error/error'
 
 /**
  * get current page data total list
@@ -121,6 +122,14 @@ export default {
     const end = pageNum * pageSize;//分页条目结束索引
     return _response(null, 30, 30, start, end, headList);
   },
+  grid_noResult: config => {
+    return errorMap.grid_noResult;
+  },
+  grid_noData: config => {
+   return errorMap.grid_noData;
+  },
+
+
 }
 
 
