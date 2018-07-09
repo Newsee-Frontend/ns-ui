@@ -313,7 +313,7 @@ export function getTotalList(keyRefer, tableList, headList) {
   //get attrList
   headList.forEach(item => {
     if (item[keyRefer['xtype']] === 'number') {
-      attrList.push(item[keyRefer['model-key']]);
+      attrList.push(item[keyRefer['model-code']]);
     }
   });
   //get Total list
