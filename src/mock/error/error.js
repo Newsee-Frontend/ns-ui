@@ -1,25 +1,31 @@
-export const errorMap = {
+export default {
   error: {
     "resultCode": "200",
     "resultMsg": "请求失败",
     "resultData": null
   },
-  errorReturnArray: {
+  grid_noResult: {
     "resultCode": "200",
-    "resultMsg": "请求失败",
+    "resultMsg": "请求成功",
+    "resultData": {
+      "pageNum": 1,
+      "pageSize": 10,
+      "size": 10,
+      "total": 0,
+      "totalInfo": [],
+      "allTotal": [],
+      "list": [],
+    }
+  },
+  grid_noData: {
+    "resultCode": "200",
+    "resultMsg": "请求成功",
+    "resultData": {}
+  },
+  grid_error: {
+    "resultCode": "200",
+    "resultMsg": "请求成功",
     "resultData": []
   },
-  customerSearch: {
-    "resultCode": "200",
-    "resultMsg": "请求失败",
-    "resultData": []
-  },
-  role: {
-    roleButtonList: {
-      "resultCode": "200",
-      "resultMsg": "获取功能按钮权限列表失败",
-      "resultData": []
-    },
-  }
-}
+};
 
