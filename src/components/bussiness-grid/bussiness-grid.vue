@@ -120,17 +120,13 @@
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
 
 
-
       //============== 分页器部分 =================
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
 
     },
     computed: {
-      //是否渲染表格及相关模块 （表头有数据，存在表格内容数据，可以为空）
-      isRender() {
-        return this.gridHead.length > 0 && this.gridData.list;
-      },
+
     },
     created() {
       //table header data fetch（ 获取表头数据请求 ）
