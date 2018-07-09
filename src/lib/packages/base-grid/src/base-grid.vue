@@ -9,6 +9,7 @@
                   :height="sizeInfo.maxHeight"
                   :show-summary="showSummaryFinal" :summary-method="getSummaries" @selection-change="selectionChange"
                   @sort-change="sortChange">
+
           <!-- show index / selectionprops -column -->
           <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
                            :label="firstColInfo[headRefer['label']]"
@@ -181,6 +182,12 @@
       },
       //是否渲染表格及相关模块 （表头有数据，存在表格内容数据，可以为空）
       isRender() {
+        if (!this.gridData) {
+          return false;
+        }
+        if (!this.gridData.hasOwnProperty('list')) {
+          return false;
+        }
         return this.gridHead.length > 0 && this.gridData.list;
       },
       //错误类型
