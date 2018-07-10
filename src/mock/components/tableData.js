@@ -68,10 +68,13 @@ let mockTableFn_normal = (min, max, type) => {
   for (let i = 0; i < count; i++) {
     const obj = Mock.mock({
       index: i + 1,//序号
-      taskName: '@cname',//项目名称
+      taskName: function (n) {
+        const task = n.context.currentContext.ownerName;
+        return task + "的项目";
+      },//项目名称
       date: '@datetime',//成立日期
-      sum: '@float(150, 200, 0, 0)',//总金额 （需要合计）
-      actualSum: '@float(100, 150, 0, 0)',//实际金额（需要合计）
+      sum: '@float(100, 300, 0, 0)',//总金额 （需要合计）
+      actualSum: '@float(99, 199, 0, 0)',//实际金额（需要合计）
       TaxRate: Mock.Random.float(1, 5, 0, 1),//税率
       ownerName: '@cname',//使用人
       province: Mock.Random.province(),//省份
@@ -116,17 +119,29 @@ export default {
     return _response('fnsclick', 30, 30, start, end, headList);
   },
   fnsclick_tableData: config => {
+    console.log('config.body');
+    console.log(JSON.parse(config.body));
     const {pageNum} = JSON.parse(config.body);//当前页数
     const {pageSize} = JSON.parse(config.body);//每页显示条目个数
     const start = (pageNum - 1) * pageSize + 1;//分页条目开始索引
     const end = pageNum * pageSize;//分页条目结束索引
-    return _response(null, 30, 30, start, end, headList);
+
+    const filter = JSON.parse(config.body).filterConditions[0];
+    if (filter === 'less200') {
+      return _response(null, 20, 20, start, end, headList);
+    }
+    else if(filter === 'more200'){
+      return _response(null, 20, 20, start, end, headList);
+    }
+    else{
+      return _response(null, 30, 30, start, end, headList);
+    }
   },
   grid_noResult: config => {
     return errorMap.grid_noResult;
   },
   grid_noData: config => {
-   return errorMap.grid_noData;
+    return errorMap.grid_noData;
   },
 
 
