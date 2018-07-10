@@ -8,7 +8,7 @@
       <!--temple secrch modules-->
       <div class="search" :id="gridID + '-search'">
         <el-input v-model="inputModel" placeholder="请输入内容" size="small" style="width: 200px"></el-input>
-        <el-select v-model="selectModel" placeholder="请选择" size="small">
+        <el-select v-model="selectModel" placeholder="请选择" size="small" @change="selectChange">
           <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
         <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
@@ -43,7 +43,7 @@
         funcId: '',
         //============= select modeules =============
         inputModel: '',
-        options2: [{value: '选项1', label: '选项1'}, {value: '选项2', label: '选项2'}, {value: '选项3', label: '选项3'}],
+        options2: [{value: 'less200', label: '总金额小于200'}, {value: 'more200', label: '总金额大于200'}],
         selectModel: '',
         //============= grid modeules =============
         //---- table组件属性部分 ----
@@ -67,7 +67,7 @@
         },//搜索条件
         sizeInfo: {
           maxHeight: 300
-        }
+        },
       }
     },
     computed: {
@@ -92,6 +92,11 @@
       this.refreshGrid();
     },
     methods: {
+      selectChange(val) {
+        this.searchConditions.filterConditions = [];
+        this.searchConditions.filterConditions.push(val);
+        this.refreshGrid();
+      },
       click() {
         this.sizeInfo.maxHeight = 350;
         console.log(this.sizeInfo.maxHeight)
