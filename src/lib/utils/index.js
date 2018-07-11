@@ -304,11 +304,12 @@ export function renderRange(holderInfo) {
  * @param keyRefer
  * @param tableList     （ table data List ）
  * @param headList      （ table head List ）
+ * @param sumFixedNum      （ 保留几位小数 ）
  * @returns {{}}
  * @private
  */
-export function getTotalList(keyRefer, tableList, headList) {
-  let obj = {};
+export function getTotalList(keyRefer, tableList, headList, sumFixedNum) {
+  let sumObj = {};
   let attrList = [];
   //get attrList
   headList.forEach(item => {
@@ -316,16 +317,29 @@ export function getTotalList(keyRefer, tableList, headList) {
       attrList.push(item[keyRefer['model-code']]);
     }
   });
+  console.log('number 的计算队列');
+  console.log(attrList);
+  const len = tableList.length;
   //get Total list
   tableList.forEach((item, index) => {
     for (let key in item) {
       if (arrContainObj(attrList, key)) {
-        obj[key] = Number(obj[key] ? obj[key] : 0) + Number(item[key])
+        console.log('新增加的 数字信息');
+        console.log(Number(item[key]));
+        sumObj[key] = Number(sumObj[key] ? sumObj[key] : 0) + Number(item[key]);//累加
+        //累加到最后一项时，小数点后保留n位置
+        if (index === len - 1) {
+          sumObj[key] = sumObj[key].toFixed(sumFixedNum);//保留几位小数
+        }
       }
       else {
-        obj[key] = '';
+        sumObj[key] = '';
       }
+      console.log('当前数字信息累加值');
+      console.log(sumObj[key]);
     }
   });
-  return obj;
+  console.log('输出结果 sumObj');
+  console.log(sumObj);
+  return sumObj;
 }
