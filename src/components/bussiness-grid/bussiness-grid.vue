@@ -7,6 +7,7 @@
                   :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
                   :showSummary="showSummary" :showHeadOperation="showHeadOperation"
                   :align="align" :border="border"
+                  :sumFixedNum="sumFixedNum" :sumDataSource="sumDataSource"
                   :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
                   :keyRefer="keyRefer"
                   @refreshGrid="refreshGrid"
@@ -65,8 +66,8 @@
       align: {type: String},//内容位置（居中，左、右)
       border: {type: Boolean},//表格是否有边框
 
-      firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection
-      handleColType: {type: String},//固定操作列类型（非自动表头配置） handle
+      firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection =>没有则为null
+      handleColType: {type: String},//固定操作列类型（非自动表头配置） handle =>没有则为null
       ationColConfig: {type: Object},//固定操作列自定义配置
       showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
       showSummary: {type: Boolean},//合计行模块显示开关
@@ -118,16 +119,15 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
-
+      sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
+      sumDataSource: {type: String, default: 'list'},  //全部数据合计行数据来源 (list / allTotal )
 
       //============== 分页器部分 =================
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
 
     },
-    computed: {
-
-    },
+    computed: {},
     created() {
       //table header data fetch（ 获取表头数据请求 ）
       this.headerFetch();
