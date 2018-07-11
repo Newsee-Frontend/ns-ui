@@ -5,7 +5,7 @@
     <template>
       <div class="grid-container" v-if="isRender">
         <!-- el table encapsulation -->
-        <el-table :data="gridData.list" style="width: 100%" :border="border" :max-height="sizeInfo.maxHeight"
+        <el-table :data="actualGridData.list" style="width: 100%" :border="border" :max-height="sizeInfo.maxHeight"
                   :height="sizeInfo.maxHeight"
                   :show-summary="showSummaryFinal" :summary-method="getSummaries" @selection-change="selectionChange"
                   @sort-change="sortChange">
@@ -93,6 +93,7 @@
           order: 'current',
         },//合计模块控制指令
         resizeRate: 50,//表格渲染刷新频率
+        storeGridList: null,//存储拷贝表数据列表
       }
     },
     components: {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt},
@@ -155,7 +156,6 @@
       layout: {type: String}, //组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
       resizable: {type: Boolean, default: true}, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
-
       sizeInfo: {
         type: Object, default: function () {
           return {
@@ -173,9 +173,31 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
-
+      sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
+      sumDataSource: {type: String, default: 'list'},  //全部数据合计行数据来源 (list / allTotal )
     },
     computed: {
+      //获取列表尾部数据（作为全部合计)
+      listPopSumData() {
+        //全部合计来源于表数据最后一项时
+        if (this.sumDataSource === 'list') {
+          const l = this.storeGridList.length;
+          return l > 0 ? this.storeGridList[l - 1] : {};
+        }
+        return {};
+      },
+      //实际处理后的表格数据
+      actualGridData() {
+        //全部合计来源于表数据最后一项时
+        if (this.sumDataSource === 'list') {
+          //拷贝表格列表数据（一次)
+          if (this.storeGridList === null) {
+            this.storeGridList = JSON.parse(JSON.stringify(this.gridData.list));
+          }
+          this.gridData.list.pop();
+        }
+        return this.gridData;
+      },
       //是否处于加载状态中
       isLoading() {
         return this.loadState.data && this.loadState.head;
@@ -261,15 +283,23 @@
       //当前页 - 分页合计列表数据
       getTotalList() {
         let totalInfo;
+        //当前页合计
         if (this.command.order === 'current') {
           //get current page data total list
-          totalInfo = getTotalList(this.headRefer, this.gridData.list, this.gridHead);
+          totalInfo = getTotalList(this.headRefer, this.gridData.list, this.gridHead, this.sumFixedNum);
           console.log('计算当前合计列 - current');
           console.log(totalInfo);
           // totalInfo = this.gridData.totalInfo;
         }
+        //全部合计
         if (this.command.order === 'total') {
-          totalInfo = this.gridData.allTotal;
+          //如果全部数据合计行数据来源 list
+          if (this.sumDataSource === 'list') {
+            totalInfo = this.listPopSumData;
+          }
+          else {
+            totalInfo = this.gridData.allTotal;
+          }
           console.log('计算全部合计列 - total');
           console.log(totalInfo);
         }
