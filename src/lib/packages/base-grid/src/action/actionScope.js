@@ -23,7 +23,7 @@ export default {
      * @returns {*}
      */
     let actionRender = (list, scope) => {
-      return <div class="action-scope">
+      return <div class="action-scope clear">
         {
           //single button
           <el-button class="fl" type="text"
@@ -52,14 +52,10 @@ export default {
             </el-dropdown> :
             // 普通按钮
             list.length === 2 ?
-              <el-button type="text" on-click={this.gridAtion.bind(this, list[0], scope)}>
+              <el-button type="text" on-click={this.gridAtion.bind(this, list[1], scope)}>
                 {list[1].label}
               </el-button> :
               null
-        }
-        {
-          //clear float
-          <div class="clear" style={{dispaly: 'none'}}></div>
         }
       </div>
     };
