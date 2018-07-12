@@ -1,15 +1,20 @@
 <template>
   <div class="bussiness-grid">
     <!--grid-->
-    <cx-base-grid :gridID="gridID" :gridHead="gridHead" :gridData="gridData" :loadState="loadState"
+    <cx-base-grid :gridID="gridID" :loadState="loadState" :keyRefer="keyRefer"
+
+                  :gridHead="gridHead" :gridData="gridData" :searchConditions="searchConditions"
+
                   :sizeInfo="sizeInfo" :initDynamicSize="initDynamicSize"
                   :autoResize="autoResize" :holderInfo="holderInfo"
+
                   :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
-                  :showSummary="showSummary" :showHeadOperation="showHeadOperation"
-                  :align="align" :border="border"
+                  :showSummary="showSummary" :showHeadOperation="showHeadOperation" :align="align" :border="border"
+
                   :sumFixedNum="sumFixedNum" :sumDataSource="sumDataSource"
-                  :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
-                  :keyRefer="keyRefer"
+
+                  :pageSizes="pageSizes" :layout="layout"
+
                   @refreshGrid="refreshGrid"
                   @cell-action="cellAction"
                   @grid-ation="gridAtion"
@@ -49,6 +54,8 @@
     },
     props: {
       //============== 表格部分 =================
+
+      //----- 基础 -----
       loadState: {
         type: Object, default: {
           data: false,
@@ -56,6 +63,8 @@
         }
       },  //表格数据加载状态
       gridID: {type: String},//表唯一ID值
+
+      //----- 表头，表数据获取 -----
       gridData: {
         type: Object, default() {
           return {};
@@ -63,15 +72,6 @@
       },//列表数据
       headSource: {type: String, default: 'request'},//表头数据来源
       LocalHead: {type: Array},//本地表头数据
-      align: {type: String},//内容位置（居中，左、右)
-      border: {type: Boolean},//表格是否有边框
-
-      firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection =>没有则为null
-      handleColType: {type: String},//固定操作列类型（非自动表头配置） handle =>没有则为null
-      ationColConfig: {type: Object},//固定操作列自定义配置
-      showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
-      showSummary: {type: Boolean},//合计行模块显示开关
-
       searchConditions: {
         type: Object,
         default() {
@@ -92,7 +92,6 @@
           };
         }
       },  //搜索条件 searchConditions
-
       mockQuery: {
         type: Object, default: function () {
           return {
@@ -102,6 +101,16 @@
         }
       },//mock query
 
+      //----- 表格展现形式 -----
+      align: {type: String},//内容位置（居中，左、右)
+      border: {type: Boolean},//表格是否有边框
+      firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection =>没有则为null
+      handleColType: {type: String},//固定操作列类型（非自动表头配置） handle =>没有则为null
+      ationColConfig: {type: Object},//固定操作列自定义配置
+      showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
+      showSummary: {type: Boolean},//合计行模块显示开关
+
+      //----- 列表高度尺寸 -----
       sizeInfo: {
         type: Object, default: function () {
           return {
@@ -119,6 +128,8 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
+
+      //----- 合计行 -----
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
       sumDataSource: {type: String, default: 'list'},  //全部数据合计行数据来源 (list / allTotal )
 
