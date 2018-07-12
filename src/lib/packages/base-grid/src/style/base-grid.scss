@@ -47,19 +47,22 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
 
   .fl {
     float: left;
-    &:after {
-      clear: both;
-    }
   }
+
   .fr {
     float: right;
+  }
+
+  .clear {
     &:after {
       clear: both;
     }
+    &:after, &:before {
+      display: table;
+      content: "";
+    }
   }
-  .clear {
-    clear: both;
-  }
+
   li {
     list-style: none;
   }
