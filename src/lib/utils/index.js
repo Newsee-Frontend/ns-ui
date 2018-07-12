@@ -317,15 +317,17 @@ export function getTotalList(keyRefer, tableList, headList, sumFixedNum) {
       attrList.push(item[keyRefer['model-code']]);
     }
   });
-  console.log('number 的计算队列');
+  console.log('需要合计的字段值 （表头类型为number）的计算队列');
   console.log(attrList);
   const len = tableList.length;
   //get Total list
   tableList.forEach((item, index) => {
     for (let key in item) {
       if (arrContainObj(attrList, key)) {
-        console.log('新增加的 数字信息');
-        console.log(Number(item[key]));
+
+        // console.log('新增加的 数字信息');
+        // console.log(Number(item[key]));
+
         sumObj[key] = Number(sumObj[key] ? sumObj[key] : 0) + Number(item[key]);//累加
         //累加到最后一项时，小数点后保留n位置
         if (index === len - 1) {
@@ -335,11 +337,11 @@ export function getTotalList(keyRefer, tableList, headList, sumFixedNum) {
       else {
         sumObj[key] = '';
       }
-      console.log('当前数字信息累加值');
-      console.log(sumObj[key]);
+      // console.log('当前数字信息累加值');
+      // console.log(sumObj[key]);
     }
   });
-  console.log('输出结果 sumObj');
+  console.log('输出结果当前页 合计结果');
   console.log(sumObj);
   return sumObj;
 }
