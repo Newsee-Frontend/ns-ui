@@ -115,7 +115,7 @@
 
             this.gridData.list.forEach(item => {
               item.fnsclick = [
-                {label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'},
+                {label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'gridRemoveBtn'},
                 {label: '停用', value: 'stop'}, {label: '启用', value: 'work'},
               ];
             });
