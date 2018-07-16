@@ -254,14 +254,21 @@ export function countRange(holderInfo) {
     }
     const fbs = _getStyle(faNode, 'boxSizing');//get style of box-sizing
     let faNodeH = 0;//init height
+
+    console.log('border-box 类型');
+    console.log(fbs);
     //father element height
     if (fbs === 'content-box') {
       faNodeH = faNode.offsetHeight;
     }
     if (fbs === 'border-box') {
       faNodeH = faNode.offsetHeight - _getInHeight(faNode, ['paddingTop', 'paddingBottom']);
+
+      console.log(faNode.offsetHeight);
+      console.log(_getInHeight(faNode, ['paddingTop', 'paddingBottom']))
     }
     console.log('容器父级高度：');
+    console.log(faNode);
     console.log(faNodeH);
     /*===========================================================================*/
 
@@ -280,6 +287,8 @@ export function countRange(holderInfo) {
         const nodeH = node.offsetHeight; //child element height
         realH = nodeH + _getInHeight(node, ['marginTop', 'marginBottom']);//add margin height
       }
+      console.log('realH realH');
+      console.log(realH);
       childTotalH = childTotalH + realH;
     });
     return faNodeH - childTotalH;
