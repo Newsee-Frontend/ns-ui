@@ -11,7 +11,7 @@ import errorMap from '../error/error'
  * @private
  */
 function _getTotalList(tableList, headList) {
-  let obj = {};
+  let sumObj = {};
   let attrList = [];
   //get attrList
   headList.forEach(item => {
@@ -19,18 +19,23 @@ function _getTotalList(tableList, headList) {
       attrList.push(item.resourcecolumnNameEn);
     }
   });
+  const len = tableList.length;
   //get Total list
   tableList.forEach((item, index) => {
     for (let key in item) {
       if (arrContainObj(attrList, key)) {
-        obj[key] = Number(obj[key] ? obj[key] : 0) + Number(item[key])
+        sumObj[key] = Number(sumObj[key] ? sumObj[key] : 0) + Number(item[key]);
+        //累加到最后一项时，小数点后保留n位置
+        if (index === len - 1) {
+          sumObj[key] = sumObj[key].toFixed(2);//保留几位小数
+        }
       }
       else {
-        obj[key] = '';
+        sumObj[key] = '';
       }
     }
   });
-  return obj;
+  return sumObj;
 }
 
 /**
@@ -41,14 +46,14 @@ function _getTotalList(tableList, headList) {
  * @param start       分页条目开始索引
  * @param end         分页条目结束索引
  * @param headList    表头数据
- * @returns {{resultCode: string, resultMsg: string, resultData: {pageNum: number, pageSize: number, size: number, total: number, totalInfo: Array, list: Array}}}
+ * @returns {{resultCode: string, resultMsg: string, resultData: {pageNum: number, pageSize: number, size: number, total: number, sumCurrent: Array, list: Array}}}
  * @private
  */
 function _response(type, min, max, start, end, headList) {
   const gridInfo = mockTableFn_normal(min, max, type);//获取表格模拟数据
   const tableList = gridInfo.list.slice(start - 1, end);//通过分页条件获取表格范围数据
-  tableData.resultData.allTotal = _getTotalList(gridInfo.list, headList);//获取表格全部 - 合计对象信息
-  tableData.resultData.totalInfo = _getTotalList(tableList, headList);//获取表格当前页 - 合计对象信息
+  tableData.resultData.sumtotal = _getTotalList(gridInfo.list, headList);//获取表格全部 - 合计对象信息
+  tableData.resultData.sumCurrent = _getTotalList(tableList, headList);//获取表格当前页 - 合计对象信息
   tableData.resultData.total = gridInfo.total;//总条目
   tableData.resultData.list = tableList;//表格范围数据
   return tableData;
@@ -103,8 +108,8 @@ const tableData = {
     "pageSize": 10,
     "size": 10,
     "total": 0,
-    "totalInfo": [],
-    "allTotal": [],
+    "sumCurrent": [],
+    "sumtotal": {},
     "list": [],
   },
 };
@@ -130,10 +135,10 @@ export default {
     if (filter === 'less200') {
       return _response(null, 20, 20, start, end, headList);
     }
-    else if(filter === 'more200'){
+    else if (filter === 'more200') {
       return _response(null, 20, 20, start, end, headList);
     }
-    else{
+    else {
       return _response(null, 30, 30, start, end, headList);
     }
   },
