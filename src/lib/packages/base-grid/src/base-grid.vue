@@ -93,7 +93,7 @@
           order: 'current',
         },//合计模块控制指令
         resizeRate: 50,//表格渲染刷新频率
-        storeGridList: null,//存储拷贝表数据列表
+        storeGridData: null,//存储Grid列表数据
       }
     },
     components: {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt},
@@ -123,7 +123,7 @@
           }
         }
       },//固定操作列自定义配置
-      showSummary: {type: Boolean, default: false},//合计行模块显示开关
+      showPanel: {type: Boolean, default: true},//分页器显示开关
       showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
       mockQuery: {
         type: Object, default: function () {
@@ -173,31 +173,12 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
+
+      sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
-      sumDataSource: {type: String, default: 'list'},  //全部数据合计行数据来源 (list / allTotal )
+
     },
     computed: {
-      //获取列表尾部数据（作为全部合计)
-      listPopSumData() {
-        //全部合计来源于表数据最后一项时
-        if (this.sumDataSource === 'list') {
-          const l = this.storeGridList.length;
-          return l > 0 ? this.storeGridList[l - 1] : {};
-        }
-        return {};
-      },
-      //实际处理后的表格数据
-      actualGridData() {
-        //全部合计来源于表数据最后一项时
-        if (this.sumDataSource === 'list') {
-          //拷贝表格列表数据（一次)
-          if (this.storeGridList === null) {
-            this.storeGridList = JSON.parse(JSON.stringify(this.gridData.list));
-          }
-          this.gridData.list.pop();
-        }
-        return this.gridData;
-      },
       //是否处于加载状态中
       isLoading() {
         return this.loadState.data && this.loadState.head;
@@ -231,13 +212,28 @@
           return 'noError';//初始状态都为 ‘noError’
         }
       },
-      //是否显示合计行 （ 根据用户属性开关和数据状态 ）
+      /**
+       * is show summary row ( 是否显示合计行 )
+       * base on:
+       * 1、 error type is not 'noError'
+       * 2、 if one of the row types is numbe
+       */
       showSummaryFinal() {
-        return this.showSummary && this.errorType === 'noError';
+        const colType = this.headRefer['xtype'];
+        //In the grid, if one of the row types is number, grid shoud show summary row.
+        const hasNum = this.gridHead.some(item => {
+          return item[colType] === 'number';
+        });
+        return hasNum && this.errorType === 'noError';
       },
-      //是否分页器 （ 根据数据状态判断 ）
+
+      /**
+       * 是否显示分页器 （ 根据数据状态判断 ）
+       * 1、组件控制开关 - showPanel （false / true)
+       * 2、errorType 为 'error' / 'noData' 时，不显示 （没有表头或者表格数据出错)
+       */
       showActionPanel() {
-        return this.errorType !== 'error' && this.errorType !== 'noData';
+        return this.showPanel && (this.errorType !== 'error' && this.errorType !== 'noData');
       },
       //首列渲染开关
       firstColRender() {
@@ -280,29 +276,63 @@
         const d = JSON.parse(JSON.stringify(this.gridHead));
         return this.headMachining(d);
       },
-      //当前页 - 分页合计列表数据
+      //实际处理后的表格数据
+      actualGridData() {
+        //全部合计来源于表数据最后一项时 (list)
+        if (this.sumDataSource === 'list') {
+          if (this.storeGridData === null) {
+            this.storeGridData = JSON.parse(JSON.stringify(this.gridData));//copy grid list data only once
+          }
+          //实际长度大于size值时，删除列表数据最后一位
+          if (this.gridData.list.length > this.gridData.size) {
+            this.gridData.list.pop();
+          }
+        }
+        //除此之外，直接输出 gridData 即可，不做操作
+        return this.gridData;
+      },
+      //all sum data form grid data
+      sumtotalData() {
+        if (this.sumDataSource !== 'list') return null;
+        const dl = this.storeGridData.list.length;
+        const sl = this.storeGridData.size;
+        console.log('storeGridData 长度', dl);
+        console.log('size 长度', sl);
+        if (dl === 0) return {};
+        if (dl > sl) {
+          return this.storeGridData.list[dl - 1];
+        }
+        else {
+          return {};
+        }
+      },
+      /*
+      * get total sum data list (获取合计行数据)
+      * 当前业务环节下，获取全部合计行数据，有2种方式
+      * 1、类型值为：list，则全部合计行数据来源于表数据 list 字段（数组）最后行。
+      *    需要判断 size 字段值 和 list 数组长度的值，
+      *    * 如果前者大于后者:
+      *        则截取最后一行数据，并在合计行模块中显示，
+      *        还需要在原始表数据中删除最后一行。
+      *    * 如果前者小于等于后者:
+      *        则说明后台并没有在表数据 list 数组中插入合计行数据，则前台无法获取合计行数据，放空值即可，无需其他操作。
+      * 2、类型值为：sumtotal，则全部合计行数据来源于后台获取表数据 sumtotal 字段，直接获取即可，无需其他操作。
+      */
+
       getTotalList() {
         let totalInfo;
-        //当前页合计
+        //current page sum
         if (this.command.order === 'current') {
           //get current page data total list
           totalInfo = getTotalList(this.headRefer, this.gridData.list, this.gridHead, this.sumFixedNum);
-          console.log('计算当前合计列 - current');
-          console.log(totalInfo);
-          // totalInfo = this.gridData.totalInfo;
         }
-        //全部合计
+        //all apge sum
         if (this.command.order === 'total') {
-          //如果全部数据合计行数据来源 list
-          if (this.sumDataSource === 'list') {
-            totalInfo = this.listPopSumData;
-          }
-          else {
-            totalInfo = this.gridData.allTotal;
-          }
-          console.log('计算全部合计列 - total');
-          console.log(totalInfo);
+          //judge sumtotal data is exists，if it exists, use it, or use {}
+          totalInfo = this.sumtotalData ? this.sumtotalData : this.gridData.sumtotal;
         }
+        console.log('计算的合计行类型为：' + this.command.order);
+        console.log(totalInfo);
 
         let arr = [];
         const hidden = this.headRefer['hidden'];//key - hidden
@@ -356,6 +386,7 @@
           this.sizeInfo.maxHeight = countRange(this.holderInfo);
           //listen to renderRange change
           this.listenRenderRange();
+          console.log(this.sizeInfo.maxHeight);
         }
         if (this.autoResize) {
           //listen to window resize and adjust the height of the table
