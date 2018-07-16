@@ -17,7 +17,7 @@
       <!--grid-->
       <bussiness-grid :gridID="gridID" :gridData="gridData" firstColType="selection" handleColType="handle"
                       :loadState="loadState" :searchConditions="searchConditions"
-                      :showSummary="true" :holderInfo="holderInfo"
+                      :holderInfo="holderInfo"
                       :sizeInfo="sizeInfo"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
@@ -32,8 +32,6 @@
 </template>
 
 <script>
-  import {renderRange} from '../../../lib/utils/index'
-
   export default {
     name: 'bussiness-grid-template',
     data() {
