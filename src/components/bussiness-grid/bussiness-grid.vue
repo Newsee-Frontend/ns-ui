@@ -9,9 +9,10 @@
                   :autoResize="autoResize" :holderInfo="holderInfo"
 
                   :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
-                  :showSummary="showSummary" :showHeadOperation="showHeadOperation" :align="align" :border="border"
+                  :showHeadOperation="showHeadOperation" :showPanel="showPanel"
+                  :align="align" :border="border"
 
-                  :sumFixedNum="sumFixedNum" :sumDataSource="sumDataSource"
+                  :sumDataSource="sumDataSource" :sumFixedNum="sumFixedNum"
 
                   :pageSizes="pageSizes" :layout="layout"
 
@@ -48,6 +49,8 @@
         //============= grid modeules =============
         keyRefer: keyRefer,
         headRefer: keyRefer.head,
+
+
         gridHead: [],//表头数据
         linkCodeConfig: ['houseShortName', 'houseName', 'ownerName', 'lesseeName', 'custorName', 'taskName'],
       }
@@ -107,8 +110,9 @@
       firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection =>没有则为null
       handleColType: {type: String},//固定操作列类型（非自动表头配置） handle =>没有则为null
       ationColConfig: {type: Object},//固定操作列自定义配置
+      showPanel: {type: Boolean, default: true},//分页器显示开关
       showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
-      showSummary: {type: Boolean},//合计行模块显示开关
+
 
       //----- 列表高度尺寸 -----
       sizeInfo: {
@@ -130,8 +134,9 @@
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
 
       //----- 合计行 -----
+      sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
-      sumDataSource: {type: String, default: 'list'},  //全部数据合计行数据来源 (list / allTotal )
+
 
       //============== 分页器部分 =================
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
@@ -153,10 +158,10 @@
           //mock head or normal head
           const query = sw['local-debug'] ? this.mockQuery : null;
           console.log(query);
-          //表头数据初始化
+          //grid head init request
           tableHeaderFetch({funcId: this.funcId}, query).then(res => {
             console.log('获取服务端表头数据！！！');
-            //表头数据处理，并赋值
+            //grid head data handle
             this.gridHead = this.headerHandle('tofront', res.resultData.columns);
             console.log(this.gridHead);
             this.loadState.head = true;
@@ -177,7 +182,6 @@
         else {
           throw 'Please set up the correct header data source ( by " headSource "  -  "request" or "Local" ).'
         }
-
       },
 
       /**
@@ -186,13 +190,13 @@
        * @param head
        */
       headerHandle(type, head) {
-        //后台数据 =》 前台所需数据
+        //backend data => front data
         if (type === 'tofront') {
           return head.map(item => {
             const code = item[this.headRefer['model-code']];
             const hidden = this.headRefer['hidden'];
             const fixedKey = this.headRefer['fixed'];
-            //为特殊字段对应单元格增加配置字段信息
+            //Add configuration field information for special fields to cells (need to link).
             if (arrContainObj(this.linkCodeConfig, code)) {
               item[this.headRefer['cell-Config']] = {
                 switchType: true,
@@ -207,6 +211,7 @@
                 validateRule: null
               }
             }
+            //cover hidden property value
             item[hidden] = this.showStateCover(type, item[hidden]);
             if (!item.hasOwnProperty(fixedKey)) {
               item[fixedKey] = false;
@@ -214,7 +219,7 @@
             return item;
           });
         }
-        //前台数据 =》 后台所需数据
+        //Front data => backend data
         else {
           return head.map(item => {
             const key = this.headRefer['hidden'];
@@ -222,6 +227,7 @@
             return item
           })
         }
+
       },
 
       /**
@@ -317,7 +323,6 @@
         //refresh grid（ 刷新表事件抛出回调 ）
         this.$emit("refreshGrid");
       }
-
     }
   }
 </script>
