@@ -24,7 +24,7 @@
                       handleColType="handle"
                       :ationColConfig="{width:'200'}"
 
-                      :showSummary="false"
+                      :showPanel="false"
 
                       align="left"
                       :border="true"
