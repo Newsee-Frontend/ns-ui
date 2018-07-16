@@ -12,8 +12,8 @@ export default {
       "pageSize": 10,
       "size": 10,
       "total": 0,
-      "totalInfo": [],
-      "allTotal": [],
+      "sumCurrent": [],
+      "sumtotal": {},
       "list": [],
     }
   },
