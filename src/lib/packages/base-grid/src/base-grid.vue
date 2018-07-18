@@ -173,7 +173,6 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
-
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
 
