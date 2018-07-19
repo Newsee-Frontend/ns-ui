@@ -75,7 +75,7 @@
     </template>
     <!--pagination for table componetn-->
     <actionPanel :gridID="gridID" :total="gridData.total" :layout="layout" :pageSizes="pageSizes"
-                 :searchConditions="searchConditions"
+                 :pagerCount="pagerCount" :searchConditions="searchConditions"
                  @refreshGrid="refreshGrid"
                  :style="{display: showActionPanel?'block':'none'}">
     </actionPanel>
@@ -163,6 +163,7 @@
         }
       },//搜索条件 searchConditions
       layout: {type: String}, //组件布局，子组件名用逗号分隔
+      pagerCount: {type: Number},//页码按钮的数量，当总页数超过该值时会折叠
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
       resizable: {type: Boolean, default: true}, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
       sizeInfo: {
@@ -184,7 +185,6 @@
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
-
     },
     computed: {
       //是否处于加载状态中
