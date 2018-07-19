@@ -2,9 +2,7 @@
 export default {
   name: 'action-panel',
   data() {
-    return {
-      pagerCount: 5
-    }
+    return {}
   },
   props: {
     gridID: {type: String},
@@ -17,10 +15,9 @@ export default {
         }
       }
     },
-    //总条目数
-    total: {type: Number},
-    //组件布局，子组件名用逗号分隔
-    layout: {type: String, default: "slot,sizes, prev, pager, next, jumper"},
+    total: {type: Number},//总条目数
+    layout: {type: String, default: "slot, sizes, prev, pager, next, jumper"},//组件布局，子组件名用逗号分隔
+    pagerCount: {type: Number, default: 7},//页码按钮的数量，当总页数超过该值时会折叠
     //每页显示个数选择器的选项设置
     pageSizes: {
       type: Array,
@@ -38,7 +35,7 @@ export default {
   },
   render(h) {
     return (
-      <div class={"panel-page"} id={this.gridID + '-panel'}>
+      <div class={"panel-page clear"} id={this.gridID + '-panel'}>
         {
           <span class="panel-pre_text fl">{this.panelDescribe}</span>
         }
@@ -48,12 +45,9 @@ export default {
                          on-size-change={this.sizeChange} on-current-change={this.currentChange}>
           </el-pagination>
         }
-        {
-          <el-button class="fl panel-po_btn" size="small">确定</el-button>
-        }
-        {
-          <div class="clear" style="dispaly: 'none'"></div>
-        }
+        {/*{*/}
+          {/*<el-button class="fl panel-po_btn" size="small">确定</el-button>*/}
+        {/*}*/}
       </div>
     )
   },
