@@ -14,7 +14,7 @@
 
                   :sumDataSource="sumDataSource" :sumFixedNum="sumFixedNum"
 
-                  :pageSizes="pageSizes" :layout="layout"
+                  :pageSizes="pageSizes" :layout="layout" :pagerCount="pagerCount"
 
                   @refreshGrid="refreshGrid"
                   @cell-action="cellAction"
@@ -137,11 +137,10 @@
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
 
-
       //============== 分页器部分 =================
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
-
+      pagerCount: {type: Number},//页码按钮的数量，当总页数超过该值时会折叠
     },
     computed: {},
     created() {
