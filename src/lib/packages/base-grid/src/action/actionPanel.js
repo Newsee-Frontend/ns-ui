@@ -2,7 +2,9 @@
 export default {
   name: 'action-panel',
   data() {
-    return {}
+    return {
+      pagerCount: 5
+    }
   },
   props: {
     gridID: {type: String},
@@ -42,7 +44,8 @@ export default {
         }
         {
           <el-pagination class="fl" current-page={this.searchConditions.pageNum} page-sizes={this.pageSizes} page-size={this.searchConditions.pageSize}
-                         total={this.total} layout={this.layout} on-size-change={this.sizeChange} on-current-change={this.currentChange}>
+                         total={this.total} layout={this.layout} pager-count={this.pagerCount}
+                         on-size-change={this.sizeChange} on-current-change={this.currentChange}>
           </el-pagination>
         }
         {
