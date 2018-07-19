@@ -10,13 +10,21 @@
                   :show-summary="showSummaryFinal" :summary-method="getSummaries" @selection-change="selectionChange"
                   @sort-change="sortChange">
 
-          <!-- show index / selectionprops -column -->
+          <!-- show index / selection -column -->
           <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
                            :label="firstColInfo[headRefer['label']]"
                            :width="firstColInfo[headRefer['width']]" align="center" :fixed="true"
                            :class-name="'grid-head-'+firstColInfo[headRefer['model-code']]">
           </el-table-column>
-
+          <!-- show radio -column -->
+          <el-table-column v-if="firstColInfo[headRefer['col-type']] === 'radio'"
+                           :label="firstColInfo[headRefer['label']]"
+                           :width="firstColInfo[headRefer['width']]" align="center" :fixed="true"
+                           :class-name="'grid-head-'+firstColInfo[headRefer['model-code']]">
+            <template slot-scope="scope">
+              <el-radio v-model="radioModel" :label="scope.$index" @change.native="selectionChange(scope.row)">{{null}}</el-radio>
+            </template>
+          </el-table-column>
           <!-- normal-column -->
           <el-table-column v-if="!item[headRefer['hidden']]" :class-name="'grid-head-'+item[headRefer['model-code']]"
                            v-for="(item,index) in gridHead" :index="index" :key="index"
@@ -94,6 +102,7 @@
         },//合计模块控制指令
         resizeRate: 50,//表格渲染刷新频率
         storeGridData: null,//存储Grid列表数据
+        radioModel: '',//radio model
       }
     },
     components: {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt},
@@ -486,13 +495,13 @@
         this.$emit("setting-submit", query);
       },
       /**
-       * selection change （表数据 checkbox 选择的时候）
+       * selection change （表数据 checkbox/radio 选择的时候）
        * @param selection
        */
       selectionChange(selection) {
+        console.log(selection);
         this.$emit("selection-change", selection);
       },
-
       /**
        * get summaries
        * @param param
