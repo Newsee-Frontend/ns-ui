@@ -13,6 +13,19 @@ const keyRefer = {
   },
   scope: {
     'actionBtnList': 'fnsclick',//操作列操作按钮列表
+
+    'modelData': 'picked',//选中对象字段
+    'items': 'options',//下拉框字段
+    'unit': 'unit',//计量单位
+
+    //例如:
+    // {
+    //   "picked": {
+    //       "value": ""
+    //       "unit": "",
+    //   },
+    //   "options": [{"label": "xx", "value": 1,"unit": "",}]
+    // }
   }
 };
 export default keyRefer;
