@@ -77,28 +77,32 @@ let mockTableFn_normal = (min, max, type) => {
         const task = n.context.currentContext.ownerName;
         return task + "的项目";
       },//项目名称
+      ownerName: '@cname',//使用人
+      //性别
       sex: {
         "picked": {"value": ""},
         "options": [{"label": "男", "value": 1}, {"label": "女", "value": 2}, {"label": "保密", "value": 3}]
-      },//收费标准1
-      isLocked: {
-        "picked": {"value": ""},
-        "options": [{"label": "是", "value": 1}, {"label": "否", "value": 0}]
-      },//是否锁定（单选）
-      chargeCustomer2: {
-        "picked": {"value": []},
-        "options": [{"label": "开发商", "value": 1}, {"label": "业主", "value": 2}, {"label": "租户", "value": 3}]
-      },//收费客户（多选）
-      chargeStandard2: {
-        "picked": {"value": "", "unit": "",},
-        "options": [{"label": "选项一", "value": 1, "unit": "2.5元/㎡/月",}, {"label": "选项二", "value": 2, "unit": "2.5元/㎡/日",}, {"label": "选项三", "value": 3, "unit": "2.5元/㎡/年",}]
-      },//收费标准2
-      unit: '',//单价
+      },
       date: '@datetime',//成立日期
+      //收费标准
+      chargeStandard: {
+        "picked": {"value": "", "unit": "",},
+        "options": [{"label": "选项一", "value": 1, "unit": "2.5元/㎡/月"}, {"label": "选项二", "value": 2, "unit": "2.5元/㎡/日"}, {"label": "选项三", "value": 3, "unit": "2.5元/㎡/年"}]
+      },
+      unit: '',//单价
       sum: '@float(100, 300, 0, 0)',//总金额 （需要合计）
       actualSum: '@float(99, 199, 0, 0)',//实际金额（需要合计）
       TaxRate: Mock.Random.float(1, 5, 0, 1),//税率
-      ownerName: '@cname',//使用人
+      //收费客户（多选）
+      chargeCustomer: {
+        "picked": {"value": []},
+        "options": [{"label": "开发商", "value": 1}, {"label": "业主", "value": 2}, {"label": "租户", "value": 3}]
+      },
+      //是否锁定（单选）
+      isLocked: {
+        "picked": {"value": ""},
+        "options": [{"label": "是", "value": 1}, {"label": "否", "value": 0}]
+      },
       province: Mock.Random.province(),//省份
       city: Mock.Random.city(true),//城市
       address: Mock.Random.county(true),//地址
