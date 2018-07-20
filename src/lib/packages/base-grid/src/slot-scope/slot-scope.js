@@ -22,40 +22,101 @@ export default {
     }
   },
   render(h) {
+    /**
+     * cellRender
+     * @param scope   row data
+     * @param item    head item data
+     * @param refer   key refer
+     * @returns {*}
+     */
     let cellRender = (scope, item, refer) => {
       if (this.formCellRender(item)) {
         let type = item.eidtConfig.type;
+        const modelCode = item[refer['model-code']];  //key
+        const formConfig = item[refer['cell-Config']];//form config object
+
         switch (type) {
           case 'link':
             return (
-              <div class="grid-cell grid-cell_link" title={scope.row[item[refer['model-code']]]}
+              <div class="grid-cell grid-cell_link" title={scope.row[modelCode]}
                    on-click={this.cellAction.bind(this, scope, item)}
               >
-                {scope.row[item[refer['model-code']]]}
+                {scope.row[modelCode]}
               </div>
             );
           case 'input':
             return (
-              <el-input class="grid-cell" v-model={scope.row[item[refer['model-code']]]} size="mini"
-                        placeholder={item[refer['model-code']].placeHolder}
-                        disabled={item[refer['cell-Config']].disabled} clearable={true}>
+              <el-input class="grid-cell" v-model={scope.row[modelCode]} size="mini"
+                        placeholder={formConfig.placeHolder}
+                        disabled={formConfig.disabled} clearable={true}>
               </el-input>
             );
           case 'rate':
             return (
-              <el-input-number class="grid-cell" v-model={scope.row[item[refer['model-code']]]}
-                               size="mini" min={item[refer['cell-Config']].min} max={item[refer['cell-Config']].max}
-                               disabled={item[refer['cell-Config']].disabled}
+              <el-input-number class="grid-cell" v-model={scope.row[modelCode]}
+                               size="mini" min={formConfig.min} max={formConfig.max}
+                               disabled={formConfig.disabled}
               >
               </el-input-number>
             );
           case 'date':
             return (
-              <el-date-picker class="grid-cell" v-model={scope.row[item[refer['model-code']]]}
-                              disabled={item[refer['cell-Config']].disabled}
+              <el-date-picker class="grid-cell" v-model={scope.row[modelCode]}
+                              disabled={formConfig.disabled}
                               size="mini" type="date" editable={false}
-                              placeholder={item[refer['model-code']].placeHolder} value-format="yyyy-MM-dd 00:00:00">
+                              placeholder={formConfig.placeHolder} value-format="yyyy-MM-dd 00:00:00">
               </el-date-picker>
+            );
+          case 'checkbox':
+            return (
+              <el-checkbox-group class="grid-cell" v-model={scope.row[modelCode].picked.value} disabled={formConfig.disabled}
+                                 size="mini" min={formConfig.min} max={formConfig.max}>
+                {
+                  scope.row[modelCode].options.map((item, $index) =>
+                    [
+                      <el-checkbox key={item.value} label={item.label}></el-checkbox>
+                    ]
+                  )
+                }
+              </el-checkbox-group>
+            );
+          case 'radio':
+            return (
+              <el-radio-group class="grid-cell" v-model={scope.row[modelCode].picked.value} disabled={formConfig.disabled} size="mini">
+                {
+                  scope.row[modelCode].options.map((item, $index) =>
+                    [
+                      <el-radio key={item.value} label={item.label}></el-radio>
+                    ]
+                  )
+                }
+              </el-radio-group>
+            );
+          case 'select':
+            return (
+              <el-select class="grid-cell" v-model={scope.row[modelCode].picked.value} size="mini" editable={false} disabled={formConfig.disabled}
+                         placeholder={formConfig.placeHolder}>
+                {
+                  scope.row[modelCode].options.map((item, $index) =>
+                    [
+                      <el-option key={item.value} label={item.label} value={item.value}></el-option>
+                    ]
+                  )
+                }
+              </el-select>
+            );
+          case 'select-unit':
+            return (
+              <el-select class="grid-cell" v-model={scope.row[modelCode].picked.value} size="mini" editable={false} disabled={formConfig.disabled}
+                         placeholder={formConfig.placeHolder} on-change={this.selectUnitChange.bind(this, modelCode, scope)}>
+                {
+                  scope.row[modelCode].options.map((item, $index) =>
+                    [
+                      <el-option key={item.value} label={item.label} value={item.value}></el-option>
+                    ]
+                  )
+                }
+              </el-select>
             );
           default:
             return (<div>{scope.row[item[refer['model-code']]]}</div>);
@@ -95,11 +156,34 @@ export default {
     cellAction(scope, item) {
       this.$emit("cell-action", scope, item);
     },
-    houseView(item) {
-      this.itemHouseId = item.row.houseId;
-      this.itemHouseType = item.row.houseType;
-      this.houseDetailVisible.visible = true;
-    },
+    /**
+     * select unit change
+     * @param modelCode
+     * @param scope
+     * @param value
+     */
+    selectUnitChange(modelCode, scope, value) {
+
+      const row = scope.row;//row data
+      const k = 'unit';
+      const options = row[modelCode].options;//select option data
+
+      /**
+       * 在 select-unit 类型的表单控件中，找到change 选择的 value 的得那项 option，获取其unit字段值，赋值给所此控件数据下picked字段下的unit字段
+       * 再判断所在行row 数据下是否有 unit 字段，如果有的话为其赋值 change 选择的 value 值的那项 option 的unit字段值
+       */
+      for (let ipt of options) {
+        if (ipt.value === value) {
+          row[modelCode].picked.unit = ipt.unit;
+          if (row.hasOwnProperty(k)) {
+            row[k] = ipt.unit;
+          }
+          break;
+        }
+      }
+      console.log('selectUnitChange - 改变后的scope值');
+      console.log(scope)
+    }
   },
 };
 
