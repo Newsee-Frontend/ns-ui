@@ -2,7 +2,9 @@
 export default {
   name: 'action-panel',
   data() {
-    return {}
+    return {
+      totalKey: 'total'
+    }
   },
   props: {
     gridID: {type: String},
@@ -31,13 +33,18 @@ export default {
     panelDescribe() {
       const page = Math.ceil(this.total / this.searchConditions.pageSize);
       return "共" + this.total + "条" + "/" + page + "页";
-    }
+    },
+    //judge total modules in panel is show or not
+    showTotal() {
+      return this.layout.indexOf(this.totalKey) !== -1;
+    },
+
   },
   render(h) {
     return (
       <div class={"panel-page clear"} id={this.gridID + '-panel'}>
         {
-          <span class="panel-pre_text fl">{this.panelDescribe}</span>
+          this.showTotal ? <span class="panel-pre_text fl">{this.panelDescribe}</span> : null
         }
         {
           <el-pagination class="fl" current-page={this.searchConditions.pageNum} page-sizes={this.pageSizes} page-size={this.searchConditions.pageSize}
@@ -46,7 +53,7 @@ export default {
           </el-pagination>
         }
         {/*{*/}
-          {/*<el-button class="fl panel-po_btn" size="small">确定</el-button>*/}
+        {/*<el-button class="fl panel-po_btn" size="small">确定</el-button>*/}
         {/*}*/}
       </div>
     )
