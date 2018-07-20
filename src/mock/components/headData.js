@@ -70,9 +70,9 @@ export default [
     },
   },
   {
-    "resourcecolumnName": "收费标准2",//label
-    "resourcecolumnNameEn": "chargeStandard2",//model-key
-    "resourcecolumnCode": "chargeStandard2",
+    "resourcecolumnName": "收费标准",//label
+    "resourcecolumnNameEn": "chargeStandard",//model-key
+    "resourcecolumnCode": "chargeStandard",
     "resourcecolumnXtype": "text",//筛选列 类型
     "resourcecolumnWidth": "160",//列的宽度
     "resourcecolumnOrder": "6",//列的序号
@@ -141,8 +141,8 @@ export default [
   },
   {
     "resourcecolumnName": "收费客户（多选）",//label
-    "resourcecolumnNameEn": "chargeCustomer2",//model-key
-    "resourcecolumnCode": "chargeCustomer2",
+    "resourcecolumnNameEn": "chargeCustomer",//model-key
+    "resourcecolumnCode": "chargeCustomer",
     "resourcecolumnXtype": "text",//筛选列 类型
     "resourcecolumnWidth": "300",//列的宽度
     "resourcecolumnOrder": "5",//列的序号
