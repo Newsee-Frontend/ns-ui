@@ -335,5 +335,8 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
     button.panel-po_btn {
       margin-left: 5px;
     }
+    .el-pagination__total {
+      display: none;
+    }
   }
 }
