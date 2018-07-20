@@ -1,6 +1,6 @@
 <!--bussiness-grid-template-->
 <template>
-  <el-dialog class="bussiness-grid-template" width="900px" title="业务封装用法示例" :visible.sync="visible.visible"
+  <el-dialog class="bussiness-grid-template" width="1200px" title="业务封装用法示例" :visible.sync="visible.visible"
              top="7%" :modal-append-to-body="true" append-to-body
   >
     <!--temple container-->
@@ -18,6 +18,7 @@
       <bussiness-grid :gridID="gridID" :gridData="gridData" firstColType="radio" handleColType="handle"
                       :loadState="loadState" :searchConditions="searchConditions"
                       :holderInfo="holderInfo" :pagerCount="5"
+                      layout="slot,total, sizes, prev, pager, next, jumper"
                       :sizeInfo="sizeInfo"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
