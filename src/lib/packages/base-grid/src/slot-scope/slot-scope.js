@@ -17,8 +17,13 @@ export default {
     keyRefer: {type: Object},//指代属性
   },
   computed: {
+    //key refer for grid head
     headRefer() {
       return this.keyRefer.head;
+    },
+    //key refer for grid scope
+    scopeRefer() {
+      return this.keyRefer.scope;
     }
   },
   render(h) {
@@ -30,11 +35,10 @@ export default {
      * @returns {*}
      */
     let cellRender = (scope, item, refer) => {
+      const modelCode = item[refer['model-code']];  //key
+      const formConfig = item[refer['cell-Config']];//form config object
       if (this.formCellRender(item)) {
         let type = item.eidtConfig.type;
-        const modelCode = item[refer['model-code']];  //key
-        const formConfig = item[refer['cell-Config']];//form config object
-
         switch (type) {
           case 'link':
             return (
@@ -119,11 +123,11 @@ export default {
               </el-select>
             );
           default:
-            return (<div>{scope.row[item[refer['model-code']]]}</div>);
+            return (<div>{scope.row[modelCode]}</div>);
         }
       }
       else {
-        return (<div>{scope.row[item[refer['model-code']]]}</div>);
+        return (<div>{scope.row[modelCode]}</div>);
       }
     };
 
@@ -164,9 +168,12 @@ export default {
      */
     selectUnitChange(modelCode, scope, value) {
 
+      const modelData = this.scopeRefer['modelData'];
+      const items = this.scopeRefer['items'];
+      const unit = this.scopeRefer['unit'];
+
       const row = scope.row;//row data
-      const k = 'unit';
-      const options = row[modelCode].options;//select option data
+      const options = row[modelCode][items];//select option data
 
       /**
        * 在 select-unit 类型的表单控件中，找到change 选择的 value 的得那项 option，获取其unit字段值，赋值给所此控件数据下picked字段下的unit字段
@@ -174,9 +181,9 @@ export default {
        */
       for (let ipt of options) {
         if (ipt.value === value) {
-          row[modelCode].picked.unit = ipt.unit;
-          if (row.hasOwnProperty(k)) {
-            row[k] = ipt.unit;
+          row[modelCode][modelData][unit] = ipt[unit];
+          if (row.hasOwnProperty(unit)) {
+            row[unit] = ipt[unit];
           }
           break;
         }
