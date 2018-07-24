@@ -21,6 +21,10 @@
                   @grid-ation="gridAtion"
                   @selection-change="selectionChange"
                   @setting-submit="settingSubmit"
+
+                  @add-row="addRow"
+                  @delete-current-row="deleteCurrentRow"
+
     >
     </cx-base-grid>
   </div>
@@ -321,7 +325,26 @@
         this.loadState.head = true;
         //refresh grid（ 刷新表事件抛出回调 ）
         this.$emit("refreshGrid");
-      }
+      },
+
+      /**
+       * delete current row
+       * @param index
+       * @param row
+       * @param gridData
+       */
+      deleteCurrentRow(index, row, gridData) {
+        this.$emit("delete-current-row", index, row, gridData);
+      },
+      /**
+       * add row to grid
+       * @param gridData
+       */
+      addRow(gridData) {
+        this.$emit("add-row", gridData);
+      },
+
+
     }
   }
 </script>
