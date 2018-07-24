@@ -22,7 +22,10 @@
                       :sizeInfo="sizeInfo"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
-                      @selection-change="selectionChange">
+                      @selection-change="selectionChange"
+                      @add-row="addRow"
+                      @delete-current-row="deleteCurrentRow"
+      >
       </bussiness-grid>
     </div>
     <div slot="footer">
@@ -33,6 +36,8 @@
 </template>
 
 <script>
+  import emptyRowData from './emptyRowData'
+
   export default {
     name: 'bussiness-grid-template',
     data() {
@@ -40,6 +45,7 @@
         height: '70px',
         //============= basic data =============
         funcId: '',
+        emptyRowData: emptyRowData,
         //============= select modeules =============
         inputModel: '',
         options2: [{value: 'less200', label: '总金额小于200'}, {value: 'more200', label: '总金额大于200'}],
@@ -144,6 +150,27 @@
         console.log('grid-selection-change - 表数据 checkbox 选择事件抛出');
         console.log(selection);
       },
+
+      /**
+       * delete current row
+       * @param index
+       * @param row
+       * @param gridData
+       */
+      deleteCurrentRow(index, row, gridData) {
+        const list = gridData.list;
+        if (list.length < 1) return false;//empty to  break
+        list.splice(index, 1);//delete
+      },
+      /**
+       * add row to grid
+       * @param gridData
+       */
+      addRow(gridData) {
+        gridData.list.push(emptyRowData);//add
+      },
+
+
       /**
        * close dialog
        */
