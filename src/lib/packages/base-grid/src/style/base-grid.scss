@@ -5,6 +5,13 @@ $grid_border_color: #ebeef5; //表格边框颜色
 $set-part_color: #f4f8fe; //表头设置按钮图标颜色
 $set-part_color_active: #d6e2ed; //表头设置按钮图标颜色 - active
 
+// ========== 字体大小 ==========
+$addRow-thead_fs: 18px; //新增行列 - 表头 字体
+$addRow-tbody_fs: 18px; //新增行列 - 单元格 字体
+$header-drag_fs: 13px; //下拉菜单条目 - 左侧选择框字体
+$action-summary_fs: 12px; //合计按钮控制下拉菜单字体
+$error-prompt_fs: 32px; //错误模块提示
+
 // ========== 错误提示模块样式 ==========
 $error-prompt_baseWidth: 240px; //错误提示模块 - 基础宽度
 $error-prompt_baseGap: 20px; //错误提示模块 - 基础间隙
@@ -95,11 +102,11 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
       .el-table__body-wrapper {
         @include scrollbarVisible;
       }
-      //表头
+      //表头样式设置
       th {
         border-bottom: 1px solid $grid_border_color;
         background-color: $grid_head_back;
-        //表头操作设置列
+        //1、表头操作设置 列
         &.grid-head-headOperation {
           padding: 0;
           .cell {
@@ -142,12 +149,30 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
             }
           }
         }
+        //2、表头操作新增行 列
+        &.grid-head-addRow {
+          .cell {
+            i {
+              cursor: pointer;
+              font-size: $addRow-thead_fs;
+            }
+          }
+        }
+      }
+      //表头操作新增行 单元格样式设置
+      td.grid-head-addRow {
+        .cell {
+          i {
+            cursor: pointer;
+            font-size: $addRow-tbody_fs;
+          }
+        }
       }
 
       thead, th, th div, thead .cell {
         overflow: visible;
       }
-      //单元格
+      //单元格样式设置
       .cell {
         .grid-cell {
           width: 100%;
@@ -207,7 +232,7 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
       line-height: 32px;
       z-index: 999;
       span.el-dropdown-selfdefine {
-        font-size: 12px;
+        font-size: $action-summary_fs;
         margin: 0;
         padding: 0 0 0 10px;
       }
@@ -237,7 +262,7 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
         width: $error-prompt_baseWidth;
         p {
           margin-top: $error-prompt_baseGap;
-          font-size: 32px;
+          font-size: $error-prompt_fs;
           color: $error-prompt_spanCol;
         }
         .el-button {
@@ -294,7 +319,7 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
           text-overflow: ellipsis;
           white-space: nowrap;
           span {
-            font-size: 13px;
+            font-size: $header-drag_fs;
           }
         }
         //下拉菜单条目 - 右侧图标
