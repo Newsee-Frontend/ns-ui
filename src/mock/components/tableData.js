@@ -72,7 +72,7 @@ let mockTableFn_normal = (min, max, type) => {
   const count = Mock.Random.float(min, max, 0, 0);
   for (let i = 0; i < count; i++) {
     const obj = Mock.mock({
-      index: i + 1,//序号
+      // index: i + 1,//序号
       taskName: function (n) {
         const task = n.context.currentContext.ownerName;
         return task + "的项目";
