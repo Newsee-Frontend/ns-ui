@@ -9,7 +9,7 @@
                   :autoResize="autoResize" :holderInfo="holderInfo"
 
                   :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
-                  :showHeadOperation="showHeadOperation" :showPanel="showPanel"
+                  :showHeadOperation="showHeadOperation" :showAddRowOperation="showAddRowOperation" :showPanel="showPanel"
                   :align="align" :border="border"
 
                   :sumDataSource="sumDataSource" :sumFixedNum="sumFixedNum"
@@ -116,7 +116,7 @@
       ationColConfig: {type: Object},//固定操作列自定义配置
       showPanel: {type: Boolean, default: true},//分页器显示开关
       showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
-
+      showAddRowOperation: {type: Boolean, default: false},//表头设置 新增行操作模块开关
 
       //----- 列表高度尺寸 -----
       sizeInfo: {
