@@ -17,7 +17,9 @@
       <!--grid-->
       <bussiness-grid :gridID="gridID" :gridData="gridData" firstColType="radio" handleColType="handle"
                       :loadState="loadState" :searchConditions="searchConditions"
-                      :holderInfo="holderInfo" :pagerCount="5"
+                      :showAddRowOperation="true"
+                      :holderInfo="holderInfo"
+                      :pagerCount="5"
                       layout="slot,total, sizes, prev, pager, next, jumper"
                       :sizeInfo="sizeInfo"
                       @refreshGrid="refreshGrid"
