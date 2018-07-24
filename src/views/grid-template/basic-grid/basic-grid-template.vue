@@ -1,6 +1,6 @@
 <!--basic-grid-template-->
 <template>
-  <el-dialog class="basic-grid-template" width="900px" title="基础用法示例" :visible.sync="visible.visible"
+  <el-dialog class="basic-grid-template" width="1200px" title="基础用法示例" :visible.sync="visible.visible"
              top="7%" :modal-append-to-body="true" append-to-body
   >
     <!--temple container-->
@@ -15,8 +15,9 @@
       </div>
       <!--grid-->
       <cx-base-grid :gridID="gridID" :gridHead="gridHead" :gridData="gridData" :loadState="loadState"
-                    :firstColType="firstColType" :handleColType="handleColType"
+                    :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
                     :align="align" :border="border"
+                    :showAddRowOperation="showAddRowOperation"
                     :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
                     :keyRefer="keyRefer" :holderInfo="holderInfo"
                     @refreshGrid="refreshGrid"
@@ -24,6 +25,8 @@
                     @grid-ation="gridAtion"
                     @selection-change="selectionChange"
                     @setting-submit="settingSubmit"
+                    @add-row="addRow"
+                    @delete-current-row="deleteCurrentRow"
       >
       </cx-base-grid>
     </div>
@@ -39,6 +42,7 @@
   import {tableHeaderFetch} from '../../../api/table/table'
   import keyRefer from './keyRefer';
   import sw from '../../../switch'
+  import emptyRowData from './emptyRowData'
 
   export default {
     name: 'basic-grid-template',
@@ -46,6 +50,7 @@
       return {
         //============= basic data =============
         funcId: '',
+        emptyRowData: emptyRowData,
         //============= select modeules =============
         inputModel: '',
         options2: [{value: '选项1', label: '选项1'}, {value: '选项2', label: '选项2'}, {value: '选项3', label: '选项3'}],
@@ -62,6 +67,8 @@
         border: true,//表格是否有边框
         firstColType: 'selection',//第一列固定列类型（非自动表头配置）
         handleColType: 'handle',//固定操作列类型（非自动表头配置）
+        ationColConfig: {width: '150'},//固定操作列自定义配置
+        showAddRowOperation: true,//表头设置 新增行操作模块开关
         searchConditions: {
           companyId: "", //公司id
           departmentId: "", //部门id
@@ -256,6 +263,26 @@
         this.loadState.head = true;
         //refresh grid（ 刷新表事件抛出回调 ）
         this.$emit("refreshGrid");
+      },
+      /**
+       * delete current row
+       * @param index
+       * @param row
+       * @param gridData
+       */
+      deleteCurrentRow(index, row, gridData) {
+        const list = gridData.list;
+        if (list.length < 1) return false;//empty to  break
+        list.splice(index, 1);//delete
+      },
+      /**
+       * add row to grid
+       * @param gridData
+       */
+      addRow(gridData) {
+        console.log(gridData)
+        console.log(emptyRowData)
+        gridData.list.push(emptyRowData);//add
       },
       /**
        * close dialog
