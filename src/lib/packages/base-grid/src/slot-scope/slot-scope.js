@@ -174,7 +174,16 @@ export default {
 
       const row = scope.row;//row data
       const options = row[modelCode][items];//select option data
+      console.log('selectUnitChange - selectUnitChange');
 
+
+      console.log(modelData);
+      console.log(items);
+      console.log(unit);
+      console.log(row);
+      console.log(options);
+
+      console.log('============== - ===============');
       /**
        * 在 select-unit 类型的表单控件中，找到change 选择的 value 的得那项 option，获取其unit字段值，赋值给所此控件数据下picked字段下的unit字段
        * 再判断所在行row 数据下是否有 unit 字段，如果有的话为其赋值 change 选择的 value 值的那项 option 的unit字段值
