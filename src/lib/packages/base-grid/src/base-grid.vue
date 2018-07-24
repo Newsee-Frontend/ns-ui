@@ -51,11 +51,23 @@
             </template>
           </el-table-column>
 
+          <!-- add row data modules column -->
+          <el-table-column v-if="errorType === 'noError'"
+                           :class-name="'grid-head-'+ addRowColInfo[headRefer['model-code']]"
+                           :width="addRowColInfo[headRefer['width']]" fixed="right"
+                           align="center" :render-header="addRow_render"
+          >
+            <template slot-scope="scope">
+              <i class="el-icon-delete" @click="deleteCurrentRow(scope.$index, scope.row)"></i>
+            </template>
+          </el-table-column>
+
+
           <!-- head operation setting modules column -->
           <el-table-column v-if="showHeadOperation && errorType === 'noError'"
-                           :class-name="'grid-head-'+headOperationColInfo[headRefer['model-code']]"
+                           :class-name="'grid-head-'+ headOperationColInfo[headRefer['model-code']]"
                            :width="headOperationColInfo[headRefer['width']]" fixed="right"
-                           :align="align" :render-header="renderHeader"
+                           :align="align" :render-header="headOperation_render"
           >
             <template slot-scope="scope"></template>
           </el-table-column>
@@ -270,6 +282,15 @@
           [this.headRefer['align']]: this.ationColConfig.align || "center",
         }
       },
+      //新增行操作列的配置
+      addRowColInfo() {
+        return {
+          [this.headRefer['col-type']]: 'addRow',
+          [this.headRefer['label']]: '',
+          [this.headRefer['model-code']]: 'addRow',
+          [this.headRefer['width']]: "50",
+        }
+      },
       //表头设置列的配置
       headOperationColInfo() {
         return {
@@ -409,11 +430,28 @@
        * @param $index
        * @returns {*}
        */
-      renderHeader(h, {column, $index}) {
+      headOperation_render(h, {column, $index}) {
         return h(this.$SN + 'grid-operation', {
             attrs: {headSetSw: this.headSetSw},
           }
         );
+      },
+
+
+      /**
+       * render header (渲染 新增行 列模块)
+       * @param h
+       * @param column
+       * @param $index
+       * @returns {*}
+       */
+      addRow_render(h, {column, $index}) {
+        return [
+          h('i', {
+            class: 'el-icon-circle-plus',
+            on: {click: this.addRow}
+          }),
+        ]
       },
 
       /**
@@ -530,6 +568,24 @@
         }, this.resizeRate);
         addEventHandler(window, 'resize', this.__resizeHanlder);
       },
+
+
+      /**
+       * delete current row
+       * @param index
+       * @param row
+       */
+      deleteCurrentRow(index, row) {
+        this.$emit("delete-current-row", index, row, this.actualGridData);
+      },
+      /**
+       * add row to grid
+       */
+      addRow() {
+        this.$emit("add-row", this.actualGridData);
+      },
+
+
       /**
        * judge array contain another Obj
        * @param arr
