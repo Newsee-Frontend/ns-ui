@@ -1,13 +1,13 @@
 export default [
-  {
-    "resourcecolumnName": "序号",//label
-    "resourcecolumnNameEn": "index",//model-key
-    "resourcecolumnCode": "index",
-    "resourcecolumnXtype": "text",//筛选列 类型
-    "resourcecolumnWidth": "80",//列的宽度
-    "resourcecolumnOrder": "1",//列的序号
-    "resourcecolumnHidden": "0", //是否隐藏
-  },
+  // {
+  //   "resourcecolumnName": "序号",//label
+  //   "resourcecolumnNameEn": "index",//model-key
+  //   "resourcecolumnCode": "index",
+  //   "resourcecolumnXtype": "text",//筛选列 类型
+  //   "resourcecolumnWidth": "80",//列的宽度
+  //   "resourcecolumnOrder": "1",//列的序号
+  //   "resourcecolumnHidden": "0", //是否隐藏
+  // },
   {
     "resourcecolumnName": "项目名称",//label
     "resourcecolumnNameEn": "taskName",//model-key
