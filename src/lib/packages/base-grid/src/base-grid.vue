@@ -14,7 +14,8 @@
           <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
                            :label="firstColInfo[headRefer['label']]"
                            :width="firstColInfo[headRefer['width']]" align="center" :fixed="true"
-                           :class-name="'grid-head-'+firstColInfo[headRefer['model-code']]">
+                           :class-name="'grid-head-'+firstColInfo[headRefer['model-code']]"
+                           :key="'grid-head-'+firstColInfo[headRefer['model-code']]">
           </el-table-column>
           <!-- show radio -column -->
           <el-table-column v-if="firstColInfo[headRefer['col-type']] === 'radio'"
@@ -43,6 +44,7 @@
                            :width="ationColInfo[headRefer['width']]"
                            fixed="right" :align="ationColInfo[headRefer['align']]"
                            :class-name="'grid-head-'+ationColInfo[headRefer['model-code']]"
+                           :key="'grid-head-'+ationColInfo[headRefer['model-code']]"
           >
             <template slot-scope="scope">
               <template v-if="ationColInfo[headRefer['col-type']] === 'handle'">
@@ -50,10 +52,10 @@
               </template>
             </template>
           </el-table-column>
-
           <!-- add row data modules column -->
-          <el-table-column v-if="errorType === 'noError'"
+          <el-table-column v-if="addRowColRender"
                            :class-name="'grid-head-'+ addRowColInfo[headRefer['model-code']]"
+                           :key="'grid-head-'+ addRowColInfo[headRefer['model-code']]"
                            :width="addRowColInfo[headRefer['width']]" fixed="right"
                            align="center" :render-header="addRow_render"
           >
@@ -61,11 +63,10 @@
               <i class="el-icon-delete" @click="deleteCurrentRow(scope.$index, scope.row)"></i>
             </template>
           </el-table-column>
-
-
           <!-- head operation setting modules column -->
-          <el-table-column v-if="showHeadOperation && errorType === 'noError'"
+          <el-table-column v-if="headOperationColRender"
                            :class-name="'grid-head-'+ headOperationColInfo[headRefer['model-code']]"
+                           :key="'grid-head-'+ headOperationColInfo[headRefer['model-code']]"
                            :width="headOperationColInfo[headRefer['width']]" fixed="right"
                            :align="align" :render-header="headOperation_render"
           >
@@ -146,6 +147,7 @@
       },//固定操作列自定义配置
       showPanel: {type: Boolean, default: true},//分页器显示开关
       showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
+      showAddRowOperation: {type: Boolean, default: false},//表头设置 新增行操作模块开关
       mockQuery: {
         type: Object, default: function () {
           return {
@@ -262,6 +264,14 @@
       //操作列渲染开关
       actionRender() {
         return arrContainObj(this.handleCol, this.handleColType) && this.errorType === 'noError';
+      },
+      //新增行操作列渲染开关
+      addRowColRender() {
+        return this.showAddRowOperation && (this.errorType === 'noError' || this.errorType === 'noResult');//开关开启 + 只要表头/表数据正常即可
+      },
+      //表头设置列渲染开关
+      headOperationColRender() {
+        return this.showHeadOperation && (this.errorType === 'noError' || this.errorType === 'noResult');//开关开启 + 只要表头/表数据正常即可
       },
       //首列的配置
       firstColInfo() {
