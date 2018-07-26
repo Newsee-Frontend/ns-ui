@@ -1,9 +1,16 @@
+import {arrContainObj} from '../../../../utils/index';
+import validateRule from '../../../../utils/validate/validate-rule';
+
 export default {
   name: 'slot-scope',
   components: {},
 
   data() {
-    return {};
+    return {
+      //form cell status
+      formCellList: ['link', 'input', 'rate', 'date', 'checkbox', 'radio', 'select', 'select-unit',],
+      deleteKey: 'empty-check-list',
+    };
   },
   props: {
     scope: {
@@ -12,9 +19,12 @@ export default {
           row: {}
         }
       }
-    },
-    item: {type: Object},
-    keyRefer: {type: Object},//指代属性
+    },//当前行-表格数据
+    item: {type: Object},//当前列-表头数据
+    checkList: {type: Array},//validate list for from cell in grid
+    rowIndex: {type: Number},//行索引
+    colIndex: {type: Number},//列索引
+    keyRefer: {type: Object},//key refer for grid
   },
   computed: {
     //key refer for grid head
@@ -24,20 +34,29 @@ export default {
     //key refer for grid scope
     scopeRefer() {
       return this.keyRefer.scope;
+    },
+    cell_className() {
+      return {}
     }
   },
   render(h) {
+    // is form cell render
+    const isFormRender = this.formCellRender(this.item);
+    const modelCode = this.item[this.headRefer['model-code']];  //key
+    const formConfig = this.item[this.headRefer['cell-Config']];//form config object
+    const cellKey = modelCode + '-' + this.rowIndex + '-' + this.colIndex;
     /**
      * cellRender
-     * @param scope   row data
-     * @param item    head item data
-     * @param refer   key refer
+     * @param isFormRender     is form cell render
+     * @param scope            row data
+     * @param item             head item data
+     * @param cellKey
+     * @param refer            key refer
      * @returns {*}
      */
-    let cellRender = (scope, item, refer) => {
-      const modelCode = item[refer['model-code']];  //key
-      const formConfig = item[refer['cell-Config']];//form config object
-      if (this.formCellRender(item)) {
+    let cellRender = (isFormRender, scope, item, cellKey, refer) => {
+
+      if (isFormRender) {
         let type = item.eidtConfig.type;
         switch (type) {
           case 'link':
@@ -50,9 +69,10 @@ export default {
             );
           case 'input':
             return (
-              <el-input class="grid-cell" v-model={scope.row[modelCode]} size="mini"
+              <el-input className="grid-cell" v-model={scope.row[modelCode]} size="mini"
                         placeholder={formConfig.placeHolder}
-                        disabled={formConfig.disabled} clearable={true}>
+                        disabled={formConfig.disabled} clearable={true}
+                        on-change={this.formChange.bind(this, item, cellKey, refer)}>
               </el-input>
             );
           case 'rate':
@@ -99,7 +119,8 @@ export default {
           case 'select':
             return (
               <el-select class="grid-cell" v-model={scope.row[modelCode].picked.value} size="mini" editable={false} disabled={formConfig.disabled}
-                         placeholder={formConfig.placeHolder}>
+                         placeholder={formConfig.placeHolder} clearable={true}
+                         on-change={this.formChange.bind(this, item, cellKey, refer)}>
                 {
                   scope.row[modelCode].options.map((item, $index) =>
                     [
@@ -112,7 +133,7 @@ export default {
           case 'select-unit':
             return (
               <el-select class="grid-cell" v-model={scope.row[modelCode].picked.value} size="mini" editable={false} disabled={formConfig.disabled}
-                         placeholder={formConfig.placeHolder} on-change={this.selectUnitChange.bind(this, modelCode, scope)}>
+                         placeholder={formConfig.placeHolder} clearable={true} on-change={this.selectUnitChange.bind(this, modelCode, scope)}>
                 {
                   scope.row[modelCode].options.map((item, $index) =>
                     [
@@ -132,7 +153,17 @@ export default {
     };
 
     return (
-      cellRender(this.scope, this.item, this.headRefer)
+      <div class={['cell-container', isFormRender ? 'form-cell' : 'norm-cell',
+        {'is-error': this.validateCheck(this.scope, this.item, cellKey, this.headRefer)}]}>
+        {
+          cellRender(isFormRender, this.scope, this.item, cellKey, this.headRefer)
+        }
+        {
+          isFormRender ?
+            <div class="el-form-item__error">{'错误信息'}</div> :
+            null
+        }
+      </div>
     )
   },
   created() {
@@ -148,18 +179,121 @@ export default {
       if (!item) {
         return false;
       }
-      if (!item.eidtConfig) {
+      const conf = item.eidtConfig;
+      if (!conf) {
         return false;
       }
-      if (!item.eidtConfig.switchType) {
+      if (!conf.switchType) {
+        return false;
+      }
+      const t = conf.type;
+      if (!arrContainObj(this.formCellList, t)) {
         return false;
       }
       return true;
     },
-    //表格单元格点击行为事件
+    /**
+     * 表格单元格点击行为事件
+     * @param scope
+     * @param item
+     */
     cellAction(scope, item) {
       this.$emit("cell-action", scope, item);
     },
+
+
+    /**
+     * validate check => change class name to change style
+     * @param scope           row data
+     * @param item            col of head data
+     * @param cellKey         cell key of grid
+     * @param refer           head key refer
+     * @returns {boolean}
+     */
+    validateCheck(scope, item, cellKey, refer) {
+      const formConfig = item[refer['cell-Config']];//form config object
+      if (!formConfig) return false;
+
+      /**
+       * get form-cell value
+       * @param scope     row data
+       * @param key       model key
+       * @returns {*}
+       */
+      let getValue = (scope, key) => {
+        const val = scope.row[key];
+        try {
+          return val['picked'].value;
+        }
+        catch (e) {
+          return val;
+        }
+      };
+
+      const modelCode = item[refer['model-code']];  //model code
+      const required = formConfig.require;          //form of cell  require switch
+      const ruleType = formConfig.validateRule;     //form of cell validate rule
+      const value = getValue(scope, modelCode);     //get form-cell value
+
+      let judge = () => {
+        console.log('judge 开始 ');
+        //是否验证通过
+        if (!arrContainObj(this.checkList, cellKey) && !arrContainObj(this.checkList, 'all-check')) return true;
+        console.log('需要验证！！！');
+        if (required) {
+          console.log('需要必填 is required ');
+          if (value) {
+            console.log('有值！！！！！！！！！！！');
+            return validateRule(value, ruleType);
+          }
+          else {
+            console.log('没有值！！！！！！！！！！！');
+            return false;
+          }
+        }
+        else {
+          console.log('无需必填 not required ');
+          if (value) {
+            console.log('有值！！！！！！！！！！！');
+            return validateRule(value, ruleType);
+          }
+          else {
+            return true;
+          }
+        }
+      };
+
+      console.log('====== 当前验证开始 ======');
+      console.log('是否必填');
+      console.log(required);
+      console.log('验证内容类型');
+      console.log(ruleType);
+      console.log('内容值');
+      console.log(value);
+      console.log('内容验证结果 ');
+      console.log(validateRule(value, ruleType));
+      console.log('最终验证结果');
+      console.log(judge());
+      return !judge();
+    },
+
+    /**
+     * form change event
+     * @param item
+     * @param cellKey
+     * @param refer
+     * @param value
+     */
+    formChange(item, cellKey, refer, value) {
+      const formConfig = item[refer['cell-Config']];//form config object
+      //when this col type is form we can edit, so we should to  validate in need
+      if (formConfig) {
+        this.$emit("set-formCell-check", cellKey);//put this form cell key to check list
+      }
+
+    },
+
+
     /**
      * select unit change
      * @param modelCode
@@ -169,6 +303,7 @@ export default {
     selectUnitChange(modelCode, scope, value) {
 
       const modelData = this.scopeRefer['modelData'];
+
       const items = this.scopeRefer['items'];
       const unit = this.scopeRefer['unit'];
 
@@ -184,6 +319,12 @@ export default {
       console.log(options);
 
       console.log('============== - ===============');
+      /**
+       * if change value is empty , unit value as same as change value
+       */
+      if (!value) {
+        row[unit] = '';
+      }
       /**
        * 在 select-unit 类型的表单控件中，找到change 选择的 value 的得那项 option，获取其unit字段值，赋值给所此控件数据下picked字段下的unit字段
        * 再判断所在行row 数据下是否有 unit 字段，如果有的话为其赋值 change 选择的 value 值的那项 option 的unit字段值
@@ -201,5 +342,8 @@ export default {
       console.log(scope)
     }
   },
+  beforeDestroy: function () {
+    this.$emit("set-formCell-check", this.deleteKey);//put this form cell key to check list
+  }
 };
 
