@@ -8,25 +8,25 @@ export default [
   //   "resourcecolumnOrder": "1",//列的序号
   //   "resourcecolumnHidden": "0", //是否隐藏
   // },
-  {
-    "resourcecolumnName": "项目名称",//label
-    "resourcecolumnNameEn": "taskName",//model-key
-    "resourcecolumnCode": "taskName",
-    "resourcecolumnXtype": "text",//筛选列 类型
-    "resourcecolumnWidth": "100",//列的宽度
-    "resourcecolumnOrder": "2",//列的序号
-    "resourcecolumnHidden": "0", //是否隐藏
-    "eidtConfig": null
-  },
-  {
-    "resourcecolumnName": "使用人",//label
-    "resourcecolumnNameEn": "ownerName",//model-key
-    "resourcecolumnCode": "ownerName",
-    "resourcecolumnXtype": "text",//筛选列 类型
-    "resourcecolumnWidth": "100",//列的宽度
-    "resourcecolumnOrder": "11",//列的序号
-    "resourcecolumnHidden": "0", //是否隐藏
-  },
+  // {
+  //   "resourcecolumnName": "项目名称",//label
+  //   "resourcecolumnNameEn": "taskName",//model-key
+  //   "resourcecolumnCode": "taskName",
+  //   "resourcecolumnXtype": "text",//筛选列 类型
+  //   "resourcecolumnWidth": "100",//列的宽度
+  //   "resourcecolumnOrder": "2",//列的序号
+  //   "resourcecolumnHidden": "0", //是否隐藏
+  //   "eidtConfig": null
+  // },
+  // {
+  //   "resourcecolumnName": "使用人",//label
+  //   "resourcecolumnNameEn": "ownerName",//model-key
+  //   "resourcecolumnCode": "ownerName",
+  //   "resourcecolumnXtype": "text",//筛选列 类型
+  //   "resourcecolumnWidth": "100",//列的宽度
+  //   "resourcecolumnOrder": "11",//列的序号
+  //   "resourcecolumnHidden": "0", //是否隐藏
+  // },
   {
     "resourcecolumnName": "性别",//label
     "resourcecolumnNameEn": "sex",//model-key
@@ -165,7 +165,7 @@ export default [
     "resourcecolumnNameEn": "isLocked",//model-key
     "resourcecolumnCode": "isLocked",
     "resourcecolumnXtype": "text",//筛选列 类型
-    "resourcecolumnWidth": "100",//列的宽度
+    "resourcecolumnWidth": "180",//列的宽度
     "resourcecolumnOrder": "4",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
     "eidtConfig": {
@@ -235,7 +235,7 @@ export default [
       "min": 0,
       "placeHolder": '请输入备注',
       "require": true,
-      "validateRule": null
+      "validateRule": 'numEn'
     },
   },
 ];
