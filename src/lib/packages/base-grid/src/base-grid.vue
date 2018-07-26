@@ -35,7 +35,9 @@
             <!--table cell content-->
             <template slot-scope="scope">
               <!--form components in table-->
-              <slot-scope :scope="scope" :item="item" :keyRefer="keyRefer" @cell-action="cellAction"></slot-scope>
+              <slot-scope :scope="scope" :item="item" :checkList="checkList"
+                          :rowIndex="scope.$index" :colIndex="index" :keyRefer="keyRefer"
+                          @cell-action="cellAction" @set-formCell-check="setFormCellCheck"></slot-scope>
             </template>
           </el-table-column>
 
@@ -116,6 +118,7 @@
         resizeRate: 50,//表格渲染刷新频率
         storeGridData: null,//存储Grid列表数据
         radioModel: '',//radio model
+        checkList: [],//check list for form in grid cell
       }
     },
     components: {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt},
@@ -564,8 +567,6 @@
       //listen to renderRange change
       listenRenderRange() {
         eventBus.$on('buildRange', (val) => {
-          console.log('buildRange222222');
-          console.log(val);
           this.sizeInfo.maxHeight = val;
         });
       },
@@ -595,25 +596,24 @@
         this.$emit("add-row", this.actualGridData);
       },
 
-
       /**
-       * judge array contain another Obj
-       * @param arr
-       * @param obj
-       * @returns {boolean}
+       * set form-cell check config (check list) in grid
+       * @param key
        */
-      arrContainObj(arr, obj) {
-        if (Object.prototype.toString.call(arr) === '[object Array]') {
-          let i = arr.length;
-          while (i--) {
-            if (arr[i] === obj) {
-              return true;
-            }
-          }
-          return false;
+      setFormCellCheck(key) {
+        console.log('当前受到验证的表单控件-key：');
+        console.log(key);
+        console.log('当前验证列表：');
+        console.log(this.checkList);
+        //empty check list when reset grid
+        if (key === 'empty-check-list') {
+          this.checkList = [];
         }
+        //other status => submit/change/blur validate
         else {
-          this.throw("the object of the judgment must be a array format ，you better find it");
+          if (!arrContainObj(this.checkList, key)) {
+            this.checkList.push(key);
+          }
         }
       },
     }
