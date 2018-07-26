@@ -15,6 +15,7 @@ const keyRefer = {
     'actionBtnList': 'fnsclick',//操作列操作按钮列表
 
     'modelData': 'picked',//选中对象字段
+    'value': 'value',//选中对象字段 - 值
     'items': 'options',//下拉框字段
     'unit': 'unit',//计量单位
 
