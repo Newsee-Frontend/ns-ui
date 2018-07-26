@@ -1,3 +1,16 @@
+@mixin box-sizing {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin border-radius($R) {
+  -moz-border-radius: $R;
+  -ms-border-radius: $R;
+  -o-border-radius: $R;
+  border-radius: $R;
+}
+
 @mixin transition( $property,$duration,$timing-function) {
   -moz-transition: $property $duration $timing-function;
   -webkit-transition: $property $duration $timing-function;
