@@ -18,6 +18,17 @@ $error-prompt_baseGap: 20px; //错误提示模块 - 基础间隙
 $error-prompt_pCol: #999; //错误提示模块 - 大标题颜色
 $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
 
+//====
+$baseEdge: 10px; //base edge
+$adjust: 4px; //base gap to adjust
+$formErrFs: 12px; //font size in error message
+//---------- 主题色系 ----------
+$--color-white: #FFF; //纯白
+$--color-success: #16CA37;
+$--color-warning: #FFAE00;
+$--color-danger: #FF5131;
+$--color-info: #0A7AF8;
+
 /*滚动条垂直方向的宽度*/
 ::-webkit-scrollbar {
   width: 8px;
@@ -100,6 +111,7 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
       border-top: 1px solid $grid_border_color;
       //内容部分滚动条设置
       .el-table__body-wrapper {
+        padding-top: 20px;
         @include scrollbarVisible;
       }
       //表头样式设置
@@ -169,7 +181,8 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
         }
       }
 
-      thead, th, th div, thead .cell {
+      //表格各模块 visible 设置
+      thead, th, th div, thead .cell, tbody .cell {
         overflow: visible;
       }
       //单元格样式设置
@@ -205,8 +218,65 @@ $error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
             }
           }
         }
+        //单元格内容部分
+        .cell-container {
+          //单元格内容部分-表单元素
+          &.form-cell {
+            position: relative;
+            z-index: 998;
+            //检验错误 提示（展示样式修改）
+            .el-form-item__error {
+              position: absolute;
+              height: $formErrFs * 2+$adjust;
+              line-height: $formErrFs * 2 - $adjust;
+              font-size: $formErrFs;
+              top: -($formErrFs * 2 - $adjust);
+              left: ($formErrFs * 2 - $adjust) / 2;
+              color: $--color-white;
+              background: $--color-danger;
+              padding-top: $adjust;
+              padding-left: $baseEdge;
+              padding-right: $baseEdge;
+              @include border-radius($adjust/2);
+              @include box-sizing;
+              z-index: 998;
+              &:before {
+                content: '';
+                position: absolute;
+                top: $formErrFs * 2 +  $adjust;
+                left: $baseEdge;
+                width: 0;
+                height: 0;
+                border-top: 0.4rem solid $--color-danger;
+                border-left: 0.4rem solid transparent;
+                border-right: 0.4rem solid transparent;
+              }
+            }
+          }
+          //单元格内容部分-普通元素
+          &.norm-cell {
+            overflow: hidden;
+          }
+          &.is-error {
+            .el-form-item__error {
+              display: block;
+            }
+          }
+          .el-form-item__error {
+            display: none;
+          }
+        }
       }
 
+      //表格固定栏
+      .el-table__fixed, .el-table__fixed-right {
+        z-index: 999;
+      }
+      //
+      .el-table__fixed-body-wrapper {
+        padding-top: 20px;
+        background-color: $--color-white;
+      }
       //表格底部固定合计栏
       .el-table__footer-wrapper tbody td, .el-table__header-wrapper tbody td, .el-table__fixed-footer-wrapper tbody td {
         background-color: transparent;
