@@ -107,6 +107,8 @@ let mockTableFn_normal = (min, max, type) => {
       city: Mock.Random.city(true),//城市
       address: Mock.Random.county(true),//地址
       zip: Mock.Random.zip(),//右边
+      mobile:'',//手机号
+      email:Mock.Random.email(),//邮箱
       Remark: '',//备注
     });
     if (type === 'fnsclick') {
