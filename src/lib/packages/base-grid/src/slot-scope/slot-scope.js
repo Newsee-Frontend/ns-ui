@@ -40,29 +40,35 @@ export default {
     }
   },
   render(h) {
-    // is form cell render
-    const isFormRender = this.formCellRender(this.item);
+    const isFormRender = this.formCellRender(this.item);// is form cell render
     const modelCode = this.item[this.headRefer['model-code']];  //key
     const formConfig = this.item[this.headRefer['cell-Config']];//form config object
     const cellKey = modelCode + '-' + this.rowIndex + '-' + this.colIndex;
+    //set param
+    const Param = {
+      modelCode: modelCode,         //get this col model key in gird head data
+      scope: this.scope,            //get this row data
+      item: this.item,              //this col data in grid head
+      cellKey: cellKey,             //cell key ( modelCode + row-index + row-index )
+      headRefer: this.headRefer,    //head refer
+      scopeRefer: this.scopeRefer   //scope refer
+    };
     /**
      * cellRender
      * @param isFormRender     is form cell render
-     * @param scope            row data
-     * @param item             head item data
-     * @param cellKey
-     * @param refer            key refer
+     * @param Param            all param
      * @returns {*}
      */
-    let cellRender = (isFormRender, scope, item, cellKey, refer) => {
-
+    let cellRender = (isFormRender, Param) => {
+      const scope = Param.scope;//row data
+      const item = Param.item;//head item data
       if (isFormRender) {
         let type = item.eidtConfig.type;
         switch (type) {
           case 'link':
             return (
               <div class="grid-cell grid-cell_link" title={scope.row[modelCode]}
-                   on-click={this.cellAction.bind(this, scope, item)}
+                   on-click={this.cellAction.bind(this, Param)}
               >
                 {scope.row[modelCode]}
               </div>
@@ -72,7 +78,7 @@ export default {
               <el-input className="grid-cell" v-model={scope.row[modelCode]} size="mini"
                         placeholder={formConfig.placeHolder}
                         disabled={formConfig.disabled} clearable={true}
-                        on-change={this.formChange.bind(this, item, cellKey, refer)}>
+                        on-change={this.formChange.bind(this, Param)}>
               </el-input>
             );
           case 'rate':
@@ -88,13 +94,15 @@ export default {
               <el-date-picker class="grid-cell" v-model={scope.row[modelCode]}
                               disabled={formConfig.disabled}
                               size="mini" type="date" editable={false}
-                              placeholder={formConfig.placeHolder} value-format="yyyy-MM-dd 00:00:00">
+                              placeholder={formConfig.placeHolder} value-format="yyyy-MM-dd 00:00:00"
+                              on-change={this.formChange.bind(this, Param)}>
               </el-date-picker>
             );
           case 'checkbox':
             return (
               <el-checkbox-group class="grid-cell" v-model={scope.row[modelCode].picked.value} disabled={formConfig.disabled}
-                                 size="mini" min={formConfig.min} max={formConfig.max}>
+                                 size="mini" min={formConfig.min} max={formConfig.max}
+                                 on-change={this.formChange.bind(this, Param)}>
                 {
                   scope.row[modelCode].options.map((item, $index) =>
                     [
@@ -106,7 +114,8 @@ export default {
             );
           case 'radio':
             return (
-              <el-radio-group class="grid-cell" v-model={scope.row[modelCode].picked.value} disabled={formConfig.disabled} size="mini">
+              <el-radio-group class="grid-cell" v-model={scope.row[modelCode].picked.value} disabled={formConfig.disabled}
+                              size="mini" on-change={this.formChange.bind(this, Param)}>
                 {
                   scope.row[modelCode].options.map((item, $index) =>
                     [
@@ -120,7 +129,7 @@ export default {
             return (
               <el-select class="grid-cell" v-model={scope.row[modelCode].picked.value} size="mini" editable={false} disabled={formConfig.disabled}
                          placeholder={formConfig.placeHolder} clearable={true}
-                         on-change={this.formChange.bind(this, item, cellKey, refer)}>
+                         on-change={this.formChange.bind(this, Param)}>
                 {
                   scope.row[modelCode].options.map((item, $index) =>
                     [
@@ -133,7 +142,8 @@ export default {
           case 'select-unit':
             return (
               <el-select class="grid-cell" v-model={scope.row[modelCode].picked.value} size="mini" editable={false} disabled={formConfig.disabled}
-                         placeholder={formConfig.placeHolder} clearable={true} on-change={this.selectUnitChange.bind(this, modelCode, scope)}>
+                         placeholder={formConfig.placeHolder} clearable={true}
+                         on-change={this.selectUnitChange.bind(this, Param)}>
                 {
                   scope.row[modelCode].options.map((item, $index) =>
                     [
@@ -153,15 +163,12 @@ export default {
     };
 
     return (
-      <div class={['cell-container', isFormRender ? 'form-cell' : 'norm-cell',
-        {'is-error': this.validateCheck(this.scope, this.item, cellKey, this.headRefer)}]}>
+      <div class={['cell-container', isFormRender ? 'form-cell' : 'norm-cell', {'is-error': this.validateCheck(Param)}]}>
         {
-          cellRender(isFormRender, this.scope, this.item, cellKey, this.headRefer)
+          cellRender(isFormRender, Param)
         }
         {
-          isFormRender ?
-            <div class="el-form-item__error">{'错误信息'}</div> :
-            null
+          isFormRender ? <div class="el-form-item__error">{'错误信息'}</div> : null
         }
       </div>
     )
@@ -194,24 +201,20 @@ export default {
     },
     /**
      * 表格单元格点击行为事件
-     * @param scope
-     * @param item
+     * @param Param
      */
-    cellAction(scope, item) {
-      this.$emit("cell-action", scope, item);
+    cellAction(Param) {
+      this.$emit("cell-action", Param.scope, Param.item);
     },
 
 
     /**
      * validate check => change class name to change style
-     * @param scope           row data
-     * @param item            col of head data
-     * @param cellKey         cell key of grid
-     * @param refer           head key refer
+     * @param Param           all param
      * @returns {boolean}
      */
-    validateCheck(scope, item, cellKey, refer) {
-      const formConfig = item[refer['cell-Config']];//form config object
+    validateCheck(Param) {
+      const formConfig = Param.item[Param.headRefer['cell-Config']];//form config object
       if (!formConfig) return false;
 
       /**
@@ -220,25 +223,25 @@ export default {
        * @param key       model key
        * @returns {*}
        */
-      let getValue = (scope, key) => {
+      let getValue = (scope, key, scopeRefer) => {
         const val = scope.row[key];
         try {
-          return val['picked'].value;
+          return val[scopeRefer['modelData']].value;
         }
         catch (e) {
           return val;
         }
       };
 
-      const modelCode = item[refer['model-code']];  //model code
+      const modelCode = Param.item[Param.headRefer['model-code']];  //model code
       const required = formConfig.require;          //form of cell  require switch
       const ruleType = formConfig.validateRule;     //form of cell validate rule
-      const value = getValue(scope, modelCode);     //get form-cell value
+      const value = getValue(Param.scope, modelCode, Param.scopeRefer);     //get form-cell value
 
       let judge = () => {
         console.log('judge 开始 ');
         //是否验证通过
-        if (!arrContainObj(this.checkList, cellKey) && !arrContainObj(this.checkList, 'all-check')) return true;
+        if (!arrContainObj(this.checkList, Param.cellKey) && !arrContainObj(this.checkList, 'all-check')) return true;
         console.log('需要验证！！！');
         if (required) {
           console.log('需要必填 is required ');
@@ -277,41 +280,44 @@ export default {
       return !judge();
     },
 
+
     /**
-     * form change event
-     * @param item
-     * @param cellKey
-     * @param refer
-     * @param value
+     * set form-cell check config (check list) in grid
+     * @param Param
      */
-    formChange(item, cellKey, refer, value) {
-      const formConfig = item[refer['cell-Config']];//form config object
+    setFormCellCheck(Param) {
+      const formConfig = Param.item[Param.headRefer['cell-Config']];//form config object
       //when this col type is form we can edit, so we should to  validate in need
       if (formConfig) {
-        this.$emit("set-formCell-check", cellKey);//put this form cell key to check list
+        this.$emit("set-formCell-check", Param.cellKey);//put this form cell key to check list
       }
+    },
 
+
+    /**
+     * form change event
+     * @param Param
+     * @param value
+     */
+    formChange(Param, value) {
+      this.setFormCellCheck(Param);//set form-cell check config (check list) in grid
     },
 
 
     /**
      * select unit change
-     * @param modelCode
-     * @param scope
+     * @param Param
      * @param value
      */
-    selectUnitChange(modelCode, scope, value) {
+    selectUnitChange(Param, value) {
+      this.setFormCellCheck(Param);//set form-cell check config (check list) in grid
+      const modelData = Param.scopeRefer['modelData'];
+      const items = Param.scopeRefer['items'];
+      const unit = Param.scopeRefer['unit'];
+      const row = Param.scope.row;//row data
+      const options = row[Param.modelCode][items];//select option data
 
-      const modelData = this.scopeRefer['modelData'];
-
-      const items = this.scopeRefer['items'];
-      const unit = this.scopeRefer['unit'];
-
-      const row = scope.row;//row data
-      const options = row[modelCode][items];//select option data
       console.log('selectUnitChange - selectUnitChange');
-
-
       console.log(modelData);
       console.log(items);
       console.log(unit);
@@ -331,7 +337,7 @@ export default {
        */
       for (let ipt of options) {
         if (ipt.value === value) {
-          row[modelCode][modelData][unit] = ipt[unit];
+          row[Param.modelCode][modelData][unit] = ipt[unit];
           if (row.hasOwnProperty(unit)) {
             row[unit] = ipt[unit];
           }
@@ -339,7 +345,7 @@ export default {
         }
       }
       console.log('selectUnitChange - 改变后的scope值');
-      console.log(scope)
+      console.log(Param.scope)
     }
   },
   beforeDestroy: function () {
