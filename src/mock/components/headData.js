@@ -189,6 +189,7 @@ export default [
     "resourcecolumnWidth": "120",//列的宽度
     "resourcecolumnOrder": "12",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": null,
   },
   {
     "resourcecolumnName": "市区",//label
@@ -198,6 +199,7 @@ export default [
     "resourcecolumnWidth": "100",//列的宽度
     "resourcecolumnOrder": "13",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": null,
   },
   {
     "resourcecolumnName": "地址",//label
@@ -207,6 +209,7 @@ export default [
     "resourcecolumnWidth": "200",//列的宽度
     "resourcecolumnOrder": "14",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": null,
   },
   {
     "resourcecolumnName": "邮编",//label
@@ -216,6 +219,49 @@ export default [
     "resourcecolumnWidth": "100",//列的宽度
     "resourcecolumnOrder": "15",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": null,
+  },
+  {
+    "resourcecolumnName": "联系方式",//label
+    "resourcecolumnNameEn": "mobile",//model-key
+    "resourcecolumnCode": "mobile",
+    "resourcecolumnXtype": "text",//筛选列 类型
+    "resourcecolumnWidth": "200",//列的宽度
+    "resourcecolumnOrder": "15",//列的序号
+    "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": {
+      "switchType": true,
+      "type": "input",
+      "decimal": 2,
+      "disabled": false,
+      "maxlength": null,
+      "max": 0,
+      "min": 0,
+      "placeHolder": '请输入手机号码',
+      "require": true,
+      "validateRule": 'mobile'
+    },
+  },
+  {
+    "resourcecolumnName": "邮箱",//label
+    "resourcecolumnNameEn": "email",//model-key
+    "resourcecolumnCode": "email",
+    "resourcecolumnXtype": "text",//筛选列 类型
+    "resourcecolumnWidth": "200",//列的宽度
+    "resourcecolumnOrder": "15",//列的序号
+    "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": {
+      "switchType": true,
+      "type": "input",
+      "decimal": 2,
+      "disabled": false,
+      "maxlength": null,
+      "max": 0,
+      "min": 0,
+      "placeHolder": '请输入邮箱号',
+      "require": true,
+      "validateRule": 'email'
+    },
   },
   {
     "resourcecolumnName": "备注",//label
