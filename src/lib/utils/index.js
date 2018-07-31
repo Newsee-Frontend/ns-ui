@@ -297,7 +297,7 @@ export function countRange(holderInfo) {
   const hh = _realTotalHeight(fatherID, childIDList);
   console.log('计算出的高度');
   console.log(hh);
-  return hh
+  return hh;
 }
 
 /**
@@ -354,3 +354,4 @@ export function getTotalList(keyRefer, tableList, headList, sumFixedNum) {
   console.log(sumObj);
   return sumObj;
 }
+
