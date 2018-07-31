@@ -75,3 +75,16 @@ export function getMockQuery(config, name) {
   const qn = getQuery(url, name);
   return decodeURI(decodeURI(qn));
 }
+
+
+/**
+ * check range (校验特定范围内是否所有表单元素都通过验证)
+ * @param range
+ * @param target
+ * @returns {boolean}
+ */
+export function checkRange(range, target) {
+  const t = range + ' ' + target;
+  const allError = document.querySelectorAll(t);
+  return !allError.length > 0;
+}
