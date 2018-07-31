@@ -16,9 +16,6 @@ import rulesInfo from './rulesInfo'
  * @returns {*}
  */
 export default function validateRule(val, type, ruleInfo) {
-  console.log('验证中。。。。');
-  console.log(val);
-  console.log(type);
   let info = {};
   //if ruleInfo exists, use it directly, otherwise, you need to get the ruleInfo value (search form rules-info).
   if (ruleInfo) {
@@ -34,7 +31,6 @@ export default function validateRule(val, type, ruleInfo) {
     }
   }
   const REG = info.ruleReg;//reg rule
-  console.log(REG);
   if (!REG) return true;//如果验证内容规则不存在，则直接抛出验证正确（跳过验证）
   const warmPrompt = info.warmPrompt;//warm prompt message
 
