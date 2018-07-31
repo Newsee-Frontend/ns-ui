@@ -32,14 +32,17 @@
                       layout="slot,sizes, prev, pager, next, jumper"
                       :pageSizes="[10, 20, 50, 100]"
 
+                      :gridCheck="gridCheck"
+
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
                       @selection-change="selectionChange">
       </bussiness-grid>
     </div>
     <div slot="footer">
-      <el-button type="primary" size="small">提交</el-button>
-      <el-button size="small" @click="cancel">返回</el-button>
+      <el-button type="primary" size="small" @click="gridSubmit">提交</el-button>
+      <el-button type="danger" size="small" @click="reValidate">去除验证状态</el-button>
+      <el-button size="small" @click="gridCancel">返回</el-button>
     </div>
   </el-dialog>
 </template>
@@ -78,6 +81,7 @@
           organizationId: "",
           totalType: 1
         },//搜索条件
+        gridCheck: {state: '', list: []},//grid check data for form in grid cell
       }
     },
     computed: {
@@ -138,7 +142,6 @@
         console.log(scope);
         console.log(item);
       },
-
       /**
        * selection change （表数据 checkbox 选择的时候）
        * @param selection
@@ -147,12 +150,41 @@
         console.log('grid-selection-change - 表数据 checkbox 选择事件抛出');
         console.log(selection);
       },
+
+      /**
+       * grid submit
+       */
+      gridSubmit() {
+        this.grid.validate(this.gridCheck).then(
+          () => {
+            console.log('表格验证成功');
+          }
+        ).catch(
+          () => {
+            console.log('表格验证失败');
+          }
+        );
+      },
+      /**
+       * reValidate
+       */
+      reValidate() {
+        this.grid.reValidate(this.gridCheck).then(
+          () => {
+            console.log('表格去除验证错误提示成功');
+          }
+        ).catch(
+          () => {
+            console.log('表格去除验证错误提示失败');
+          }
+        );
+      },
       /**
        * close dialog
        */
-      cancel() {
+      gridCancel() {
         this.visible.visible = false;
-      }
+      },
     }
   }
 </script>
