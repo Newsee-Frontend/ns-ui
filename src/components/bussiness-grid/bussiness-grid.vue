@@ -16,6 +16,8 @@
 
                   :pageSizes="pageSizes" :layout="layout" :pagerCount="pagerCount"
 
+                  :gridCheck="gridCheck"
+
                   @refreshGrid="refreshGrid"
                   @cell-action="cellAction"
                   @grid-ation="gridAtion"
@@ -24,7 +26,6 @@
 
                   @add-row="addRow"
                   @delete-current-row="deleteCurrentRow"
-
     >
     </cx-base-grid>
   </div>
@@ -145,6 +146,9 @@
       layout: {type: String},  //分页器组件组件布局，子组件名用逗号分隔
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
       pagerCount: {type: Number},//页码按钮的数量，当总页数超过该值时会折叠
+
+      //============== 验证 =================
+      gridCheck: {type: Object},//grid check data for form in grid cell
     },
     computed: {},
     created() {
