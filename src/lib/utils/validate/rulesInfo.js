@@ -7,7 +7,7 @@
  */
 /*=====================================================================================================================*/
 import {judgeType, debounce} from '../index';
-import {Message} from 'element-ui';
+// import {Message} from 'element-ui';
 
 export default [
   /*====================== condition detection =======================*/
@@ -244,7 +244,7 @@ let _throwWarmPrompt = (msg, status) => {
     //vailate resault s wrong
     else {
       (debounce(() => {
-        Message({message: msg, type: 'warning', duration: 2 * 1000}); //throw warm prompt message
+        // Message({message: msg, type: 'warning', duration: 2 * 1000}); //throw warm prompt message
       }, 500))();
     }
   }
