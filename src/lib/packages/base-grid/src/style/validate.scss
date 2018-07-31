@@ -1,0 +1,52 @@
+/*
+ * validate error message style for form in grid
+ * created: 2018/7/22.
+ * author: Broccoli spring( 高仓雄 - gcx )
+ * copyright (c) 2018 Broccoli spring( gcx )
+ */
+@import "../../../../assets/css/mixin";
+@import "config";
+
+//检验错误 提示（展示样式修改）
+.el-form-item__error {
+  position: absolute;
+  height: $formErrFs * 2+$adjust;
+  line-height: $formErrFs * 2 - $adjust;
+  font-size: $formErrFs;
+  top: -($formErrFs * 2 - $adjust);
+  left: ($formErrFs * 2 - $adjust) / 2;
+  color: $--color-white;
+  background: $--color-danger;
+  padding-top: $adjust;
+  padding-left: $baseEdge;
+  padding-right: $baseEdge;
+  @include border-radius($adjust/2);
+  @include box-sizing;
+  z-index: 998;
+  &:before {
+    content: '';
+    position: absolute;
+    top: $formErrFs * 2 +  $adjust;
+    left: $baseEdge;
+    width: 0;
+    height: 0;
+    border-top: 0.4rem solid $--color-danger;
+    border-left: 0.4rem solid transparent;
+    border-right: 0.4rem solid transparent;
+  }
+}
+
+//transition style for grid form cell error message
+.cx-grid-errorMsg-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.cx-grid-errorMsg-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+
+/* .slide-fade-leave-active for below version 2.1.8 */
+.cx-grid-errorMsg-fade-enter, .cx-grid-errorMsg-fade-leave-to {
+  transform: translateY(10px);
+  opacity: 0;
+}
