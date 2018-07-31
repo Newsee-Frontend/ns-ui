@@ -1,0 +1,35 @@
+/*
+ * config style for grid
+ * created: 2018/7/29.
+ * author: Broccoli spring( 高仓雄 - gcx )
+ * copyright (c) 2018 Broccoli spring( gcx )
+ */
+
+$grid_head_back: #f3f7fe; //表头背景颜色
+$grid_border_color: #ebeef5; //表格边框颜色
+$set-part_color: #f4f8fe; //表头设置按钮图标颜色
+$set-part_color_active: #d6e2ed; //表头设置按钮图标颜色 - active
+
+// ========== 字体大小 ==========
+$addRow-thead_fs: 18px; //新增行列 - 表头 字体
+$addRow-tbody_fs: 18px; //新增行列 - 单元格 字体
+$header-drag_fs: 13px; //下拉菜单条目 - 左侧选择框字体
+$action-summary_fs: 12px; //合计按钮控制下拉菜单字体
+$error-prompt_fs: 32px; //错误模块提示
+
+// ========== 错误提示模块样式 ==========
+$error-prompt_baseWidth: 240px; //错误提示模块 - 基础宽度
+$error-prompt_baseGap: 20px; //错误提示模块 - 基础间隙
+$error-prompt_pCol: #999; //错误提示模块 - 大标题颜色
+$error-prompt_spanCol: #666; //错误提示模块 - 小标题颜色
+
+//====
+$baseEdge: 10px; //base edge
+$adjust: 4px; //base gap to adjust
+$formErrFs: 12px; //font size in error message
+//---------- 主题色系 ----------
+$--color-white: #FFF; //纯白
+$--color-success: #16CA37;
+$--color-warning: #FFAE00;
+$--color-danger: #FF5131;
+$--color-info: #0A7AF8;
