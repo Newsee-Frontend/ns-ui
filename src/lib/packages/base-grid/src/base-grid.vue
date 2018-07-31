@@ -5,11 +5,10 @@
     <template>
       <div class="grid-container" v-if="isRender">
         <!-- el table encapsulation -->
-        <el-table :data="actualGridData.list" style="width: 100%" :border="border" :max-height="sizeInfo.maxHeight"
-                  :height="sizeInfo.maxHeight"
-                  :show-summary="showSummaryFinal" :summary-method="getSummaries" @selection-change="selectionChange"
-                  @sort-change="sortChange">
-
+        <el-table :class="{'top-gap':firstRowHasError.value}" :data="actualGridData.list" :border="border"
+                  :max-height="sizeInfo.maxHeight" :height="sizeInfo.maxHeight"
+                  :show-summary="showSummaryFinal" :summary-method="getSummaries"
+                  @selection-change="selectionChange" @sort-change="sortChange">
           <!-- show index / selection -column -->
           <el-table-column v-if="firstColRender" :type="firstColInfo[headRefer['col-type']]"
                            :label="firstColInfo[headRefer['label']]"
@@ -23,7 +22,7 @@
                            :width="firstColInfo[headRefer['width']]" align="center" :fixed="true"
                            :class-name="'grid-head-'+firstColInfo[headRefer['model-code']]">
             <template slot-scope="scope">
-              <el-radio v-model="radioModel" :label="scope.$index" @change.native="selectionChange(scope.row)">{{null}}</el-radio>
+              <el-radio v-model="radioModel" :label="scope.$index" @change.native="selectionChange(scope.row,scope.$index)">{{null}}</el-radio>
             </template>
           </el-table-column>
           <!-- normal-column -->
@@ -35,8 +34,8 @@
             <!--table cell content-->
             <template slot-scope="scope">
               <!--form components in table-->
-              <slot-scope :scope="scope" :item="item" :checkList="checkList"
-                          :rowIndex="scope.$index" :colIndex="index" :keyRefer="keyRefer"
+              <slot-scope :keyRefer="keyRefer" :scope="scope" :item="item" :gridCheck="gridCheck"
+                          :rowIndex="scope.$index" :colIndex="index" :firstRowHasError="firstRowHasError"
                           @cell-action="cellAction" @set-formCell-check="setFormCellCheck"></slot-scope>
             </template>
           </el-table-column>
@@ -118,7 +117,9 @@
         resizeRate: 50,//表格渲染刷新频率
         storeGridData: null,//存储Grid列表数据
         radioModel: '',//radio model
-        checkList: [],//check list for form in grid cell
+        firstRowHasError: {
+          value: false
+        },//第一行数中 表单 单元格是否存在验证错误的情况
       }
     },
     components: {actionDrop, actionSummary, actionScope, slotScope, actionPanel, errorPrompt},
@@ -202,6 +203,13 @@
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
+      gridCheck: {
+        type: Object, default() {
+          return {
+            state: '', list: []
+          }
+        }
+      },//grid check data for form in grid cell
     },
     computed: {
       //是否处于加载状态中
@@ -251,7 +259,6 @@
         });
         return hasNum && this.errorType === 'noError';
       },
-
       /**
        * 是否显示分页器 （ 根据数据状态判断 ）
        * 1、组件控制开关 - showPanel （false / true)
@@ -360,7 +367,6 @@
       *        则说明后台并没有在表数据 list 数组中插入合计行数据，则前台无法获取合计行数据，放空值即可，无需其他操作。
       * 2、类型值为：sumtotal，则全部合计行数据来源于后台获取表数据 sumtotal 字段，直接获取即可，无需其他操作。
       */
-
       getTotalList() {
         let totalInfo;
         //current page sum
@@ -396,6 +402,17 @@
           arr.push('');
         }
         return arr;
+      },
+    },
+    watch: {
+      gridCheck: {
+        handler(newValue, oldValue) {
+          if (newValue.state === 'empty-check-list') {
+            newValue.list = [];
+            newValue.state = '';
+          }
+        },
+        deep: true
       },
     },
     created() {
@@ -548,11 +565,15 @@
       /**
        * selection change （表数据 checkbox/radio 选择的时候）
        * @param selection
+       * @param index
        */
-      selectionChange(selection) {
+      selectionChange(selection, index) {
+        console.log('表数据 checkbox/radio 选择的时候');
         console.log(selection);
+        console.log(index);
         this.$emit("selection-change", selection);
       },
+
       /**
        * get summaries
        * @param param
@@ -589,6 +610,7 @@
       deleteCurrentRow(index, row) {
         this.$emit("delete-current-row", index, row, this.actualGridData);
       },
+
       /**
        * add row to grid
        */
@@ -601,18 +623,20 @@
        * @param key
        */
       setFormCellCheck(key) {
-        console.log('当前受到验证的表单控件-key：');
-        console.log(key);
-        console.log('当前验证列表：');
-        console.log(this.checkList);
+
+        // console.log('当前受到验证的表单控件-key：');
+        // console.log(key);
+        // console.log('当前验证列表：');
+        // console.log(this.gridCheck);
+
         //empty check list when reset grid
         if (key === 'empty-check-list') {
-          this.checkList = [];
+          this.gridCheck.list = [];
         }
         //other status => submit/change/blur validate
         else {
-          if (!arrContainObj(this.checkList, key)) {
-            this.checkList.push(key);
+          if (!arrContainObj(this.gridCheck.list, key)) {
+            this.gridCheck.list.push(key);
           }
         }
       },
