@@ -20,6 +20,7 @@
                     :showAddRowOperation="showAddRowOperation"
                     :searchConditions="searchConditions" :pageSizes="pageSizes" :layout="layout"
                     :keyRefer="keyRefer" :holderInfo="holderInfo"
+                    :gridCheck="gridCheck"
                     @refreshGrid="refreshGrid"
                     @cell-action="cellAction"
                     @grid-ation="gridAtion"
@@ -31,8 +32,9 @@
       </cx-base-grid>
     </div>
     <div slot="footer">
-      <el-button type="primary" size="small">提交</el-button>
-      <el-button size="small" @click="cancel">返回</el-button>
+      <el-button type="primary" size="small" @click="gridSubmit">提交</el-button>
+      <el-button type="danger" size="small" @click="reValidate">去除验证状态</el-button>
+      <el-button size="small" @click="gridCancel">返回</el-button>
     </div>
   </el-dialog>
 </template>
@@ -89,6 +91,7 @@
         pageSizes: [10, 20, 50, 100],  //每页显示个数选择器的选项设置
         //---- table数据处理部分 ----
         linkCodeConfig: ['houseShortName', 'houseName', 'ownerName', 'lesseeName', 'custorName', 'taskName'],
+        gridCheck: {state: '', list: []},//grid check data for form in grid cell
       }
     },
     computed: {
@@ -280,16 +283,45 @@
        * @param gridData
        */
       addRow(gridData) {
-        console.log(gridData)
-        console.log(emptyRowData)
+        console.log(gridData);
+        console.log(emptyRowData);
         gridData.list.push(emptyRowData);//add
+      },
+
+      /**
+       * grid submit
+       */
+      gridSubmit() {
+        this.grid.validate(this.gridCheck).then(
+          () => {
+            console.log('表格验证成功');
+          }
+        ).catch(
+          () => {
+            console.log('表格验证失败');
+          }
+        );
+      },
+      /**
+       * reValidate
+       */
+      reValidate() {
+        this.grid.reValidate(this.gridCheck).then(
+          () => {
+            console.log('表格去除验证错误提示成功');
+          }
+        ).catch(
+          () => {
+            console.log('表格去除验证错误提示失败');
+          }
+        );
       },
       /**
        * close dialog
        */
-      cancel() {
-        this.$set(this.visible, 'visible', false);
-      }
+      gridCancel() {
+        this.visible.visible = false;
+      },
     }
   }
 </script>
