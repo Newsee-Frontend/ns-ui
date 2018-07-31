@@ -22,6 +22,7 @@
                       :pagerCount="5"
                       layout="slot,total, sizes, prev, pager, next, jumper"
                       :sizeInfo="sizeInfo"
+                      :gridCheck="gridCheck"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
                       @selection-change="selectionChange"
@@ -31,8 +32,9 @@
       </bussiness-grid>
     </div>
     <div slot="footer">
-      <el-button type="primary" size="small">提交</el-button>
-      <el-button size="small" @click="cancel">返回</el-button>
+      <el-button type="primary" size="small" @click="gridSubmit">提交</el-button>
+      <el-button type="danger" size="small" @click="reValidate">去除验证状态</el-button>
+      <el-button size="small" @click="gridCancel">返回</el-button>
     </div>
   </el-dialog>
 </template>
@@ -75,6 +77,7 @@
         sizeInfo: {
           maxHeight: 300
         },
+        gridCheck: {state: '', list: []},//grid check data for form in grid cell
       }
     },
     computed: {
@@ -171,14 +174,40 @@
       addRow(gridData) {
         gridData.list.push(emptyRowData);//add
       },
-
-
+      /**
+       * grid submit
+       */
+      gridSubmit() {
+        this.grid.validate(this.gridCheck).then(
+          () => {
+            console.log('表格验证成功');
+          }
+        ).catch(
+          () => {
+            console.log('表格验证失败');
+          }
+        );
+      },
+      /**
+       * reValidate
+       */
+      reValidate() {
+        this.grid.reValidate(this.gridCheck).then(
+          () => {
+            console.log('表格去除验证错误提示成功');
+          }
+        ).catch(
+          () => {
+            console.log('表格去除验证错误提示失败');
+          }
+        );
+      },
       /**
        * close dialog
        */
-      cancel() {
+      gridCancel() {
         this.visible.visible = false;
-      }
+      },
     }
   }
 </script>
