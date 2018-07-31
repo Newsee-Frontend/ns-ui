@@ -45,7 +45,8 @@ export default [
       "min": 0,
       "placeHolder": '请选择性别',
       "require": true,
-      "validateRule": null
+      "validateRule": null,
+      "errorMsg": '请选择性别',
     },
   },
   {
@@ -66,7 +67,8 @@ export default [
       "min": 0,
       "placeHolder": null,
       "require": true,
-      "validateRule": null
+      "validateRule": null,
+      "errorMsg": '请选择成立日期',
     },
   },
   {
@@ -87,7 +89,8 @@ export default [
       "min": 0,
       "placeHolder": '请选择收费客户（多选）',
       "require": true,
-      "validateRule": null
+      "validateRule": null,
+      "errorMsg": '请选择',
     },
   },
   {
@@ -117,6 +120,7 @@ export default [
     "resourcecolumnWidth": "100",//列的宽度
     "resourcecolumnOrder": "9",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": null
   },
   {
     "resourcecolumnName": "税率%",//label
@@ -157,7 +161,8 @@ export default [
       "min": 0,
       "placeHolder": null,
       "require": true,
-      "validateRule": null
+      "validateRule": null,
+      "errorMsg": '请选择收费客户',
     },
   },
   {
@@ -178,7 +183,8 @@ export default [
       "min": null,
       "placeHolder": null,
       "require": true,
-      "validateRule": null
+      "validateRule": null,
+      "errorMsg": '请选择是否锁定',
     },
   },
   {
@@ -239,7 +245,8 @@ export default [
       "min": 0,
       "placeHolder": '请输入手机号码',
       "require": true,
-      "validateRule": 'mobile'
+      "validateRule": 'mobile',
+      "errorMsg": '请正确输入手机号码',
     },
   },
   {
@@ -260,7 +267,8 @@ export default [
       "min": 0,
       "placeHolder": '请输入邮箱号',
       "require": true,
-      "validateRule": 'email'
+      "validateRule": 'email',
+      "errorMsg": '请正确输入邮箱号',
     },
   },
   {
@@ -281,7 +289,7 @@ export default [
       "min": 0,
       "placeHolder": '请输入备注',
       "require": true,
-      "validateRule": 'numEn'
+      "validateRule": ''
     },
   },
 ];
