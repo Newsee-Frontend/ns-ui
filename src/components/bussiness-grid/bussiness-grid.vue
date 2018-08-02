@@ -17,6 +17,7 @@
                   :pageSizes="pageSizes" :layout="layout" :pagerCount="pagerCount"
 
                   :gridCheck="gridCheck"
+                  :topGapForErrMsg="topGapForErrMsg"
 
                   @refreshGrid="refreshGrid"
                   @cell-action="cellAction"
@@ -149,6 +150,7 @@
 
       //============== 验证 =================
       gridCheck: {type: Object},//grid check data for form in grid cell
+      topGapForErrMsg: {type: Number},//表格第一行顶部留白间距（为验证错误信息腾出空间)
     },
     computed: {},
     created() {
