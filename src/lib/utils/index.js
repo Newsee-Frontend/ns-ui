@@ -197,8 +197,6 @@ export function removeClass(elements, cName) {
  * @returns {number}
  */
 export function countRange(holderInfo) {
-  console.log('holderInfoholderInfoholderInfo');
-  console.log(holderInfo);
   const fatherID = holderInfo.fatherID;//father element className
   const childIDList = holderInfo.childIDList;//children elements className list
 
@@ -255,8 +253,6 @@ export function countRange(holderInfo) {
     const fbs = _getStyle(faNode, 'boxSizing');//get style of box-sizing
     let faNodeH = 0;//init height
 
-    console.log('border-box 类型');
-    console.log(fbs);
     //father element height
     if (fbs === 'content-box') {
       faNodeH = faNode.offsetHeight;
@@ -268,7 +264,6 @@ export function countRange(holderInfo) {
       console.log(_getInHeight(faNode, ['paddingTop', 'paddingBottom']))
     }
     console.log('容器父级高度：');
-    console.log(faNode);
     console.log(faNodeH);
     /*===========================================================================*/
 
@@ -287,8 +282,6 @@ export function countRange(holderInfo) {
         const nodeH = node.offsetHeight; //child element height
         realH = nodeH + _getInHeight(node, ['marginTop', 'marginBottom']);//add margin height
       }
-      console.log('realH realH');
-      console.log(realH);
       childTotalH = childTotalH + realH;
     });
     return faNodeH - childTotalH;
