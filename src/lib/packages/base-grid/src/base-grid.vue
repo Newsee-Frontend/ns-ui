@@ -1,6 +1,6 @@
 <!--base grid component-->
 <template>
-  <div class="cx-grid" :id="gridID" v-loading="!isLoading" element-loading-text="拼命加载中">
+  <div class="cx-grid" ref="gridID" :id="gridID" v-loading="!isLoading" element-loading-text="拼命加载中">
     <!--grid container-->
     <template>
       <div class="grid-container" v-if="isRender">
@@ -34,8 +34,10 @@
             <!--table cell content-->
             <template slot-scope="scope">
               <!--form components in table-->
-              <slot-scope :keyRefer="keyRefer" :scope="scope" :item="item" :gridCheck="gridCheck"
-                          :rowIndex="scope.$index" :colIndex="index" :firstRowHasError="firstRowHasError"
+              <slot-scope :gridID="gridID" :keyRefer="keyRefer" :scope="scope" :item="item"
+                          :rowIndex="scope.$index" :colIndex="index"
+                          :firstRowHasError="firstRowHasError" :gridCheck="gridCheck" :topGapForErrMsg="topGapForErrMsg"
+                          :wrapperHeight="parseInt(sizeInfo.maxHeight) - 40*2 -3"
                           @cell-action="cellAction" @set-formCell-check="setFormCellCheck"></slot-scope>
             </template>
           </el-table-column>
@@ -203,6 +205,7 @@
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
+
       gridCheck: {
         type: Object, default() {
           return {
@@ -210,6 +213,7 @@
           }
         }
       },//grid check data for form in grid cell
+      topGapForErrMsg: {type: Number, default: 20},//表格第一行顶部留白间距（为验证错误信息腾出空间)
     },
     computed: {
       //是否处于加载状态中
@@ -421,6 +425,7 @@
     },
     mounted() {
       this.initMounted();//初始化挂载
+
     },
     updated() {
       //when component updated，calculating the height of the table ，then run and render gird.
