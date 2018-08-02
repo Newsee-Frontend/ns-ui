@@ -197,10 +197,8 @@ export const starsBuild = function (node) {
 
 starsBuild.prototype.go = function (node) {
   // this.canvas = document.getElementById("canvas");
-
   this.canvas = getSvgNode(node);
 
-  console.log(this.canvas);
   this.canvas.width = window.innerWidth;
   this.canvas.height = o.offsetHeight;
   this.$ = this.canvas.getContext("2d");
