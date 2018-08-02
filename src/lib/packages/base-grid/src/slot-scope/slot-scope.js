@@ -15,6 +15,7 @@ export default {
     };
   },
   props: {
+    gridID: {type: String},//表格ID值
     scope: {
       type: Object, default() {
         return {
@@ -28,6 +29,8 @@ export default {
     colIndex: {type: Number},//列索引
     firstRowHasError: {type: Object},//第一行数中 表单 单元格是否存在验证错误的情况
     keyRefer: {type: Object},//key refer for grid
+    wrapperHeight: {type: Number},
+    topGapForErrMsg: {type: Number},//表格第一行顶部留白间距（为验证错误信息腾出空间)
   },
   computed: {
     //key refer for grid head
@@ -199,9 +202,10 @@ export default {
   },
 
   updated: function () {
-    console.log('updated 更新完成状态===============》');
     //判断 表格第一行数中 表单 单元格是否存在验证错误的情况
     this.judgeFirstRowHasError();
+  },
+  mounted() {
   },
   watch: {},
   methods: {
@@ -293,8 +297,6 @@ export default {
           }
         }
       };
-
-
       // console.log('====== 当前验证开始 ======');
       // console.log('是否必填');
       // console.log(required);
@@ -304,11 +306,10 @@ export default {
       // console.log(value);
       // console.log('内容验证结果 ');
       // console.log(validateRule(value, ruleType));
-      console.log('最终验证结果');
+
       const j = judge();//最终验证结果
-      console.log(judge());
-
-
+      // console.log('最终验证结果');
+      // console.log(judge());
       return !j;
     },
 
@@ -320,29 +321,38 @@ export default {
      */
     judgeFirstRowHasError(j) {
       if (this.rowIndex !== 0) return false;
-      const tr = document.querySelector('.el-table__body tbody tr');
-      const isErr = tr.querySelectorAll('.' + this.errClass);
-      this.firstRowHasError.value = isErr.length > 0;
+      try {
+        const grid = document.getElementById(this.gridID);
+        const wrapper = grid.getElementsByClassName('el-table__body-wrapper')[0];
+        const fixedWrapper = grid.getElementsByClassName('el-table__fixed-body-wrapper');
+        const tr = grid.querySelector('.el-table__body tbody tr');
+        const isErr = tr.querySelectorAll('.' + this.errClass);
+        this.firstRowHasError.value = isErr.length > 0;
 
-      const wrapper = document.getElementsByClassName('el-table__body-wrapper')[0];
-      const h = wrapper.style.height;
-      if (this.firstRowHasError.value) {
-
-        wrapper.style.height = (Number(h) - 20) + 'px';
+        /**
+         * change fixed wrapper height
+         * @param h
+         * @private
+         */
+        let _changeFwrapper = (h) => {
+          for (let Fwrapper of fixedWrapper) {
+            Fwrapper.style.height = h + 'px';
+          }
+        };
+        //如果表格第一行内存在表单单元格且存在错误提示信息的时候，顶部出现留白间距（为验证错误信息腾出空间)
+        if (this.firstRowHasError.value) {
+          const h = this.wrapperHeight - this.topGapForErrMsg;
+          wrapper.style.height = h + 'px';
+          _changeFwrapper(h - 32);
+        }
+        else {
+          wrapper.style.height = this.wrapperHeight + 'px';
+          _changeFwrapper(this.wrapperHeight);
+        }
       }
-      else {
-        wrapper.style.height = (Number(h) + 20) + 'px';
+      catch (e) {
+        return false;
       }
-      console.log('wrapperwrapperwrapperwrapper');
-      console.log(wrapper);
-      console.log(this.firstRowHasError.value);
-      console.log(h);
-      console.log((Number(h) - 20) + 'px');
-      console.log(tr);
-      console.log(isErr);
-      console.log('第一行数中 表单 单元格是否存在验证错误的情况');
-      console.log(this.firstRowHasError.value);
-
     },
 
     /**
