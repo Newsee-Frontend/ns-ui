@@ -9,7 +9,7 @@
       <div v-if="errorType === 'error'">
         <p>服务器出错</p>
         <span>蛋定！伸个懒腰喝杯水，过会再试试吧</span>
-        <el-button type="primary" size="small" @click="this.refreshGrid">刷新试试</el-button>
+        <el-button type="primary" size="small" @click="refreshGrid">刷新试试</el-button>
       </div>
     </div>
   </div>
