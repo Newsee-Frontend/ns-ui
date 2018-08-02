@@ -35,7 +35,7 @@
       //内容部分滚动条设置
       .el-table__body-wrapper {
         @include scrollbarVisible;
-        @include transition(all, 0.8s, linear);
+        @include transition(all, 0.48s, linear);
       }
       //表头样式设置
       th {
@@ -123,7 +123,7 @@
         }
         //link text for table cell
         .grid-cell_link {
-          color: #0a7af8;
+          color: $--color-info;
           cursor: pointer;
         }
         //表头固定操作列
@@ -141,10 +141,10 @@
           .el-dropdown {
             margin: 0;
             span {
-              color: #409eff;
+              color: $el-dropdown_text_color;
               cursor: pointer;
               &:hover {
-                color: #0A7AF8;
+                color: $--color-info;
               }
             }
           }
@@ -171,7 +171,7 @@
 
       .el-table__fixed-body-wrapper {
         background-color: $--color-white;
-        @include transition(all, 0.8s, linear);
+        @include transition(all, 0.48s, linear);
       }
 
       //表格底部固定合计栏
@@ -192,12 +192,10 @@
       //表格顶部留白 => 为验证出错信息流出空间
       &.top-gap {
         .el-table__body-wrapper {
-          @include transition(all, 0.8s, linear);
-          padding-top: 20px;
+          padding-top: $top-gap-for_errMsg;
         }
         .el-table__fixed-body-wrapper {
-          @include transition(all, 0.8s, linear);
-          padding-top: 20px;
+          padding-top: $top-gap-for_errMsg;
         }
       }
     }
@@ -206,9 +204,10 @@
       position: absolute;
       left: 1px;
       bottom: 4px;
-      height: 32px;
-      line-height: 32px;
+      height: $grid-cell-base_height;
+      line-height: $grid-cell-base_height;
       z-index: 999;
+      cursor: pointer;
       span.el-dropdown-selfdefine {
         font-size: $action-summary_fs;
         margin: 0;
@@ -258,7 +257,7 @@
     right: 10px;
     width: 180px;
     max-height: 0;
-    background-color: #fff;
+    background-color: $--color-white;
     border: 1px solid $grid_border_color;
     border-radius: 4px;
     box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
@@ -330,10 +329,10 @@
     display: none;
     padding: 10px 5px;
     z-index: 99;
-    background-color: #f5f7fa;
+    background-color: $panel-page_back_color;
     span.panel-pre_text {
-      height: 32px;
-      line-height: 32px;
+      height: $grid-cell-base_height;
+      line-height: $grid-cell-base_height;
     }
     button.panel-po_btn {
       margin-left: 5px;
