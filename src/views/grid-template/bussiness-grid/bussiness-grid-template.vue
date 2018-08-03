@@ -107,6 +107,7 @@
         this.searchConditions.filterConditions.push(val);
         this.refreshGrid();
       },
+
       click() {
         this.sizeInfo.maxHeight = 350;
         console.log(this.sizeInfo.maxHeight)
@@ -146,7 +147,6 @@
         console.log(scope);
       },
 
-
       /**
        * selection change （表数据 checkbox 选择的时候）
        * @param selection
@@ -167,6 +167,7 @@
         if (list.length < 1) return false;//empty to  break
         list.splice(index, 1);//delete
       },
+
       /**
        * add row to grid
        * @param gridData
@@ -174,6 +175,7 @@
       addRow(gridData) {
         gridData.list.push(emptyRowData);//add
       },
+
       /**
        * grid submit
        */
@@ -188,6 +190,7 @@
           }
         );
       },
+
       /**
        * reValidate
        */
@@ -202,6 +205,7 @@
           }
         );
       },
+
       /**
        * close dialog
        */
