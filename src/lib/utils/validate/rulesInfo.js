@@ -32,8 +32,11 @@ export default [
   //不能为纯数字
   {type: 'notAllNum', complex: false, msg: '不能为纯数字', ruleReg: /^\w*[a-zA-Z]+\w*$/},
 
-  //数字格式
+  //验证为纯数字
   {type: 'num', complex: false, msg: '请输入正确的数字格式', ruleReg: /^[0-9.]+$/},
+
+  //验证数字格式（数字 和 .）
+  {type: 'numDot', complex: false, msg: '请输入正确的数字格式', ruleReg: /^[0-9.]+$/},
 
   /*========================= form validate  =========================*/
 
