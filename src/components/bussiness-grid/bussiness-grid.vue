@@ -47,6 +47,7 @@
         itemOwnerId: '', //ownerId
         itemHouseId: "",
         itemHouseType: "",
+
         viewViserble: {
           houseView: {visible: false},
           customerView: {visible: false},
@@ -342,6 +343,7 @@
       deleteCurrentRow(index, row, gridData) {
         this.$emit("delete-current-row", index, row, gridData);
       },
+
       /**
        * add row to grid
        * @param gridData
@@ -349,8 +351,6 @@
       addRow(gridData) {
         this.$emit("add-row", gridData);
       },
-
-
     }
   }
 </script>
