@@ -141,6 +141,7 @@
       }, //表格显示的数据
       align: {type: String, default: 'left'},//单元格内容位置
       border: {type: Boolean, default: true},//是否有边框
+      resizable: {type: Boolean, default: true}, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
       firstColType: {type: String, default: 'selection'},//第一列固定列类型（非自动表头配置）
       handleColType: {type: String, default: 'handle'},//固定操作列类型（非自动表头配置）
       ationColConfig: {
@@ -185,7 +186,6 @@
       layout: {type: String}, //组件布局，子组件名用逗号分隔
       pagerCount: {type: Number},//页码按钮的数量，当总页数超过该值时会折叠
       pageSizes: {type: Array},  //每页显示个数选择器的选项设置
-      resizable: {type: Boolean, default: true}, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
       sizeInfo: {
         type: Object, default: function () {
           return {
