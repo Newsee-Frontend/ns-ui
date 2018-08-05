@@ -144,7 +144,7 @@ export default {
     const {pageSize} = JSON.parse(config.body);//每页显示条目个数
     const start = (pageNum - 1) * pageSize + 1;//分页条目开始索引
     const end = pageNum * pageSize;//分页条目结束索引
-    return _response('fnsclick', 10, 10, start, end, headList);
+    return _response('fnsclick', 100, 100, start, end, headList);
   },
   fnsclick_tableData: config => {
     console.log('config.body');
@@ -162,7 +162,7 @@ export default {
       return _response(null, 20, 20, start, end, headList);
     }
     else {
-      return _response(null, 10, 10, start, end, headList);
+      return _response(null, 100, 100, start, end, headList);
     }
   },
   grid_noResult: config => {
