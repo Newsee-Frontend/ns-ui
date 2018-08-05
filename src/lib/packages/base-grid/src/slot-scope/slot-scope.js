@@ -11,7 +11,7 @@ export default {
       formCellList: ['link', 'input', 'rate', 'date', 'checkbox', 'radio', 'select', 'select-unit',],
       deleteKey: 'empty-check-list',
       errClass: 'cx-is-error',
-      normalErrMsg: '请正确选择选择/输入',
+      normalErrMsg: '请正确选择/输入',
     };
   },
   props: {
@@ -176,8 +176,13 @@ export default {
      * @returns {string}
      */
     let getErrMsg = () => {
-      const errorMsg = this.formConfig[this.headRefer['errorMsg']];//error message
-      return errorMsg ? errorMsg : this.normalErrMsg;
+      try {
+        const errorMsg = this.formConfig[this.headRefer['errorMsg']];//error message
+        return errorMsg;
+      }
+      catch (e) {
+        return this.normalErrMsg;
+      }
     };
 
     const errSW = this.validateCheck(Param);
