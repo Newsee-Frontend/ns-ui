@@ -10,7 +10,7 @@
 
                   :firstColType="firstColType" :handleColType="handleColType" :ationColConfig="ationColConfig"
                   :showHeadOperation="showHeadOperation" :showAddRowOperation="showAddRowOperation" :showPanel="showPanel"
-                  :align="align" :border="border"
+                  :align="align" :border="border" :resizable="resizable"
 
                   :sumDataSource="sumDataSource" :sumFixedNum="sumFixedNum"
 
@@ -113,7 +113,8 @@
 
       //----- 表格展现形式 -----
       align: {type: String},//内容位置（居中，左、右)
-      border: {type: Boolean},//表格是否有边框
+      border: {type: Boolean, default: true},//表格是否有边框
+      resizable: {type: Boolean, default: true}, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
       firstColType: {type: String},//第一列固定列类型（非自动表头配置）index selection =>没有则为null
       handleColType: {type: String},//固定操作列类型（非自动表头配置） handle =>没有则为null
       ationColConfig: {type: Object},//固定操作列自定义配置
