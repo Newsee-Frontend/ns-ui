@@ -178,7 +178,7 @@ export default {
     let getErrMsg = () => {
       try {
         const errorMsg = this.formConfig[this.headRefer['errorMsg']];//error message
-        return errorMsg;
+        return errorMsg || this.normalErrMsg;
       }
       catch (e) {
         return this.normalErrMsg;
@@ -348,7 +348,7 @@ export default {
         if (this.firstRowHasError.value) {
           const h = this.wrapperHeight - this.topGapForErrMsg;
           wrapper.style.height = h + 'px';
-          _changeFwrapper(h - 32);
+          _changeFwrapper(h - 8);//高度减去下滚动条的高度  or h - 32
         }
         else {
           wrapper.style.height = this.wrapperHeight + 'px';
