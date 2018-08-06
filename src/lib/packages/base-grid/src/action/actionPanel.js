@@ -18,7 +18,7 @@ export default {
       }
     },
     total: {type: Number},//总条目数
-    layout: {type: String, default: "slot, sizes, prev, pager, next, jumper"},//组件布局，子组件名用逗号分隔
+    layout: {type: String, default: "total, sizes, prev, pager, next, jumper"},//组件布局，子组件名用逗号分隔
     pagerCount: {type: Number, default: 7},//页码按钮的数量，当总页数超过该值时会折叠
     //每页显示个数选择器的选项设置
     pageSizes: {
