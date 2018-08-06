@@ -289,7 +289,8 @@ export default [
       "min": 0,
       "placeHolder": '请输入备注',
       "require": true,
-      "validateRule": ''
+      "validateRule": '',
+      "errorMsg": '',
     },
   },
 ];
