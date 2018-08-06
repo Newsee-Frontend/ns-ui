@@ -37,7 +37,7 @@
               <slot-scope :gridID="gridID" :keyRefer="keyRefer" :scope="scope" :item="item"
                           :rowIndex="scope.$index" :colIndex="index"
                           :firstRowHasError="firstRowHasError" :gridCheck="gridCheck" :topGapForErrMsg="topGapForErrMsg"
-                          :wrapperHeight="parseInt(sizeInfo.maxHeight) - 40*2 -3"
+                          :wrapperHeight="wrapperHeight"
                           @cell-action="cellAction" @set-formCell-check="setFormCellCheck"></slot-scope>
             </template>
           </el-table-column>
@@ -407,6 +407,11 @@
         }
         return arr;
       },
+
+      //wrapperHeight
+      wrapperHeight() {
+        return parseInt(this.sizeInfo.maxHeight) - 41 - (this.showSummaryFinal ? 42 : 0);
+      }
     },
     watch: {
       gridCheck: {
