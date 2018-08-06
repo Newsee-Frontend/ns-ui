@@ -191,6 +191,16 @@
 
       //表格顶部留白 => 为验证出错信息流出空间
       &.top-gap {
+        //表格内容第一行增加上边框
+        .el-table__body {
+          tbody {
+            tr.el-table__row:first-child {
+              td {
+                border-top: 1px solid $grid_border_color;
+              }
+            }
+          }
+        }
         .el-table__body-wrapper {
           padding-top: $top-gap-for_errMsg;
         }
