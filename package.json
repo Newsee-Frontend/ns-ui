@@ -10,13 +10,26 @@
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
     "build": "node build/build.js",
-    "clean": "rimraf ./dist/"
+    "clean": "rimraf ./dist/",
+    "analyz": "NODE_ENV=production npm_config_report=true npm run build"
   },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "element",
+    "element-ui",
+    "grid",
+    "cx-grid",
+    "cx-grid.js",
+    "cx",
+    "table",
+    "CX-UI"
+  ],
   "dependencies": {
-    "vue": "^2.5.2",
     "vuedraggable": "^2.14.1"
   },
   "devDependencies": {
+    "vue": "^2.5.2",
     "autoprefixer": "^7.1.2",
     "axios": "^0.18.0",
     "babel-core": "^6.22.1",
