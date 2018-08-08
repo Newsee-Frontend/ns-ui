@@ -26,8 +26,9 @@
             </template>
           </el-table-column>
           <!-- normal-column -->
-          <el-table-column v-if="!item[headRefer['hidden']]" :class-name="'grid-head-'+item[headRefer['model-code']]"
+          <el-table-column v-if="!item[headRefer['hidden']]"
                            v-for="(item,index) in gridHead" :index="index" :key="index"
+                           :class-name="normalColClassName(item)"
                            :min-width="item[headRefer['width']]" :align="align" :label="item[headRefer['label']]"
                            :resizable="resizable" sortable="custom" :show-overflow-tooltip="true"
                            :fixed="errorType === 'noError' && item[headRefer['fixed']]">
@@ -650,6 +651,28 @@
           }
         }
       },
+
+      /**
+       *
+       * @param item
+       * @returns {string}
+       */
+      normalColClassName(item) {
+        const normalCls = 'grid-head-' + item[this.headRefer['model-code']] + ' ';
+        const cellConfig = item[this.headRefer['cell-Config']];
+        try {
+          const require = cellConfig['require'];
+          const validateRule = cellConfig['validateRule'];
+          let rc = '';
+          if (validateRule || require) {
+            rc = 'is-require'
+          }
+          return normalCls + rc;
+        }
+        catch (e) {
+          return normalCls;
+        }
+      }
     }
   }
 </script>
