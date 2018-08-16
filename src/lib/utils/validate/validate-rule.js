@@ -6,24 +6,26 @@
  * copyright (c) 2017 Broccoli spring( gcx )
  */
 import {judgeType} from '../index';
-import rulesInfo from './rulesInfo'
 
 /**
  * validate rule private
+ * @param vm
  * @param val
  * @param type          rule type
  * @param ruleInfo      rule information list
  * @returns {*}
  */
-export default function validateRule(val, type, ruleInfo) {
+export default function validateRule(vm, val, type, ruleInfo) {
   let info = {};
   //if ruleInfo exists, use it directly, otherwise, you need to get the ruleInfo value (search form rules-info).
   if (ruleInfo) {
     info = ruleInfo;
   }
   else {
+    //直接调用该验证方法 validateRule
+    let $gridRule = vm.$grider.validate;
     //search from rules-information list
-    for (let rule of rulesInfo) {
+    for (let rule of $gridRule) {
       if (rule.type === type) {
         info = rule;
         break;
