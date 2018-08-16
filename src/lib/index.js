@@ -21,19 +21,21 @@ const components = [
 ];
 
 const install = function (Vue, opts = {}) {
-  //Former plug-in external param config
+  //grider plug-in external param config
   ConfGrider(Vue, opts);
 
   //init methods and ready handle
-  init(Vue, Vue.former);
+  init(Vue, Vue.grider);
 
   //binding component
   components.map((component, index) => {
-    Vue.component(getStageName(component.name, Vue.former.stageName, Vue.former.stageNamelink, index), component)
+    Vue.component(getStageName(component.name, Vue.grider.stageName, Vue.grider.stageNamelink, index), component)
   });
 
   //register global utility filters.
   Object.keys(filters).forEach(key => {
+    console.log(key);
+    console.log(filters[key]);
     Vue.filter(key, filters[key])
   });
 };
