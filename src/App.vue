@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <!--spot-wave / glittering-stars-->
-    <canvas-back type="stars" :width="innerWidth" :height="innerHeight">
+    <!--spot-wave / glittering-stars / matrix-raindrop-->
+    <canvas-back type="raindrop" :width="innerWidth" :height="innerHeight">
       <grid-template></grid-template>
     </canvas-back>
   </div>
