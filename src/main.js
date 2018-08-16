@@ -19,10 +19,12 @@ Vue.use(mounts);
 Vue.config.productionTip = false;
 Vue.config.debug = true;//开启错误提示
 
-//loading grid component
+// ========= loading grid component ========
+import cellFifter from './components/bussiness-grid/cell-fifter'
+import rulesInfo from './utils/validate/rulesInfo'
 import '../dist/cx-grid.min.css'
 import cxGrid from '../dist/cx-grid.min';//cx grid
-Vue.use(cxGrid, {stageName: 'cx', stageNamelink: '-'});
+Vue.use(cxGrid, {stageName: 'cx', stageNamelink: '-', fifter: cellFifter, validate: rulesInfo});
 
 /* eslint-disable no-new */
 new Vue({
