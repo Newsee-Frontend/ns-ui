@@ -200,7 +200,7 @@
     }
 
     //表格顶部留白 => 为验证出错信息流出空间
-    &.top-gap {
+    .el-table.top-gap {
       //表格内容第一行增加上边框
       .el-table__body {
         tbody {
