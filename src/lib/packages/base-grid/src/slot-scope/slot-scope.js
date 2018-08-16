@@ -163,11 +163,11 @@ export default {
               </el-select>
             );
           default:
-            return (<div>{scope.row[modelCode]}</div>);
+            return (<div>{this.gridCellFifter(scope.row[modelCode], Param.modelCode)}</div>);
         }
       }
       else {
-        return (<div>{scope.row[modelCode]}</div>);
+        return (<div>{this.gridCellFifter(scope.row[modelCode], Param.modelCode)}</div>);
       }
     };
 
@@ -204,8 +204,8 @@ export default {
     )
   },
   created() {
-  },
 
+  },
   updated: function () {
     //判断 表格第一行数中 表单 单元格是否存在验证错误的情况
     this.judgeFirstRowHasError();
@@ -236,6 +236,16 @@ export default {
       }
       return true;
     },
+
+    /**
+     * grid cell fifter function (old value => new value  base on business)
+     * @param val
+     * @param key
+     * @returns {*|void}
+     */
+    gridCellFifter(val, key) {
+      return this.$grider.fifter.cellFifter(val, key)
+    },
     /**
      * 表格单元格点击行为事件
      * @param Param
@@ -243,7 +253,6 @@ export default {
     cellAction(Param) {
       this.$emit("cell-action", Param.scope, Param.item);
     },
-
 
     /**
      * validate check => change class name to change style
@@ -284,7 +293,7 @@ export default {
           // console.log('需要必填 is required ');
           if (value) {
             // console.log('有值！！！！！！！！！！！');
-            return validateRule(value, ruleType);
+            return validateRule(this, value, ruleType);
           }
           else {
             // console.log('没有值！！！！！！！！！！！');
@@ -295,7 +304,7 @@ export default {
           // console.log('无需必填 not required ');
           if (value) {
             // console.log('有值！！！！！！！！！！！');
-            return validateRule(value, ruleType);
+            return validateRule(this, value, ruleType);
           }
           else {
             return true;
@@ -310,14 +319,13 @@ export default {
       // console.log('内容值');
       // console.log(value);
       // console.log('内容验证结果 ');
-      // console.log(validateRule(value, ruleType));
+      // console.log(validateRule(this,value, ruleType));
 
       const j = judge();//最终验证结果
       // console.log('最终验证结果');
       // console.log(judge());
       return !j;
     },
-
 
     /**
      * 判断 表格第一行数中 表单 单元格是否存在验证错误的情况
@@ -371,7 +379,6 @@ export default {
       }
     },
 
-
     /**
      * form change event
      * @param Param
@@ -380,7 +387,6 @@ export default {
     formChange(Param, value) {
       this.setFormCellCheck(Param);//set form-cell check config (check list) in grid
     },
-
 
     /**
      * select unit change
