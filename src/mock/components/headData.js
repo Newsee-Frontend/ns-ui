@@ -8,25 +8,25 @@ export default [
   //   "resourcecolumnOrder": "1",//列的序号
   //   "resourcecolumnHidden": "0", //是否隐藏
   // },
-  // {
-  //   "resourcecolumnName": "项目名称",//label
-  //   "resourcecolumnNameEn": "taskName",//model-key
-  //   "resourcecolumnCode": "taskName",
-  //   "resourcecolumnXtype": "text",//筛选列 类型
-  //   "resourcecolumnWidth": "100",//列的宽度
-  //   "resourcecolumnOrder": "2",//列的序号
-  //   "resourcecolumnHidden": "0", //是否隐藏
-  //   "eidtConfig": null
-  // },
-  // {
-  //   "resourcecolumnName": "使用人",//label
-  //   "resourcecolumnNameEn": "ownerName",//model-key
-  //   "resourcecolumnCode": "ownerName",
-  //   "resourcecolumnXtype": "text",//筛选列 类型
-  //   "resourcecolumnWidth": "100",//列的宽度
-  //   "resourcecolumnOrder": "11",//列的序号
-  //   "resourcecolumnHidden": "0", //是否隐藏
-  // },
+  {
+    "resourcecolumnName": "项目名称",//label
+    "resourcecolumnNameEn": "taskName",//model-key
+    "resourcecolumnCode": "taskName",
+    "resourcecolumnXtype": "text",//筛选列 类型
+    "resourcecolumnWidth": "100",//列的宽度
+    "resourcecolumnOrder": "2",//列的序号
+    "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig": null
+  },
+  {
+    "resourcecolumnName": "使用人",//label
+    "resourcecolumnNameEn": "ownerName",//model-key
+    "resourcecolumnCode": "ownerName",
+    "resourcecolumnXtype": "text",//筛选列 类型
+    "resourcecolumnWidth": "100",//列的宽度
+    "resourcecolumnOrder": "11",//列的序号
+    "resourcecolumnHidden": "0", //是否隐藏
+  },
   {
     "resourcecolumnName": "性别",//label
     "resourcecolumnNameEn": "sex",//model-key
@@ -272,12 +272,22 @@ export default [
     },
   },
   {
+    "resourcecolumnName": "删选转换",//label
+    "resourcecolumnNameEn": "fifter",//model-key
+    "resourcecolumnCode": "fifter",
+    "resourcecolumnXtype": "text",//筛选列 类型
+    "resourcecolumnWidth": "80",//列的宽度
+    "resourcecolumnOrder": "16",//列的序号
+    "resourcecolumnHidden": "0", //是否隐藏
+    "eidtConfig":  null
+  },
+  {
     "resourcecolumnName": "备注",//label
     "resourcecolumnNameEn": "Remark",//model-key
     "resourcecolumnCode": "Remark",
     "resourcecolumnXtype": "text",//筛选列 类型
     "resourcecolumnWidth": "260",//列的宽度
-    "resourcecolumnOrder": "16",//列的序号
+    "resourcecolumnOrder": "17",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
     "eidtConfig": {
       "switchType": true,
