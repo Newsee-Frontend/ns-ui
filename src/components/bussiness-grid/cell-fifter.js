@@ -6,6 +6,7 @@ export default {
    * @returns {*}
    */
   cellFifter: (val, key) => {
+
     if (key === 'fifter') {
       if (val === 0) {
         return '否'
@@ -17,6 +18,7 @@ export default {
         return val;
       }
     }
+
     return val;
   }
 }
