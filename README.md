@@ -104,8 +104,8 @@ This will automatically open http://localhost:8083.
 ```bash
 # build for production environment
 npm run build
-```
-## Packaging bundle-analyzer
+
+# Packaging bundle-analyzer
 npm run analyz
 ```
 
