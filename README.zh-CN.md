@@ -115,7 +115,7 @@ npm run start
 # 构建生成环境
 npm run build
 ```
-# 打包优化容积查看
+## 打包优化容积查看
 npm run analyz
 ```
 
