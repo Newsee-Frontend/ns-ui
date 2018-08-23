@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="320" src="http://otaflb4oo.bkt.clouddn.com/CX-UI-Design/Logo/CX-Grid-logo.png">
+  <img width="480" src="http://otaflb4oo.bkt.clouddn.com/CX-UI-Design/Logo/CX-Grid-logo.png">
 </p>
 
 <p align="center">
