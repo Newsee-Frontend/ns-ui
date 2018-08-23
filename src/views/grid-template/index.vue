@@ -31,26 +31,6 @@
     },
     components: {basicGridTemplate, bussinessGridTemplate, testGridTemplate},
     created() {
-      // const reverse = xs => {
-      //   if (xs.length === 1) return xs;
-      //   const [head, ...tail] = xs;
-      //   return reverse(tail).concat(head);
-      // };
-      // const a = reverse([1, 2, 3, 4, 5]);
-      // console.log(a);
-      // const quickSort = list => {
-      //   if (list.length === 0) return list;
-      //   const [pivot, ...rest] = list;
-      //   const smaller = [];
-      //   const bigger = [];
-      //   rest.forEach(x => (x < pivot ? smaller.push(x) : bigger.push(x)));
-      //
-      //   return [...quickSort(smaller), pivot, ...quickSort(bigger)];
-      // };
-      //
-      // console.log(quickSort([24, 4, 62, 9, 3, 41, 7, 4, 9, 22, 3, 42, 6, 14, 3, 5, 75, 9, 33, 55, 99, 22, 33]));
-      //生成由随机整数组成的数组，数组长度和元素大小可自定义
-
       const genNumArr = (length, limit) =>
         Array.from({length}, _ => Math.floor(Math.random() * limit));
 
