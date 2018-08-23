@@ -12,7 +12,7 @@
           <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
         <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
-        <span @click="click">改变表格高度</span>
+        <!--<span @click="click">改变表格高度</span>-->
       </div>
       <!--grid-->
       <bussiness-grid :gridID="gridID" :gridData="gridData" firstColType="radio" handleColType="handle"
