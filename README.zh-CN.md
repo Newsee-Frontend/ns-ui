@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="320" src="https://wpimg.wallstcn.com/ecc53a42-d79b-42e2-8852-5126b810a4c8.svg">
+  <img width="320" src="http://otaflb4oo.bkt.clouddn.com/CX-UI-Design/Logo/CX-Grid-logo.png">
 </p>
 
 <p align="center">
@@ -39,7 +39,7 @@
  **该项目不支持低版本浏览器(如ie)，有需求请自行添加polyfill [详情](https://github.com/PanJiaChen/vue-element-admin/wiki#babel-polyfill)**
 
  <p align="center">
-  <img width="900" src="http://otaflb4oo.bkt.clouddn.com/CX-UI-Design/CX-Grid/grid-showgrid-back.png-thumb_m2.2_s900.500">
+  <img width="900" src="ttp://otaflb4oo.bkt.clouddn.com/CX-UI-Design/CX-Grid/grid-show.png-thumb_m2.2_s900.500">
 </p>
 
 ## 功能
