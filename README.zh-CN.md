@@ -23,8 +23,8 @@
 简体中文 | [English](./README.md)
 
 ## 简介
-`cx-easy-form` 为 `CX-UI Design` 框架生态中表单部分内容
-`cx-easy-form` 是一个前端form生态组件集成解决方案，它基于 [Vue.js](https://github.com/vuejs/vue) 和 [element](https://github.com/ElemeFE/element)。它使用了最新的前端技术栈，内置了i18国际化解决方案，参数配置，字段配置，用法名自定义等很多功能特性，相信本项目都能帮助到你。
+`cx-grid` 为 `CX-UI Design` 框架生态中表单部分内容
+`cx-grid` 是一个前端form生态组件集成解决方案，它基于 [Vue.js](https://github.com/vuejs/vue) 和 [element](https://github.com/ElemeFE/element)。它使用了最新的前端技术栈，内置了参数配置，字段配置，用法名自定义等很多功能特性，相信本项目都能帮助到你。
 
 - [使用文档详见CX—UI Design](https://github.com/CX-UI-Design/CX-UI-DesignLICENSE)
 
@@ -45,39 +45,42 @@
 ## 功能
 已开发功能
 ```
-- Icon 图标
-- Button 按钮
-- Radio 单选框
-- Checkbox 多选框
-- Select 选择器
-- Cascader 级联选择器
-- Switch 开关
-- Slider 滑块
-- TimePicker 时间选择器
-- DatePicker 日期选择器
-- DateTimePicker 日期时间选择器
-- Upload 上传
-- Transfer 穿梭框
-- Avatar 头像图片
-- Separator 分割操作线
-- base table 基础表单
-- Text 文字标签
-- Role check btn 按钮权限
-- Role manage range 数据权限范围
-- Role employee 员工角色
-- Role group 角色组操作
-- Role authorizer 授权人操作
-- Simple tree 简单树状组件
-- Simple tree select 下拉内置树状组件
-- Area linkage 地域选择
-- Customer info linkage 选人信息联动
-- Customer info single 搜索选人
-- Time interval 时间频率
-- Dialog 对话框
-- Auto form 动态数据表单
-- Local form 静态数据表单
-- Muster item 表单单元体
-- Auto form operation 表单按钮操作模块
+- Local or request head data 支持本地和请求表头数据
+- grid abnormal display 支持三种数据错误状态的异常显示
+- grid key refer 表格关键字段名配置化
+
+- grid free config 支持表格多元化配置
+- init dynamic size 支持动态计算尺寸 （初始化渲染动态）
+- auto resize 支持表格高度是否自适应窗口变化
+- free align 自定义单元格内容位置
+- border 自定义边框
+- col resizable  支持拖动改变列宽
+- checkbox-col type  支持多选固定列
+
+- radio-col type  支持单选固定列
+- index-col type  支持索引固定列
+- handle-col type 固定操作列类型拓展
+- ation-col config  支持固定操作列自定义配置
+
+- head operation show 支持表头模块显示
+- head operation sort 支持表头排序
+
+- add row operation 支持新增行操作
+- delete row operation 支持删除行操作
+
+- sum row 支持合计行显示
+- sum data source 支持合计行数据来源配置
+- sum fixed num 支持合计行 数字小数位配置
+
+- panel 分页器显示
+- panel layout 支持分页器组件组件布局配置
+- page sizes 支持每页显示个数选择器的选项配置
+- pager count 支持页码按钮的数量配置
+
+- grid form cell 支持表格单元格表单配置
+- grid check 支持表格单元格表单验证
+- grid check custom 支持表格单元格表单自定义配置
+- grid cell filter 支持表格单元格内容删选器转换
 ```
 即将开功能
 ```
@@ -92,7 +95,7 @@
 ## 开发
 ```bash
 # 克隆项目
-git clone https://github.com/CX-UI-Design/cx-easy-form.git
+git clone https://github.com/CX-UI-Design/cx-grid.git
 
 # 安装依赖
 npm install
@@ -102,6 +105,8 @@ npm install --registry=https://registry.npm.taobao.org
 
 # 启动服务
 npm run dev
+or
+npm run start
 ```
 浏览器访问 http://localhost:8083
 
@@ -110,11 +115,14 @@ npm run dev
 # 构建生成环境
 npm run build
 ```
+# 打包优化容积查看
+npm run analyz
+```
 
 更多信息请参考 [使用文档项目 CX-UI Design](https://github.com/CX-UI-Design/CX-UI-Design)
 
 ## Online Demo
-[Demo 示例](https://github.com/CX-UI-Design/cx-easy-form)
+[Demo 示例](https://github.com/CX-UI-Design/cx-grid)
 
 ## Donate
 如果你觉得这个项目帮助到了你，你可以帮作者买一杯咖啡表示鼓励 :tropical_drink:
@@ -123,6 +131,6 @@ npm run build
 
 ## License
 
-[MIT](https://github.com/CX-UI-Design/cx-easy-form/blob/master/LICENSE)
+[MIT](https://github.com/CX-UI-Design/cx-grid/blob/master/LICENSE)
 
 Copyright (c) 2018-present BroccoliSpring <Lensgcx@163.com>
