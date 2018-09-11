@@ -244,7 +244,17 @@ export default {
      * @returns {*|void}
      */
     gridCellFifter(val, key) {
-      return this.$grider.fifter.cellFifter(val, key)
+      try {
+        const filterMap = this.item[this.headRefer['cellFilterList']];
+        for (let filter of filterMap) {
+          if (filter.value === val) {
+            return filter.label;
+          }
+        }
+      }
+      catch (e) {
+        return this.$grider.fifter.cellFifter(val, key)
+      }
     },
     /**
      * 表格单元格点击行为事件
