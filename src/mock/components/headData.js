@@ -279,7 +279,8 @@ export default [
     "resourcecolumnWidth": "80",//列的宽度
     "resourcecolumnOrder": "16",//列的序号
     "resourcecolumnHidden": "0", //是否隐藏
-    "eidtConfig":  null
+    "selectList": [{label: '否', value: 0}, {label: '是', value: 1}],
+    "eidtConfig": null
   },
   {
     "resourcecolumnName": "备注",//label
