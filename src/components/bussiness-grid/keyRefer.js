@@ -7,10 +7,12 @@ const keyRefer = {
     "xtype": "resourcecolumnXtype",//筛选列 类型
     "col-type": "col-type",//列的类型
     "hidden": "resourcecolumnHidden",//是否显示
+    "cellFilterList": "selectList",//单元格内容删选转换
 
     "cell-Config": "eidtConfig",//特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
     "fixed": "fixed",//锁定
     "errorMsg": "errorMsg",//验证错误信息
+
   },
   scope: {
     'actionBtnList': 'fnsclick',//操作列操作按钮列表
