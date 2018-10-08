@@ -1,5 +1,5 @@
 /*
-* Created by Broccoli spring( gcx ) on 2017/11/17.
+* Created by Broccoli spring( gcx ) on 2018/06/01.
 * local-debu switch for Vue.
 */
 const sw = {
