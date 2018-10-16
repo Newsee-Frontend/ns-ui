@@ -31,11 +31,7 @@
     },
     components: {basicGridTemplate, bussinessGridTemplate, testGridTemplate},
     created() {
-      const genNumArr = (length, limit) =>
-        Array.from({length}, _ => Math.floor(Math.random() * limit));
 
-      genNumArr(10, 100);
-      console.log(genNumArr(10, 100))
     },
     methods: {
       shower(sw) {
