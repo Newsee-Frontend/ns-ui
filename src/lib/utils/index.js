@@ -260,11 +260,11 @@ export function countRange(holderInfo) {
     if (fbs === 'border-box') {
       faNodeH = faNode.offsetHeight - _getInHeight(faNode, ['paddingTop', 'paddingBottom']);
 
-      console.log(faNode.offsetHeight);
-      console.log(_getInHeight(faNode, ['paddingTop', 'paddingBottom']))
+      // console.log(faNode.offsetHeight);
+      // console.log(_getInHeight(faNode, ['paddingTop', 'paddingBottom']))
     }
-    console.log('容器父级高度：');
-    console.log(faNodeH);
+    // console.log('容器父级高度：');
+    // console.log(faNodeH);
     /*===========================================================================*/
 
     /*
@@ -288,8 +288,8 @@ export function countRange(holderInfo) {
   }
 
   const hh = _realTotalHeight(fatherID, childIDList);
-  console.log('计算出的高度');
-  console.log(hh);
+  // console.log('计算出的高度');
+  // console.log(hh);
   return hh;
 }
 
@@ -319,8 +319,8 @@ export function getTotalList(keyRefer, tableList, headList, sumFixedNum) {
       attrList.push(item[keyRefer['model-code']]);
     }
   });
-  console.log('需要合计的字段值 （表头类型为number）的计算队列');
-  console.log(attrList);
+  // console.log('需要合计的字段值 （表头类型为number）的计算队列');
+  // console.log(attrList);
   const len = tableList.length;
   //get Total list
   tableList.forEach((item, index) => {
@@ -343,8 +343,8 @@ export function getTotalList(keyRefer, tableList, headList, sumFixedNum) {
       // console.log(sumObj[key]);
     }
   });
-  console.log('输出结果当前页 合计结果');
-  console.log(sumObj);
+  // console.log('输出结果当前页 合计结果');
+  // console.log(sumObj);
   return sumObj;
 }
 
