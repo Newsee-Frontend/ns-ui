@@ -78,7 +78,7 @@ let mockTableFn_normal = (min, max, type) => {
         return task + "的项目";
       },//项目名称
       ownerName: '@cname',//使用人
-      //性别
+      //性别form-cell
       sex: {
         "picked": {"value": ""},
         "options": [{"label": "男", "value": 1}, {"label": "女", "value": 2}, {"label": "保密", "value": 3}]
