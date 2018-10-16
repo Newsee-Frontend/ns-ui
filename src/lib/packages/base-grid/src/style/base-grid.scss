@@ -165,6 +165,7 @@
         &.form-cell {
           position: relative;
           z-index: 998;
+          overflow: hidden;
           @import "validate";
         }
         //单元格内容部分-普通元素
