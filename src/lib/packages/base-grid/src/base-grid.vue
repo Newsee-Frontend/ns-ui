@@ -384,8 +384,8 @@
           //judge sumtotal data is exists，if it exists, use it, or use {}
           totalInfo = this.sumtotalData ? this.sumtotalData : this.gridData.sumtotal;
         }
-        console.log('计算的合计行类型为：' + this.command.order);
-        console.log(totalInfo);
+        // console.log('计算的合计行类型为：' + this.command.order);
+        // console.log(totalInfo);
 
         let arr = [];
         const hidden = this.headRefer['hidden'];//key - hidden
