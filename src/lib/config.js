@@ -61,11 +61,8 @@ export const ConfGrider = function (Vue, opts) {
       }
     }
   }
-  console.log('插件设置后参数：');
-  console.log(grider);
+  // console.log('插件设置后参数：');
+  // console.log(grider);
   Vue.prototype.$grider = grider;
   Vue.grider = grider
 };
-
-
-
