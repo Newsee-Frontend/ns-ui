@@ -34,8 +34,6 @@ const install = function (Vue, opts = {}) {
 
   //register global utility filters.
   Object.keys(filters).forEach(key => {
-    console.log(key);
-    console.log(filters[key]);
     Vue.filter(key, filters[key])
   });
 };
