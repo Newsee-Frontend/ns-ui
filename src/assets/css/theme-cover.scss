@@ -103,6 +103,9 @@
   .el-pager li {
     border-radius: 2px;
     margin-left: 6px;
+    &:last-child {
+      margin-right: 6px;
+    }
     &.active {
       background-color: $--color-primary;
       color: #FFFFFF;
@@ -161,7 +164,6 @@
   //border-right: 0px;
 }
 
-
 //==========================form================================
 /*radio*/
 .el-radio__input.is-checked .el-radio__inner::after {
@@ -200,9 +202,10 @@
 //.el-radio__input.is-disabled.is-checked .el-radio__inner::after {
 //  background-color: $--color-white;
 //}
-.el-radio__input.is-checked .el-radio__inner{
+.el-radio__input.is-checked .el-radio__inner {
   background-color: $--color-white;
 }
+
 /*checkbox*/
 .el-checkbox__inner {
   width: 14px;
@@ -390,6 +393,7 @@
     padding: 22px 42px;
   }
 }
+
 //dialog
 .ns-dialog {
   &.ns-dialog-col1 {
