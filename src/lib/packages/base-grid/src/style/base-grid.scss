@@ -30,8 +30,7 @@
     //表格主体部分
     .el-table {
       width: 100%;
-      border-right: 1px solid $grid_border_color;
-      border-top: 1px solid $grid_border_color;
+      border: 1px solid $grid_border_color;
       //内容部分滚动条设置
       .el-table__body-wrapper {
         @include scrollbarVisible;
@@ -41,7 +40,10 @@
       th {
         border-bottom: 1px solid $grid_border_color;
         background-color: $grid_head_back;
-        color: $grid_head_color;
+        color: $grid-head-text_color;
+        .cell i {
+          color: $grid-head-icon_color;
+        }
         //1、表头操作设置 列
         &.grid-head-headOperation {
           padding: 0;
@@ -165,8 +167,10 @@
         &.form-cell {
           position: relative;
           z-index: 998;
-          overflow: hidden;
           @import "validate";
+          .grid-cell.grid-cell_link{
+            overflow: hidden;
+          }
         }
         //单元格内容部分-普通元素
         &.norm-cell {
