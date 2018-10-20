@@ -129,11 +129,22 @@
 .el-table {
   @include box-sizing;
   font-size: 13px;
+  &.el-table--border, &.el-table--group {
+    border: 1px solid #c6c6c6 !important;
+  }
 
   th, td {
     height: 32px;
     max-height: 32px;
     padding: 4px 0;
+    border-color: #c6c6c6 !important;
+  }
+  tbody {
+    tr.el-table__row:first-child {
+      td {
+        border-top: 1px solid #ebeef5 !important;
+      }
+    }
   }
 
   .cell, .el-table__row .cell .td-txt {
