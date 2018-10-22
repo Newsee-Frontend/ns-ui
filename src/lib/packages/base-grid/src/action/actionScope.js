@@ -52,7 +52,7 @@ export default {
             </el-dropdown> :
             // 普通按钮
             list.length === 2 ?
-              <el-button type="text" on-click={this.gridAtion.bind(this, list[1], scope)}>
+              <el-button class="fl" type="text" on-click={this.gridAtion.bind(this, list[1], scope)}>
                 {list[1].label}
               </el-button> :
               null
