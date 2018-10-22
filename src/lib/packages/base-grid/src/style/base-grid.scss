@@ -155,6 +155,8 @@
           span {
             color: $el-dropdown_text_color;
             cursor: pointer;
+            margin: 0;
+            padding: 0 10px;
             &:hover {
               color: $--color-info;
             }
@@ -168,7 +170,7 @@
           position: relative;
           z-index: 998;
           @import "validate";
-          .grid-cell.grid-cell_link{
+          .grid-cell.grid-cell_link {
             overflow: hidden;
           }
         }
