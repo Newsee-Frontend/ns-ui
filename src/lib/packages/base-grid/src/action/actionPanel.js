@@ -1,9 +1,21 @@
-//pagination modules
+/*
+ * pagination modules
+ * created: 2018/6/30.
+ * author: Broccoli spring( 高仓雄 - gcx )
+ * copyright (c) 2018 Broccoli spring( gcx )
+ */
 export default {
   name: 'action-panel',
   data() {
     return {
-      totalKey: 'total'
+      totalKey: 'total',
+      /**
+       *
+       *  TEMPLATE MAP
+       * 'cp/ap-as':  第**页/**页 共**条
+       * 'as/ap':     共**条/**页(共)
+       */
+      TEMPLATE_MAP: 'cp/ap-as',
     }
   },
   props: {
@@ -32,19 +44,28 @@ export default {
     //pagination total information
     panelDescribe() {
       const page = Math.ceil(this.total / this.searchConditions.pageSize);
-      return "共" + this.total + "条" + "/" + page + "页";
+      const text_c_page = `第${this.searchConditions.pageNum}页`;
+      const text_pageNum = `${page}页`;
+      const text_all_total = ` 共${this.total}条`;
+      const slash = "/";
+      if (this.layout.indexOf(this.totalKey) !== -1) {
+        switch (this.TEMPLATE_MAP) {
+          case 'as/ap':
+            return text_all_total + slash + text_pageNum;//共**条/**页(共)
+          case 'cp/ap-as':
+            return text_c_page + slash + text_pageNum + text_all_total;//：第**页/**页 共**条
+          default:
+            return null;
+        }
+      }
+      return null;
     },
-    //judge total modules in panel is show or not
-    showTotal() {
-      return this.layout.indexOf(this.totalKey) !== -1;
-    },
-
   },
   render(h) {
     return (
       <div class={"panel-page clear"} id={this.gridID + '-panel'}>
         {
-          this.showTotal ? <span class="panel-pre_text fl">{this.panelDescribe}</span> : null
+          this.panelDescribe ? <span class="panel-pre_text fl">{this.panelDescribe}</span> : null
         }
         {
           <el-pagination class="fl" current-page={this.searchConditions.pageNum} page-sizes={this.pageSizes} page-size={this.searchConditions.pageSize}
@@ -59,8 +80,6 @@ export default {
     )
   },
   created() {
-  },
-  mounted() {
 
   },
   methods: {
