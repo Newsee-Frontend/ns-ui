@@ -87,7 +87,7 @@
           totalType: 1
         },//搜索条件
         mockQuery: {page: 'normal', type: 'normal'},//固定操作列类型（非自动表头配置）
-        layout: "slot,sizes, prev, pager, next, jumper", //分页器组件组件布局，子组件名用逗号分隔
+        layout: "sizes, prev, pager, next, jumper", //分页器组件组件布局，子组件名用逗号分隔
         pageSizes: [10, 20, 50, 100],  //每页显示个数选择器的选项设置
         //---- table数据处理部分 ----
         linkCodeConfig: ['houseShortName', 'houseName', 'ownerName', 'lesseeName', 'custorName', 'taskName'],
