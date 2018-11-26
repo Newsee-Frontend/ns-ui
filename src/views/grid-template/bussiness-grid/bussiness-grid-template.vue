@@ -20,7 +20,7 @@
                       :showAddRowOperation="true"
                       :holderInfo="holderInfo"
                       :pagerCount="5"
-                      layout="slot,total, sizes, prev, pager, next, jumper"
+                      layout="total, sizes, prev, pager, next, jumper"
                       :sizeInfo="sizeInfo"
                       :gridCheck="gridCheck"
                       @refreshGrid="refreshGrid"
