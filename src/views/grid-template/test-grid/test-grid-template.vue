@@ -29,7 +29,7 @@
                       align="left"
                       :border="true"
 
-                      layout="slot,sizes, prev, pager, next, jumper"
+                      layout="sizes, prev, pager, next, jumper"
                       :pageSizes="[10, 20, 50, 100]"
 
                       :gridCheck="gridCheck"
