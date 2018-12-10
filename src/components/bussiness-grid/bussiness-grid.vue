@@ -12,7 +12,7 @@
                   :showHeadOperation="showHeadOperation" :showAddRowOperation="showAddRowOperation" :showPanel="showPanel"
                   :align="align" :border="border" :resizable="resizable"
 
-                  :sumDataSource="sumDataSource" :sumFixedNum="sumFixedNum"
+                  :hideSummaryForced="hideSummaryForced" :sumDataCustom="sumDataCustom" :sumDataSource="sumDataSource" :sumFixedNum="sumFixedNum"
 
                   :pageSizes="pageSizes" :layout="layout" :pagerCount="pagerCount"
 
@@ -142,6 +142,8 @@
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
 
       //----- 合计行 -----
+      hideSummaryForced: {type: Boolean, default: false},//是否强制隐藏合计行模块，默认为不隐藏
+      sumDataCustom: {type: Object, default: null},//全部数据合计行数据自定义（外部传入）
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
 
