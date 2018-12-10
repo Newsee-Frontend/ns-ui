@@ -263,8 +263,8 @@ export function countRange(holderInfo) {
       // console.log(faNode.offsetHeight);
       // console.log(_getInHeight(faNode, ['paddingTop', 'paddingBottom']))
     }
-    // console.log('容器父级高度：');
-    // console.log(faNodeH);
+    console.log('表格组件 - 容器父级高度：');
+    console.log(faNodeH);
     /*===========================================================================*/
 
     /*
@@ -288,8 +288,8 @@ export function countRange(holderInfo) {
   }
 
   const hh = _realTotalHeight(fatherID, childIDList);
-  // console.log('计算出的高度');
-  // console.log(hh);
+  console.log('表格组件 - 最终计算出的高度');
+  console.log(hh);
   return hh;
 }
 
