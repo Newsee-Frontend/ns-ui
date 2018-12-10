@@ -75,8 +75,10 @@ export default {
         let type = this.formConfig.type;
         switch (type) {
           case 'link':
+
             return (
-              <div class="grid-cell grid-cell_link" title={scope.row[modelCode]}
+              //title={scope.row[modelCode]}
+              <div class="grid-cell grid-cell_link"
                    on-click={this.cellAction.bind(this, Param)}
               >
                 {scope.row[modelCode]}
