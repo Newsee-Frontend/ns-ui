@@ -5,7 +5,7 @@ export const getStageName = function (name, prefix, link, index) {
   if (typeof prefix !== "string" || !prefix) return name;//prefix name
   if (typeof link !== "string") return name;//connector
   const default_name = "default-";
-  if (name.includes(default_name, 0)) {
+  if (name.indexOf(default_name) === 0) {
     const reg = new RegExp(default_name, "g"); //'default-' => prefix name + connector
     return name.replace(reg, prefix + link);
   }
