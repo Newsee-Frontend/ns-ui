@@ -11,7 +11,7 @@
         <el-select v-model="selectModel" placeholder="请选择" size="small" @change="selectChange">
           <el-option v-for="item in options2" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
-        <el-button type="primary" icon="el-icon-search" size="small">搜索</el-button>
+        <el-button type="primary" icon="el-icon-search" size="small" @click="search()">搜索</el-button>
         <!--<span @click="click">改变表格高度</span>-->
       </div>
       <!--grid-->
@@ -23,6 +23,8 @@
                       layout="total, sizes, prev, pager, next, jumper"
                       :sizeInfo="sizeInfo"
                       :gridCheck="gridCheck"
+                      :sumDataCustom="sumDataCustom"
+                      :hideSummaryForced="true"
                       @refreshGrid="refreshGrid"
                       @grid-ation="gridAtion"
                       @selection-change="selectionChange"
@@ -47,6 +49,7 @@
     data() {
       return {
         height: '70px',
+
         //============= basic data =============
         funcId: '',
         emptyRowData: emptyRowData,
@@ -78,6 +81,7 @@
           maxHeight: 300
         },
         gridCheck: {state: '', list: []},//grid check data for form in grid cell
+        sumDataCustom: {},//全部数据合计行数据自定义（外部传入）
       }
     },
     computed: {
@@ -102,6 +106,32 @@
       this.refreshGrid();
     },
     methods: {
+      search() {
+        console.log(this.gridData);
+        this.gridData.list[0].sum = (Math.random() * 1000).toFixed(2);
+        this.sumDataCustom = {
+          Remark: "",
+          TaxRate: "",
+          actualSum: (Math.random() * 1000).toFixed(2),
+          address: "",
+          chargeCustomer: "",
+          chargeStandard: "",
+          city: "",
+          date: "",
+          email: "",
+          mobile: "",
+          ownerName: "",
+          province: "",
+          sex: "",
+          sum: (Math.random() * 1000).toFixed(2),
+          taskName: "",
+          unit: "",
+          zip: "",
+        };
+        console.log(this.gridData);
+        this.sizeInfo.maxHeight = 500;
+        console.log(this.sizeInfo.maxHeight);
+      },
       selectChange(val) {
         this.searchConditions.filterConditions = [];
         this.searchConditions.filterConditions.push(val);
@@ -131,6 +161,25 @@
               ];
             });
 
+            this.sumDataCustom = {
+              Remark: "",
+              TaxRate: "",
+              actualSum: "99999999.00",
+              address: "",
+              chargeCustomer: "",
+              chargeStandard: "",
+              city: "",
+              date: "",
+              email: "",
+              mobile: "",
+              ownerName: "",
+              province: "",
+              sex: "",
+              sum: "99999999.00",
+              taskName: "",
+              unit: "",
+              zip: "",
+            };
             this.loadState.data = true;
           }
         );
