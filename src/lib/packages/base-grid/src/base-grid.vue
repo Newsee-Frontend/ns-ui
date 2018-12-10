@@ -204,6 +204,8 @@
           }
         }
       },//表格容器信息（包含父级容器和所包含的子级容器列表)
+      hideSummaryForced: {type: Boolean, default: false},//是否强制隐藏合计行模块，默认为不隐藏
+      sumDataCustom: {type: Object, default: null},//全部数据合计行数据自定义（外部传入）
       sumDataSource: {type: String, default: 'sumtotal'},  //全部数据合计行数据来源 (list / sumtotal )
       sumFixedNum: {type: Number, default: 2},  //当前页合计 数字 保留几位小数
 
@@ -257,6 +259,7 @@
        * 2、 if one of the row types is numbe
        */
       showSummaryFinal() {
+        if (this.hideSummaryForced) return false;
         const colType = this.headRefer['xtype'];
         //In the grid, if one of the row types is number, grid shoud show summary row.
         const hasNum = this.gridHead.some(item => {
@@ -372,7 +375,8 @@
       *        则说明后台并没有在表数据 list 数组中插入合计行数据，则前台无法获取合计行数据，放空值即可，无需其他操作。
       * 2、类型值为：sumtotal，则全部合计行数据来源于后台获取表数据 sumtotal 字段，直接获取即可，无需其他操作。
       */
-      getTotalList() {
+      getTotalListData() {
+        console.log('getTotalListData');
         let totalInfo;
         //current page sum
         if (this.command.order === 'current') {
@@ -381,8 +385,16 @@
         }
         //all apge sum
         if (this.command.order === 'total') {
-          //judge sumtotal data is exists，if it exists, use it, or use {}
-          totalInfo = this.sumtotalData ? this.sumtotalData : this.gridData.sumtotal;
+          if (this.sumDataCustom) {
+            console.log('全部数据合计行数据 - 自定义（外部传入');
+            //全部数据合计行数据自定义（外部传入）
+            totalInfo = this.sumDataCustom;
+          }
+          else {
+            console.log('全部数据合计行数据 - 内部处理');
+            //judge sumtotal data is exists，if it exists, use it, or use {}
+            totalInfo = this.sumtotalData ? this.sumtotalData : this.gridData.sumtotal;
+          }
         }
         // console.log('计算的合计行类型为：' + this.command.order);
         // console.log(totalInfo);
@@ -588,12 +600,12 @@
       /**
        * get summaries
        * @param param
-       * @returns {computed.getTotalList}
+       * @returns {computed.getTotalListData}
        */
       getSummaries(param) {
         const {columns, data} = param;
         if (this.showSummaryFinal) {
-          return this.getTotalList;
+          return this.getTotalListData;
         }
       },
       //listen to renderRange change
