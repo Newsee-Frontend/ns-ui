@@ -47,7 +47,7 @@
           <el-table-column v-if="actionRender" :label="ationColInfo[headRefer['label']]"
                            :width="ationColInfo[headRefer['width']]"
                            fixed="right" :align="ationColInfo[headRefer['align']]"
-                           :class-name="'grid-head-'+ationColInfo[headRefer['model-code']]"
+                           :class-name="'grid-head-'+ationColInfo[headRefer['model-code']]+' is-'+align"
                            :key="'grid-head-'+ationColInfo[headRefer['model-code']]"
           >
             <template slot-scope="scope">
@@ -149,7 +149,7 @@
         type: Object, default: function () {
           return {
             label: '操作',
-            width: '150'
+            width: '125'
           }
         }
       },//固定操作列自定义配置
@@ -306,7 +306,7 @@
           [this.headRefer['col-type']]: this.handleColType,
           [this.headRefer['label']]: this.ationColConfig.label || '操作',
           [this.headRefer['model-code']]: 'fnsclick',
-          [this.headRefer['width']]: this.ationColConfig.width || "150",
+          [this.headRefer['width']]: this.ationColConfig.width || "125",
           [this.headRefer['align']]: this.ationColConfig.align || "center",
         }
       },
