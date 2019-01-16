@@ -70,18 +70,19 @@
                 &:hover {
                   background-color: $set-part_color_active;
                   svg.grid-icon {
-                    color: #fff
+                    color: $grid_head_ationicon_color
                   }
                 }
                 &.header-set_active {
                   background-color: $set-part_color_active;
                   svg.grid-icon {
-                    color: #fff
+                    color: $grid_head_ationicon_color
                   }
                 }
                 //内置图标
                 svg.grid-icon {
                   display: block;
+                  color: $grid_head_ationicon_color
                 }
               }
             }
