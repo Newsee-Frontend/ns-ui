@@ -303,7 +303,7 @@ export default {
         // console.log('需要验证！！！');
         if (required) {
           // console.log('需要必填 is required ');
-          if (value) {
+          if (value || value === 0) {
             // console.log('有值！！！！！！！！！！！');
             return validateRule(this, value, ruleType);
           }
@@ -314,7 +314,7 @@ export default {
         }
         else {
           // console.log('无需必填 not required ');
-          if (value) {
+          if (value || value === 0) {
             // console.log('有值！！！！！！！！！！！');
             return validateRule(this, value, ruleType);
           }
