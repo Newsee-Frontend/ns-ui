@@ -110,7 +110,7 @@ let mockTableFn_normal = (min, max, type) => {
       mobile: '',//手机号
       email: Mock.Random.email(),//邮箱
       fifter: Mock.Random.float(0, 1, 0, 0),//fifter 转换
-      Remark: '',//备注
+      Remark: 0,//备注
     });
     if (type === 'fnsclick') {
       obj.fnsclick = [{label: '编辑', value: 'gridEditBtn'}, {label: '删除', value: 'actionRemoveBtn'}, {
