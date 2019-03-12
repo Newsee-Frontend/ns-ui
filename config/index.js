@@ -74,7 +74,7 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   },
 
-  //packages configuration project for cx-grid plug-ins
+  //packages configuration project for CX-UI-Design plug-ins
   bundle: {
     env: require('./prod.env'),
     // Template for index.html

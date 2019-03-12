@@ -2125,7 +2125,7 @@ currently-unhandled@^0.4.1:
 
 cx-grid@^1.0.7:
   version "1.3.4"
-  resolved "http://registry.npm.taobao.org/cx-grid/download/cx-grid-1.3.4.tgz#0cf568bd47e27fd0ec152446ef19b4d16f9f63b3"
+  resolved "http://registry.npm.taobao.org/CX-UI-Design/download/CX-UI-Design-1.3.4.tgz#0cf568bd47e27fd0ec152446ef19b4d16f9f63b3"
   integrity sha1-DPVovUfif9DsFSRG7xm00W+fY7M=
   dependencies:
     vuedraggable "^2.14.1"
