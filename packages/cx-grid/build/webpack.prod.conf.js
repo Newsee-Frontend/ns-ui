@@ -24,7 +24,7 @@ const webpackConfig = merge(baseWebpackConfig, {
   devtool: config.build.productionSourceMap ? config.build.devtool : false,
 
   entry: {
-    app: './src/lib/index.js'
+    app: './lib/index.js'
   },
 
   output: {

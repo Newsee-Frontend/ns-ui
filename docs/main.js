@@ -18,7 +18,10 @@ import './icons' // icon
 import './errorLog' // error log
 import './permission' // permission control
 import './mock' // simulation data
+import './packagesLoad' // simulation data
+import mounts from './utils/mounts';
 
+Vue.use(mounts);
 import * as filters from './filters' // global filters
 
 Vue.use(Element, {

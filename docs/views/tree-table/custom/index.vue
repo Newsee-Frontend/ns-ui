@@ -83,7 +83,7 @@
 </template>
 
 <script>
-import TreeTable from '@/components/TreeTable'
+import TreeTable from '@/components/demo/TreeTable'
 import data from './data.js'
 
 export default {

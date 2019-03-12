@@ -4,10 +4,14 @@ import articleAPI from './article'
 import remoteSearchAPI from './remoteSearch'
 import transactionAPI from './transaction'
 
+import tableHead from './components/tableHead'
+import tableData from './components/tableData'
+
+
 // 修复在使用 MockJS 情况下，设置 withCredentials = true，且未被拦截的跨域请求丢失 Cookies 的问题
 // https://github.com/nuysoft/Mock/issues/300
 Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
-Mock.XHR.prototype.send = function() {
+Mock.XHR.prototype.send = function () {
   if (this.custom.xhr) {
     this.custom.xhr.withCredentials = this.withCredentials || false
   }
@@ -35,5 +39,17 @@ Mock.mock(/\/search\/user/, 'get', remoteSearchAPI.searchUser)
 
 // 账单相关
 Mock.mock(/\/transaction\/list/, 'get', transactionAPI.getList)
+
+
+let registerList = [
+  {url: /\/system\/column\/list-column/, method: 'get', target: tableHead.tableHead, remarks: 'get table head'},
+  {url: /\/table\/tableData\/normal/, method: 'post', target: tableData.normal_tableData, remarks: 'get table data'},
+  {url: /\/table\/tableData\/fnsclick/, method: 'post', target: tableData.fnsclick_tableData, remarks: 'get fnsclick table data'},
+];
+
+registerList.forEach((item, index) => {
+  Mock.mock(item.url, item.method, item.target);
+});
+
 
 export default Mock

@@ -92,7 +92,7 @@
 </template>
 
 <script>
-import Sticky from '@/components/Sticky'
+import Sticky from '@/components/demo/Sticky'
 
 export default {
   name: 'StickyDemo',

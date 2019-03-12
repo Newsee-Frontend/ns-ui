@@ -74,10 +74,10 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce'
-import Upload from '@/components/Upload/singleImage3'
-import MDinput from '@/components/MDinput'
-import Sticky from '@/components/Sticky' // 粘性header组件
+import Tinymce from '@/components/demo/Tinymce'
+import Upload from '@/components/demo/Upload/singleImage3'
+import MDinput from '@/components/demo/MDinput'
+import Sticky from '@/components/demo/Sticky' // 粘性header组件
 import { validURL } from '@/utils/validate'
 import { fetchArticle } from '@/api/article'
 import { userSearch } from '@/api/remoteSearch'

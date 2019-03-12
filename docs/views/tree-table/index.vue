@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import treeTable from '@/components/TreeTable'
+import treeTable from '@/components/demo/TreeTable'
 import data from './data'
 
 export default {

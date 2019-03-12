@@ -72,7 +72,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import LangSelect from '@/components/LangSelect'
+import LangSelect from '@/components/demo/LangSelect'
 import SocialSign from './socialsignin'
 
 export default {
