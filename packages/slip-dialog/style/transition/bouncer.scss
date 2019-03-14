@@ -1,0 +1,60 @@
+/* animation name*/
+$animation: 'bouncer';
+
+/* target postion */
+$enter_duration: .5s;
+$leave_duration: .5s;
+
+@mixin n($name,$type) {
+  $N: $animation+'-'+$type !global;
+
+  .#{$N} {
+    @content;
+  }
+}
+
+@mixin keyframes($name) {
+  @keyframes #{$name}  {
+    @content;
+  }
+}
+
+@include n($animation, 'enter-active') {
+  animation: #{$animation}  $enter_duration;
+}
+
+@include n($animation, 'leave-active') {
+  animation: #{$animation} $leave_duration reverse;
+}
+
+@include keyframes($animation) {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.4);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+//.bouncer-enter-active {
+//  animation: bouncer-in .5s;
+//}
+//
+//.bouncer-leave-active {
+//  animation: bouncer-in .5s reverse;
+//}
+//
+//@keyframes bouncer-in {
+//  0% {
+//    transform: scale(0);
+//  }
+//  50% {
+//    transform: scale(1.4);
+//  }
+//  100% {
+//    transform: scale(1);
+//  }
+//}

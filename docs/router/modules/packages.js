@@ -15,8 +15,14 @@ const packagesRouter = {
     {
       path: 'cxgrid',
       component: () => import('@/views/grid-template/index'),
-      name: 'CX-Grid',
+      name: 'cx-Grid',
       meta: {title: 'CX-Grid'}
+    },
+    {
+      path: 'slipDialog',
+      component: () => import('@/views/slip-dialog/index'),
+      name: 'slip-dialog',
+      meta: {title: 'slip-dialog'}
     }
   ]
 };

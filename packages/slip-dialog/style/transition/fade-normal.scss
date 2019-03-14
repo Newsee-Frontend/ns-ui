@@ -1,0 +1,8 @@
+.fade-normal-enter-active, .fade-normal-leave-active {
+  transition: opacity .3s;
+}
+
+.fade-normal-enter, .fade-normal-leave-to /* .fade-leave-active below version 2.1.8 */
+{
+  opacity: 0;
+}

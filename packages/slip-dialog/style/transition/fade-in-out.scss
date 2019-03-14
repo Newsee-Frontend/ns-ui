@@ -1,0 +1,30 @@
+.fade-in-out-enter-active {
+  animation: fade-in .3s;
+}
+
+.fade-in-out-leave-active {
+  animation: fade-out .3s;
+}
+
+
+@keyframes fade-in {
+  0% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(0, -20px, 0);
+    opacity: 0;
+  }
+}

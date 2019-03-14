@@ -1,0 +1,22 @@
+@import "mixins/mixins";
+@import "transition/index";
+@import "./var";
+
+$--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
+
+@include b(slipDialog) {
+  position: fixed;
+  overflow: auto;
+  background: #d1ffde;
+  border-radius: $--border-radius-small;
+  box-shadow: $--slipDialog-box-shadow;
+  @include e(wrapper) {
+    position: relative;
+    height: 100%;
+    padding: 15px;
+    background: $--color-white;
+    margin: 0;
+    box-sizing: border-box;
+  }
+}
+
