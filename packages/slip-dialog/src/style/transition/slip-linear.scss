@@ -1,0 +1,32 @@
+/* animation name*/
+$animation: 'slip-linear';
+
+/* target postion */
+$enter_duration: .5s;
+$leave_duration: .5s;
+
+/* target postion */
+$t_left: -900px, 0; //left
+$t_right: 900px, 0; //right
+$t_top: 0, -900px; //top
+$t_bottom: 0, 900px; //bottom
+
+$translate: $t_left $t_right $t_top $t_bottom;
+
+@each $pos in $entr-position {
+  $i: index($entr-position, $pos);
+  @include n($animation, #{$pos+'-enter-active'}) {
+    transition: all $enter_duration ease;
+  }
+  @include n($animation, #{$pos+'-leave-active'}) {
+    transition: all $leave_duration cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  @include n($animation, #{$pos+'-enter'}) {
+    transform: translate(nth($translate, $i));
+    opacity: 0;
+  }
+  @include n($animation, #{$pos+'-leave-to'}) {
+    transform: translate(nth($translate, $i));
+    opacity: 0;
+  }
+}

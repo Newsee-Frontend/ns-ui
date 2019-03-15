@@ -2,6 +2,8 @@ import * as filters from './filters/index';//filter
 import {ConfGrider} from './config'
 import init from './init'
 import {getStageName} from './rename'
+
+const version = require('../package.json').version;
 //iconfont - config
 import './utils/svgConfig'
 
@@ -43,15 +45,30 @@ if (typeof window !== 'undefined' && window.Vue) {
   install(window.Vue);
 }
 
-module.exports = {
-  version: require('../package.json').version,
+// module.exports = {
+//   version: require('../package.json').version,
+//   install,
+//   //base table
+//   BaseGrid,
+//   //grid operation
+//   gridOperation,
+//
+// };
+//
+// module.exports.default = module.exports;
+
+
+export {
   install,
+  version,
   //base table
   BaseGrid,
   //grid operation
   gridOperation,
 
 };
-
-module.exports.default = module.exports;
+export default {
+  install,
+  version
+};
 

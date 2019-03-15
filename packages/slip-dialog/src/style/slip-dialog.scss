@@ -1,6 +1,6 @@
 @import "mixins/mixins";
 @import "transition/index";
-@import "./var";
+@import "var";
 
 $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 
@@ -10,6 +10,7 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
   background: #d1ffde;
   border-radius: $--border-radius-small;
   box-shadow: $--slipDialog-box-shadow;
+  z-index: 9999;
   @include e(wrapper) {
     position: relative;
     height: 100%;
@@ -17,6 +18,7 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
     background: $--color-white;
     margin: 0;
     box-sizing: border-box;
+
   }
 }
 

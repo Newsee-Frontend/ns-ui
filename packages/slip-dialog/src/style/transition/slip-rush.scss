@@ -1,5 +1,5 @@
 /* animation name*/
-$animation: 'slip-in-out';
+$animation: 'slip-rush';
 
 /* target postion */
 $enter_duration: .3s;
@@ -11,32 +11,21 @@ $t_right: 900px, 0; //right
 $t_top: 0, -900px; //top
 $t_bottom: 0, 900px; //bottom
 
-
-
-@mixin n($name,$postion,$type) {
-  $N: $animation+'-'+$postion+'-'+$type !global;
-
-  .#{$N} {
-    @content;
-  }
-}
-
-$entr-position: 'left' 'right' 'top' 'bottom';
 $translate: $t_left $t_right $t_top $t_bottom;
 
 @each $pos in $entr-position {
   $i: index($entr-position, $pos);
-  @include n($animation, $pos, 'enter-active') {
+  @include n($animation, #{$pos+'-enter-active'}) {
     transition: all $enter_duration ease;
   }
-  @include n($animation, $pos, 'leave-active') {
+  @include n($animation, #{$pos+'-leave-active'}) {
     transition: all $leave_duration cubic-bezier(1.0, 0.5, 0.8, 1.0);
   }
-  @include n($animation, $pos, 'enter') {
+  @include n($animation, #{$pos+'-enter'}) {
     transform: translate(nth($translate, $i));
     opacity: 0;
   }
-  @include n($animation, $pos, 'leave-to') {
+  @include n($animation, #{$pos+'-leave-to'}) {
     transform: translate(nth($translate, $i));
     opacity: 0;
   }
