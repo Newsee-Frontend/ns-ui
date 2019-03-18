@@ -73,9 +73,6 @@ export default {
                          on-size-change={this.sizeChange} on-current-change={this.currentChange}>
           </el-pagination>
         }
-        {/*{*/}
-        {/*<el-button class="fl panel-po_btn" size="small">确定</el-button>*/}
-        {/*}*/}
       </div>
     )
   },
