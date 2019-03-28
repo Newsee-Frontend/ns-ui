@@ -7,8 +7,8 @@
   "private": false,
   "main": "dist/cx-grid.min.js",
   "scripts": {
-    "command": "node_modules/cx-builder/lib/menu.root.sh",
-    "command:mac": "node_modules/cx-builder/lib/menu.root.sh",
+    "command": "node_modules/cx-builder/lib/menu.sh root",
+    "command:mac": "node_modules/cx-builder/lib/menu.sh root",
     "clean": "rimraf ./dist/",
     "build": "cross-env NODE_ENV=production env_config=plugin node node_modules/cx-builder/lib/run/prod/run.prod.plugin"
   },
@@ -28,7 +28,7 @@
     "vuedraggable": "^2.14.1"
   },
   "devDependencies": {
-    "cx-builder": "^0.0.17"
+    "cx-builder": "^0.0.29"
   },
   "engines": {
     "node": ">= 6.0.0",
