@@ -34,6 +34,16 @@
 
 </script>
 
-<style>
+<style rel="stylesheet/scss" lang="scss" scoped>
 
+  .ns-input.el-input--medium {
+    height: 32px;
+    line-height: 32px;
+    .el-input__inner {
+      background: red;
+      width: 100%;
+      height: 100%;
+      line-height: 100%;
+    }
+  }
 </style>

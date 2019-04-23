@@ -1,34 +1,26 @@
 <!-- 输入框 input -->
 <template>
-  <div class="ns-input" :style="{ width: input_width, height: input_height }">
-    <el-input
-      v-model="childIpt"
-      :type="type"
-      :name="name"
-      :placeholder="placeholder"
-      :disabled="disabled"
-      :size="size"
-      :rows="rows"
-      :minlength="minlength"
-      :maxlength="maxlen"
-      :autofocus="autofocus"
-      :readonly="readonly"
-      :clearable="clearable"
-      @change="change"
-      @blur="blur"
-      @focus="focus"
-    >
-    </el-input>
-    <div class="ns-input__icon success">
-      <ns-icon-svg icon-class="check-circle" @click="iconClick(childIpt)"></ns-icon-svg>
-    </div>
-    <div class="ns-input__icon error">
-      <ns-icon-svg icon-class="exclamation" @click="iconClick(childIpt)"></ns-icon-svg>
-    </div>
-    <div class="ns-input__icon normal" v-if="customIcon">
-      <ns-icon-svg :icon-class="customIcon" @click="iconClick(childIpt)"></ns-icon-svg>
-    </div>
-  </div>
+  <el-input
+    class="ns-input"
+    v-model="childIpt"
+    :type="type"
+    :name="name"
+    :placeholder="placeholder"
+    :disabled="disabled"
+    :size="size"
+    :rows="rows"
+    :minlength="minlength"
+    :maxlength="maxlen"
+    :autofocus="autofocus"
+    :readonly="readonly"
+    :clearable="clearable"
+    @change="change"
+    @blur="blur"
+    @focus="focus"
+    :style="{ width: input_width, height: input_height }"
+  >
+  </el-input>
+
 </template>
 <script>
   export default {
