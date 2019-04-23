@@ -1,20 +1,20 @@
 const Layout = resolve => require(['@/layout/layout.vue'], resolve);
 export const baseRouter = [
   {
-    path: '/base',
+    path: '/basic',
     component: Layout,
-    redirect: '/base/col',
+    redirect: '/basic/col',
     name: '基础',
     children: [
       {
         path: 'col',
-        component: () => import('../../pages/Base/col'),
+        component: () => import('../../pages/Basic/col'),
         meta: {requireAuth: true, key: 'col'},
         name: 'col 布局',
       },
       {
         path: 'row',
-        component: () => import('../../pages/Base/row'),
+        component: () => import('../../pages/Basic/row'),
         meta: {requireAuth: true, key: 'row'},
         name: 'row 布局',
       },

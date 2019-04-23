@@ -11,6 +11,7 @@ const version = '0.0.1';
 import Col from './packages/Col/Col';
 import Head from './packages/Head/Head';
 import IconSvg from './packages/Icon-svg/Icon-svg';
+import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
@@ -25,6 +26,7 @@ const components = [
   Col,
   Head,
   IconSvg,
+  Input,
   Layout,
   Row,
   Screenfull,
@@ -68,6 +70,7 @@ export {
   Col,
   Head,
   IconSvg,
+  Input,
   Layout,
   Row,
   Screenfull,

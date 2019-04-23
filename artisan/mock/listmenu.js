@@ -1,5 +1,3 @@
-
-
 const navmenu = (req, res) => {
   console.log('navmenu-navmenu-navmenu');
   console.log(req.body);
@@ -27,9 +25,9 @@ const navmenu = (req, res) => {
         "childMenus": []
       },
       {
-        "funcId": "base",
+        "funcId": "basic",
         "menuLabel": "基础",
-        "menuRouter": "base",
+        "menuRouter": "basic",
         "menuIcon": "bushenbuzhan1",
         "menuIndex": 3,
         "hide": 1,
@@ -85,7 +83,26 @@ const navmenu = (req, res) => {
             "hide": 1
           }
         ]
-      }
+      },
+      {
+        "funcId": "form",
+        "menuLabel": "表单",
+        "menuRouter": "form",
+        "menuIcon": "bushenbuzhan1",
+        "menuIndex": 5,
+        "hide": 1,
+        "childMenus": [
+          {
+            "funcId": "input",
+            "menuLabel": "输入框",
+            "menuRouter": "input",
+            "menuIcon": null,
+            "menuIndex": "1",
+            "hide": 1
+          }
+        ]
+      },
+
     ]
   });
 };
