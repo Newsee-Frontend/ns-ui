@@ -1,0 +1,26 @@
+@import "../../../style/config/public";
+@import "../../Screenfull/style/index";
+@import "../../Skin/style/index";
+
+/* ------------  顶部模块 ------------  */
+.Head {
+  width: 100%;
+  min-width: 500px;
+  height: $navH;
+  line-height: $navH;
+  padding-left: $navH_pl;
+  padding-right: $navH_pr;
+  background: #252836;
+  box-sizing: border-box;
+  .header-logo {
+    img {
+      display: block;
+    }
+  }
+  .header-item {
+    margin-left: 15px;
+  }
+  svg {
+    fill: #FFF;
+  }
+}

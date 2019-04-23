@@ -1,0 +1,306 @@
+//@import '../../public';
+//@import '../../mixin/mixin';
+//
+///**
+// * base =========================
+// */
+//$nav1st-width: 120px; //first nav base width
+//$nav1st-item_height: 44px; //first nav height / line-height
+//$nav1st-left_gap: 16px; //first nav left gap
+//$nav1st-fs: 14px; //first nav font size
+//$nav2st-fs: 14px; //second nav font size
+//$collapseH: 20px; //$collapse height
+//$icon-width: 1em; //nav icon width
+//$icon-height: 1.2em; //nav icon height
+///*nav1st - color*/
+//
+//$nav1st-back: #252836; //first nav background
+//$nav1st-col: #e2e5ea; //first nav font color
+//$nav1st-col-icon: #9a9a9a; //first nav icon color
+//
+//$nav1st-bubble_navicon: #e2e5ea;
+//
+//$nav1st-push_backhover: #484d5a; //first nav background ( push ) for hover event
+//$nav1st-bubble_backhover: #4e515d;
+////$nav1st-bubble_backhover: #fff; //first nav background ( bubble )for hover event
+//
+///*nav2st - color*/
+//$nav2st-col: #333; //second nav font color
+///*collapse-button - color*/
+//$collapse-back: #2d2f3a; //$collapse background
+///* other */
+//$scrollbar-width: 4px;
+//
+///**
+// * push =========================
+// */
+//$push-nav2st-width: 120px; //push second nav base width
+//$push-nav2st-title_height: 50px; //push second nav title height
+//$push-nav2st-left_gap: 24px; //push second nav left gap
+//$push-nav2st-lright_gap: 5px; //push second nav right gap
+//$push-nav2st_back: #e5e7eb; //push second nav background
+//$push-nav2st-backhover: #f4f6f9; //push second nav background for hover event
+//
+///**
+// * bubble =========================
+// */
+//$bubble-nav2st-width: 210px; //bubble second nav base width
+//$bubble-nav2st-radius: 0px; //bubble second nav border radius
+//$bubble-nav2st-item_height: 36px; //bubble second nav height / line-height
+//$bubble-nav2st-item-around_gap1: 0px; //bubble second nav => each li items padding top/bottom
+//$bubble-nav2st-item-around_gap2: 16px; //bubble second nav => each li items padding left/right
+//$bubble-nav2st-item-text_indent: 16px; //bubble second nav => each li items text indent
+//
+//$bubble-nav2st_topgap: 2px; //bubble second nav padding top
+//$bubble-nav2st_bottomgap: 12px; //bubble second nav padding bottom
+//$bubble-nav2st_back: #fff; //bubble second nav background
+//$bubble-nav2st_backhover: #e9e9e9; //bubble second nav background for hover event
+//$bubble-nav2st-title_height: 40px; //bubble second nav title height
+//$bubble-nav1st-active_mark: #ff5c00; //bubble second nav active style mark
+//
+//@mixin first-nav-items-style-change() {
+//  background-color: $nav1st-bubble_backhover;
+//  .first-nav-tit {
+//    svg {
+//      //color: $--color-text-primary;
+//      color: #c3c3c3;
+//    }
+//    span {
+//      //color: $--color-text-primary;
+//      color: #c3c3c3;
+//    }
+//  }
+//}
+//
+//#Sidebar.first-nav {
+//  position: relative;
+//  width: $nav1st-width;
+//  height: 100%;
+//  color: $nav1st-col;
+//  background-color: $nav1st-back;
+//  & ::-webkit-scrollbar {
+//    width: $scrollbar-width;
+//  }
+//  z-index: 200;
+//  @include transition(width, 0.2s, linear);
+//  .nav-collapse {
+//    height: $collapseH;
+//    line-height: $collapseH;
+//    text-align: center;
+//    cursor: pointer;
+//    background-color: $collapse-back;
+//    svg.ns-svg-icon {
+//      width: 0.6em;
+//      height: 0.6em;
+//      vertical-align: middle; //属性设置元素的垂直对齐方式。
+//      color: $nav1st-col-icon;
+//    }
+//  }
+//  li.first-nav-items {
+//    height: $nav1st-item_height;
+//    line-height: $nav1st-item_height;
+//    .first-nav-tit {
+//      padding-left: $nav1st-left_gap;
+//      height: 100%;
+//      cursor: pointer;
+//      font-size: $nav1st-fs;
+//      svg {
+//        display: inline-block;
+//        padding: 0 5px 0 0;
+//        font-size: inherit;
+//        width: $icon-width;
+//        height: $icon-height;
+//        color: $nav1st-bubble_navicon;
+//        vertical-align: -3px;
+//      }
+//      span {
+//        display: inline-block;
+//        font-size: inherit;
+//        color: $nav1st-col;
+//      }
+//    }
+//    ul.second-nav {
+//      position: absolute;
+//      height: 100%;
+//      top: 0;
+//      left: $nav1st-width;
+//      color: $nav2st-col;
+//      //overflow: hidden;
+//      z-index: 201;
+//      @include transition(all, 0.2s, linear);
+//      .second-nav-tit {
+//        font-size: 14px;
+//        color: $nav2st-col;
+//        font-weight: bold;
+//        @include box-sizing;
+//      }
+//      li.second-nav-items {
+//        @include box-sizing;
+//        a.nav-link {
+//          display: block;
+//          font-size: $nav2st-fs;
+//          color: inherit;
+//          cursor: pointer;
+//        }
+//      }
+//    }
+//  }
+//  &.iscollapse {
+//    width: 50px;
+//    li.first-nav-items {
+//      .first-nav-tit {
+//        span {
+//          display: none;
+//        }
+//        svg {
+//          padding: 0;
+//          margin-left: 0;
+//          font-size: inherit;
+//        }
+//      }
+//      ul.second-nav {
+//        left: 50px;
+//      }
+//    }
+//  }
+//
+//  &.sidebar-push {
+//    li.first-nav-items {
+//      &:hover,
+//      &.first-nav-active {
+//        background-color: $nav1st-push_backhover;
+//      }
+//      ul.second-nav {
+//        display: none;
+//        width: 0;
+//        background: $push-nav2st_back;
+//        .second-nav-tit {
+//          height: $push-nav2st-title_height;
+//          line-height: $push-nav2st-title_height;
+//          padding-left: 10px;
+//        }
+//        li.second-nav-items {
+//          height: $nav1st-item_height;
+//          line-height: $nav1st-item_height;
+//          padding-left: $push-nav2st-left_gap;
+//          padding-right: $push-nav2st-lright_gap;
+//          @include box-sizing;
+//          &.second-nav-active {
+//            background-color: $push-nav2st-backhover;
+//          }
+//          &:hover {
+//            background-color: $push-nav2st-backhover;
+//          }
+//          a.nav-link {
+//            &.router-link-active {
+//              background-color: $push-nav2st-backhover;
+//            }
+//          }
+//        }
+//      }
+//      &.first-nav-active {
+//        ul.second-nav {
+//          display: block;
+//          width: $push-nav2st-width;
+//        }
+//      }
+//    }
+//  }
+//
+//  &.sidebar-bubble {
+//    li.first-nav-items {
+//      position: relative;
+//      &:hover {
+//        @include first-nav-items-style-change();
+//      }
+//      &.first-nav-active {
+//        @include first-nav-items-style-change();
+//        .first-nav-tit {
+//          border-left: 2px solid $bubble-nav1st-active_mark;
+//        }
+//      }
+//      ul.second-nav {
+//        //display: none;
+//        transition: all 0.5s ease-in-out;
+//        visibility: hidden;
+//        opacity: 0;
+//        //
+//        width: 0;
+//        height: auto;
+//        padding: $bubble-nav2st_topgap 0 $bubble-nav2st_bottomgap;
+//        background: $bubble-nav2st_back;
+//        box-shadow: 5px 1px 6px 1px rgba(0, 0, 0, 0.3);
+//        border-radius: $bubble-nav2st-radius;
+//        box-sizing: border-box;
+//        .second-nav-tit {
+//          height: $bubble-nav2st-title_height;
+//          line-height: $bubble-nav2st-title_height;
+//          padding-left: $bubble-nav2st-item-around_gap2 + $bubble-nav2st-item-text_indent;
+//        }
+//        .nav-active-mask {
+//          position: absolute;
+//          width: 24px;
+//          height: $nav1st-item_height;
+//          left: -24px;
+//          top: $nav1st-item_height;
+//          background-color: transparent;
+//          z-index: 9999;
+//        }
+//        .second-nav-container {
+//          height: auto;
+//          //max-height: calc(100% - #{$bubble-nav2st_bottomgap} - #{$bubble-nav2st_topgap} - #{$bubble-nav2st-title_height});;
+//          overflow-x: hidden;
+//          overflow-y: auto;
+//          @include scrollbarVisible();
+//          li.second-nav-items {
+//            padding: $bubble-nav2st-item-around_gap1 $bubble-nav2st-item-around_gap2;
+//            height: $bubble-nav2st-item_height;
+//            line-height: $bubble-nav2st-item_height;
+//            a.nav-link {
+//              text-indent: 16px;
+//            }
+//          }
+//        }
+//      }
+//      &:hover {
+//        ul.second-nav {
+//          visibility: visible;
+//          opacity: 1;
+//          //display: block;
+//          width: $bubble-nav2st-width;
+//          li.second-nav-items {
+//            &.second-nav-active a.nav-link,
+//            &:hover a.nav-link {
+//              background-color: $bubble-nav2st_backhover;
+//            }
+//            &:last-child {
+//              padding-bottom: $bubble-nav2st_topgap;
+//            }
+//          }
+//          &.is-arrowDec {
+//            &:before {
+//              content: ' ';
+//              position: absolute;
+//              left: -$bubble-nav2st-item_height/4;
+//              width: 0;
+//              height: 0;
+//              border-bottom: ($bubble-nav2st-item_height/4-1) solid transparent;
+//              border-top: ($bubble-nav2st-item_height/4-1) solid transparent;
+//              border-right: $bubble-nav2st-item_height/4 solid $bubble-nav2st_back;
+//            }
+//            &.second-nav-ASC {
+//              &:before {
+//                top: $nav1st-item_height/2 - $bubble-nav2st-item_height/4;
+//              }
+//            }
+//            &.second-nav-DESC {
+//              &:before {
+//                bottom: $nav1st-item_height/2 - $bubble-nav2st-item_height/4;
+//              }
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
+//}

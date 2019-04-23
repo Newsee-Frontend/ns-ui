@@ -1,0 +1,38 @@
+##############################
+## Folders                  ##
+##############################
+
+node_modules/
+static/
+/src/
+/docs/
+/artisan/
+
+##############################
+## files                  ##
+##############################
+
+
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintrc.js
+.npminstall.done.*
+*.eslintignore
+*.babelrc
+*.editorconfig
+*.gitignore
+*.npmignore
+*.describe
+.postcssrc.*
+
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+index.html

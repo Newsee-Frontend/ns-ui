@@ -1,0 +1,13 @@
+@mixin scrollbarVisible() {
+  &::-webkit-scrollbar-thumb:vertical,
+  &::-webkit-scrollbar-thumb:horizontal {
+    visibility: hidden;
+  }
+  &:hover {
+    &::-webkit-scrollbar-thumb:vertical,
+    &::-webkit-scrollbar-thumb:horizontal {
+      visibility: visible;
+      transition: all 3s linear;
+    }
+  }
+}

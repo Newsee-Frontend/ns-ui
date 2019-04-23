@@ -1,0 +1,109 @@
+@import "var";
+
+/**
+* ==============================
+* side bar collapse style
+* ==============================
+*/
+
+#Sidebar.first-nav {
+  &.sidebar-collapse {
+
+    width: $first-nav-width-collapse;
+    color: $first-nav-text-color;
+    background-color: $first-nav-back-color;
+    transition: width $transition-speed ease-in-out;
+
+    li.first-nav-items {
+      &:first-child {
+        border-top: 1px solid $first-nav-line;
+        border-bottom: 1px solid $first-nav-line;
+      }
+      .first-nav-tit {
+        span {
+          display: none;
+          color: $first-nav-text-color;
+
+        }
+        svg {
+          padding: 0;
+          margin-left: 0;
+          color: $first-nav-icon-color;
+        }
+      }
+
+      ul.second-nav {
+        color: $second-nav-text-color;
+        transition: all $transition-speed ease-in-out;
+
+        .left {
+          width: $first-nav-width;
+          height: 1px;
+          background-color: transparent;
+        }
+        .right {
+          background: $second-nav-back-color;
+          .second-nav-tit {
+            color: $second-nav-text-color;
+          }
+        }
+      }
+
+      &.first-nav-active {
+        background-color: $first-nav-back-color-active;
+        border: none;
+
+        .first-nav-tit {
+          //border-left: 2px solid $first-nav-active-sign;
+          span {
+            color: $first-nav-text-color-active;
+          }
+          svg {
+            color: $first-nav-icon-color-active;
+          }
+        }
+      }
+
+      &.ishover {
+        &:not(.first-nav-active) {
+          background-color: $first-nav-back-color-hover;
+          .first-nav-tit {
+            span {
+              color: $first-nav-text-color-hover;
+            }
+            svg {
+              color: $first-nav-icon-color-hover;
+            }
+          }
+        }
+
+        ul.second-nav li.second-nav-items {
+          &.second-nav-active a.nav-link, &:hover a.nav-link {
+            background-color: $second-nav-back-color-hover;
+          }
+        }
+      }
+
+    }
+
+    &:hover {
+      width: $first-nav-width;
+      li.first-nav-items {
+
+        .first-nav-tit {
+          span {
+            display: inline-block;
+          }
+          svg {
+            padding: 0 5px 0 0;
+          }
+        }
+
+        ul.second-nav {
+          width: $second-nav-width + $first-nav-width;
+        }
+
+      }
+    }
+  }
+}

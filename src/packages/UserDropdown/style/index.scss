@@ -1,0 +1,48 @@
+@import '../../../style/config/public';
+
+$avatar-size: 30px;
+//头像内容下拉模块
+.user-dropdown {
+  display: inline-block;
+  cursor: pointer;
+  line-height: $navH;
+  padding: 0 5px;
+  border-left: 1px rgba(255, 255, 255, 0.1) solid;
+  .user-abbreviation {
+    display: inline-block;
+    width: $avatar-size;
+    line-height: $avatar-size;
+    background: #0A7AF8;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    color: white;
+  }
+  img {
+    display: inline;
+    width: $avatar-size;
+    height: $avatar-size;
+    border-radius: 0.2 * $avatar-size;
+    vertical-align: middle;
+  }
+  // 欢迎 名字
+  .hello {
+    font-size: 14px;
+    font-weight: bold;
+    color: $--color-white;
+  }
+  i {
+    padding-left: 2px;
+    font-size: 12px;
+    color: $--color-white;
+  }
+}
+
+.el-dropdown-menu.user-dropdown {
+  margin: 0 !important;
+  padding: 5px 0;
+}
+
+
+
+

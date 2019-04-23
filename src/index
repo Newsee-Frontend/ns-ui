@@ -1,0 +1,16 @@
+/*
+ * style entry for UI
+ * created: 2019-04-19 15:46:08.
+ * version: 0.0.1.
+ * author: Broccoli spring( 高仓雄 - gcx )
+ * copyright (c) Broccoli spring( gcx )
+ * ------------------------------------------
+ */
+
+  
+/**
+ * Entry of all component's style
+ */
+
+@import './packages/TestDemo/style/index';
+  @import './packages/slip-dialog/style/index';

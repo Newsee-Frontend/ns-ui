@@ -1,0 +1,56 @@
+/**
+* ==============================
+* side bar collapse style parameter
+* ==============================
+*/
+
+/* color theme */
+$first-nav-text-color: hsla(0, 0%, 100%, .65);
+$first-nav-text-color-hover: #25A2FF;
+$first-nav-text-color-active: #FFF;
+
+$first-nav-icon-color: #D9DDE1;
+$first-nav-icon-color-hover: #fff;
+$first-nav-icon-color-active: #fff;
+
+$first-nav-back-color: #252836;
+$first-nav-back-color-hover: #151825;
+$first-nav-back-color-active: #0A7AF8;
+
+$first-nav-active-sign: #0A7AF8;
+
+$first-nav-line:hsla(0, 0%, 100%, .1);
+
+$second-nav-text-color: #333;
+$second-nav-back-color: #fff;
+$second-nav-text-color: #333;
+$second-nav-back-color-hover: #e9e9e9;
+
+
+
+/* transition */
+$transition-speed: .2s;
+
+/* first nav */
+$first-nav-width: 120px; //first nav base width
+$first-nav-width-collapse: 50px; //first nav collapse width
+$first-nav-item-height: 44px; //first nav height / line-height
+$first-nav-left-gap: 16px; //first nav left gap
+$first-nav-font-size: 14px; //first nav font size
+
+/* second nav */
+$second-nav-font-size: 14px; //second nav font size
+$second-nav-width: 210px; //second nav base width
+$second-nav-radius: 0px; //second nav border radius
+$second-nav-item-height: 36px; //second nav height / line-height
+$second-nav-item-paddind-tb: 0px; //second nav => each li items padding top/bottom
+$second-nav-item-paddind-lr: 16px; //second nav => each li items padding left/right
+$second-nav-item-text-indent: 16px; //second nav => each li items text indent
+$second-nav-padding-top: 2px; //second nav padding top
+$second-nav-padding-bottom: 12px; //second nav padding bottom
+$second-nav-title-height: 40px; //second nav title height
+
+/* other */
+$nav-icon-width: 1em; //nav icon width
+$nav-icon-height: 1.2em; //nav icon height
+$scrollbar-width: 4px;

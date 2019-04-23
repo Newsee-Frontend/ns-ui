@@ -1,0 +1,23 @@
+@import "../mixins";
+/* animation name*/
+$animation: 'fade-normal';
+
+/* target postion */
+$enter_duration: .3s;
+$leave_duration: .3s;
+
+@include n($animation, 'enter-active') {
+  transition: opacity $enter_duration;
+}
+
+@include n($animation, 'leave-active') {
+  transition: opacity $leave_duration;
+}
+
+@include n($animation, 'enter') {
+  opacity: 0;
+}
+
+@include n($animation, 'leave-to') {
+  opacity: 0;
+}

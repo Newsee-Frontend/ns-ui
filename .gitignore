@@ -1,0 +1,34 @@
+##############################
+## Folders                  ##
+##############################
+
+
+node_modules/
+dist/
+lib/
+es/
+.idea/
+
+
+##############################
+## files                  ##
+##############################
+
+frametest/switch.js
+
+.DS_Store
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+
+
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+/.vscode/
+/.settings/
+/.project

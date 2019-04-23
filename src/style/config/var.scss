@@ -1,0 +1,112 @@
+/* Element Chalk Variables */
+
+// Special comment for theme configurator
+// type|[Chinese Name, English Name, Spanish Name, French Name]|Category|Order
+
+/* Transition
+-------------------------- */
+$--all-transition: all .3s cubic-bezier(.645, .045, .355, 1) !default;
+$--fade-transition: opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--fade-linear-transition: opacity 200ms linear !default;
+$--md-fade-transition: transform 300ms cubic-bezier(0.23, 1, 0.32, 1), opacity 300ms cubic-bezier(0.23, 1, 0.32, 1) !default;
+$--border-transition-base: border-color .2s cubic-bezier(.645, .045, .355, 1) !default;
+$--color-transition-base: color .2s cubic-bezier(.645, .045, .355, 1) !default;
+
+/* Color
+-------------------------- */
+/// color|[主题色,primary color,color primario]|BrandColor|0
+$--color-primary: #409EFF !default;
+/// color|[基础白色,basic white,basic white]|BackgroundColor|4
+$--color-white: #FFFFFF !default;
+/// color|[基础黑色,basic black,basic black]|BackgroundColor|4
+$--color-black: #000000 !default;
+$--color-primary-light-1: mix($--color-white, $--color-primary, 10%) !default; /* 53a8ff */
+$--color-primary-light-2: mix($--color-white, $--color-primary, 20%) !default; /* 66b1ff */
+$--color-primary-light-3: mix($--color-white, $--color-primary, 30%) !default; /* 79bbff */
+$--color-primary-light-4: mix($--color-white, $--color-primary, 40%) !default; /* 8cc5ff */
+$--color-primary-light-5: mix($--color-white, $--color-primary, 50%) !default; /* a0cfff */
+$--color-primary-light-6: mix($--color-white, $--color-primary, 60%) !default; /* b3d8ff */
+$--color-primary-light-7: mix($--color-white, $--color-primary, 70%) !default; /* c6e2ff */
+$--color-primary-light-8: mix($--color-white, $--color-primary, 80%) !default; /* d9ecff */
+$--color-primary-light-9: mix($--color-white, $--color-primary, 90%) !default; /* ecf5ff */
+/// color|[成功颜色,success color,success color]|SecondaryColor|1
+$--color-success: #67C23A !default;
+/// color|[警告颜色,warning color,warning color]|SecondaryColor|1
+$--color-warning: #E6A23C !default;
+/// color|[危险颜色,danger color,danger color]|SecondaryColor|1
+$--color-danger: #F56C6C !default;
+/// color|[信息颜色,info color,info color]|SecondaryColor|1
+$--color-info: #909399 !default;
+
+$--color-success-light: mix($--color-white, $--color-success, 80%) !default;
+$--color-warning-light: mix($--color-white, $--color-warning, 80%) !default;
+$--color-danger-light: mix($--color-white, $--color-danger, 80%) !default;
+$--color-info-light: mix($--color-white, $--color-info, 80%) !default;
+
+$--color-success-lighter: mix($--color-white, $--color-success, 90%) !default;
+$--color-warning-lighter: mix($--color-white, $--color-warning, 90%) !default;
+$--color-danger-lighter: mix($--color-white, $--color-danger, 90%) !default;
+$--color-info-lighter: mix($--color-white, $--color-info, 90%) !default;
+/// color|[主要文字颜色,primary text color,primary text color]|FontColor|2
+$--color-text-primary: #303133 !default;
+/// color|[常规文字颜色,regular text color,regular text color]|FontColor|2
+$--color-text-regular: #606266 !default;
+/// color|[次要文字颜色,secondary text color,secondary text color]|FontColor|2
+$--color-text-secondary: #909399 !default;
+/// color|[占位文字颜色,placeholder text color,placeholder text color]|FontColor|2
+$--color-text-placeholder: #C0C4CC !default;
+/// color|[一级边框颜色,border color,border color]|BorderColor|3
+$--border-color-base: #DCDFE6 !default;
+/// color|[二级边框颜色,border color light,border color light]|BorderColor|3
+$--border-color-light: #E4E7ED !default;
+/// color|[三级边框颜色,border color lighter,border color lighter]|BorderColor|3
+$--border-color-lighter: #EBEEF5 !default;
+/// color|[四级边框颜色,border color extra light,border color extra light]|BorderColor|3
+$--border-color-extra-light: #F2F6FC !default;
+
+// Background
+/// color|[基础背景色,base background color,base background color]|BackgroundColor|4
+$--background-color-base: #f5f7fa !default;
+
+/* Link
+-------------------------- */
+$--link-color: $--color-primary-light-2 !default;
+$--link-hover-color: $--color-primary !default;
+
+/* Border
+-------------------------- */
+$--border-width-base: 1px !default;
+$--border-style-base: solid !default;
+$--border-color-hover: $--color-text-placeholder !default;
+$--border-base: $--border-width-base $--border-style-base $--border-color-base !default;
+/// borderRadius|[大圆角,border radius base,border radius base]|Radius|0
+$--border-radius-base: 4px !default;
+/// borderRadius|[小圆角,border radius small,border radius small]|Radius|0
+$--border-radius-small: 2px !default;
+/// borderRadius|[圆形圆角,border radius circle,border radius circle]|Radius|0
+$--border-radius-circle: 100% !default;
+
+// Box-shadow
+/// boxShadow|[基础投影,box shadow base,box shadow base]|Shadow|1
+$--box-shadow-base: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04) !default;
+// boxShadow|[深色投影,box shadow,box shadow]|Shadow|1
+$--box-shadow-dark: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12) !default;
+/// boxShadow|[浅色投影,box shadow,box shadow]|Shadow|1
+$--box-shadow-light: 0 2px 12px 0 rgba(0, 0, 0, 0.1) !default;
+
+
+
+/* Break-point
+--------------------------*/
+$--sm: 768px !default;
+$--md: 992px !default;
+$--lg: 1200px !default;
+$--xl: 1920px !default;
+
+$--breakpoints: (
+  'xs' : (max-width: $--sm - 1),
+  'sm' : (min-width: $--sm),
+  'md' : (min-width: $--md),
+  'lg' : (min-width: $--lg),
+  'xl' : (min-width: $--xl)
+);

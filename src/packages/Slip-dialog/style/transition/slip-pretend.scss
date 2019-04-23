@@ -1,0 +1,54 @@
+@import "../mixins";
+/* animation name*/
+$animation: 'slip-pretend';
+
+/* target postion */
+$enter_duration: .3s;
+$leave_duration: .8s;
+
+/* step postion */
+$step_left: 100px, 0; //left
+$step_right: -100px, 0; //right
+$step_top: 0, 100px; //top
+$step_bottom: 0, -100px; //bottom
+
+/* target postion */
+$target_left: -900px, 0; //left
+$target_right: 900px, 0; //right
+$target_top: 0, -900px; //top
+$target_bottom: 0, 900px; //bottom
+
+$step_postion: $step_left $step_right $step_top $step_bottom;
+$target_postion: $target_left $target_right $target_top $target_bottom;
+
+@each $pos in $entr-position {
+  $i: index($entr-position, $pos);
+  @include n($animation, #{$pos+'-enter-active'}) {
+    transition: all $enter_duration ease;
+  }
+  @include n($animation, #{$pos+'-enter'}) {
+    transform: translate(nth($target_postion, $i));
+    opacity: 0;
+  }
+
+  @include keyframes($animation, $pos) {
+    0% {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+    60% {
+      transform: translate(nth($step_postion, $i));
+      opacity: 1;
+    }
+    100% {
+      transform: translate(nth($target_postion, $i));
+      opacity: 0;
+    }
+  }
+
+  @include n($animation, #{$pos+'-leave-active'}) {
+    animation: $frameName $leave_duration;
+  }
+}
+
+

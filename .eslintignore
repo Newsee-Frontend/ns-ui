@@ -1,0 +1,10 @@
+/build/
+/config/
+/dist/
+/src/
+/test/
+/mock/
+/artisan/
+/node_modules/
+/*.js
+/test/unit/coverage/

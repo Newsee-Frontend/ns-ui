@@ -1,0 +1,162 @@
+@import "../../../style/config/config";
+@import "../../../style/mixins/res";
+
+[class*="#{$namespace}-col-"] {
+  float: left;
+  box-sizing: border-box;
+}
+
+.#{$namespace}-col-0 {
+  display: none;
+}
+
+$total: 24;
+$start: 1;
+$end: 24;
+$class-slug: ns-col !default;
+
+@for $i from $start through $end {
+
+  .#{$namespace}-col-#{$i} {
+    width: ( 1 / $total * $i * 100) * 1%;
+  }
+
+  .#{$namespace}-col-offset-#{$i} {
+    margin-left: (1 / $total * $i * 100) * 1%;
+  }
+
+  .#{$namespace}-col-pull-#{$i} {
+    position: relative;
+    right: (1 / $total * $i * 100) * 1%;
+  }
+
+  .#{$namespace}-col-push-#{$i} {
+    position: relative;
+    left: (1 / $total * $i * 100) * 1%;
+  }
+}
+
+@include res(xs) {
+  .#{$namespace}-col-xs-0 {
+    display: none;
+  }
+  @for $i from 0 through $end {
+    .#{$namespace}-col-xs-#{$i} {
+      width: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-xs-offset-#{$i} {
+      margin-left: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-xs-pull-#{$i} {
+      position: relative;
+      right: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-xs-push-#{$i} {
+      position: relative;
+      left: (1 / $total * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(sm) {
+  .#{$namespace}-col-sm-0 {
+    display: none;
+  }
+  @for $i from 0 through $end {
+    .#{$namespace}-col-sm-#{$i} {
+      width: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-sm-offset-#{$i} {
+      margin-left: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-sm-pull-#{$i} {
+      position: relative;
+      right: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-sm-push-#{$i} {
+      position: relative;
+      left: (1 / $total * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(md) {
+  .#{$namespace}-col-md-0 {
+    display: none;
+  }
+  @for $i from 0 through $end {
+    .#{$namespace}-col-md-#{$i} {
+      width: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-md-offset-#{$i} {
+      margin-left: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-md-pull-#{$i} {
+      position: relative;
+      right: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-md-push-#{$i} {
+      position: relative;
+      left: (1 / $total * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(lg) {
+  .#{$namespace}-col-lg-0 {
+    display: none;
+  }
+  @for $i from 0 through $end {
+    .#{$namespace}-col-lg-#{$i} {
+      width: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-lg-offset-#{$i} {
+      margin-left: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-lg-pull-#{$i} {
+      position: relative;
+      right: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-lg-push-#{$i} {
+      position: relative;
+      left: (1 / $total * $i * 100) * 1%;
+    }
+  }
+}
+
+@include res(xl) {
+  .#{$namespace}-col-xl-0 {
+    display: none;
+  }
+  @for $i from 0 through $end {
+    .#{$namespace}-col-xl-#{$i} {
+      width: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-xl-offset-#{$i} {
+      margin-left: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-xl-pull-#{$i} {
+      position: relative;
+      right: (1 / $total * $i * 100) * 1%;
+    }
+
+    .#{$namespace}-col-xl-push-#{$i} {
+      position: relative;
+      left: (1 / $total * $i * 100) * 1%;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "resultCode": 200,
+  "resultData": {
+    "avatar": "@image('200x200','red','#fff','avatar')",
+    "date": "@date()",
+    "loginTime": 1543541314705,
+    "maxage": 18000000,
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0IiwianRpIjoiMiIsImlhdCI6MTU0MzU0MTMxNH0.UO2N5qqocSRwx_Qio0uWzzJz_oiQJtJy8tr3HBVr4XY",
+    "userId": "@id()",
+    "userName": "@cname()",
+    "sex|1": [0,1,2],
+    "userType": 0,
+    "ip": "@ip()",
+    "email": "@email()",
+    "description": "@paragraph()",
+    "remarks":"男性用户登录"
+  },
+  "resultMsg": "男性用户登录成功"
+}

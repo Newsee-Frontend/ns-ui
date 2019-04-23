@@ -1,0 +1,263 @@
+//---------- base color ----------
+$--color-black: #000; //纯黑
+$--color-text-primary: #333333; //重要文字
+$--color-text-regular: #666666; //主力文字色系
+$--color-text-secondary: #999999; //辅助文字颜色
+$--color-text-placeholder: #cccccc; //失效文字颜色
+$--color-text-supply: #e3e3e3; //补充色系
+$--border-color-light: #d9d9d9; //边框颜色-浅
+$--border-color-lighter: #eeeeee; //边框颜色-更浅
+$--background-color-base: #f4f4f4; //base background-color
+$--color-white: #fff; //纯白
+
+//---------- base color ----------
+$--color-primary: #0a7af8;
+$--color-ns-form-hover: #33a1ff; //本项目中表单控件鼠标移入边框基础颜色 input / select
+$--color-primary-light: #4097f9; //基础主色-浅色
+
+//---------- theme color ----------
+$--color-success: #16ca37;
+$--color-warning: #ffae00;
+$--color-danger: #ff5131;
+$--color-info: #0a7af8;
+
+//---------- dialog - 弹窗  ----------
+$dialog-default_width: 650px; //基础默认宽度
+$dialog-line_height: 24px; //基础默认行高
+$dialog-padding_left: 32px; //左边间距留白
+$dialog-padding_right: 32px; //右边间距留白
+$dialog-padding_top: 10px; //右边间距留白
+$dialog-padding_bottom: 24px; //右边间距留白
+$dialog-body_max_height: 550px; //body内容实际部分最大高度
+$dialog-body_min_height: 350px; //body内容实际部分最小高度
+
+//---------- layout - 布局  ----------
+$min-window_width: 1280px; //最小窗口宽度
+$min-window_height: 600px; //最小窗口高度
+$navL: 50px; //左侧导航栏宽度
+$tabs: 38px; //历史浏览标签卡高度
+$navH: 50px; //顶部导航高度
+$navH_p: 36px; //顶部导航下拉菜单，各个部分高度
+$navH_pl: 0px; //顶部导航左 padding
+$navH_pr: 25px; //顶部导航右 padding
+
+//---------- form - 表单 -------------
+$form-main_gapB: 16px;
+
+//---- 右侧窗口悬浮显示 上下左右 空隙值 ----
+$win_gapT: 10px;
+$win_gapB: 0px;
+$win_gapL: 10px;
+$win_gapR: 10px;
+//win 内边距
+$win_pt: 0px;
+$win_pb: 0px;
+$win_pl: 0px;
+$win_pr: 0px;
+
+//---- 内容部分 ----
+$head-module_back: #163c8f; //头部模块背景颜色
+$logo-top_back: #113174; //左上角logo背景颜色
+
+$app-main_back__white: #fff; //工作台主背景颜色 - 白色
+$app-main_back__gray: #f4f6f9; //工作台主背景颜色 - 灰色
+
+$container-border_color: #e8e8e8; //container 内容模块划分边框线
+
+//---------- 页面标签选项卡模块 ----------
+$tabs-height: 38px; //tabs模块 高度
+$tabs-back: #e1e4e9; //tabs模块 背景颜色  --  较深的灰色
+$tabs-allClose_color: #999; //tabs模块 关闭所有 背景颜色
+$tabs-allClose-hover_color: #333; //tabs模块 关闭所有 鼠标移入背景颜色
+
+//tabs 单个标签页
+$tabs-part_width: 120px; //tabs 单个标签页宽度
+$tabs-part_height: 30px; //tabs 单个标签页高度
+
+$tabs-part-back: #dcdee1; //tabs模块 背景颜色
+$tabs-part-back_active: #fff; //tabs模块 选中项背景颜色
+$tabs-part-back_hover: #fff; //tabs 鼠标移入背景颜色
+$tabs-part-border_color: #d4d6d8; //tabs模块 边框色
+$tabs-part-border-active_color: #d5d5d5; //tabs模块 选中项边框色
+$tabs-part-icon-close_color: #666; //tabs模块 单个关闭图标颜色
+
+$tabs-part_color: $--color-text-primary; //tabs模块  --  较浅的灰色
+$tabs-part-color_active: $--color-black; //tabs模块 选中项字体颜色  --  较深的灰色
+
+$tabs-icon-img_width: 12px; //tabs 标签页左侧图标宽度
+$tabs-icon-img_height: 12px; //tabs 标签页左侧图标高度
+
+$tabs-icon-close_width: 12px; //tabs 标签页右侧关闭图标宽度
+$tabs-icon-close_height: 12px; //tabs 标签页右侧关闭图标宽度
+
+//---------- 删选器模块 ----------
+$search-top-height: 36px; //删选器顶部高度
+
+//---------- 筛选器，分页模块，表格表头背景色 ----------
+$modules__decorate--back: #ebedef;
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, 'PingFang SC', Microsoft YaHei, SimSun, sans-serif;
+}
+
+a {
+  color: rgba(32, 160, 255, 1);
+}
+
+li {
+  list-style: none;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.gap-normal_m_l {
+  margin-left: 30px;
+}
+
+.indent-2em {
+  text-indent: 2em;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.txtC {
+  text-align: center !important;
+}
+
+.txtL {
+  text-align: left !important;
+}
+
+.txtR {
+  text-align: right !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.oneline-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.not-render {
+  display: none;
+}
+
+.disabled {
+  &:hover {
+    cursor: not-allowed;
+  }
+}
+
+/* iconfont - button */
+.el-button.btn-icon {
+  padding: 5px 7.5px;
+}
+
+/*滚动条垂直方向的宽度*/
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* 垂直滚动条的滑动块 */
+::-webkit-scrollbar-thumb:vertical {
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  //-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+  background-color: rgba(157, 157, 168, 0.5);
+}
+
+/* 水平滚动条的滑动块 */
+::-webkit-scrollbar-thumb:horizontal {
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+  background-color: rgba(157, 157, 168, 0.5);
+}
+
+::-webkit-scrollbar-thumb:vertical:hover,
+::-webkit-scrollbar-thumb:horizontal:hover {
+  background-color: rgba(164, 164, 170, 0.68);
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}
+
+//=====================================================================
+
+.el-select.ns-select:not(.ns-select-multiple) {
+  .el-select__tags {
+    overflow: hidden;
+    height: 100%;
+    .el-select__input {
+      width: 0;
+    }
+  }
+  .el-input {
+    height: 100%;
+    .el-input__inner {
+      height: 100%;
+    }
+  }
+}
+
+//&:not(.ns-select-multiple) .el-input .el-input__inner {
+//  height: 100% !important;
+//}
+.el-form {
+  .el-form-item {
+    line-height: 40px;
+    &.el-form-item--medium {
+      line-height: 32px;
+    }
+    &.el-form-item--small {
+      line-height: 32px;
+    }
+    &.el-form-item--mini {
+      line-height: 28px;
+    }
+    .el-form-item__content {
+      line-height: inherit;
+    }
+  }
+}
+
+.form_link_underLine {
+  color: #0a7af8;
+  cursor: pointer;
+}
+
+.form_link_underLine:hover {
+  text-decoration: underline;
+}
+
+.el-form--inline .el-form-item.toBeBlock {
+  display: block;
+}
+
+.el-form--inline .el-form-item.toBeBlock {
+  display: block;
+  label {
+    float: left;
+  }
+}

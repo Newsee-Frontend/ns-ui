@@ -1,0 +1,55 @@
+@import "../../../style/config/public";
+@import "../../Head/style/index";
+@import "./modules/skin";
+
+html, body {
+  height: 100%;
+  min-height: 100%;
+  #app {
+    height: inherit;
+    min-width: $min-window_width;
+    min-height: $min-window_height;
+  }
+}
+
+/*布局*/
+#layout.app-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  /* ------------  顶部模块 ------------  */
+  .header-wrapper {
+    width: 100%;
+  }
+  /* ------------ 左侧导航栏模块 ------------*/
+  .sidebar-wrapper {
+    position: absolute;
+    top: $navH;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+  }
+  /* ------------ 内容 模块 ------------ */
+  .main-container {
+    position: absolute;
+    top: $navH;
+    bottom: 1px;
+    left: $navL;
+    right: 0;
+    z-index: 1;
+    box-sizing: border-box;
+
+    /* ------------  右侧内容模块整体（固定不变，占位） ------------ */
+    .app-main {
+      //width: 100%;
+      height: calc(100% - #{$tabs});
+      min-height: calc(100% - #{$tabs});
+      //min-height:calc(100% - #{$tabs});
+      padding: $win_gapT $win_gapR $win_gapB $win_gapL;
+      overflow-y: auto;
+      overflow-x: auto;
+      box-sizing: border-box;
+      transition: all, 0.4s, linear;
+    }
+  }
+}
