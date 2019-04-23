@@ -1,14 +1,16 @@
 <template>
   <div class="input">
     <span>{{inoutModel || text}}</span>
+    <el-input v-model="inoutModel" placeholder="请输入内容" size="small"></el-input>
     <ns-input
       v-model="inoutModel"
-      :spec="spec"
-      :width="width"
-      :height="height"
       :size="size"
     >
-
+    </ns-input>
+    <ns-input
+      v-model="inoutModel"
+      size="small"
+    >
     </ns-input>
 
   </div>
@@ -21,7 +23,6 @@
       return {
         text: '请输入',
         inoutModel: '',
-        spec: 'small',
         width: '300px',
         height: '40px',
         size: 'medium',
@@ -34,16 +35,6 @@
 
 </script>
 
-<style rel="stylesheet/scss" lang="scss" scoped>
-
-  .ns-input.el-input--medium {
-    height: 32px;
-    line-height: 32px;
-    .el-input__inner {
-      background: red!important;
-      width: 100%;
-      height: 100%;
-      line-height: 100%;
-    }
-  }
+<style rel="stylesheet/scss" lang="scss">
+  @import "input";
 </style>

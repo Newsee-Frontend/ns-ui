@@ -1,13 +1,12 @@
 <!-- 输入框 input -->
 <template>
   <el-input
-    class="ns-input"
+    :class="className"
     v-model="childIpt"
     :type="type"
     :name="name"
     :placeholder="placeholder"
     :disabled="disabled"
-    :size="size"
     :rows="rows"
     :minlength="minlength"
     :maxlength="maxlen"
@@ -23,7 +22,9 @@
 
 </template>
 <script>
-  export default {
+  import create from '../../utils/create';
+
+  export default create({
     name: 'input',
     data() {
       return {
@@ -56,19 +57,31 @@
       },
     },
     computed: {
+      sizeName() {
+        return {
+          mini: this.p('input--mini'),
+          small: this.p('input--small'),
+          medium: this.p('input--medium'),
+          large: this.p('input--large')
+        }[this.size];
+      },
+      className() {
+        return [this.p('input'), this.sizeName]
+      },
+
       input_width() {
         /*
             有 spec 属性则采用 spec 的值所对应的宽度作为宽度值， 否则采用 width 属性值。
             如果spec有值，请注意值是否正确（small，medium，normal，large），可以为 null。
            */
         if (this.spec) {
+
           return this.sizeMap[this.spec];
         }
 
         return this.width;
       },
       input_height() {
-        alert(this.height)
         return this.height;
       },
       maxlen() {
@@ -77,8 +90,8 @@
     },
     props: {
       fatherIpt: [String, Number],
-      width: {type: [String, Number], default: '200px'},
-      height: {type: [String, Number], default: '32px'},
+      width: {type: [String, Number]},
+      height: {type: [String, Number]},
       name: {type: String, default: ''},
       type: {type: String, default: 'text'},
       placeholder: {type: String, default: null},
@@ -125,7 +138,7 @@
         this.$emit('iconClick', value);
       },
     },
-  };
+  });
 </script>
 <style rel="stylesheet/scss" lang="scss">
 </style>
