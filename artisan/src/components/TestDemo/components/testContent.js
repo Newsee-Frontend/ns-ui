@@ -23,8 +23,9 @@ export default {
           onInput={e => (this.item.time = e)}
           value={this.item.time}
           type="datetime"
+          size="large"
           value-format="yyyy-MM-dd HH:mm:ss"
-          placeholder="选择日期"
+          placeholder="选择日期1111"
           default-time="['8:00:00']"
         />
       </div>
