@@ -99,10 +99,17 @@ const navmenu = (req, res) => {
             "menuIcon": null,
             "menuIndex": "1",
             "hide": 1
+          },
+          {
+            "funcId": "datepicker",
+            "menuLabel": "时间控件",
+            "menuRouter": "datepicker",
+            "menuIcon": null,
+            "menuIndex": "2",
+            "hide": 1
           }
         ]
       },
-
     ]
   });
 };

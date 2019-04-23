@@ -14,6 +14,7 @@ import Col from '../../src/packages/Col/Col';
 import Row from '../../src/packages/Row/Row';
 
 import Input from '../../src/packages/Input/Input';
+import DatePicker from '../../src/packages/DatePicker/DatePicker'
 
 Vue.component('Layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
@@ -25,6 +26,7 @@ Vue.component('ns-row', Row);
 
 
 Vue.component('ns-input', Input);
+Vue.component('ns-date-picker', DatePicker);
 
 
 import '../../src/packages/Layout/style/index.scss';
@@ -37,3 +39,4 @@ import '../../src/packages/Row/style/index.scss';
 
 
 import '../../src/packages/Input/style/index.scss';
+import '../../src/packages/DatePicker/style/index.scss';
