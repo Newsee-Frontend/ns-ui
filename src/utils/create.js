@@ -3,20 +3,20 @@
  */
 import namespace from '../utils/namespace';
 import createBasic from './create-basic';
-// import Icon from '../icon';
+
+
+import iconSvg from '../packages/Icon-svg/Icon-svg';
 // import Loading from '../loading';
 // import Cell from '../cell';
 // import CellGroup from '../cell-group';
 
 export default function (sfc) {
   sfc.components = Object.assign(sfc.components || {}, {
-    // Icon,
+    iconSvg,
     // Loading,
     // Cell,
     // CellGroup
   });
-
-  sfc.methods.p = (name) => namespace(name);
 
   return createBasic(sfc);
 };

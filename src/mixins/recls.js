@@ -33,6 +33,10 @@ export default {
     recls(el, mods) {
       const {name} = this.$options;
 
+      // console.log(55555555)
+      // console.log(this.$options);
+      // console.log(name)
+
       if (el && typeof el !== 'string') {
         mods = el;
         el = '';

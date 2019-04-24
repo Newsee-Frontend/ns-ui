@@ -9,6 +9,7 @@ import {mergeOptions} from "./utils";
 const version = '0.0.1';
 
 import Col from './packages/Col/Col';
+import DatePicker from './packages/DatePicker/DatePicker';
 import Head from './packages/Head/Head';
 import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
@@ -24,6 +25,7 @@ import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 const components = [
   Col,
+  DatePicker,
   Head,
   IconSvg,
   Input,
@@ -68,6 +70,7 @@ export {
   install,
   version,
   Col,
+  DatePicker,
   Head,
   IconSvg,
   Input,

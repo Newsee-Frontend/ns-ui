@@ -1,4 +1,6 @@
 export default {
   namespace: 'ns',
-  separator: '-'
+  separator: '-',
+  formsize: 'normal',
+  sizetype: ['mini', 'small', 'normal', 'medium', 'large'],
 }

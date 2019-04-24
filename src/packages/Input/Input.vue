@@ -1,7 +1,7 @@
 <!-- 输入框 input -->
 <template>
   <el-input
-    :class="className"
+    :class="recls([size])"
     v-model="childIpt"
     :type="type"
     :name="name"
@@ -9,14 +9,14 @@
     :disabled="disabled"
     :rows="rows"
     :minlength="minlength"
-    :maxlength="maxlen"
+    :maxlength="maxlength"
     :autofocus="autofocus"
     :readonly="readonly"
     :clearable="clearable"
     @change="change"
     @blur="blur"
     @focus="focus"
-    :style="{ width: input_width, height: input_height }"
+    :style="{ width: width, height: height }"
   >
   </el-input>
 
@@ -24,24 +24,23 @@
 <script>
   import create from '../../utils/create';
 
+  import {sizeValidator} from '../../utils/props/validator'
+
   export default create({
     name: 'input',
     data() {
       return {
         childIpt: '',
-        LimitLen: 300,
-        sizeMap: {
-          small: '90px',
-          medium: '120px',
-          normal: '200px',
-          large: '400px',
-          adapt: '100%',
-          customMade: '340px',
-          max: '758px',
-        },
       };
     },
     created() {
+      const disabled = true
+      console.log(11111111111)
+      console.log(this.recls('mini'));
+      console.log(this.recls(['mini']));
+      console.log(this.recls(['disabled', 'primary']));
+      console.log(this.recls('text', {disabled}))
+
       this.childIpt = this.fatherIpt;
     },
     model: {
@@ -57,36 +56,7 @@
       },
     },
     computed: {
-      sizeName() {
-        return {
-          mini: this.p('input--mini'),
-          small: this.p('input--small'),
-          medium: this.p('input--medium'),
-          large: this.p('input--large')
-        }[this.size];
-      },
-      className() {
-        return [this.p('input'), this.sizeName]
-      },
 
-      input_width() {
-        /*
-            有 spec 属性则采用 spec 的值所对应的宽度作为宽度值， 否则采用 width 属性值。
-            如果spec有值，请注意值是否正确（small，medium，normal，large），可以为 null。
-           */
-        if (this.spec) {
-
-          return this.sizeMap[this.spec];
-        }
-
-        return this.width;
-      },
-      input_height() {
-        return this.height;
-      },
-      maxlen() {
-        return this.maxlength ? parseInt(this.maxlength) : this.LimitLen;
-      },
     },
     props: {
       fatherIpt: [String, Number],
@@ -95,8 +65,9 @@
       name: {type: String, default: ''},
       type: {type: String, default: 'text'},
       placeholder: {type: String, default: null},
-      size: {type: String, default: 'small'}, //高度size
-      spec: {type: String}, //宽度size尺寸值（small，medium，normal，large,adapt）
+      size: {
+        type: String, default: 'normal', validator: s => sizeValidator(s)
+      },
       'prefix-icon': {type: String}, //输入框头部图标
       'suffix-icon': {type: String}, //输入框尾部图标
       customIcon: {type: String},
