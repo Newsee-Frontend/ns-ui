@@ -33,7 +33,7 @@
     name: 'col',
     data() {
       return {
-        inoutModel: '',
+        inoutModel: '111111',
         text: '请输入',
         size: 'small',
         width: '300px',

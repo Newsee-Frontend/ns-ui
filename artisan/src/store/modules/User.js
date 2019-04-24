@@ -75,7 +75,7 @@ const User = {
       // ns.base.Cookie.delete(cookieName);
       // ns.base.Cookie.delete('layout');
 
-      $store.dispatch('delAllVisitedViews');
+      $store.dispatch('delAllVisitedPages');
       sessionStorage.clear();
       ns.base.Cookie.clear();
     },

@@ -1,6 +1,6 @@
 @mixin clearfix {
   $selector: &;
-
+  zoom: 1;
   @at-root {
     #{$selector}::before,
     #{$selector}::after {
