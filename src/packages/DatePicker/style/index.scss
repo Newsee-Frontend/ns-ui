@@ -1,0 +1,6 @@
+//input 相关样式
+@import "../../../style/config/size";
+
+@include b(input) {
+  @include form-component-size();
+}

@@ -1,131 +1,116 @@
-<!-- 输入框 input -->
 <template>
-  <el-input
-    class="ns-input"
-    v-model="childIpt"
+  <el-date-picker
+    class="date-picker"
+    :class="className"
+    v-model="childDataPicker"
     :type="type"
-    :name="name"
-    :placeholder="placeholder"
-    :disabled="disabled"
-    :size="size"
-    :rows="rows"
-    :minlength="minlength"
-    :maxlength="maxlen"
-    :autofocus="autofocus"
     :readonly="readonly"
+    :disabled="disabled"
+    :editable="editable"
     :clearable="clearable"
+    :placeholder="placeholder"
+    :start-placeholder="startPlaceholder"
+    :end-placeholder="endPlaceholder"
+    :format="format"
+    :value-format="valueFormat"
+    :align="align"
+    :popper-class="popperClass"
+    :picker-options="pickerOptions"
+    :range-separator="rangeSeparator"
+    :default-time="defaultTime"
     @change="change"
-    @blur="blur"
-    @focus="focus"
-    :style="{ width: input_width, height: input_height }"
+    @onPick="onPick"
+    :style="{ width: datePicker_width, height: datePicker_height }"
   >
-  </el-input>
-
+  </el-date-picker>
 </template>
 <script>
-  export default {
+  import create from '../../utils/create';
+  export default create({
     name: 'date-picker',
     data() {
       return {
-        childIpt: '',
-        LimitLen: 300,
-        sizeMap: {
-          small: '90px',
-          medium: '120px',
-          normal: '200px',
-          large: '400px',
-          adapt: '100%',
-          customMade: '340px',
-          max: '758px',
-        },
+        childDataPicker: ''
       };
     },
     created() {
-      this.childIpt = this.fatherIpt;
+      this.childDataPicker = this.fatherDataPicker;
     },
     model: {
-      prop: 'fatherIpt',
-      event: 'input',
+      prop: 'fatherDataPicker',
+      event: 'change',
     },
     watch: {
-      childIpt() {
-        this.$emit('input', this.childIpt);
+      childDataPicker() {
+        this.$emit('change', this.childDataPicker);
       },
-      fatherIpt() {
-        this.childIpt = this.fatherIpt;
+      fatherDataPicker() {
+        this.childDataPicker = this.fatherDataPicker;
       },
     },
     computed: {
-      input_width() {
+      datePicker_width() {
         /*
-            有 spec 属性则采用 spec 的值所对应的宽度作为宽度值， 否则采用 width 属性值。
-            如果spec有值，请注意值是否正确（small，medium，normal，large），可以为 null。
-           */
+           有 spec 属性则采用 spec 的值所对应的宽度作为宽度值， 否则采用 width 属性值。
+           如果spec有值，请注意值是否正确（small，medium，normal，large），可以为 null。
+          */
         if (this.spec) {
           return this.sizeMap[this.spec];
         }
-
         return this.width;
       },
-      input_height() {
-        alert(this.height)
+      datePicker_height() {
         return this.height;
       },
-      maxlen() {
-        return this.maxlength ? parseInt(this.maxlength) : this.LimitLen;
+
+      sizeName() {
+        return {
+          mini: this.p('input--mini'),
+          small: this.p('input--small'),
+          medium: this.p('input--medium'),
+          large: this.p('input--large')
+        }[this.size];
+      },
+      className() {
+        return [this.p('input'), this.sizeName]
       },
     },
     props: {
-      fatherIpt: [String, Number],
-      width: {type: [String, Number], default: '200px'},
-      height: {type: [String, Number], default: '32px'},
-      name: {type: String, default: ''},
-      type: {type: String, default: 'text'},
-      placeholder: {type: String, default: null},
-      size: {type: String, default: 'small'}, //高度size
-      spec: {type: String}, //宽度size尺寸值（small，medium，normal，large,adapt）
-      'prefix-icon': {type: String}, //输入框头部图标
-      'suffix-icon': {type: String}, //输入框尾部图标
-      customIcon: {type: String},
-      rows: {type: Number, default: 3},
-      minlength: {type: [Number, String]}, //最小输入长度
-      maxlength: {type: [Number, String], default: 300}, //最大输入长度
-      disabled: {type: Boolean, default: false},
-      autofocus: {type: Boolean, default: false},
-      readonly: {type: Boolean, default: false},
-      clearable: {type: Boolean, default: false},
+      fatherDataPicker: [Date, Array, String, Number],
+      width: { type: [String, Number], default: '200px' },
+      height: { type: [String, Number], default: '32px' },
+      readonly: { type: Boolean, default: false }, //完全只读
+      disabled: { type: Boolean, default: false }, //禁用
+      editable: { type: Boolean, default: false }, //文本框可输入
+      clearable: { type: Boolean, default: true }, //是否显示清除按钮
+      size: { type: String }, //尺寸
+      spec: { type: String }, //宽度size尺寸值（small，medium，normal，large,adapt）
+      placeholder: { type: String }, //占位内容
+      startPlaceholder: { type: String }, //占位内容
+      endPlaceholder: { type: String }, //占位内容
+      type: { type: String, default: 'data' }, //显示类型
+      format: { type: String, default: 'yyyy-MM-dd' }, //显示在输入框中的格式
+      valueFormat: { type: String }, //时间日期绑定值格式，不指定则绑定Data对象
+      align: { type: String, default: 'left' }, //对齐方式
+      popperClass: { type: String }, //DateTimePicker 下拉框的类名
+      rangeSeparator: { type: String, default: ' - ' }, //选择范围时的分隔符
+      defaultTime: { type: [String, Array] }, //可选，选择器打开时默认显示的时间
+      //当前时间日期选择器特有的选项参考下表
+      pickerOptions: {
+        type: Object,
+        default: function() {
+          return {};
+        },
+      },
     },
     methods: {
-      /**
-       * change
-       * @param value
-       */
       change(value) {
         this.$emit('change', value);
       },
-      /**
-       * blur
-       * @param value
-       */
-      blur(value) {
-        this.$emit('blur', value);
-      },
-      /**
-       * focus
-       * @param value
-       */
-      focus(value) {
-        this.$emit('focus', value);
-      },
-      /**
-       * icon-click
-       * @param value
-       */
-      iconClick(value) {
-        this.$emit('iconClick', value);
+      //选中日期后会执行的回调，只有当 daterange 或 datetimerange 才生效
+      onPick({ maxDate, minDate }) {
+        this.$emit('onPick', { maxDate, minDate });
       },
     },
-  };
+  });
 </script>
-<style rel="stylesheet/scss" lang="scss">
-</style>

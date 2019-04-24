@@ -15,8 +15,10 @@ $height: 32px 32px 32px 32px 32px;
 
     @include rb($size-name) {
       @include base-style-change($w, $h);
-      @include input-inner();
     }
+
+    @include input-inner();
+
   }
 
 }
