@@ -13,8 +13,8 @@ import IconSvg from '../../src/packages/Icon-svg/Icon-svg';
 import Col from '../../src/packages/Col/Col';
 import Row from '../../src/packages/Row/Row';
 
-import Input from '../../src/packages/Input/Input';
 import DatePicker from '../../src/packages/DatePicker/DatePicker'
+import Input from '../../src/packages/Input/Input.js';
 
 Vue.component('Layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
