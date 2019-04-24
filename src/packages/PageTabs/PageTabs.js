@@ -37,8 +37,8 @@ export default create({
                   {
                     <img
                       src={this.isActive(tag.path) ?
-                        require('../../assets/tabsImg_active@3x.png') :
-                        require('../../assets/tabsImg@3x.png')
+                        require('../../assets/pageTabs-active@3x.png') :
+                        require('../../assets/pageTabs@3x.png')
                       }
                     />
                   }

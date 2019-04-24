@@ -14,6 +14,8 @@ import Head from './packages/Head/Head';
 import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
+import Levelbar from './packages/Levelbar/Levelbar';
+import PageTabs from './packages/PageTabs/PageTabs';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
 import SideBar from './packages/SideBar/SideBar';
@@ -30,6 +32,8 @@ const components = [
   IconSvg,
   Input,
   Layout,
+  Levelbar,
+  PageTabs,
   Row,
   Screenfull,
   SideBar,
@@ -75,6 +79,8 @@ export {
   IconSvg,
   Input,
   Layout,
+  Levelbar,
+  PageTabs,
   Row,
   Screenfull,
   SideBar,
