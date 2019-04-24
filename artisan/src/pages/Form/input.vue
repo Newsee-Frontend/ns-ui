@@ -89,5 +89,5 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  @import "input";
+
 </style>
