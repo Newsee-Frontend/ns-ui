@@ -3,8 +3,12 @@
 /dist/
 /src/
 /test/
+/script/
 /mock/
 /artisan/
 /node_modules/
 /*.js
 /test/unit/coverage/
+
+
+/shtest/
