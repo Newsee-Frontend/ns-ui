@@ -16,7 +16,7 @@ export default create({
   render(h) {
     return(
       <el-badge
-        class="item"
+        class={this.recls()}
         value={this.value}
         max={this.max}
         is-dot={this.isDot}

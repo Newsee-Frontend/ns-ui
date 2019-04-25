@@ -52,6 +52,7 @@ export default create({
   render(h) {
     return (
       <el-progress
+        class={this.recls()}
         type={ this.type }
         percentage={ this.percentage }
         stroke-width= { this.strokeWidth }
