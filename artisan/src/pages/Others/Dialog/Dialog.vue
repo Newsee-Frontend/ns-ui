@@ -1,7 +1,7 @@
 <!--UI 组件库 - Dialog - 页面测试-->
 <template>
   <div>
-    <a @click.stop="buttonClick">点击打开</a>
+    <el-button @click="buttonClick">点击打开</el-button>
     <!--<el-dialog-->
     <!--:visible.sync="visible"-->
     <!--:fullscreen="fullscreen"-->
@@ -17,10 +17,11 @@
       :title="title"
       :top="top"
       :modal="modal"
-      :fullscreen="fullscreen"
-      :lock-scroll="false"
-      :modal-append-to-body="modalAppendToBody"
+
+      :lock-scroll="lockScroll"
       :close-on-click-modal="closeOnClickModal"
+      :close-on-press-escape="closeOnPressEscape"
+
       :show-close="showClose"
       :before-close="beforeClose"
       @close="close"
@@ -43,22 +44,17 @@
       return {
         visible: false,
         type: 'normal',//'normal','simple','noFooter','noHeader','autoHeight'
-        size: 'large',
+        size: 'large',//'mini', 'small', 'normal', 'medium', 'large'
         title: '标题',
         top: '7%',
         modal: true,
-        fullscreen: true,
-        modalAppendToBody: true,
         closeOnClickModal: true,
+        closeOnPressEscape: true,
+        lockScroll: false,
         showClose: true,
       };
     },
-    computed: {},
-    created() {
-
-    },
     methods: {
-
       buttonClick() {
         this.visible = true;
       },

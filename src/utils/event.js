@@ -4,7 +4,8 @@
  * @param type    监听函数类型，如 click,mouseover
  * @param func    监听函数
  */
-export function addEventHandler(target, type, func) {
+
+export const addEventHandler = (target, type, func) => {
   if (target.addEventListener) {
     //监听IE9，谷歌和火狐
     target.addEventListener(type, func, false);
@@ -13,7 +14,7 @@ export function addEventHandler(target, type, func) {
   } else {
     target['on' + type] = func;
   }
-}
+};
 
 /**
  * removeEventHandler （移除Dom元素的监听事件）
@@ -21,7 +22,8 @@ export function addEventHandler(target, type, func) {
  * type：监听函数类型，如click,mouseover
  * func：监听函数
  */
-export function removeEventHandler(target, type, func) {
+
+export const removeEventHandler = (target, type, func) => {
   if (target.removeEventListener) {
     target.removeEventListener(type, func, false);
   } else if (target.detachEvent) {
@@ -29,7 +31,7 @@ export function removeEventHandler(target, type, func) {
   } else {
     delete target['on' + type];
   }
-}
+};
 
 /**
  * stop propagation

@@ -1,6 +1,5 @@
 const navmenu = (req, res) => {
-  console.log('navmenu-navmenu-navmenu');
-  console.log(req.body);
+  // console.log(req.body);
   return res.json({
     resultCode: '200',
     resultMsg: '操作成功。',
@@ -28,7 +27,7 @@ const navmenu = (req, res) => {
         funcId: 'basic',
         menuLabel: '基础',
         menuRouter: 'basic',
-        menuIcon: 'bushenbuzhan1',
+        menuIcon: 'fold',
         menuIndex: 3,
         hide: 1,
         childMenus: [
@@ -54,7 +53,7 @@ const navmenu = (req, res) => {
         funcId: 'layout',
         menuLabel: '布局',
         menuRouter: 'layout',
-        menuIcon: 'bushenbuzhan1',
+        menuIcon: 'renwu',
         menuIndex: 4,
         hide: 1,
         childMenus: [
@@ -88,7 +87,7 @@ const navmenu = (req, res) => {
         funcId: 'form',
         menuLabel: '表单',
         menuRouter: 'form',
-        menuIcon: 'bushenbuzhan1',
+        menuIcon: 'bianji-',
         menuIndex: 5,
         hide: 1,
         childMenus: [
@@ -122,7 +121,7 @@ const navmenu = (req, res) => {
         funcId: 'data',
         menuLabel: '数据',
         menuRouter: 'data',
-        menuIcon: 'bushenbuzhan1',
+        menuIcon: 'shujugongxiang',
         menuIndex: 6,
         hide: 1,
         childMenus: [
@@ -141,7 +140,35 @@ const navmenu = (req, res) => {
             menuIcon: null,
             menuIndex: '2',
             hide: 1,
-          }
+          },
+        ],
+      },
+      {
+        funcId: 'other',
+        menuLabel: '其他',
+        menuRouter: 'other',
+        menuIcon: 'down-square',
+        menuIndex: 7,
+        hide: 1,
+        childMenus: [
+          {
+            funcId: 'dialog',
+            menuLabel: '对话框',
+            menuRouter: 'dialog',
+            menuIcon: null,
+            menuIndex: '1',
+            hide: 1,
+          },
+          {
+            funcId: 'slip-dialog',
+            menuLabel: '滑动对话框',
+            menuRouter: 'slip-dialog',
+            menuIcon: null,
+            menuIndex: '2',
+            hide: 1,
+          },
+
+
         ],
       },
     ],

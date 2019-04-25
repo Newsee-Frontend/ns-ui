@@ -4,10 +4,10 @@
 
 $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 
-@include b(slipDialog) {
+@include b(slip-dialog) {
   position: fixed;
   overflow: auto;
-  background: #d1ffde;
+  background: #FFF;
   border-radius: $--border-radius-small;
   box-shadow: $--slipDialog-box-shadow;
   z-index: 9999;
@@ -15,7 +15,6 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
     position: relative;
     height: 100%;
     padding: 15px;
-    background: $--color-white;
     margin: 0;
     box-sizing: border-box;
   }

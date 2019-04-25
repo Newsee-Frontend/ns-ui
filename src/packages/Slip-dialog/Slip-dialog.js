@@ -1,36 +1,21 @@
-<template>
-  <transition
-    :name="animationName"
-    @before-enter="beforeEnter"
-    @enter="enter"
-    @after-enter="afterEnter"
-    @before-leave="beforeLeave"
-    @leave="leave"
-    @after-leave="afterLeave"
-  >
-    <div
-      class="cx-slipDialog"
-      v-show="visible"
-      :class="[customClass]"
-      :style="wrapperStyle"
-      @click="wrapperClick"
-    >
-      <div class="cx-slipDialog__wrapper" role="dialog" ref="dialog">
-        <slot></slot>
-      </div>
-    </div>
-  </transition>
-</template>
+import create from '../../utils/create';
+import { addEventHandler, removeEventHandler } from '../../utils/event';
 
-<script>
-import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
-
-export default {
+export default create({
   name: 'slip-dialog',
 
   props: {
     visible: { type: Boolean, default: false },
-    animation: { type: String, default: 'fade-normal' }, //动画 fastIn-slowOut fade-in-out fade-normal
+    /**
+     * animation type
+     * fade普通 --- fade-normal
+     * fade上下 --- fade-up-down
+     * 滑动-匀速进出 --- slip-linear
+     * 滑动-快进慢出 --- slip-rush
+     * 滑动-迂回 --- slip-pretend
+     * 反弹模式 --- bouncer
+     */
+    animation: { type: String, default: 'fade-normal' },
     entrPosition: { type: String, default: 'right' }, //入场位置
     left: { type: String, default: '0' },
     right: { type: String, default: '0' },
@@ -46,22 +31,6 @@ export default {
     return {
       lastVisible: false,
     };
-  },
-
-  watch: {
-    visible(val) {
-      console.log('watch-watch');
-      this.lastVisible = this.visible;
-      if (val) {
-        this.appendDialogToBody();
-        this.open();
-      } else {
-        if (typeof this.beforeClose === 'function') {
-          this.beforeClose(val);
-        }
-        this.close();
-      }
-    },
   },
 
   computed: {
@@ -82,6 +51,49 @@ export default {
     },
   },
 
+  watch: {
+    visible(val) {
+      this.lastVisible = this.visible;
+      if (val) {
+        this.appendDialogToBody();
+        this.open();
+      } else {
+        if (typeof this.beforeClose === 'function') {
+          this.beforeClose(val);
+        }
+        this.close();
+      }
+    },
+  },
+
+  render(h) {
+    return (
+      <transition
+        name={this.animationName}
+        on-before-enter={this.beforeEnter}
+        on-enter={this.enter}
+        on-after-enter={this.afterEnter}
+        on-before-leave={this.beforeLeave}
+        on-leave={this.leave}
+        on-after-leave={this.afterLeave}
+      >{
+        this.visible ?
+          <div
+            class={this.recls() + ' ' + this.customClass}
+            style={this.wrapperStyle}
+            on-click={this.wrapperClick}
+          >
+            <div class={this.recls('wrapper')} role={'dialog'}>
+              {
+                this.$slots.default
+              }
+            </div>
+          </div> : null
+      }
+      </transition>
+    );
+  },
+
   methods: {
     appendDialogToBody() {
       if (!this.appendToBody) return;
@@ -94,11 +106,8 @@ export default {
       this.$emit('update:visible', false);
     },
     outerClickEvent() {
-      console.log('outerClickEvent');
-      console.log(this.lastVisible);
       if (!this.visible) return;
       if (!this.lastVisible) return;
-      console.log('点击body 执行关闭');
       this.close();
     },
     wrapperClick(e) {
@@ -136,17 +145,12 @@ export default {
   },
   beforeDestroy() {
     //remove event Listener
-    document.body.removeEventListener('click', this.outerClickEvent);
+    removeEventHandler(document.body, 'click', this.outerClickEvent);
   },
   destroyed() {
     // if appendToBody is true, remove DOM node after destroy
     if (this.appendToBody && this.$el && this.$el.parentNode) {
       this.$el.parentNode.removeChild(this.$el);
     }
-    removeEventHandler(document.body, 'click', this.outerClickEvent);
   },
-};
-</script>
-<style rel="stylesheet/scss" lang="scss">
-@import 'style/index';
-</style>
+});

@@ -18,9 +18,10 @@ import Input from '../../src/packages/Input/Input.js';
 import TimePicker from '../../src/packages/TimePicker/TimePicker.js';
 import PageTabs from '../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../src/packages/Dialog/Dialog.js';
+import SlipDialog from '../../src/packages/Slip-dialog/Slip-dialog.js';
 
-import Badge from '../../src/packages/Badge/Badge.js'
-import Progress from '../../src/packages/Progress/Progress.js'
+import Badge from '../../src/packages/Badge/Badge.js';
+import Progress from '../../src/packages/Progress/Progress.js';
 
 Vue.component('Layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
@@ -35,7 +36,7 @@ Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
 Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
-
+Vue.component('ns-slip-dialog', SlipDialog);
 
 Vue.component('ns-badge', Badge);
 Vue.component('ns-progress', Progress);
@@ -53,3 +54,4 @@ import '../../src/packages/DatePicker/style/index.scss';
 import '../../src/packages/TimePicker/style/index.scss';
 import '../../src/packages/PageTabs/style/index.scss';
 import '../../src/packages/Dialog/style/index.scss';
+import '../../src/packages/Slip-dialog/style/index.scss';

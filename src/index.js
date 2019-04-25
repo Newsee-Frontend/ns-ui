@@ -18,6 +18,7 @@ import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
 import Levelbar from './packages/Levelbar/Levelbar';
 import PageTabs from './packages/PageTabs/PageTabs';
+import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
 import SideBar from './packages/SideBar/SideBar';
@@ -39,6 +40,7 @@ const components = [
   Layout,
   Levelbar,
   PageTabs,
+  Progress,
   Row,
   Screenfull,
   SideBar,
@@ -89,6 +91,7 @@ export {
   Layout,
   Levelbar,
   PageTabs,
+  Progress,
   Row,
   Screenfull,
   SideBar,
