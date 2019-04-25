@@ -1,5 +1,6 @@
 const navmenu = (req, res) => {
-  // console.log(req.body);
+  console.log('navmenu-navmenu-navmenu');
+  console.log(req.body);
   return res.json({
     resultCode: '200',
     resultMsg: '操作成功。',
@@ -27,7 +28,7 @@ const navmenu = (req, res) => {
         funcId: 'basic',
         menuLabel: '基础',
         menuRouter: 'basic',
-        menuIcon: 'fold',
+        menuIcon: 'bushenbuzhan1',
         menuIndex: 3,
         hide: 1,
         childMenus: [
@@ -53,7 +54,7 @@ const navmenu = (req, res) => {
         funcId: 'layout',
         menuLabel: '布局',
         menuRouter: 'layout',
-        menuIcon: 'renwu',
+        menuIcon: 'bushenbuzhan1',
         menuIndex: 4,
         hide: 1,
         childMenus: [
@@ -87,7 +88,7 @@ const navmenu = (req, res) => {
         funcId: 'form',
         menuLabel: '表单',
         menuRouter: 'form',
-        menuIcon: 'bianji-',
+        menuIcon: 'bushenbuzhan1',
         menuIndex: 5,
         hide: 1,
         childMenus: [
@@ -118,21 +119,29 @@ const navmenu = (req, res) => {
         ],
       },
       {
-        funcId: 'other',
-        menuLabel: '其他',
-        menuRouter: 'other',
-        menuIcon: 'down-square',
+        funcId: 'data',
+        menuLabel: '数据',
+        menuRouter: 'data',
+        menuIcon: 'bushenbuzhan1',
         menuIndex: 6,
         hide: 1,
         childMenus: [
           {
-            funcId: 'dialog',
-            menuLabel: '对话框',
-            menuRouter: 'dialog',
+            funcId: 'badge',
+            menuLabel: '标记',
+            menuRouter: 'badge',
             menuIcon: null,
             menuIndex: '1',
             hide: 1,
           },
+          {
+            funcId: 'progress',
+            menuLabel: '进度条',
+            menuRouter: 'progress',
+            menuIcon: null,
+            menuIndex: '2',
+            hide: 1,
+          }
         ],
       },
     ],
