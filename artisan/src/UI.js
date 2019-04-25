@@ -17,6 +17,7 @@ import DatePicker from '../../src/packages/DatePicker/DatePicker.js';
 import Input from '../../src/packages/Input/Input.js';
 import TimePicker from '../../src/packages/TimePicker/TimePicker.js';
 import PageTabs from '../../src/packages/PageTabs/PageTabs.js';
+import Dialog from '../../src/packages/Dialog/Dialog.js';
 
 Vue.component('Layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
@@ -30,6 +31,8 @@ Vue.component('ns-input', Input);
 Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
 Vue.component('ns-page-tabs', PageTabs);
+Vue.component('ns-dialog', Dialog);
+
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
@@ -43,3 +46,4 @@ import '../../src/packages/Input/style/index.scss';
 import '../../src/packages/DatePicker/style/index.scss';
 import '../../src/packages/TimePicker/style/index.scss';
 import '../../src/packages/PageTabs/style/index.scss';
+import '../../src/packages/Dialog/style/index.scss';

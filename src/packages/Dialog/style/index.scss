@@ -1,0 +1,91 @@
+@import './var';
+@import '../../../style/mixins/mixins';
+
+//dialog style
+@include b(dialog) {
+  .el-dialog {
+    width: $dialog-default_width;
+    //头部
+    .el-dialog__header {
+      padding: 12px 15px 12px 15px;
+      font-size: 14px;
+      background: #f2f2f2;
+    }
+    //头部 - 标题
+    .el-dialog__title {
+      color: #333333;
+      font-size: 14px;
+      line-height: $dialog-line_height;
+    }
+    //头部 - 关闭按钮
+    .el-dialog__headerbtn {
+      top: 16px;
+      .el-dialog__close {
+        color: #999999;
+      }
+    }
+    //内容部分
+    .el-dialog__body {
+      height: $dialog-body_max_height;
+      line-height: $dialog-line_height;
+      max-height: $dialog-body-max-height;
+      padding: $dialog-padding-top $dialog-padding-right $dialog-padding-bottom $dialog-padding_left;
+      color: #666666;
+      overflow-y: auto;
+      box-sizing: border-box;
+      .dialog-container {
+        height: 100%;
+        box-sizing: border-box;
+        .panel-page {
+          background-color: transparent;
+        }
+      }
+    }
+    //底部
+    .el-dialog__footer {
+      border-top: none;
+      padding: 22px 42px;
+    }
+  }
+
+  //normal
+  @include ms2link(normal) {
+    .el-dialog {
+
+    }
+  }
+
+  //autoHeight
+  @include ms2link(autoHeight) {
+    .el-dialog .el-dialog__body {
+      height: auto;
+      max-height: none;
+    }
+  }
+
+  //simple
+  @include ms2link(simple) {
+    .el-dialog {
+      .el-dialog__footer,
+      .el-dialog__header {
+        display: none;
+      }
+    }
+  }
+
+  //no-footer
+  @include ms2link(noFooter) {
+    .el-dialog .el-dialog__footer {
+      display: none;
+    }
+  }
+
+  //no-header
+  @include ms2link(noHeader) {
+    .el-dialog .el-dialog__header {
+      display: none;
+    }
+  }
+}
+
+

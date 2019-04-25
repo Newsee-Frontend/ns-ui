@@ -1,18 +1,21 @@
 /*
  * style entry for UI
- * created: 2019-04-24 21:25:25.
+ * created: 2019-04-25 15:51:17.
  * version: 0.0.1.
  * author: Broccoli spring( 高仓雄 - gcx )
  * copyright (c) Broccoli spring( gcx )
  * ------------------------------------------
  */
 
+  
 /**
  * Entry of all component's style
  */
 
+@import './packages/Badge/style/index';
 @import './packages/Col/style/index';
 @import './packages/DatePicker/style/index';
+@import './packages/Dialog/style/index';
 @import './packages/Head/style/index';
 @import './packages/Icon-svg/style/index';
 @import './packages/Input/style/index';
@@ -25,4 +28,5 @@
 @import './packages/Skin/style/index';
 @import './packages/Slip-dialog/style/index';
 @import './packages/TestDemo/style/index';
+@import './packages/TimePicker/style/index';
 @import './packages/UserDropdown/style/index';

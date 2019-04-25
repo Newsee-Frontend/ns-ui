@@ -64,3 +64,13 @@
     }
   }
 }
+
+/**
+ *  modifier separator to link
+ */
+@mixin ms2link($name) {
+  &#{$modifier-separator + $name} {
+    @content;
+  }
+}
+

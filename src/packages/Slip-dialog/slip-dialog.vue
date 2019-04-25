@@ -98,7 +98,7 @@ export default {
       console.log(this.lastVisible);
       if (!this.visible) return;
       if (!this.lastVisible) return;
-      console.log('店点击body 执行关闭');
+      console.log('点击body 执行关闭');
       this.close();
     },
     wrapperClick(e) {

@@ -6,6 +6,28 @@ template_src='artisan/src/pages'
 style_entry="index.scss"
 
 
+ createTemplatePath() {
+    if [ ! -d $template_src/$ORGNAME/$DIRNAME  ];then
+
+        mkdir $template_src/$ORGNAME/$DIRNAME
+
+        templatepage_path=$template_src/$ORGNAME/$DIRNAME/$DIRNAME.vue
+        touch $templatepage_path
+
+        echo "<!--UI 组件库 - $DIRNAME - 页面测试-->" >> $templatepage_path
+
+        while read line
+          do
+          echo $line >> $templatepage_path
+        done  < ./script/createTem/templatepage.vue
+
+        echo "File - $templatepage_path create successfull. "
+    else
+        echo File exist - $template_src/$ORGNAME/$DIRNAME
+    fi
+}
+
+
 echo "Enter components name : "
 read DIRNAME
 
@@ -17,7 +39,7 @@ read -p -n $REPLY
 
 if [[ $REPLY =~ ^[Yy]$ ]]
 then
-  if [ ! -d $DIRNAME  ];then
+  if [ ! -d $dev_path/$DIRNAME  ];then
 
     # -- create dev dir --
     mkdir $dev_path/$DIRNAME
@@ -36,29 +58,18 @@ then
     done  < ./script/createTem/template.js
 
 
-    echo "文件 - $style_entry $DIRNAME.js 创建完成"
+    echo "File - $style_entry $DIRNAME.js create successfull."
 
     # -- create template test dir --
-    mkdir $template_src/$ORGNAME
-    mkdir $template_src/$ORGNAME/$DIRNAME
-    templatepage_path=$template_src/$ORGNAME/$DIRNAME/$DIRNAME.vue
-    touch $templatepage_path
-
-    echo "<!--UI 组件库 - $DIRNAME - 页面测试-->" >> $templatepage_path
-
-    while read line
-      do
-      echo $line >> $templatepage_path
-    done  < ./script/createTem/templatepage.vue
-
+    if [ ! -d $template_src/$ORGNAME  ];then
+      mkdir $template_src/$ORGNAME
+      createTemplatePath
+    else
+      createTemplatePath
+    fi
   else
-    echo dir exist
+    echo Dir exist - $dev_path/$DIRNAME
   fi
 fi
 
-function readline () {
-    while read line
-    do
-    echo $line >> $template_path
-    done  < ./script/createTem/template.js
-}
+

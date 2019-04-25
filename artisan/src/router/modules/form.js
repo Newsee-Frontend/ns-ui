@@ -1,5 +1,5 @@
 const Layout = resolve => require(['@/layout/layout.vue'], resolve);
-export const baseRouter = [
+export const formRouter = [
   {
     path: '/form',
     component: Layout,
@@ -10,19 +10,19 @@ export const baseRouter = [
         path: 'input',
         component: () => import('../../pages/Form/input'),
         meta: { auth: true, key: 'input' },
-        name: 'input 布局',
+        name: 'input',
       },
       {
         path: 'datepicker',
         component: () => import('../../pages/Form/datepicker'),
         meta: { auth: true, key: 'datepicker' },
-        name: 'datepicker 布局',
+        name: 'datepicker',
       },
       {
         path: 'timepicker',
         component: () => import('../../pages/Form/timepicker'),
         meta: { requireAuth: true, key: 'timepicker' },
-        name: 'timepicker 布局',
+        name: 'timepicker',
       },
     ],
   },
