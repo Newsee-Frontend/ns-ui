@@ -1,3 +1,1 @@
-export const testRouter = [
-
-];
+export const testRouter = [];

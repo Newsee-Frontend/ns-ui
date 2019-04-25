@@ -24,8 +24,8 @@ export default {
     gutter() {
       let parent = this.$parent;
       console.log(1111111111111111);
-      console.log(parent.$options.componentName)
-      console.log(1111111111111111)
+      console.log(parent.$options.componentName);
+      console.log(1111111111111111);
       while (parent && parent.$options.componentName !== 'ns-row') {
         parent = parent.$parent;
       }

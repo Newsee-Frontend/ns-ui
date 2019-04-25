@@ -4,7 +4,7 @@ export default {
     return {
       title: 'test-title-111',
       content: 'testContent-testContent',
-    }
+    };
   },
   render(h) {
     return (
@@ -12,6 +12,6 @@ export default {
         <h2>{this.title}</h2>
         <span>{this.content}</span>
       </div>
-    )
+    );
   },
-}
+};

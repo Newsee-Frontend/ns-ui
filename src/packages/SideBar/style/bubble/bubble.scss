@@ -1,4 +1,4 @@
-@import "var";
+@import 'var';
 
 /**
 * ==============================
@@ -8,7 +8,6 @@
 
 #Sidebar.first-nav {
   &.sidebar-bubble {
-
     width: $first-nav-width;
     color: $first-nav-text-color;
     background-color: $first-nav-back-color;
@@ -18,7 +17,6 @@
       .first-nav-tit {
         span {
           color: $first-nav-text-color;
-
         }
         svg {
           color: $first-nav-icon-color;
@@ -30,7 +28,8 @@
         color: $second-nav-text-color;
         transition: all $transition-speed ease-in-out;
 
-        .second-nav-tit, .second-nav-container {
+        .second-nav-tit,
+        .second-nav-container {
           margin-left: 0;
         }
 
@@ -66,17 +65,16 @@
           }
         }
         ul.second-nav li.second-nav-items {
-          &.second-nav-active a.nav-link, &:hover a.nav-link {
+          &.second-nav-active a.nav-link,
+          &:hover a.nav-link {
             background-color: $second-nav-back-color-hover;
           }
         }
       }
-
     }
     &:hover {
       width: $first-nav-width;
       li.first-nav-items {
-
         .first-nav-tit {
           span {
             display: inline-block;
@@ -89,7 +87,6 @@
         ul.second-nav {
           width: $second-nav-width;
         }
-
       }
     }
 
@@ -125,6 +122,5 @@
         }
       }
     }
-
   }
 }

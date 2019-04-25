@@ -19,13 +19,13 @@ var bem_prefix = function prefix(name, mods) {
   }
 
   if (Array.isArray(mods)) {
-    return mods.map(function (item) {
+    return mods.map(function(item) {
       return prefix(name, item);
     });
   }
 
   var ret = {};
-  Object.keys(mods).forEach(function (key) {
+  Object.keys(mods).forEach(function(key) {
     ret[name + MODS + key] = mods[key];
   });
   return ret;

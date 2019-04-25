@@ -1,6 +1,6 @@
-@import "../../../style/config/public";
-@import "../../Screenfull/style/index";
-@import "../../Skin/style/index";
+@import '../../../style/config/public';
+@import '../../Screenfull/style/index';
+@import '../../Skin/style/index';
 
 /* ------------  顶部模块 ------------  */
 .Head {
@@ -21,6 +21,6 @@
     margin-left: 15px;
   }
   svg {
-    fill: #FFF;
+    fill: #fff;
   }
 }

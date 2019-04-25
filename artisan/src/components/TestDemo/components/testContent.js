@@ -10,9 +10,7 @@ export default {
     return (
       <div>
         img-img-img-img
-        <img
-          src={require('../../../assets/img/logo.png')}
-        /> :
+        <img src={require('../../../assets/img/logo.png')} /> :
       </div>
     );
   },

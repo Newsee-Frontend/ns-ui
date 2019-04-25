@@ -2,8 +2,8 @@ const iniView = '/login';
 const Layout = resolve => require(['@/layout/layout.vue'], resolve);
 
 export const publicRouter = [
-  {path: '/', redirect: iniView},
-  {path: '*', redirect: iniView},
+  { path: '/', redirect: iniView },
+  { path: '*', redirect: iniView },
 
   // 主页
   {
@@ -15,7 +15,7 @@ export const publicRouter = [
       {
         path: 'dashboard',
         component: () => import('../../pages/dashboard/index'),
-        meta: {auth: true, key: 'dashboard'},
+        meta: { auth: true, key: 'dashboard' },
         name: '欢迎页面',
       },
     ],
@@ -25,7 +25,6 @@ export const publicRouter = [
     path: '/404',
     name: '404',
     component: () => import('../../pages/Public/404'),
-    meta: {auth: false},
+    meta: { auth: false },
   },
 ];
-

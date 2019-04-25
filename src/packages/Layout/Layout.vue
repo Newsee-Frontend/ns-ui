@@ -33,23 +33,23 @@
 </template>
 
 <script>
-  import Head from '../Head/Head';
-  // import PageTabs from '../head/PageTabs/Screenfull.vue';
+import Head from '../Head/Head';
+// import PageTabs from '../head/PageTabs/Screenfull.vue';
 
-  export default {
-    name: 'layout',
-    components: {
-      // PageTabs,
-      Head
-    },
-    data() {
-      return {};
-    },
-    computed: {},
-  };
+export default {
+  name: 'layout',
+  components: {
+    // PageTabs,
+    Head,
+  },
+  data() {
+    return {};
+  },
+  computed: {},
+};
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-  #overview {
-    background: white;
-  }
+#overview {
+  background: white;
+}
 </style>

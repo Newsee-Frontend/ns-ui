@@ -5,11 +5,11 @@
     #{$selector}::before,
     #{$selector}::after {
       display: table;
-      content: "";
+      content: '';
     }
 
     #{$selector}::after {
-      clear: both
+      clear: both;
     }
   }
 }

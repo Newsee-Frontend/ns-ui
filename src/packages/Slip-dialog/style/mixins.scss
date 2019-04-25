@@ -1,19 +1,19 @@
 $entr-position: 'left' 'right' 'top' 'bottom';
 
-@mixin n($name,$type) {
-  $N: $name+'-'+$type !global;
+@mixin n($name, $type) {
+  $N: $name + '-' + $type !global;
   .#{$N} {
     @content;
   }
 }
 
-@mixin keyframes($name,$suffix:'') {
+@mixin keyframes($name, $suffix: '') {
   @if $suffix {
-    $frameName: 'keyframes'+'-'+$name+'_'+$suffix !global;
+    $frameName: 'keyframes'+'-' + $name + '_' + $suffix !global;
   } @else {
-    $frameName: 'keyframes'+'-'+$name !global;
+    $frameName: 'keyframes'+'-' + $name !global;
   }
-  @keyframes #{$frameName}{
+  @keyframes #{$frameName} {
     @content;
   }
 }

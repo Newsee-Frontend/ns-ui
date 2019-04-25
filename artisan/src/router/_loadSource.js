@@ -1,10 +1,10 @@
 const files = require.context('../../../src/packages/', false, /^\.\//);
 
-console.log(22222222222222222222)
-console.log(22222222222222222222)
-console.log(files.keys())
-console.log(22222222222222222222)
-console.log(22222222222222222222)
+console.log(22222222222222222222);
+console.log(22222222222222222222);
+console.log(files.keys());
+console.log(22222222222222222222);
+console.log(22222222222222222222);
 let modules = [];
 
 // files.keys().forEach(key => {
@@ -22,4 +22,4 @@ let modules = [];
 //   if (item && item.path) modules.push(item)
 // });
 
-export default modules
+export default modules;

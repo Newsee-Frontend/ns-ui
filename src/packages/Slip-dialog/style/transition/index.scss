@@ -1,14 +1,14 @@
 /* ====== fade ====== */
-@import "fade-normal";
+@import 'fade-normal';
 //匀速
-@import "fade-up-down";
+@import 'fade-up-down';
 //上下
 /* ====== slip ======*/
-@import "slip-linear";
+@import 'slip-linear';
 //匀速
-@import "slip-rush";
+@import 'slip-rush';
 //快进慢出
-@import "slip-pretend";
+@import 'slip-pretend';
 //迂回
 /* ====== jump ======*/
-@import "bouncer";
+@import 'bouncer';

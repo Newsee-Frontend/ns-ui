@@ -1,10 +1,10 @@
-@import "../mixins";
+@import '../mixins';
 /* animation name*/
 $animation: 'fade-up-down';
 
 /* target postion */
-$enter_duration: .5s;
-$leave_duration: .5s;
+$enter_duration: 0.5s;
+$leave_duration: 0.5s;
 /* target postion */
 $t_postion: -50px;
 
@@ -22,7 +22,6 @@ $t_postion: -50px;
 
 @include n($animation, 'enter-active') {
   animation: $frameName $enter_duration;
-
 }
 
 @include keyframes($animation, 'out') {

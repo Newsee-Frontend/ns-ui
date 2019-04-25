@@ -1,5 +1,5 @@
-import config from '../../config/config'
+import config from '../../config/config';
 
-export const sizeValidator = (s) => {
+export const sizeValidator = s => {
   return config.sizetype.includes(s);
 };

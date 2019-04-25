@@ -1,5 +1,5 @@
 //datepicker 相关样式
-@import "../../../style/config/size";
+@import '../../../style/config/size';
 
 @include b(date-picker) {
   @include form-component-size(date-picker);

@@ -3,4 +3,4 @@ export default {
   separator: '-',
   formsize: 'normal',
   sizetype: ['mini', 'small', 'normal', 'medium', 'large'],
-}
+};

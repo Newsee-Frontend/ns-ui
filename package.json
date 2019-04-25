@@ -22,8 +22,7 @@
     "rename:components": "node build/entry/rename-components.js",
     "build:copy": "gulp --gulpfile ./build/copy/build-copy.js",
     "release": "./build/release.sh",
-    "create:template": "./script/createTem/create.sh",
-    "test123": "node ./artisan/test123.js"
+    "create:template": "./script/createTem/create.sh"
   },
   "dependencies": {
     "@babel/runtime": "^7.2.0",

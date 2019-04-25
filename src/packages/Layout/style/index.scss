@@ -1,8 +1,9 @@
-@import "../../../style/config/public";
-@import "../../Head/style/index";
-@import "./modules/skin";
+@import '../../../style/config/public';
+@import '../../Head/style/index';
+@import './modules/skin';
 
-html, body {
+html,
+body {
   height: 100%;
   min-height: 100%;
   #app {

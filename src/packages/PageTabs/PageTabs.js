@@ -26,38 +26,32 @@ export default create({
   },
   render(h) {
     return (
-      <ul class={this.recls({ 'show': this.visitedView.length })}>
-        {
-          Array.from(this.visitedView).map((tag, i) =>
-            [
-              <li class={['tab-tag', { 'tag-active': this.isActive(tag.path) }]}
-                  key={tag.path}
-              >
-                <el-tag closable on-close={this.closeViewTabs.bind(this, tag)} on-click={this.tabsjump.bind(this, tag)}>
-                  {
-                    <img
-                      src={this.isActive(tag.path) ?
-                        require('../../assets/pageTabs-active@3x.png') :
-                        require('../../assets/pageTabs@3x.png')
-                      }
-                    />
+      <ul class={this.recls({ show: this.visitedView.length })}>
+        {Array.from(this.visitedView).map((tag, i) => [
+          <li class={['tab-tag', { 'tag-active': this.isActive(tag.path) }]} key={tag.path}>
+            <el-tag
+              closable
+              on-close={this.closeViewTabs.bind(this, tag)}
+              on-click={this.tabsjump.bind(this, tag)}
+            >
+              {
+                <img
+                  src={
+                    this.isActive(tag.path)
+                      ? require('../../assets/pageTabs-active@3x.png')
+                      : require('../../assets/pageTabs@3x.png')
                   }
-                  <span class={'el-tag-text'}> {tag.name}</span>
-                </el-tag>
-              </li
-              >,
-            ],
-          )
-        }
-        {
-          this.visitedView.length ?
-            <div class={'all-close'} on-click={this.closeAllViewTabs}>
-
-              <icon-svg icon-class={'CombinedShapeCopy'}/>
-
-            </div>
-            : null
-        }
+                />
+              }
+              <span class={'el-tag-text'}> {tag.name}</span>
+            </el-tag>
+          </li>,
+        ])}
+        {this.visitedView.length ? (
+          <div class={'all-close'} on-click={this.closeAllViewTabs}>
+            <icon-svg icon-class={'CombinedShapeCopy'} />
+          </div>
+        ) : null}
       </ul>
     );
   },
@@ -87,5 +81,3 @@ export default create({
     console.log();
   },
 });
-
-

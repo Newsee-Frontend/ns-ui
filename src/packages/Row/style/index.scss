@@ -1,5 +1,5 @@
-@import "../../../style/mixins/mixins";
-@import "../../../style/mixins/clearfix";
+@import '../../../style/mixins/mixins';
+@import '../../../style/mixins/clearfix';
 
 @include b(row) {
   position: relative;
@@ -38,4 +38,3 @@
     }
   }
 }
-

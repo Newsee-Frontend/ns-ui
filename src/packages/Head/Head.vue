@@ -14,7 +14,6 @@
 
     <!--right-->
     <div class="header-right fr clear">
-
       <!--screenfull button-->
       <div class="header-item fl">
         <Screenfull></Screenfull>
@@ -27,24 +26,19 @@
       <div class="header-item fl">
         <slot name="user-dropdown"></slot>
       </div>
-
     </div>
   </div>
-
 </template>
 <script>
-  import Skin from '../Skin/Skin';
-  import Screenfull from '../Screenfull/Screenfull';
+import Skin from '../Skin/Skin';
+import Screenfull from '../Screenfull/Screenfull';
 
-  export default {
-    name: 'Head',
-    components: {
-      Skin,
-      Screenfull
-    },
-  };
+export default {
+  name: 'Head',
+  components: {
+    Skin,
+    Screenfull,
+  },
+};
 </script>
-<style rel="stylesheet/scss" lang="scss" scoped>
-
-
-</style>
+<style rel="stylesheet/scss" lang="scss" scoped></style>

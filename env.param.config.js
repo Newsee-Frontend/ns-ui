@@ -59,32 +59,36 @@ module.exports = {
         path.resolve('es/packages/**/style/index.less'),
         path.resolve('lib/packages/**/style/index.less'),
         path.resolve('es/packages/index.less'),
-        path.resolve('lib/packages/index.less')
+        path.resolve('lib/packages/index.less'),
       ],
       scsspath: [
         path.resolve('es/packages/**/style/index.scss'),
         path.resolve('lib/packages/**/style/index.scss'),
         path.resolve('es/packages/index.scss'),
-        path.resolve('lib/packages/index.scss')
-      ]
+        path.resolve('lib/packages/index.scss'),
+      ],
     },
     staticPath: './static',
   },
   base: {
     entry: {
-      app: './artisan/src/main.js'
+      app: './artisan/src/main.js',
     },
     JSinclude: ['src', 'mock', 'test', 'artisan'],
     templateSPA: './artisan/index.html',
     staticPath: './artisan/static',
     mockPath: './artisan/mock',
     aliasPath: [
-      {name: '@', path: path.resolve('./artisan/src')},
+      { name: '@', path: path.resolve('./artisan/src') },
     ],
     sassResources: [],
     prettier: {
       switch: false,
-      files: ['src/**/*.{vue,less,scss,css,js,jsx,ts,tsx,json}', 'mock/**/*.{js,ts,json}']
-    }
-  }
+      files: [
+        'src/**/*.{vue,less,scss,css,js,jsx,ts,tsx,json}',
+        'artisan/**/*.{js,ts,json}',
+        'script/**/*.{js,ts,json}',
+      ],
+    },
+  },
 };

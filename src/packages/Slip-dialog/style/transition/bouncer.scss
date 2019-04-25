@@ -1,10 +1,10 @@
-@import "../mixins";
+@import '../mixins';
 /* animation name*/
 $animation: 'bouncer';
 
 /* target postion */
-$enter_duration: .5s;
-$leave_duration: .5s;
+$enter_duration: 0.5s;
+$leave_duration: 0.5s;
 
 @include n($animation, 'enter-active') {
   animation: bouncer-in $enter_duration;

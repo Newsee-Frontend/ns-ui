@@ -19,6 +19,6 @@ export default {
         const message = get(messages, prefix + path) || get(messages, path);
         return typeof message === 'function' ? message.apply(null, args) : message;
       };
-    }
-  }
+    },
+  },
 };

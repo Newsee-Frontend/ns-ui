@@ -6,9 +6,8 @@ import recls from '../mixins/recls';
 import formsize from '../mixins/formsize';
 import i18n from './i18n';
 import resmount from './resmount';
-import ui_extends from "../ui-extends";
-import {isDef, judgeType, mergeOptions} from '.';
-
+import ui_extends from '../ui-extends';
+import { isDef, judgeType, mergeOptions } from '.';
 
 /**
  * component install
@@ -18,7 +17,7 @@ import {isDef, judgeType, mergeOptions} from '.';
 function install(Vue, opts = {}) {
   resmount(Vue, this, opts, false);
   if (judgeType(opts) !== 'object') {
-    throw 'Opts should be in object format. Check it'
+    throw 'Opts should be in object format. Check it';
   }
   //局部引入组件的时候，Vue.$opts是不存在的，Vue.$opts为全局引入时候的配置参数
   const option = mergeOptions(Vue.$opts || $Var, opts);
@@ -39,19 +38,18 @@ function defaultProps(props) {
     if (props[key] === Array) {
       props[key] = {
         type: Array,
-        default: returnArray
+        default: returnArray,
       };
     } else if (props[key] === Number) {
       props[key] = {
         type: Number,
-        default: 0
+        default: 0,
       };
     }
   });
 }
 
-export default function (sfc) {
-
+export default function(sfc) {
   sfc.name = $Var.prefix + $Var.tie + sfc.name;
   sfc.install = sfc.install || install;
   sfc.mixins = sfc.mixins || [];

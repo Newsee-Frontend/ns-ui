@@ -16,7 +16,7 @@
   border: 0 solid $border-color;
 }
 
-@mixin hairline-bottom($border-color: #ebedf0, $left:0) {
+@mixin hairline-bottom($border-color: #ebedf0, $left: 0) {
   @include hairline-common();
 
   left: $left;

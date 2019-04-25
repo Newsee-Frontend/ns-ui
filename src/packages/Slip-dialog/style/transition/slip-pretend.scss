@@ -1,10 +1,10 @@
-@import "../mixins";
+@import '../mixins';
 /* animation name*/
 $animation: 'slip-pretend';
 
 /* target postion */
-$enter_duration: .3s;
-$leave_duration: .8s;
+$enter_duration: 0.3s;
+$leave_duration: 0.8s;
 
 /* step postion */
 $step_left: 100px, 0; //left
@@ -23,10 +23,10 @@ $target_postion: $target_left $target_right $target_top $target_bottom;
 
 @each $pos in $entr-position {
   $i: index($entr-position, $pos);
-  @include n($animation, #{$pos+'-enter-active'}) {
+  @include n($animation, #{$pos + '-enter-active'}) {
     transition: all $enter_duration ease;
   }
-  @include n($animation, #{$pos+'-enter'}) {
+  @include n($animation, #{$pos + '-enter'}) {
     transform: translate(nth($target_postion, $i));
     opacity: 0;
   }
@@ -46,9 +46,7 @@ $target_postion: $target_left $target_right $target_top $target_bottom;
     }
   }
 
-  @include n($animation, #{$pos+'-leave-active'}) {
+  @include n($animation, #{$pos + '-leave-active'}) {
     animation: $frameName $leave_duration;
   }
 }
-
-

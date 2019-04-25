@@ -8,7 +8,7 @@ const getNotices = (req, res) =>
         title: '你收到了 14 份新周报',
         datetime: '2017-08-09',
         type: 'notification',
-      }
+      },
     ],
     message: 'success',
   });

@@ -17,7 +17,8 @@ export default create({
     type: { type: String, default: 'text' },
     placeholder: { type: String, default: null },
     size: {
-      type: String, validator: s => sizeValidator(s),
+      type: String,
+      validator: s => sizeValidator(s),
     },
     prefixIcon: { type: String }, //输入框头部图标
     suffixIcon: { type: String }, //输入框尾部图标
@@ -36,10 +37,9 @@ export default create({
   },
   render(h) {
     const ipticon = (type, icon) => {
-      return (
-        icon ?
-          <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)}/> : null
-      );
+      return icon ? (
+        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)} />
+      ) : null;
     };
     return (
       <el-input
@@ -59,14 +59,10 @@ export default create({
         on-change={this.change.bind(this)}
         on-blur={this.blur.bind(this)}
         on-focus={this.focus.bind(this)}
-        style={{ width: this.width, 'height': this.height }}
+        style={{ width: this.width, height: this.height }}
       >
-        {
-          ipticon('prefix', this.prefixIcon)
-        }
-        {
-          ipticon('suffix', this.suffixIcon)
-        }
+        {ipticon('prefix', this.prefixIcon)}
+        {ipticon('suffix', this.suffixIcon)}
       </el-input>
     );
   },
@@ -111,4 +107,3 @@ export default create({
     console.log(this.formsize);
   },
 });
-

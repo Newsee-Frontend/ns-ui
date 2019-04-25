@@ -39,7 +39,7 @@ export default {
           'ns-row',
           this.justify !== 'start' ? `is-justify-${this.justify}` : '',
           this.align !== 'top' ? `is-align-${this.align}` : '',
-          {'ns-row--flex': this.type === 'flex'},
+          { 'ns-row--flex': this.type === 'flex' },
         ],
         style: this.style,
       },

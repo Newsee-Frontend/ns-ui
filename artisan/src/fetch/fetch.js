@@ -7,7 +7,7 @@
  */
 /*==========================================================================================================================*/
 import axios from 'axios';
-import {Message} from 'element-ui';
+import { Message } from 'element-ui';
 
 console.log('当前运行环境：', process.env);
 
@@ -15,7 +15,7 @@ const service = axios.create({
   baseURL: process.env.API_ROOT,
   timeout: 5000,
   withCredentials: true,
-  headers: {}
+  headers: {},
 });
 
 service.interceptors.request.use(
@@ -32,14 +32,13 @@ service.interceptors.response.use(
     const resData = response.data;
     if (resData && (resData.resultCode === '200' || resData.resultCode === 200)) {
       return Promise.resolve(resData);
-    }
-    else {
-      Message({message: resData.resultMsg, type: 'error', duration: 2000});//throw message error
+    } else {
+      Message({ message: resData.resultMsg, type: 'error', duration: 2000 }); //throw message error
       return Promise.reject(resData);
     }
   },
   error => {
-    Message({message: error.resultMsg, type: 'error', duration: 2000});//throw message error
+    Message({ message: error.resultMsg, type: 'error', duration: 2000 }); //throw message error
     let errorInfo = error.data.error ? error.data.error.message : error.data;
     return Promise.reject(errorInfo);
   }

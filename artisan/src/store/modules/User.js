@@ -7,7 +7,6 @@ const lifetime = 0;
 const cookieName = 'userInfo';
 const cookieKey = 'userPass';
 
-
 /**
  * deCrypto user-information data in cookie
  * @returns {{}}
@@ -16,11 +15,10 @@ const cookieKey = 'userPass';
 function _deCryptoUserInfo() {
   return Cookies.get(cookieName)
     ? JSON.parse(
-      CryptoJS.AES.decrypt(Cookies.get(cookieName), cookieKey).toString(CryptoJS.enc.Utf8)
-    )
+        CryptoJS.AES.decrypt(Cookies.get(cookieName), cookieKey).toString(CryptoJS.enc.Utf8)
+      )
     : {};
 }
-
 
 const User = {
   state: {
@@ -82,10 +80,10 @@ const User = {
   },
 
   actions: {
-    Login({commit}, data) {
+    Login({ commit }, data) {
       commit('LOGIN', data);
     },
-    LogOut({commit}) {
+    LogOut({ commit }) {
       commit('LOGOUT');
     },
   },

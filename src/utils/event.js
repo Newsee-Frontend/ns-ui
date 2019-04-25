@@ -7,17 +7,11 @@
 export function addEventHandler(target, type, func) {
   if (target.addEventListener) {
     //监听IE9，谷歌和火狐
-    target.addEventListener(
-      type,
-      func,
-      false
-    );
-  }
-  else if (target.attachEvent) {
-    target.attachEvent("on" + type, func);
-  }
-  else {
-    target["on" + type] = func;
+    target.addEventListener(type, func, false);
+  } else if (target.attachEvent) {
+    target.attachEvent('on' + type, func);
+  } else {
+    target['on' + type] = func;
   }
 }
 
@@ -29,17 +23,11 @@ export function addEventHandler(target, type, func) {
  */
 export function removeEventHandler(target, type, func) {
   if (target.removeEventListener) {
-    target.removeEventListener(
-      type,
-      func,
-      false
-    );
-  }
-  else if (target.detachEvent) {
-    target.detachEvent("on" + type, func);
-  }
-  else {
-    delete target["on" + type];
+    target.removeEventListener(type, func, false);
+  } else if (target.detachEvent) {
+    target.detachEvent('on' + type, func);
+  } else {
+    delete target['on' + type];
   }
 }
 
@@ -47,11 +35,10 @@ export function removeEventHandler(target, type, func) {
  * stop propagation
  * @param e
  */
-export const stopPropagation = (e) => {
+export const stopPropagation = e => {
   if (e && e.stopPropagation) {
-    e.stopPropagation();//W3C stop propagation
-  }
-  else {
-    window.event.cancelBubble = true;//IE stop propagation
+    e.stopPropagation(); //W3C stop propagation
+  } else {
+    window.event.cancelBubble = true; //IE stop propagation
   }
 };

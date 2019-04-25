@@ -10,7 +10,7 @@
 const ELEMENT = '__';
 const MODS = '--';
 
-const join = (name, el, symbol) => el ? name + symbol + el : name;
+const join = (name, el, symbol) => (el ? name + symbol + el : name);
 
 const prefix = (name, mods) => {
   if (typeof mods === 'string') {
@@ -31,7 +31,7 @@ const prefix = (name, mods) => {
 export default {
   methods: {
     recls(el, mods) {
-      const {name} = this.$options;
+      const { name } = this.$options;
 
       if (el && typeof el !== 'string') {
         mods = el;
@@ -40,6 +40,6 @@ export default {
       el = join(name, el, ELEMENT);
 
       return mods ? [el, prefix(el, mods)] : el;
-    }
-  }
+    },
+  },
 };

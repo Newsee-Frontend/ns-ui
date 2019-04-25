@@ -18,17 +18,14 @@ export default class {
 
   setCollapse(i) {
     this.state.isCollapse = i;
-
   }
 
   setFirstActive(i) {
     this.state.firstActiveNow = i;
-
   }
 
   setFirstHover(i) {
     this.state.firstHoverNow = i;
-
   }
 
   setSecondActive(i) {

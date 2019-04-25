@@ -13,7 +13,7 @@ const store = new Vuex.Store({
     User,
     Drawer,
     Sidebar,
-    PageTabs
+    PageTabs,
   },
   getters,
 });

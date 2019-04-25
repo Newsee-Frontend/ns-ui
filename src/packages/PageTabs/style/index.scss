@@ -1,6 +1,6 @@
-@import "../../../style/mixins/mixins";
-@import "../../../style/mixins/clearfix";
-@import "../../../style/config/public";
+@import '../../../style/mixins/mixins';
+@import '../../../style/mixins/clearfix';
+@import '../../../style/config/public';
 @import './var';
 
 //页面标签选项卡模块
@@ -53,7 +53,6 @@
       .el-tag {
         color: $tabs-part-color_active;
         border-color: $tabs-part-border-active_color;
-
       }
     }
     .el-tag {

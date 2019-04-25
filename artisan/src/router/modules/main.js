@@ -1,4 +1,1 @@
-
-export const mainRouter = [
-
-];
+export const mainRouter = [];

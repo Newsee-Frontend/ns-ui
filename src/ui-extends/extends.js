@@ -8,18 +8,18 @@
 export default {
   ns: {
     alert: (message, fn) => {
-      alert(message)
+      alert(message);
       // Dialog.alert({
       //   title: '提示',
       //   message
       // }).then(fn)
-    }
+    },
   },
   alert: (message, fn) => {
-    alert('9999999999999999')
+    alert('9999999999999999');
     // Dialog.alert({
     //   title: '提示',
     //   message
     // }).then(fn)
-  }
-}
+  },
+};

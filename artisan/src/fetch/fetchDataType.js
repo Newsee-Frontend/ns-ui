@@ -8,35 +8,36 @@
 
 /*==========================================================================================================================*/
 export function toType(obj) {
-  return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
-};
+  return {}.toString
+    .call(obj)
+    .match(/\s([a-zA-Z]+)/)[1]
+    .toLowerCase();
+}
 
 export function filterNull(o) {
   if (typeof 0 === 'Object') {
     for (var key in o) {
       if (o[key] === null) {
-        delete o[key]
+        delete o[key];
       }
       if (toType(o[key]) === 'string') {
-        o[key] = o[key].trim()
+        o[key] = o[key].trim();
       } else if (toType(o[key]) === 'object') {
-        o[key] = filterNull(o[key])
+        o[key] = filterNull(o[key]);
       } else if (toType(o[key]) === 'array') {
-        o[key] = filterNull(o[key])
+        o[key] = filterNull(o[key]);
       }
     }
-    return o
-  }
-  else {
-    return false
+    return o;
+  } else {
+    return false;
   }
 }
 
 export function dataFilter(query) {
   if (query) {
     return filterNull(query);
-  }
-  else {
+  } else {
     return {};
   }
 }

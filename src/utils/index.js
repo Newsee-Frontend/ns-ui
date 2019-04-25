@@ -1,4 +1,4 @@
-import $Var from "../variable";
+import $Var from '../variable';
 
 function isDef(value) {
   return value !== undefined && value !== null;
@@ -57,7 +57,7 @@ function judgeType(value) {
     '[object RegExp]': 'regExp',
     '[object Undefined]': 'undefined',
     '[object Null]': 'null',
-    '[object Object]': 'object'
+    '[object Object]': 'object',
   };
   if (value instanceof Element) {
     return 'element';
@@ -75,16 +75,16 @@ function judgeType(value) {
 function prefixName(name, opts, $Var) {
   const defname = $Var.prefix + $Var.tie;
   const newname = opts.prefix + opts.tie;
-  console.log("原始名称，前缀名，默认前缀名称：", name, defname, newname);
-  if (!name) throw ("the component should be set with the initial name，" +
-    "please check every component' name whether it's property is set");
-  if (typeof opts.prefix !== "string" || !opts.prefix) return name;
-  if (typeof opts.tie !== "string" || !opts.tie) return name;
+  console.log('原始名称，前缀名，默认前缀名称：', name, defname, newname);
+  if (!name)
+    throw 'the component should be set with the initial name，' +
+      "please check every component' name whether it's property is set";
+  if (typeof opts.prefix !== 'string' || !opts.prefix) return name;
+  if (typeof opts.tie !== 'string' || !opts.tie) return name;
   if (name.indexOf(defname) === 0) {
-    const reg = new RegExp(defname, "g"); //'[ default- ]' => prefix name + connector
+    const reg = new RegExp(defname, 'g'); //'[ default- ]' => prefix name + connector
     return name.replace(reg, newname);
-  }
-  else {
+  } else {
     return name;
   }
 }
@@ -114,14 +114,4 @@ function mergeOptions(opt1, opt2) {
   return option;
 }
 
-export {
-  get,
-  range,
-  isObj,
-  isDef,
-  camelize,
-  isAndroid,
-  judgeType,
-  prefixName,
-  mergeOptions
-};
+export { get, range, isObj, isDef, camelize, isAndroid, judgeType, prefixName, mergeOptions };

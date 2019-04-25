@@ -1,7 +1,7 @@
-@import "../../../style/config/config";
-@import "../../../style/mixins/res";
+@import '../../../style/config/config';
+@import '../../../style/mixins/res';
 
-[class*="#{$namespace}-col-"] {
+[class*='#{$namespace}-col-'] {
   float: left;
   box-sizing: border-box;
 }
@@ -16,9 +16,8 @@ $end: 24;
 $class-slug: ns-col !default;
 
 @for $i from $start through $end {
-
   .#{$namespace}-col-#{$i} {
-    width: ( 1 / $total * $i * 100) * 1%;
+    width: (1 / $total * $i * 100) * 1%;
   }
 
   .#{$namespace}-col-offset-#{$i} {

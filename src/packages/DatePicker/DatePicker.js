@@ -1,30 +1,30 @@
 import create from '../../utils/create';
-import {sizeValidator} from '../../utils/props/validator'
+import { sizeValidator } from '../../utils/props/validator';
 
 export default create({
-  name: "date-picker",
+  name: 'date-picker',
 
   data() {
     return {
-      childDataPicker: this.value
-    }
+      childDataPicker: this.value,
+    };
   },
 
   props: {
     value: [Date, Array, String, Number],
-    width: { type: [String, Number]},
-    height: { type: [String, Number]},
+    width: { type: [String, Number] },
+    height: { type: [String, Number] },
     readonly: { type: Boolean, default: false }, //完全只读
     disabled: { type: Boolean, default: false }, //禁用
     editable: { type: Boolean, default: false }, //文本框可输入
     clearable: { type: Boolean, default: true }, //是否显示清除按钮
-    size: { type: String ,validator: s => sizeValidator(s)}, //尺寸
+    size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String }, //占位内容
     startPlaceholder: { type: String }, //占位内容
     endPlaceholder: { type: String }, //占位内容
     type: { type: String, default: 'date' }, //显示类型
     format: { type: String, default: 'yyyy-MM-dd' }, //显示在输入框中的格式
-    valueFormat: { type: String, default: 'yyyy-MM-dd'}, //时间日期绑定值格式，不指定则绑定Data对象
+    valueFormat: { type: String, default: 'yyyy-MM-dd' }, //时间日期绑定值格式，不指定则绑定Data对象
     align: { type: String, default: 'left' }, //对齐方式
     popperClass: { type: String }, //DateTimePicker 下拉框的类名
     rangeSeparator: { type: String, default: ' - ' }, //选择范围时的分隔符
@@ -68,8 +68,9 @@ export default create({
         on-change={this.change.bind(this)}
         on-pick={this.onPick.bind(this)}
         style={{ width: this.width, height: this.height }}
-  />
-    )},
+      />
+    );
+  },
 
   methods: {
     change(value) {
@@ -80,13 +81,9 @@ export default create({
       this.$emit('onPick', { maxDate, minDate });
     },
 
-    handleModel(e){
+    handleModel(e) {
       this.childDataPicker = e;
-      this.$emit('input', this.childDataPicker)
-    }
-  }
+      this.$emit('input', this.childDataPicker);
+    },
+  },
 });
-
-
-
-
