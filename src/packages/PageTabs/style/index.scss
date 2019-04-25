@@ -1,0 +1,187 @@
+@import "../../../style/mixins/mixins";
+@import "../../../style/mixins/clearfix";
+@import "../../../style/config/public";
+@import './var';
+
+//页面标签选项卡模块
+@include b(page-tabs) {
+  display: block;
+  vertical-align: top;
+  background-color: $tabs-back;
+  border-bottom: 1px solid $tabs-part-border_color;
+  padding: 0 10px;
+  box-sizing: border-box;
+  transition: all 0.4s linear;
+  @include clearfix;
+
+  //tabs 单个标签页
+  li.tab-tag {
+    position: relative;
+    display: inline-block;
+    width: $tabs-part_width;
+    height: $tabs-part_height;
+    top: $tabs-height - $tabs-part_height -2px;
+    bottom: 0;
+    line-height: $tabs-height;
+    box-sizing: border-box;
+    z-index: 0;
+    color: #333;
+    &::before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1px solid $tabs-part-border_color;
+      border-bottom: none;
+      background-color: $tabs-part-back;
+      transform: perspective(1.5em) rotateX(5deg);
+      transform-origin: left;
+      transition: background 1s;
+    }
+
+    //选中项
+    &.tag-active {
+      height: $tabs-part_height + 1px;
+      font-weight: normal;
+      z-index: 1;
+      &::before {
+        background: $tabs-part-back_active;
+      }
+      .el-tag {
+        color: $tabs-part-color_active;
+        border-color: $tabs-part-border-active_color;
+
+      }
+    }
+    .el-tag {
+      position: absolute;
+      width: 100%;
+      height: auto;
+      line-height: $tabs-part_height + 2px;
+      padding: 0 10px;
+      color: $tabs-part_color;
+      border-radius: 0;
+      border: none;
+      background-color: transparent;
+      transform: translateZ(1px);
+      overflow: hidden;
+      img {
+        display: inline-block;
+        vertical-align: 0.1em;
+        width: $tabs-icon-img_width;
+        height: $tabs-icon-img_height;
+        margin: 0 2px -2px 0;
+      }
+      .el-tag-text {
+        //padding-right: 10px;
+      }
+      i.el-icon-close {
+        position: absolute;
+        background: $tabs-part-icon-close_color;
+        border-radius: 50%;
+        color: #fff;
+        right: $tabs-icon-close_width/2 + 2px;
+        top: ($tabs-part_height - $tabs-icon-close_height)/2 + 1px;
+        width: $tabs-icon-close_width;
+        height: $tabs-icon-close_height;
+        line-height: $tabs-icon-close_height;
+        font-weight: 600;
+        visibility: hidden;
+
+        &:before {
+          width: 100%;
+          height: 100%;
+          line-height: inherit;
+        }
+      }
+    }
+
+    &:hover {
+      i.el-icon-close {
+        visibility: visible;
+      }
+      &::before {
+        background: $tabs-part-back_hover;
+      }
+    }
+  }
+
+  .all-close {
+    float: right;
+    height: 100%;
+    line-height: $tabs-height;
+    cursor: pointer;
+    svg {
+      color: $tabs-allClose_color;
+      font-size: 1.2em;
+      &:hover {
+        color: $tabs-allClose-hover_color;
+      }
+    }
+  }
+
+  @include rb(page-tabs--show) {
+    height: $tabs-height;
+    line-height: $tabs-height;
+  }
+}
+
+//@media screen and (min-width: 900px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: inline-block;
+//  }
+//}
+//
+//@media screen and (min-width: 780px) and (max-width: 899px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: none;
+//  }
+//  .ns-page-tabs a.tab-tag:nth-child(n + 1) {
+//    display: inline-block;
+//  }
+//}
+//
+//@media screen and (min-width: 660px) and (max-width: 779px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: none;
+//  }
+//  .ns-page-tabs a.tab-tag:nth-child(n + 2) {
+//    display: inline-block;
+//  }
+//}
+//
+//@media screen and (min-width: 540px) and (max-width: 659px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: none;
+//  }
+//  .ns-page-tabs a.tab-tag:nth-child(n + 3) {
+//    display: inline-block;
+//  }
+//}
+//
+//@media screen and (min-width: 410px) and (max-width: 539px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: none;
+//  }
+//  .ns-page-tabs a.tab-tag:nth-child(n + 4) {
+//    display: inline-block;
+//  }
+//}
+//
+//@media screen and (min-width: 290px) and (max-width: 409px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: none;
+//  }
+//  .ns-page-tabs a.tab-tag:nth-child(n + 5) {
+//    display: inline-block;
+//  }
+//}
+//
+//@media screen and (max-width: 289px) {
+//  .ns-page-tabs a.tab-tag {
+//    display: none;
+//  }
+//}

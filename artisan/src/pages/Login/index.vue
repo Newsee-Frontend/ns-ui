@@ -9,7 +9,7 @@
 
       <el-form-item prop="username">
         <span class="svg-container">
-          <icon-svg icon-class="wo"/>
+          <ns-icon-svg icon-class="wo"/>
         </span>
         <el-input
           v-model="loginForm.username"
@@ -22,7 +22,7 @@
 
       <el-form-item prop="password">
         <span class="svg-container">
-          <icon-svg icon-class="suo"/>
+          <ns-icon-svg icon-class="suo"/>
         </span>
         <el-input
           v-model="loginForm.password"
@@ -33,7 +33,7 @@
           @keyup.enter.native="handleLogin"
         />
         <span class="show-pwd" @click="showPwd">
-          <icon-svg :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
+          <ns-icon-svg :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
         </span>
       </el-form-item>
 

@@ -1,4 +1,3 @@
-<!--架构组 - 基础组件调试 - Uploader 图片上传 组件-->
 <template>
   <div class="TestDemo">
     <test-content></test-content>

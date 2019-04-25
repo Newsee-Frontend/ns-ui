@@ -1,0 +1,6 @@
+//timepicker 样式相关
+@import "../../../style/config/size";
+
+@include b(time-picker){
+  @include form-component-size(time-picker)
+}

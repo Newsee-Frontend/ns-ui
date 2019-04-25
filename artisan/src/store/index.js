@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import User from './modules/User';
 import Drawer from './modules/Drawer';
 import Sidebar from './modules/Sidebar';
+import PageTabs from './modules/PageTabs';
 import getters from './getters';
 
 Vue.use(Vuex);
@@ -12,6 +13,7 @@ const store = new Vuex.Store({
     User,
     Drawer,
     Sidebar,
+    PageTabs
   },
   getters,
 });

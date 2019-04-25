@@ -10,6 +10,14 @@
   }
 }
 
+@mixin rb($block) {
+  $B: $namespace+'-'+$block !global;
+
+  &.#{$B} {
+    @content;
+  }
+}
+
 @mixin e($element) {
   $E: $element !global;
   $selector: &;

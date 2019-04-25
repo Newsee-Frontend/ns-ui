@@ -14,7 +14,9 @@ es/
 ## files                  ##
 ##############################
 
-frametest/switch.js
+src/index.js
+src/index.scss
+
 
 .DS_Store
 npm-debug.log*

@@ -1,3 +1,4 @@
+@import "../mixins/clearfix";
 //---------- base color ----------
 $--color-black: #000; //纯黑
 $--color-text-primary: #333333; //重要文字
@@ -129,6 +130,10 @@ li {
 
 .fr {
   float: right;
+}
+
+.clear {
+  @include clearfix;
 }
 
 .txtC {

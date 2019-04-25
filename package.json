@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-object-assign": "^7.2.0",
-    "@babel/polyfill": "^7.0.0",
+    "@babel/polyfill": "^7.4.3",
     "@cx-ui-design-test1/cx-builder-test1": "^0.0.3",
     "@vant/compiler": "^1.0.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0-beta.2",

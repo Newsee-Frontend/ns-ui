@@ -9,8 +9,20 @@ export const baseRouter = [
       {
         path: 'input',
         component: () => import('../../pages/Form/input'),
-        meta: {requireAuth: true, key: 'input'},
+        meta: {auth: true, key: 'input'},
         name: 'input 布局',
+      },
+      {
+        path: 'datepicker',
+        component: () => import('../../pages/Form/datepicker'),
+        meta: {auth: true, key: 'datepicker'},
+        name: 'datepicker 布局',
+      },
+      {
+        path: 'timepicker',
+        component: () => import('../../pages/Form/timepicker'),
+        meta: {requireAuth: true, key: 'timepicker'},
+        name: 'timepicker 布局',
       }
     ],
   },

@@ -9,10 +9,13 @@ import {mergeOptions} from "./utils";
 const version = '0.0.1';
 
 import Col from './packages/Col/Col';
+import DatePicker from './packages/DatePicker/DatePicker';
 import Head from './packages/Head/Head';
 import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
+import Levelbar from './packages/Levelbar/Levelbar';
+import PageTabs from './packages/PageTabs/PageTabs';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
 import SideBar from './packages/SideBar/SideBar';
@@ -24,10 +27,13 @@ import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 const components = [
   Col,
+  DatePicker,
   Head,
   IconSvg,
   Input,
   Layout,
+  Levelbar,
+  PageTabs,
   Row,
   Screenfull,
   SideBar,
@@ -68,10 +74,13 @@ export {
   install,
   version,
   Col,
+  DatePicker,
   Head,
   IconSvg,
   Input,
   Layout,
+  Levelbar,
+  PageTabs,
   Row,
   Screenfull,
   SideBar,
