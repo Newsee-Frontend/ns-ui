@@ -1,6 +1,6 @@
 import create from '../../utils/create';
 
-import {sizeValidator} from '../../utils/props/validator'
+import { sizeValidator } from '../../utils/props/validator';
 
 export default create({
   name: 'input',
@@ -10,36 +10,36 @@ export default create({
     };
   },
   props: {
-    fatherIpt: [String, Number],
-    width: {type: [String, Number]},
-    height: {type: [String, Number]},
-    name: {type: String, default: ''},
-    type: {type: String, default: 'text'},
-    placeholder: {type: String, default: null},
+    value: [String, Number],
+    width: { type: [String, Number] },
+    height: { type: [String, Number] },
+    name: { type: String, default: '' },
+    type: { type: String, default: 'text' },
+    placeholder: { type: String, default: null },
     size: {
-      type: String, validator: s => sizeValidator(s)
+      type: String, validator: s => sizeValidator(s),
     },
-    prefixIcon: {type: String}, //输入框头部图标
-    suffixIcon: {type: String}, //输入框尾部图标
-    rows: {type: Number, default: 3},
-    minlength: {type: [Number, String]}, //最小输入长度
-    maxlength: {type: [Number, String], default: 300}, //最大输入长度
-    disabled: {type: Boolean, default: false},
-    autofocus: {type: Boolean, default: false},
-    readonly: {type: Boolean, default: false},
-    clearable: {type: Boolean, default: false},
+    prefixIcon: { type: String }, //输入框头部图标
+    suffixIcon: { type: String }, //输入框尾部图标
+    rows: { type: Number, default: 3 },
+    minlength: { type: [Number, String] }, //最小输入长度
+    maxlength: { type: [Number, String], default: 300 }, //最大输入长度
+    disabled: { type: Boolean, default: false },
+    autofocus: { type: Boolean, default: false },
+    readonly: { type: Boolean, default: false },
+    clearable: { type: Boolean, default: false },
   },
   watch: {
-    fatherIpt(val) {
-      this.childIpt = val
+    value(val) {
+      this.childIpt = val;
     },
   },
   render(h) {
     const ipticon = (type, icon) => {
       return (
         icon ?
-          <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)}></icon-svg> : null
-      )
+          <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)}/> : null
+      );
     };
     return (
       <el-input
@@ -59,7 +59,7 @@ export default create({
         on-change={this.change.bind(this)}
         on-blur={this.blur.bind(this)}
         on-focus={this.focus.bind(this)}
-        style={{width: this.width, 'height': this.height}}
+        style={{ width: this.width, 'height': this.height }}
       >
         {
           ipticon('prefix', this.prefixIcon)
@@ -68,13 +68,13 @@ export default create({
           ipticon('suffix', this.suffixIcon)
         }
       </el-input>
-    )
+    );
   },
 
   methods: {
     handleModelInput(e) {
       this.childIpt = e;
-      this.$emit('input', this.childIpt)
+      this.$emit('input', this.childIpt);
     },
     /**
      * change
@@ -107,7 +107,8 @@ export default create({
   },
 
   created() {
-    console.log(this.formsize)
+    this.childIpt = this.value;
+    console.log(this.formsize);
   },
-})
+});
 

@@ -9,13 +9,13 @@ export const baseRouter = [
       {
         path: 'col',
         component: () => import('../../pages/Basic/col'),
-        meta: {requireAuth: true, key: 'col'},
+        meta: {auth: true, key: 'col'},
         name: 'col 布局',
       },
       {
         path: 'row',
         component: () => import('../../pages/Basic/row'),
-        meta: {requireAuth: true, key: 'row'},
+        meta: {auth: true, key: 'row'},
         name: 'row 布局',
       },
     ],

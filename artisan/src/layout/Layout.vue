@@ -37,7 +37,10 @@
         </span>
       </ns-sidebar>
     </template>
-
+    <template slot="tabs-view">
+      <!--history task-tabs link-->
+      <biz-tabs-views></biz-tabs-views>
+    </template>
     <!--工作台模块 - 嵌入路由视图即可 -->
     <template slot="app-main">
       <!--changing-over  work bench module-->

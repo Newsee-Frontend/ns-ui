@@ -23,7 +23,7 @@
     <!--content-->
     <div class="main-container">
       <!--history task-tabs link-->
-      <!--<tabs-view></tabs-view>-->
+      <slot name="tabs-view"></slot>
       <!-- content -->
       <section id="overview" class="app-main">
         <slot name="app-main"></slot>
@@ -34,12 +34,12 @@
 
 <script>
   import Head from '../Head/Head';
-  // import TabsView from '../head/TabsView/Screenfull.vue';
+  // import PageTabs from '../head/PageTabs/Screenfull.vue';
 
   export default {
     name: 'layout',
     components: {
-      // TabsView,
+      // PageTabs,
       Head
     },
     data() {

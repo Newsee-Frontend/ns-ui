@@ -8,16 +8,16 @@ const rules = [
         loader: 'vue-loader',
         options: {
           compilerOptions: {
-            preserveWhitespace: false
-          }
-        }
-      }
-    ]
+            preserveWhitespace: false,
+          },
+        },
+      },
+    ],
   },
   {
     test: /\.js$/,
     exclude: /node_modules/,
-    use: 'babel-loader'
+    use: 'babel-loader',
   },
   {
     test: /\.less$/,
@@ -28,25 +28,30 @@ const rules = [
       {
         loader: 'less-loader',
         options: {
-          paths: [path.resolve(__dirname, 'node_modules')]
-        }
-      }
-    ]
+          paths: [path.resolve(__dirname, 'node_modules')],
+        },
+      },
+    ],
   },
   {
     test: /\.md$/,
     use: [
       'vue-loader',
-      '@vant/markdown-loader'
-    ]
+      '@vant/markdown-loader',
+    ],
   },
   {
     test: /\.(ttf|svg)$/,
-    loader: 'url-loader'
-  }
+    loader: 'url-loader',
+  },
+  {
+    test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+    loader: 'url-loader',
+    options: {
+      limit: 10000,
+    },
+  },
 ];
-
-
 
 
 module.exports = rules;

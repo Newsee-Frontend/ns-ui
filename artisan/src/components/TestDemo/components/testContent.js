@@ -1,39 +1,20 @@
 export default {
   name: 'testContent',
   data() {
-    return {
-      title: 'test-title22222',
-      content: 'testContent-testContent',
-      model: '',
-    }
+    return {};
   },
   props: {
-    item: {type: Object}
+    item: { type: Object },
   },
   render(h) {
-    console.log(11111111)
-    console.log(this.item)
     return (
       <div>
-        <h2>{this.title}</h2>
-        <span>{this.content}</span>
-        --------------------------------
-        <el-input type="text" onInput={e => this.item.firstName = e} value={this.item.firstName}/>
-        <el-date-picker
-          onInput={e => (this.item.time = e)}
-          value={this.item.time}
-          type="datetime"
-          size="large"
-          value-format="yyyy-MM-dd HH:mm:ss"
-          placeholder="选择日期1111"
-          default-time="['8:00:00']"
-        />
+        img-img-img-img
+        <img
+          src={require('../../../assets/img/logo.png')}
+        /> :
       </div>
-    )
+    );
   },
-  method: {
-    inputx(event) {
-      self.$emit('input', event.target.value);
-    }
-  }
-}
+  method: {},
+};
