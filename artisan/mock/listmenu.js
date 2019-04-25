@@ -118,6 +118,32 @@ const navmenu = (req, res) => {
           },
         ],
       },
+      {
+        funcId: 'data',
+        menuLabel: '数据',
+        menuRouter: 'data',
+        menuIcon: 'bushenbuzhan1',
+        menuIndex: 6,
+        hide: 1,
+        childMenus: [
+          {
+            funcId: 'badge',
+            menuLabel: '标记',
+            menuRouter: 'badge',
+            menuIcon: null,
+            menuIndex: '1',
+            hide: 1,
+          },
+          {
+            funcId: 'progress',
+            menuLabel: '进度条',
+            menuRouter: 'progress',
+            menuIcon: null,
+            menuIndex: '2',
+            hide: 1,
+          }
+        ],
+      },
     ],
   });
 };

@@ -18,6 +18,9 @@ import Input from '../../src/packages/Input/Input.js';
 import TimePicker from '../../src/packages/TimePicker/TimePicker.js';
 import PageTabs from '../../src/packages/PageTabs/PageTabs.js';
 
+import Badge from '../../src/packages/Badge/Badge.js'
+import Progress from '../../src/packages/Progress/Progress.js'
+
 Vue.component('Layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
 Vue.component('UserDropdown', UserDropdown);
@@ -30,6 +33,9 @@ Vue.component('ns-input', Input);
 Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
 Vue.component('ns-page-tabs', PageTabs);
+
+Vue.component('ns-badge', Badge);
+Vue.component('ns-progress', Progress);
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';

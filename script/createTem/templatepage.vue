@@ -15,7 +15,9 @@
 
     },
     methods: {},
-    mounted: {},
+    mounted() {
+
+    },
   };
 </script>
 
