@@ -1,5 +1,4 @@
 import create from '../../utils/create';
-
 import {sizeValidator} from '../../utils/props/validator'
 
 export default create({
@@ -40,11 +39,8 @@ export default create({
   },
 
   watch: {
-    childDataPicker() {
-      this.$emit('change', this.childDataPicker);
-    },
-    value() {
-      this.childDataPicker = this.value;
+    value(val) {
+      this.childDataPicker = val;
     },
   },
 

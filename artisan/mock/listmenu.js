@@ -102,10 +102,18 @@ const navmenu = (req, res) => {
           },
           {
             "funcId": "datepicker",
-            "menuLabel": "时间控件",
+            "menuLabel": "日期控件",
             "menuRouter": "datepicker",
             "menuIcon": null,
             "menuIndex": "2",
+            "hide": 1
+          },
+          {
+            "funcId": "timepicker",
+            "menuLabel": "时间控件",
+            "menuRouter": "timepicker",
+            "menuIcon": null,
+            "menuIndex": "3",
             "hide": 1
           }
         ]

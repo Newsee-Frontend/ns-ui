@@ -17,6 +17,12 @@ export const baseRouter = [
         component: () => import('../../pages/Form/datepicker'),
         meta: {requireAuth: true, key: 'datepicker'},
         name: 'datepicker 布局',
+      },
+      {
+        path: 'timepicker',
+        component: () => import('../../pages/Form/timepicker'),
+        meta: {requireAuth: true, key: 'timepicker'},
+        name: 'timepicker 布局',
       }
     ],
   },
