@@ -12,7 +12,7 @@ import Badge from './packages/Badge/Badge';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
-import Head from './packages/Head/Head';
+import Header from './packages/Header/Header';
 import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
@@ -24,6 +24,10 @@ import Screenfull from './packages/Screenfull/Screenfull';
 import SideBar from './packages/SideBar/SideBar';
 import Skin from './packages/Skin/Skin';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
+import Step from './packages/Step/Step';
+import Steps from './packages/Steps/Steps';
+import TabPane from './packages/Tab-pane/Tab-pane';
+import Tabs from './packages/Tabs/Tabs';
 import TestDemo from './packages/TestDemo/TestDemo';
 import TimePicker from './packages/TimePicker/TimePicker';
 import UserDropdown from './packages/UserDropdown/UserDropdown';
@@ -34,7 +38,7 @@ const components = [
   Col,
   DatePicker,
   Dialog,
-  Head,
+  Header,
   IconSvg,
   Input,
   Layout,
@@ -46,6 +50,10 @@ const components = [
   SideBar,
   Skin,
   SlipDialog,
+  Step,
+  Steps,
+  TabPane,
+  Tabs,
   TestDemo,
   TimePicker,
   UserDropdown
@@ -85,7 +93,7 @@ export {
   Col,
   DatePicker,
   Dialog,
-  Head,
+  Header,
   IconSvg,
   Input,
   Layout,
@@ -97,6 +105,10 @@ export {
   SideBar,
   Skin,
   SlipDialog,
+  Step,
+  Steps,
+  TabPane,
+  Tabs,
   TestDemo,
   TimePicker,
   UserDropdown

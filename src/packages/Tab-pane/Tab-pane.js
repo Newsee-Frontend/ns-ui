@@ -13,12 +13,12 @@ export default create({
   watch: {},
 
   render(h) {
-    return(
+    return (
       <div className={this.recls()}>
         {this.$slots.default}
       </div>
-    )
-  ,
+    );
+  },
 
   methods: {},
 
