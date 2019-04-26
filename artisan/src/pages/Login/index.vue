@@ -45,49 +45,49 @@
 </template>
 
 <script>
-  import {validUsername} from '@/utils/validate'
+  import { validUsername } from '@/utils/validate';
 
   export default {
     name: 'Login',
     data() {
       const validateUsername = (rule, value, callback) => {
         if (!validUsername(value)) {
-          callback(new Error('Please enter the correct user name'))
+          callback(new Error('Please enter the correct user name'));
         } else {
-          callback()
+          callback();
         }
       };
       const validatePassword = (rule, value, callback) => {
         if (value.length < 6) {
-          callback(new Error('The password can not be less than 6 digits'))
+          callback(new Error('The password can not be less than 6 digits'));
         } else {
-          callback()
+          callback();
         }
       };
       return {
         title: 'UI测试系统登录',
         loginForm: {
-          username: 'admin',
-          password: '1111111'
+          username: '高仓雄',
+          password: 'newsee888',
         },
         loginRules: {
-          username: [{required: true, trigger: 'blur', validator: validateUsername}],
-          password: [{required: true, trigger: 'blur', validator: validatePassword}]
+          username: [{ required: true, trigger: 'blur', validator: validateUsername }],
+          password: [{ required: true, trigger: 'blur', validator: validatePassword }],
         },
         passwordType: 'password',
         loading: false,
         showDialog: false,
-        redirect: undefined
-      }
+        redirect: undefined,
+      };
     },
     watch: {
       $route: {
-        handler: function (route) {
+        handler: function(route) {
           this.redirect = route.meta && route.meta.redirect;
           console.log(this.redirect);
         },
-        immediate: true
-      }
+        immediate: true,
+      },
     },
     created() {
     },
@@ -97,30 +97,29 @@
     methods: {
       showPwd() {
         if (this.passwordType === 'password') {
-          this.passwordType = ''
+          this.passwordType = '';
         } else {
-          this.passwordType = 'password'
+          this.passwordType = 'password';
         }
       },
       handleLogin() {
         this.$refs.loginForm.validate(valid => {
           if (valid) {
             this.loading = true;
-            this.$router.push({path: this.redirect || '/'});
-            // this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
-            //   this.loading = false;
-            //   this.$router.push({path: this.redirect || '/'})
-            // }).catch(() => {
-            //   this.loading = false
-            // })
+            this.$store.dispatch('oauthlogin', this.loginForm).then(() => {
+              this.loading = false;
+              this.$router.push({ path: this.redirect || '/' });
+            }).catch(() => {
+              this.loading = false;
+            });
           } else {
             console.log('error submit!!');
-            return false
+            return false;
           }
-        })
-      }
-    }
-  }
+        });
+      },
+    },
+  };
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

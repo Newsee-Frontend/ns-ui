@@ -14,7 +14,7 @@
       <!--右边 - 用户下拉菜单 业务组在插槽内调用组件，传入值，并且调用方法即可  -->
       <div class="fr">
         <ns-screenfull></ns-screenfull>
-        <ns-skin @change-theme="changeTheme" :init-theme="initTheme"></ns-skin>
+        <ns-skin @change-theme="changeTheme" :init-theme="theme"></ns-skin>
         <user-dropdown
           :options="options"
           :avator="avatar"
@@ -82,11 +82,10 @@
         jumpByNavEmpty: true,
         keyRefer: keyRefer,
         operatorInfo: {},
-        initTheme: 'purple',
       };
     },
     computed: {
-      ...mapGetters(['userName', 'avatar', 'sideBarList']),
+      ...mapGetters(['userName', 'avatar', 'theme', 'sideBarList']),
       key() {
         return this.$route.name !== undefined
           ? this.$route.name + +new Date()
@@ -94,7 +93,7 @@
       },
     },
     created() {
-      this.$store.dispatch('GenerateSideBar');
+      this.$store.dispatch('generateSideBar');
     },
     methods: {
       userDropdownClick(value, index) {
