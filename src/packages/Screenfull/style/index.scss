@@ -1,6 +1,11 @@
-.screenfull-svg {
-  cursor: pointer;
-  width: 18px;
-  height: 18px;
-  margin-bottom: -1px;
+@import '../../../style/mixins/mixins';
+
+svg {
+  @include rb(screenfull) {
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    margin-bottom: -1px;
+  }
 }
+

@@ -32,19 +32,11 @@ const navmenu = (req, res) => {
         hide: 1,
         childMenus: [
           {
-            funcId: 'row',
-            menuLabel: 'row 布局',
-            menuRouter: 'row',
+            funcId: 'gridLayout',
+            menuLabel: '栅格布局',
+            menuRouter: 'gridLayout',
             menuIcon: null,
             menuIndex: '1',
-            hide: 1,
-          },
-          {
-            funcId: 'col',
-            menuLabel: 'col 布局',
-            menuRouter: 'col',
-            menuIcon: null,
-            menuIndex: '2',
             hide: 1,
           },
         ],

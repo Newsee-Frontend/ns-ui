@@ -1,10 +1,11 @@
 /**
- * bem helper
- * b() // 'button'
- * b('text') // 'button__text'
- * b({ disabled }) // 'button button--disabled'
- * b('text', { disabled }) // 'button__text button__text--disabled'
- * b(['disabled', 'primary']) // 'button button--disabled button--primary'
+ * recls user helper - button component
+ * -----------------------------------------
+ * recls() // 'button'
+ * recls('text') // 'button__text'
+ * recls({ disabled }) // 'button button--disabled'
+ * recls('text', { disabled }) // 'button__text button__text--disabled'
+ * recls(['disabled', 'primary']) // 'button button--disabled button--primary'
  */
 
 const ELEMENT = '__';

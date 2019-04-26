@@ -4,6 +4,7 @@
 import $Var from '../variable';
 import recls from '../mixins/recls';
 import formsize from '../mixins/formsize';
+import namespace from '../mixins/namespace';
 import i18n from './i18n';
 import resmount from './resmount';
 import ui_extends from '../ui-extends';
@@ -53,7 +54,7 @@ export default function(sfc) {
   sfc.name = $Var.prefix + $Var.tie + sfc.name;
   sfc.install = sfc.install || install;
   sfc.mixins = sfc.mixins || [];
-  sfc.mixins.push(i18n, recls, formsize);
+  sfc.mixins.push(i18n, recls, formsize, namespace);
   sfc.methods = sfc.methods || {};
   sfc.methods.isDef = isDef;
   sfc.props && defaultProps(sfc.props);

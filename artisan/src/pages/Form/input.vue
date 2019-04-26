@@ -1,7 +1,10 @@
 <template>
   <div class="input">
     <div v-bind:class="['ns-input--disabled', 'ns-input--primary',{'ns-input__text--disabled': true}]"></div>
-    <span>{{inoutModel || text}}</span>
+    <div>
+      <span>输入值：</span>
+      <span>{{inoutModel || text}}</span>
+    </div>
     <!--<el-input v-model="inoutModel" placeholder="请输入内容" size="small"></el-input>-->
     <ns-input
       v-model="inoutModel"
@@ -23,8 +26,6 @@
       @iconClick="iconClick"
     >
     </ns-input>
-    <i slot="suffix" class="el-input__icon el-icon-date"></i>
-    <i class="el-icon-edit"></i>
   </div>
 </template>
 
@@ -33,9 +34,9 @@
     name: 'col',
     data() {
       return {
-        inoutModel: '111111',
+        inoutModel: '高仓雄',
         text: '请输入',
-        size: 'small',
+        size: 'normal',
         width: '300px',
         height: '40px',
         type: 'text',
@@ -49,7 +50,7 @@
         clearable: false,
         prefixIcon: 'daohang', //输入框头部图标
         suffixIcon: 'gailan', //输入框尾部图标
-      }
+      };
     },
     created() {
 
@@ -84,7 +85,7 @@
       iconClick(value, type) {
         console.log('iconClick', value, type);
       },
-    }
+    },
   };
 </script>
 

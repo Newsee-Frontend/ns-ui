@@ -1,25 +1,29 @@
 <template>
-  <Layout>
-    <!--左logo 插槽 - 根据实际情况插入业务组图片 -->
-    <template slot="header-logo">
-      <img src="../assets/img/logo/logo-white-120X50.png" alt="head-logo">
-    </template>
+  <ns-layout>
+    <template slot="header">
+      <!--左logo 插槽 - 根据实际情况插入业务组图片 -->
+      <div class="fl">
+        <img src="../assets/img/logo/logo-white-120X50.png" alt="head-logo">
+      </div>
 
-    <!--业务组 - 自定义头部模块 -->
-    <template slot="header-custom">
-      <header-custom></header-custom>
-    </template>
+      <!--业务组 - 自定义头部模块 -->
+      <div class="fl">
+        <header-custom></header-custom>
+      </div>
 
-    <!--右边 - 用户下拉菜单 业务组在插槽内调用组件，传入值，并且调用方法即可  -->
-    <template slot="user-dropdown">
-      <user-dropdown
-        :options="options"
-        :avator="avatar"
-        :userName="userName"
-        trigger="click"
-        @click="userDropdownClick"
-      >
-      </user-dropdown>
+      <!--右边 - 用户下拉菜单 业务组在插槽内调用组件，传入值，并且调用方法即可  -->
+      <div class="fr">
+        <ns-screenfull></ns-screenfull>
+        <ns-skin @change-theme="changeTheme" :init-theme="initTheme"></ns-skin>
+        <user-dropdown
+          :options="options"
+          :avator="avatar"
+          :userName="userName"
+          trigger="click"
+          @click="userDropdownClick"
+        >
+        </user-dropdown>
+      </div>
     </template>
 
     <!--侧边栏 - 业务组直接调用封装的侧边栏组件即可 -->
@@ -37,10 +41,12 @@
         </span>
       </ns-sidebar>
     </template>
+
+    <!--history task-tabs link-->
     <template slot="tabs-view">
-      <!--history task-tabs link-->
       <biz-tabs-views></biz-tabs-views>
     </template>
+
     <!--工作台模块 - 嵌入路由视图即可 -->
     <template slot="app-main">
       <!--changing-over  work bench module-->
@@ -48,32 +54,35 @@
         <router-view :key="key"></router-view>
       </transition>
     </template>
-  </Layout>
+
+  </ns-layout>
 </template>
 
 <script>
-  import {mapGetters} from 'vuex';
+
+  import { mapGetters } from 'vuex';
   import headerCustom from './header-custom';
   import keyRefer from './sidebar-keyRefer';
 
   export default {
     name: 'layout',
-    components: {headerCustom},
+    components: { headerCustom },
     data() {
       return {
         dialogSw: false,
         options: [
-          {label: '修改密码', value: 'editPassword'},
-          {label: '退出登录', value: 'logout'}
+          { label: '修改密码', value: 'editPassword' },
+          { label: '退出登录', value: 'logout' },
         ],
         dialogTit: '',
         dialogVisible: {
-          editPasswordVisible: {visible: false},
+          editPasswordVisible: { visible: false },
         },
         sidebarType: 'collapse', //bubble,collapse
         jumpByNavEmpty: true,
         keyRefer: keyRefer,
-        operatorInfo: {}
+        operatorInfo: {},
+        initTheme: 'purple',
       };
     },
     computed: {
@@ -122,8 +131,12 @@
       mouseEnter(index, item) {
         console.log('mouseEvent-mouseEvent');
         console.log(index, item);
-      }
-    }
+      },
+      changeTheme(key) {
+        console.log('changeTheme-changeTheme');
+        console.log(key);
+      },
+    },
   };
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>

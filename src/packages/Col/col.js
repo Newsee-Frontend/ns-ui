@@ -1,5 +1,7 @@
-export default {
-  name: 'ns-col',
+import create from '../../utils/create';
+
+export default create({
+  name: 'col',
 
   props: {
     span: {
@@ -23,10 +25,8 @@ export default {
   computed: {
     gutter() {
       let parent = this.$parent;
-      console.log(1111111111111111);
-      console.log(parent.$options.componentName);
-      console.log(1111111111111111);
-      while (parent && parent.$options.componentName !== 'ns-row') {
+
+      while (parent && parent.$options.name !== `${this.namespace}row`) {
         parent = parent.$parent;
       }
       return parent ? parent.gutter : 0;
@@ -43,20 +43,20 @@ export default {
 
     ['span', 'offset', 'pull', 'push'].forEach(prop => {
       if (this[prop] || this[prop] === 0) {
-        classList.push(prop !== 'span' ? `ns-col-${prop}-${this[prop]}` : `ns-col-${this[prop]}`);
+        classList.push(prop !== 'span' ? `${this.recls()}-${prop}-${this[prop]}` : `${this.recls()}-${this[prop]}`);
       }
     });
 
     ['xs', 'sm', 'md', 'lg', 'xl'].forEach(size => {
       if (typeof this[size] === 'number') {
-        classList.push(`ns-col-${size}-${this[size]}`);
+        classList.push(`${this.recls()}-${size}-${this[size]}`);
       } else if (typeof this[size] === 'object') {
         let props = this[size];
         Object.keys(props).forEach(prop => {
           classList.push(
             prop !== 'span'
-              ? `ns-col-${size}-${prop}-${props[prop]}`
-              : `ns-col-${size}-${props[prop]}`
+              ? `${this.recls()}-${size}-${prop}-${props[prop]}`
+              : `${this.recls()}-${size}-${props[prop]}`,
           );
         });
       }
@@ -65,10 +65,10 @@ export default {
     return h(
       this.tag,
       {
-        class: ['ns-col', classList],
+        class: [this.recls(), classList],
         style,
       },
-      this.$slots.default
+      this.$slots.default,
     );
   },
-};
+});

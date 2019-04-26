@@ -1,6 +1,7 @@
-export default {
-  name: 'ns-row',
-  componentName: 'ns-row',
+import create from '../../utils/create';
+
+export default create({
+  name: 'row',
   props: {
     tag: {
       type: String,
@@ -36,14 +37,14 @@ export default {
       this.tag,
       {
         class: [
-          'ns-row',
+          this.recls(),
           this.justify !== 'start' ? `is-justify-${this.justify}` : '',
           this.align !== 'top' ? `is-align-${this.align}` : '',
-          { 'ns-row--flex': this.type === 'flex' },
+          { [`${this.recls()}--flex`]: this.type === 'flex' },
         ],
         style: this.style,
       },
-      this.$slots.default
+      this.$slots.default,
     );
   },
-};
+});

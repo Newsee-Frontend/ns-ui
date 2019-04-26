@@ -5,7 +5,7 @@
 
       <div
         class="fl theme-cycle"
-        v-for="(opt, index) in themeOptions"
+        v-for="(opt, index) in palette"
         :key="index"
         :index="index"
         :style="{ 'background-color': opt.color }"
@@ -19,39 +19,49 @@
 </template>
 
 <script>
-import iconSvg from '../Icon-svg/Icon-svg';
+  import palette from './palette';
+  import iconSvg from '../Icon-svg/Icon-svg';
 
-export default {
-  name: 'change-theme',
-  components: { iconSvg },
-  data() {
-    return {
-      themeprefix: 'theme-',
-      popoverWidth: '140px',
-      activeIndex: 4,
-      themeOptions: [
-        { key: 'blue', color: '#0A7AF8' },
-        { key: 'green', color: '#4CA770' },
-        { key: 'red', color: '#E24C57' },
-        { key: 'purple', color: '#8352AF' },
-        { key: 'black', color: '#252836' },
-      ],
-    };
-  },
-  mounted() {},
-  methods: {
-    changeTheme(key, index) {
-      this.activeIndex = index;
-      const Layout = document.getElementById('layout');
-      Array.prototype.slice.call(Layout.classList).forEach(cls => {
-        if (cls.includes(this.themeprefix)) {
-          Layout.classList.remove(cls);
-        }
-      });
-      Layout.classList.add(`${this.themeprefix}${key}`);
+  export default {
+    name: 'change-theme',
+    components: { iconSvg },
+    data() {
+      return {
+        themeprefix: 'theme-',
+        popoverWidth: '140px',
+        activeIndex: 4,
+        palette: palette,
+      };
     },
-  },
-};
+    props: {
+      initTheme: {
+        type: String, default: 'black', validator: t => {
+          return palette.some(theme => {
+            return theme.key === t;
+          });
+        },
+      },
+    },
+    mounted() {
+      this.toggle(this.initTheme);
+    },
+    methods: {
+      toggle(key) {
+        const Layout = document.getElementById('layout');
+        Array.prototype.slice.call(Layout.classList).forEach(cls => {
+          if (cls.includes(this.themeprefix)) {
+            Layout.classList.remove(cls);
+          }
+        });
+        Layout.classList.add(`${this.themeprefix}${key}`);
+      },
+      changeTheme(key, index) {
+        this.activeIndex = index;
+        this.toggle(key);
+        this.$emit('change-theme', key);
+      },
+    },
+  };
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped></style>
