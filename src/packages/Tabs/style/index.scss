@@ -1,0 +1,47 @@
+$tabsWidth: 179px; //tabs normal width
+$tabsWidth-small: 164px; //tabs the first/last width
+$tabsHeight: 50px; //tabs normal height
+$tabsMl: -8px; //向左偏移值
+
+@mixin tabs-Back($name) {
+  background: url('../../../assets/tabs/' + $name + '.png') no-repeat;
+}
+
+.ns-tabs.arrowTabs {
+  width: inherit;
+  .el-tabs__header {
+    border: none;
+  }
+  .el-tabs__nav-wrap::after {
+    display: none;
+  }
+  .el-tabs__item {
+    width: $tabsWidth;
+    height: $tabsHeight;
+    border-radius: 0;
+    line-height: $tabsHeight;
+    text-align: center;
+    user-select: none;
+    margin-left: $tabsMl;
+    box-sizing: border-box;
+    @include tabs-Back('tabs-default');
+    &:first-of-type {
+      width: $tabsWidth-small;
+      @include tabs-Back('tabs-1');
+    }
+    &:last-of-type {
+      width: $tabsWidth-small;
+      @include tabs-Back('tabs-3');
+    }
+    &.is-active {
+      color: #fff !important;
+      @include tabs-Back('tabs-2s');
+      &:first-of-type {
+        @include tabs-Back('tabs-1s');
+      }
+      &:last-of-type {
+        @include tabs-Back('tabs-3s');
+      }
+    }
+  }
+}

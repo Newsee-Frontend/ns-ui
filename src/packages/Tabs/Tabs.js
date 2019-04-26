@@ -1,77 +1,189 @@
 import create from '../../utils/create';
-
+import TabNav from './components/tab-nav';
 export default create({
   name: 'tabs',
+  components: {
+    TabNav
+  },
+
+  props: {
+    type: String,
+    activeName: String,
+    closable: Boolean,
+    addable: Boolean,
+    value: {},
+    editable: Boolean,
+    tabPosition: {
+      type: String,
+      default: 'top'
+    },
+    beforeLeave: Function,
+    stretch: Boolean
+  },
+
+  provide() {
+    return {
+      rootTabs: this
+    };
+  },
 
   data() {
     return {
-      childTabs: this.value
+      currentName: this.value || this.activeName,
+      panes: []
     };
   },
-  props: {
-    fatherTabs: String,
-    type: { type: String, default: 'card' },
-    activeName: { type: String, default: '' },
-    closable: { type: Boolean, default: false },
-    addable: { type: Boolean, default: false },
-    editable: { type: Boolean, default: false }
-  },
-
-  computed: {},
 
   watch: {
-    value(val){
-      this.childTabs = val;
+    activeName(value) {
+      this.setCurrentName(value);
+    },
+    value(value) {
+      this.setCurrentName(value);
+    },
+    currentName(value) {
+      if (this.$refs.nav) {
+        this.$nextTick(() => {
+          this.$refs.nav.$nextTick(_ => {
+            this.$refs.nav.scrollToActiveTab();
+          });
+        });
+      }
+    }
+  },
+
+  methods: {
+    calcPaneInstances(isLabelUpdated = false) {
+      if (this.$slots.default) {
+        const paneSlots = this.$slots.default.filter(vnode => vnode.tag &&
+          vnode.componentOptions && ['ElTabPane','ns-tab-pane'].includes(vnode.componentOptions.Ctor.options.name));
+        // update indeed
+        const panes = paneSlots.map(({ componentInstance }) => componentInstance);
+        const panesChanged = !(panes.length === this.panes.length && panes.every((pane, index) => pane === this.panes[index]));
+        if (isLabelUpdated || panesChanged) {
+          this.panes = panes;
+        }
+      } else if (this.panes.length !== 0) {
+        this.panes = [];
+      }
+    },
+    handleTabClick(tab, tabName, event) {
+      if (tab.disabled) return;
+      this.setCurrentName(tabName);
+      this.$emit('tab-click', tab, event);
+    },
+    handleTabRemove(pane, ev) {
+      if (pane.disabled) return;
+      ev.stopPropagation();
+      this.$emit('edit', pane.name, 'remove');
+      this.$emit('tab-remove', pane.name);
+    },
+    handleTabAdd() {
+      this.$emit('edit', null, 'add');
+      this.$emit('tab-add');
+    },
+    setCurrentName(value) {
+      const changeCurrentName = () => {
+        this.currentName = value;
+        this.$emit('input', value);
+      };
+      if (this.currentName !== value && this.beforeLeave) {
+        const before = this.beforeLeave(value, this.currentName);
+        if (before && before.then) {
+          before.then(() => {
+            changeCurrentName();
+
+            this.$refs.nav && this.$refs.nav.removeFocus();
+          });
+        } else if (before !== false) {
+          changeCurrentName();
+        }
+      } else {
+        changeCurrentName();
+      }
     }
   },
 
   render(h) {
-    return(
-      <el-tabs
-        className={this.recls()}
-        value={this.childTabs}
-        onInput={e => this.handleModel(e)}
-        type={this.type}
-        active-name={this.activeName}
-        closable={this.closable}
-        addable={this.addable}
-        editable={this.editable}
-        on-tab-click={this.tabClick.bind(this)}
-        on-tab-remove={this.tabRemove.bind(this)}
-        on-tab-add={this.tabAdd.bind(this)}
-        on-edit={this.edit.bind(this)}
-      >
+    let {
+      type,
+      handleTabClick,
+      handleTabRemove,
+      handleTabAdd,
+      currentName,
+      panes,
+      editable,
+      addable,
+      tabPosition,
+      stretch
+    } = this;
+
+    const newButton = editable || addable
+      ? (
+        <span
+          class="el-tabs__new-tab"
+          on-click={ handleTabAdd }
+          tabindex="0"
+          on-keydown={ (ev) => { if (ev.keyCode === 13) { handleTabAdd(); }} }
+        >
+            <i class="el-icon-plus"></i>
+          </span>
+      )
+      : null;
+
+    const navData = {
+      props: {
+        currentName,
+        onTabClick: handleTabClick,
+        onTabRemove: handleTabRemove,
+        editable,
+        type,
+        panes,
+        stretch
+      },
+      ref: 'nav'
+    };
+    const header = (
+      <div class={['el-tabs__header', `is-${tabPosition}`]}>
+        {newButton}
+        <tab-nav { ...navData }></tab-nav>
+      </div>
+    );
+    const panels = (
+      <div class="el-tabs__content">
         {this.$slots.default}
-      </el-tabs>
-    )
-  },
+      </div>
+    );
 
-  methods: {
-    handleModel: function(val){
-      this.$emit('input', val);
-    },
-
-    //tab 被选中时触发 参数被选中的标签 tab 实例
-    tabClick(tab) {
-      this.$emit('tabClick', tab);
-    },
-    //点击 tab 移除按钮后触发 参数被删除的标签的 name
-    tabRemove(name) {
-      this.$emit('tabRemove', name);
-    },
-    //点击 tabs 的新增按钮后触发
-    tabAdd() {
-      this.$emit('tabAdd');
-    },
-    //点击 tabs 的新增按钮或 tab 被关闭后触发   参数(targetName, action)
-    edit(targetName, action) {
-      this.$emit('edit', targetName, action);
-    },
+    return (
+      <div
+        class={[this.recls(),{
+          'el-tabs': true,
+          'el-tabs--card': type === 'card',
+          [`el-tabs--${tabPosition}`]: true,
+          'el-tabs--border-card': type === 'border-card',
+          'arrowTabs': type === 'arrow'
+        }]}
+       >
+        { tabPosition !== 'bottom' ? [header, panels] : [panels, header] }
+      </div>
+    );
   },
 
   created() {
+    if (!this.currentName) {
+      this.setCurrentName('0');
+    }
+
+    this.$on('tabLabelChanged', this.calcPaneInstances.bind(null, true));
   },
 
   mounted() {
+    this.calcPaneInstances();
   },
+
+  updated() {
+    this.calcPaneInstances();
+  }
+
 });

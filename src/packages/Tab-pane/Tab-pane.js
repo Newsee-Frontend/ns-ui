@@ -2,29 +2,58 @@ import create from '../../utils/create';
 
 export default create({
   name: 'tab-pane',
-
   data() {
-    return {};
+    return {
+      index: null,
+      loaded: false
+    };
   },
-  props: {},
+  props: {
+    label: String,
+    disabled: Boolean,
+    name: String,
+    closable: Boolean,
+    lazy: Boolean,
+  },
 
-  computed: {},
+  computed: {
+    isClosable() {
+      return this.closable || this.$parent.closable;
+    },
+    active() {
+      const active = this.$parent.currentName === (this.name || this.index);
+      if (active) {
+        this.loaded = true;
+      }
+      return active;
+    },
+    paneName() {
+      return this.name || this.index;
+    }
+  },
 
-  watch: {},
+  watch: {
+    label() {
+      this.$parent.$emit('tabLabelChanged');
+    }
+  },
 
   render(h) {
-    return (
-      <div className={this.recls()}>
-        {this.$slots.default}
-      </div>
-    );
-  },
-
-  methods: {},
-
-  created() {
-  },
-
-  mounted() {
-  },
+    let { lazy, loaded, active, paneName } = this;
+    let isShow = active ? 'block' : 'none';
+    if ((!lazy || loaded) || active) {
+      return (
+        <div
+          class={[this.recls(),{
+            "el-tab-pane": true
+          }]}
+          role="tabpanel"
+          style={{ display: isShow }}
+          aria-hidden={!active}
+          id={`pane-${paneName}`}
+          aria-labelledby={`tab-${paneName}`}>
+          {this.$slots.default}
+        </div>);
+    }
+  }
 });
