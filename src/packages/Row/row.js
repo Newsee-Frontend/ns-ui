@@ -2,7 +2,6 @@ import create from '../../utils/create';
 
 export default create({
   name: 'row',
-  componentName: 'ns-row',
   props: {
     tag: {
       type: String,

@@ -25,10 +25,8 @@ export default create({
   computed: {
     gutter() {
       let parent = this.$parent;
-      console.log(1111111111111111);
-      console.log(parent.$options.componentName);
-      console.log(1111111111111111);
-      while (parent && parent.$options.componentName !== 'ns-row') {
+
+      while (parent && parent.$options.name !== `${this.namespace}row`) {
         parent = parent.$parent;
       }
       return parent ? parent.gutter : 0;

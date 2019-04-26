@@ -34,12 +34,9 @@
 
 <script>
 import Head from '../Head/Head';
-// import PageTabs from '../head/PageTabs/Screenfull.vue';
-
 export default {
   name: 'layout',
   components: {
-    // PageTabs,
     Head,
   },
   data() {
