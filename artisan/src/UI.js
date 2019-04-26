@@ -7,7 +7,7 @@ Vue.use(ElementUI);
 
 import Layout from '../../src/packages/Layout/Layout';
 import Sidebar from '../../src/packages/SideBar/Sidebar';
-import Skin from '../../src/packages/Skin/Skin';
+import Skiner from '../../src/packages/Skiner/Skiner';
 import Screenfull from '../../src/packages/Screenfull/Screenfull';
 import UserDropdown from '../../src/packages/UserDropdown/UserDropdown';
 
@@ -33,7 +33,7 @@ import TabPane from '../../src/packages/Tab-pane/Tab-pane.js';
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
 Vue.component('ns-screenfull', Screenfull);
-Vue.component('ns-skin', Skin);
+Vue.component('ns-skiner', Skiner);
 Vue.component('UserDropdown', UserDropdown);
 
 Vue.component('ns-icon-svg', IconSvg);
@@ -57,7 +57,7 @@ Vue.component('ns-tab-pane', TabPane);
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
-import '../../src/packages/Skin/style/index.scss';
+import '../../src/packages/Skiner/style/index.scss';
 import '../../src/packages/Screenfull/style/index.scss';
 import '../../src/packages/UserDropdown/style/index.scss';
 

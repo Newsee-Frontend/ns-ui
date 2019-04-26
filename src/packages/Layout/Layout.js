@@ -1,5 +1,5 @@
 import create from '../../utils/create';
-import Head from '../Head/Head';
+import Head from '../Header/Header';
 
 export default create({
     name: 'layout',

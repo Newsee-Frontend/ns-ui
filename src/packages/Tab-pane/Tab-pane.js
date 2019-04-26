@@ -55,13 +55,5 @@ export default create({
           {this.$slots.default}
         </div>);
     }
-  },
-  methods: {},
-
-  created() {
-    console.log(this.$parent)
-  },
-
-  mounted() {
-  },
+  }
 });

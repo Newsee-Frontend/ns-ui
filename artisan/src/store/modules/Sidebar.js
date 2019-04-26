@@ -5,17 +5,17 @@ const SideBar = {
     sideBarList: JSON.parse(sessionStorage.getItem('nav')),
   },
   mutations: {
-    SET_SIDEBARDATA: (state, data) => {
+    SET_SIDEBAR_DATA: (state, data) => {
       state.sideBarList = data;
       sessionStorage.setItem('nav', JSON.stringify(data));
     },
   },
   actions: {
-    GenerateSideBar({ commit }, data) {
+    generateSideBar({ commit }, data) {
       sideBarService({ user: 123 }).then(res => {
         const side = res.resultData || [];
 
-        commit('SET_SIDEBARDATA', side.filter(i => i.hide));
+        commit('SET_SIDEBAR_DATA', side.filter(i => i.hide));
       });
     },
   },
