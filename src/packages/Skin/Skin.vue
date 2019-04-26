@@ -33,11 +33,20 @@
         palette: palette,
       };
     },
+    props: {
+      initTheme: {
+        type: String, default: 'black', validator: t => {
+          return palette.some(theme => {
+            return theme.key === t;
+          });
+        },
+      },
+    },
     mounted() {
+      this.toggle(this.initTheme);
     },
     methods: {
-      changeTheme(key, index) {
-        this.activeIndex = index;
+      toggle(key) {
         const Layout = document.getElementById('layout');
         Array.prototype.slice.call(Layout.classList).forEach(cls => {
           if (cls.includes(this.themeprefix)) {
@@ -45,6 +54,10 @@
           }
         });
         Layout.classList.add(`${this.themeprefix}${key}`);
+      },
+      changeTheme(key, index) {
+        this.activeIndex = index;
+        this.toggle(key);
         this.$emit('change-theme', key);
       },
     },

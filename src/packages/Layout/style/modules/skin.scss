@@ -1,3 +1,5 @@
+@import '../../../../style/mixins/mixins';
+
 $prefix: 'theme';
 $theme-name: 'blue' 'green' 'red' 'purple' 'black';
 $theme-head-color: #0a7af8 #4ca770 #e24c57 #8352af #252836;
@@ -24,7 +26,7 @@ $theme-side-color: #0a7af8 #4ca770 #e24c57 #8352af #0a7af8;
         }
       }
     }
-    .Head {
+    @include b(header) {
       background-color: nth($theme-head-color, $i);
     }
   }
