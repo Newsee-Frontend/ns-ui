@@ -1,5 +1,5 @@
 const Layout = resolve => require(['@/layout/layout.vue'], resolve);
-export const baseRouter = [
+export const dataRouter = [
   {
     path: '/data',
     component: Layout,

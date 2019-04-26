@@ -171,6 +171,34 @@ const navmenu = (req, res) => {
 
         ],
       },
+      {
+        funcId: 'navigation',
+        menuLabel: '导航',
+        menuRouter: 'navigation',
+        menuIcon: 'fold',
+        menuIndex: 8,
+        hide: 1,
+        childMenus: [
+          {
+            funcId: 'steps',
+            menuLabel: 'steps 步骤条',
+            menuRouter: 'steps',
+            menuIcon: null,
+            menuIndex: '1',
+            hide: 1,
+          },
+          {
+            funcId: 'tabs',
+            menuLabel: 'tabs 标签页',
+            menuRouter: 'tabs',
+            menuIcon: null,
+            menuIndex: '2',
+            hide: 1,
+          },
+
+
+        ],
+      },
     ],
   });
 };
