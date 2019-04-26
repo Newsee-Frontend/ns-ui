@@ -8,9 +8,15 @@ export const baseRouter = [
     children: [
       {
         path: 'gridLayout',
-        component: () => import('../../pages/Basic/gridLayout'),
+        component: () => import('../../pages/Basic/gridLayout/gridLayout'),
         meta: { auth: true, key: 'col' },
         name: '栅格布局',
+      },
+      {
+        path: 'button',
+        component: () => import('../../pages/Basic/Button/Button'),
+        meta: { auth: true, key: 'button' },
+        name: '按钮',
       },
     ],
   },

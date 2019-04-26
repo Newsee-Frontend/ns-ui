@@ -14,6 +14,8 @@ import UserDropdown from '../../src/packages/UserDropdown/UserDropdown';
 import IconSvg from '../../src/packages/Icon-svg/Icon-svg';
 import Col from '../../src/packages/Col/Col';
 import Row from '../../src/packages/Row/Row';
+import Button from '../../src/packages/Button/Button';
+import ButtonGroup from '../../src/packages/Button-group/Button-group';
 
 import DatePicker from '../../src/packages/DatePicker/DatePicker.js';
 import Input from '../../src/packages/Input/Input.js';
@@ -28,28 +30,38 @@ import Progress from '../../src/packages/Progress/Progress.js';
 import Steps from '../../src/packages/Steps/Steps.js';
 import Step from '../../src/packages/Step/Step.js';
 
+// layout
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
 Vue.component('ns-screenfull', Screenfull);
 Vue.component('ns-skiner', Skiner);
 Vue.component('UserDropdown', UserDropdown);
 
+// basic
 Vue.component('ns-icon-svg', IconSvg);
 Vue.component('ns-col', Col);
 Vue.component('ns-row', Row);
+Vue.component('ns-button', Button);
+Vue.component('ns-button-group', ButtonGroup);
 
+// form
 Vue.component('ns-input', Input);
 Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
+
+// data
+Vue.component('ns-badge', Badge);
+Vue.component('ns-progress', Progress);
+
+//navigation
+Vue.component('ns-steps', Steps);
+Vue.component('ns-step', Step);
+
+// other
 Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
 Vue.component('ns-slip-dialog', SlipDialog);
 
-Vue.component('ns-badge', Badge);
-Vue.component('ns-progress', Progress);
-
-Vue.component('ns-steps', Steps);
-Vue.component('ns-step', Step);
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
@@ -60,6 +72,8 @@ import '../../src/packages/UserDropdown/style/index.scss';
 import '../../src/packages/Icon-svg/style/index.scss';
 import '../../src/packages/Col/style/index.scss';
 import '../../src/packages/Row/style/index.scss';
+import '../../src/packages/Button/style/index.scss';
+import '../../src/packages/Button-group/style/index.scss';
 
 import '../../src/packages/Input/style/index.scss';
 import '../../src/packages/DatePicker/style/index.scss';

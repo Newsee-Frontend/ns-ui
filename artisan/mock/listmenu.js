@@ -39,6 +39,14 @@ const navmenu = (req, res) => {
             menuIndex: '1',
             hide: 1,
           },
+          {
+            funcId: 'button',
+            menuLabel: '按钮',
+            menuRouter: 'button',
+            menuIcon: null,
+            menuIndex: '2',
+            hide: 1,
+          },
         ],
       },
       {
