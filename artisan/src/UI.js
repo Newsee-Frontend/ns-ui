@@ -25,6 +25,9 @@ import SlipDialog from '../../src/packages/Slip-dialog/Slip-dialog.js';
 import Badge from '../../src/packages/Badge/Badge.js';
 import Progress from '../../src/packages/Progress/Progress.js';
 
+import Steps from '../../src/packages/Steps/Steps.js';
+import Step from '../../src/packages/Step/Step.js';
+
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
 Vue.component('ns-screenfull', Screenfull);
@@ -45,6 +48,9 @@ Vue.component('ns-slip-dialog', SlipDialog);
 Vue.component('ns-badge', Badge);
 Vue.component('ns-progress', Progress);
 
+Vue.component('ns-steps', Steps);
+Vue.component('ns-step', Step);
+
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
 import '../../src/packages/Skin/style/index.scss';
@@ -61,3 +67,6 @@ import '../../src/packages/TimePicker/style/index.scss';
 import '../../src/packages/PageTabs/style/index.scss';
 import '../../src/packages/Dialog/style/index.scss';
 import '../../src/packages/Slip-dialog/style/index.scss';
+
+import '../../src/packages/Step/style/index.scss';
+import '../../src/packages/Steps/style/index.scss';
