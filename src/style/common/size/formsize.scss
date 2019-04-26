@@ -1,0 +1,53 @@
+@import '../../config/public';
+@import '../../mixins/mixins';
+
+$size-type: 'mini' 'small' 'normal' 'medium' 'large';
+$width: 90px 120px 200px 400px 900px;
+$height: 32px 32px 32px 32px 32px;
+
+@mixin form-component-size($block-type) {
+  @each $type in $size-type {
+    $size-name: $block-type + '--' + $type;
+    $i: index($size-type, $type);
+    $w: nth($width, $i);
+    $h: nth($height, $i);
+
+    @include rb($size-name) {
+      @include base-style-change($w, $h);
+    }
+
+    @include input-inner();
+    @include icon-inner();
+
+    //special 时间范围选择的修改
+    @include date-range-modefy();
+  }
+}
+
+@mixin input-inner() {
+  & .el-input__inner {
+    width: 100%;
+    height: 100%;
+    line-height: 100%;
+  }
+}
+
+@mixin base-style-change($width, $height) {
+  width: $width;
+  height: $height;
+  line-height: $height;
+}
+
+@mixin icon-inner() {
+  .el-input__icon {
+    height: 100%;
+    line-height: 100%;
+  }
+}
+
+@mixin date-range-modefy() {
+  .el-range-separator {
+    height: inherit;
+    line-height: inherit;
+  }
+}

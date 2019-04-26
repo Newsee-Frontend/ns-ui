@@ -97,6 +97,8 @@
     },
     methods: {
       userDropdownClick(value, index) {
+        console.log('userDropdownClick');
+        console.log(value, index);
         if (value === 'editPassword') {
 
         }

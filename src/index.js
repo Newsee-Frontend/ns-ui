@@ -15,6 +15,7 @@ import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
 import Header from './packages/Header/Header';
+import IconClass from './packages/Icon-class/Icon-class';
 import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
@@ -43,6 +44,7 @@ const components = [
   DatePicker,
   Dialog,
   Header,
+  IconClass,
   IconSvg,
   Input,
   Layout,
@@ -100,6 +102,7 @@ export {
   DatePicker,
   Dialog,
   Header,
+  IconClass,
   IconSvg,
   Input,
   Layout,

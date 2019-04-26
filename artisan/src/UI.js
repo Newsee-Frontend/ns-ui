@@ -12,6 +12,7 @@ import Screenfull from '../../src/packages/Screenfull/Screenfull';
 import UserDropdown from '../../src/packages/UserDropdown/UserDropdown';
 
 import IconSvg from '../../src/packages/Icon-svg/Icon-svg';
+import IconClass from '../../src/packages/Icon-class/Icon-class';
 import Col from '../../src/packages/Col/Col';
 import Row from '../../src/packages/Row/Row';
 import Button from '../../src/packages/Button/Button';
@@ -41,6 +42,7 @@ Vue.component('UserDropdown', UserDropdown);
 
 // basic
 Vue.component('ns-icon-svg', IconSvg);
+Vue.component('ns-icon-class', IconClass);
 Vue.component('ns-col', Col);
 Vue.component('ns-row', Row);
 Vue.component('ns-button', Button);
@@ -74,6 +76,7 @@ import '../../src/packages/Screenfull/style/index.scss';
 import '../../src/packages/UserDropdown/style/index.scss';
 
 import '../../src/packages/Icon-svg/style/index.scss';
+import '../../src/packages/Icon-class/style/index.scss';
 import '../../src/packages/Col/style/index.scss';
 import '../../src/packages/Row/style/index.scss';
 import '../../src/packages/Button/style/index.scss';
@@ -88,4 +91,4 @@ import '../../src/packages/Slip-dialog/style/index.scss';
 
 import '../../src/packages/Step/style/index.scss';
 import '../../src/packages/Steps/style/index.scss';
-import  '../../src/packages/Tabs/style/index.scss'
+import '../../src/packages/Tabs/style/index.scss';

@@ -1,0 +1,6 @@
+//input 相关样式
+@import '../../../style/common/size/buttonsize';
+
+@include b(button) {
+  @include button-size(button);
+}

@@ -40,13 +40,30 @@ const navmenu = (req, res) => {
             hide: 1,
           },
           {
-            funcId: 'button',
-            menuLabel: '按钮',
-            menuRouter: 'button',
+            funcId: 'icon-svg',
+            menuLabel: 'svg 图标',
+            menuRouter: 'icon-svg',
             menuIcon: null,
             menuIndex: '2',
             hide: 1,
           },
+          {
+            funcId: 'icon-class',
+            menuLabel: 'class 图标',
+            menuRouter: 'icon-class',
+            menuIcon: null,
+            menuIndex: '3',
+            hide: 1,
+          },
+          {
+            funcId: 'button',
+            menuLabel: '按钮',
+            menuRouter: 'button',
+            menuIcon: null,
+            menuIndex: '4',
+            hide: 1,
+          },
+
         ],
       },
       {
