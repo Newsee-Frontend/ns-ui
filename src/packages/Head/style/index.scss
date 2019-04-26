@@ -3,7 +3,7 @@
 @import '../../Skin/style/index';
 
 /* ------------  顶部模块 ------------  */
-.Head {
+@include b(header) {
   width: 100%;
   min-width: 500px;
   height: $navH;
@@ -12,13 +12,14 @@
   padding-right: $navH_pr;
   background: #252836;
   box-sizing: border-box;
-  .header-logo {
-    img {
-      display: block;
-    }
+  &.fl {
+    float: left;
   }
-  .header-item {
-    margin-left: 15px;
+  &.fr {
+    float: right;
+  }
+  img {
+    display: block;
   }
   svg {
     fill: #fff;

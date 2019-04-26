@@ -1,8 +1,8 @@
 <!--主页-->
 <template>
   <div class="Dashboard">
-    <TestDemo1 :item="item"></TestDemo1>
-    <TestDemo2 :item="item"></TestDemo2>
+    <!--<TestDemo1 :item="item"></TestDemo1>-->
+    <!--<TestDemo2 :item="item"></TestDemo2>-->
   </div>
 </template>
 
@@ -16,7 +16,12 @@
     name: 'Dashboard',
     components: { HelloWorld, TestDemo1, TestDemo2 },
     data() {
-      return {};
+      return {
+        item: {
+          firstName: 'gcx',
+          time: '',
+        },
+      };
     },
     created() {
 
@@ -25,6 +30,6 @@
 
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+<style rel="stylesheet/scss" lang="scss" scoped>
 
 </style>
