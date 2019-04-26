@@ -27,6 +27,8 @@ import Progress from '../../src/packages/Progress/Progress.js';
 
 import Steps from '../../src/packages/Steps/Steps.js';
 import Step from '../../src/packages/Step/Step.js';
+import Tabs from '../../src/packages/Tabs/Tabs.js';
+import TabPane from '../../src/packages/Tab-pane/Tab-pane.js';
 
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
@@ -50,6 +52,8 @@ Vue.component('ns-progress', Progress);
 
 Vue.component('ns-steps', Steps);
 Vue.component('ns-step', Step);
+Vue.component('ns-tabs', Tabs);
+Vue.component('ns-tab-pane', TabPane);
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
@@ -70,3 +74,4 @@ import '../../src/packages/Slip-dialog/style/index.scss';
 
 import '../../src/packages/Step/style/index.scss';
 import '../../src/packages/Steps/style/index.scss';
+import  '../../src/packages/Tabs/style/index.scss'
