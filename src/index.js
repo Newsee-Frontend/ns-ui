@@ -1,6 +1,6 @@
 /* eslint-disable */
 // This file is auto gererated by build/build-entry.js
-  
+
 import * as filters from './filters/index';//filter
 import ui_extends from './ui-extends';
 import $Var from './variable';
@@ -22,7 +22,7 @@ import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
 import SideBar from './packages/SideBar/SideBar';
-import Skin from './packages/Skin/Skin';
+import Skin from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
 import Step from './packages/Step/Step';
 import Steps from './packages/Steps/Steps';
@@ -77,7 +77,7 @@ const install = function (Vue, opts = {}) {
   Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
   });
-  
+
   ui_extends(Vue, option);
 };
 

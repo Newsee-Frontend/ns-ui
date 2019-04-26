@@ -1,5 +1,7 @@
-.change-theme {
-  svg.ns-svg-icon {
+@import '../../../style/mixins/mixins';
+
+@include b(skiner) {
+  svg {
     width: 20px;
     height: 20px;
     margin-bottom: -3px;
@@ -7,7 +9,7 @@
   }
 }
 
-.change-theme-container {
+@include b(skiner__container) {
   position: relative;
   p {
     font-size: 12px;
