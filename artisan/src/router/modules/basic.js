@@ -3,20 +3,14 @@ export const baseRouter = [
   {
     path: '/basic',
     component: Layout,
-    redirect: '/basic/col',
+    redirect: '/basic/gridLayout',
     name: '基础',
     children: [
       {
-        path: 'col',
-        component: () => import('../../pages/Basic/col'),
+        path: 'gridLayout',
+        component: () => import('../../pages/Basic/gridLayout'),
         meta: { auth: true, key: 'col' },
-        name: 'col 布局',
-      },
-      {
-        path: 'row',
-        component: () => import('../../pages/Basic/row'),
-        meta: { auth: true, key: 'row' },
-        name: 'row 布局',
+        name: '栅格布局',
       },
     ],
   },
