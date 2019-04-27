@@ -45,7 +45,7 @@ export default create({
                 )
             }
             <span class={'hello'}>{this.userName}</span>
-            <i class={this.isopen ? 'el-icon-caret-top' : 'el-icon-caret-bottom'}/>
+            <icon-class icon-class={this.isopen ? 'el-icon-caret-top' : 'el-icon-caret-bottom'}/>
           </section>
         }
         {

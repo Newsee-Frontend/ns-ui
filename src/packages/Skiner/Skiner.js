@@ -43,7 +43,7 @@ export default create({
                   on-click={this.changeTheme.bind(this, theme.key, index)}
                 >
                   {
-                    index === this.activeIndex ? <i className="el-icon-check"/> : null
+                    index === this.activeIndex ? <icon-class className="el-icon-check"/> : null
                   }
                 </div>,
               ])
