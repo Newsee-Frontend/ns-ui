@@ -2,137 +2,134 @@
 @import '../../../../style/mixins/scrollbarVisible';
 @import 'var';
 
+.first-nav {
+  position: relative;
+  height: 100%;
 
-@include b(sidebar) {
-  &.first-nav {
+  & ::-webkit-scrollbar {
+    width: $scrollbar-width;
+  }
+
+  li.first-nav-items {
     position: relative;
-    height: 100%;
+    height: $first-nav-item-height;
+    line-height: $first-nav-item-height;
 
-    & ::-webkit-scrollbar {
-      width: $scrollbar-width;
+    .first-nav-tit {
+      height: 100%;
+      padding-left: $first-nav-left-gap;
+      cursor: pointer;
+      font-size: $first-nav-font-size;
+      svg {
+        display: inline-block;
+        padding: 0 5px 0 0;
+        font-size: inherit;
+        width: $nav-icon-width;
+        height: $nav-icon-height;
+        vertical-align: -3px;
+      }
+      span {
+        display: inline-block;
+        font-size: inherit;
+      }
     }
 
-    li.first-nav-items {
-      position: relative;
-      height: $first-nav-item-height;
-      line-height: $first-nav-item-height;
+    //.nav-active-mask {
+    //  position: absolute;
+    //  background: red;
+    //  width: 24px;
+    //  height: $first-nav-item-height;
+    //  left:96px;
+    //  top: $first-nav-item-height;
+    //  background-color: transparent;
+    //  z-index: 9999;
+    //}
 
-      .first-nav-tit {
-        height: 100%;
-        padding-left: $first-nav-left-gap;
-        cursor: pointer;
-        font-size: $first-nav-font-size;
-        svg {
-          display: inline-block;
-          padding: 0 5px 0 0;
-          font-size: inherit;
-          width: $nav-icon-width;
-          height: $nav-icon-height;
-          vertical-align: -3px;
-        }
-        span {
-          display: inline-block;
-          font-size: inherit;
-        }
+    ul.second-nav {
+      position: absolute;
+      visibility: hidden;
+      width: 0;
+      height: auto;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      box-shadow: 5px 1px 6px 1px rgba(0, 0, 0, 0.2);
+      border-radius: $second-nav-radius;
+      box-sizing: border-box;
+      z-index: -1;
+
+      .left {
+        width: $first-nav-width;
+        height: 1px;
+        background-color: transparent;
       }
 
-      //.nav-active-mask {
-      //  position: absolute;
-      //  background: red;
-      //  width: 24px;
-      //  height: $first-nav-item-height;
-      //  left:96px;
-      //  top: $first-nav-item-height;
-      //  background-color: transparent;
-      //  z-index: 9999;
-      //}
-
-      ul.second-nav {
-        position: absolute;
-        visibility: hidden;
-        width: 0;
-        height: auto;
-        top: 0;
-        left: 0;
-        opacity: 0;
-        box-shadow: 5px 1px 6px 1px rgba(0, 0, 0, 0.2);
-        border-radius: $second-nav-radius;
-        box-sizing: border-box;
-        z-index: -1;
-
-        .left {
-          width: $first-nav-width;
-          height: 1px;
-          background-color: transparent;
+      .right {
+        width: $second-nav-width;
+        padding: $second-nav-padding-top 0 $second-nav-padding-bottom;
+        .second-nav-tit {
+          height: $second-nav-title-height;
+          line-height: $second-nav-title-height;
+          padding-left: $second-nav-item-paddind-lr + $second-nav-item-text-indent;
+          font-size: 14px;
+          color: inherit;
+          font-weight: bold;
+          box-sizing: border-box;
         }
 
-        .right {
-          width: $second-nav-width;
-          padding: $second-nav-padding-top 0 $second-nav-padding-bottom;
-          .second-nav-tit {
-            height: $second-nav-title-height;
-            line-height: $second-nav-title-height;
-            padding-left: $second-nav-item-paddind-lr + $second-nav-item-text-indent;
-            font-size: 14px;
-            color: inherit;
-            font-weight: bold;
-            box-sizing: border-box;
-          }
+        .second-nav-container {
+          height: auto;
+          overflow-x: hidden;
+          overflow-y: auto;
+          @include scrollbarVisible();
 
-          .second-nav-container {
-            height: auto;
-            overflow-x: hidden;
-            overflow-y: auto;
-            @include scrollbarVisible();
-
-            li.second-nav-items {
-              padding: $second-nav-item-paddind-tb $second-nav-item-paddind-lr;
-              height: $second-nav-item-height;
-              line-height: $second-nav-item-height;
-              box-sizing: border-box;
-
-              a.nav-link {
-                display: block;
-                font-size: $second-nav-font-size;
-                color: $second-nav-text-color;
-                cursor: pointer;
-                text-indent: $second-nav-item-text-indent;
-              }
-            }
-          }
-        }
-      }
-
-      &.ishover {
-        ul.second-nav {
-          visibility: visible;
-          opacity: 1;
           li.second-nav-items {
-            &:last-child {
-              padding-bottom: $second-nav-padding-top;
+            padding: $second-nav-item-paddind-tb $second-nav-item-paddind-lr;
+            height: $second-nav-item-height;
+            line-height: $second-nav-item-height;
+            box-sizing: border-box;
+
+            a.nav-link {
+              display: block;
+              font-size: $second-nav-font-size;
+              color: $second-nav-text-color;
+              cursor: pointer;
+              text-indent: $second-nav-item-text-indent;
             }
           }
+        }
+      }
+    }
 
-          &.is-arrowDec {
+    &.ishover {
+      ul.second-nav {
+        visibility: visible;
+        opacity: 1;
+        li.second-nav-items {
+          &:last-child {
+            padding-bottom: $second-nav-padding-top;
+          }
+        }
+
+        &.is-arrowDec {
+          &:before {
+            content: ' ';
+            position: absolute;
+            left: -$second-nav-item-height/4;
+            width: 0;
+            height: 0;
+            border-bottom: ($second-nav-item-height/4-1) solid transparent;
+            border-top: ($second-nav-item-height/4-1) solid transparent;
+            border-right: $second-nav-item-height/4 solid #fff;
+          }
+          &.second-nav-ASC {
             &:before {
-              content: ' ';
-              position: absolute;
-              left: -$second-nav-item-height/4;
-              width: 0;
-              height: 0;
-              border-bottom: ($second-nav-item-height/4-1) solid transparent;
-              border-top: ($second-nav-item-height/4-1) solid transparent;
-              border-right: $second-nav-item-height/4 solid #fff;
+              top: $first-nav-item-height/2 - $second-nav-item-height/4;
             }
-            &.second-nav-ASC {
-              &:before {
-                top: $first-nav-item-height/2 - $second-nav-item-height/4;
-              }
-            }
-            &.second-nav-DESC {
-              &:before {
-                bottom: $first-nav-item-height/2 - $second-nav-item-height/4;
-              }
+          }
+          &.second-nav-DESC {
+            &:before {
+              bottom: $first-nav-item-height/2 - $second-nav-item-height/4;
             }
           }
         }

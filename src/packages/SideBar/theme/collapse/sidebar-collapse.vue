@@ -1,5 +1,5 @@
 <template>
-  <ul v-bind:class="['first-nav', 'noselect']">
+  <ul v-bind:class="`${recls()} first-nav noselect`">
     <li
       v-for="(firstitem, firstIndex) in data"
       :index="firstitem[keyRefer.menuIndex]"
@@ -18,7 +18,7 @@
             :icon-class="firstitem[keyRefer.menuIcon] ? firstitem[keyRefer.menuIcon] : ''"
           ></icon-svg>
           <span v-text="firstitem[keyRefer.menuLabel]"></span>
-          <slot name="firstNav0" v-if="firstIndex === 0 && ishover"></slot>
+          <slot name="first-slot" :item="firstitem"></slot>
         </div>
       </div>
       <div class="nav-active-mask"></div>
@@ -54,7 +54,6 @@
             >
               <a
                 class="nav-link oneline-ellipsis"
-                v-text="seconditem[keyRefer.menuLabel]"
                 @click="
                   linkTo(
                     '/' + firstitem[keyRefer.menuRouter] + '/' + seconditem[keyRefer.menuRouter],
@@ -62,7 +61,17 @@
                     seconditem[keyRefer.menuIndex] - 1
                   )
                 "
-              ></a>
+              >
+                {{seconditem[keyRefer.menuLabel]}}
+                <slot
+                  name="second-slot"
+                  :item="{
+                    firstitem:firstitem,
+                    seconditem:seconditem,
+                  }
+                ">
+                </slot>
+              </a>
             </li>
           </div>
         </div>
@@ -71,13 +80,13 @@
   </ul>
 </template>
 <script>
-  import iconSvg from '../../../Icon-svg/Icon-svg';
+  import create from '../../../../utils/create';
   import Navcontrol from '../../control';
+  import defaultKeyRefer from '../../keyRefer';
   import { compute, delaynav } from '../../utils';
 
-  export default {
-    name: 'sidebar-bubble',
-    components: { iconSvg },
+  export default create({
+    name: 'sidebar-collapse',
     data() {
       return {
         control: null,
@@ -101,7 +110,7 @@
       keyRefer: {
         type: Object,
         default() {
-          return {};
+          return defaultKeyRefer;
         },
       },
     },
@@ -202,7 +211,7 @@
         this.$emit('mouse-leave', item[this.keyRefer.menuIndex] - 1, item);
       },
     },
-  };
+  });
 </script>
 <style rel="stylesheet/scss" lang="scss">
   /*@import '../../style/collapse/var';*/
