@@ -4,6 +4,7 @@
 import createBasic from './create-basic';
 
 import iconSvg from '../packages/Icon-svg/Icon-svg';
+import iconClass from '../packages/Icon-class/Icon-class';
 // import Loading from '../loading';
 // import Cell from '../cell';
 // import CellGroup from '../cell-group';
@@ -11,6 +12,7 @@ import iconSvg from '../packages/Icon-svg/Icon-svg';
 export default function(sfc) {
   sfc.components = Object.assign(sfc.components || {}, {
     iconSvg,
+    iconClass,
     // Loading,
     // Cell,
     // CellGroup

@@ -8,15 +8,14 @@ const excludes = [
   'style',
   'mixins',
   'utils',
-  '.DS_Store'
+  '.DS_Store',
+  // 'TestDemo',
 ];
 
-module.exports = function () {
-  //获取 src/packages 下的所有以及目录文件夹的名称
+module.exports = function() {
+  //get all dirs or files in path（src/packages
   const dirs = fs.readdirSync(path.resolve('./src/packages'));
-  console.log(path.resolve('./src/packages'));
-  console.log('dirs-dirs-dirs');
-  console.log(dirs);
-  //过滤掉不要的名称
-  return dirs.filter(dirName => excludes.indexOf(dirName) === -1);
+  // console.log('需要编译的文件名称');
+  // console.log(dirs);
+  return dirs.filter(dirName => excludes.indexOf(dirName) === -1); //filter files
 };

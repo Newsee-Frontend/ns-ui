@@ -104,8 +104,5 @@ export default create({
 
   created() {
     this.childIpt = this.value;
-    console.log(this.formsize);
-    console.log(222222222222222);
-    console.log(this.recls())
   },
 });

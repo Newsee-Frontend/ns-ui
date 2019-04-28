@@ -1,6 +1,6 @@
 @import '../../../style/mixins/mixins';
 
-@include b(icon-svg) {
+@include b(icon-class) {
   width: 1em;
   height: 1em;
   vertical-align: -0.15em;

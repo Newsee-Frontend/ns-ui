@@ -1,5 +1,5 @@
 //input 相关样式
-@import '../../../style/config/size';
+@import '../../../style/common/size/formsize';
 
 @include b(input) {
   @include form-component-size(input);

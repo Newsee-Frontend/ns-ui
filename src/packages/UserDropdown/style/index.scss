@@ -1,12 +1,14 @@
 @import '../../../style/config/public';
+@import '../../../style/mixins/mixins';
 
 $avatar-size: 30px;
-//头像内容下拉模块
-.user-dropdown {
+
+//user drop down in header
+@include b(user-dropdown) {
   display: inline-block;
   cursor: pointer;
   line-height: $navH;
-  padding: 0 5px;
+  padding: 0 5px 0 10px;
   border-left: 1px rgba(255, 255, 255, 0.1) solid;
   .user-abbreviation {
     display: inline-block;
@@ -30,6 +32,7 @@ $avatar-size: 30px;
     font-size: 14px;
     font-weight: bold;
     color: $--color-white;
+    margin-left: 5px;
   }
   i {
     padding-left: 2px;
@@ -38,7 +41,9 @@ $avatar-size: 30px;
   }
 }
 
-.el-dropdown-menu.user-dropdown {
-  margin: 0 !important;
-  padding: 5px 0;
+.el-dropdown-menu {
+  @include rb(user-dropdown__menu) {
+    margin: 0 !important;
+    padding: 5px 0;
+  }
 }

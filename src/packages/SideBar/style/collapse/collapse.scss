@@ -1,3 +1,4 @@
+@import '../../../../style/mixins/mixins';
 @import 'var';
 
 /**
@@ -6,8 +7,8 @@
 * ==============================
 */
 
-#Sidebar.first-nav {
-  &.sidebar-collapse {
+.first-nav {
+  @include rb(sidebar-collapse) {
     width: $first-nav-width-collapse;
     color: $first-nav-text-color;
     background-color: $first-nav-back-color;
@@ -103,3 +104,4 @@
     }
   }
 }
+

@@ -1,7 +1,8 @@
+@import '../../../../style/mixins/mixins';
 @import '../../../../style/mixins/scrollbarVisible';
 @import 'var';
 
-#Sidebar.first-nav {
+.first-nav {
   position: relative;
   height: 100%;
 

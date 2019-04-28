@@ -36,9 +36,12 @@
                   :keyRefer="keyRefer"
                   @first-nav-click="firstNavClick"
                   @mouse-enter="mouseEnter">
-        <span slot="firstNav0">
-
-        </span>
+        <template slot="first-slot" slot-scope="scope">
+          <span v-if="scope.item.menuIndex === 1">=></span>
+        </template>
+        <template slot="second-slot" slot-scope="scope">
+          <span v-if="secondNavSlot(scope)">=></span>
+        </template>
       </ns-sidebar>
     </template>
 
@@ -97,6 +100,8 @@
     },
     methods: {
       userDropdownClick(value, index) {
+        console.log('userDropdownClick');
+        console.log(value, index);
         if (value === 'editPassword') {
 
         }
@@ -134,6 +139,15 @@
       changeTheme(key) {
         console.log('changeTheme-changeTheme');
         console.log(key);
+      },
+
+      secondNavSlot(scope) {
+        const firstitem = scope.item.firstitem;
+        const seconditem = scope.item.seconditem;
+        if (!firstitem && !firstitem.childMenus && !firstitem.childMenus.length) {
+          return false;
+        }
+        return firstitem.menuIndex === 3 && seconditem.menuIndex === 1;
       },
     },
   };

@@ -12,8 +12,11 @@ import Screenfull from '../../src/packages/Screenfull/Screenfull';
 import UserDropdown from '../../src/packages/UserDropdown/UserDropdown';
 
 import IconSvg from '../../src/packages/Icon-svg/Icon-svg';
+import IconClass from '../../src/packages/Icon-class/Icon-class';
 import Col from '../../src/packages/Col/Col';
 import Row from '../../src/packages/Row/Row';
+import Button from '../../src/packages/Button/Button';
+import ButtonGroup from '../../src/packages/Button-group/Button-group';
 
 import DatePicker from '../../src/packages/DatePicker/DatePicker.js';
 import Input from '../../src/packages/Input/Input.js';
@@ -30,30 +33,41 @@ import Step from '../../src/packages/Step/Step.js';
 import Tabs from '../../src/packages/Tabs/Tabs.js';
 import TabPane from '../../src/packages/Tab-pane/Tab-pane.js';
 
+// layout
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
 Vue.component('ns-screenfull', Screenfull);
 Vue.component('ns-skiner', Skiner);
 Vue.component('UserDropdown', UserDropdown);
 
+// basic
 Vue.component('ns-icon-svg', IconSvg);
+Vue.component('ns-icon-class', IconClass);
 Vue.component('ns-col', Col);
 Vue.component('ns-row', Row);
+Vue.component('ns-button', Button);
+Vue.component('ns-button-group', ButtonGroup);
 
+// form
 Vue.component('ns-input', Input);
 Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
-Vue.component('ns-page-tabs', PageTabs);
-Vue.component('ns-dialog', Dialog);
-Vue.component('ns-slip-dialog', SlipDialog);
 
+// data
 Vue.component('ns-badge', Badge);
 Vue.component('ns-progress', Progress);
 
+//navigation
 Vue.component('ns-steps', Steps);
 Vue.component('ns-step', Step);
 Vue.component('ns-tabs', Tabs);
 Vue.component('ns-tab-pane', TabPane);
+
+// other
+Vue.component('ns-page-tabs', PageTabs);
+Vue.component('ns-dialog', Dialog);
+Vue.component('ns-slip-dialog', SlipDialog);
+
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
@@ -62,8 +76,11 @@ import '../../src/packages/Screenfull/style/index.scss';
 import '../../src/packages/UserDropdown/style/index.scss';
 
 import '../../src/packages/Icon-svg/style/index.scss';
+import '../../src/packages/Icon-class/style/index.scss';
 import '../../src/packages/Col/style/index.scss';
 import '../../src/packages/Row/style/index.scss';
+import '../../src/packages/Button/style/index.scss';
+import '../../src/packages/Button-group/style/index.scss';
 
 import '../../src/packages/Input/style/index.scss';
 import '../../src/packages/DatePicker/style/index.scss';
@@ -74,4 +91,4 @@ import '../../src/packages/Slip-dialog/style/index.scss';
 
 import '../../src/packages/Step/style/index.scss';
 import '../../src/packages/Steps/style/index.scss';
-import  '../../src/packages/Tabs/style/index.scss'
+import '../../src/packages/Tabs/style/index.scss';

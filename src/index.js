@@ -1,6 +1,6 @@
 /* eslint-disable */
 // This file is auto gererated by build/build-entry.js
-
+  
 import * as filters from './filters/index';//filter
 import ui_extends from './ui-extends';
 import $Var from './variable';
@@ -9,10 +9,13 @@ import {mergeOptions} from "./utils";
 const version = '0.0.1';
 
 import Badge from './packages/Badge/Badge';
+import Button from './packages/Button/Button';
+import ButtonGroup from './packages/Button-group/Button-group';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
 import Header from './packages/Header/Header';
+import IconClass from './packages/Icon-class/Icon-class';
 import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
@@ -22,7 +25,7 @@ import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
 import SideBar from './packages/SideBar/SideBar';
-import Skin from './packages/Skiner/Skiner';
+import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
 import Step from './packages/Step/Step';
 import Steps from './packages/Steps/Steps';
@@ -35,10 +38,13 @@ import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 const components = [
   Badge,
+  Button,
+  ButtonGroup,
   Col,
   DatePicker,
   Dialog,
   Header,
+  IconClass,
   IconSvg,
   Input,
   Layout,
@@ -48,7 +54,7 @@ const components = [
   Row,
   Screenfull,
   SideBar,
-  Skin,
+  Skiner,
   SlipDialog,
   Step,
   Steps,
@@ -77,7 +83,7 @@ const install = function (Vue, opts = {}) {
   Object.keys(filters).forEach(key => {
     Vue.filter(key, filters[key])
   });
-
+  
   ui_extends(Vue, option);
 };
 
@@ -90,10 +96,13 @@ export {
   install,
   version,
   Badge,
+  Button,
+  ButtonGroup,
   Col,
   DatePicker,
   Dialog,
   Header,
+  IconClass,
   IconSvg,
   Input,
   Layout,
@@ -103,7 +112,7 @@ export {
   Row,
   Screenfull,
   SideBar,
-  Skin,
+  Skiner,
   SlipDialog,
   Step,
   Steps,
