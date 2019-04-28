@@ -216,6 +216,24 @@ const navmenu = (req, res) => {
 
         ],
       },
+      {
+        funcId: 'notice',
+        menuLabel: '消息提醒',
+        menuRouter: 'notice',
+        menuIcon: 'fold',
+        menuIndex: 9,
+        hide: 1,
+        childMenus: [
+          {
+            funcId: 'alert',
+            menuLabel: 'Alert 警告',
+            menuRouter: 'alert',
+            menuIcon: null,
+            menuIndex: 1,
+            hide: 1,
+          }
+        ],
+      },
     ],
   });
 };

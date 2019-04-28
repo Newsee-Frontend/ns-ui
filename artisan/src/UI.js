@@ -33,6 +33,8 @@ import Step from '../../src/packages/Step/Step.js';
 import Tabs from '../../src/packages/Tabs/Tabs.js';
 import TabPane from '../../src/packages/Tab-pane/Tab-pane.js';
 
+import Alert from '../../src/packages/Alert/Alert.js'
+
 // layout
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
@@ -68,6 +70,8 @@ Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
 Vue.component('ns-slip-dialog', SlipDialog);
 
+//notice
+Vue.component('ns-alert', Alert);
 
 import '../../src/packages/Layout/style/index.scss';
 import '../../src/packages/SideBar/style/index.scss';
