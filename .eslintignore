@@ -2,6 +2,8 @@
 /config/
 /dist/
 /src/
+/es/
+/lib/
 /test/
 /script/
 /mock/
