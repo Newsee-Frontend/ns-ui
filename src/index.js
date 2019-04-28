@@ -20,6 +20,7 @@ import IconSvg from './packages/Icon-svg/Icon-svg';
 import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
 import Levelbar from './packages/Levelbar/Levelbar';
+import OnlyMmddPicker from './packages/Only-MMDD-picker/Only-MMDD-picker';
 import PageTabs from './packages/PageTabs/PageTabs';
 import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
@@ -32,6 +33,7 @@ import Steps from './packages/Steps/Steps';
 import TabPane from './packages/Tab-pane/Tab-pane';
 import Tabs from './packages/Tabs/Tabs';
 import TestDemo from './packages/TestDemo/TestDemo';
+import TimeInterval from './packages/Time-interval/Time-interval';
 import TimePicker from './packages/TimePicker/TimePicker';
 import UserDropdown from './packages/UserDropdown/UserDropdown';
 
@@ -49,6 +51,7 @@ const components = [
   Input,
   Layout,
   Levelbar,
+  OnlyMmddPicker,
   PageTabs,
   Progress,
   Row,
@@ -61,6 +64,7 @@ const components = [
   TabPane,
   Tabs,
   TestDemo,
+  TimeInterval,
   TimePicker,
   UserDropdown
 ];
@@ -107,6 +111,7 @@ export {
   Input,
   Layout,
   Levelbar,
+  OnlyMmddPicker,
   PageTabs,
   Progress,
   Row,
@@ -119,6 +124,7 @@ export {
   TabPane,
   Tabs,
   TestDemo,
+  TimeInterval,
   TimePicker,
   UserDropdown
 };

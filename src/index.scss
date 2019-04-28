@@ -1,6 +1,6 @@
 /*
  * style entry for UI
- * created: 2019-04-28 14:28:24.
+ * created: 2019-04-28 17:22:52.
  * version: 0.0.1.
  * author: Broccoli spring( 高仓雄 - gcx )
  * copyright (c) Broccoli spring( gcx )
@@ -24,6 +24,7 @@
 @import './packages/Input/style/index.css';
 @import './packages/Layout/style/index.css';
 @import './packages/Levelbar/style/index.css';
+@import './packages/Only-MMDD-picker/style/index.css';
 @import './packages/PageTabs/style/index.css';
 @import './packages/Progress/style/index.css';
 @import './packages/Row/style/index.css';
@@ -36,5 +37,6 @@
 @import './packages/Tab-pane/style/index.css';
 @import './packages/Tabs/style/index.css';
 @import './packages/TestDemo/style/index.css';
+@import './packages/Time-interval/style/index.css';
 @import './packages/TimePicker/style/index.css';
 @import './packages/UserDropdown/style/index.css';

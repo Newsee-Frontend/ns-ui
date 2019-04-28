@@ -1,9 +1,19 @@
+$base_height: 32px;
 .time-interval {
   .time-interval-part {
-    height: 100%;
+    //height: 100%;
     margin-right: 10px;
     &.firstPart {
       width: 100px;
+    }
+    &.secondPart {
+      p {
+        display: inline-block;
+        vertical-align: middle;
+        height: $base_height;
+        line-height: $base_height;
+        margin-left: 10px;
+      }
     }
     &.thirdPart {
       width: 150px;
@@ -17,8 +27,8 @@
       width: 100px;
     }
   }
-  .el-select,
-  .el-input {
-    height: 100%;
-  }
+  //.el-select,
+  //.el-input {
+  //  height: 100%;
+  //}
 }
