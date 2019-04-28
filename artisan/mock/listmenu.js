@@ -132,6 +132,22 @@ const navmenu = (req, res) => {
             menuIndex: 3,
             hide: 1,
           },
+          {
+            funcId: 'only-mmdd-picker',
+            menuLabel: 'MMDD日期控件',
+            menuRouter: 'only-mmdd-picker',
+            menuIcon: null,
+            menuIndex: 4,
+            hide: 1,
+          },
+          {
+            funcId: 'time-interval',
+            menuLabel: '时间频率控件',
+            menuRouter: 'time-interval',
+            menuIcon: null,
+            menuIndex: 5,
+            hide: 1,
+          },
         ],
       },
       {

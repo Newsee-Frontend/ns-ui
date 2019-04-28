@@ -1,0 +1,15 @@
+@import '../../../style/mixins/mixins';
+
+@include b(onlyMMDD-picker__popper) {
+  .el-picker-panel__body {
+    .el-date-picker__header {
+      /*background: skyblue;*/
+      button.el-picker-panel__icon-btn:nth-child(2n + 1) {
+        display: none;
+      }
+      .el-date-picker__header-label:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+}

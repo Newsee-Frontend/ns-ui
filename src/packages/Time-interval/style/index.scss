@@ -1,0 +1,24 @@
+.time-interval {
+  .time-interval-part {
+    height: 100%;
+    margin-right: 10px;
+    &.firstPart {
+      width: 100px;
+    }
+    &.thirdPart {
+      width: 150px;
+    }
+    .el-select {
+      float: left;
+      width: 90px;
+    }
+    .onlyMMDD-picker.onlyMMDD {
+      float: left;
+      width: 100px;
+    }
+  }
+  .el-select,
+  .el-input {
+    height: 100%;
+  }
+}
