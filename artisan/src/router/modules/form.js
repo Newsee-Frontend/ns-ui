@@ -24,6 +24,18 @@ export const formRouter = [
         meta: { requireAuth: true, key: 'timepicker' },
         name: 'timepicker',
       },
+      {
+        path: 'only-mmdd-picker',
+        component: () => import('../../pages/Form/Only-MMDD-picker/Only-MMDD-picker'),
+        meta: { requireAuth: true, key: 'only-mmdd-picker' },
+        name: 'only-mmdd-picker',
+      },
+      {
+        path: 'time-interval',
+        component: () => import('../../pages/Form/Time-interval/Time-interval'),
+        meta: { requireAuth: true, key: 'time-interval' },
+        name: 'time-interval',
+      },
     ],
   },
 ];

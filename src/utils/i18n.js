@@ -9,7 +9,7 @@ export default {
 
       if (!this.$vantMessages) {
         if (process.env.NODE_ENV !== 'production') {
-          console.error('[Vant] Locale not correctly registered');
+          console.error('[NS-UI] Locale not correctly registered');
         }
         return () => '';
       }

@@ -1,3 +1,8 @@
-@import '../../../style/mixins/mixins';
+@import "../../../style/mixins/mixins";
 
-@include b(badge)
+/**
+  * components - badge style entry
+ */
+@include b(badge) {
+
+}

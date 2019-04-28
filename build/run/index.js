@@ -14,8 +14,9 @@ const tasks = [
   'build:components',//生成 lib es 文件夹目录及其文件
 
   'build:style',//编译样式文件
-  'build:components-style-entry',//生成组件内 样式/模板 入口文件
+  'build:components-style-entry',//生成组件内 样式 入口文件
   'build:components-entry',//生成各个组件的 入口文件
+
   'build:cx',//生成所有UI的打包压缩文件js
 
   // 'del:components-entry',//删除各个组件的入口文件

@@ -29,7 +29,7 @@ function buildAllComponentsStyleEntry(ext = '') {
   const needIntallList = Components.filter(name => !~uninstallComponents.indexOf(uppercamelize(name)));
 
   //import list template
-  const importList = needIntallList.map(name => `@import './packages/${name}/style/index';`);
+  const importList = needIntallList.map(name => `@import './packages/${name}/style/index.css';`);
 
 
   const content = `${tips}

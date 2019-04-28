@@ -39,13 +39,11 @@ components.forEach(component => {
   //if we need scss style file , do not delete scss files
   if (!isneed) {
     del.delstylefiles(component, delList);
-    // css entry
-    create.destEntryFile(component, 'index.js', '.css');
   } else {
-    // css entry
-    create.destEntryFile(component, 'index.js', '.css');
     // scss entry
     create.destEntryFile(component, 'scss.js', '.scss');
   }
+  // css entry
+  create.destEntryFile(component, 'index.js', '.css');
 });
 

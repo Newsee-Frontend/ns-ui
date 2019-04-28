@@ -15,14 +15,14 @@
       <div class="fr">
         <ns-screenfull></ns-screenfull>
         <ns-skiner @change-theme="changeTheme" :init-theme="theme"></ns-skiner>
-        <user-dropdown
+        <ns-user-dropdown
           :options="options"
           :avator="avatar"
           :userName="userName"
           trigger="click"
           @click="userDropdownClick"
         >
-        </user-dropdown>
+        </ns-user-dropdown>
       </div>
     </template>
 
