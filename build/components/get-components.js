@@ -1,16 +1,9 @@
 const fs = require('fs');
 const path = require('path');
+const config = require(path.resolve('env.param.config'));
 
-const excludes = [
-  'index.js',
-  'index.less',
-  'index.scss',
-  'style',
-  'mixins',
-  'utils',
-  '.DS_Store',
-  // 'TestDemo',
-];
+
+const excludes = config.plugin.excludes;
 
 module.exports = function() {
   //get all dirs or files in path（src/packages

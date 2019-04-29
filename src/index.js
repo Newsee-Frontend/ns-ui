@@ -8,6 +8,7 @@ import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
 const version = '0.0.1';
 
+import Alert from './packages/Alert/Alert';
 import Badge from './packages/Badge/Badge';
 import Button from './packages/Button/Button';
 import ButtonGroup from './packages/Button-group/Button-group';
@@ -39,6 +40,7 @@ import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 
 const components = [
+  Alert,
   Badge,
   Button,
   ButtonGroup,
@@ -99,6 +101,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export {
   install,
   version,
+  Alert,
   Badge,
   Button,
   ButtonGroup,

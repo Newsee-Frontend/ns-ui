@@ -68,6 +68,18 @@ module.exports = {
         path.resolve('lib/index.scss'),
       ],
     },
+    excludes: [
+      'index.js',
+      'index.less',
+      'index.scss',
+      'style',
+      'mixins',
+      'utils',
+      '.DS_Store',
+      'TestDemo',
+      'Tabs',
+      'Tab-pane',
+    ],
     staticPath: './static',
   },
   base: {
