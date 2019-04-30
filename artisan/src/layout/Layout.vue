@@ -37,7 +37,8 @@
                   @first-nav-click="firstNavClick"
                   @mouse-enter="mouseEnter">
         <template slot="first-slot" slot-scope="scope">
-          <span v-if="scope.item.menuIndex === 1">=></span>
+          <ns-icon-svg icon-class="jiantou" v-if="scope.item.menuIndex === 1" style="margin-left: 25px"></ns-icon-svg>
+          <!--<span v-if="scope.item.menuIndex === 1" style="margin-left: 25px">=>12312321312312</span>-->
         </template>
         <template slot="second-slot" slot-scope="scope">
           <span v-if="secondNavSlot(scope)">=></span>

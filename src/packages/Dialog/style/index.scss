@@ -3,6 +3,8 @@
 
 //dialog style
 @include b(dialog) {
+
+  // === 常规 ===
   .el-dialog {
     width: $dialog-default_width;
     //头部
@@ -55,6 +57,7 @@
     }
   }
 
+  // === 特殊 type 类型 ===
   //autoHeight
   @include ms2link(autoHeight) {
     .el-dialog .el-dialog__body {

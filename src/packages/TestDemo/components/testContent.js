@@ -11,6 +11,9 @@ export default {
       <div>
         <h2>{this.title}</h2>
         <span>{this.content}</span>
+        {
+          this.$slots.default
+        }
       </div>
     );
   },

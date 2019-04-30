@@ -1,5 +1,5 @@
 import create from '../../utils/create';
-import { addEventHandler, removeEventHandler } from '../../utils/event';
+import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
 
 export default create({
   name: 'slip-dialog',
