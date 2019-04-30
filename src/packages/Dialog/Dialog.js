@@ -75,7 +75,6 @@ export default create({
         modal={this.modal}
         modal-append-to-body
         append-to-body
-        fullscreen={this.fullscreen}
 
         show-close={this.showClose}
         before-close={this.beforeClose}
@@ -94,7 +93,6 @@ export default create({
   methods: {
     //Dialog close emit
     close() {
-      console.log(11111111111)
       this.$emit('close');
       this.$emit('update:visible', false);
     },

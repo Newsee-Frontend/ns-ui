@@ -194,7 +194,7 @@ const navmenu = (req, res) => {
           },
           {
             funcId: 'fullscreen-dialog',
-            menuLabel: '对话框',
+            menuLabel: '全屏对话框',
             menuRouter: 'fullscreen-dialog',
             menuIcon: null,
             menuIndex: 2,

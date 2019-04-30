@@ -15,8 +15,6 @@
       :lock-scroll="lockScroll"
       :close-on-click-modal="closeOnClickModal"
       :close-on-press-escape="closeOnPressEscape"
-      fullscreen
-
 
       :show-close="showClose"
       :before-close="beforeClose"
@@ -55,6 +53,12 @@
       };
     },
     methods: {
+      buttonClick() {
+        this.visible = true;
+      },
+      buttonClose() {
+        this.visible = false;
+      },
       open() {
         console.log('dialog-open');
       },
