@@ -18,6 +18,7 @@ import Input from '../../../src/packages/Input/Input.js';
 import TimePicker from '../../../src/packages/TimePicker/TimePicker.js';
 import OnlyMMDDPicker from '../../../src/packages/Only-MMDD-picker/Only-MMDD-picker';
 import TimeInterval from '../../../src/packages/Time-interval/Time-interval.vue';
+import Select from '../../../src/packages/Select/Select.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -53,7 +54,7 @@ Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
 Vue.component('ns-onlyMMDD-picker', OnlyMMDDPicker);
 Vue.component('ns-time-interval', TimeInterval);
-
+Vue.component('ns-select',Select);
 
 // data
 Vue.component('ns-badge', Badge);
@@ -102,5 +103,6 @@ import '../../../src/packages/Slip-dialog/style/index.scss';
 import '../../../src/packages/Step/style/index.scss';
 import '../../../src/packages/Steps/style/index.scss';
 import '../../../src/packages/Tabs/style/index.scss';
+import '../../../src/packages/Select/style/index.scss';
 
 
