@@ -19,7 +19,7 @@ $theme-side-color: #0a7af8 #4ca770 #e24c57 #8352af #0a7af8;
   $i: index($theme-name, $name);
 
   @include n($N) {
-    #Sidebar.first-nav {
+    .first-nav {
       li.first-nav-items {
         &.first-nav-active {
           background-color: nth($theme-side-color, $i);

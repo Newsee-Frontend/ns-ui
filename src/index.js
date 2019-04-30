@@ -6,7 +6,7 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.5';
+const version = '0.0.6';
 
 import Alert from './packages/Alert/Alert';
 import Badge from './packages/Badge/Badge';

@@ -6,12 +6,19 @@ node_modules/
 static/
 /src/
 /docs/
+/test/
+/build/
+/script/
 /artisan/
+/SelectTree/
 
 ##############################
 ## files                  ##
 ##############################
 
+env.config.js
+env.param.config.js
+run.bat
 
 .DS_Store
 npm-debug.log*
@@ -26,7 +33,9 @@ yarn-error.log*
 *.npmignore
 *.describe
 .postcssrc.*
-
+*.prettierignore
+*.prettierrc
+*.stylelintignore
 
 # Editor directories and files
 .idea
@@ -35,4 +44,6 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+
 index.html
