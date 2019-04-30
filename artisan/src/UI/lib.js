@@ -70,7 +70,7 @@ Vue.component('ns-tab-pane', TabPane);
 // other
 Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
-Vue.component('ns-Fullscreen-dialog', FullscreenDialog);
+Vue.component('ns-fullscreen-dialog', FullscreenDialog);
 
 Vue.component('ns-slip-dialog', SlipDialog);
 

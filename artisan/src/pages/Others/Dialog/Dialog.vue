@@ -2,38 +2,19 @@
 <template>
   <div>
 
-    <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
-
-    <el-dialog
-      title="提示"
-      :visible.sync="dialogVisible"
-      width="30%"
-      modal-append-to-body
-      append-to-body
-      fullscreen
-      :before-close="handleClose">
-      <span>这是一段信息</span>
-      <span slot="footer" class="dialog-footer">
-    <el-button @click="dialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
-  </span>
-    </el-dialog>
-
-
     <el-button @click="buttonClick">点击打开</el-button>
 
     <ns-dialog
       :visible.sync="visible"
-      :type="fullscreen_type"
+      :type="type"
       :size="size"
-      title="全屏弹窗"
+      :title="title"
+      :top="top"
       :modal="modal"
 
       :lock-scroll="lockScroll"
       :close-on-click-modal="closeOnClickModal"
       :close-on-press-escape="closeOnPressEscape"
-      fullscreen
-
 
       :show-close="showClose"
       :before-close="beforeClose"
@@ -46,10 +27,9 @@
         <h1>dialog-demo</h1>
       </div>
       <div slot="footer">
-        <el-button @click="buttonClose">关闭</el-button>
+        <ns-button @click="buttonClose">关闭</ns-button>
       </div>
     </ns-dialog>
-
 
   </div>
 </template>
@@ -60,7 +40,6 @@
     name: 'dialog-demo',
     data() {
       return {
-        dialogVisible: false,
         visible: false,
         type: 'normal',//'normal','simple','noFooter','noHeader','autoHeight'
         size: 'large',//'mini', 'small', 'normal', 'medium', 'large'

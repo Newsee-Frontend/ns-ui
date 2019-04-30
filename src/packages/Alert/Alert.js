@@ -56,7 +56,7 @@ export default create({
     } = this;
     return (
       <el-alert
-        class={ this.recls()}
+        class={this.recls()}
         title={title}
         type={type}
         closable={closable}
@@ -74,11 +74,5 @@ export default create({
     close() {
       this.$emit('close');
     },
-  },
-
-  created() {
-  },
-
-  mounted() {
   },
 });

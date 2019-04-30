@@ -75,7 +75,6 @@ export default create({
         modal={this.modal}
         modal-append-to-body
         append-to-body
-        fullscreen={this.fullscreen}
 
         show-close={this.showClose}
         before-close={this.beforeClose}
