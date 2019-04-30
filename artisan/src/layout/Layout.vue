@@ -134,8 +134,8 @@
        * @param item
        */
       mouseEnter(index, item) {
-        console.log('mouseEvent-mouseEvent');
-        console.log(index, item);
+        // console.log('mouseEvent-mouseEvent');
+        // console.log(index, item);
       },
       changeTheme(key) {
         console.log('changeTheme-changeTheme');

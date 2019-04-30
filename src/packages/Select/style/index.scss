@@ -1,0 +1,5 @@
+@import '../../../style/common/size/formsize';
+
+@include b(select) {
+  @include form-component-size(select);
+}

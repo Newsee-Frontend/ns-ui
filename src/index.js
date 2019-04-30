@@ -6,7 +6,7 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.4';
+const version = '0.0.5';
 
 import Alert from './packages/Alert/Alert';
 import Badge from './packages/Badge/Badge';
@@ -15,6 +15,7 @@ import ButtonGroup from './packages/Button-group/Button-group';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
+import FullscreenDialog from './packages/Fullscreen-dialog/Fullscreen-dialog';
 import Header from './packages/Header/Header';
 import IconClass from './packages/Icon-class/Icon-class';
 import IconSvg from './packages/Icon-svg/Icon-svg';
@@ -24,6 +25,7 @@ import PageTabs from './packages/PageTabs/PageTabs';
 import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
+import Select from './packages/Select/Select';
 import SideBar from './packages/SideBar/SideBar';
 import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
@@ -41,6 +43,7 @@ const components = [
   Col,
   DatePicker,
   Dialog,
+  FullscreenDialog,
   Header,
   IconClass,
   IconSvg,
@@ -50,6 +53,7 @@ const components = [
   Progress,
   Row,
   Screenfull,
+  Select,
   SideBar,
   Skiner,
   SlipDialog,
@@ -96,6 +100,7 @@ export {
   Col,
   DatePicker,
   Dialog,
+  FullscreenDialog,
   Header,
   IconClass,
   IconSvg,
@@ -105,6 +110,7 @@ export {
   Progress,
   Row,
   Screenfull,
+  Select,
   SideBar,
   Skiner,
   SlipDialog,
