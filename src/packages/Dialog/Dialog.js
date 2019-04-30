@@ -38,7 +38,7 @@ export default create({
     'show-close': { type: Boolean, default: true }, //是否显示关闭按钮
     'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
 
-    // fullscreen:{ type: Boolean, default: false },
+    fullscreen: { type: Boolean, default: false },
   },
   watch: {
     visible(val) {
@@ -49,12 +49,12 @@ export default create({
     dialogWidth() {
       return this.width || this.sizeMap[this.size];
     },
-    typeCls() {
-      if (!this.typeList.includes(this.type)) {
-        throw 'The type of the dialog property must be normal, simple, noFooter noHeader or autoHeight, find it.';
-      }
-      return 'dialog-type_' + this.type;
-    },
+    // reclass() {
+    //   if (this.fullscreen && type === 'autoHeight') {
+    //     return this.recls();
+    //   }
+    //   return this.recls([this.type]);
+    // },
   },
   render(h) {
     return (
@@ -75,6 +75,7 @@ export default create({
         modal={this.modal}
         modal-append-to-body
         append-to-body
+        fullscreen={this.fullscreen}
 
         show-close={this.showClose}
         before-close={this.beforeClose}
@@ -100,5 +101,8 @@ export default create({
     open() {
       this.$emit('open');
     },
+  },
+  created() {
+    this.show = this.visible;
   },
 });

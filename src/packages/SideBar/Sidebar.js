@@ -41,7 +41,7 @@ export default create({
             on: this.$listeners,
             scopedSlots: {
               'first-slot': (item) => this.$scopedSlots['first-slot'](item),
-              'second-slot': (item) => this.$scopedSlots['second-slot'](item),
+              // 'second-slot': (item) => this.$scopedSlots['second-slot'](item),
             },
           },
         )

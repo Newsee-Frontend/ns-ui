@@ -27,6 +27,7 @@
       <el-select
         v-model="childTimeInterval[keyRefer['week']]"
         :disabled="disabled"
+        size="small"
         v-if="childTimeInterval[keyRefer['type']] === '每周'"
       >
         <el-option
@@ -40,6 +41,7 @@
       <el-select
         v-model="childTimeInterval[keyRefer['day']]"
         :disabled="disabled"
+        size="small"
         v-if="childTimeInterval[keyRefer['type']] === '每月'"
       >
         <el-option
@@ -49,19 +51,19 @@
           :value="item.value"
         ></el-option>
       </el-select>
-      <span v-if="childTimeInterval[keyRefer['type']] === '每月'">日</span>
+      <p v-if="childTimeInterval[keyRefer['type']] === '每月'">日</p>
       <!--选择年 => onlyMMDD-Picker-->
-      <ns-onlyMMDD-Picker
+      <only-MMDD-Picker
         class="onlyMMDD"
         v-model="childTimeInterval[keyRefer['mounthAndDay']]"
         type="date"
         placeholder="选择日期"
         width="150px"
         v-if="childTimeInterval[keyRefer['type']] === '每年'"
-      ></ns-onlyMMDD-Picker>
+      ></only-MMDD-Picker>
     </div>
     <!--选择时间点-->
-    <el-time-picker
+    <time-picker
       class="time-interval-part thirdPart fl"
       v-model="childTimeInterval[keyRefer['time']]"
       placeholder="任意时间点"
@@ -69,16 +71,21 @@
       value-format="HH:mm:ss"
       :disabled="disabled"
     >
-    </el-time-picker>
+    </time-picker>
   </div>
 </template>
 <script>
-
+  import timePicker from '../TimePicker/TimePicker';
+  import onlyMMDDPicker from '../Only-MMDD-picker/Only-MMDD-picker';
   import { judgeType } from '../../utils';
   import keyRefer from './keyRefer';
 
-  export default {
+  import create from '../../utils/create';
+
+
+  export default create({
     name: 'time-interval',
+    components: { timePicker, onlyMMDDPicker },
     data() {
       return {
         keyRefer: keyRefer,
@@ -188,12 +195,10 @@
     },
     props: {
       fatherTimeInterval: [Object],
-      width: { type: [String, Number], default: '100%' },
-      height: { type: [String, Number], default: '32px' },
+      width: { type: [String, Number] },
+      height: { type: [String, Number] },
       disabled: { type: Boolean, default: false }, //禁用
     },
-  };
+  });
 </script>
-<style rel="stylesheet/scss" lang="scss">
 
-</style>

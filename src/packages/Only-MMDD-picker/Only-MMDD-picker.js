@@ -75,15 +75,17 @@ export default create({
       };
       let tt = setTimeout(_addClass, 10);
     },
+
     onlyMMDDblur() {
       let panel = document.querySelector('body .el-picker-panel');
       if (hasClass(panel, this.popperName)) {
         removeClass(panel, this.popperName);
       }
     },
+
     change(value) {
       this.$emit('change', value);
-    }
+    },
   },
   created() {
 

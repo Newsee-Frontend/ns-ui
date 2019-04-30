@@ -6,8 +6,9 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.1';
+const version = '0.0.4';
 
+import Alert from './packages/Alert/Alert';
 import Badge from './packages/Badge/Badge';
 import Button from './packages/Button/Button';
 import ButtonGroup from './packages/Button-group/Button-group';
@@ -17,7 +18,6 @@ import Dialog from './packages/Dialog/Dialog';
 import Header from './packages/Header/Header';
 import IconClass from './packages/Icon-class/Icon-class';
 import IconSvg from './packages/Icon-svg/Icon-svg';
-import Input from './packages/Input/Input';
 import Layout from './packages/Layout/Layout';
 import Levelbar from './packages/Levelbar/Levelbar';
 import PageTabs from './packages/PageTabs/PageTabs';
@@ -29,14 +29,12 @@ import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
 import Step from './packages/Step/Step';
 import Steps from './packages/Steps/Steps';
-import TabPane from './packages/Tab-pane/Tab-pane';
-import Tabs from './packages/Tabs/Tabs';
-import TestDemo from './packages/TestDemo/TestDemo';
 import TimePicker from './packages/TimePicker/TimePicker';
 import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 
 const components = [
+  Alert,
   Badge,
   Button,
   ButtonGroup,
@@ -46,7 +44,6 @@ const components = [
   Header,
   IconClass,
   IconSvg,
-  Input,
   Layout,
   Levelbar,
   PageTabs,
@@ -58,9 +55,6 @@ const components = [
   SlipDialog,
   Step,
   Steps,
-  TabPane,
-  Tabs,
-  TestDemo,
   TimePicker,
   UserDropdown
 ];
@@ -95,6 +89,7 @@ if (typeof window !== 'undefined' && window.Vue) {
 export {
   install,
   version,
+  Alert,
   Badge,
   Button,
   ButtonGroup,
@@ -104,7 +99,6 @@ export {
   Header,
   IconClass,
   IconSvg,
-  Input,
   Layout,
   Levelbar,
   PageTabs,
@@ -116,9 +110,6 @@ export {
   SlipDialog,
   Step,
   Steps,
-  TabPane,
-  Tabs,
-  TestDemo,
   TimePicker,
   UserDropdown
 };

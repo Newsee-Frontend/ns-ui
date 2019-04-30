@@ -26,6 +26,7 @@
     box-sizing: border-box;
     z-index: 0;
     color: #333;
+    cursor: pointer;
     &::before {
       content: '';
       z-index: -1;

@@ -18,7 +18,9 @@
             :icon-class="firstitem[keyRefer.menuIcon] ? firstitem[keyRefer.menuIcon] : ''"
           ></icon-svg>
           <span v-text="firstitem[keyRefer.menuLabel]"></span>
-          <slot name="first-slot" :item="firstitem"></slot>
+          <span class="first-slot">
+             <slot name="first-slot" :item="firstitem"></slot>
+          </span>
         </div>
       </div>
       <div class="nav-active-mask"></div>
@@ -63,14 +65,14 @@
                 "
               >
                 {{seconditem[keyRefer.menuLabel]}}
-                <slot
-                  name="second-slot"
-                  :item="{
-                    firstitem:firstitem,
-                    seconditem:seconditem,
-                  }
-                ">
-                </slot>
+                <!--<slot-->
+                <!--name="second-slot"-->
+                <!--:item="{-->
+                <!--firstitem:firstitem,-->
+                <!--seconditem:seconditem,-->
+                <!--}-->
+                <!--">-->
+                <!--</slot>-->
               </a>
             </li>
           </div>

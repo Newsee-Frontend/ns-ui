@@ -22,6 +22,7 @@ import Select from '../../../src/packages/Select/Select.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
+import FullscreenDialog from '../../../src/packages/Fullscreen-dialog/Fullscreen-dialog.js';
 import SlipDialog from '../../../src/packages/Slip-dialog/Slip-dialog.js';
 
 import Badge from '../../../src/packages/Badge/Badge.js';
@@ -69,11 +70,12 @@ Vue.component('ns-tab-pane', TabPane);
 // other
 Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
+Vue.component('ns-Fullscreen-dialog', FullscreenDialog);
+
 Vue.component('ns-slip-dialog', SlipDialog);
 
 //notice
 Vue.component('ns-alert', Alert);
-
 
 
 import '../../../src/packages/Layout/style/index.scss';
@@ -98,6 +100,7 @@ import '../../../src/packages/Time-interval/style/index.scss';
 
 import '../../../src/packages/PageTabs/style/index.scss';
 import '../../../src/packages/Dialog/style/index.scss';
+import '../../../src/packages/Fullscreen-dialog/style/index.scss';
 import '../../../src/packages/Slip-dialog/style/index.scss';
 
 import '../../../src/packages/Step/style/index.scss';

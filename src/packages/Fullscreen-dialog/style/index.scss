@@ -1,0 +1,18 @@
+@import "../../Dialog/style/index";
+
+//dialog style
+@include b(dialog) {
+  .el-dialog.is-fullscreen {
+    position: relative;
+    width: 100%;
+    .el-dialog__body {
+      max-height: none;
+    }
+    .el-dialog__footer {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+    }
+  }
+}
