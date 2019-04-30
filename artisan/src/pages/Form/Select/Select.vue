@@ -8,6 +8,7 @@
         <ns-select
           :disabled="true"
           size="small"
+          :keyMap = keyMap
           height="40px"
           v-model="selectModel"
           :options="options"
@@ -19,6 +20,7 @@
         <ns-select
           v-model="selectModels"
           :options="options"
+          :keyMap = keyMap
           :multipleLimit="2"
           multiple
           collapseTags
@@ -32,6 +34,7 @@
           size="mini"
           v-model="selectModel"
           custom
+          :keyMap = keyMap
           :options="options"
         ></ns-select>
       </div>
@@ -46,10 +49,14 @@
       return {
         selectModel: 1,
         selectModels: [],
+        keyMap: {
+          label: 'name',
+          value: 'value'
+        },
         options: [
-          { label: '北京', value:  1 },
-          { label: '上海', value: 2},
-          { label: '杭州', value: 3},
+          { name: '北京', value:  1 },
+          { name: '上海', value: 2},
+          { name: '杭州', value: 3},
         ]
       };
     },
