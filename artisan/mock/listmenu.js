@@ -193,15 +193,21 @@ const navmenu = (req, res) => {
             hide: 1,
           },
           {
-            funcId: 'slip-dialog',
-            menuLabel: '滑动对话框',
-            menuRouter: 'slip-dialog',
+            funcId: 'fullscreen-dialog',
+            menuLabel: '对话框',
+            menuRouter: 'fullscreen-dialog',
             menuIcon: null,
             menuIndex: 2,
             hide: 1,
           },
-
-
+          {
+            funcId: 'slip-dialog',
+            menuLabel: '滑动对话框',
+            menuRouter: 'slip-dialog',
+            menuIcon: null,
+            menuIndex: 3,
+            hide: 1,
+          },
         ],
       },
       {
@@ -247,7 +253,7 @@ const navmenu = (req, res) => {
             menuIcon: null,
             menuIndex: 1,
             hide: 1,
-          }
+          },
         ],
       },
     ],

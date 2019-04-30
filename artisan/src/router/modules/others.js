@@ -13,6 +13,12 @@ export const othersRouter = [
         name: '对话框',
       },
       {
+        path: 'fullscreen-dialog',
+        component: () => import('../../pages/Others/Fullscreen-dialog/Fullscreen-dialog'),
+        meta: { auth: true, key: 'fullscreen-dialog' },
+        name: '全屏对话框',
+      },
+      {
         path: 'slip-dialog',
         component: () => import('../../pages/Others/Slip-dialog/Slip-dialog'),
         meta: { auth: true, key: 'slip-dialog' },

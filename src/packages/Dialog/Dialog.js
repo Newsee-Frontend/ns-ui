@@ -94,6 +94,7 @@ export default create({
   methods: {
     //Dialog close emit
     close() {
+      console.log(11111111111)
       this.$emit('close');
       this.$emit('update:visible', false);
     },

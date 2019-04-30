@@ -1,7 +1,6 @@
 import create from '../../utils/create';
 import Dialog from '../Dialog/Dialog';
 
-
 const _fullscreen_dialogtype = ['normal', 'simple', 'noFooter', 'noHeader'];
 
 export default create({
@@ -37,23 +36,23 @@ export default create({
 
   render(h) {
     return (
-      <el-dialog
+      <Dialog
         visible={this.show}
         on-update:visible={val => this.show = val}
 
-        class={this.recls([this.type])}
+        custom-class={this.customClass}
 
         title={this.title}
+        type={this.type}
 
-        custom-class={this.customClass}
         close-on-press-escape={this.closeOnPressEscape}
-
         modal-append-to-body
         append-to-body
         fullscreen
 
         show-close={this.showClose}
         before-close={this.beforeClose}
+
         on-close={this.close}
         on-open={this.open}
       >
@@ -63,7 +62,7 @@ export default create({
         <span slot={'footer'} className={'dialog-footer'}>
            {this.$slots.footer}
         </span>
-      </el-dialog>
+      </Dialog>
     );
   },
 
