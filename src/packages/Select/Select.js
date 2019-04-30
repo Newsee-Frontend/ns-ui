@@ -18,8 +18,10 @@ export default create({
     },
     width: String,
     height: String,
-    labelName: { type: String, default: 'label' },  //label的字段名
-    valueName: { type: String, default: 'value' },  //value的字段名
+    keyMap: {
+      type: Object,
+      default: ()=> ( {label: 'label', value: 'value'})
+    },  //  label, value 对应的字段名
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
     name: { type: String },
@@ -46,19 +48,18 @@ export default create({
 
   render(h) {
     let {
-      labelName,
-      valueName,
-    } = this;
-
+      label,
+      value,
+    } = this.keyMap;
     const elOption = (item) => (
       <el-option
-        key={item[valueName]}
-        value={item[valueName]}
-        label={item[labelName]}
+        key={item[value]}
+        value={item[value]}
+        label={item[label]}
         disabled={item.disabled}
       >
-        {this.custom ? <span class="fl">{item.label}</span> : null}
-        {this.custom ? <span class="fr customtemplate">{item.value}</span> : null}
+        {this.custom ? <span class="fl">{item[label]}</span> : null}
+        {this.custom ? <span class="fr customtemplate">{item[value]}</span> : null}
       </el-option>
     );
     return (
