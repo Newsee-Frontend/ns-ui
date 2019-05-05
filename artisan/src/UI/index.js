@@ -10,7 +10,7 @@ Vue.use(ElementUI);
 import './lib';
 
 // 测试 - 全局挂载全部组件
-// import nsui from '../../../lib/ns-ui.min';
+import Alert from '../../../lib/ns-ui.min';
 // import '../../../lib/index.scss';
 //
 // Vue.use(nsui, {

@@ -1,12 +1,16 @@
 <!--UI 组件库 - PieChart - 页面测试-->
 <template>
   <div>
+    <h1>环形图</h1>
     <div id="pieChart" style="width: 400px;height: 200px"></div>
   </div>
 </template>
 
 <script>
-  import nscharts from '../../../utils/nscharts';
+
+  // const nsCharts = require('./nsCharts.min');
+  import 'echarts';
+  import './nsCharts.min';
 
   export default {
     name: 'pieChart-demo',
@@ -45,8 +49,14 @@
       };
     },
     methods: {},
+    created() {
+      console.log(66666);
+      console.log(nsCharts);
+      console.log(nsCharts.pieChart);
+    },
+
     mounted() {
-      nscharts.pieChart(this.data, 'pieChart', {
+      nsCharts.pieChart(this.data, 'pieChart', {
         centerPosition: ['30%', '50%'],
         radiusScale: ['52%', '68%'],
         legendPosition: ['56%', '26%'],

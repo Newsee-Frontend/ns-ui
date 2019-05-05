@@ -80,6 +80,7 @@ module.exports = {
       'Tab-pane',
       'TestDemo',
       'Input',
+      'Select',
       'Only-MMDD-picker',
       'Time-interval',
     ],

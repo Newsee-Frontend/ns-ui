@@ -6,7 +6,7 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.6';
+const version = '0.0.7';
 
 import Alert from './packages/Alert/Alert';
 import Badge from './packages/Badge/Badge';
@@ -25,7 +25,6 @@ import PageTabs from './packages/PageTabs/PageTabs';
 import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
-import Select from './packages/Select/Select';
 import SideBar from './packages/SideBar/SideBar';
 import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
@@ -53,7 +52,6 @@ const components = [
   Progress,
   Row,
   Screenfull,
-  Select,
   SideBar,
   Skiner,
   SlipDialog,
@@ -110,7 +108,6 @@ export {
   Progress,
   Row,
   Screenfull,
-  Select,
   SideBar,
   Skiner,
   SlipDialog,
