@@ -148,6 +148,14 @@ const navmenu = (req, res) => {
             menuIndex: 5,
             hide: 1,
           },
+          {
+            funcId: 'select',
+            menuLabel: 'select选择器',
+            menuRouter: 'select',
+            menuIcon: null,
+            menuIndex: 6,
+            hide: 1,
+          },
         ],
       },
       {

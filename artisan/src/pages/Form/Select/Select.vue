@@ -39,12 +39,25 @@
         ></ns-select>
       </div>
     </div>
-  </div>
+
+    <div class="select-setion">
+      <div>  ns-select-dictionary </div>
+      <div class="selecte-line">
+        <ns-select-dictionary></ns-select-dictionary>
+      </div>
+    </div>
+    </div>
 </template>
 
 <script>
+  import nsSelectDictionary from '../../../components/SelectDictionary/SelectDictionary.vue'
   export default {
     name: '',
+
+    components: {
+      nsSelectDictionary
+    },
+
     data() {
       return {
         selectModel: 1,
@@ -65,17 +78,7 @@
 
     },
     methods: {
-      getDictionaryFun: function(){
-        return  new Promise((resolve, reject) => {
-          setTimeout(()=>{
-            resolve([
-              { code: '1', name: '北京' },
-              { code: '2', name: '香港' },
-              { code: '3', name: '深圳' },
-            ])
-          }, 1000)
-        })
-      }
+
     },
     mounted() {
     },
