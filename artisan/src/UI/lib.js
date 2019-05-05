@@ -19,6 +19,8 @@ import TimePicker from '../../../src/packages/TimePicker/TimePicker.js';
 import OnlyMMDDPicker from '../../../src/packages/Only-MMDD-picker/Only-MMDD-picker';
 import TimeInterval from '../../../src/packages/Time-interval/Time-interval.vue';
 import Select from '../../../src/packages/Select/Select.js'
+import Cascader from '../../../src/packages/Cascader/Cascader.js'
+import Avatar from '../../../src/packages/Avatar/Avatar.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -56,6 +58,8 @@ Vue.component('ns-time-picker', TimePicker);
 Vue.component('ns-onlyMMDD-picker', OnlyMMDDPicker);
 Vue.component('ns-time-interval', TimeInterval);
 Vue.component('ns-select',Select);
+Vue.component('ns-cascader',Cascader);
+Vue.component('ns-avatar',Avatar);
 
 // data
 Vue.component('ns-badge', Badge);
@@ -96,6 +100,8 @@ import '../../../src/packages/DatePicker/style/index.scss';
 import '../../../src/packages/TimePicker/style/index.scss';
 import '../../../src/packages/Only-MMDD-picker/style/index.scss';
 import '../../../src/packages/Time-interval/style/index.scss';
+import '../../../src/packages/Cascader/style/index.scss';
+import '../../../src/packages/Avatar/style/index.scss';
 
 
 import '../../../src/packages/PageTabs/style/index.scss';
