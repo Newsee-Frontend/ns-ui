@@ -21,6 +21,8 @@ import TimeInterval from '../../../src/packages/Time-interval/Time-interval.vue'
 import Select from '../../../src/packages/Select/Select.js'
 import Cascader from '../../../src/packages/Cascader/Cascader.js'
 import Avatar from '../../../src/packages/Avatar/Avatar.js'
+import Checkbox from '../../../src/packages/Checkbox/Checkbox.js'
+import Redio from '../../../src/packages/Redio/Redio.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -60,6 +62,9 @@ Vue.component('ns-time-interval', TimeInterval);
 Vue.component('ns-select',Select);
 Vue.component('ns-cascader',Cascader);
 Vue.component('ns-avatar',Avatar);
+Vue.component('ns-checkbox',Checkbox);
+Vue.component('ns-redio',Redio);
+
 
 // data
 Vue.component('ns-badge', Badge);
@@ -102,6 +107,8 @@ import '../../../src/packages/Only-MMDD-picker/style/index.scss';
 import '../../../src/packages/Time-interval/style/index.scss';
 import '../../../src/packages/Cascader/style/index.scss';
 import '../../../src/packages/Avatar/style/index.scss';
+import '../../../src/packages/Checkbox/style/index.scss';
+import '../../../src/packages/Redio/style/index.scss';
 
 
 import '../../../src/packages/PageTabs/style/index.scss';
@@ -113,5 +120,6 @@ import '../../../src/packages/Step/style/index.scss';
 import '../../../src/packages/Steps/style/index.scss';
 import '../../../src/packages/Tabs/style/index.scss';
 import '../../../src/packages/Select/style/index.scss';
+import '../../../src/packages/Checkbox/style/index.scss';
 
 

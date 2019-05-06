@@ -8,7 +8,7 @@
         <ns-select
           :disabled="true"
           size="small"
-          :keyMap = keyMap
+          :keyRefer = keyRefer
           height="40px"
           v-model="selectModel"
           :options="options"
@@ -20,7 +20,7 @@
         <ns-select
           v-model="selectModels"
           :options="options"
-          :keyMap = keyMap
+          :keyRefer = "keyRefer"
           :multipleLimit="2"
           multiple
           collapseTags
@@ -34,7 +34,7 @@
           size="mini"
           v-model="selectModel"
           custom
-          :keyMap = keyMap
+          :keyRefer = keyRefer
           :options="options"
         ></ns-select>
       </div>
@@ -62,7 +62,7 @@
       return {
         selectModel: 1,
         selectModels: [],
-        keyMap: {
+        keyRefer: {
           label: 'name',
           value: 'value'
         },

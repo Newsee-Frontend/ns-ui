@@ -18,9 +18,9 @@ export default create({
     },
     width: String,
     height: String,
-    keyMap: {
+    keyRefer: {
       type: Object,
-      default: ()=> ( {label: 'label', value: 'value'})
+      default: ()=> ( {label: 'label', value: 'value',disabled: 'disabled'})
     },  //  label, value 对应的字段名
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
@@ -50,7 +50,7 @@ export default create({
     let {
       label,
       value,
-    } = this.keyMap;
+    } = this.keyRefer;
     const elOption = (item) => (
       <el-option
         key={item[value]}

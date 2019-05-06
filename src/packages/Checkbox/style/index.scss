@@ -1,0 +1,11 @@
+//input 相关样式
+@import '../../../style/common/size/choosebtnsize';
+
+@include b(checkbox) {
+  .indeterminate-gap {
+    margin: 15px 0;
+  }
+  @include b(checkbox__btn){
+    @include button-size(checkbox__btn);
+  }
+}
