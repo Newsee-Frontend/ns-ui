@@ -188,6 +188,22 @@ const navmenu = (req, res) => {
             menuIndex: 10,
             hide: 1
           },
+          {
+            funcId: 'switch',
+            menuLabel: 'switch 开关',
+            menuRouter: 'switch',
+            menuIcon: null,
+            menuIndex: 11,
+            hide: 1
+          },
+          {
+            funcId: 'slider',
+            menuLabel: 'slider 滑块',
+            menuRouter: 'slider',
+            menuIcon: null,
+            menuIndex: 12,
+            hide: 1
+          },
         ],
       },
       {

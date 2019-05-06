@@ -65,6 +65,18 @@ export const formRouter = [
         component: () => import('../../pages/Form/Redio/Redio'),
         meta: { auth: true, key: 'redio' },
         name: '单选框',
+      },
+      {
+        path: 'switch',
+        component: () => import('../../pages/Form/Switch/Switch'),
+        meta: { auth: true, key: 'switch' },
+        name: '开关',
+      },
+      {
+        path: 'slider',
+        component: () => import('../../pages/Form/Slider/Slider'),
+        meta: { auth: true, key: 'slider' },
+        name: '滑块',
       }
     ],
   },

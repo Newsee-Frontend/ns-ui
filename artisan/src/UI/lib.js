@@ -23,6 +23,8 @@ import Cascader from '../../../src/packages/Cascader/Cascader.js'
 import Avatar from '../../../src/packages/Avatar/Avatar.js'
 import Checkbox from '../../../src/packages/Checkbox/Checkbox.js'
 import Redio from '../../../src/packages/Redio/Redio.js'
+import Switch from '../../../src/packages/Switch/Switch.js'
+import Slider from '../../../src/packages/Slider/Slider.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -64,6 +66,8 @@ Vue.component('ns-cascader',Cascader);
 Vue.component('ns-avatar',Avatar);
 Vue.component('ns-checkbox',Checkbox);
 Vue.component('ns-redio',Redio);
+Vue.component('ns-switch',Switch);
+Vue.component('ns-slider',Slider);
 
 
 // data
@@ -121,5 +125,7 @@ import '../../../src/packages/Steps/style/index.scss';
 import '../../../src/packages/Tabs/style/index.scss';
 import '../../../src/packages/Select/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
+import '../../../src/packages/Redio/style/index.scss';
+import '../../../src/packages/Switch/style/index.scss';
 
 
