@@ -6,12 +6,14 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.7';
+const version = '0.0.8';
 
 import Alert from './packages/Alert/Alert';
+import Avatar from './packages/Avatar/Avatar';
 import Badge from './packages/Badge/Badge';
 import Button from './packages/Button/Button';
 import ButtonGroup from './packages/Button-group/Button-group';
+import Cascader from './packages/Cascader/Cascader';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
@@ -36,9 +38,11 @@ import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 const components = [
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
   DatePicker,
   Dialog,
@@ -92,9 +96,11 @@ export {
   install,
   version,
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
   DatePicker,
   Dialog,
