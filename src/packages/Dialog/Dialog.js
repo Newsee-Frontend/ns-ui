@@ -38,7 +38,7 @@ export default create({
     'show-close': { type: Boolean, default: true }, //是否显示关闭按钮
     'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
 
-    fullscreen: { type: Boolean, default: false },
+    isfullscreen: { type: Boolean, default: false },
   },
   watch: {
     visible(val) {
@@ -75,6 +75,7 @@ export default create({
         modal={this.modal}
         modal-append-to-body
         append-to-body
+        fullscreen={this.isfullscreen}
 
         show-close={this.showClose}
         before-close={this.beforeClose}

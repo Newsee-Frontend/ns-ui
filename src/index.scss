@@ -1,7 +1,7 @@
 /*
  * style entry for UI
- * created: 2019-04-30 13:40:12.
- * version: 0.0.6.
+ * created: 2019-05-06 10:58:16.
+ * version: 0.0.8.
  * author: Broccoli spring( 高仓雄 - gcx )
  * copyright (c) Broccoli spring( gcx )
  * ------------------------------------------
@@ -13,9 +13,11 @@
  */
 
 @import './packages/Alert/style/index.css';
+@import './packages/Avatar/style/index.css';
 @import './packages/Badge/style/index.css';
 @import './packages/Button/style/index.css';
 @import './packages/Button-group/style/index.css';
+@import './packages/Cascader/style/index.css';
 @import './packages/Col/style/index.css';
 @import './packages/DatePicker/style/index.css';
 @import './packages/Dialog/style/index.css';
@@ -29,7 +31,6 @@
 @import './packages/Progress/style/index.css';
 @import './packages/Row/style/index.css';
 @import './packages/Screenfull/style/index.css';
-@import './packages/Select/style/index.css';
 @import './packages/SideBar/style/index.css';
 @import './packages/Skiner/style/index.css';
 @import './packages/Slip-dialog/style/index.css';

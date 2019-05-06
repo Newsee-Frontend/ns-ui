@@ -33,7 +33,6 @@
     data() {
       return {
         visible: false,
-        title: '标题',
         type: 'normal',//'normal','simple','noFooter','noHeader',nscharts.js
         closeOnPressEscape: true,
         lockScroll: false,

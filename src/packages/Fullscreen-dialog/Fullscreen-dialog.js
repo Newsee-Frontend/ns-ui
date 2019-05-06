@@ -48,7 +48,7 @@ export default create({
         close-on-press-escape={this.closeOnPressEscape}
         modal-append-to-body
         append-to-body
-        fullscreen
+        isfullscreen
 
         show-close={this.showClose}
         before-close={this.beforeClose}

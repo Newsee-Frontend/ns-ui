@@ -6,12 +6,14 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.6';
+const version = '0.0.8';
 
 import Alert from './packages/Alert/Alert';
+import Avatar from './packages/Avatar/Avatar';
 import Badge from './packages/Badge/Badge';
 import Button from './packages/Button/Button';
 import ButtonGroup from './packages/Button-group/Button-group';
+import Cascader from './packages/Cascader/Cascader';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
@@ -25,7 +27,6 @@ import PageTabs from './packages/PageTabs/PageTabs';
 import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
-import Select from './packages/Select/Select';
 import SideBar from './packages/SideBar/SideBar';
 import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
@@ -37,9 +38,11 @@ import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 const components = [
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
   DatePicker,
   Dialog,
@@ -53,7 +56,6 @@ const components = [
   Progress,
   Row,
   Screenfull,
-  Select,
   SideBar,
   Skiner,
   SlipDialog,
@@ -94,9 +96,11 @@ export {
   install,
   version,
   Alert,
+  Avatar,
   Badge,
   Button,
   ButtonGroup,
+  Cascader,
   Col,
   DatePicker,
   Dialog,
@@ -110,7 +114,6 @@ export {
   Progress,
   Row,
   Screenfull,
-  Select,
   SideBar,
   Skiner,
   SlipDialog,

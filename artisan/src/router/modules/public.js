@@ -14,7 +14,7 @@ export const publicRouter = [
     children: [
       {
         path: 'dashboard',
-        component: () => import('../../pages/dashboard/index'),
+        component: () => import('../../pages/Dashboard/index'),
         meta: { auth: true, key: 'dashboard' },
         name: '欢迎页面',
       },
