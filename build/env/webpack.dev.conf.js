@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-const { VueLoaderPlugin } = require('vue-loader');
+// const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = {
   mode: 'development',
@@ -83,7 +83,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new VueLoaderPlugin(),
+    // new VueLoaderPlugin(),
     new ProgressBarPlugin(),
     // new HtmlWebpackPlugin({
     //   chunks: ['vant-docs'],

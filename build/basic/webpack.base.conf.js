@@ -2,7 +2,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');//编译进度条 插件
-const {VueLoaderPlugin} = require('vue-loader');
+// const {VueLoaderPlugin} = require('vue-loader');
 
 const rules = require("./webpack.rules.conf.js");
 
@@ -21,7 +21,7 @@ module.exports = {
     rules: [...rules]
   },
   plugins: [
-    new VueLoaderPlugin(),
+    // new VueLoaderPlugin(),
     new ProgressBarPlugin(),
   ],
   node: {
