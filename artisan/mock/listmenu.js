@@ -156,6 +156,22 @@ const navmenu = (req, res) => {
             menuIndex: 6,
             hide: 1,
           },
+          {
+            funcId: 'cascader',
+            menuLabel: 'cascader级联选择器',
+            menuRouter: 'cascader',
+            menuIcon: null,
+            menuIndex: 7,
+            hide: 1,
+          },
+          {
+            funcId: 'avatar',
+            menuLabel: 'avatar头像',
+            menuRouter: 'avatar',
+            menuIcon: null,
+            menuIndex: 8,
+            hide: 1
+          },
         ],
       },
       {
@@ -353,7 +369,7 @@ const navmenu = (req, res) => {
             hide: 1,
           }
         ],
-      },
+      }
     ],
   });
 };

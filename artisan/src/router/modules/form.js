@@ -41,6 +41,18 @@ export const formRouter = [
         component: () => import('../../pages/Form/Select/Select'),
         meta: { auth: true, key: 'select' },
         name: 'select',
+      },
+      {
+        path: 'cascader',
+        component: () => import('../../pages/Form/Cascader/Cascader'),
+        meta: { auth: true, key: 'cascader' },
+        name: 'cascader',
+      },
+      {
+        path: 'avatar',
+        component: () => import('../../pages/Form/Avatar/Avatar'),
+        meta: { auth: true, key: 'avatar' },
+        name: 'avatar',
       }
     ],
   },

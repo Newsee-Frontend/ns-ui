@@ -1,0 +1,10 @@
+//input 相关样式
+@import '../../../style/common/size/formsize';
+
+@include b(cascader) {
+  @include form-component-size(cascader);
+
+  .el-input {
+    height: inherit;
+  }
+}
