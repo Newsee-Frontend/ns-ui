@@ -2,14 +2,15 @@
 <template>
   <div class="select-wrapper">
     <div class="select-setion">
-      <div>  ns-select </div>
+      <div> ns-select</div>
       <div class="selecte-line">
         <span> 单选: {{selectModel}} </span>
         <ns-select
           :disabled="true"
           size="small"
-          :keyRefer = keyRefer
+          :keyMap=keyMap
           height="40px"
+          width="300px"
           v-model="selectModel"
           :options="options"
         ></ns-select>
@@ -20,7 +21,7 @@
         <ns-select
           v-model="selectModels"
           :options="options"
-          :keyRefer = "keyRefer"
+          :keyMap=keyMap
           :multipleLimit="2"
           multiple
           collapseTags
@@ -34,59 +35,58 @@
           size="mini"
           v-model="selectModel"
           custom
-          :keyRefer = keyRefer
+          :keyMap=keyMap
           :options="options"
         ></ns-select>
       </div>
     </div>
 
     <div class="select-setion">
-      <div>  ns-select-dictionary </div>
+      <div> ns-select-dictionary</div>
       <div class="selecte-line">
         <ns-select-dictionary></ns-select-dictionary>
       </div>
     </div>
-    </div>
+  </div>
 </template>
 
 <script>
-  import nsSelectDictionary from '../../../components/SelectDictionary/SelectDictionary.vue'
+  import nsSelectDictionary from '../../../components/SelectDictionary/SelectDictionary.vue';
+
   export default {
-    name: '',
+    name: 'select-demo',
 
     components: {
-      nsSelectDictionary
+      nsSelectDictionary,
     },
 
     data() {
       return {
         selectModel: 1,
         selectModels: [],
-        keyRefer: {
+        keyMap: {
           label: 'name',
-          value: 'value'
+          value: 'value',
         },
         options: [
-          { name: '北京', value:  1 },
-          { name: '上海', value: 2},
-          { name: '杭州', value: 3},
-        ]
+          { name: '北京', value: 1 },
+          { name: '上海', value: 2 },
+          { name: '杭州', value: 3 },
+        ],
       };
     },
     computed: {},
     created() {
 
     },
-    methods: {
-
-    },
+    methods: {},
     mounted() {
     },
   };
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  .selecte-line{
+  .selecte-line {
     margin-bottom: 20px;
   }
 </style>
