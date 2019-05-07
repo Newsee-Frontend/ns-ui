@@ -1,4 +1,4 @@
-import create from '../../utils/create';
+import create from '../../create/create';
 import Dialog from '../Dialog/Dialog';
 
 const _fullscreen_dialogtype = ['normal', 'simple', 'noFooter', 'noHeader'];

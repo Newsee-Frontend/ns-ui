@@ -1,18 +1,19 @@
 @import "../../../style/mixins/mixins";
 
+$basesize: 200px;
 /**
   * components - badge style entry
  */
 @include b(avatar) {
-  .avatar-cont {
-    .avatar-round {
-      border-radius: 50%;
-      overflow: hidden;
-    }
-    img {
-      width: 100%;
-      height: 100%;
-    }
+  width: $basesize;
+  height: $basesize;
+  overflow: hidden;
+  @include rb(avatar--round) {
+    border-radius: 50%;
+  }
+  img {
+    width: 100%;
+    height: 100%;
   }
 }
 

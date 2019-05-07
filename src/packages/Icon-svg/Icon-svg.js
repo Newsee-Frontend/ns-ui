@@ -1,4 +1,4 @@
-import create from '../../utils/create-basic';
+import create from '../../create/create-basic';
 
 export default create({
   name: 'icon-svg',

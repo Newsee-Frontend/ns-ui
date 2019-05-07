@@ -1,4 +1,4 @@
-import create from '../../utils/create';
+import create from '../../create/create';
 import sidebarBubble from './theme/bubble/sidebar-bubble';
 import sidebarCollapse from './theme/collapse/sidebar-collapse';
 // import sidebarPush from './theme/push/sidebar-push';

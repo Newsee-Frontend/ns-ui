@@ -1,14 +1,15 @@
 /**
  * Create a basic component with common options
  */
-import $Var from '../variable';
-import recls from '../mixins/recls';
-import formsize from '../mixins/formsize';
+import $Var from '../variable/index';
+import mixinsload from './mixinsload';
+import resmount from '../utils/resmount';
+import ui_extends from '../ui-extends/index';
+import { isDef, judgeType, mergeOptions } from '../utils/index';
 import namespace from '../mixins/namespace';
-import i18n from './i18n';
-import resmount from './resmount';
-import ui_extends from '../ui-extends';
-import { isDef, judgeType, mergeOptions } from '.';
+import i18n from '../utils/i18n';
+import recls from '../mixins/recls';
+
 
 /**
  * component install
@@ -54,7 +55,8 @@ export default function(sfc) {
   sfc.name = $Var.prefix + $Var.tie + sfc.name;
   sfc.install = sfc.install || install;
   sfc.mixins = sfc.mixins || [];
-  sfc.mixins.push(i18n, recls, formsize, namespace);
+  sfc.mixins = [...sfc.mixins, ...mixinsload(sfc)];
+
   sfc.methods = sfc.methods || {};
   sfc.methods.isDef = isDef;
   sfc.props && defaultProps(sfc.props);

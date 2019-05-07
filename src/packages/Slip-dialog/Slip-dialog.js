@@ -1,4 +1,4 @@
-import create from '../../utils/create';
+import create from '../../create/create';
 import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
 
 export default create({
