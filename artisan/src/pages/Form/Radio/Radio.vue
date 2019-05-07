@@ -1,32 +1,41 @@
 <!--UI 组件库 - Radio - 页面测试-->
 <template>
   <div class="redio-wrapper">
-    <div class="redio-item">
-      <h2 style="margin: 20px 0">正常</h2>
-      <ns-redio
-        v-model="selectRedio"
-        :options="options"
-        height="100px"
-      />
-    </div>
 
-    <div class="redio-item" style="line-height: 50px;">
-      <h2 style="margin: 20px 0">button</h2>
+    <demo-block>
+      <template slot="title">默认 Radio</template>
+      <template slot="describe">默认Radio，单选框不可用的状态，change	绑定值变化时触发的事件。</template>
+      <template slot="content">
+        <ns-redio
+          v-model="selectRedio"
+          :options="options"
+          @change="change"
+        />
+      </template>
+    </demo-block>
 
-      <ns-redio
-        v-model="selectRedio"
-        :options="options"
-        type="button"
-        size="mini"
-      />
+    <demo-block>
+      <template slot="title">按钮 Radio</template>
+      <template slot="describe">按钮样式的单选组合，通过size改变尺寸</template>
+      <template slot="content">
+        <div>
+          <ns-redio
+            v-model="selectRedio"
+            :options="options"
+            type="button"
+            size="mini"
+          />
+        </div>
+        <div class="gap">
+          <ns-redio
+            v-model="selectRedio"
+            :options="options"
+            type="button"
+          />
+        </div>
+      </template>
+    </demo-block>
 
-      <ns-redio
-        v-model="selectRedio"
-        :options="options"
-        type="button"
-      />
-
-    </div>
   </div>
 </template>
 
@@ -37,19 +46,18 @@
       return {
         selectRedio: '11',
         options: [
-          { label: '北京1', value: '11', disabled: true },
-          { label: '北京2', value: '12' },
-          { label: '北京3', value: '13' },
-          { label: '北京4', value: '14' },
-        ]
+          { label: '北京', value: '11', disabled: true },
+          { label: '上海', value: '12' },
+          { label: '杭州', value: '13' },
+          { label: '广州', value: '14' },
+        ],
       };
     },
-    computed: {},
-    created() {
-
-    },
-    methods: {},
-    mounted() {
+    methods: {
+      change(value) {
+        console.log('radio-change');
+        console.log(value);
+      },
     },
   };
 </script>
