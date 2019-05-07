@@ -42,12 +42,13 @@ function defaultProps(props) {
         type: Array,
         default: returnArray,
       };
-    } else if (props[key] === Number) {
-      props[key] = {
-        type: Number,
-        default: 0,
-      };
     }
+    // else if (props[key] === Number) {
+    //   props[key] = {
+    //     type: Number,
+    //     default: 0,
+    //   };
+    // }
   });
 }
 
