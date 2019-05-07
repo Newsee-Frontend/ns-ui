@@ -2,18 +2,18 @@
 <template>
   <div class="slider-wrapper">
     <div class="slider-line">
-      <span>正常</span>
+      <span class="decs">正常</span>
       <ns-slider v-model="value" width="200px"></ns-slider>
     </div>
     <div class="slider-line">
-      <span>自定义tooltip</span>
+      <span class="decs">自定义tooltip</span>
       <ns-slider v-model="value"
                  width="200px"
                  :formatTooltip = "formatTooltip"
       ></ns-slider>
     </div>
     <div class="slider-line">
-      <span>步长</span>
+      <span class="decs">步长</span>
       <ns-slider v-model="value"
                  width="200px"
                  :step="20"
@@ -21,7 +21,14 @@
       ></ns-slider>
     </div>
     <div class="slider-line">
-      <span>范围选择</span>
+      <span class="decs">显示input</span>
+      <ns-slider v-model="value"
+                 width="800px"
+                 showInput
+      ></ns-slider>
+    </div>
+    <div class="slider-line">
+      <span class="decs">范围选择</span>
       <ns-slider v-model="valueRange"
                  width="200px"
                  range
@@ -29,7 +36,7 @@
       ></ns-slider>
     </div>
     <div class="slider-line">
-      <span>vertical</span>
+      <span class="decs">vertical</span>
       <ns-slider v-model="valueRange"
                  vertical
                  range
@@ -68,7 +75,7 @@
     display: flex;
     align-items: center;
   }
-  .slider-line span{
+  .slider-line .decs{
     margin-right: 50px;
   }
 </style>

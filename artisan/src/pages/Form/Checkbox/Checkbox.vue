@@ -9,14 +9,6 @@
       ></ns-checkbox>
     </div>
 
-    <div>
-      <h2 style="margin: 20px 0"> 带全选的状态</h2>
-      <ns-checkbox
-        v-model="checkValues"
-        :options="options"
-        indeterminate
-      ></ns-checkbox>
-    </div>
     <div style="line-height: 50px;">
       <h2 style="margin: 20px 0"> button样式</h2>
       <ns-checkbox
