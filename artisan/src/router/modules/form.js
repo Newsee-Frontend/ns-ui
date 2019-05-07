@@ -77,6 +77,12 @@ export const formRouter = [
         component: () => import('../../pages/Form/Slider/Slider'),
         meta: { auth: true, key: 'slider' },
         name: '滑块',
+      },
+      {
+        path: 'upload',
+        component: () => import('../../pages/Form/Upload/Upload'),
+        meta: { auth: true, key: 'upload' },
+        name: '头像上传',
       }
     ],
   },

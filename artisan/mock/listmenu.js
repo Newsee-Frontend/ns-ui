@@ -204,6 +204,14 @@ const navmenu = (req, res) => {
             menuIndex: 12,
             hide: 1
           },
+          {
+            funcId: 'upload',
+            menuLabel: 'upload 上传',
+            menuRouter: 'upload',
+            menuIcon: null,
+            menuIndex: 13,
+            hide: 1
+          },
         ],
       },
       {

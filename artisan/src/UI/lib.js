@@ -25,6 +25,7 @@ import Checkbox from '../../../src/packages/Checkbox/Checkbox.js'
 import Redio from '../../../src/packages/Redio/Redio.js'
 import Switch from '../../../src/packages/Switch/Switch.js'
 import Slider from '../../../src/packages/Slider/Slider.js'
+import Upload from '../../../src/packages/Upload/Upload.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -68,6 +69,7 @@ Vue.component('ns-checkbox',Checkbox);
 Vue.component('ns-redio',Redio);
 Vue.component('ns-switch',Switch);
 Vue.component('ns-slider',Slider);
+Vue.component('ns-upload',Upload);
 
 
 // data
