@@ -10,6 +10,7 @@
           v-model="selectRedio"
           :options="options"
           @change="change"
+          height="100px"
         />
       </template>
     </demo-block>
@@ -31,6 +32,7 @@
             v-model="selectRedio"
             :options="options"
             type="button"
+            height="100px"
           />
         </div>
       </template>
