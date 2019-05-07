@@ -1,5 +1,5 @@
 import screenfull from 'screenfull';
-import create from '../../utils/create';
+import create from '../../create/create';
 
 export default create({
     name: 'screenfull',

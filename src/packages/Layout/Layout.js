@@ -1,4 +1,4 @@
-import create from '../../utils/create';
+import create from '../../create/create';
 import Head from '../Header/Header';
 
 export default create({

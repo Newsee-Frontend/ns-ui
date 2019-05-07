@@ -1,56 +1,45 @@
-import create from '../../utils/create';
-import { convertUnits } from  '../../utils/auto-from'
+import create from '../../create/create';
 
 export default create({
   name: 'avatar',
 
-  data() {
-    return {
-    };
-  },
   props: {
-    type: { type: String, default: 'normal' },
-    borderRadius: { type: [Number, String], default: null },    // 控制头像的border-Redius， 优先级高于type
-    width: { type: [Number, String], default: '32px' },
-    height: { type: [Number, String], default: '32px' },
-    scale: { type: [Number, String] }, // the value of width / height  如果传值，优先按比例计算出宽度
-    dynamicSrc: { type: String, default: null }
+    type: { type: String, default: 'normal' },//round 或 normal
+    width: { type: [Number, String] },
+    height: { type: [Number, String] },
+    borderRadius: { type: String },    // 控制头像的border-Redius，type 为 round 则失效
+    dynamicSrc: { type: String, default: null },
   },
 
-
-  watch: {},
-
+  computed: {
+    isRound() {
+      return this.type === 'round';
+    },
+    avatarStyle() {
+      return {
+        width: this.convert_width,
+        height: this.convert_height,
+        borderRadius: !this.isRound && this.borderRadius,
+      };
+    },
+  },
   render(h) {
-    let avatar_height = convertUnits(this.height);
-
-    let avatar_width = this.scale
-      ? parseInt(convertUnits(this.height)) * parseFloat(this.scale) + 'px'
-      : convertUnits(this.width)
-
-    let  avatar_borderRadius =  this.borderRadius?  convertUnits(this.borderRadius) : '';
     return (
       <div
-        class={ this.recls() }>
-        <div
-          class="avatar-cont"
-          style={{ height: avatar_height, width: avatar_width }}
-        >
-          <img
-            src= { this.dynamicSrc }
-            alt="avatar"
-            class={["avatar-cont", this.type === 'round' && 'avatar-round']}
-            style={ this.borderRadius && { borderRadius:  avatar_borderRadius}}
-          />
-        </div>
+        class={this.recls({ 'round': this.isRound })}
+        style={this.avatarStyle}
+        on-click={this.click}
+      >
+        <img
+          src={this.dynamicSrc}
+          alt="avatar"
+        />
       </div>
-    )
+    );
   },
-
-  methods: {},
-
-  created() {
-  },
-
-  mounted() {
+  methods: {
+    click() {
+      this.$emit('click');
+    },
   },
 });

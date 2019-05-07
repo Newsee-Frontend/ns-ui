@@ -6,7 +6,7 @@
 
 <script>
 // import testContent from './components/testContent';
-import create from '../../../src/utils/create';
+import create from '../../create/create';
 
 export default create({
   name: 'TestDemo',

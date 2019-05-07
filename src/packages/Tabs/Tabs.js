@@ -1,4 +1,4 @@
-import create from '../../utils/create';
+import create from '../../create/create';
 import TabNav from './components/tab-nav';
 export default create({
   name: 'tabs',

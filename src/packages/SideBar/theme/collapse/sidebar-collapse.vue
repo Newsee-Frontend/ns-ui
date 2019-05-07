@@ -82,7 +82,7 @@
   </ul>
 </template>
 <script>
-  import create from '../../../../utils/create';
+  import create from '../../../../create/create';
   import Navcontrol from '../../control';
   import defaultKeyRefer from '../../keyRefer';
   import { compute, delaynav } from '../../utils';

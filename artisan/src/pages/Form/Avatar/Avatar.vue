@@ -10,9 +10,8 @@
       :dynamicSrc="dynamicSrc"
       height="80px"
       width="80px"
-      type="round"
-      scale="2"
-      border-radius="5px"
+      border-radius="20%"
+      @click="click"
     ></ns-avatar>
   </div>
 </template>
@@ -22,20 +21,21 @@
     name: '',
     data() {
       return {
-        dynamicSrc: "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif"
+        dynamicSrc: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
       };
     },
-    computed: {},
     created() {
 
     },
-    methods: {},
-    mounted() {
+    methods: {
+      click() {
+        console.log('点击图片事件');
+      },
     },
   };
 </script>
 <style>
-  .avatar-wrapper .ns-avatar{
+  .avatar-wrapper .ns-avatar {
     float: left;
     margin: 20px;
   }
