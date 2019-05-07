@@ -1,5 +1,6 @@
 import create from '../../utils/create';
 import { sizeValidator } from '../../utils/props/validator';
+import { convertUnits } from '../../utils/auto-from';
 
 export default create({
   name: 'select',
@@ -16,8 +17,8 @@ export default create({
       type: Array,
       default: () => ([]),
     },
-    width: String,
-    height: String,
+    width: [String, Number],
+    height: [String, Number],
     keyMap: {
       type: Object,
       default: () => ({ label: 'label', value: 'value' }),
@@ -47,10 +48,11 @@ export default create({
   },
 
   render(h) {
-    let {
-      label,
-      value,
-    } = this.keyMap;
+    let { label, value, } = this.keyMap;
+    let width,height;
+    this.width && (width = convertUnits(this.width));
+    this.height && (height = convertUnits(this.height));
+
     const elOption = (item) => (
       <el-option
         key={item[value]}
@@ -85,7 +87,7 @@ export default create({
         allowCreate={this.allowCreate}
         loading={this.loading}
         placeholder={this.placeholder}
-        style={{ width: this.width, height: this.height, lineHeight: this.height }}
+        style={{ width: width, height: height, lineHeight: height }}
       >
         {
           this.options.map((item) => {

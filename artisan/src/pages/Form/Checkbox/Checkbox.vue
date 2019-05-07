@@ -47,7 +47,7 @@
           { label: '北京3', value: '13' },
           { label: '北京4', value: '14' },
         ],
-        checkValues: ['11']
+        checkValues: ['14']
       };
     },
     computed: {},

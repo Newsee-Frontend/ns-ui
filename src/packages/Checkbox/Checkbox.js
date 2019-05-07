@@ -1,5 +1,6 @@
 import create from '../../utils/create';
 import { sizeValidator } from '../../utils/props/validator';
+import { convertUnits } from '../../utils/auto-from';
 
 export default create({
   name: 'checkbox',
@@ -26,7 +27,8 @@ export default create({
     },  //  label, value 对应的字段名
     min: { type: Number, default: 0 }, //可被勾选的 checkbox 的最小数量
     max: { type: Number }, //可被勾选的 checkbox 的最大数量
-    fill: { type: String, default: '#20a0ff' }, //背景颜色
+    fill: { type: String, default: '#20a0ff' }, //按钮：背景颜色
+    textColor: { type: String, default: '#ffffff' }, //按钮：字体颜色
   },
 
   computed: {},
@@ -42,6 +44,11 @@ export default create({
   },
 
   render(h) {
+
+    let width,height;
+    this.width && (width = convertUnits(this.width));
+    this.height && (height = convertUnits(this.height));
+
     const checkboxAllDom = <el-checkbox
       value={ this.checkAll }
       onInput= { e => this.handleModelAll(e)}
@@ -71,7 +78,8 @@ export default create({
 
     const checkboxGroupDom = <el-checkbox-group
       value= { this.childCheckbox }
-      style={{width: this.width,  'line-height': this.height}}
+      style={{width: width,  'line-height': height}}
+      textColor={ this.textColor }
       onInput= { (e) =>  this.handleModel(e) }
     >
       {  this.options.map((item) => (

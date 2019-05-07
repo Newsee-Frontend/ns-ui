@@ -1,5 +1,6 @@
 import create from '../../utils/create';
 import { sizeValidator } from '../../utils/props/validator';
+import { convertUnits } from '../../utils/auto-from';
 
 export default create({
   name: 'redio',
@@ -37,6 +38,10 @@ export default create({
   },
 
   render(h) {
+    let width,height;
+    this.isDef(this.width) && (width = convertUnits(this.width));
+    this.isDef(this.height) && (height = convertUnits(this.height));
+
     const radioDom = (item) => (
       <el-radio
         label={item[this.keyRefer.value]}
@@ -64,7 +69,7 @@ export default create({
         value = { this.childRadio }
         onInput = { e => this.handlemodel(e)}
         disabled = { this.disabled }
-        style={{ width: this.width, height: this.height }}
+        style={{ width: width, height: height }}
       >
         {
           this.options.map((item) => (

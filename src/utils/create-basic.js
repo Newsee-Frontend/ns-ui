@@ -58,6 +58,5 @@ export default function(sfc) {
   sfc.methods = sfc.methods || {};
   sfc.methods.isDef = isDef;
   sfc.props && defaultProps(sfc.props);
-
   return sfc;
 }
