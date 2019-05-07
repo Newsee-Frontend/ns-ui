@@ -1,6 +1,5 @@
 import create from '../../create/create';
 import { sizeValidator } from '../../utils/props/validator';
-import { convertUnits } from '../../utils/auto-from';
 
 export default create({
   name: 'checkbox',
@@ -13,7 +12,6 @@ export default create({
   props: {
     value: Array,
     type: { type: String, default: 'normal' },
-    //尺寸可选 'mini' 'small' 'normal' 'medium' 'large';
     size: { type: String, validator: s => sizeValidator(s) },
     width: { type: [String, Number], default: '100%' },
     height: { type: [String, Number] },   //normal表示代表行高
@@ -37,10 +35,6 @@ export default create({
   },
 
   render(h) {
-    let width, height;
-    this.width && (width = convertUnits(this.width));
-    this.height && (height = convertUnits(this.height));
-
     const checkboxDom = (item) => (
       <el-checkbox
         key={item[this.keyRefer.value]}
@@ -66,7 +60,7 @@ export default create({
       <el-checkbox-group
         class={this.recls()}
         value={this.childCheckbox}
-        style={{ width: width, 'line-height': height }}
+        style={{ width: this.width, 'line-height': this.height }}
         textColor={this.textColor}
         onInput={(e) => this.handleModel(e)}
       >

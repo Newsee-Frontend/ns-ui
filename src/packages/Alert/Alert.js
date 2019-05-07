@@ -70,7 +70,6 @@ export default create({
   },
 
   methods: {
-    //关闭alert时触发的事件
     close() {
       this.$emit('close');
     },

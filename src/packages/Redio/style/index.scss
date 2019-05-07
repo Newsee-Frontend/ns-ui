@@ -6,8 +6,8 @@
     box-shadow: none !important;
   }
 
-  @include b(redio__btn){
+  @include b(redio__button){
     box-shadow: none !important;
-    @include button-size(redio__btn);
+    @include button-size(redio__button);
   }
 }

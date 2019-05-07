@@ -1,4 +1,6 @@
 import config from '../config/config';
+import convertunits from '../utils/from/convertunits';
+
 
 export const size = {
   computed: {
@@ -14,9 +16,7 @@ export const width = {
   computed: {
     convert_width() {
       const width = this.$options.propsData && this.$options.propsData.width;
-      console.log(33333333);
-      console.log(this.$options.propsData);
-      return width;
+      return width ? convertunits(width) : undefined;
     },
   },
 };
@@ -24,7 +24,8 @@ export const width = {
 export const height = {
   computed: {
     convert_height() {
-      return this.height || null;
+      const height = this.$options.propsData && this.$options.propsData.height;
+      return height ? convertunits(height) : undefined;
     },
   },
 };

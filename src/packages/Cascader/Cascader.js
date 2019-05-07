@@ -6,7 +6,7 @@ export default create({
 
   data() {
     return {
-      childCascader: this.value
+      childCascader: this.value,
     };
   },
 
@@ -15,11 +15,11 @@ export default create({
     options: Array,
     props: {
       type: Object,
-      default: ()=> ({
+      default: () => ({
         value: 'value',
         label: 'label',
-        children: 'children'
-      })
+        children: 'children',
+      }),
     },
     placeholder: { type: String, default: '请选择' },
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
@@ -28,56 +28,49 @@ export default create({
     expandTrigger: { type: String, default: 'click' },
     disabled: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
-    showAllLevels: { type: Boolean, default: true },
-    changeOnSelect: { type: Boolean, default: false },
-    filterable: { type: Boolean, default: false }
+    showAllLevels: { type: Boolean, default: true },//输入框中是否显示选中值的完整路径
+    changeOnSelect: { type: Boolean, default: false },//是否允许选择任意一级的选项
+    filterable: { type: Boolean, default: false },//是否可搜索选项
   },
 
   computed: {},
 
   watch: {
-    value(val){
+    value(val) {
       this.childCascader = val;
-    }
+    },
   },
 
   render(h) {
-    return(
+    return (
       <el-cascader
         class={this.recls([this.formsize])}
         value={this.value}
         onInput={e => this.handleModel(e)}
-        onChange = { this.change.bind(this)}
-        options = { this.options }
-        clearable = { this.clearable }
-        placeholder = { this.placeholder }
-        expandTrigger = { this.expandTrigger }
-        disabled = { this.disabled }
-        filterable = { this.filterable }
-        showAllLevels = { this.showAllLevels }
-        changeOnSelect = { this.changeOnSelect }
+        onChange={this.change.bind(this)}
+        options={this.options}
+        clearable={this.clearable}
+        placeholder={this.placeholder}
+        expandTrigger={this.expandTrigger}
+        disabled={this.disabled}
+        filterable={this.filterable}
+        showAllLevels={this.showAllLevels}
+        changeOnSelect={this.changeOnSelect}
         style={{ width: this.width, height: this.height, lineHeight: this.height }}
       >
 
       </el-cascader>
-    )
+    );
   },
 
   methods: {
-    handleModel: function(e){
+    handleModel: function(e) {
       this.childCascader = e;
       this.$emit('input', this.childCascader);
     },
 
-    change: function(){
-      this.$emit('change')
+    change: function(value) {
+      this.$emit('change', value);
     },
-
-  },
-
-  created() {
-  },
-
-  mounted() {
   },
 });

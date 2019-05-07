@@ -9,7 +9,7 @@
     <ns-avatar
       :dynamicSrc="dynamicSrc"
       height="80px"
-      width="80px"
+      :width="80"
       border-radius="20%"
       @click="click"
     ></ns-avatar>

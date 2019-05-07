@@ -181,9 +181,9 @@ const navmenu = (req, res) => {
             hide: 1
           },
           {
-            funcId: 'redio',
-            menuLabel: 'redio 单选框',
-            menuRouter: 'redio',
+            funcId: 'radio',
+            menuLabel: 'radio 单选框',
+            menuRouter: 'radio',
             menuIcon: null,
             menuIndex: 10,
             hide: 1
