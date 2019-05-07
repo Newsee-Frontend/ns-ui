@@ -172,6 +172,38 @@ const navmenu = (req, res) => {
             menuIndex: 8,
             hide: 1
           },
+          {
+            funcId: 'checkbox',
+            menuLabel: 'checkbox 多选框',
+            menuRouter: 'checkbox',
+            menuIcon: null,
+            menuIndex: 9,
+            hide: 1
+          },
+          {
+            funcId: 'redio',
+            menuLabel: 'redio 单选框',
+            menuRouter: 'redio',
+            menuIcon: null,
+            menuIndex: 10,
+            hide: 1
+          },
+          {
+            funcId: 'switch',
+            menuLabel: 'switch 开关',
+            menuRouter: 'switch',
+            menuIcon: null,
+            menuIndex: 11,
+            hide: 1
+          },
+          {
+            funcId: 'slider',
+            menuLabel: 'slider 滑块',
+            menuRouter: 'slider',
+            menuIcon: null,
+            menuIndex: 12,
+            hide: 1
+          },
         ],
       },
       {
