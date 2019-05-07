@@ -20,7 +20,7 @@ export default create({
     height: String,
     keyMap: {
       type: Object,
-      default: ()=> ( {label: 'label', value: 'value'})
+      default: () => ({ label: 'label', value: 'value' }),
     },  //  label, value 对应的字段名
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
@@ -68,7 +68,7 @@ export default create({
           this.recls([this.formsize]),
           this.multiple && `${this.namespace}-select-multiple`,
         ]}
-        value={ this.childSelect }
+        value={this.childSelect}
         onInput={e => this.handleModel(e)}
         onChange={this.change.bind(this)}
         onVisible-change={this.visibleChange.bind(this)}
@@ -125,7 +125,7 @@ export default create({
      */
     onFocus() {
       this.$emit('focus');
-    }
+    },
 
 
   },
