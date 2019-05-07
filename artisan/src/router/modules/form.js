@@ -61,9 +61,9 @@ export const formRouter = [
         name: '多选框',
       },
       {
-        path: 'redio',
-        component: () => import('../../pages/Form/Redio/Redio'),
-        meta: { auth: true, key: 'redio' },
+        path: 'radio',
+        component: () => import('../../pages/Form/Radio/Radio'),
+        meta: { auth: true, key: 'radio' },
         name: '单选框',
       },
       {

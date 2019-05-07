@@ -18,12 +18,11 @@ $--button-frontsize: 12px 12px 12px 14px 14px;
     @include rb($size-name) {
       @include base-style-change($hor, $ver, $fs);
     }
-
   }
 }
 
 @mixin base-style-change($horizontal, $vertical,$frontsize) {
-  span{
+  span {
     padding: $vertical $horizontal;
     font-size: $frontsize;
   }

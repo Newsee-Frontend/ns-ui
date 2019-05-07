@@ -14,7 +14,6 @@ export default create({
   props: {
     value: Array,
     type: { type: String, default: 'normal' },
-    //尺寸可选 'mini' 'small' 'normal' 'medium' 'large';
     size: { type: String, validator: s => sizeValidator(s) },
     width: { type: [String, Number], default: '100%' },
     height: { type: [String, Number]},   //normal表示代表行高

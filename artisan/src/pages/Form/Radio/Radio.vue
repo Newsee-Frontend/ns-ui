@@ -1,4 +1,4 @@
-<!--UI 组件库 - Redio - 页面测试-->
+<!--UI 组件库 - Radio - 页面测试-->
 <template>
   <div class="redio-wrapper">
     <div class="redio-item">
@@ -6,7 +6,7 @@
       <ns-redio
         v-model="selectRedio"
         :options="options"
-        height="20px"
+        height="100px"
       />
     </div>
 
