@@ -1,5 +1,5 @@
 import create from '../../create/create';
-import { convertUnits } from '../../utils/auto-from';
+import { convertUnits } from '../../utils/from/auto-from';
 
 export default create({
   name: 'slider',

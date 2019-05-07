@@ -1,4 +1,4 @@
-import { judgeType } from './index'
+import { judgeType } from '../index'
 
 
 /**
@@ -19,6 +19,6 @@ export const convertUnits = function(val){
   }else{
     throw 'the value is empty, please check you code';
   }
-}
+};
 
 
