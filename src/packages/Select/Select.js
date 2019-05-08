@@ -38,7 +38,15 @@ export default create({
     custom: { type: Boolean, default: false }, //自定义 下拉内容
   },
 
-  computed: {},
+  computed: {
+    convert_style(){
+      return{
+        width: this.convert_width,
+        height: this.convert_height,
+        lineHeight: this.convert_height,
+      }
+    }
+  },
 
   watch: {
     value(val) {
@@ -82,7 +90,7 @@ export default create({
         allowCreate={this.allowCreate}
         loading={this.loading}
         placeholder={this.placeholder}
-        style={{ width: this.width, height: this.height, lineHeight: this.height }}
+        style={this.convert_style}
       >
         {
           this.options.map((item) => {

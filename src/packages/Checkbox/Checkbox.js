@@ -13,9 +13,8 @@ export default create({
     value: Array,
     type: { type: String, default: 'normal' },
     size: { type: String, validator: s => sizeValidator(s) },
-    width: { type: [String, Number], default: '100%' },
-    height: { type: [String, Number] },   //normal表示代表行高
     options: { type: Array, default: [] },
+    disabled: { type: Boolean, default: false },
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
@@ -60,9 +59,13 @@ export default create({
       <el-checkbox-group
         class={this.recls()}
         value={this.childCheckbox}
-        style={{ width: this.width, 'line-height': this.height }}
         textColor={this.textColor}
+        fill={this.fill}
+        min={this.min}
+        max={this.max}
+        disabled={this.disabled}
         onInput={(e) => this.handleModel(e)}
+        onChange= {this.change}
       >
         {this.options.map((item) => (
           this.type === 'button' ? checkBtnDom(item) : checkboxDom(item)
@@ -77,6 +80,11 @@ export default create({
       this.childCheckbox = e;
       this.$emit('input', this.childCheckbox);
     },
+
+    //change 事件
+    change: function(val){
+      this.$emit('change', val);
+    }
   },
 
   created() {

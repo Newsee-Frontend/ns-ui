@@ -22,7 +22,6 @@ export default create({
 
   watch: {
     value(val) {
-      console.log(val);
       this.childDataPicker = val;
     },
   },

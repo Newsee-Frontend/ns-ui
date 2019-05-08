@@ -38,6 +38,16 @@ export default create({
     },
   },
 
+  computed: {
+    convert_style(){
+      return{
+        width: this.convert_width,
+        height: this.convert_height,
+        lineHeight: this.convert_height,
+      }
+    }
+  },
+
   watch: {
     value(val) {
       this.childDataPicker = val;
@@ -67,7 +77,7 @@ export default create({
         default-time={this.defaultTime}
         on-change={this.change.bind(this)}
         on-pick={this.onPick.bind(this)}
-        style={{ width: this.width, height: this.height }}
+        style={this.convert_style}
       />
     );
   },

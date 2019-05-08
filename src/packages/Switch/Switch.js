@@ -1,5 +1,4 @@
 import create from '../../create/create';
-import { convertUnits } from '../../utils/from/auto-from'
 
 export default create({
   name: 'switch',
@@ -36,17 +35,17 @@ export default create({
   },
 
   render(h) {
-    let switch_width = convertUnits(this.width);
-    let switch_height = convertUnits(this.height);
-
     return(
       <div
         class={ this.recls() }
-        style={{ width: switch_width, height: switch_height}}
+        style={{ width: this.convert_width, height: this.convert_height}}
       >
          <el-switch
            value ={ this.childSwitch }
-           onInput = { e => this.handleModel(e) }
+           onInput = { e =>
+             this.handleModel(e)
+           }
+           onChange= {this.change}
            activeText = { this.onText }
            inactiveText = { this.offText }
            activeColor = { this.onColor }
@@ -69,6 +68,10 @@ export default create({
     handleModel: function(e) {
       this.childSwitch = e;
       this.$emit('input', this.childSwitch);
+    },
+
+    change: function(val){
+      this.$emit('change', val);
     }
   },
 

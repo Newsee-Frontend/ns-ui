@@ -1,6 +1,4 @@
 import create from '../../create/create';
-import { convertUnits } from '../../utils/from/auto-from';
-
 export default create({
   name: 'slider',
 
@@ -51,15 +49,13 @@ export default create({
   },
 
   render(h) {
-    let width, height;
-    this.width && (width = convertUnits(this.width));
-    this.height && (height = convertUnits(this.height));
     return (
       <el-slider
         value={this.childSlider}
         onInput={e => {
           this.handleModel(e);
         }}
+        onChange={this.change}
         showTooltip={this.showTooltip}
         formatTooltip={this.formatTooltip}
         disabled={this.disabled}
@@ -70,8 +66,8 @@ export default create({
         min={this.min}
         max={this.max}
         vertical={this.vertical}
-        height={height}
-        style={{ width: `${width}!important` }}
+        height={this.convert_height}
+        style={{ width: `${this.convert_width}!important` }}
       >
 
       </el-slider>
@@ -83,6 +79,10 @@ export default create({
       this.childSlider = e;
       this.$emit('input', this.childSlider);
     },
+
+    change(e) {
+      this.$emit('change',e)
+    }
   },
 
   created() {
