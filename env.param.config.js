@@ -1,5 +1,7 @@
 'use strict';
 const path = require('path');
+const package_19_4_30 = require('./version/package_19_4_30');
+
 
 module.exports = {
   dev: {
@@ -27,22 +29,7 @@ module.exports = {
         path.resolve('lib/index.scss'),
       ],
     },
-    excludes: [
-      'index.js',
-      'index.less',
-      'index.scss',
-      'style',
-      'mixins',
-      'utils',
-      '.DS_Store',
-      'Tabs',
-      'Tab-pane',
-      'TestDemo',
-      'Input',
-      'Select',
-      'Only-MMDD-picker',
-      'Time-interval',
-    ],
+    excludes: package_19_4_30,
   },
   base: {
     mockPath: './artisan/mock',
@@ -50,8 +37,8 @@ module.exports = {
     JSBabelInclude: ['src', 'mock', 'test', 'artisan'],
 
     alias: {
-      "vue$": "vue/dist/vue.esm.js",
-      "@": path.resolve("artisan/src"),
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': path.resolve('artisan/src'),
     },
 
     prettier: {
