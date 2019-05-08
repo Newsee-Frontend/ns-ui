@@ -3,7 +3,7 @@
   <div
     class="time-interval"
     v-model="childTimeInterval"
-    :style="{ width: width, height: height, 'line-height': height }"
+    :style="convert_style"
   >
     <!--选择执行频率的类型 （年/月/周/日）-->
     <el-select
@@ -117,13 +117,20 @@
     },
     created() {
       this.childTimeInterval = this.fatherTimeInterval;
-      console.log(this.fatherTimeInterval);
     },
     model: {
       prop: 'fatherTimeInterval',
       event: 'datechange',
     },
-    computed: {},
+    computed: {
+      convert_style(){
+        return{
+          width: this.convert_width,
+          height: this.convert_height,
+          lineHeight: this.convert_height,
+        }
+      }
+    },
     watch: {
       'childTimeInterval.dateType': {
         handler: function(val) {

@@ -4,9 +4,9 @@
     <ns-cascader
       v-model="cascaderModel"
       width="300px"
+      height="38px"
       placeholder="请选择"
       clearable
-
       :options="options"
       @change="getChange"
     ></ns-cascader>
@@ -36,8 +36,7 @@
     },
     methods: {
       getChange(value) {
-        console.log('change');
-        console.log(value);
+        console.log('cascader-change',value);
       },
     },
   };

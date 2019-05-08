@@ -35,6 +35,16 @@ export default create({
     },
   },
 
+  computed: {
+    convert_style(){
+      return{
+        width: this.convert_width,
+        height: this.convert_height,
+        lineHeight: this.convert_height,
+      }
+    }
+  },
+
   watch: {
     value(val) {
       this.childTimePicker = val;
@@ -61,7 +71,7 @@ export default create({
         popper-class={this.popperClass}
         picker-options={this.pickerOptions}
         on-change={this.change.bind(this)}
-        style={{ width: this.width, height: this.height }}
+        style={this.convert_style}
       />
     );
   },

@@ -20,6 +20,7 @@ export default create({
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
     size: { type: String, validator: s => sizeValidator(s) },
     fill: { type: String, default: '#20a0ff' }, //背景颜色
+    textColor: { type: String, default: '#ffffff' }, //按钮：字体颜色
     disabled: { type: Boolean, default: false },
   },
 

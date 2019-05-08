@@ -7,11 +7,13 @@
       offText="月报"
       onColor="#13ce66"
       offColor="#ff4949"
+      @change="getChange"
     ></ns-switch>
 
     <ns-switch
       v-model="value"
       :switchWidth="50"
+      @change="getChange"
     ></ns-switch>
   </div>
 </template>
@@ -28,8 +30,13 @@
     created() {
 
     },
-    methods: {},
+    methods: {
+      getChange(val){
+        console.log(val)
+      }
+    },
     mounted() {
+
     },
   };
 </script>
