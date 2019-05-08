@@ -1,13 +1,13 @@
 //input 相关样式
 @import '../../../style/common/size/choosebtnsize';
 
-@include b(redio) {
+@include b(radio) {
   .el-radio__inner{
     box-shadow: none !important;
   }
 
-  @include b(redio__button){
+  @include b(radio__button){
     box-shadow: none !important;
-    @include button-size(redio__button);
+    @include button-size(radio__button);
   }
 }

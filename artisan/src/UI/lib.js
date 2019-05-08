@@ -22,7 +22,7 @@ import Select from '../../../src/packages/Select/Select.js'
 import Cascader from '../../../src/packages/Cascader/Cascader.js'
 import Avatar from '../../../src/packages/Avatar/Avatar.js'
 import Checkbox from '../../../src/packages/Checkbox/Checkbox.js'
-import Redio from '../../../src/packages/Redio/Redio.js'
+import Radio from '../../../src/packages/Radio/Radio.js'
 import Switch from '../../../src/packages/Switch/Switch.js'
 import Slider from '../../../src/packages/Slider/Slider.js'
 import Upload from '../../../src/packages/Upload/Upload.js'
@@ -66,7 +66,7 @@ Vue.component('ns-select',Select);
 Vue.component('ns-cascader',Cascader);
 Vue.component('ns-avatar',Avatar);
 Vue.component('ns-checkbox',Checkbox);
-Vue.component('ns-redio',Redio);
+Vue.component('ns-radio',Radio);
 Vue.component('ns-switch',Switch);
 Vue.component('ns-slider',Slider);
 Vue.component('ns-upload',Upload);
@@ -114,7 +114,7 @@ import '../../../src/packages/Time-interval/style/index.scss';
 import '../../../src/packages/Cascader/style/index.scss';
 import '../../../src/packages/Avatar/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
-import '../../../src/packages/Redio/style/index.scss';
+import '../../../src/packages/Radio/style/index.scss';
 
 
 import '../../../src/packages/PageTabs/style/index.scss';
@@ -127,7 +127,7 @@ import '../../../src/packages/Steps/style/index.scss';
 import '../../../src/packages/Tabs/style/index.scss';
 import '../../../src/packages/Select/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
-import '../../../src/packages/Redio/style/index.scss';
+import '../../../src/packages/Radio/style/index.scss';
 import '../../../src/packages/Switch/style/index.scss';
 
 
