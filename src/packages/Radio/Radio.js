@@ -2,7 +2,7 @@ import create from '../../create/create';
 import { sizeValidator } from '../../utils/props/validator';
 
 export default create({
-  name: 'redio',
+  name: 'radio',
 
   data() {
     return {
@@ -18,11 +18,7 @@ export default create({
     value: [String, Number],
     options: { type: Array, default: [] },
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
-
     size: { type: String, validator: s => sizeValidator(s) },
-    width: { type: [String, Number]},
-    height: { type: [String, Number] },   //normal 表示行高
-
     fill: { type: String, default: '#20a0ff' }, //背景颜色
     disabled: { type: Boolean, default: false },
   },
@@ -63,6 +59,7 @@ export default create({
         value={this.childRadio}
         onInput={e => this.handlemodel(e)}
         disabled={this.disabled}
+        fill={this.fill}
         style={{ width: this.width, height: this.height }}
         on-change={this.change}
       >

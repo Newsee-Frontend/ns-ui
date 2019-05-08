@@ -129,5 +129,3 @@ import '../../../src/packages/Select/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
 import '../../../src/packages/Switch/style/index.scss';
-
-
