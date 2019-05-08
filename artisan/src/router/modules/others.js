@@ -24,6 +24,18 @@ export const othersRouter = [
         meta: { auth: true, key: 'slip-dialog' },
         name: '滑动对话框',
       },
+      {
+        path: 'carousel',
+        component: () => import('../../pages/Others/Carousel/Carousel'),
+        meta: { auth: true, key: 'carousel' },
+        name: '走马灯',
+      },
+      {
+        path: 'popover',
+        component: () => import('../../pages/Others/Popover/Popover'),
+        meta: { auth: true, key: 'popover' },
+        name: '弹出框',
+      },
     ],
   },
 ];

@@ -31,6 +31,8 @@ import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
 import FullscreenDialog from '../../../src/packages/Fullscreen-dialog/Fullscreen-dialog.js';
 import SlipDialog from '../../../src/packages/Slip-dialog/Slip-dialog.js';
+import Carousel from '../../../src/packages/Carousel/Carousel.js'
+import Popover from '../../../src/packages/Popover/Popover.js'
 
 import Badge from '../../../src/packages/Badge/Badge.js';
 import Progress from '../../../src/packages/Progress/Progress.js';
@@ -86,8 +88,10 @@ Vue.component('ns-tab-pane', TabPane);
 Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
 Vue.component('ns-fullscreen-dialog', FullscreenDialog);
-
 Vue.component('ns-slip-dialog', SlipDialog);
+Vue.component('ns-carousel', Carousel);
+Vue.component('ns-popover', Popover);
+
 
 //notice
 Vue.component('ns-alert', Alert);
@@ -121,6 +125,7 @@ import '../../../src/packages/PageTabs/style/index.scss';
 import '../../../src/packages/Dialog/style/index.scss';
 import '../../../src/packages/Fullscreen-dialog/style/index.scss';
 import '../../../src/packages/Slip-dialog/style/index.scss';
+import '../../../src/packages/Carousel/style/index.scss';
 
 import '../../../src/packages/Step/style/index.scss';
 import '../../../src/packages/Steps/style/index.scss';

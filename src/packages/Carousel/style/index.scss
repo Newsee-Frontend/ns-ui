@@ -1,0 +1,8 @@
+@import '../../../style/mixins/mixins';
+
+@include b(carousel) {
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}

@@ -272,6 +272,38 @@ const navmenu = (req, res) => {
             menuIndex: 3,
             hide: 1,
           },
+          {
+            funcId: 'carousel',
+            menuLabel: 'carousel 走马灯',
+            menuRouter: 'carousel',
+            menuIcon: null,
+            menuIndex:4,
+            hide: 1,
+          },
+          {
+            funcId: 'popover',
+            menuLabel: 'popover 弹出框',
+            menuRouter: 'popover',
+            menuIcon: null,
+            menuIndex:5,
+            hide: 1,
+          },
+          {
+            funcId: 'calendar',
+            menuLabel: 'calendar 日历',
+            menuRouter: 'calendar',
+            menuIcon: null,
+            menuIndex: 6,
+            hide: 1,
+          },
+          {
+            funcId: 'timeline',
+            menuLabel: 'timeline 时间线',
+            menuRouter: 'timeline',
+            menuIcon: null,
+            menuIndex: 7,
+            hide: 1,
+          },
         ],
       },
       {
@@ -298,8 +330,6 @@ const navmenu = (req, res) => {
             menuIndex: 2,
             hide: 1,
           },
-
-
         ],
       },
       {
