@@ -6,6 +6,10 @@
 /lib/
 /test/
 /script/
+/version/
+
+
+
 /mock/
 /artisan/
 /node_modules/
