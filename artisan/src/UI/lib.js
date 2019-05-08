@@ -18,14 +18,14 @@ import Input from '../../../src/packages/Input/Input.js';
 import TimePicker from '../../../src/packages/TimePicker/TimePicker.js';
 import OnlyMMDDPicker from '../../../src/packages/Only-MMDD-picker/Only-MMDD-picker';
 import TimeInterval from '../../../src/packages/Time-interval/Time-interval.vue';
-import Select from '../../../src/packages/Select/Select.js'
-import Cascader from '../../../src/packages/Cascader/Cascader.js'
-import Avatar from '../../../src/packages/Avatar/Avatar.js'
-import Checkbox from '../../../src/packages/Checkbox/Checkbox.js'
-import Redio from '../../../src/packages/Radio/Radio.js'
-import Switch from '../../../src/packages/Switch/Switch.js'
-import Slider from '../../../src/packages/Slider/Slider.js'
-import Upload from '../../../src/packages/Upload/Upload.js'
+import Select from '../../../src/packages/Select/Select.js';
+import Cascader from '../../../src/packages/Cascader/Cascader.js';
+import Avatar from '../../../src/packages/Avatar/Avatar.js';
+import Checkbox from '../../../src/packages/Checkbox/Checkbox.js';
+import Radio from '../../../src/packages/Radio/Radio.js';
+import Switch from '../../../src/packages/Switch/Switch.js';
+import Slider from '../../../src/packages/Slider/Slider.js';
+import Upload from '../../../src/packages/Upload/Upload.js';
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -62,14 +62,14 @@ Vue.component('ns-date-picker', DatePicker);
 Vue.component('ns-time-picker', TimePicker);
 Vue.component('ns-onlyMMDD-picker', OnlyMMDDPicker);
 Vue.component('ns-time-interval', TimeInterval);
-Vue.component('ns-select',Select);
-Vue.component('ns-cascader',Cascader);
-Vue.component('ns-avatar',Avatar);
-Vue.component('ns-checkbox',Checkbox);
-Vue.component('ns-redio',Redio);
-Vue.component('ns-switch',Switch);
-Vue.component('ns-slider',Slider);
-Vue.component('ns-upload',Upload);
+Vue.component('ns-select', Select);
+Vue.component('ns-cascader', Cascader);
+Vue.component('ns-avatar', Avatar);
+Vue.component('ns-checkbox', Checkbox);
+Vue.component('ns-radio', Radio);
+Vue.component('ns-switch', Switch);
+Vue.component('ns-slider', Slider);
+Vue.component('ns-upload', Upload);
 
 
 // data
