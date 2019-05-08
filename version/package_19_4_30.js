@@ -1,0 +1,26 @@
+module.exports = [
+  'index.js',
+  'index.less',
+  'index.scss',
+  'style',
+  'mixins',
+  'utils',
+  '.DS_Store',
+
+  'TestDemo',
+
+  'Avatar',
+  'Cascader',
+  'Checkbox',
+  'Radio',
+  'Switch',
+  'Switch',
+  'Slider',
+  'Tabs',
+  'Tab-pane',
+  'Upload',
+  'Input',
+  'Select',
+  'Only-MMDD-picker',
+  'Time-interval',
+];
