@@ -2,7 +2,7 @@
 ## Folders                  ##
 ##############################
 
-node_modules/
+/node_modules/
 static/
 /src/
 /docs/
@@ -16,6 +16,7 @@ static/
 ## files                  ##
 ##############################
 
+babel.config.js
 env.config.js
 env.param.config.js
 run.bat

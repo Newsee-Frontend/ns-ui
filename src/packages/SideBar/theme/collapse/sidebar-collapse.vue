@@ -11,6 +11,7 @@
       ]"
       @mouseenter="navMouseEnter(firstitem, $event)"
       @mouseleave="navMouseLeave(firstitem)"
+      v-if="firstitem[keyRefer.hide]"
     >
       <div class="first-nav-tit" @click="firstNavClick(firstitem)">
         <div class="oneline-ellipsis">
@@ -53,6 +54,7 @@
               v-for="(seconditem, secondIndex) in firstitem[keyRefer.childMenus]"
               :index="firstitem[keyRefer.menuIndex] + '-' + seconditem[keyRefer.menuIndex]"
               :key="firstitem[keyRefer.menuIndex] + '-' + seconditem[keyRefer.menuIndex]"
+              v-if="seconditem[keyRefer.hide]"
             >
               <a
                 class="nav-link oneline-ellipsis"
