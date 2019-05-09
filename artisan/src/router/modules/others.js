@@ -36,6 +36,12 @@ export const othersRouter = [
         meta: { auth: true, key: 'popover' },
         name: '弹出框',
       },
+      {
+        path: 'timeline',
+        component: () => import('../../pages/Others/Timeline/Timeline'),
+        meta: { auth: true, key: 'timeline' },
+        name: '时间线',
+      },
     ],
   },
 ];
