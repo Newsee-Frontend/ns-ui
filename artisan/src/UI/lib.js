@@ -34,6 +34,7 @@ import SlipDialog from '../../../src/packages/Slip-dialog/Slip-dialog.js';
 import Carousel from '../../../src/packages/Carousel/Carousel.js'
 import Popover from '../../../src/packages/Popover/Popover.js'
 import Timeline from '../../../src/packages/Timeline/Timeline.js'
+import TimelineAxis from '../../../src/packages/TimelineAxis/TimelineAxis.js'
 
 import Badge from '../../../src/packages/Badge/Badge.js';
 import Progress from '../../../src/packages/Progress/Progress.js';
@@ -93,6 +94,7 @@ Vue.component('ns-slip-dialog', SlipDialog);
 Vue.component('ns-carousel', Carousel);
 Vue.component('ns-popover', Popover);
 Vue.component('ns-timeline', Timeline);
+Vue.component('ns-timeline-axis', TimelineAxis);
 
 
 //notice
@@ -129,6 +131,7 @@ import '../../../src/packages/Fullscreen-dialog/style/index.scss';
 import '../../../src/packages/Slip-dialog/style/index.scss';
 import '../../../src/packages/Carousel/style/index.scss';
 import '../../../src/packages/Timeline/style/index.scss';
+import '../../../src/packages/TimelineAxis/style/index.scss';
 
 import '../../../src/packages/Step/style/index.scss';
 import '../../../src/packages/Steps/style/index.scss';

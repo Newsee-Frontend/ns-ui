@@ -16,7 +16,10 @@ export default create({
     icon: String,//节点图标
     keyRefer: {
       type: Object,
-      default: () => ({ timestamp: 'timestamp', type: 'type', color: 'color' })
+      default: () => ({
+        timestamp: 'timestamp',
+        active: 'active'
+      })
     }
   },
 
@@ -25,14 +28,13 @@ export default create({
   watch: {},
 
   render(h) {
-    console.log(this.keyRefer)
     const timeLineItemDom = (item, index) => (
       <el-timeline-item
         key={index}
         icon={item.icon}
         placement={this.placement}
         timestamp={item[this.keyRefer.timestamp]}
-        type={item[this.keyRefer.type]}
+        type={item[this.keyRefer.active]? 'success' : ''}
         color={item[this.keyRefer.color]}
         hideTimestamp={this.hideTimestamp}
         size={item[this.keyRefer.size] || this.size}
@@ -42,7 +44,7 @@ export default create({
         })}
 
         { this.$slots.dot? <template slot="dot">
-          { this.$slots.dot}
+          { this.$slots.dot }
         </template> : null}
       </el-timeline-item>
   )
