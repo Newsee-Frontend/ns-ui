@@ -2,19 +2,6 @@
 <template>
   <div class="timeline-wrapper">
     <demo-block>
-      <template slot="title">摘要</template>
-      <template slot="describe">y轴展示</template>
-      <template slot="content">
-        <div class="gap">
-          <ns-timeline-axis
-            :options="remarkList"
-          >
-          </ns-timeline-axis>
-        </div>
-      </template>
-    </demo-block>
-
-    <demo-block>
       <template slot="title">默认</template>
       <template slot="describe">默认时间线</template>
       <template slot="content">
@@ -46,6 +33,19 @@
               </div>
             </template>
           </ns-timeline>
+        </div>
+      </template>
+    </demo-block>
+
+    <demo-block>
+      <template slot="title">摘要</template>
+      <template slot="describe">y轴展示</template>
+      <template slot="content">
+        <div class="gap">
+          <ns-timeline-axis
+            :options="remarkList"
+          >
+          </ns-timeline-axis>
         </div>
       </template>
     </demo-block>
