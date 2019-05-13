@@ -44,6 +44,7 @@ export default create({
   watch: {
     value(val) {
       this.childIpt = val;
+      console.log('value', typeof val);
     },
   },
   render(h) {
@@ -55,7 +56,7 @@ export default create({
     return (
       <el-input
         class={this.recls([this.formsize])}
-        value={this.childIpt}
+        value ={this.childIpt}
         onInput={e => this.handleModelInput(e)}
         type={this.type}
         name={this.name}

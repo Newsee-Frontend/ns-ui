@@ -83,4 +83,14 @@
   }
 }
 
+@mixin size-inherit {
+  width: inherit;
+  height: inherit;
+  line-height: inherit;
+  min-height: inherit;
+  //max-height: inherit;
+  //min-width: inherit;
+  //max-width: inherit;
+}
+
 

@@ -4,6 +4,7 @@
     <div>
       <span>输入值：</span>
       <span>{{inoutModel || text}}</span>
+      <p>{{num}},我的数据类型是：{{ typeof(num)  }}</p>
     </div>
     <!--<el-input v-model="inoutModel" placeholder="请输入内容" size="small"></el-input>-->
     <ns-input
@@ -26,6 +27,7 @@
       @iconClick="iconClick"
     >
     </ns-input>
+    <ns-input v-model.number="num"></ns-input>
   </div>
 </template>
 
@@ -34,6 +36,7 @@
     name: 'col',
     data() {
       return {
+        num: 1,
         inoutModel: '高仓雄',
         text: '请输入',
         size: 'normal',

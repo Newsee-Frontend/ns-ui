@@ -1,0 +1,48 @@
+@import '../../../style/mixins/mixins';
+
+@include b(timeline-axis) {
+  .el-timeline {
+    .el-timeline-item {
+      padding-bottom: 10px;
+      .el-timeline-item__wrapper {
+        padding-left: 0;
+        .parent-node-title {
+          padding-left: 20px;
+          font-weight: 600;
+          font-size: 15px
+        }
+      }
+
+      &:last-child {
+        .el-timeline-item__tail {
+          display: block;
+        }
+      }
+    }
+
+    &.children-nodes {
+      padding: 5px 0;
+      .el-timeline-item {
+        padding-bottom: 0;
+        .el-timeline-item__node--normal{
+          height: 0;
+          &.el-timeline-item__node--success {
+            height: 6px;
+            width: 6px;
+            left: 2px;
+            top: 3px;
+          }
+        }
+        .el-timeline-item__wrapper {
+          padding-left: 20px;
+          .grey-text{
+            color: #ccc;
+          }
+          .deep-grey-text{
+            color: #636363;
+          }
+        }
+      }
+    }
+  }
+}
