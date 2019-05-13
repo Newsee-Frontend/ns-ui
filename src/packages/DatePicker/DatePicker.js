@@ -76,7 +76,8 @@ export default create({
         range-separator={this.rangeSeparator}
         default-time={this.defaultTime}
         on-change={this.change.bind(this)}
-        on-pick={this.onPick.bind(this)}
+        on-blur={this.onBlur.bind(this)}
+        on-focus={this.onFocus.bind(this)}
         style={this.convert_style}
       />
     );
@@ -86,14 +87,17 @@ export default create({
     change(value) {
       this.$emit('change', value);
     },
-    //选中日期后会执行的回调，只有当 daterange 或 datetimerange 才生效
-    onPick({ maxDate, minDate }) {
-      this.$emit('onPick', { maxDate, minDate });
-    },
 
     handleModel(e) {
       this.childDataPicker = e;
       this.$emit('input', this.childDataPicker);
     },
+    onBlur() {
+      this.$emit('blur');
+    },
+    onFocus() {
+      this.$emit('focus');
+    },
+
   },
 });

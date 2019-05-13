@@ -44,7 +44,6 @@ export default create({
   watch: {
     value(val) {
       this.childIpt = val;
-      console.log('value', typeof val);
     },
   },
   render(h) {
@@ -82,6 +81,7 @@ export default create({
   methods: {
     handleModelInput(e) {
       this.childIpt = e;
+      console.log(this.$attrs)
       this.$emit('input', this.childIpt);
     },
     /**

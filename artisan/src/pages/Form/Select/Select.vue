@@ -1,52 +1,84 @@
 <!--UI 组件库 - Select - 页面测试-->
 <template>
   <div class="select-wrapper">
-    <div class="select-setion">
-      <div> ns-select</div>
-      <div class="selecte-line">
-        <span> 单选: {{selectModel}} </span>
-        <ns-select
-          :disabled="true"
-          size="small"
-          :keyMap=keyMap
-          height="40px"
-          width="300px"
-          v-model="selectModel"
-          :options="options"
-        ></ns-select>
-      </div>
+    <demo-block>
+      <template slot="title">
+        基础用法（单选）
+      </template>
+      <template slot="describe">
+        单选，使用size（width，height）定义宽高，禁用状态，keyRefer相对应的字段。
+      </template>
+      <template slot="content">
+        <div>选择的值：{{selectModel}}</div>
+        <div class="gap">
+          <ns-select
+            v-model="selectModel"
+            size="small"
+            :keyRefer=keyRefer
+            height="40px"
+            width="300px"
+            :options="options"
+            :clearable="true"
+            :disabled="false"
+            :allowCreate="false"
+            @change="change"
+            @focus="focus"
+            @blur="blur"
+            @clear="clear"
+            @visible-change="visibleChange"
+            @remove-tag="removeTag"
+          ></ns-select>
+          <ns-select
+            size="small"
+            :keyRefer=keyRefer
+            height="40px"
+            width="300px"
+            v-model="selectModel"
+            :options="options"
+            :disabled="true"
+            @change="change"
+            @focus="focus"
+            @blur="blur"
+            @clear="clear"
+            @visible-change="visibleChange"
+            @remove-tag="removeTag"
+          ></ns-select>
+        </div>
+      </template>
+    </demo-block>
 
-      <div class="selecte-line">
-        <span> 多选: {{selectModels}} </span>
+    <demo-block>
+      <template slot="title">
+        多选
+      </template>
+      <template slot="describe">
+        多选， 限制条数
+      </template>
+      <template slot="content">
         <ns-select
           v-model="selectModels"
           :options="options"
-          :keyMap=keyMap
+          :keyRefer=keyRefer
           :multipleLimit="2"
           multiple
           collapseTags
           placeholder="请选择"
+          @change="change"
+          @focus="focus"
+          @blur="blur"
+          @clear="clear"
+          @visible-change="visibleChange"
+          @remove-tag="removeTag"
         ></ns-select>
-      </div>
+      </template>
+    </demo-block>
 
-      <div class="selecte-line">
-        <span> 自定义: {{selectModel}} </span>
-        <ns-select
-          size="mini"
-          v-model="selectModel"
-          custom
-          :keyMap=keyMap
-          :options="options"
-        ></ns-select>
-      </div>
-    </div>
-
-    <div class="select-setion">
-      <div> ns-select-dictionary</div>
-      <div class="selecte-line">
+    <demo-block>
+      <template slot="title">ns-select-dictionary</template>
+      <template slot="content">
         <ns-select-dictionary></ns-select-dictionary>
-      </div>
-    </div>
+      </template>
+    </demo-block>
   </div>
 </template>
 
@@ -64,7 +96,7 @@
       return {
         selectModel: 1,
         selectModels: [],
-        keyMap: {
+        keyRefer: {
           label: 'name',
           value: 'value',
         },
@@ -79,7 +111,51 @@
     created() {
 
     },
-    methods: {},
+    methods: {
+      /**
+       * select change
+       * @param val
+       */
+      change: function(val){
+        console.log('change select',val)
+      },
+
+      /**
+       * on-blur
+       */
+      blur: function(){
+        console.log('select blur')
+      },
+
+      /**
+       * on-focus
+       */
+      focus: function(){
+        console.log('select focus')
+      },
+
+      /**
+       * on-focus
+       */
+      clear: function(){
+        console.log('select clear')
+      },
+
+      /**
+       * on-visibleChange
+       */
+      visibleChange: function(){
+        console.log('select visibleChange')
+      },
+
+      /**
+       * on remove tag
+       */
+      removeTag: function(){
+        console.log('select remove tag')
+      }
+
+    },
     mounted() {
     },
   };

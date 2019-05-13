@@ -1,7 +1,6 @@
 <!--UI 组件库 - Radio - 页面测试-->
 <template>
   <div class="redio-wrapper">
-
     <demo-block>
       <template slot="title">默认 Radio</template>
       <template slot="describe">默认Radio，单选框不可用的状态，keyRefer修改label、value的字段，change	绑定值变化时触发的事件。</template>

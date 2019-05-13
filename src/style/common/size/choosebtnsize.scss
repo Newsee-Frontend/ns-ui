@@ -6,6 +6,8 @@ $size-type: 'mini' 'small' 'normal' 'medium' 'large';
 $--button-padding-horizontal: 15px 15px 15px 20px 20px; // 水平
 $--button-padding-vertical: 5px 7px 9px 10px 12px; // 垂直
 $--button-frontsize: 12px 12px 12px 14px 14px;
+$lineHeight: 26px;
+$gapWidth: 26px;
 
 @mixin button-size($block-type) {
   @each $type in $size-type {

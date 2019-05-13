@@ -84,6 +84,9 @@ export default create({
     },
     setCurrentName(value) {
       const changeCurrentName = () => {
+        if(this.currentName !== value){
+          this.$emit('change', value);
+        }
         this.currentName = value;
         this.$emit('input', value);
       };

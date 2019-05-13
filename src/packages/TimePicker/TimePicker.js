@@ -20,6 +20,7 @@ export default create({
     readonly: { type: Boolean, default: false }, //只读
     disabled: { type: Boolean, default: false }, //禁用
     clearable: { type: Boolean, default: true }, //是否显示清除按钮
+    editable: { type: Boolean, default: true }, //是否可编辑
     size: { type: String, validate: s => sizeValidator(s) }, //尺寸
     align: { type: String, default: 'left' }, //对齐方式
     popperClass: { type: String }, //DateTimePicker 下拉框的类名
@@ -71,6 +72,8 @@ export default create({
         popper-class={this.popperClass}
         picker-options={this.pickerOptions}
         on-change={this.change.bind(this)}
+        on-blur={this.onBlur.bind(this)}
+        on-focus={this.onFocus.bind(this)}
         style={this.convert_style}
       />
     );
@@ -80,6 +83,14 @@ export default create({
     change(value) {
       this.$emit('change', value);
     },
+
+    onBlur() {
+      this.$emit('blur');
+    },
+    onFocus() {
+      this.$emit('focus');
+    },
+
     handleModel(e) {
       this.childTimePicker = e;
       this.$emit('input', this.childTimePicker);

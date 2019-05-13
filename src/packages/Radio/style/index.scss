@@ -10,4 +10,11 @@
     box-shadow: none !important;
     @include button-size(radio__button);
   }
+  &.el-radio-group{
+    line-height: $lineHeight;
+    .el-radio{
+      margin-left: 0;
+      margin-right: $gapWidth;
+    }
+  }
 }
