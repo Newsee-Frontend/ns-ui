@@ -12,15 +12,27 @@ $height: 32px 32px 32px 32px 32px;
     $w: nth($width, $i);
     $h: nth($height, $i);
 
-    @include rb($size-name) {
-      @include base-style-change($w, $h);
+    //select-tree 下拉选择树组件
+    @if $block-type == 'select-tree' {
+      @include rb($size-name) {
+        width: $w;
+        .vue-treeselect__control {
+          height: $h;
+        }
+      }
+    } @else if $block-type == 'xxxx' {
+
+    } @else {
+      @include rb($size-name) {
+        @include base-style-change($w, $h);
+      }
+
+      @include input-inner();
+      @include icon-inner();
+
+      //special 时间范围选择的修改
+      @include date-range-modefy();
     }
-
-    @include input-inner();
-    @include icon-inner();
-
-    //special 时间范围选择的修改
-    @include date-range-modefy();
   }
 }
 

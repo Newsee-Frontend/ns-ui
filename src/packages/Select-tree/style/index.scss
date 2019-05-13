@@ -1,0 +1,35 @@
+@import '../../../style/common/size/formsize';
+
+$gap-top: 2px;
+$gap-bottom: 1px;
+
+@include b(select-tree) {
+  @include form-component-size(select-tree);
+  //被选择显示标签
+  &.vue-treeselect--has-value .vue-treeselect__multi-value {
+    margin-bottom: 0;
+  }
+  .vue-treeselect--searchable.vue-treeselect--multi.vue-treeselect--has-value .vue-treeselect__input-container {
+    padding-top: $gap-top;
+    padding-bottom: $gap-bottom;
+  }
+  //limit-tip 数量限制标识
+  .vue-treeselect__limit-tip {
+    padding-top: $gap-top;
+    padding-bottom: $gap-bottom;
+  }
+  //select 主体部分
+  .vue-treeselect__control {
+    box-sizing: border-box;
+    .vue-treeselect__multi-value-item-container {
+      padding-top: $gap-top;
+      padding-bottom: $gap-bottom;
+      height: 100%;
+      .vue-treeselect__multi-value-item {
+        padding: 0;
+        height: 100%;
+      }
+    }
+  }
+}
+

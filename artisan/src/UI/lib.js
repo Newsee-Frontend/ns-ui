@@ -26,6 +26,9 @@ import Radio from '../../../src/packages/Radio/Radio.js';
 import Switch from '../../../src/packages/Switch/Switch.js';
 import Slider from '../../../src/packages/Slider/Slider.js';
 import Upload from '../../../src/packages/Upload/Upload.js';
+import TreeSelect from '../../../src/packages/Select-tree/Select-tree.js';
+
+
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -72,7 +75,7 @@ Vue.component('ns-radio', Radio);
 Vue.component('ns-switch', Switch);
 Vue.component('ns-slider', Slider);
 Vue.component('ns-upload', Upload);
-
+Vue.component('ns-select-tree', TreeSelect);
 
 // data
 Vue.component('ns-badge', Badge);
@@ -119,7 +122,7 @@ import '../../../src/packages/Cascader/style/index.scss';
 import '../../../src/packages/Avatar/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
-
+import '../../../src/packages/Select-tree/style/index.scss';
 
 import '../../../src/packages/PageTabs/style/index.scss';
 import '../../../src/packages/Dialog/style/index.scss';

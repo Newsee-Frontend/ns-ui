@@ -1,7 +1,6 @@
 <!--UI 组件库 - Radio - 页面测试-->
 <template>
   <div class="redio-wrapper">
-
     <demo-block>
       <template slot="title">默认 Radio</template>
       <template slot="describe">默认Radio，单选框不可用的状态，keyRefer修改label、value的字段，change	绑定值变化时触发的事件。</template>
@@ -28,13 +27,11 @@
       <template slot="title">禁用状态</template>
       <template slot="describe">单选框禁用不可选</template>
       <template slot="content">
-        <div class="gap">
           <ns-radio
             v-model="selectRadio"
             :options="options"
             disabled
           ></ns-radio>
-        </div>
       </template>
     </demo-block>
 
@@ -42,7 +39,6 @@
       <template slot="title">按钮 Radio</template>
       <template slot="describe">按钮样式的单选组合，通过size改变尺寸，fill、textColor可以改变颜色</template>
       <template slot="content">
-        <div class="gap">
           <ns-radio
             v-model="selectRadio"
             :options="options"
@@ -51,7 +47,6 @@
             textColor="#000"
             size="mini"
           />
-        </div>
         <div class="gap">
           <ns-radio
             v-model="selectRadio"

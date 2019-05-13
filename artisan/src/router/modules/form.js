@@ -83,7 +83,13 @@ export const formRouter = [
         component: () => import('../../pages/Form/Upload/Upload'),
         meta: { auth: true, key: 'upload' },
         name: '头像上传',
-      }
+      },
+      {
+        path: 'select-tree',
+        component: () => import('../../pages/Form/Select-tree/Select-tree'),
+        meta: { auth: true, key: 'select-tree' },
+        name: '下拉选择树',
+      },
     ],
   },
 ];

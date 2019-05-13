@@ -39,13 +39,13 @@ export default create({
   },
 
   computed: {
-    convert_style(){
-      return{
+    convert_style() {
+      return {
         width: this.convert_width,
         height: this.convert_height,
         lineHeight: this.convert_height,
-      }
-    }
+      };
+    },
   },
 
   watch: {
@@ -55,7 +55,7 @@ export default create({
   },
 
   render(h) {
-    let { label, value, } = this.keyMap;
+    let { label, value } = this.keyMap;
     const elOption = (item) => (
       <el-option
         key={item[value]}
