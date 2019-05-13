@@ -1,49 +1,25 @@
 import Treeselect from '@riophae/vue-treeselect';
 import '@riophae/vue-treeselect/dist/vue-treeselect.css';
-import { sizeValidator } from '../../utils/props/validator';
 import delayEvent from '../../utils/delay-event';
 import create from '../../create/create';
-import normalizer from './mixins/normalizer';
+import mixins from './mixins';
+import { sizeValidator } from '../../utils/props/validator';
 
 export default create({
   name: 'select-tree',
   components: { Treeselect },
-  mixins: [normalizer],
+  mixins: mixins,
   data() {
     return {
-      childSelectTree: this.value,
       modelConsistsStore: 'BRANCH_PRIORITY',
     };
   },
   props: {
-
-    value: [String, Number, Array, Object],
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
-    placeholder: { type: String },
-    options: { type: Array },
-    menuHeight: { type: Number, default: 300 },
 
-    /**
-     * 下拉菜单打开的方向
-     * 默认情况下为 auto
-     * 菜单将在控件下方打开。如果没有足够的空间，将自动翻转菜单。
-     * 也可以使用其他四个选项之一强制菜单始终打开到指定的方向。
-     * "auto", "below", "bottom", "above" or "top"
-     */
-    menuOpenDirection: { type: String, default: 'auto' },
-
-    multiple: { type: Boolean, default: false },
-    disabled: { type: Boolean, default: false },
-    clearable: { type: Boolean, default: true },
-    appendToBody: { type: Boolean, default: false },
-    limit: { type: Number },//多选情况下，在select显示框中显示的个数限制，超出部分以 limitText 设置内容显示
-    limitText: { type: Function, default: count => `+ ${count} more` },
     modelConsists: { type: String },
-
     sortModelBy: { type: String, default: 'ORDER_SELECTED' },//显示值/model值同步排序，"ORDER_SELECTED", "LEVEL" or "INDEX".
-
     flat: { type: Boolean, default: false },//平面模式，设置后，父子节点都可同步选择。
-
     defaultExpandLevel: { type: Number, default: 0 },//默认展开的层级，0 - 全部收齐，1-展开所有第一层级的几点
 
     /**
@@ -51,8 +27,6 @@ export default create({
      * 一旦禁止之后 modelConsists 属性将会失效，应为几个父节点都失去了选中的功能
      */
     disableBranchNodes: { type: Boolean, default: false },
-
-    isMenuOpened: { type: Boolean, default: false },//Whether the menu should be always open
 
 
     isFuzzyMatching: { type: Boolean, default: true },//是否启用模糊查询（前端查询)
@@ -75,20 +49,12 @@ export default create({
   computed: {},
 
   watch: {
-    value(val) {
-      console.log('watch-value');
-      console.log(val);
-      this.childSelectTree = val;
-    },
     modelConsists(val) {
       console.log('watch-modelConsists');
       console.log(val);
       this.modelConsistsStore = val;
     },
-
-
   },
-
   render(h) {
     return (
       <Treeselect
@@ -144,11 +110,6 @@ export default create({
 
 
   methods: {
-    handleModelSelectTree(e) {
-      this.childIpt = e;
-      this.$emit('input', this.childIpt);
-    },
-
     /**
      * select tree select every node
      * @param value - current node information which is selected
