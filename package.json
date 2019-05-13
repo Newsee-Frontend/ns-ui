@@ -39,6 +39,7 @@
     "mockjs": "^1.0.1-beta3",
     "screenfull": "^4.2.0",
     "vue": "2.5.21",
+    "vue-particles": "^1.0.9",
     "watch-size": "^2.0.0"
   },
   "devDependencies": {

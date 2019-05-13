@@ -29,15 +29,14 @@ import Upload from '../../../src/packages/Upload/Upload.js';
 import TreeSelect from '../../../src/packages/Select-tree/Select-tree.js';
 
 
-
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
 import FullscreenDialog from '../../../src/packages/Fullscreen-dialog/Fullscreen-dialog.js';
 import SlipDialog from '../../../src/packages/Slip-dialog/Slip-dialog.js';
-import Carousel from '../../../src/packages/Carousel/Carousel.js'
-import Popover from '../../../src/packages/Popover/Popover.js'
-import Timeline from '../../../src/packages/Timeline/Timeline.js'
-import TimelineAxis from '../../../src/packages/TimelineAxis/TimelineAxis.js'
+import Carousel from '../../../src/packages/Carousel/Carousel.js';
+import Popover from '../../../src/packages/Popover/Popover.js';
+import Timeline from '../../../src/packages/Timeline/Timeline.js';
+import TimelineAxis from '../../../src/packages/TimelineAxis/TimelineAxis.js';
 
 import Badge from '../../../src/packages/Badge/Badge.js';
 import Progress from '../../../src/packages/Progress/Progress.js';
@@ -48,6 +47,9 @@ import Tabs from '../../../src/packages/Tabs/Tabs.js';
 import TabPane from '../../../src/packages/Tab-pane/Tab-pane.js';
 
 import Alert from '../../../src/packages/Alert/Alert.js';
+
+import Particles from '../../../src/packages/Particles/Particles.js';
+
 // layout
 Vue.component('ns-layout', Layout);
 Vue.component('ns-sidebar', Sidebar);
@@ -103,6 +105,8 @@ Vue.component('ns-timeline-axis', TimelineAxis);
 //notice
 Vue.component('ns-alert', Alert);
 
+Vue.component('ns-particles', Particles);
+
 
 import '../../../src/packages/Layout/style/index.scss';
 import '../../../src/packages/SideBar/style/index.scss';
@@ -144,3 +148,6 @@ import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
 import '../../../src/packages/Switch/style/index.scss';
 import '../../../src/packages/Upload/style/index.scss';
+
+
+import '../../../src/packages/Particles/style/index.scss';

@@ -4,6 +4,7 @@ import 'cx-theme/dist/cx-theme.min.css';
 import '../assets/iconfont/iconfont';
 import '../components/index.js';
 
+
 Vue.use(ElementUI);
 
 
