@@ -94,7 +94,7 @@
        * @returns {boolean}
        */
       activeRule(path) {
-        console.log('activeRule');
+        // console.log('activeRule');
         return path === this.$route.path;
       },
 
