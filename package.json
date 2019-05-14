@@ -26,10 +26,11 @@
   },
   "license": "ISC",
   "dependencies": {
+    "@riophae/vue-treeselect": "^0.0.38",
     "crypto-js": "^3.1.9-1",
     "cx-theme": "^1.0.5",
     "easings-css": "^1.0.0",
-    "element-ui": "2.8.2",
+    "element-ui": "^2.7.0",
     "fuzzysearch": "^1.0.3",
     "is-promise": "^2.1.0",
     "js-cookie": "^2.1.4",
@@ -38,6 +39,7 @@
     "mockjs": "^1.0.1-beta3",
     "screenfull": "^4.2.0",
     "vue": "2.5.21",
+    "vue-particles": "^1.0.9",
     "watch-size": "^2.0.0"
   },
   "devDependencies": {

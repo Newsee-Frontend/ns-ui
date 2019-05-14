@@ -1,5 +1,6 @@
 <template>
   <div class="login-container">
+    <ns-particles :color="particlesColor" class="ns-particles"></ns-particles>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
       <div class="title-container">
         <h3 class="title">
@@ -65,6 +66,7 @@
         }
       };
       return {
+        particlesColor: '#71aac1',
         title: 'UI测试系统登录',
         loginForm: {
           username: '高仓雄',
@@ -123,8 +125,6 @@
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-  /* 修复input 背景不协调 和光标变色 */
-  /* Detail see https://github.com/PanJiaChen/vue-element-admin/pull/927 */
 
   $bg: #283443;
   $light_gray: #eee;
@@ -236,5 +236,13 @@
       right: 0;
       bottom: 6px;
     }
+  }
+
+  .ns-particles {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
   }
 </style>

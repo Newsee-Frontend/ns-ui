@@ -8,5 +8,8 @@ const getters = {
   //layout
   visitedPages: state => state.PageTabs.visitedPages,
   sideBarList: state => state.Sidebar.sideBarList,
+
+  //form demo
+  selectTreeOptions: state => state.Tree.selectTreeOptions,
 };
 export default getters;

@@ -41,7 +41,7 @@
     data() {
       return {
         visible: false,
-        type: 'normal',//'normal','simple','noFooter','noHeader','autoHeight'
+        type: 'autoHeight',//'normal','simple','noFooter','noHeader','autoHeight'
         size: 'large',//'mini', 'small', 'normal', 'medium', 'large'
         title: '标题',
         top: '7%',

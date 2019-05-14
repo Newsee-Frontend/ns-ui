@@ -4,7 +4,7 @@
  * @param vm
  * @param maxheight
  */
-export const compute = (e, vm, maxheight = 300 || window.screen.height * 0.6) => {
+export const compute = (e, vm, maxheight = 350 || window.screen.height * 0.6) => {
   let finalHeight = 0;
 
   const targetkey = 'target';

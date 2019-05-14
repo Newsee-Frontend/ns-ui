@@ -5,6 +5,7 @@
       <ns-tab-pane name="tab1" label="第一个选项卡">第一个选项卡</ns-tab-pane>
       <ns-tab-pane name="tab2" label="第二个选项卡">第二个选项卡</ns-tab-pane>
       <ns-tab-pane name="tab3" label="第三个选项卡">第三个选项卡</ns-tab-pane>
+      <ns-tab-pane name="tab4" label="第四个选项卡">第四个选项卡</ns-tab-pane>
     </ns-tabs>
 
     <ns-tabs v-model="activeName" type="arrow">

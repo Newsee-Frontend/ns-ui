@@ -1,7 +1,5 @@
 import moduleRouter from './_routerFiles';
-import loadSource from './_loadSource';
 
-console.log(loadSource);
 const otherRouter = [
   {
     path: '*',

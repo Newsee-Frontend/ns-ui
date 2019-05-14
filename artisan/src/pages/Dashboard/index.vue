@@ -1,7 +1,7 @@
 <!--主页-->
 <template>
   <div class="Dashboard">
-123123
+
   </div>
 </template>
 

@@ -6,7 +6,11 @@ export const size = {
   computed: {
     formsize() {
       const size = this.$options.propsData && this.$options.propsData.size;
-      return size ? size : config.formsize;
+      /**
+       * size use to judge exist or not, but not use to computed formsize，
+       * and use size can not data linkage，should use this.size replace.
+       */
+      return size ? this.size : config.formsize;
     },
   },
 };

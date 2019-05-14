@@ -170,7 +170,7 @@ const navmenu = (req, res) => {
             menuRouter: 'avatar',
             menuIcon: null,
             menuIndex: 8,
-            hide: 1
+            hide: 1,
           },
           {
             funcId: 'checkbox',
@@ -178,7 +178,7 @@ const navmenu = (req, res) => {
             menuRouter: 'checkbox',
             menuIcon: null,
             menuIndex: 9,
-            hide: 1
+            hide: 1,
           },
           {
             funcId: 'radio',
@@ -186,7 +186,7 @@ const navmenu = (req, res) => {
             menuRouter: 'radio',
             menuIcon: null,
             menuIndex: 10,
-            hide: 1
+            hide: 1,
           },
           {
             funcId: 'switch',
@@ -194,7 +194,7 @@ const navmenu = (req, res) => {
             menuRouter: 'switch',
             menuIcon: null,
             menuIndex: 11,
-            hide: 1
+            hide: 1,
           },
           {
             funcId: 'slider',
@@ -202,7 +202,7 @@ const navmenu = (req, res) => {
             menuRouter: 'slider',
             menuIcon: null,
             menuIndex: 12,
-            hide: 1
+            hide: 1,
           },
           {
             funcId: 'upload',
@@ -210,7 +210,15 @@ const navmenu = (req, res) => {
             menuRouter: 'upload',
             menuIcon: null,
             menuIndex: 13,
-            hide: 1
+            hide: 1,
+          },
+          {
+            funcId: 'select-tree',
+            menuLabel: '下拉选择树',
+            menuRouter: 'select-tree',
+            menuIcon: null,
+            menuIndex: 14,
+            hide: 1,
           },
         ],
       },
@@ -277,7 +285,7 @@ const navmenu = (req, res) => {
             menuLabel: 'carousel 走马灯',
             menuRouter: 'carousel',
             menuIcon: null,
-            menuIndex:4,
+            menuIndex: 4,
             hide: 1,
           },
           {
@@ -285,7 +293,7 @@ const navmenu = (req, res) => {
             menuLabel: 'popover 弹出框',
             menuRouter: 'popover',
             menuIcon: null,
-            menuIndex:5,
+            menuIndex: 5,
             hide: 1,
           },
           {
@@ -429,9 +437,9 @@ const navmenu = (req, res) => {
             menuIcon: null,
             menuIndex: 10,
             hide: 1,
-          }
+          },
         ],
-      }
+      },
     ],
   });
 };

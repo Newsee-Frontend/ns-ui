@@ -5,7 +5,7 @@ export default create({
 
   data() {
     return {
-      childSwitch: this.value
+      childSwitch: this.value,
     };
   },
   props: {
@@ -25,43 +25,39 @@ export default create({
     name: { type: String, default: '' },
   },
 
-  computed: {
-  },
+  computed: {},
 
   watch: {
-    value(val){
+    value(val) {
       this.childSwitch = val;
-    }
+    },
   },
 
   render(h) {
-    return(
-      <div
-        class={ this.recls() }
-        style={{ width: this.convert_width, height: this.convert_height}}
-      >
-         <el-switch
-           value ={ this.childSwitch }
-           onInput = { e =>
-             this.handleModel(e)
-           }
-           onChange= {this.change}
-           activeText = { this.onText }
-           inactiveText = { this.offText }
-           activeColor = { this.onColor }
-           inactiveColor	 = { this.offColor }
-           activeValue = { this.onValue }
-           iactiveValue = { this.offValue }
-           activeIconClass = { this.onIconClass }
-           iactiveIconClass = { this.offIconClass }
-           width = { this.switchWidth }
-           disabled = { this.disabled }
-           name = { this.name }
-         >
+    return (
+      <el-switch
+        class={this.recls()}
+        style={{ width: this.convert_width, height: this.convert_height }}
 
-         </el-switch>
-      </div>
-    )
+        value={this.childSwitch}
+        onInput={e =>
+          this.handleModel(e)
+        }
+        onChange={this.change}
+        activeText={this.onText}
+        inactiveText={this.offText}
+        activeColor={this.onColor}
+        inactiveColor={this.offColor}
+        activeValue={this.onValue}
+        iactiveValue={this.offValue}
+        activeIconClass={this.onIconClass}
+        iactiveIconClass={this.offIconClass}
+        width={this.switchWidth}
+        disabled={this.disabled}
+        name={this.name}
+      >
+      </el-switch>
+    );
   },
 
   methods: {
@@ -70,9 +66,9 @@ export default create({
       this.$emit('input', this.childSwitch);
     },
 
-    change: function(val){
+    change: function(val) {
       this.$emit('change', val);
-    }
+    },
   },
 
   created() {

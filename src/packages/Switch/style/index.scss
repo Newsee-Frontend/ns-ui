@@ -1,9 +1,13 @@
 @import '../../../style/mixins/mixins';
 
 @include b(switch) {
+  &.is-checked .el-switch__core:after {
+    left: 100%;
+    margin-left: -17px
+  }
   //补充cx-theme.min.css 遗失样式
-  .el-switch__core{
-    &:after{
+  .el-switch__core {
+    &:after {
       content: "";
       position: absolute;
       top: 1px;
@@ -14,12 +18,5 @@
       height: 16px;
       background-color: #fff;
     }
-  }
-}
-
-@include rb(switch){
-  .is-checked .el-switch__core:after{
-    left: 100%;
-    margin-left: -17px
   }
 }

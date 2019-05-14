@@ -27,13 +27,11 @@
       <template slot="title">禁用状态</template>
       <template slot="describe">单选框禁用不可选</template>
       <template slot="content">
-        <div class="gap">
           <ns-radio
             v-model="selectRadio"
             :options="options"
             disabled
           ></ns-radio>
-        </div>
       </template>
     </demo-block>
 
@@ -41,7 +39,6 @@
       <template slot="title">按钮 Radio</template>
       <template slot="describe">按钮样式的单选组合，通过size改变尺寸，fill、textColor可以改变颜色</template>
       <template slot="content">
-        <div class="gap">
           <ns-radio
             v-model="selectRadio"
             :options="options"
@@ -50,7 +47,6 @@
             textColor="#000"
             size="mini"
           />
-        </div>
         <div class="gap">
           <ns-radio
             v-model="selectRadio"

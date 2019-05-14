@@ -24,7 +24,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style rel="stylesheet/scss" lang="scss" scoped>
   .demo-block {
-    overflow: hidden;
+    /*overflow: hidden;*/
     padding: 5px;
     h1 {
       font-weight: 400;
@@ -38,10 +38,23 @@
       line-height: 1.5em;
     }
     .demo-block-content {
+
       padding: 24px;
 
       .gap {
         margin-top: 20px;
+      }
+      .control-block {
+        margin: 10px 0;
+        span {
+          font-size: 14px;
+          color: #505c6e;
+          margin: 0 1px 0 8px;
+        }
+      }
+      .form-block-line {
+        height: 32px;
+        line-height: 32px;
       }
     }
   }
