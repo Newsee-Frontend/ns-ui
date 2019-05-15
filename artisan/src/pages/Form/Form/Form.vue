@@ -96,6 +96,15 @@
   export default {
     name: '',
     data() {
+      let checkAge = function(rule, value, callback){
+        let reg = /^\d+$/;
+        if(!reg.test(value)){
+          callback(new Error('错了错了'))
+        }else{
+          callback()
+        }
+      }
+
       return {
         formData: {
           name: '周霞',  //input
@@ -118,7 +127,7 @@
           ],
 
           age: [
-            { required: true, message: '请输入年龄', trigger: 'blur' },
+            { validator: checkAge, trigger: 'blur'}
           ],
 
           belong: [
