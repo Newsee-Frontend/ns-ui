@@ -8,6 +8,7 @@
         v-model="selectTreeModel"
         :options="selectTreeOptions"
         :multiple="true"
+        size="medium"
         @input="input"
         @menu-open="menuOpen"
         @menu-close="menuClose"

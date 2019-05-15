@@ -6,12 +6,13 @@ import ui_extends from './ui-extends';
 import $Var from './variable';
 import resmount from './utils/resmount';
 import {mergeOptions} from "./utils";
-const version = '0.0.8';
+const version = '0.0.10';
 
 import Alert from './packages/Alert/Alert';
 import Badge from './packages/Badge/Badge';
 import Button from './packages/Button/Button';
 import ButtonGroup from './packages/Button-group/Button-group';
+import Carousel from './packages/Carousel/Carousel';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
@@ -22,15 +23,20 @@ import IconSvg from './packages/Icon-svg/Icon-svg';
 import Layout from './packages/Layout/Layout';
 import Levelbar from './packages/Levelbar/Levelbar';
 import PageTabs from './packages/PageTabs/PageTabs';
+import Particles from './packages/Particles/Particles';
+import Popover from './packages/Popover/Popover';
 import Progress from './packages/Progress/Progress';
 import Row from './packages/Row/Row';
 import Screenfull from './packages/Screenfull/Screenfull';
+import SelectTree from './packages/Select-tree/Select-tree';
 import SideBar from './packages/SideBar/SideBar';
 import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
 import Step from './packages/Step/Step';
 import Steps from './packages/Steps/Steps';
 import TimePicker from './packages/TimePicker/TimePicker';
+import Timeline from './packages/Timeline/Timeline';
+import TimelineAxis from './packages/TimelineAxis/TimelineAxis';
 import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 
@@ -39,6 +45,7 @@ const components = [
   Badge,
   Button,
   ButtonGroup,
+  Carousel,
   Col,
   DatePicker,
   Dialog,
@@ -49,15 +56,20 @@ const components = [
   Layout,
   Levelbar,
   PageTabs,
+  Particles,
+  Popover,
   Progress,
   Row,
   Screenfull,
+  SelectTree,
   SideBar,
   Skiner,
   SlipDialog,
   Step,
   Steps,
   TimePicker,
+  Timeline,
+  TimelineAxis,
   UserDropdown
 ];
 
@@ -95,6 +107,7 @@ export {
   Badge,
   Button,
   ButtonGroup,
+  Carousel,
   Col,
   DatePicker,
   Dialog,
@@ -105,15 +118,20 @@ export {
   Layout,
   Levelbar,
   PageTabs,
+  Particles,
+  Popover,
   Progress,
   Row,
   Screenfull,
+  SelectTree,
   SideBar,
   Skiner,
   SlipDialog,
   Step,
   Steps,
   TimePicker,
+  Timeline,
+  TimelineAxis,
   UserDropdown
 };
 

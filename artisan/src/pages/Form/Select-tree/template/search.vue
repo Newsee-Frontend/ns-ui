@@ -8,6 +8,8 @@
         v-model="selectTreeModel"
         :options="selectTreeOptions"
         :multiple="true"
+        size="medium"
+        :searchable="searchable"
         :isFuzzyMatching="isFuzzyMatching"
         :filterMatchKeys="filterMatchKeys"
         :flattenSearchResults="flattenSearchResults"
@@ -16,6 +18,8 @@
       <pre class="result">{{ selectTreeModel }}</pre>
       <div class="control">
         <div class="control-block form-block-line">
+          <span>是否启用搜索查询:</span>
+          <ns-switch v-model="searchable"></ns-switch>
           <span>是否启用模糊查询:</span>
           <ns-switch v-model="isFuzzyMatching"></ns-switch>
         </div>
@@ -36,6 +40,7 @@
     data() {
       return {
         selectTreeModel: [],
+        searchable: true,//是否启用搜索查询（前端查询)
         isFuzzyMatching: true,//是否启用模糊查询（前端查询)
         flattenSearchResults: false,//扁平化的搜索结果，父子节点以扁平化的展示形式出现
         filterMatchKeys: ['label'],

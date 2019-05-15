@@ -5,7 +5,7 @@
  * copyright (c) 2019 Broccoli spring( gcx )
  */
 const keyRefer = {
-  id: 'id123',
+  id: 'id',
   label: 'label',
   children: 'children',//子节点
   isDisabled: 'isDisabled',//是否禁用

@@ -6,47 +6,48 @@ const selectTree = (req, res) => {
     restLog: null,
     resultData: [
       {
-        id123: 'company',
+        id: 'company',
         label: 'Company 🏢',
         children: [
           {
-            id123: 'team-1', label: 'Team 1 👥',
+            id: 'team-1', label: 'Team 1 👥',
             children: [
-              { id123: 'person-1-1', label: 'Person 1-1 👱', customLabel: 'Person A-gcx 👱' },
-              { id123: 'person-1-2', label: 'Person 1-2 🧔' },
+              { id: 'person-1-1', label: 'Person 1-1 👱', customLabel: 'Person A-gcx 👱' },
+              { id: 'person-1-2', label: 'Person 1-2 🧔' },
             ],
           },
           {
-            id123: 'team-2', label: 'Team 2 👥',
+            id: 'team-2', label: 'Team 2 👥',
             children: [
-              { id123: 'person-2-1', label: 'Person 2-1 👳' },
-              { id123: 'person-2-2', label: 'Person 2-2 👧' },
-              { id123: 'person-2-3', label: 'Person 2-3 👧' },
+              { id: 'person-2-1', label: 'Person 2-1 👳' },
+              { id: 'person-2-2', label: 'Person 2-2 👧' },
+              { id: 'person-2-3', label: 'Person 2-3 👧' },
             ],
           },
           {
-            id123: 'team-3', label: 'Team 3 👥',
+            id: 'team-3', label: 'Team 3 👥',
             children: [
-              { id123: 'person-3-1', label: 'Person 3-1 👳' },
-              { id123: 'person-3-2', label: 'Person 3-2 👧', isNew: true },
-              { id123: 'person-3-3', label: 'Person 3-3 👧', isDisabled: true },
+              { id: 'person-3-1', label: 'Person 3-1 👳' },
+              { id: 'person-3-2', label: 'Person 3-2 👧', isNew: true },
+              { id: 'person-3-3', label: 'Person 3-3 👧', isDisabled: true },
               {
-                id123: 'person-3-4', label: 'Person 3-4 👧',
+                id: 'person-3-4', label: 'Person 3-4 👧',
                 children: [
-                  { id123: 'person-3-4-1', label: 'Person 3-4-1 👳' },
-                  { id123: 'person-3-4-2', label: 'Person 3-4-2 👧' },
+                  { id: 'person-3-4-1', label: 'Person 3-4-1 👳' },
+                  { id: 'person-3-4-2', label: 'Person 3-4-2 👧' },
                 ],
               },
             ],
           },
-          { id123: 'person-4', label: 'Person 4 👩', children: [] },
           {
-            id123: 'person-5', label: 'Person 5 👳', isDefaultExpanded: true,
+            id: 'person-4', label: 'Person 4 👳', isDefaultExpanded: true,
             children: [
-              { id123: 'person-5-1', label: 'Person 5-1 👳' },
-              { id123: 'person-5-2', label: 'Person 5-2 👧' },
+              { id: 'person-4-1', label: 'Person 4-1 👳' },
+              { id: 'person-4-2', label: 'Person 4-2 👧' },
             ],
           },
+          { id: 'person-5', label: 'Person 5 👩', children: null },
+          { id: 'person-6', label: 'Person 6 👳', children: null },
         ],
       }],
   });

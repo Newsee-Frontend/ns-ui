@@ -1,7 +1,7 @@
 /*
  * style entry for UI
- * created: 2019-05-08 09:41:18.
- * version: 0.0.8.
+ * created: 2019-05-15 18:02:29.
+ * version: 0.0.10.
  * author: Broccoli spring( 高仓雄 - gcx )
  * copyright (c) Broccoli spring( gcx )
  * ------------------------------------------
@@ -16,6 +16,7 @@
 @import './packages/Badge/style/index.css';
 @import './packages/Button/style/index.css';
 @import './packages/Button-group/style/index.css';
+@import './packages/Carousel/style/index.css';
 @import './packages/Col/style/index.css';
 @import './packages/DatePicker/style/index.css';
 @import './packages/Dialog/style/index.css';
@@ -26,13 +27,18 @@
 @import './packages/Layout/style/index.css';
 @import './packages/Levelbar/style/index.css';
 @import './packages/PageTabs/style/index.css';
+@import './packages/Particles/style/index.css';
+@import './packages/Popover/style/index.css';
 @import './packages/Progress/style/index.css';
 @import './packages/Row/style/index.css';
 @import './packages/Screenfull/style/index.css';
+@import './packages/Select-tree/style/index.css';
 @import './packages/SideBar/style/index.css';
 @import './packages/Skiner/style/index.css';
 @import './packages/Slip-dialog/style/index.css';
 @import './packages/Step/style/index.css';
 @import './packages/Steps/style/index.css';
 @import './packages/TimePicker/style/index.css';
+@import './packages/Timeline/style/index.css';
+@import './packages/TimelineAxis/style/index.css';
 @import './packages/UserDropdown/style/index.css';

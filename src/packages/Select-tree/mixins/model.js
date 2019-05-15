@@ -13,8 +13,6 @@ export default {
   },
   watch: {
     value(val) {
-      console.log('watch-value');
-      console.log(val);
       this.childSelectTree = val;
     },
   },

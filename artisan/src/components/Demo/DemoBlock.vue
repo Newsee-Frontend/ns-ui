@@ -3,7 +3,7 @@
     <h1>
       <slot name="title"></slot>
     </h1>
-    <p>
+    <p class="describe">
       <slot name="describe"></slot>
     </p>
     <div class="demo-block-content">
@@ -29,21 +29,24 @@
     h1 {
       font-weight: 400;
       color: #1f2f3d;
-      margin: 25px 0 15px;
+      margin: 20px 0 10px;
     }
-
-    p {
+    h2 {
+      color: #2a3f52;
+      margin: 10px 0 5px;
+    }
+    .describe {
       font-size: 14px;
       color: #5e6d82;
       line-height: 1.5em;
+      margin: 5px 0;
     }
     .demo-block-content {
-
-      padding: 24px;
-
+      padding: 18px;
       .gap {
         margin-top: 20px;
       }
+
       .control-block {
         margin: 10px 0;
         span {

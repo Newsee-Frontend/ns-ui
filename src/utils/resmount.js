@@ -15,10 +15,10 @@ export default (vue, component, opts, isglobal = true) => {
   if (!isglobal) {
     vue.component(camelize(`-${name}`), component);
   }
-  console.log((isglobal ? '全局' : '局部') + '加载组件');
-  console.log('传入参数', opts);
-  console.log('组件本身', component);
-  console.log('处理后名称');
-  console.log(name);
-  console.log(camelize(`-${name}`));
+  // console.log((isglobal ? '全局' : '局部') + '加载组件');
+  // console.log('传入参数', opts);
+  // console.log('组件本身', component);
+  // console.log('处理后名称');
+  // console.log(name);
+  // console.log(camelize(`-${name}`));
 };

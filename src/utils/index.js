@@ -75,7 +75,7 @@ function judgeType(value) {
 function prefixName(name, opts, $Var) {
   const defname = $Var.prefix + $Var.tie;
   const newname = opts.prefix + opts.tie;
-  console.log('原始名称，前缀名，默认前缀名称：', name, defname, newname);
+  // console.log('原始名称，前缀名，默认前缀名称：', name, defname, newname);
   if (!name)
     throw 'the component should be set with the initial name，' +
       "please check every component' name whether it's property is set";

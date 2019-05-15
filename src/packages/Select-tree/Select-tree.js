@@ -1,24 +1,18 @@
 import Treeselect from '@riophae/vue-treeselect';
-import '@riophae/vue-treeselect/dist/vue-treeselect.css';
-import delayEvent from '../../utils/delay-event';
 import create from '../../create/create';
 import mixins from './mixins';
 import { sizeValidator } from '../../utils/props/validator';
+
 
 export default create({
   name: 'select-tree',
   components: { Treeselect },
   mixins: mixins,
   data() {
-    return {
-      modelConsistsStore: 'BRANCH_PRIORITY',
-    };
+    return {};
   },
   props: {
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
-
-    modelConsists: { type: String },
-    sortModelBy: { type: String, default: 'ORDER_SELECTED' },//显示值/model值同步排序，"ORDER_SELECTED", "LEVEL" or "INDEX".
     flat: { type: Boolean, default: false },//平面模式，设置后，父子节点都可同步选择。
     defaultExpandLevel: { type: Number, default: 0 },//默认展开的层级，0 - 全部收齐，1-展开所有第一层级的几点
 
@@ -29,6 +23,7 @@ export default create({
     disableBranchNodes: { type: Boolean, default: false },
 
 
+    searchable: { type: Boolean, default: true },//是否启用搜索查询（前端查询)
     isFuzzyMatching: { type: Boolean, default: true },//是否启用模糊查询（前端查询)
     flattenSearchResults: { type: Boolean, default: false },//扁平化的搜索结果，父子节点以扁平化的展示形式出现
     //Which keys of a node object to filter on.
@@ -39,21 +34,6 @@ export default create({
     },
 
 
-    noOptionsText: { type: String, default: 'No options available.' },
-    noResultsText: { type: String, default: 'No results found...' },
-    noChildrenText: { type: String, default: 'No child nodes' },
-
-
-  },
-
-  computed: {},
-
-  watch: {
-    modelConsists(val) {
-      console.log('watch-modelConsists');
-      console.log(val);
-      this.modelConsistsStore = val;
-    },
   },
   render(h) {
     return (
@@ -76,7 +56,7 @@ export default create({
         limitText={this.limitText}
         append-to-body={this.appendToBody}
         value-consists-of={this.modelConsistsStore}
-        sort-value-by={this.sortModelBy}
+        sort-value-by={this.reSortModelBy}
         default-expand-level={this.defaultExpandLevel}
         flat={this.flat}
         disable-branch-nodes={this.disableBranchNodes}
@@ -87,6 +67,7 @@ export default create({
         allowSelectingDisabledDescendants={true}
 
 
+        searchable={this.searchable}
         disableFuzzyMatching={true}
         matchKeys={this.filterMatchKeys}
         flatten-search-results={this.flattenSearchResults}
@@ -94,6 +75,14 @@ export default create({
         noOptionsText={this.noOptionsText}
         noResultsText={this.noResultsText}
         noChildrenText={this.noChildrenText}
+
+
+        async={this.async}
+
+
+        auto-load-root-options={this.autoLoadRootOptions}
+
+        load-options={this.loadOptions}
 
 
         onInput={e => this.handleModelSelectTree(e)}
@@ -146,20 +135,13 @@ export default create({
     searchChange(query) {
       this.$emit('search-change', query);
     },
-
   },
   created() {
 
   },
 
   mounted() {
-    delayEvent(
-      this,
-      _ => {
-        this.modelConsistsStore = this.modelConsists;
-      }, 0);
+
   },
-
-
 });
 

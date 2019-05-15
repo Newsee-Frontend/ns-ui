@@ -9,6 +9,8 @@
     <selectTreeDemoModel></selectTreeDemoModel>
     <!--搜索模式 相关显示用法-->
     <selectTreeDemoSearch></selectTreeDemoSearch>
+    <!--load-options 相关用法-->
+    <selectTreeDemoLoadOptions></selectTreeDemoLoadOptions>
     <!--事件示例用法-->
     <selectTreeDemoEvent></selectTreeDemoEvent>
   </div>
@@ -19,11 +21,19 @@
   import selectTreeDemoEmpty from './template/empty';
   import selectTreeDemoModel from './template/model';
   import selectTreeDemoSearch from './template/search';
+  import selectTreeDemoLoadOptions from './template/load-options';
   import selectTreeDemoEvent from './template/event';
 
   export default {
     name: 'select-tree-demo',
-    components: { selectTreeDemoBasic, selectTreeDemoEmpty, selectTreeDemoModel, selectTreeDemoSearch, selectTreeDemoEvent },
+    components: {
+      selectTreeDemoBasic,
+      selectTreeDemoEmpty,
+      selectTreeDemoModel,
+      selectTreeDemoSearch,
+      selectTreeDemoEvent,
+      selectTreeDemoLoadOptions,
+    },
     data() {
       return {};
     },

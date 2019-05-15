@@ -199,7 +199,7 @@
               'date': '2019-04-08',
               'info': '入住人: 爱丽丝',
               'active': 0,
-              'obvious': 1
+              'obvious': 1,
             }, {
               'title': null,
               'date': '2019-04-08',
