@@ -16,6 +16,7 @@ export default create({
     },  //  label, value 对应的字段名
 
     value: [String, Number],
+    width: String,
     options: { type: Array, default: [] },
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
     size: { type: String, validator: s => sizeValidator(s) },
@@ -61,7 +62,7 @@ export default create({
         onInput={e => this.handlemodel(e)}
         disabled={this.disabled}
         fill={this.fill}
-        style={{ width: this.width, height: this.height }}
+        style={{ width: this.convert_width}}
         on-change={this.change}
       >
         {

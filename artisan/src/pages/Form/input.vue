@@ -27,7 +27,7 @@
       @iconClick="iconClick"
     >
     </ns-input>
-    <ns-input v-model.number="num"></ns-input>
+    <ns-input v-model.number="num" maxlength="11"></ns-input>
   </div>
 </template>
 
@@ -56,7 +56,6 @@
       };
     },
     created() {
-
     },
     methods: {
       /**

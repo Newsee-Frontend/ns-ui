@@ -1,0 +1,41 @@
+@import '../config/var.scss';
+$baseEdge: 10px; //base edge
+$adjust: 4px; //base gap to adjust
+$formErrFs: 12px; //font size in error message
+
+/*
+form item 参数
+*/
+$lineHeight: 32px;  //form item 行高
+$gapWidth: 26px;   //form item  checkbox，radio间隙距离
+$itemMb: 16px;     //form item 间隙
+/*
+form error 的样式
+*/
+
+@mixin form-item-error(){
+  position: absolute;
+  height: $formErrFs * 2 + $adjust;
+  line-height: $formErrFs * 2 - $adjust;
+  font-size: $formErrFs;
+  top: -($formErrFs * 2 - $adjust);
+  left: ($formErrFs * 2 - $adjust) / 2;
+  color: $--color-white;
+  background: $--color-danger;
+  padding-top: $adjust;
+  padding-left: $baseEdge;
+  padding-right: $baseEdge;
+  border-radius: $adjust/2;
+  box-sizing: border-box;
+  &:before{
+    content: '';
+    position: absolute;
+    top: $formErrFs * 2 + $adjust;
+    left: $baseEdge;
+    width: 0;
+    height: 0;
+    border-top: 0.4rem solid $--color-danger;
+    border-left: 0.4rem solid transparent;
+    border-right: 0.4rem solid transparent;
+  }
+}

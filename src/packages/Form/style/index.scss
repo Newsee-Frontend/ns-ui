@@ -1,0 +1,143 @@
+@import '../../../style/mixins/mixins';
+@import '../../../style/mixins/form';
+
+$baseEdge: 10px; //base edge
+$adjust: 4px; //base gap to adjust
+$formErrFs: 12px; //font size in error message
+
+//after border normal
+@mixin pseudoClass {
+  border-top: 0.4rem solid $--color-danger;
+  border-left: 0.4rem solid transparent;
+  border-right: 0.4rem solid transparent;
+}
+
+//aftr border init
+@mixin pseudoClass_init {
+  border: none;
+}
+
+//form - components border-color toggle
+@mixin border-color-Toggle($border-color) {
+  .el-input__inner,
+  .el-textarea__inner {
+    border-color: $border-color;
+    transition: all 300ms ease-in;
+  }
+}
+
+//验证提示显示改变
+@mixin validate-Cue-Change($cueType, $state) {
+  //表单验证提示类型一：包含错误错误和正确的展现
+  @if $cueType == 'cue-all' {
+    //验证错误
+    @if $state == 'error' {
+      @include border-color-Toggle($--color-danger); //切换为红色边框
+    }
+      //非错误情况（处于验证激活状态，且验证正确，这种情况需要区别于表单加载后的初始状态（验证未激活））
+    @else {
+      @include border-color-Toggle($--color-success); //切换为绿色边框
+    }
+  }
+    //表单验证提示类型二（只有错误的展现）
+  @else if $cueType == 'cue-only-error' {
+    @include border-color-Toggle($--color-text-placeholder); //切换默认边框颜色
+    @if $state == 'error' {
+      @include border-color-Toggle($--color-danger); //切换为红色边框
+    }
+  }
+    //表单验证提示类型三（只有错误的展现，且鼠标移入展现错误提示）
+  @else if $cueType == 'cue-only-error-hover' {
+    @include border-color-Toggle($--color-text-placeholder); //切换默认边框颜色
+    @if $state == 'error' {
+      @include border-color-Toggle($--color-danger); //切换为红色边框
+    }
+  }
+}
+
+//hover 控制错误提示
+@mixin cue-Modular-hover($initState, $hoverState) {
+  .el-form-item__error {
+    transition: all 300ms ease-in;
+    visibility: $initState;
+    &:before {
+      transition: all 300ms ease-in;
+      visibility: $initState;
+    }
+  }
+  &:hover {
+    .el-form-item__error {
+      transition: all 300ms ease-in;
+      visibility: $hoverState;
+      &:before {
+        transition: all 300ms ease-in;
+        visibility: $hoverState;
+      }
+    }
+  }
+}
+
+@include b(form) {
+  @include b(form-item) {
+    &.el-form-item {
+      position: relative;
+      line-height: $lineHeight;
+      margin-bottom: $itemMb;
+      .el-form-item__error {
+        height: 0;
+        visibility: hidden;
+        &:before {
+          @include pseudoClass_init;
+        }
+      }
+
+      .el-form-item__label {
+        line-height: $lineHeight;
+      }
+
+      //错误样式
+      &.is-error {
+        .el-form-item__error {
+          visibility: visible;
+          @include form-item-error();
+          &:before {
+            @include pseudoClass;
+            transition: all 350ms ease-in;
+          }
+        }
+      }
+
+      //表单验证提示类型一：包含错误错误和正确的展现
+      &.cue-all {
+        // 基于element-ui验证，验证激活状态
+        &.is-error {
+          @include validate-Cue-Change('cue-all', 'error');
+        }
+        &.is-success {
+          @include validate-Cue-Change('cue-all', 'success'); //验证提示显示改变
+        }
+      }
+
+      //表单验证提示类型二：（只有错误的展现）
+      &.cue-only-error {
+        &.is-error {
+          @include validate-Cue-Change('cue-only-error', 'error');
+        }
+        &.is-success {
+          @include validate-Cue-Change('cue-only-error', 'success');
+        }
+      }
+
+      //表单验证提示类型三：（鼠标动作，控制错误提示显隐）
+      &.cue-only-error-hover {
+        &.is-error {
+          @include cue-Modular-hover(hidden, visible);
+        }
+        &.is-success {
+          @include validate-Cue-Change('cue-only-error-hover', 'success');
+        }
+      }
+    }
+  }
+}
+

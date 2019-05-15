@@ -18,7 +18,7 @@ export default create({
     },
     width: [String, Number],
     height: [String, Number],
-    keyMap: {
+    keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value' }),
     },  //  label, value 对应的字段名
@@ -29,7 +29,7 @@ export default create({
     disabled: { type: Boolean, default: false },
     multiple: { type: Boolean, default: false },
     multipleLimit: { type: Number, default: 0 },
-    collapseTags: { type: Boolean, default: false },
+    collapseTags: { type: Boolean, default: false },//多选时是否将选中值按文字的形式展示
     filterable: { type: Boolean, default: false },
     filterMethod: { type: Function, default: null }, //自定义过滤方法
     remote: { type: Boolean, default: false }, //是否为远程搜索
@@ -55,7 +55,7 @@ export default create({
   },
 
   render(h) {
-    let { label, value } = this.keyMap;
+    let { label, value, } = this.keyRefer;
     const elOption = (item) => (
       <el-option
         key={item[value]}
@@ -77,7 +77,10 @@ export default create({
         onInput={e => this.handleModel(e)}
         onChange={this.change.bind(this)}
         onVisible-change={this.visibleChange.bind(this)}
+        onRemove-tag={this.removeTag.bind(this)}
         onFocus={this.onFocus.bind(this)}
+        onBlur={this.onBlur.bind(this)}
+        onClear={this.onClear.bind(this)}
         disabled={this.disabled}
         clearable={this.clearable}
         multiple={this.multiple}
@@ -112,10 +115,14 @@ export default create({
     },
 
     /**
-     * visible-Change （ 点击下拉菜单 ）
+     * visible-Change （下拉框显示隐藏）
      */
     visibleChange(e) {
-      this.$emit('visible-change');
+      this.$emit('visible-change',e);
+    },
+
+    removeTag(){
+      this.$emit('remove-tag')
     },
 
     /**
@@ -130,6 +137,19 @@ export default create({
      */
     onFocus() {
       this.$emit('focus');
+    },
+    /**
+     * on-blur
+     */
+    onBlur() {
+      this.$emit('blur');
+    },
+
+    /**
+     * 清除事件
+     */
+    onClear(){
+      this.$emit('clear');
     },
 
 

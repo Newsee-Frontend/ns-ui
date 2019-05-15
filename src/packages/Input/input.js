@@ -44,7 +44,6 @@ export default create({
   watch: {
     value(val) {
       this.childIpt = val;
-      console.log('value', typeof val);
     },
   },
   render(h) {
