@@ -1,7 +1,9 @@
 //input 相关样式
 @import '../../../style/common/size/choosebtnsize';
+@import "../../../style/mixins/form";
 
-@include b(checkbox) {
+
+@include b(checkbox){
   @include b(checkbox__btn){
     @include button-size(checkbox__btn);
   }
@@ -11,6 +13,7 @@
     .el-checkbox{
       margin-left: 0;
       margin-right: $gapWidth;
+      line-height: inherit;
     }
   }
 

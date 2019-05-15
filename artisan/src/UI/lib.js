@@ -27,7 +27,8 @@ import Switch from '../../../src/packages/Switch/Switch.js';
 import Slider from '../../../src/packages/Slider/Slider.js';
 import Upload from '../../../src/packages/Upload/Upload.js';
 import TreeSelect from '../../../src/packages/Select-tree/Select-tree.js';
-
+import Form from '../../../src/packages/Form/Form.vue';
+import FormItem from '../../../src/packages/Form-item/Form-item.js';
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -80,6 +81,8 @@ Vue.component('ns-switch', Switch);
 Vue.component('ns-slider', Slider);
 Vue.component('ns-upload', Upload);
 Vue.component('ns-select-tree', TreeSelect);
+Vue.component('ns-form', Form);
+Vue.component('ns-form-item', FormItem);
 
 // data
 Vue.component('ns-badge', Badge);
@@ -131,6 +134,7 @@ import '../../../src/packages/Avatar/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
 import '../../../src/packages/Select-tree/style/index.scss';
+import '../../../src/packages/Form/style/index.scss';
 
 import '../../../src/packages/PageTabs/style/index.scss';
 import '../../../src/packages/Dialog/style/index.scss';

@@ -220,6 +220,14 @@ const navmenu = (req, res) => {
             menuIndex: 14,
             hide: 1,
           },
+          {
+            funcId: 'form',
+            menuLabel: '表单',
+            menuRouter: 'form',
+            menuIcon: null,
+            menuIndex: 15,
+            hide: 1,
+          }
         ],
       },
       {

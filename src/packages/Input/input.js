@@ -81,7 +81,6 @@ export default create({
   methods: {
     handleModelInput(e) {
       this.childIpt = e;
-      console.log(this.$attrs)
       this.$emit('input', this.childIpt);
     },
     /**
