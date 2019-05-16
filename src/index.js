@@ -36,9 +36,9 @@ import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
 import Step from './packages/Step/Step';
 import Steps from './packages/Steps/Steps';
-import TimePicker from './packages/TimePicker/TimePicker';
 import Timeline from './packages/Timeline/Timeline';
 import TimelineAxis from './packages/TimelineAxis/TimelineAxis';
+import TimePicker from './packages/TimePicker/TimePicker';
 import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 
@@ -71,9 +71,9 @@ const components = [
   SlipDialog,
   Step,
   Steps,
-  TimePicker,
   Timeline,
   TimelineAxis,
+  TimePicker,
   UserDropdown
 ];
 
@@ -135,9 +135,9 @@ export {
   SlipDialog,
   Step,
   Steps,
-  TimePicker,
   Timeline,
   TimelineAxis,
+  TimePicker,
   UserDropdown
 };
 
