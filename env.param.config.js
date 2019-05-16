@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-const package_19_4_30 = require('./version/package_19_4_30');
+const package_19_5_16 = require('./version/package_19_5_16');
 
 
 module.exports = {
@@ -29,7 +29,7 @@ module.exports = {
         path.resolve('lib/index.scss'),
       ],
     },
-    excludes: package_19_4_30,
+    excludes: package_19_5_16,
   },
   base: {
     mockPath: './artisan/mock',

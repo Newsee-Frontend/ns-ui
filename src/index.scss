@@ -1,6 +1,6 @@
 /*
  * style entry for UI
- * created: 2019-05-15 18:54:28.
+ * created: 2019-05-16 16:45:06.
  * version: 0.0.10.
  * author: Broccoli spring( 高仓雄 - gcx )
  * copyright (c) Broccoli spring( gcx )
@@ -13,10 +13,13 @@
  */
 
 @import './packages/Alert/style/index.css';
+@import './packages/Avatar/style/index.css';
 @import './packages/Badge/style/index.css';
 @import './packages/Button/style/index.css';
 @import './packages/Button-group/style/index.css';
 @import './packages/Carousel/style/index.css';
+@import './packages/Cascader/style/index.css';
+@import './packages/Checkbox/style/index.css';
 @import './packages/Col/style/index.css';
 @import './packages/DatePicker/style/index.css';
 @import './packages/Dialog/style/index.css';
@@ -26,21 +29,29 @@
 @import './packages/Header/style/index.css';
 @import './packages/Icon-class/style/index.css';
 @import './packages/Icon-svg/style/index.css';
+@import './packages/Input/style/index.css';
 @import './packages/Layout/style/index.css';
 @import './packages/Levelbar/style/index.css';
 @import './packages/PageTabs/style/index.css';
 @import './packages/Particles/style/index.css';
 @import './packages/Popover/style/index.css';
 @import './packages/Progress/style/index.css';
+@import './packages/Radio/style/index.css';
 @import './packages/Row/style/index.css';
 @import './packages/Screenfull/style/index.css';
+@import './packages/Select/style/index.css';
 @import './packages/Select-tree/style/index.css';
 @import './packages/SideBar/style/index.css';
 @import './packages/Skiner/style/index.css';
+@import './packages/Slider/style/index.css';
 @import './packages/Slip-dialog/style/index.css';
 @import './packages/Step/style/index.css';
 @import './packages/Steps/style/index.css';
+@import './packages/Switch/style/index.css';
+@import './packages/Tab-pane/style/index.css';
+@import './packages/Tabs/style/index.css';
 @import './packages/Timeline/style/index.css';
 @import './packages/TimelineAxis/style/index.css';
 @import './packages/TimePicker/style/index.css';
+@import './packages/Upload/style/index.css';
 @import './packages/UserDropdown/style/index.css';
