@@ -16,6 +16,8 @@ import Carousel from './packages/Carousel/Carousel';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
+import Form from './packages/Form/Form';
+import FormItem from './packages/Form-item/Form-item';
 import FullscreenDialog from './packages/Fullscreen-dialog/Fullscreen-dialog';
 import Header from './packages/Header/Header';
 import IconClass from './packages/Icon-class/Icon-class';
@@ -49,6 +51,8 @@ const components = [
   Col,
   DatePicker,
   Dialog,
+  Form,
+  FormItem,
   FullscreenDialog,
   Header,
   IconClass,
@@ -111,6 +115,8 @@ export {
   Col,
   DatePicker,
   Dialog,
+  Form,
+  FormItem,
   FullscreenDialog,
   Header,
   IconClass,

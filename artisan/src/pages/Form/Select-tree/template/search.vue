@@ -40,7 +40,7 @@
     data() {
       return {
         selectTreeModel: [],
-        searchable: true,//是否启用搜索查询（前端查询)
+        searchable: false,//是否启用搜索查询（前端查询)
         isFuzzyMatching: true,//是否启用模糊查询（前端查询)
         flattenSearchResults: false,//扁平化的搜索结果，父子节点以扁平化的展示形式出现
         filterMatchKeys: ['label'],
