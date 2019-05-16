@@ -16,6 +16,8 @@ import Carousel from './packages/Carousel/Carousel';
 import Col from './packages/Col/Col';
 import DatePicker from './packages/DatePicker/DatePicker';
 import Dialog from './packages/Dialog/Dialog';
+import Form from './packages/Form/Form';
+import FormItem from './packages/Form-item/Form-item';
 import FullscreenDialog from './packages/Fullscreen-dialog/Fullscreen-dialog';
 import Header from './packages/Header/Header';
 import IconClass from './packages/Icon-class/Icon-class';
@@ -34,9 +36,9 @@ import Skiner from './packages/Skiner/Skiner';
 import SlipDialog from './packages/Slip-dialog/Slip-dialog';
 import Step from './packages/Step/Step';
 import Steps from './packages/Steps/Steps';
-import TimePicker from './packages/TimePicker/TimePicker';
 import Timeline from './packages/Timeline/Timeline';
 import TimelineAxis from './packages/TimelineAxis/TimelineAxis';
+import TimePicker from './packages/TimePicker/TimePicker';
 import UserDropdown from './packages/UserDropdown/UserDropdown';
 
 
@@ -49,6 +51,8 @@ const components = [
   Col,
   DatePicker,
   Dialog,
+  Form,
+  FormItem,
   FullscreenDialog,
   Header,
   IconClass,
@@ -67,9 +71,9 @@ const components = [
   SlipDialog,
   Step,
   Steps,
-  TimePicker,
   Timeline,
   TimelineAxis,
+  TimePicker,
   UserDropdown
 ];
 
@@ -111,6 +115,8 @@ export {
   Col,
   DatePicker,
   Dialog,
+  Form,
+  FormItem,
   FullscreenDialog,
   Header,
   IconClass,
@@ -129,9 +135,9 @@ export {
   SlipDialog,
   Step,
   Steps,
-  TimePicker,
   Timeline,
   TimelineAxis,
+  TimePicker,
   UserDropdown
 };
 
