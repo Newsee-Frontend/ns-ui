@@ -19,7 +19,7 @@ export default create({
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },  //  label, value 对应的字段名
-    width: { type: String },
+    width: { type: [String, Number] },
     min: { type: Number, default: 0 }, //可被勾选的 checkbox 的最小数量
     max: { type: Number }, //可被勾选的 checkbox 的最大数量
     fill: { type: String, default: '#20a0ff' }, //按钮：背景颜色
@@ -48,7 +48,6 @@ export default create({
 
     const checkBtnDom = (item) => (
       <el-checkbox-button
-        style={{width: this.convert_width }}
         class={[this.recls('btn', [this.formsize])]}
         key={item[this.keyRefer.value]}
         label={item[this.keyRefer.value]}
@@ -60,6 +59,7 @@ export default create({
     return (
       <el-checkbox-group
         class={this.recls()}
+        style={{width: this.convert_width }}
         value={this.childCheckbox}
         textColor={this.textColor}
         fill={this.fill}
