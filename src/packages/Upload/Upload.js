@@ -64,26 +64,32 @@ export default create({
   },
 
   render(h) {
-    return (
-      <el-upload
-        class={['avatar-uploader', this.recls()]}
-        style={this.convert_style}
-        action={this.action}
-        disabled={this.disabled}
-        headers={this.headers}
-        with-credentials={true}
-        show-file-list={false}
-        on-success={this.onSuccess}
-        before-upload={this.beforeAvatarUpload}
-      >
-        {this.picSingleUrl && <img src={this.picSingleUrl} alt="" class="avatar"/>}
-        <icon-svg
-          icon-class="add"
-          class="avatar-uploader-icon"
-          style={this.icon_style}
-        />
-      </el-upload>
-    );
+    return h("el-upload", {
+      "class": ['avatar-uploader', this.recls()],
+      "style": this.convert_style,
+      "attrs": {
+        "action": this.action,
+        "disabled": this.disabled,
+        "headers": this.headers,
+        "with-credentials": true,
+        "show-file-list": false,
+        "before-upload": this.beforeAvatarUpload,
+        "on-success": this.onSuccess.bind(this),
+        "on-change": this.changeUpload.bind(this)
+      }
+    }, [this.picSingleUrl && h("img", {
+      "attrs": {
+        "src": this.picSingleUrl,
+        "alt": ""
+      },
+      "class": "avatar"
+    }), h("icon-svg", {
+      "attrs": {
+        "icon-class": "add"
+      },
+      "class": "avatar-uploader-icon",
+      "style": this.icon_style
+    })]);
   },
 
   methods: {
@@ -91,7 +97,7 @@ export default create({
     setVal(val) {
       if (val instanceof Array) {
         this.childUpload = val;
-        this.picSingleUrl = val[0][this.keyRefer.url];
+        val.length > 0 && (this.picSingleUrl = val[0][this.keyRefer.url]);
       } else {
         throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
@@ -127,8 +133,13 @@ export default create({
 
     //图片成功
     onSuccess(response) {
+      console.log(123123);
       this.setVal(response.resultData);
     },
+    changeUpload(re){
+      console.log(re, '---------------------------');
+    },
+
 
   },
 
