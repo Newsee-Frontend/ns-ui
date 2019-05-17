@@ -15,8 +15,6 @@ es/
 ##############################
 
 src/index.js
-src/index.scss
-
 
 .DS_Store
 npm-debug.log*
