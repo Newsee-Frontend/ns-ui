@@ -32,27 +32,24 @@ export default create({
   },
 
   render(h) {
-    const checkboxDom = (item) => (
-      <el-checkbox
-        key={item[this.keyRefer.value]}
-        label={item[this.keyRefer.value]}
-        disabled={item[this.keyRefer.disabled]}
-        name={this.name}
-      >
-        {item[this.keyRefer.label]}
-      </el-checkbox>
-    );
 
-    const checkBtnDom = (item) => (
-      <el-checkbox-button
-        class={[this.recls('btn', [this.formsize])]}
-        key={item[this.keyRefer.value]}
-        label={item[this.keyRefer.value]}
-        disabled={item[this.keyRefer.disabled]}>
-        {item[this.keyRefer.label]}
-      </el-checkbox-button>
-    );
-
+    const checkboxDom = item => {
+      const isBtn = this.type === 'button';
+      return (
+        h(
+          isBtn ? `el-checkbox-button` : `el-checkbox`,
+          {
+            'class': isBtn ? [this.recls('btn', [this.formsize])] : '',
+            props: {
+              label: item[this.keyRefer.value],
+              key: item[this.keyRefer.value],
+              disabled: item[this.keyRefer.disabled],
+            },
+          },
+          item[this.keyRefer.label],
+        )
+      );
+    };
     return (
       <el-checkbox-group
         class={this.recls()}
@@ -66,9 +63,7 @@ export default create({
         onInput={(e) => this.handleModel(e)}
         onChange={this.change}
       >
-        {this.options.map((item) => (
-          this.type === 'button' ? checkBtnDom(item) : checkboxDom(item)
-        ))}
+        {this.options.map(item => (checkboxDom(item)))}
       </el-checkbox-group>
     );
   },
