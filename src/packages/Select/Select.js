@@ -18,10 +18,6 @@ export default create({
     },
     width: [String, Number],
     height: [String, Number],
-    keyRefer: {
-      type: Object,
-      default: () => ({ label: 'label', value: 'value' }),
-    },  //  label, value 对应的字段名
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
     name: { type: String },
@@ -34,11 +30,17 @@ export default create({
     filterMethod: { type: Function, default: null }, //自定义过滤方法
     remote: { type: Boolean, default: false }, //是否为远程搜索
     remoteMethod: { type: Function, default: null }, //远程搜索方法
-    allowCreate: { type: Boolean, default: false }, //是否允许用户创建新条目，需配合 filterable 使用\\
-    custom: { type: Boolean, default: false }, //自定义 下拉内容
+    allowCreate: { type: Boolean, default: false }, //是否允许用户创建新条目，需配合 filterable 使用
+    keyRefer: {
+      type: Object,
+      default: () => ({ label: 'label', value: 'value' }),
+    },
   },
 
   computed: {
+    reClass() {
+      return this.recls([this.formsize, this.multiple && 'multiple']);
+    },
     convert_style() {
       return {
         width: this.convert_width,
@@ -55,7 +57,7 @@ export default create({
   },
 
   render(h) {
-    let { label, value, } = this.keyRefer;
+    let { label, value } = this.keyRefer;
     const elOption = (item) => (
       <el-option
         key={item[value]}
@@ -63,16 +65,11 @@ export default create({
         label={item[label]}
         disabled={item.disabled}
       >
-        {this.custom ? <span class="fl">{item[label]}</span> : null}
-        {this.custom ? <span class="fr customtemplate">{item[value]}</span> : null}
       </el-option>
     );
     return (
       <el-select
-        class={[
-          this.recls([this.formsize]),
-          this.multiple && `${this.namespace}-select-multiple`,
-        ]}
+        class={this.reClass}
         value={this.childSelect}
         onInput={e => this.handleModel(e)}
         onChange={this.change.bind(this)}
@@ -118,11 +115,11 @@ export default create({
      * visible-Change （下拉框显示隐藏）
      */
     visibleChange(e) {
-      this.$emit('visible-change',e);
+      this.$emit('visible-change', e);
     },
 
-    removeTag(){
-      this.$emit('remove-tag')
+    removeTag() {
+      this.$emit('remove-tag');
     },
 
     /**
@@ -148,7 +145,7 @@ export default create({
     /**
      * 清除事件
      */
-    onClear(){
+    onClear() {
       this.$emit('clear');
     },
 

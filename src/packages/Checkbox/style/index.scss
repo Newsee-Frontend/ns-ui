@@ -2,19 +2,17 @@
 @import '../../../style/common/size/choosebtnsize';
 @import "../../../style/mixins/form";
 
-
-@include b(checkbox){
-  @include b(checkbox__btn){
+@include b(checkbox) {
+  @include b(checkbox__btn) {
     @include button-size(checkbox__btn);
   }
 
-  &.el-checkbox-group{
+  &.el-checkbox-group {
     line-height: $lineHeight;
-    .el-checkbox{
+    .el-checkbox {
       margin-left: 0;
       margin-right: $gapWidth;
       line-height: inherit;
     }
   }
-
 }

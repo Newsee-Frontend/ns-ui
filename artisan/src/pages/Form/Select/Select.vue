@@ -13,11 +13,9 @@
         <div class="gap">
           <ns-select
             v-model="selectModel"
-            size="small"
+            size="medium"
             :keyRefer=keyRefer
-            height="40px"
-            width="300px"
-            :options="options"
+            :options="optionsDataTemplate"
             :clearable="true"
             :disabled="false"
             :allowCreate="false"
@@ -28,20 +26,7 @@
             @visible-change="visibleChange"
             @remove-tag="removeTag"
           ></ns-select>
-          <ns-select
-            size="small"
-            :keyRefer=keyRefer
-            height="40px"
-            width="300px"
-            v-model="selectModel"
-            :options="options"
-            :disabled="true"
-            @change="change"
-            @focus="focus"
-            @blur="blur"
-            @clear="clear"
-            @visible-change="visibleChange"
-            @remove-tag="removeTag"
+          <ns-select size="small" v-model="selectModel" :keyRefer=keyRefer :options="optionsDataTemplate" disabled @change="change"
           ></ns-select>
         </div>
       </template>
@@ -57,18 +42,14 @@
       <template slot="content">
         <ns-select
           v-model="selectModels"
-          :options="options"
+          :options="optionsDataTemplate"
           :keyRefer=keyRefer
           :multipleLimit="2"
           multiple
           collapseTags
           placeholder="请选择"
-          @change="change"
-          @focus="focus"
-          @blur="blur"
-          @clear="clear"
-          @visible-change="visibleChange"
-          @remove-tag="removeTag"
+          width="300px"
+          height="40px"
         ></ns-select>
       </template>
     </demo-block>
@@ -83,80 +64,72 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+  import formmixins from '../../../mixins/form-mixins';
   import nsSelectDictionary from '../../../components/SelectDictionary/SelectDictionary.vue';
 
   export default {
     name: 'select-demo',
-
+    mixins: [formmixins],
     components: {
       nsSelectDictionary,
     },
-
     data() {
       return {
         selectModel: 1,
-        selectModels: [],
+        selectModels: [2, 5, 6],
         keyRefer: {
-          label: 'name',
+          label: 'label',
           value: 'value',
         },
-        options: [
-          { name: '北京', value: 1 },
-          { name: '上海', value: 2 },
-          { name: '杭州', value: 3 },
-        ],
       };
     },
-    computed: {},
-    created() {
-
+    computed: {
+      ...mapGetters(['optionsDataTemplate']),
     },
     methods: {
       /**
        * select change
        * @param val
        */
-      change: function(val){
-        console.log('change select',val)
+      change: function(val) {
+        console.log('change select', val);
       },
 
       /**
        * on-blur
        */
-      blur: function(){
-        console.log('select blur')
+      blur: function() {
+        console.log('select blur');
       },
 
       /**
        * on-focus
        */
-      focus: function(){
-        console.log('select focus')
+      focus: function() {
+        console.log('select focus');
       },
 
       /**
        * on-focus
        */
-      clear: function(){
-        console.log('select clear')
+      clear: function() {
+        console.log('select clear');
       },
 
       /**
        * on-visibleChange
        */
-      visibleChange: function(){
-        console.log('select visibleChange')
+      visibleChange: function() {
+        console.log('select visibleChange');
       },
 
       /**
        * on remove tag
        */
-      removeTag: function(){
-        console.log('select remove tag')
-      }
-
-    },
-    mounted() {
+      removeTag: function() {
+        console.log('select remove tag');
+      },
     },
   };
 </script>

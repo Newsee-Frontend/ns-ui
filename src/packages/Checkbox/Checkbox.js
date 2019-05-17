@@ -20,15 +20,11 @@ export default create({
     max: { type: Number }, //可被勾选的 checkbox 的最大数量
     fill: { type: String, default: '#20a0ff' }, //按钮：背景颜色
     textColor: { type: String, default: '#ffffff' }, //按钮：字体颜色
-
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
-    },  //  label, value 对应的字段名
+    },
   },
-
-  computed: {},
-
   watch: {
     value(val) {
       this.childCheckbox = val;
@@ -94,11 +90,5 @@ export default create({
     change: function(val) {
       this.$emit('change', val);
     },
-  },
-
-  created() {
-  },
-
-  mounted() {
   },
 });

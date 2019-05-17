@@ -10,6 +10,7 @@ const getters = {
   sideBarList: state => state.Sidebar.sideBarList,
 
   //form demo
+  optionsDataTemplate: state => state.Form.optionsDataTemplate,
   selectTreeOptions: state => state.Tree.selectTreeOptions,
 };
 export default getters;

@@ -10,11 +10,6 @@ export default create({
     };
   },
   props: {
-    keyRefer: {
-      type: Object,
-      default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
-    },  //  label, value 对应的字段名
-
     value: [String, Number],
     width: String,
     options: { type: Array, default: [] },
@@ -23,6 +18,10 @@ export default create({
     fill: { type: String, default: '#20a0ff' }, //背景颜色
     textColor: { type: String, default: '#ffffff' }, //按钮：字体颜色
     disabled: { type: Boolean, default: false },
+    keyRefer: {
+      type: Object,
+      default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
+    },
   },
 
   computed: {},
@@ -62,7 +61,7 @@ export default create({
         onInput={e => this.handlemodel(e)}
         disabled={this.disabled}
         fill={this.fill}
-        style={{ width: this.convert_width}}
+        style={{ width: this.convert_width }}
         on-change={this.change}
       >
         {
@@ -70,7 +69,6 @@ export default create({
             this.type === 'button' ? radioBtnDom(item) : radioDom(item)
           ))
         }
-
       </el-radio-group>);
   },
 
@@ -82,11 +80,5 @@ export default create({
     change(value) {
       this.$emit('change', value);
     },
-  },
-
-  created() {
-  },
-
-  mounted() {
   },
 });

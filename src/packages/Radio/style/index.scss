@@ -3,17 +3,17 @@
 @import "../../../style/mixins/form";
 
 @include b(radio) {
-  .el-radio__inner{
+  .el-radio__inner {
     box-shadow: none !important;
   }
 
-  @include b(radio__button){
+  @include b(radio__button) {
     box-shadow: none !important;
     @include button-size(radio__button);
   }
-  &.el-radio-group{
+  &.el-radio-group {
     line-height: $lineHeight;
-    .el-radio{
+    .el-radio {
       margin-left: 0;
       margin-right: $gapWidth;
       line-height: inherit;
