@@ -27,7 +27,7 @@ import Switch from '../../../src/packages/Switch/Switch.js';
 import Slider from '../../../src/packages/Slider/Slider.js';
 import Upload from '../../../src/packages/Upload/Upload.js';
 import TreeSelect from '../../../src/packages/Select-tree/Select-tree.js';
-import Form from '../../../src/packages/Form/Form.vue';
+import Form from '../../../src/packages/Form/Form.js';
 import FormItem from '../../../src/packages/Form-item/Form-item.js';
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
