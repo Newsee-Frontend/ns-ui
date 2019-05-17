@@ -14,8 +14,8 @@ es/
 ## files                  ##
 ##############################
 
-src/index.js
-src/index.scss
+/src/index.js
+/src/index.scss
 
 
 .DS_Store
