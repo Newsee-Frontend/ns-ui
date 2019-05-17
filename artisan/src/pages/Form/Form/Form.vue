@@ -96,14 +96,14 @@
   export default {
     name: '',
     data() {
-      let checkAge = function(rule, value, callback){
+      let checkAge = function(rule, value, callback) {
         let reg = /^\d+$/;
-        if(!reg.test(value)){
-          callback(new Error('错了错了'))
-        }else{
-          callback()
+        if (!reg.test(value)) {
+          callback(new Error('错了错了'));
+        } else {
+          callback();
         }
-      }
+      };
 
       return {
         formData: {
@@ -127,7 +127,7 @@
           ],
 
           age: [
-            { validator: checkAge, trigger: 'blur'}
+            { validator: checkAge, trigger: 'blur' },
           ],
 
           belong: [
@@ -186,8 +186,6 @@
       clear: function() {
         this.$refs.checkVForm.clearValidate();
       },
-    },
-    mounted() {
     },
   };
 </script>
