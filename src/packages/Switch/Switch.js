@@ -24,7 +24,7 @@ export default create({
     disabled: { type: Boolean, default: false },
     name: { type: String, default: '' },
   },
-  
+
 
   watch: {
     value(val) {
