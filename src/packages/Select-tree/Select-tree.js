@@ -23,7 +23,7 @@ export default create({
     disableBranchNodes: { type: Boolean, default: false },
 
 
-    searchable: { type: Boolean, default: true },//是否启用搜索查询（前端查询)
+    searchable: { type: Boolean, default: false },//是否启用搜索查询（前端查询)
     isFuzzyMatching: { type: Boolean, default: true },//是否启用模糊查询（前端查询)
     flattenSearchResults: { type: Boolean, default: false },//扁平化的搜索结果，父子节点以扁平化的展示形式出现
     //Which keys of a node object to filter on.

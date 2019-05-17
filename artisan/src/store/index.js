@@ -4,7 +4,7 @@ import User from './modules/User';
 import Drawer from './modules/Drawer';
 import Sidebar from './modules/Sidebar';
 import PageTabs from './modules/PageTabs';
-
+import Form from './modules/Form';
 import Tree from './modules/Tree';
 
 import getters from './getters';
@@ -16,6 +16,7 @@ const store = new Vuex.Store({
     User,
     Drawer,
     Sidebar,
+    Form,
     Tree,
 
     PageTabs,

@@ -14,20 +14,17 @@ export default create({
     type: { type: String, default: 'normal' },
     size: { type: String, validator: s => sizeValidator(s) },
     options: { type: Array, default: [] },
-    disabled: { type: Boolean, default: false },
-    keyRefer: {
-      type: Object,
-      default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
-    },  //  label, value 对应的字段名
     width: { type: [String, Number] },
+    disabled: { type: Boolean, default: false },
     min: { type: Number, default: 0 }, //可被勾选的 checkbox 的最小数量
     max: { type: Number }, //可被勾选的 checkbox 的最大数量
     fill: { type: String, default: '#20a0ff' }, //按钮：背景颜色
     textColor: { type: String, default: '#ffffff' }, //按钮：字体颜色
+    keyRefer: {
+      type: Object,
+      default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
+    },
   },
-
-  computed: {},
-
   watch: {
     value(val) {
       this.childCheckbox = val;
@@ -35,31 +32,28 @@ export default create({
   },
 
   render(h) {
-    const checkboxDom = (item) => (
-      <el-checkbox
-        key={item[this.keyRefer.value]}
-        label={item[this.keyRefer.value]}
-        disabled={item[this.keyRefer.disabled]}
-        name={this.name}
-      >
-        {item[this.keyRefer.label]}
-      </el-checkbox>
-    );
 
-    const checkBtnDom = (item) => (
-      <el-checkbox-button
-        class={[this.recls('btn', [this.formsize])]}
-        key={item[this.keyRefer.value]}
-        label={item[this.keyRefer.value]}
-        disabled={item[this.keyRefer.disabled]}>
-        {item[this.keyRefer.label]}
-      </el-checkbox-button>
-    );
-
+    const checkboxDom = item => {
+      const isBtn = this.type === 'button';
+      return (
+        h(
+          isBtn ? `el-checkbox-button` : `el-checkbox`,
+          {
+            'class': isBtn ? [this.recls('btn', [this.formsize])] : '',
+            props: {
+              label: item[this.keyRefer.value],
+              key: item[this.keyRefer.value],
+              disabled: item[this.keyRefer.disabled],
+            },
+          },
+          item[this.keyRefer.label],
+        )
+      );
+    };
     return (
       <el-checkbox-group
         class={this.recls()}
-        style={{width: this.convert_width }}
+        style={{ width: this.convert_width }}
         value={this.childCheckbox}
         textColor={this.textColor}
         fill={this.fill}
@@ -67,31 +61,29 @@ export default create({
         max={this.max}
         disabled={this.disabled}
         onInput={(e) => this.handleModel(e)}
-        onChange= {this.change}
+        onChange={this.change}
       >
-        {this.options.map((item) => (
-          this.type === 'button' ? checkBtnDom(item) : checkboxDom(item)
-        ))}
+        {this.options.map(item => (checkboxDom(item)))}
       </el-checkbox-group>
     );
   },
 
   methods: {
-    //checkgroup 值变化
+    /**
+     * handle model
+     * @param e
+     */
     handleModel: function(e) {
       this.childCheckbox = e;
       this.$emit('input', this.childCheckbox);
     },
 
-    //change 事件
-    change: function(val){
+    /**
+     * change
+     * @param val
+     */
+    change: function(val) {
       this.$emit('change', val);
-    }
-  },
-
-  created() {
-  },
-
-  mounted() {
+    },
   },
 });

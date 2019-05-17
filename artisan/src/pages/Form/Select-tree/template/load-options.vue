@@ -46,7 +46,8 @@
       <p class="describe">
         使用需要注意以下几点：<br/>
         1、async属性的值初始必须为 true.<br/>
-        2、绑定对应的函数进行操作<br/>
+        2、searchable属性的值初始必须为 true.<br/>
+        3、绑定对应的函数进行操作<br/>
         3、返回回调 callback(null, options);
       </p>
       <ns-select-tree
@@ -54,6 +55,7 @@
         size="medium"
         :multiple="true"
         :async="true"
+        :searchable="true"
         @async-search="asyncSearch"
       >
       </ns-select-tree>
