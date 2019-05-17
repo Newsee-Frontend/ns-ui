@@ -25,7 +25,6 @@ export default create({
     name: { type: String, default: '' },
   },
 
-  computed: {},
 
   watch: {
     value(val) {
@@ -69,11 +68,5 @@ export default create({
     change: function(val) {
       this.$emit('change', val);
     },
-  },
-
-  created() {
-  },
-
-  mounted() {
   },
 });

@@ -1,6 +1,7 @@
 import create from '../../create/create';
 
 export default create({
+  name: 'form',
   props: {
     model: { type: Object },
     rules: { type: Object },
@@ -11,39 +12,47 @@ export default create({
     'show-message': { type: Boolean, default: true },
     cueType: { type: String, default: 'only-error' },
   },
-  created() {
+  computed: {
+    fromClass() {
+      return this.recls();
+    },
   },
   render(h) {
     return (
-      <el-form
-        class={'ns-form'}
-        ref={'form'}
-        model={this.model}
-        rules={this.rules}
-        inline={this.inline}
-        label-position={this.labelPosition}
-        label-width={this.labelWidth}
-        label-suffix={this.labelSuffix}
-        show-message={this.showMessage}
-      >
-        <slot></slot>
-      </el-form>
+      h(
+        'el-form',
+        {
+          ref: this.fromClass,
+          'class': this.fromClass,
+          props: {
+            model: this.model,
+            rules: this.rules,
+            inline: this.inline,
+            'label-position': this.labelPosition,
+            'label-width': this.labelWidth,
+            'label-suffix': this.labelSuffix,
+            'show-message': this.showMessage,
+          },
+        },
+        this.$slots.default,
+      )
     );
   },
   methods: {
-    //校验
+    /**
+     * validate
+     * @param cb
+     */
     validate: function(cb) {
-      this.$refs.form.validate(cb);
+      this.$refs[this.fromClass].validate(cb);
     },
 
-    //重置
     resetFields: function() {
-      this.$refs.form.resetFields();
+      this.$refs[this.fromClass].resetFields();
     },
 
-    //清除校验结果
     clearValidate: function() {
-      this.$refs.form.clearValidate();
+      this.$refs[this.fromClass].clearValidate();
     },
   },
 });

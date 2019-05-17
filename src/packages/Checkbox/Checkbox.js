@@ -32,7 +32,6 @@ export default create({
   },
 
   render(h) {
-
     const checkboxDom = item => {
       const isBtn = this.type === 'button';
       return (

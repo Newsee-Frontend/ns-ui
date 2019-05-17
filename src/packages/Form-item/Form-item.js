@@ -2,10 +2,6 @@ import create from '../../create/create';
 
 export default create({
   name: 'form-item',
-
-  data() {
-    return {};
-  },
   props: {
     prop: { type: String },
     label: { type: [Number, String] },
@@ -26,20 +22,21 @@ export default create({
     cueType: { type: String, default: 'only-error' },
   },
 
-  computed: {},
-
-  watch: {},
-
+  computed: {
+    formItemClass() {
+      return [
+        this.recls(),
+        { 'cue-all': this.cueType === 'all' },
+        { 'cue-only-error': this.cueType === 'only-error' },
+        { 'cue-only-error-hover': this.cueType === 'only-error-hover' },
+      ];
+    },
+  },
   render(h) {
-    return(
+    return (
       <el-form-item
-        ref="formItem"
-        class={[
-          this.recls(),
-          { 'cue-all': this.cueType === 'all' },
-          { 'cue-only-error': this.cueType === 'only-error' },
-          { 'cue-only-error-hover': this.cueType === 'only-error-hover' },
-        ]}
+        ref={this.recls()}
+        class={this.formItemClass}
         prop={this.prop}
         label={this.label}
         label-width={this.labelWidth}
@@ -48,23 +45,18 @@ export default create({
         show-message={this.showMessage}
         rules={this.rules}
       >
-        { this.$slots.default }
+        {this.$slots.default}
       </el-form-item>
-    )
+    );
   },
 
   methods: {
-    //重置字段
-    resetField: function(){
-      this.$refs.formItem.resetField()
+    resetField: function() {
+      this.$refs[this.recls()].resetField();
     },
 
-    //清除校验结果
-    clearValidate: function(){
-      this.$refs.formItem.clearValidate()
-    }
-  },
-
-  mounted() {
+    clearValidate: function() {
+      this.$refs[this.recls()].clearValidate();
+    },
   },
 });
