@@ -13,13 +13,13 @@ export default create({
     switchWidth: { type: Number },
     width: { type: [String, Number], default: '100%' },
     height: { type: [String, Number], default: '32px' },
-    onText: { type: String, default: '' },
-    offText: { type: String, default: '' },
-    onColor: { type: String, default: '#20A0FF' },
-    offColor: { type: String, default: '#C0CCDA' },
-    onValue: { type: [Boolean, String, Number], default: true },
-    offValue: { type: [Boolean, String, Number], default: false },
-    onIconClass: { type: String, default: null },
+    activeText: { type: String, default: '' },
+    inactiveText: { type: String, default: '' },
+    activeColor: { type: String, default: '#20A0FF' },
+    inactiveColor: { type: String, default: '#C0CCDA' },
+    activeValue: { type: [Boolean, String, Number], default: true },
+    inactiveValue: { type: [Boolean, String, Number], default: false },
+    activeIconClass: { type: String, default: null },
     offIconClass: { type: String, default: null },
     disabled: { type: Boolean, default: false },
     name: { type: String, default: '' },
@@ -44,14 +44,14 @@ export default create({
           this.handleModel(e)
         }
         onChange={this.change}
-        activeText={this.onText}
-        inactiveText={this.offText}
-        activeColor={this.onColor}
-        inactiveColor={this.offColor}
-        activeValue={this.onValue}
-        iactiveValue={this.offValue}
-        activeIconClass={this.onIconClass}
-        iactiveIconClass={this.offIconClass}
+        activeText={this.activeText}
+        inactiveText={this.inactiveText}
+        activeColor={this.activeColor}
+        inactiveColor={this.inactiveColor}
+        activeValue={this.activeValue}
+        inactiveValue={this.inactiveValue}
+        activeIconClass={this.activeIconClass}
+        inactiveIconClass={this.inactiveIconClass}
         width={this.switchWidth}
         disabled={this.disabled}
         name={this.name}

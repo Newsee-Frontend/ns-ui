@@ -15,6 +15,7 @@
 </template>
 <script>
   export default {
+    name:'ns-form',
     props: {
       model: { type: Object },
       rules: { type: Object },
