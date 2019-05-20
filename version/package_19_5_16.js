@@ -8,7 +8,7 @@ module.exports = [
   '.DS_Store',
   'TestDemo',
 
-
+  'Select',
   'Only-MMDD-picker',
   'Time-interval',
 ];
