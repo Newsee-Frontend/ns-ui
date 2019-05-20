@@ -32,6 +32,8 @@ export default create({
   },
 
   render(h) {
+    let options = this.options || [];
+
     const checkboxDom = item => {
       const isBtn = this.type === 'button';
       return (
@@ -62,7 +64,7 @@ export default create({
         onInput={(e) => this.handleModel(e)}
         onChange={this.change}
       >
-        {this.options.map(item => (checkboxDom(item)))}
+        {options.map(item => (checkboxDom(item)))}
       </el-checkbox-group>
     );
   },

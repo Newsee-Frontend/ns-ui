@@ -48,6 +48,11 @@ $height: 32px 32px 32px 32px 32px;
   width: $width;
   height: $height;
   line-height: $height;
+
+  //textarea 高度自适应
+  &.el-textarea{
+    height: auto;
+  }
 }
 
 @mixin icon-inner() {
