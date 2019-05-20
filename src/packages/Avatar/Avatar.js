@@ -1,5 +1,4 @@
 import create from '../../create/create';
-
 export default create({
   name: 'avatar',
 
@@ -31,12 +30,16 @@ export default create({
         on-click={this.click}
       >
         <img
-          src={this.dynamicSrc}
+          src={this.dynamicSrc1}
           alt="avatar"
         />
       </div>
     );
   },
+
+  created(){
+  },
+
   methods: {
     click() {
       this.$emit('click');

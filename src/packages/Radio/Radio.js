@@ -11,7 +11,7 @@ export default create({
   },
   props: {
     value: [String, Number],
-    width: String,
+    width: [String, Number],
     options: { type: Array, default: [] },
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
     size: { type: String, validator: s => sizeValidator(s) },

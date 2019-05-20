@@ -23,8 +23,8 @@ export default create({
     },
     placeholder: { type: String, default: '请选择' },
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
-    width: String,
-    height: String,
+    width: [String, Number],
+    height: [String, Number],
     expandTrigger: { type: String, default: 'click' },
     disabled: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
