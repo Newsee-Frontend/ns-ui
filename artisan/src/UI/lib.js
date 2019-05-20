@@ -17,7 +17,7 @@ import DatePicker from '../../../src/packages/DatePicker/DatePicker.js';
 import Input from '../../../src/packages/Input/Input.js';
 import TimePicker from '../../../src/packages/TimePicker/TimePicker.js';
 import OnlyMMDDPicker from '../../../src/packages/Only-MMDD-picker/Only-MMDD-picker';
-import TimeInterval from '../../../src/packages/Time-interval/Time-interval.vue';
+import TimeInterval from '../../../src/packages/Time-interval/Time-interval.js';
 import Select from '../../../src/packages/Select/Select.js';
 import Cascader from '../../../src/packages/Cascader/Cascader.js';
 import Avatar from '../../../src/packages/Avatar/Avatar.js';

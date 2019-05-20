@@ -1,37 +1,28 @@
 <!--主页-->
 <template>
   <div class="Dashboard">
+    <pre>{{TestDemomodel}}</pre>
+    <TestDemo v-model="TestDemomodel"></TestDemo>
 
   </div>
 </template>
 
 <script>
+  import TestDemo from '../../../../src/packages/TestDemo/components/testContent';
+
   export default {
     name: 'Dashboard',
+    components: { TestDemo },
+    data() {
+      return {
+        TestDemomodel: {
+          ipt: 22,
+        },
+      };
+    },
     created() {
-      var obj1 = {
-        a: {
-          a1: [1, 2, 3],
-        },
-      };
-
-      var obj2 = {
-        a: {
-          a1: {
-            a2: 123,
-          },
-        },
-      };
-
-      var obj3 = { b: 3 };
-      var obj4 = {
-        b: {
-          b1: 2,
-        },
-      };
-      console.log(99999999);
-      console.log(Object.assign(obj1, obj2, obj3, obj4));//{ a : 1, b : 2, c:3 }
-
+      console.log(9999)
+      console.log(this.TestDemomodel)
     },
   };
 
