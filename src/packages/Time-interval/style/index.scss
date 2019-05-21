@@ -1,34 +1,11 @@
-$base_height: 32px;
-.time-interval {
+@import '../../../style/mixins/mixins';
+
+@include b(time-interval) {
   .time-interval-part {
-    //height: 100%;
     margin-right: 10px;
-    &.firstPart {
-      width: 100px;
-    }
-    &.secondPart {
-      p {
-        display: inline-block;
-        vertical-align: middle;
-        height: $base_height;
-        line-height: $base_height;
-        margin-left: 10px;
-      }
-    }
-    &.thirdPart {
-      width: 150px;
-    }
-    .el-select {
-      float: left;
-      width: 90px;
-    }
-    .onlyMMDD-picker.onlyMMDD {
-      float: left;
-      width: 100px;
+    span.day {
+      display: inline-block;
+      margin-left: 10px;
     }
   }
-  //.el-select,
-  //.el-input {
-  //  height: 100%;
-  //}
 }
