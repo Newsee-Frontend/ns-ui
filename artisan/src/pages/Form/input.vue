@@ -27,7 +27,12 @@
       @iconClick="iconClick"
     >
     </ns-input>
-    <ns-input v-model.number="num" maxlength="11"></ns-input>
+    <ns-input v-model.number="num" maxlength="11">
+      <template slot="suffix">年</template>
+      <template slot="prefix">第</template>
+    </ns-input>
+
+    <ns-input> </ns-input>
   </div>
 </template>
 

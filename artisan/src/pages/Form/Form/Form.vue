@@ -47,6 +47,10 @@
             <ns-select :options="sOptions" v-model="formData.zone" size="medium"></ns-select>
           </ns-form-item>
 
+          <ns-form-item label="备注" prop="decs">
+            <ns-input :rows="3" v-model="formData.decs"  type="textarea" size="medium"></ns-input>
+          </ns-form-item>
+
           <ns-form-item label="所属地区：" prop="area">
             <ns-cascader v-model="formData.area" :options="options" size="medium"></ns-cascader>
           </ns-form-item>
@@ -115,6 +119,7 @@
           belong: '3',  //radio
           zone: '130000',  //select
           area: [1, 11, 111], //cascader
+          decs: 'nknjd 南京城内的就调查从 从d'
         },
         formVData: {
           name: '',

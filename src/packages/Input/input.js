@@ -74,6 +74,13 @@ export default create({
       >
         {ipticon('prefix', this.prefixIcon)}
         {ipticon('suffix', this.suffixIcon)}
+
+        <template slot="prefix">
+          {this.$slots.prefix}
+        </template>
+        <template slot="suffix">
+          {this.$slots.suffix}
+        </template>
       </el-input>
     );
   },
