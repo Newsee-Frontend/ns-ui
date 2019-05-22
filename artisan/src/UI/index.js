@@ -9,9 +9,11 @@ Vue.use(ElementUI);
 
 
 //测试 - 单独引入各个组件模块
+
 import './lib';
 
 // 测试 - 全局挂载全部组件
+
 // import nsui from '../../../lib/ns-ui.min';
 // import '../../../lib/index.scss';
 //
