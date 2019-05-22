@@ -11,6 +11,12 @@ module.exports = {
     port: 8066,
     useEslint: false,
   },
+  prod: {
+    entry: './artisan/src/main.js',
+    templateSPA: './artisan/index.html',
+    staticPath: './artisan/static',
+    favicon: path.resolve("./artisan/favicon.ico"), //favicon
+  },
   plugin: {
     style: {
       needScssEntry: false,
@@ -34,7 +40,11 @@ module.exports = {
   base: {
     mockPath: './artisan/mock',
 
-    JSBabelInclude: ['src', 'mock', 'test', 'artisan'],
+    JSBabelInclude: [
+      'src', 'mock', 'test', 'artisan',
+      '/node_modules/element-ui/src',
+      '/node_modules/element-ui/packages',
+    ],
 
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
