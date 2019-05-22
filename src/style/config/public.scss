@@ -199,23 +199,7 @@ li {
   user-select: none; /* Non-prefixed version, currently not supported by any browser */
 }
 
-//=====================================================================
 
-.el-select.ns-select:not(.ns-select-multiple) {
-  .el-select__tags {
-    overflow: hidden;
-    height: 100%;
-    .el-select__input {
-      width: 0;
-    }
-  }
-  .el-input {
-    height: 100%;
-    .el-input__inner {
-      height: 100%;
-    }
-  }
-}
 
 //&:not(.ns-select-multiple) .el-input .el-input__inner {
 //  height: 100% !important;
@@ -238,22 +222,3 @@ li {
   }
 }
 
-.form_link_underLine {
-  color: #0a7af8;
-  cursor: pointer;
-}
-
-.form_link_underLine:hover {
-  text-decoration: underline;
-}
-
-.el-form--inline .el-form-item.toBeBlock {
-  display: block;
-}
-
-.el-form--inline .el-form-item.toBeBlock {
-  display: block;
-  label {
-    float: left;
-  }
-}
