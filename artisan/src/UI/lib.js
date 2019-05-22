@@ -48,8 +48,8 @@ import Tabs from '../../../src/packages/Tabs/Tabs.js';
 import TabPane from '../../../src/packages/Tab-pane/Tab-pane.js';
 
 import Alert from '../../../src/packages/Alert/Alert.js';
-
-import Particles from '../../../src/packages/Particles/Particles.js';
+import Particles from '../../../src/packages/Particles/Particles';
+import VideoBackground from '../../../src/packages/VideoBackground/VideoBackground';
 
 // layout
 Vue.component('ns-layout', Layout);
@@ -107,8 +107,8 @@ Vue.component('ns-timeline-axis', TimelineAxis);
 
 //notice
 Vue.component('ns-alert', Alert);
-
 Vue.component('ns-particles', Particles);
+Vue.component('ns-video-background', VideoBackground);
 
 
 import '../../../src/packages/Layout/style/index.scss';
@@ -155,3 +155,4 @@ import '../../../src/packages/Upload/style/index.scss';
 
 
 import '../../../src/packages/Particles/style/index.scss';
+import '../../../src/packages/VideoBackground/style/index.scss';
