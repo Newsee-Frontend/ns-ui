@@ -1,47 +1,48 @@
 <template>
   <div class="login-container">
-    <ns-particles :color="particlesColor" class="ns-particles"></ns-particles>
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <div class="title-container">
-        <h3 class="title">
-          {{ title }}
-        </h3>
-      </div>
+    <ns-video-background :sources="['./static/hero.mp4']">
+      <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+        <div class="title-container">
+          <h3 class="title">
+            {{ title }}
+          </h3>
+        </div>
 
-      <el-form-item prop="username">
+        <el-form-item prop="username">
         <span class="svg-container">
           <ns-icon-svg icon-class="wo"/>
         </span>
-        <el-input
-          v-model="loginForm.username"
-          :placeholder="loginForm.username"
-          name="username"
-          type="text"
-          auto-complete="on"
-        />
-      </el-form-item>
+          <el-input
+            v-model="loginForm.username"
+            :placeholder="loginForm.username"
+            name="username"
+            type="text"
+            auto-complete="on"
+          />
+        </el-form-item>
 
-      <el-form-item prop="password">
+        <el-form-item prop="password">
         <span class="svg-container">
           <ns-icon-svg icon-class="suo"/>
         </span>
-        <el-input
-          v-model="loginForm.password"
-          :type="passwordType"
-          :placeholder="loginForm.password"
-          name="password"
-          auto-complete="on"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
+          <el-input
+            v-model="loginForm.password"
+            :type="passwordType"
+            :placeholder="loginForm.password"
+            name="password"
+            auto-complete="on"
+            @keyup.enter.native="handleLogin"
+          />
+          <span class="show-pwd" @click="showPwd">
           <ns-icon-svg :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'"/>
         </span>
-      </el-form-item>
+        </el-form-item>
 
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
-        登录
-      </el-button>
-    </el-form>
+        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+          登录
+        </el-button>
+      </el-form>
+    </ns-video-background>
   </div>
 </template>
 
@@ -51,6 +52,7 @@
   export default {
     name: 'Login',
     data() {
+
       const validateUsername = (rule, value, callback) => {
         if (!validUsername(value)) {
           callback(new Error('Please enter the correct user name'));
@@ -66,7 +68,6 @@
         }
       };
       return {
-        particlesColor: '#71aac1',
         title: 'UI测试系统登录',
         loginForm: {
           username: '高仓雄',
@@ -162,7 +163,7 @@
     }
     .el-form-item {
       border: 1px solid rgba(255, 255, 255, 0.1);
-      background: rgba(0, 0, 0, 0.1);
+      background: rgba(0, 0, 0, 0.4);
       border-radius: 5px;
       color: #454545;
     }
@@ -207,7 +208,7 @@
     .title-container {
       position: relative;
       .title {
-        font-size: 26px;
+        font-size: 32px;
         color: $light_gray;
         margin: 0px auto 40px auto;
         text-align: center;
