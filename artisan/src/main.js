@@ -4,11 +4,8 @@ import Vue from 'vue';
 import App from './App';
 import router from './router';
 import store from './store';
-import axios from 'axios';
 import mount from './utils/mount';
 import './UI/index';
-
-Vue.prototype.$http = axios;
 
 
 Vue.use(mount);
