@@ -30,7 +30,7 @@ export default create({
         on-click={this.click}
       >
         <img
-          src={this.dynamicSrc1}
+          src={this.dynamicSrc}
           alt="avatar"
         />
       </div>
