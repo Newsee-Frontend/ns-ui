@@ -14,16 +14,15 @@ export default create({
 
   render(h) {
 
-    const sourcePart = s => {
-      return <source src={s} type={this.getMediaType(s)}/>;
+    const sourcePart = (s, i) => {
+      return <source src={s} key={i} type={this.getMediaType(s)}/>;
     };
 
     return (
       <section class={this.recls()}>
         <video autoPlay loop muted ref={'video'}>
-
           {
-            this.sources.map(s => sourcePart(s))
+            this.sources.map((s, i) => sourcePart(s, i))
           }
         </video>
         <div class={'video-slots'}>
@@ -78,11 +77,9 @@ export default create({
   mounted() {
     this.setImageUrl();
     this.setContainerHeight();
-
     if (this.videoCanPlay()) {
       this.$refs.video.oncanplay = () => {
         if (!this.$refs.video) return;
-
         this.videoRatio = this.$refs.video.videoWidth / this.$refs.video.videoHeight;
         this.setVideoSize();
         this.$refs.video.style.visibility = 'visible';
