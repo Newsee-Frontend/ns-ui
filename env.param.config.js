@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-const package_19_5_16 = require('./version/package_19_5_16');
+const package_19_5_23 = require('./version/package_19_5_23');
 
 
 module.exports = {
@@ -15,6 +15,9 @@ module.exports = {
     entry: './artisan/src/main.js',
     templateSPA: './artisan/index.html',
     staticPath: './artisan/static',
+    assetsPublicPath: "/", // 编译发布的根目录，可配置为资源服务器域名或 CDN 域名
+    assetsRoot: path.resolve("./dist"), // 编译输出的静态资源路径
+    assetsSubDirectory: "static", // 编译输出的二级目录
     favicon: path.resolve("./artisan/favicon.ico"), //favicon
   },
   plugin: {
@@ -35,7 +38,7 @@ module.exports = {
         path.resolve('lib/index.scss'),
       ],
     },
-    excludes: package_19_5_16,
+    excludes: package_19_5_23,
   },
   base: {
     mockPath: './artisan/mock',
