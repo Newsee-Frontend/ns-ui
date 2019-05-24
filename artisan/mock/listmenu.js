@@ -227,7 +227,7 @@ const navmenu = (req, res) => {
             menuIcon: null,
             menuIndex: 15,
             hide: 1,
-          }
+          },
         ],
       },
       {
@@ -310,6 +310,14 @@ const navmenu = (req, res) => {
             menuRouter: 'timeline',
             menuIcon: null,
             menuIndex: 6,
+            hide: 1,
+          },
+          {
+            funcId: 'rich-editor',
+            menuLabel: '富文本编辑器',
+            menuRouter: 'rich-editor',
+            menuIcon: null,
+            menuIndex: 7,
             hide: 1,
           },
         ],
