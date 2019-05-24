@@ -6,11 +6,9 @@
 </template>
 
 <script>
-  import VideoBg from 'vue-videobg';
 
   export default {
     name: 'Dashboard',
-    components: { VideoBg },
     data() {
       return {
         particlesColor: '#a9abae',
