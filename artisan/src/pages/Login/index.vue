@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <ns-video-background :sources="['./static/hero.mp4']">
+    <ns-video-background :sources="['/static/video/hero.mp4']">
       <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
         <div class="title-container">
           <h3 class="title">
