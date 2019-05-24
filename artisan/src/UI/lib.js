@@ -50,6 +50,7 @@ import TabPane from '../../../src/packages/Tab-pane/Tab-pane.js';
 import Alert from '../../../src/packages/Alert/Alert.js';
 import Particles from '../../../src/packages/Particles/Particles';
 import VideoBackground from '../../../src/packages/VideoBackground/VideoBackground';
+import Tinymce from '../../../src/packages/Tinymce/test123';
 
 // layout
 Vue.component('ns-layout', Layout);
@@ -104,6 +105,9 @@ Vue.component('ns-popover', Popover);
 Vue.component('ns-timeline', Timeline);
 Vue.component('ns-timeline-axis', TimelineAxis);
 
+Vue.component('ns-tinymce', Tinymce);
+
+
 
 //notice
 Vue.component('ns-alert', Alert);
@@ -156,3 +160,4 @@ import '../../../src/packages/Upload/style/index.scss';
 
 import '../../../src/packages/Particles/style/index.scss';
 import '../../../src/packages/VideoBackground/style/index.scss';
+import '../../../src/packages/Tinymce/style/index.scss';
