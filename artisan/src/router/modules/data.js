@@ -17,6 +17,12 @@ export const dataRouter = [
         component: () => import('../../pages/Data/Progress/Progress'),
         meta: { auth: true, key: 'Progress' },
         name: 'Progress 布局',
+      },
+      {
+        path: 'tree',
+        component: () => import('../../pages/Data/Tree/Tree'),
+        meta: { auth: true, key: 'Progress' },
+        name: 'Tree树形控件',
       }
     ],
   },

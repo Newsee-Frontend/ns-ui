@@ -254,6 +254,14 @@ const navmenu = (req, res) => {
             menuIndex: 2,
             hide: 1,
           },
+          {
+            funcId: 'tree',
+            menuLabel: 'Tree树形控件',
+            menuRouter: 'tree',
+            menuIcon: null,
+            menuIndex: 3,
+            hide: 1,
+          },
         ],
       },
       {
