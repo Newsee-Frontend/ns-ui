@@ -8,7 +8,6 @@ const path = require('path');
 const dependencyTree = require('dependency-tree');
 const components = require('../components/get-components')();
 
-
 //白名单内的组件只引入公共base.css的样式，其余的组件还需引入自身的样式
 const whiteList = [
   'info',

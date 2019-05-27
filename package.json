@@ -1,6 +1,6 @@
 {
   "name": "ns-form-components",
-  "version": "0.0.16",
+  "version": "0.0.19",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -27,6 +27,7 @@
   "license": "ISC",
   "dependencies": {
     "@riophae/vue-treeselect": "^0.0.38",
+    "@tinymce/tinymce-vue": "^2.0.0",
     "crypto-js": "^3.1.9-1",
     "cx-theme": "^1.0.5",
     "easings-css": "^1.0.0",
@@ -37,9 +38,10 @@
     "lodash": "^4.0.0",
     "material-colors": "^1.2.6",
     "mockjs": "^1.0.1-beta3",
+    "particles.js": "^2.0.0",
     "screenfull": "^4.2.0",
+    "tinymce": "^5.0.6",
     "vue": "2.5.21",
-    "vue-particles": "^1.0.9",
     "watch-size": "^2.0.0"
   },
   "devDependencies": {
@@ -47,7 +49,7 @@
     "@cx-ui-design-test1/cx-builder-test1": "^0.0.3",
     "@vant/compiler": "^1.0.0",
     "axios": "^0.16.2",
-    "cx-builder": "^0.0.42",
+    "cx-builder": "^0.0.44",
     "dependency-tree": "^6.4.0",
     "echarts": "^4.2.1",
     "glob": "^7.1.3",

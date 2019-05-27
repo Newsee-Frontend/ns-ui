@@ -64,12 +64,9 @@ export default create({
 
       let _addClass = () => {
         let panel = document.querySelector('body .el-picker-panel'); //时间选择器下拉框Dom节点
-        if (!panel) {
-          return;
-        } else {
-          if (!hasClass(panel, this.popperName)) {
-            panel.className += ' ' + this.popperName;
-          }
+        if (!panel) return;
+        if (!hasClass(panel, this.popperName)) {
+          panel.className += ' ' + this.popperName;
         }
       };
       let tt = setTimeout(_addClass, 10);
@@ -85,8 +82,5 @@ export default create({
     change(value) {
       this.$emit('change', value);
     },
-  },
-  created() {
-
   },
 });

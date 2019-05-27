@@ -42,6 +42,12 @@ export const othersRouter = [
         meta: { auth: true, key: 'timeline' },
         name: '时间线',
       },
+      {
+        path: 'rich-editor',
+        component: () => import('../../pages/Others/Tinymce/Tinymce'),
+        meta: { auth: true, key: 'rich-editor' },
+        name: '富文本编辑器',
+      },
     ],
   },
 ];

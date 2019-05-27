@@ -25,14 +25,15 @@ export default {
     const xxx = () => {
       return h('Input', {
         domProps: {
-          value2: this.childInterval.ipt,
+          value: this.childInterval.ipt,
         },
         on: {
           input: (event) => {
-            console.log(2222222)
+            console.log(2222222);
             console.log(event);
             // this.$emit('input', event.target.value);
-            this.$emit('input', event);
+            this.childInterval.ipt = event;
+
           },
         },
       });
@@ -58,5 +59,7 @@ export default {
   },
   methods: {},
   created() {
+    console.log(8787878);
+    console.log(this.value);
   },
 };
