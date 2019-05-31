@@ -14,7 +14,7 @@ export default create({
     width: { type: [String, Number] },
     height: { type: [String, Number] },
     name: { type: String, default: '' },
-    type: { type: String, default: 'text' },
+    type: { type: String, default: 'text' },//text，textarea
     placeholder: { type: String, default: null },
     size: {
       type: String,

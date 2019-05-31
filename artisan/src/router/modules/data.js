@@ -23,6 +23,12 @@ export const dataRouter = [
         component: () => import('../../pages/Data/Tree/Tree'),
         meta: { auth: true, key: 'Progress' },
         name: 'Tree树形控件',
+      },
+      {
+        path: 'pagination',
+        component: () => import('../../pages/Data/Pagination/Pagination'),
+        meta: { auth: true, key: 'pagination' },
+        name: 'Pagination分页',
       }
     ],
   },
