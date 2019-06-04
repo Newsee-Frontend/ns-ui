@@ -13,4 +13,5 @@ module.exports = [
   'VideoBackground',
   'Particles',
   'Tinymce',
+  'Table',
 ];
