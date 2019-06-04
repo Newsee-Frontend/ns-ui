@@ -68,7 +68,11 @@ export default {
       type: Boolean,
       default: true
     },
-    dropJudge: Function
+    dropJudge: Function,
+    scoped: {
+      type: Boolean,
+      default: false,
+    },
   },
   beforeCreate() {
     // 默认为false
@@ -91,14 +95,16 @@ export default {
     },
     childCheckedHandle(node, checked, halfcheck = false) {
       const { children } = node;
+
+      //zx 增加， 父节点disabeld， 子节点不能自动checked
+      if(node.disabled) return;
       if (children && children.length) {
         children.forEach(child => {
-          if (!child.chkDisabled) {
+          if (!child.disabled) {
             this.$set(child, "checked", checked);
             if (halfcheck) {
               this.$set(child, "halfcheck", false);
             }
-            this.$set(child, "parentCheckedToChildren", true);
           }
           if (this.allowCheckedChildrenOfDisabledChild) {
             this.childCheckedHandle(child, checked, halfcheck);
@@ -107,7 +113,7 @@ export default {
       }
     },
     parentCheckedHandle(parentNode, checked, halfcheck = false) {
-      if (!parentNode || parentNode.chkDisabled || !!parentNode.checked === checked ) return false;
+      if (!parentNode || parentNode.disabled || !!parentNode.checked === checked ) return false;
       let [someBortherNodeChecked, allBortherNodeChecked] = [checked, checked];
       const childNodes = parentNode.children
       if (checked) {
@@ -177,7 +183,6 @@ export default {
       this.radioNode = node;
     },
     // 对外暴露的方法,通过ref访问
-
     // set node attr
     setNodeAttr(node, attr, val = true) {
       if (!node || !attr) return;
@@ -201,7 +206,7 @@ export default {
         this.updateRadioNode(node, selected);
       }
       this.$set(node, "selected", selected); // 只对当前的selected属性有效
-      if (changeCheck) {
+      if (changeCheck && !this.scoped) {
         this.childCheckedHandle(node, selected, this.halfcheck);
       }
       this.emitEventToParent("node-click", node, selected, position);
@@ -232,13 +237,17 @@ export default {
           `newNode type error, not allowed ${newNodeType}`
         );
       }
-      const { halfcheck, checked } = parent;
-      addnode = Object.assign(
-        {
-          checked: !halfcheck && checked
-        },
-        addnode
-      );
+
+      //scoped 情况下， 不关联
+      if(!this.scoped){
+        const { halfcheck, checked } = parent;
+        addnode = Object.assign(
+          {
+            checked: !halfcheck && checked
+          },
+          addnode
+        );
+      }
       if (this.isLeaf(parent)) {
         this.$set(parent, "children", []);
         parent.children.push(addnode);

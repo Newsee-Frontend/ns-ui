@@ -23,7 +23,7 @@ export default {
     }
     return (
       <div
-        class={titleClass}
+        class={[titleClass, 'tpl-div']}
         onMouseover={() => nodeMouseOver(node, index, parent)}
         style={'user-select: none;'}
         onClick={() => {

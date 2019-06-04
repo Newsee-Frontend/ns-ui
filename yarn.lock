@@ -1529,6 +1529,13 @@ babel-runtime@6.x:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
 
+babel-runtime@^5.8.0:
+  version "5.8.38"
+  resolved "https://registry.npm.taobao.org/babel-runtime/download/babel-runtime-5.8.38.tgz#1c0b02eb63312f5f087ff20450827b425c9d4c19"
+  integrity sha1-HAsC62MxL18If/IEUIJ7QlydTBk=
+  dependencies:
+    core-js "^1.0.0"
+
 bail@^1.0.0:
   version "1.0.4"
   resolved "https://registry.npm.taobao.org/bail/download/bail-1.0.4.tgz#7181b66d508aa3055d3f6c13f0a0c720641dde9b"
@@ -2429,6 +2436,11 @@ core-js-pure@3.1.2:
   version "3.1.2"
   resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.1.2.tgz#62fc435f35b7374b9b782013cdcb2f97e9f6dffa"
   integrity sha1-YvxDXzW3N0ubeCATzcsvl+n23/o=
+
+core-js@^1.0.0:
+  version "1.2.7"
+  resolved "https://registry.npm.taobao.org/core-js/download/core-js-1.2.7.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
+  integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
 core-js@^2.4.0, core-js@^2.6.5:
   version "2.6.8"
@@ -6968,6 +6980,28 @@ npm-which@^3.0.1:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+ns-form-components@0.0.18:
+  version "0.0.18"
+  resolved "https://registry.npm.taobao.org/ns-form-components/download/ns-form-components-0.0.18.tgz#08c435db2217d43a54572c2feec6694bf2f0b42a"
+  integrity sha1-CMQ12yIX1DpUVywv7sZpS/LwtCo=
+  dependencies:
+    "@riophae/vue-treeselect" "^0.0.38"
+    crypto-js "^3.1.9-1"
+    cx-theme "^1.0.5"
+    easings-css "^1.0.0"
+    element-ui "^2.7.0"
+    fuzzysearch "^1.0.3"
+    is-promise "^2.1.0"
+    js-cookie "^2.1.4"
+    lodash "^4.0.0"
+    material-colors "^1.2.6"
+    mockjs "^1.0.1-beta3"
+    screenfull "^4.2.0"
+    vue "2.5.21"
+    vue-particles "^1.0.9"
+    vue-videobg "^2.0.0"
+    watch-size "^2.0.0"
+
 nth-check@^1.0.2, nth-check@~1.0.1:
   version "1.0.2"
   resolved "https://registry.npm.taobao.org/nth-check/download/nth-check-1.0.2.tgz#b2bd295c37e3dd58a3bf0700376663ba4d9cf05c"
@@ -10539,6 +10573,14 @@ vue-loader@14.2.4:
     vue-style-loader "^4.0.1"
     vue-template-es2015-compiler "^1.6.0"
 
+vue-particles@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.npm.taobao.org/vue-particles/download/vue-particles-1.0.9.tgz#29d9cc2be0157df1c0a87ec3b96c96f33279526e"
+  integrity sha1-KdnMK+AVffHAqH7DuWyW8zJ5Um4=
+  dependencies:
+    particles.js "^2.0.0"
+    vue "^2.2.6"
+
 vue-router@^2.3.1:
   version "2.8.1"
   resolved "https://registry.npm.taobao.org/vue-router/download/vue-router-2.8.1.tgz#9833c9ee57ac83beb0269056fefee71713f20695"
@@ -10565,12 +10607,20 @@ vue-template-es2015-compiler@^1.6.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
+vue-videobg@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/vue-videobg/download/vue-videobg-2.0.0.tgz#58267502eda6dbe158a2d5dd924cf61bea086d0c"
+  integrity sha1-WCZ1Au2m2+FYotXdkkz2G+oIbQw=
+  dependencies:
+    babel-runtime "^5.8.0"
+    vue "^2.3.2"
+
 vue@2.5.21:
   version "2.5.21"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.5.21.tgz#3d33dcd03bb813912ce894a8303ab553699c4a85"
   integrity sha1-PTPc0Du4E5Es6JSoMDq1U2mcSoU=
 
-vue@^2.5.17, vue@^2.5.2:
+vue@^2.2.6, vue@^2.3.2, vue@^2.5.17, vue@^2.5.2:
   version "2.6.10"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.10.tgz#a72b1a42a4d82a721ea438d1b6bf55e66195c637"
   integrity sha1-pysaQqTYKnIepDjRtr9V5mGVxjc=

@@ -38,6 +38,7 @@
     "lodash": "^4.0.0",
     "material-colors": "^1.2.6",
     "mockjs": "^1.0.1-beta3",
+    "ns-form-components": "0.0.18",
     "particles.js": "^2.0.0",
     "screenfull": "^4.2.0",
     "tinymce": "^5.0.6",

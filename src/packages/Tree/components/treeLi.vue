@@ -74,7 +74,7 @@
       iconSvg,
     },
     beforeCreate() {
-      this.$options.components.TreeUl = require('./treeUl.vue').default;
+      this.$options.components.TreeUl = require('./treeUl').default;
     },
     props: {
       item: {
@@ -251,12 +251,9 @@
         this.parentChecked(parentNode, checked, halfcheck);
       },
       checkedChange() {
-        const { checked = false, parentCheckedToChildren = false } = this.item;
-        if (!this.scoped || !parentCheckedToChildren) {
+        const { checked = false } = this.item;
+        if (!this.scoped) {
           this.theParentChecked(checked, this.halfcheck);
-        }
-        if (parentCheckedToChildren) {
-          this.$delete(this.item, 'parentCheckedToChildren');
         }
       },
     },

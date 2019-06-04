@@ -33,7 +33,7 @@ export default {
            item.expanded = true;
          }
 
-        if(item.children.length > 0){
+        if(item.children && item.children.length > 0){
           this.transformKeyFun(item.children)
         }
 
@@ -42,13 +42,7 @@ export default {
           this.$set(item, 'async', true)
         }
       })
+      return list;
     }
-  },
-
-  watch: {
-    data(list){
-      this.transformKeyFun(list);
-      return list
-    },
   }
 }

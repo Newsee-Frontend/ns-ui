@@ -9,16 +9,11 @@ export default create({
   mixins: [transformNodes],
 
   data() {
-    return {};
+    return {
+      list: []
+    }
   },
   props: {
-
-    //节点数组
-    data: {
-      type: Array,
-      default: []
-    },
-
     //是否懒加载
     lazy: {
       type: Boolean,
@@ -52,7 +47,14 @@ export default create({
     //节点是否允许被放在节点下
     dropJudge: {
       type: Function
+    },
+
+    //checkbox 的情况下，在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false
+    checkStrictly: {
+      type: Boolean,
+      default: false
     }
+
 
   },
   computed: {},
@@ -73,8 +75,9 @@ export default create({
       <div class={this.recls()}>
         <v-tree
           ref="tree"
-          data={this.data}
-          halfcheck
+          data={this.list}
+          halfcheck={!this.checkStrictly}
+          scoped={this.checkStrictly}
           draggable={this.draggable}
           dropJudge={this.dropJudge}
           tpl={tpl.bind(this)}
@@ -88,6 +91,15 @@ export default create({
   },
 
   methods: {
+    //初始化树节点
+    initTree(list){
+      if(list instanceof Array){
+        this.list = this.transformKeyFun(list);
+      }else{
+        throw 'the function initTree, argument must be Array'
+      }
+    },
+
     //异步加载
     asyncLoad(...arg){
       this.$emit('loadNode', ...arg);
@@ -99,7 +111,7 @@ export default create({
     },
 
     /**
-     * 增加nodes
+     * 外暴方法，增加nodes
      * @param node 当前的节点
      * @param children 增加的子节点
      */
@@ -109,31 +121,37 @@ export default create({
     },
 
     /**
-     * 删除节点
+     * 外暴方法，删除节点
      */
     delNode: function(...arg){
       this.$refs.tree.delNode(...arg);
     },
 
     /**
-     * 自定义select node
+     * 外暴方法，自定义select node
      */
-    nodeSelected: function(node){
-      this.$refs.tree.nodeSelected(node);
+    nodeSelectedByKey: function(ids){
+      if(ids instanceof Array){
+        ids.forEach((id) => {
+          let nodes = this.$refs.tree.getNodes({id: id}, this.list, true);
+          nodes.length > 0 && (this.$refs.tree.nodeSelected(nodes[0]));
+        })
+      }
     },
 
     /**
-     * 获取所选的节点
+     * 外暴方法，获取所选的节点
      */
     getSelectedNodes: function(){
       return this.$refs.tree.getSelectedNodes()
+    },
+
+    /**
+     * 外暴方法，获取check节点
+     */
+    getCheckedNodes: function(){
+      return this.$refs.tree.getCheckedNodes()
     }
-  },
 
-  created() {
-
-  },
-
-  mounted() {
-  },
+  }
 });

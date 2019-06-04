@@ -16,8 +16,8 @@
             </div>
           </template>
         </ns-tree>
-        <ns-button @click="getNodes('baseTree')" >获取选中的节点</ns-button>
-        <ns-button @click="setNodes('baseTree')" >设置选中的节点</ns-button>
+        <ns-button @click="getNodes('baseTree')">获取选中的节点</ns-button>
+        <ns-button @click="setNodes('baseTree')">设置选中的节点</ns-button>
       </template>
     </demo-block>
 
@@ -38,6 +38,7 @@
           <template slot-scope="{node, parent,index}">
             <div class="slot-container">
               <i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>
+              <i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>
               <div class="title-text">
                 {{node.companyName || node.houseFullName}}
               </div>
@@ -56,6 +57,7 @@
           :data="nodesListSelect"
           :keyRefer="keyRefer"
           :showCheckbox="true"
+          :checkStrictly="checkStrictly"
           multiple
           :lazy="lazy"
           ref="selectTree"
@@ -69,6 +71,9 @@
             </div>
           </template>
         </ns-tree>
+        <ns-button @click="getNodes('selectTree')">获取选中的节点</ns-button>
+        <ns-button @click="setNodes('selectTree')">设置选中的节点</ns-button>
+        <ns-switch v-model="checkStrictly"   active-text="父子不关联" inactive-text="父子关联"> </ns-switch>
       </template>
     </demo-block>
 
@@ -80,7 +85,7 @@
           :data="nodeListdrag"
           :draggable="true"
           :dropJudge="dropJudge"
-          ref="baseTree"
+          ref="dropTree"
         >
           <template slot-scope="{node, parent,index}">
             <div class="title-text">
@@ -104,7 +109,7 @@
         nodesListLazy: [],
         nodesListSelect: [],
         nodeListdrag: [],
-
+        checkStrictly: true,
         keyRefer: {
           id: 'houseId',
           title: 'houseName',
@@ -130,12 +135,25 @@
           url: '/system/data/initTree',
           method: 'get',
         }).then((res) => {
-          this.nodesListNormal = JSON.parse(JSON.stringify(res.resultData));
-          this.nodesListLazy = JSON.parse(JSON.stringify(res.resultData));
-          this.nodesListSelect = JSON.parse(JSON.stringify(res.resultData));
-          this.nodeListdrag = JSON.parse(JSON.stringify(res.resultData));
-          this.$refs.baseTree.nodeSelected(this.nodesListNormal[0]);
+          this.$refs.baseTree.initTree(this.deepCopy(res.resultData));
+          this.$refs.testTree.initTree(this.deepCopy(res.resultData));
+          this.$refs.selectTree.initTree(this.deepCopy(res.resultData));
+          this.$refs.dropTree.initTree(this.deepCopy(res.resultData));
         });
+      },
+
+      deepCopy(obj) {
+        var result = Array.isArray(obj) ? [] : {};
+        for (let key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object') {
+              result[key] =this.deepCopy(obj[key]);   //递归复制
+            } else {
+              result[key] = obj[key];
+            }
+          }
+        }
+        return result;
       },
 
 
@@ -154,7 +172,7 @@
 
 
       //异步加载select树
-      loadNodeSelect(node){
+      loadNodeSelect(node) {
         this.$set(node, 'loading', true);
         fetch({
           url: '/system/data/childrenTree',
@@ -171,28 +189,36 @@
         this.$refs.testTree.delNode(...arg);
       },
 
+      //编辑节点
+      editNode(node){
+        this.$prompt('您要修改节点的名称', '提示').then( ({value}) => {
+          node.houseFullName = value;
+        });
+      },
+
       //获取节点
-      getNodes(ref){
-        console.log(this.$refs[ref].getSelectedNodes())
+      getNodes(ref) {
+        console.log(this.$refs[ref].getSelectedNodes(), 'getSelectedNodes');
+        console.log(this.$refs[ref].getCheckedNodes(), 'getCheckedNodes');
       },
 
       //设置选中的节点
-      setNodes(ref){
-        this.$refs[ref].nodeSelected(this.nodesListNormal[0]);
+      setNodes(ref) {
+        this.$refs[ref].nodeSelectedByKey([0,114191]);
       },
 
 
       //判断是否可拖拉
-      dropJudge(node, Pnode, resolve){
+      dropJudge(node, Pnode, resolve) {
         let name = node.companyName || node.houseFullName;
         let pName = Pnode.companyName || Pnode.houseFullName;
 
         this.$confirm(`是否将节点${name}插入节点${pName}`, '提示', {
-            callback: action => {
-              resolve(action === 'confirm')
-            }
+          callback: action => {
+            resolve(action === 'confirm');
+          },
         });
-      }
+      },
 
     },
     mounted() {
