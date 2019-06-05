@@ -10,4 +10,5 @@ module.exports = [
   'Select',
   'Only-MMDD-picker',
   'Time-interval',
+  'Table',
 ];

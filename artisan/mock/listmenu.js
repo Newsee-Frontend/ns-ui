@@ -262,6 +262,14 @@ const navmenu = (req, res) => {
             menuIndex: 3,
             hide: 1,
           },
+          {
+            funcId: 'pagination',
+            menuLabel: 'pagination分页',
+            menuRouter: 'pagination',
+            menuIcon: null,
+            menuIndex: 4,
+            hide: 1,
+          },
         ],
       },
       {
