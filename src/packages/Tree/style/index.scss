@@ -46,20 +46,9 @@ $disabled-font-color: #c0c4cc;
     list-style-type: none;
     text-align: left;
   }
-  .halo-tree .inputCheck {
-    display: inline-block;
-    position: relative;
-    width: 14px;
-    height: 14px;
-    border: 1px solid #888888;
-    border-radius: 2px;
-    text-align: center;
-    font-size: 14px;
-    line-height: 14px;
-  }
   .halo-tree li {
     margin: 0;
-    padding: 5px 0px 5px 15px;
+    padding: 2px 0px 5px 0px;
     position: relative;
     list-style: none;
   }
@@ -103,7 +92,7 @@ $disabled-font-color: #c0c4cc;
     padding-left: 0;
   }
   .halo-tree ul {
-    padding-left: 22px;
+    padding-left: 18px;
   }
   .halo-tree .tree-node-el {
     background-color: #ffffff;
@@ -128,7 +117,7 @@ $disabled-font-color: #c0c4cc;
   }
 
   .halo-tree li.leaf {
-    padding-left: 15px;
+    padding-left: 0;
   }
   .halo-tree li.leaf:after {
     content: "";
@@ -179,7 +168,6 @@ $disabled-font-color: #c0c4cc;
     color: $disabled-font-color;
   }
   .halo-tree .node-selected {
-    border: 1px solid #eee;
     background-color: $hover-color;
   }
 

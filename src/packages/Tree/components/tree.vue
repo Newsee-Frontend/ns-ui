@@ -95,7 +95,6 @@ export default {
     },
     childCheckedHandle(node, checked, halfcheck = false) {
       const { children } = node;
-
       //zx 增加， 父节点disabeld， 子节点不能自动checked
       if(node.disabled) return;
       if (children && children.length) {
@@ -197,13 +196,18 @@ export default {
      *@param node current node
      */
     nodeSelected(node, position) {
-      const selected = !node.selected;
-      const changeCheck = this.multiple && !this.selectAlone;
+      let selected = !node.selected;
+      let changeCheck = this.multiple && !this.selectAlone;
       if (changeCheck) {
         this.$set(node, "checked", selected);
       }
       if (this.radio) {
         this.updateRadioNode(node, selected);
+
+        //如果是单选， selected 是true
+        if(!this.multiple){
+          selected = true
+        }
       }
       this.$set(node, "selected", selected); // 只对当前的selected属性有效
       if (changeCheck && !this.scoped) {

@@ -77,7 +77,7 @@ export default {
       // drag from parent node to child node
       if (this.hasInGenerations(dragNode, node)) return false
 
-      // 增加判断， 是否可以插入
+      // zx增加判断， 是否可以插入
       let po = await new Promise( (resolve) => {
         return this.dropJudge && this.dropJudge(dragNode, node,resolve)
       })
