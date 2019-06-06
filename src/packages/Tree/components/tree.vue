@@ -388,7 +388,7 @@ export default {
      */
     getCheckedNodes(isOriginal, ignoreInvisibleNode = false) {
       return this.getNodes(
-        { checked: true },
+        { checked: true , halfcheck: false},
         this.data,
         isOriginal,
         ignoreInvisibleNode

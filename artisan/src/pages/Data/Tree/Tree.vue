@@ -212,7 +212,6 @@
       dropJudge(node, Pnode, resolve) {
         let name = node.companyName || node.houseFullName;
         let pName = Pnode.companyName || Pnode.houseFullName;
-
         this.$confirm(`是否将节点${name}插入节点${pName}`, '提示', {
           callback: action => {
             resolve(action === 'confirm');

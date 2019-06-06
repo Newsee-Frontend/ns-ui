@@ -21,16 +21,21 @@ export default {
 
   methods: {
     transformKeyFun: function(list){
-       list.forEach((item) => {
+      Object.assign(keyRefer, this.keyRefer)
+      list.forEach((item) => {
         //设置树对应的字段
-        Object.keys(this.keyRefer).forEach( key => {
-          let hitKey = this.keyRefer[key];
+        Object.keys(keyRefer).forEach( key => {
+          let hitKey = keyRefer[key];
           this.$set(item, key, item[hitKey]);
         });
 
+        //增加 checked  halfcheck 属性
+         this.$set(item, 'checked', false);
+         this.$set(item, 'halfcheck', false);
+
          //默认全部节点展开的情况
          if(this.expandAllNodes){
-           item.expanded = true;
+           this.$set(item, 'expanded',true);
          }
 
         if(item.children && item.children.length > 0){

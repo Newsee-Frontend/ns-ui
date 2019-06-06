@@ -32,7 +32,7 @@ export default create({
       default: false
     },
 
-    //初始化的时候， 是否全部展开所有的节点
+    //是否全部展开所有的节点
     expandAllNodes: {
       type: Boolean,
       default: false
