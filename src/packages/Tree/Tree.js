@@ -85,6 +85,8 @@ export default create({
           radio={!this.multiple}
           onAsync-load-nodes={this.asyncLoad}
           onNode-click={this.nodeClick}
+          onNode-check={this.nodeCheck}
+          onNode-expand={this.nodeExpand}
         />
       </div>
     )
@@ -108,6 +110,16 @@ export default create({
     //node 点击
     nodeClick(...arg){
       this.$emit('nodeClick',...arg)
+    },
+
+    //node check
+    nodeCheck(...arg){
+      this.$emit('nodeCheck',...arg)
+    },
+
+    //node 展开
+    nodeExpand(...arg){
+      this.$emit('nodeExpand',...arg)
     },
 
     /**

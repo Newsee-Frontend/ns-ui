@@ -10,6 +10,7 @@
           :keyRefer="keyRefer"
           :data="nodesListNormal"
           @nodeClick="nodeClick"
+          @nodeExpand="nodeExpand"
           ref="baseTree"
         >
           <template slot-scope="{node, parent,index}">
@@ -84,6 +85,7 @@
           :lazy="lazy"
           ref="selectTree"
           @loadNode="loadNodeSelect"
+          @nodeCheck="nodeCheck"
         >
           <template slot-scope="{node, parent,index}">
             <div class="slot-container">
@@ -160,6 +162,15 @@
         console.log(arg);
       },
 
+      //当前节点node check
+      nodeCheck(...arg){
+        console.log(arg);
+      },
+
+      //node 展开关闭
+      nodeExpand(...arg){
+        console.log(arg);
+      },
       //深拷贝
       deepCopy(obj) {
         var result = Array.isArray(obj) ? [] : {};
