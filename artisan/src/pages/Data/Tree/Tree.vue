@@ -20,6 +20,7 @@
         </ns-tree>
         <ns-button @click="getNodes('baseTree')">获取选中的节点</ns-button>
         <ns-button @click="setNodes('baseTree')">设置选中的节点</ns-button>
+        <el-input-number v-model="num" @change="handleChange" :min="0" :max="2" size="small"></el-input-number>
       </template>
     </demo-block>
 
@@ -44,6 +45,25 @@
               <div class="title-text">
                 {{node.companyName || node.houseFullName}}
               </div>
+            </div>
+          </template>
+        </ns-tree>
+      </template>
+    </demo-block>
+
+    <demo-block>
+      <template slot="title">可拖拉</template>
+      <template slot="content">
+        <ns-tree
+          :keyRefer="keyRefer"
+          :data="nodeListdrag"
+          :draggable="true"
+          :dropJudge="dropJudge"
+          ref="dropTree"
+        >
+          <template slot-scope="{node, parent,index}">
+            <div class="title-text">
+              {{node.companyName || node.houseFullName}}
             </div>
           </template>
         </ns-tree>
@@ -78,25 +98,6 @@
         <ns-switch v-model="checkStrictly"   active-text="父子不关联" inactive-text="父子关联"> </ns-switch>
       </template>
     </demo-block>
-
-    <demo-block>
-      <template slot="title">可拖拉</template>
-      <template slot="content">
-        <ns-tree
-          :keyRefer="keyRefer"
-          :data="nodeListdrag"
-          :draggable="true"
-          :dropJudge="dropJudge"
-          ref="dropTree"
-        >
-          <template slot-scope="{node, parent,index}">
-            <div class="title-text">
-              {{node.companyName || node.houseFullName}}
-            </div>
-          </template>
-        </ns-tree>
-      </template>
-    </demo-block>
   </div>
 </template>
 
@@ -107,6 +108,7 @@
     name: '',
     data() {
       return {
+        data: [],
         nodesListNormal: [],
         nodesListLazy: [],
         nodesListSelect: [],
@@ -120,6 +122,7 @@
           expanded: 'nodeExpanded',
           disabled: 'disabled',
         },
+        num:2,
 
         showCheckbox: false,
 
@@ -137,11 +140,19 @@
           url: '/system/data/initTree',
           method: 'get',
         }).then((res) => {
-          this.$refs.baseTree.initTree(this.deepCopy(res.resultData));
-          this.$refs.testTree.initTree(this.deepCopy(res.resultData));
-          this.$refs.selectTree.initTree(this.deepCopy(res.resultData));
-          this.$refs.dropTree.initTree(this.deepCopy(res.resultData));
+          //initTree（data, expandLevel） 设置展开层级
+          this.data = this.deepCopy(res.resultData);
+          this.$refs.baseTree.initTree(this.deepCopy(res.resultData), this.num);
+          this.$refs.testTree.initTree(this.deepCopy(res.resultData),2);
+          this.$refs.selectTree.initTree(this.deepCopy(res.resultData),2);
+          this.$refs.dropTree.initTree(this.deepCopy(res.resultData),2);
         });
+      },
+
+
+      //handleChange 默认展开的层级
+      handleChange: function(val){
+        this.$refs.baseTree.initTree(this.deepCopy(this.data),val);
       },
 
       //node click
@@ -149,6 +160,7 @@
         console.log(arg);
       },
 
+      //深拷贝
       deepCopy(obj) {
         var result = Array.isArray(obj) ? [] : {};
         for (let key in obj) {
@@ -162,7 +174,6 @@
         }
         return result;
       },
-
 
       //异步获取
       loadNode(node) {

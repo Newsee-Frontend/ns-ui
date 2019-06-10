@@ -103,8 +103,23 @@ $disabled-font-color: #c0c4cc;
     .ns-icon-svg{
       color: #a6a6a6;
       width: 1.1em;
-      padding: 0 3px;
+      padding: 0 5px;
+      cursor: pointer;
     }
+    .el-icon-caret-right{
+      cursor: pointer;
+      color: #c0c4cc;
+      padding: 0 5px;
+      font-size: 16px;
+      transition: transform .3s ease-in-out;
+      &.leaf-icon{
+        color: transparent;
+      }
+      &.expanded-icon{
+        transform: rotate(90deg);
+      }
+    }
+
     .el-checkbox{
       padding-right: 5px;
       height: 26px;
@@ -169,6 +184,14 @@ $disabled-font-color: #c0c4cc;
   }
   .halo-tree .node-selected {
     background-color: $hover-color;
+  }
+
+  &.ns-tree__multiple{
+    .halo-tree li{
+      &:before, &:after{
+        border: none;
+      }
+    }
   }
 
 }

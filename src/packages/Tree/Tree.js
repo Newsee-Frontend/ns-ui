@@ -72,7 +72,7 @@ export default create({
     };
 
     return(
-      <div class={this.recls()}>
+      <div class={[this.recls(), this.showCheckbox? this.recls('multiple'): {}]}>
         <v-tree
           ref="tree"
           data={this.list}
@@ -92,9 +92,9 @@ export default create({
 
   methods: {
     //初始化树节点
-    initTree(list){
+    initTree(list, expandLevel){
       if(list instanceof Array){
-        this.list = this.transformKeyFun(list);
+        this.list = this.transformKeyFun(list, expandLevel);
       }else{
         throw 'the function initTree, argument must be Array'
       }

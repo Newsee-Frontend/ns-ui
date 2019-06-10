@@ -2,9 +2,19 @@
   <li v-if="itemVisible" :class="liClass">
     <div class="tree-node-el" :draggable="draggable" @dragstart="drag(item, $event)">
       <!--展开 收缩-->
-      <span @click="expandNode(item)">
+      <!--checkbox的树图形-->
+      <span @click="expandNode(item)"  v-if="multiple">
+         <i
+           :class="{
+            'el-icon-caret-right': true,
+            'expanded-icon':item.expanded,
+            'leaf-icon': !(hasChildren  || item.async || item.loading) }"
+         ></i>
+      </span>
+      <!--一般的树图形-->
+      <span @click="expandNode(item)" v-else>
         <icon-svg
-          v-if="showExpand && (hasChildren || item.async)"
+          v-if="hasChildren || item.async"
           :icon-class="item.expanded? 'CombinedShape1' : 'CombinedShapeCopy1'"
         ></icon-svg>
         <icon-svg
@@ -160,11 +170,6 @@
       hasChildren() {
         const item = this.item;
         return item.children && item.children.length > 0;
-      },
-      showExpand() {
-        const item = this.item;
-        const isShow = !this.parent ? this.topMustExpand : false;
-        return isShow || this.hasChildren || item.async;
       },
       showNextUl() {
         return (

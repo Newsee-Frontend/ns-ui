@@ -52,7 +52,6 @@ let rootResultData = [
       "childOwnerHouseBaseInfoTreeNodeList": [],
       "isHasChild": true
     }],
-    "nodeExpanded": true,
     "isHasChild": true,
     "houseName": null,
     "precinctId": "114191"
