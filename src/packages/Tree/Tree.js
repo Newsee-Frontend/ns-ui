@@ -128,6 +128,15 @@ export default create({
     },
 
     /**
+     * 外暴方法，更新节点（主要更新文字的操作）
+     */
+    updateNode: function(node, updateObj){
+      if(updateObj){
+        Object.assign(node,updateObj)
+      }
+    },
+
+    /**
      * 外暴方法，自定义select node
      */
     nodeSelectedByKey: function(ids){

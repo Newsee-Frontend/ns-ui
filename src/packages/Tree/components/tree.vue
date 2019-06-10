@@ -195,7 +195,7 @@ export default {
      *@method change the node selected  method
      *@param node current node
      */
-    nodeSelected(node, position) {
+    nodeSelected(node, position, parent) {
       let selected = !node.selected;
       let changeCheck = this.multiple && !this.selectAlone;
       if (changeCheck) {
@@ -213,8 +213,8 @@ export default {
       if (changeCheck && !this.scoped) {
         this.childCheckedHandle(node, selected, this.halfcheck);
       }
-      this.emitEventToParent("node-click", node, selected, position);
-      this.emitEventToParent("node-select", node, selected, position);
+      this.emitEventToParent("node-click", node, selected, position, parent);
+      this.emitEventToParent("node-select", node, selected, position, parent);
     },
 
     /* @method adding child node

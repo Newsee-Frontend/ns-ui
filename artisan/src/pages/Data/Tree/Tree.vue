@@ -1,6 +1,7 @@
 <!--UI 组件库 - Tree - 页面测试-->
 <template>
   <div class="tree-wrapper">
+
     <demo-block>
       <template slot="title">默认 tree</template>
       <template slot="describe">基础用法, keyRefer配置对应字段</template>
@@ -8,6 +9,7 @@
         <ns-tree
           :keyRefer="keyRefer"
           :data="nodesListNormal"
+          @nodeClick="nodeClick"
           ref="baseTree"
         >
           <template slot-scope="{node, parent,index}">
@@ -142,6 +144,11 @@
         });
       },
 
+      //node click
+      nodeClick(...arg){
+        console.log(arg);
+      },
+
       deepCopy(obj) {
         var result = Array.isArray(obj) ? [] : {};
         for (let key in obj) {
@@ -192,7 +199,7 @@
       //编辑节点
       editNode(node){
         this.$prompt('您要修改节点的名称', '提示').then( ({value}) => {
-          node.houseFullName = value;
+          this.$refs.testTree.updateNode(node, {houseFullName: value});
         });
       },
 

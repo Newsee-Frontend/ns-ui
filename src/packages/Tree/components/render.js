@@ -28,7 +28,7 @@ export default {
         style={'user-select: none;'}
         onClick={() => {
           if (disabled) return
-          ctx.parent.nodeSelected(node, {level, index})
+          ctx.parent.nodeSelected(node, {level, index}, parent)
         }}>
         {tpl(node, parent, index)}
       </div>
