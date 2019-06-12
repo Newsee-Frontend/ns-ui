@@ -41,6 +41,21 @@
         ></ns-checkbox>
       </template>
     </demo-block>
+
+    <demo-block>
+      <template slot="title">single checkbox</template>
+      <template slot="describe"> 单个checkbox选项， disabled控制禁用， true-label, false-label是checkbox选中与否的value值</template>
+      <template slot="content">
+        <ns-single-checkbox  v-model="checked1" @change="change">备选项1 </ns-single-checkbox>
+        <ns-single-checkbox  v-model="checked2"  disabled>备选项2 </ns-single-checkbox>
+        <ns-single-checkbox
+          v-model="checked3"
+          true-label="I am True"
+          false-label="I am False"
+          @change="change"
+        >备选项2 </ns-single-checkbox>
+      </template>
+    </demo-block>
   </div>
 </template>
 
@@ -55,6 +70,9 @@
       return {
         checkValues: [1, 2],
         newCheckValues: [3, 4, 5],
+        checked1: true,
+        checked2: false,
+        checked3: '',
         keyRefer: {
           label: 'label',
           value: 'value',
@@ -69,6 +87,10 @@
       getChange(val) {
         console.log('checkbox-change', val);
       },
+
+      change(val){
+        console.log('single-checkbox', val)
+      }
     },
   };
 </script>
