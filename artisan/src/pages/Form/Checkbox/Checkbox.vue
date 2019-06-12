@@ -46,14 +46,17 @@
       <template slot="title">single checkbox</template>
       <template slot="describe"> 单个checkbox选项， disabled控制禁用， true-label, false-label是checkbox选中与否的value值</template>
       <template slot="content">
-        <ns-single-checkbox  v-model="checked1" @change="change">备选项1 </ns-single-checkbox>
-        <ns-single-checkbox  v-model="checked2"  disabled>备选项2 </ns-single-checkbox>
-        <ns-single-checkbox
+        <ns-checkbox  v-model="checked1"  :isGroup="false" @change="change">备选项1 </ns-checkbox>
+        <ns-checkbox  v-model="checked2"  :isGroup="false" disabled>备选项2 </ns-checkbox>
+        <ns-checkbox
           v-model="checked3"
+          :isGroup="false"
           true-label="I am True"
           false-label="I am False"
           @change="change"
-        >备选项2 </ns-single-checkbox>
+        >
+          备选项1
+        </ns-checkbox>
       </template>
     </demo-block>
   </div>

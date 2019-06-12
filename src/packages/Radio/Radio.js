@@ -12,7 +12,10 @@ export default create({
   props: {
     value: [String, Number],
     width: [String, Number],
-    options: { type: Array, default: [] },
+    options: {
+      type: Array,
+      default:() => ([])
+     },
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
     size: { type: String, validator: s => sizeValidator(s) },
     fill: { type: String, default: '#20a0ff' }, //背景颜色
@@ -22,6 +25,14 @@ export default create({
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },
+
+    isGroup: {
+      type: Boolean,
+      default: true
+    },
+
+    label: [String, Number, Boolean],  //单个
+    border: Boolean
   },
 
   computed: {},
@@ -50,21 +61,37 @@ export default create({
       );
     };
 
+    const radioGroup = <el-radio-group
+      class={this.recls()}
+      value={this.childRadio}
+      onInput={e => this.handlemodel(e)}
+      disabled={this.disabled}
+      fill={this.fill}
+      textColor={this.textColor}
+      style={{ width: this.convert_width }}
+      on-change={this.change}
+    >
+      {
+        this.options.map(item => (radioDom(item)))
+      }
+    </el-radio-group>;
+
+    const radioSingle = <el-radio
+      class={this.recls()}
+      value={this.childRadio}
+      onInput={e => this.handlemodel(e)}
+      onChange={this.change}
+      className={this.recls()}
+      label={this.label}
+      disabled={this.disabled}
+      border={this.border}
+    >
+      {this.$slots.default}
+    </el-radio>
+
     return (
-      <el-radio-group
-        class={this.recls()}
-        value={this.childRadio}
-        onInput={e => this.handlemodel(e)}
-        disabled={this.disabled}
-        fill={this.fill}
-        textColor={this.textColor}
-        style={{ width: this.convert_width }}
-        on-change={this.change}
-      >
-        {
-          this.options.map(item => (radioDom(item)))
-        }
-      </el-radio-group>);
+      this.isGroup ? radioGroup: radioSingle
+    );
   },
 
   methods: {

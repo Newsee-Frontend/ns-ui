@@ -1,6 +1,0 @@
-@import "../../../style/mixins/mixins";
-@include b(single-radio) {
-  .el-radio__inner{
-    box-shadow: none !important;
-  }
-}

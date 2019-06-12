@@ -63,23 +63,35 @@
       <template slot="title">单个 radio按钮</template>
       <template slot="describe"> 单个radio选项， disabled控制禁用， label是radio的value值</template>
       <template slot="content">
-        <ns-single-radio
+        <ns-radio
           v-model="radio1"
+          :isGroup="false"
           label="1"
           disabled
           @change="changeRadio"
         >
           备选项
-        </ns-single-radio>
+        </ns-radio>
 
-        <ns-single-radio
+        <ns-radio
           v-model="radio1"
+          :isGroup="false"
           label="2"
           @change="changeRadio"
 
         >
           备选项
-        </ns-single-radio>
+        </ns-radio>
+
+        <ns-radio
+          v-model="radio1"
+          :isGroup="false"
+          label="3"
+          @change="changeRadio"
+
+        >
+          备选项
+        </ns-radio>
       </template>
     </demo-block>
   </div>
