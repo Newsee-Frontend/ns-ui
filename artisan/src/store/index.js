@@ -7,6 +7,7 @@ import PageTabs from './modules/PageTabs';
 import Form from './modules/Form';
 import Tree from './modules/Tree';
 
+
 import getters from './getters';
 
 Vue.use(Vuex);

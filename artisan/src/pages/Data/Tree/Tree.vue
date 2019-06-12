@@ -22,6 +22,8 @@
         <ns-button @click="getNodes('baseTree')">获取选中的节点</ns-button>
         <ns-button @click="setNodes('baseTree')">设置选中的节点</ns-button>
         <el-input-number v-model="num" @change="handleChange" :min="0" :max="2" size="small"></el-input-number>
+        <ns-button @click="setDataToStore">set tree Data to store</ns-button>
+        <ns-button @click="getDataToStore">get tree Data from store</ns-button>
       </template>
     </demo-block>
 
@@ -144,7 +146,7 @@
         }).then((res) => {
           //initTree（data, expandLevel） 设置展开层级
           this.data = this.deepCopy(res.resultData);
-          this.$refs.baseTree.initTree(this.deepCopy(res.resultData), this.num);
+          this.$refs.baseTree.initTree(this.data, this.num);
           this.$refs.testTree.initTree(this.deepCopy(res.resultData),2);
           this.$refs.selectTree.initTree(this.deepCopy(res.resultData),2);
           this.$refs.dropTree.initTree(this.deepCopy(res.resultData),2);
@@ -171,6 +173,8 @@
       nodeExpand(...arg){
         console.log(arg);
       },
+
+
       //深拷贝
       deepCopy(obj) {
         var result = Array.isArray(obj) ? [] : {};
@@ -247,6 +251,21 @@
           },
         });
       },
+
+      setDataToStore(){
+        this.$store.dispatch('setTreeData', {key: 111, list: this.deepCopy(this.data)})
+      },
+
+      //从缓存中获取数组
+      getDataToStore(){
+        if(this.$store.state.Tree.treeTempData[111]){
+          this.data = this.$store.state.Tree.treeTempData[111];
+          this.$refs.baseTree.setTree(this.data);
+        }else{
+          this.$message('请先set-store');
+        }
+      }
+
 
     },
     mounted() {

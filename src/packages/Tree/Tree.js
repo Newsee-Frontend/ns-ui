@@ -102,6 +102,20 @@ export default create({
       }
     },
 
+    //树数据从store中获取出来
+    setTree(list){
+      this.list = list;
+      if(!this.multiple){
+        //单选情况，手动set select的值(组件中保存了一个上一次前一次选中的node值)
+        let nodes = this.$refs.tree.getNodes({selected: true}, this.list, true);
+        if(nodes.length > 0){
+          let node = nodes[0];
+          this.$refs.tree.setNodeAttr(node, "selected", false);
+          this.$refs.tree.nodeSelected(node);
+        }
+      }
+    },
+
     //异步加载
     asyncLoad(...arg){
       this.$emit('loadNode', ...arg);

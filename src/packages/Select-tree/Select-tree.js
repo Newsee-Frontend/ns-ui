@@ -21,8 +21,6 @@ export default create({
      * 一旦禁止之后 modelConsists 属性将会失效，应为几个父节点都失去了选中的功能
      */
     disableBranchNodes: { type: Boolean, default: false },
-
-
     searchable: { type: Boolean, default: false },//是否启用搜索查询（前端查询)
     isFuzzyMatching: { type: Boolean, default: true },//是否启用模糊查询（前端查询)
     flattenSearchResults: { type: Boolean, default: false },//扁平化的搜索结果，父子节点以扁平化的展示形式出现
