@@ -46,7 +46,7 @@
           :keyRefer=keyRefer
           :multipleLimit="2"
           multiple
-          collapseTags,
+          collapseTags
           placeholder="请选择"
           width="300px"
           height="40px"
