@@ -65,6 +65,7 @@
             v-model="dateRange"
             type="daterange"
             width="400px"
+            height="100px"
             :readonly="readonly"
             :disabled="disabled"
             :editable="editable"

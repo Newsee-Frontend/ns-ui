@@ -58,7 +58,6 @@
       </template>
     </demo-block>
 
-
     <demo-block>
       <template slot="title">单个 radio按钮</template>
       <template slot="describe"> 单个radio选项， disabled控制禁用， label是radio的value值</template>
@@ -94,20 +93,42 @@
         </ns-radio>
       </template>
     </demo-block>
+
+    <demo-block>
+      <template slot="title">ns-radio-dictionary</template>
+      <template slot="content">
+        <ns-radio-dictionary
+          v-model="radioDictionary"
+          type="button"
+          @change="changeRadioDictionary"
+        ></ns-radio-dictionary>
+        <div class="gap"></div>
+        <ns-radio-dictionary
+          v-model="radioDictionary"
+          @change="changeRadioDictionary"
+        ></ns-radio-dictionary>
+      </template>
+    </demo-block>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
   import formmixins from '../../../mixins/form-mixins';
+  import nsRadioDictionary from '../../../components/radioDictionary/radioDictionary'
+
 
   export default {
     name: 'radio-demo',
     mixins: [formmixins],
+    components: {
+      nsRadioDictionary
+    },
     data() {
       return {
         selectRadio: 1,
-        radio1: 0,
+        radio1: '1',
+        radioDictionary: '100',
         keyRefer: {
           label: 'label',
           value: 'value',
@@ -125,6 +146,10 @@
 
       changeRadio(value){
         console.log('singleRadio-change', value, this.radio1)
+      },
+
+      changeRadioDictionary(e){
+        console.log('radio-dictionary-change', e);
       }
     },
   };

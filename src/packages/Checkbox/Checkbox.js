@@ -13,7 +13,7 @@ export default create({
     value: [Array,String, Number, Boolean],
     type: { type: String, default: 'normal' },
     size: { type: String, validator: s => sizeValidator(s) },
-    options: { type: Array,   default:() => ([])  },
+    options: { type: Array,   default:() => [] },
     width: { type: [String, Number] },
     disabled: { type: Boolean, default: false },
     min: { type: Number, default: 0 }, //可被勾选的 checkbox 的最小数量

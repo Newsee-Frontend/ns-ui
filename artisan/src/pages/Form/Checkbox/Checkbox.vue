@@ -59,20 +59,42 @@
         </ns-checkbox>
       </template>
     </demo-block>
+
+    <demo-block>
+      <template slot="title">ns-checkbox-dictionary</template>
+      <template slot="content">
+        <ns-checkbox-dictionary
+          v-model="checkboxDictionaryModel"
+          type="button" fill="#7fffcd"
+          textColor="#5e6d82"
+          @change="changeDictionary"
+        ></ns-checkbox-dictionary>
+        <div class="gap"></div>
+        <ns-checkbox-dictionary
+          v-model="checkboxDictionaryModel"
+          @change="changeDictionary"
+        ></ns-checkbox-dictionary>
+      </template>
+    </demo-block>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex';
   import formmixins from '../../../mixins/form-mixins';
+  import nsCheckboxDictionary from '../../../components/checkboxDictionary/checkboxDictionary'
 
   export default {
     name: 'checkbox-demo',
     mixins: [formmixins],
+    components: {
+      nsCheckboxDictionary
+    },
     data() {
       return {
         checkValues: [1, 2],
         newCheckValues: [3, 4, 5],
+        checkboxDictionaryModel: ['100', '110'],
         checked1: true,
         checked2: false,
         checked3: '',
@@ -93,6 +115,10 @@
 
       change(val){
         console.log('single-checkbox', val)
+      },
+
+      changeDictionary(val){
+        console.log('dictionary-checkbox', val);
       }
     },
   };

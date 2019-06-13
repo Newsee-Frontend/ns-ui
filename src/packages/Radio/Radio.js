@@ -44,7 +44,6 @@ export default create({
   },
 
   render(h) {
-
     const radioDom = item => {
       return (
         h(
@@ -81,7 +80,6 @@ export default create({
       value={this.childRadio}
       onInput={e => this.handlemodel(e)}
       onChange={this.change}
-      className={this.recls()}
       label={this.label}
       disabled={this.disabled}
       border={this.border}

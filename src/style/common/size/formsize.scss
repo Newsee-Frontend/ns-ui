@@ -20,7 +20,7 @@ $height: 32px 32px 32px 32px 32px;
           height: $h;
         }
       }
-    } @else if $block-type == 'xxxx' {
+    } @else if $block-type == 'xxx' {
 
     } @else {
       @include rb($size-name) {
@@ -29,10 +29,8 @@ $height: 32px 32px 32px 32px 32px;
 
       @include input-inner();
       @include icon-inner();
-
-      //special 时间范围选择的修改
-      @include date-range-modefy();
     }
+
   }
 }
 
