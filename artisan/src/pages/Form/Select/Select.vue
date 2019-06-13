@@ -46,7 +46,7 @@
           :keyRefer=keyRefer
           :multipleLimit="2"
           multiple
-          collapseTags
+          collapseTags,
           placeholder="请选择"
           width="300px"
           height="40px"
@@ -61,8 +61,7 @@
           :clearable="true"
           v-model="selectModelDictionary"
           multiple
-          width="300px"
-          height="100px"
+          collapseTags
           @change="changeSelectModelDictionary"
           @clear="clearSelectModelDictionary"
         ></ns-select-dictionary>
