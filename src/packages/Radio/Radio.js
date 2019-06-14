@@ -39,7 +39,6 @@ export default create({
   },
 
   render(h) {
-
     const radioDom = item => {
       return (
         h(

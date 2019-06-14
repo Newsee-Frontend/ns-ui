@@ -57,7 +57,14 @@
     <demo-block>
       <template slot="title">ns-select-dictionary</template>
       <template slot="content">
-        <ns-select-dictionary></ns-select-dictionary>
+        <ns-select-dictionary
+          :clearable="true"
+          v-model="selectModelDictionary"
+          multiple
+          collapseTags
+          @change="changeSelectModelDictionary"
+          @clear="clearSelectModelDictionary"
+        ></ns-select-dictionary>
       </template>
     </demo-block>
   </div>
@@ -78,9 +85,11 @@
       return {
         selectModel: 1,
         selectModels: [2, 5, 6],
+        selectModelDictionary: ['100'],
         keyRefer: {
           label: 'label',
           value: 'value',
+          disabled: 'disabled'
         },
       };
     },
@@ -129,6 +138,20 @@
        */
       removeTag: function() {
         console.log('select remove tag');
+      },
+
+      /**
+       *  数据字典 change 事件
+       */
+      changeSelectModelDictionary: function(e){
+        console.log('SelectModelDictionary change', e, this.selectModelDictionary)
+      },
+
+      /**
+       *  数据字典 change 事件
+       */
+      clearSelectModelDictionary: function(){
+        console.log('SelectModelDictionary clear', this.selectModelDictionary)
       },
     },
   };

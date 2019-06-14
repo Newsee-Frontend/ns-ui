@@ -3,4 +3,7 @@
 
 @include b(time-picker) {
   @include form-component-size(time-picker);
+
+  //special 时间范围选择的修改
+  @include date-range-modefy();
 }

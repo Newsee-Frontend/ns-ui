@@ -31,9 +31,11 @@ export default create({
     remote: { type: Boolean, default: false }, //是否为远程搜索
     remoteMethod: { type: Function, default: null }, //远程搜索方法
     allowCreate: { type: Boolean, default: false }, //是否允许用户创建新条目，需配合 filterable 使用
+    loadingText: {type: String, default: '加载中'},
+    noMatchText: {type: String, default: '无匹配数据'},
     keyRefer: {
       type: Object,
-      default: () => ({ label: 'label', value: 'value' }),
+      default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },
   },
 
@@ -42,7 +44,11 @@ export default create({
       return this.recls([this.formsize, this.multiple && 'multiple']);
     },
     convert_style() {
-      return {
+      return this.multiple? {
+        width: this.convert_width,
+        minHeight: this.convert_height,
+        lineHeight: this.convert_height,
+      } : {
         width: this.convert_width,
         height: this.convert_height,
         lineHeight: this.convert_height,
@@ -85,6 +91,8 @@ export default create({
         collapseTags={this.collapseTags}
         filterable={this.filterable}
         filterMethod={this.filterMethod}
+        loadingText={this.loadingText}
+        noMatchText={this.noMatchText}
         remote={this.remote}
         remoteMethod={this.remoteMethod}
         allowCreate={this.allowCreate}
