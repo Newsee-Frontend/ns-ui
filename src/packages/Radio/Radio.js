@@ -14,8 +14,8 @@ export default create({
     width: [String, Number],
     options: {
       type: Array,
-      default:() => ([])
-     },
+      default: () => ([]),
+    },
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
     size: { type: String, validator: s => sizeValidator(s) },
     fill: { type: String, default: '#20a0ff' }, //背景颜色
@@ -26,13 +26,8 @@ export default create({
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },
 
-    isGroup: {
-      type: Boolean,
-      default: true
-    },
-
+    isGroup: { type: Boolean, default: true },
     label: [String, Number, Boolean],  //单个
-    border: Boolean
   },
 
   computed: {},
@@ -77,20 +72,18 @@ export default create({
     </el-radio-group>;
 
     const radioSingle = <el-radio
-      class={this.recls()}
+      class={`${this.recls()} ${this.recls('single')}`}
       value={this.childRadio}
       onInput={e => this.handlemodel(e)}
       onChange={this.change}
-      className={this.recls()}
       label={this.label}
       disabled={this.disabled}
-      border={this.border}
     >
       {this.$slots.default}
-    </el-radio>
+    </el-radio>;
 
     return (
-      this.isGroup ? radioGroup: radioSingle
+      this.isGroup ? radioGroup : radioSingle
     );
   },
 

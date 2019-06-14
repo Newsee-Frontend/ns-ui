@@ -43,7 +43,7 @@ import Badge from '../../../src/packages/Badge/Badge.js';
 import Progress from '../../../src/packages/Progress/Progress.js';
 import Tree from '../../../src/packages/Tree/Tree.js';
 import Pagination from '../../../src/packages/Pagination/Pagination';
-
+import Table from '../../../src/packages/Table/Table.js';
 
 import Steps from '../../../src/packages/Steps/Steps.js';
 import Step from '../../../src/packages/Step/Step.js';
@@ -93,7 +93,7 @@ Vue.component('ns-badge', Badge);
 Vue.component('ns-progress', Progress);
 Vue.component('ns-tree', Tree);
 Vue.component('ns-pagination', Pagination);
-
+Vue.component('ns-table', Table);
 
 //navigation
 Vue.component('ns-steps', Steps);
@@ -166,7 +166,7 @@ import '../../../src/packages/Upload/style/index.scss';
 import '../../../src/packages/Particles/style/index.scss';
 import '../../../src/packages/Tree/style/index.scss';
 import '../../../src/packages/Pagination/style/index.scss';
-
+import '../../../src/packages/Table/style/index.scss';
 
 import '../../../src/packages/VideoBackground/style/index.scss';
 import '../../../src/packages/Tinymce/style/index.scss';

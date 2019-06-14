@@ -1,6 +1,6 @@
 {
   "name": "ns-form-components",
-  "version": "0.0.19",
+  "version": "0.0.22",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -43,7 +43,8 @@
     "screenfull": "^4.2.0",
     "tinymce": "^5.0.6",
     "vue": "2.5.21",
-    "watch-size": "^2.0.0"
+    "watch-size": "^2.0.0",
+    "vuedraggable": "^2.14.1"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.4.3",

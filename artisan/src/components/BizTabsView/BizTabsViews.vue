@@ -3,7 +3,9 @@
   <ns-page-tabs
     :data="visitedPages"
     :limit="limit"
+    :autoJump="false"
     :activeRule="activeRule"
+    @click-view-tabs="clickViewTabs"
     @close-view-tabs="closeViewTabs"
     @close-all-view-tabs="closeAllViewTabs"
   >
@@ -33,6 +35,14 @@
       console.log(this.visitedPages);
     },
     methods: {
+      /**
+       * 点击当前tabs
+       * @param tag
+       */
+      clickViewTabs(tag) {
+        console.log(tag);
+        this.$router.push({ path: tag.path });
+      },
       /**
        * 关闭当前tabs
        * @param view
