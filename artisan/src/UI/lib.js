@@ -29,6 +29,7 @@ import Upload from '../../../src/packages/Upload/Upload.js';
 import TreeSelect from '../../../src/packages/Select-tree/Select-tree.js';
 import Form from '../../../src/packages/Form/Form.js';
 import FormItem from '../../../src/packages/Form-item/Form-item.js';
+import InputNumber from '../../../src/packages/InputNumber/InputNumber.js'
 
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../src/packages/Dialog/Dialog.js';
@@ -87,6 +88,7 @@ Vue.component('ns-upload', Upload);
 Vue.component('ns-select-tree', TreeSelect);
 Vue.component('ns-form', Form);
 Vue.component('ns-form-item', FormItem);
+Vue.component('ns-input-number', InputNumber);
 
 // data
 Vue.component('ns-badge', Badge);
@@ -144,6 +146,7 @@ import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
 import '../../../src/packages/Select-tree/style/index.scss';
 import '../../../src/packages/Form/style/index.scss';
+import '../../../src/packages/InputNumber/style/index.scss'
 
 import '../../../src/packages/PageTabs/style/index.scss';
 import '../../../src/packages/Dialog/style/index.scss';

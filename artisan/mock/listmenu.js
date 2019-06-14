@@ -228,6 +228,14 @@ const navmenu = (req, res) => {
             menuIndex: 15,
             hide: 1,
           },
+          {
+            funcId: 'input-number',
+            menuLabel: 'inputNumber 计数器',
+            menuRouter: 'inputNumber',
+            menuIcon: null,
+            menuIndex: 16,
+            hide: 1,
+          },
         ],
       },
       {

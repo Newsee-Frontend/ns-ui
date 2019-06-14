@@ -1,0 +1,9 @@
+//input 相关样式
+@import '../../../style/common/size/formsize';
+
+@include b(input-number) {
+  @include form-component-size(input-number);
+  .el-input{
+    height: 100%;
+  }
+}
