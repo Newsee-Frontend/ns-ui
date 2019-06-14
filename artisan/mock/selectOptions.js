@@ -143,6 +143,91 @@ const options = (req, res) => {
   });
 };
 
+const remoteOptions = (req, res) => {
+  let key = req.query.key || '';
+  let arr = [{
+    "houseId": 1000001,
+    "ownerId": null,
+    "houseName": "朝阳区域-12",
+    "ownerName": null
+  }, {
+    "houseId": 1000002,
+    "ownerId": null,
+    "houseName": "朝阳区域-碧云天项目-华润城1-A栋-1单元",
+    "ownerName": null
+  }, {
+    "houseId": 1000003,
+    "ownerId": null,
+    "houseName": "朝阳区域-碧云天项目-华润城2-A栋-1单元",
+    "ownerName": null
+  }, {
+    "houseId": 1000004,
+    "ownerId": null,
+    "houseName": "朝阳区域-碧云天项目-华润城3-A栋-1单元",
+    "ownerName": null
+  }, {
+    "houseId": 1000005,
+    "ownerId": 75928,
+    "houseName": "朝阳区域-碧云天项目-金色海滩组团-筑梦师楼栋-青云单元-1001",
+    "ownerName": "爱丽丝"
+  }, {
+    "houseId": 1000006,
+    "ownerId": 768772,
+    "houseName": "朝阳区域-碧云天项目-金色海滩组团-筑梦师楼栋-青云单元-1001",
+    "ownerName": "122123"
+  }, {
+    "houseId": 1000007,
+    "ownerId": 564995,
+    "houseName": "朝阳区域-碧云天项目-金色海滩组团-筑梦师楼栋-青云单元-1001",
+    "ownerName": "陈皮88"
+  }, {
+    "houseId": 1000008,
+    "ownerId": 75862,
+    "houseName": "黄埔区域-黑洞项目-涟漪湾组团-公元里楼栋-风浅苑单元-1010",
+    "ownerName": "李小白"
+  }, {
+    "houseId": 1000009,
+    "ownerId": 75958,
+    "houseName": "黄埔区域-木星项目-涟漪湾组团-公元里楼栋-风浅单元-1111",
+    "ownerName": "离席"
+  }, {
+    "houseId": 10000010,
+    "ownerId": 75958,
+    "houseName": "朝阳区域-碧云天项目-金色海滩组团-筑梦师楼栋-青云单元-1101",
+    "ownerName": "离席"
+  }, {
+    "houseId": 10000011,
+    "ownerId": 768874,
+    "houseName": "红黄蓝项目-童装一号-公主裙-1011",
+    "ownerName": "售楼新增9"
+  }, {
+    "houseId": 10000012,
+    "ownerId": null,
+    "houseName": "红黄蓝项目-童装一号-23-12",
+    "ownerName": null
+  }, {
+    "houseId": 10000013,
+    "ownerId": null,
+    "houseName": "红黄蓝项目-童装一号-公主裙-1011",
+    "ownerName": null
+  }];
+
+  let filterArr = arr.filter((item)=>{
+    return (item.houseId + "").indexOf(key) > -1 || item.houseName.indexOf(key) > -1;
+  });
+
+  return res.json({
+    "resultCode": "200",
+    "resultMsg": "操作成功。",
+    "restLog": null,
+    "resultData": filterArr,
+    "pageNum": null,
+    "pageSize": null,
+    "total": null
+  })
+};
+
 module.exports = {
   'GET /system/dictionary/list-dictionaryItem': options,
+  'GET /form/select/remote': remoteOptions
 };
