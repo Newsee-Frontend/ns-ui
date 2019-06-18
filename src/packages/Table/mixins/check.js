@@ -29,7 +29,7 @@ export default {
       };
     },
     /**
-     * set form-cell check config (check list) in grid
+     * set form-cell check config (check list) in table
      * @param key
      */
     setCheckStator(key) {

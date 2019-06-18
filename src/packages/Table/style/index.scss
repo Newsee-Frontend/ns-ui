@@ -17,9 +17,9 @@
 
       .cell {
         overflow: visible;
-        @import "action-column";
+        @import "column/action-column";
 
-        @import "slot-scope";
+        @import "cell/slot-scope";
       }
 
       .el-table__fixed-header-wrapper {
@@ -29,7 +29,7 @@
           height: 40px;
           .cell {
             padding: 0;
-            @import "head-setting";
+            @import "head/head-setting";
           }
         }
       }
@@ -51,13 +51,13 @@
       background-color: transparent;
     }
 
-    @import "column";
+    @import "column/column";
 
-    @import "action-drop";
+    @import "action/action-drop";
   }
 
   //合计按钮控制部分
-  @import "action-summary";
+  @import "action/action-summary";
 
 }
 

@@ -9,7 +9,9 @@
         <biz-table ref="biz-table-demo1" :loadState="loadState" :data="Data"
                    :showAddRowOperation="showAddRowOperation"
                    :showHeadOperation="showHeadOperation"
+                   :showSummary="showSummary"
                    @selection-change="selectionChange"
+                   @form-change="formChange"
                    @add-row="addRow"
                    @delete-current-row="deleteCurrentRow"
                    @table-action="tableAction">
@@ -19,6 +21,8 @@
           <ns-switch v-model="showAddRowOperation"></ns-switch>
           <span>显示表头设置列:</span>
           <ns-switch v-model="showHeadOperation"></ns-switch>
+          <span>是否显示合计行:</span>
+          <ns-switch v-model="showSummary"></ns-switch>
         </div>
         <div class="handle">
           <ns-button type="primary" @click="validate">验证</ns-button>
@@ -46,6 +50,7 @@
         },
         showAddRowOperation: true,
         showHeadOperation: true,
+        showSummary: true,
       };
     },
     computed: {
@@ -75,10 +80,28 @@
         console.log(row);
         console.log(index);
       },
+
+      /**
+       * table column action
+       * @param info
+       * @param scope
+       */
       tableAction(info, scope) {
         console.log('操作列按钮点击的时候');
         console.log(info, scope);
       },
+
+      /**
+       * form cell value change
+       * @param value - change value
+       * @param param
+       */
+      formChange(value, param) {
+        console.log('表格单元格表单控件change事件');
+        console.log(value);
+        console.log(param);
+      },
+
       /**
        * add row to grid
        */

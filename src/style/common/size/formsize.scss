@@ -27,13 +27,13 @@ $height: 32px 32px 32px 32px 32px;
         @include base-style-change($w, $h);
 
         //计数器 特殊样式
-        @if $block-type == 'input-number'{
-          $d: -1px;
-          line-height: $h +  $d ;
-          &.is-controls-right{
+        @if $block-type == 'input-number' {
+          $d: -2px;
+          line-height: $h +  $d;
+          &.is-controls-right {
             .el-input-number__increase,
-            .el-input-number__decrease{
-              height:  $h/2;
+            .el-input-number__decrease {
+              height: $h/2;
               line-height: $h/2;
             }
           }
@@ -61,7 +61,7 @@ $height: 32px 32px 32px 32px 32px;
   line-height: $height;
 
   //textarea 高度自适应
-  &.el-textarea{
+  &.el-textarea {
     height: auto;
   }
 }

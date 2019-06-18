@@ -1,9 +1,9 @@
-import { Input, Select, Checkbox, Radio, DatePicker } from './loading';
+import { Input, Select, Checkbox, Radio, DatePicker, InputNumber } from './loading';
 import validateRule from '../../validate/validate-rule';
 
 export default {
   name: 'table-slot-scope',
-  components: { Input, Select, Checkbox, Radio, DatePicker },
+  components: { Input, Select, Checkbox, Radio, DatePicker, InputNumber },
 
   data() {
     return {
@@ -12,7 +12,6 @@ export default {
     };
   },
   props: {
-    mark: { type: String },
     scope: {
       type: Object, default() {
         return {
@@ -23,6 +22,8 @@ export default {
     headScope: { type: Object },
     headRefer: { type: Object },
     scopeRefer: { type: Object },
+    rowIndex: { type: Number },//行索引
+    colIndex: { type: Number },//列索引
     checkStator: { type: Object },
     cellFifter: { type: Function },
     rulesConfig: { type: Array },
@@ -58,8 +59,10 @@ export default {
     cellParam() {
       const modelCode = this.headScope[this.headRefer['model-key']];
       return {
+        cellKey: `${modelCode}-${this.rowIndex}-${this.colIndex}`, //cell key ( modelCode + row-index + row-index )
+        rowIndex: this.rowIndex,
+        colIndex: this.colIndex,
         modelCode: modelCode,  //get this col model key in gird head data
-        cellKey: `${modelCode}-${this.mark}`, //cell key ( modelCode + row-index + row-index )
         scope: this.scope,            //get this row data
         headScope: this.headScope,              //this col data in grid head
         headRefer: this.headRefer,    //head refer
@@ -87,8 +90,7 @@ export default {
                      width={'100%'}
                      placeholder={this.formConfig.placeHolder}
                      disabled={this.formConfig.disabled} clearable={true}
-                     on-change={this.formChange}>
-              </Input>
+                     on-change={this.formChange}/>
             );
           case 'select':
             return <Select value={scope.row[modelCode].picked.value}
@@ -102,7 +104,7 @@ export default {
                            placeholder={this.formConfig.placeHolder}
                            disabled={this.formConfig.disabled}
                            clearable={true}
-                           on-change={this.formChange.bind(this, '')}/>;
+                           on-change={this.formChange}/>;
           case 'checkbox':
             return (
               <Checkbox value={scope.row[modelCode].picked.value}
@@ -113,8 +115,7 @@ export default {
                         options={scope.row[modelCode].options}
                         disabled={this.formConfig.disabled}
                         min={this.formConfig.min} max={this.formConfig.max}
-                        on-change={this.formChange.bind(this, '')}>
-              </Checkbox>
+                        on-change={this.formChange}/>
             );
           case 'radio':
             return (
@@ -125,8 +126,7 @@ export default {
                      }}
                      options={scope.row[modelCode].options}
                      disabled={this.formConfig.disabled}
-                     on-change={this.formChange.bind(this, '')}>
-              </Radio>
+                     on-change={this.formChange}/>
             );
           case 'date':
             return (
@@ -140,20 +140,19 @@ export default {
                           disabled={this.formConfig.disabled}
                           editable={false}
                           placeholder={this.formConfig.placeHolder} value-format="yyyy-MM-dd 00:00:00"
-                          on-change={this.formChange.bind(this, '')}>
-              </DatePicker>
+                          on-change={this.formChange}/>
             );
           case 'rate':
             return (
-              <el-input-number value={scope.row[modelCode]}
-                               onInput={e => {
-                                 scope.row[modelCode] = e;
-                                 this.$emit('input', e);
-                               }}
-                               size="mini" min={this.formConfig.min} max={this.formConfig.max}
-                               disabled={this.formConfig.disabled}
-              >
-              </el-input-number>
+              <InputNumber value={scope.row[modelCode]}
+                           onInput={e => {
+                             scope.row[modelCode] = e;
+                             this.$emit('input', e);
+                           }}
+                           width={'100%'}
+                           min={this.formConfig.min} max={this.formConfig.max}
+                           disabled={this.formConfig.disabled}
+                           on-change={this.formChange}/>
             );
 
           default:
@@ -266,13 +265,11 @@ export default {
     },
     /**
      * form change event
-     * @param Param
      * @param value
      */
     formChange(value) {
-      console.log(value);
       if (this.isFormRender) {
-        this.$emit('set-check-stator', this.cellParam.cellKey);//put this form cell key to check list
+        this.$emit('form-change', value, this.cellParam);//put this form cell key to check list
       }
       // this.setFormCellCheck(Param);//set form-cell check config (check list) in grid
     },

@@ -5,9 +5,11 @@
               :data="data" :head="finalHead" :keyRefer="keyRefer" :height="400"
               :cellFifter="cellFifter"
               :showHeadOperation="showHeadOperation"
+              :showSummary="showSummary"
               @selection-change="selectionChange"
               @table-action="tableAction"
               @cell-action="cellAction"
+              @form-change="formChange"
               @add-row="addRow"
               @delete-current-row="deleteCurrentRow"
               v-if="isRender"
@@ -44,6 +46,7 @@
       hasActionCol: { type: Boolean, default: true },
       showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
+      showSummary: { type: Boolean, default: true },//是否显示合计行
     },
 
 
@@ -86,6 +89,9 @@
       cellAction(scope, item) {
         console.log('表格单元格点击行为事件');
         console.log(scope, item);
+      },
+      formChange(value, param) {
+        this.$emit('form-change', value, param);
       },
       /**
        * add row to grid

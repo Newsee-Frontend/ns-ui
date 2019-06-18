@@ -41,6 +41,7 @@ export default {
     resizable: { type: Boolean, default: true }, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
     height: { type: Number, default: 500 },//表格渲染高度默认值
     showHeadOperation: { type: Boolean, default: true },//表头设置 新增行操作模块开关
+    showSummary: { type: Boolean },//是否显示合计行
     checkStator: { type: Object },
     cellFifter: {
       type: Function,
@@ -77,15 +78,14 @@ export default {
               default: scope => {
 
                 return (
-                  <slot-scope mark={`${scope.$index}-${index}`}
-                              scope={scope} head-scope={item}
+                  <slot-scope scope={scope} head-scope={item}
                               headRefer={this.headRefer} scopeRefer={this.scopeRefer}
+                              rowIndex={scope.$index} colIndex={index}
                               checkStator={this.checkStator}
                               cell-fifter={this.cellFifter}
                               rules-config={this.rulesConfig}
                               on-cell-action={this.cellAction}
-                              on-set-check-stator={this.setCheckStator}
-                  />
+                              on-form-change={this.formChange}/>
                 );
               },
             },
@@ -124,7 +124,7 @@ export default {
           data={this.data} border={this.border}
           max-height={this.height} height={this.height}
           on-selection-change={this.selectionChange}
-          show-summary={true}>
+          show-summary={this.showSummary}>
           {
             this.head.map((item, index) => {
               if (!item[this.headRefer['hidden']]) {
@@ -185,8 +185,13 @@ export default {
       this.$emit('cell-action', scope, item);
     },
 
-    setCheckStator(key) {
-      this.$emit('set-check-stator', key);
+    /**
+     * form cell change
+     * @param value
+     * @param param
+     */
+    formChange(value, param) {
+      this.$emit('form-change', value, param);
     },
 
     /**

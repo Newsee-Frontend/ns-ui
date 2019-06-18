@@ -24,6 +24,7 @@ export default create({
         return [];
       },
     }, //表格显示的数据
+    showSummary: { type: Boolean, default: true },
   },
 
   watch: {
@@ -43,6 +44,7 @@ export default create({
             keyRefer: this.keyRefer,
             head: this.head,
             data: this.data,
+            showSummary: this.showSummary,
             checkStator: this.checkStator,
             ...this.$attrs,
           },
@@ -52,7 +54,7 @@ export default create({
             'cell-action': this.cellAction,
             'add-row': this.addRow,
             'delete-current-row': this.deleteCurrentRow,
-            'set-check-stator': this.setCheckStator,
+            'form-change': this.formChange,
           },
         },
       );
@@ -63,14 +65,18 @@ export default create({
         {
           Table()
         }
-        <action-summary command={this.summaryCommand}  {...{
-          on: {
-            'update:command': value => {
-              this.summaryCommand = value;
-            },
-          },
-        }}
-        />
+        {
+          this.showSummary ?
+            <action-summary command={this.summaryCommand}  {...{
+              on: {
+                'update:command': value => {
+                  this.summaryCommand = value;
+                },
+              },
+            }}
+            /> : null
+        }
+
       </div>
     );
   },
@@ -87,6 +93,13 @@ export default create({
     cellAction(scope, item) {
       this.$emit('cell-action', scope, item);
     },
+
+
+    formChange(value, param) {
+      this.setCheckStator(param.cellKey);//set form-cell check config (check list) in table
+      this.$emit('form-change', value, param);
+    },
+
     /**
      * add row to grid
      */
