@@ -1,0 +1,37 @@
+@import "config";
+//表头操作设置列模块
+.head-setting {
+  position: relative;
+  width: inherit;
+  height: 100%;
+  padding: 0;
+
+  //表头设置列各部分
+  .head-setting__part {
+    overflow: hidden;
+    height: 50%;
+    line-height: inherit;
+    padding: 0;
+    display: flex;
+    display: -webkit-flex;
+    align-items: center; /*指定垂直居中*/
+    cursor: pointer;
+    &:hover {
+      background-color: $set-part_color_active;
+      svg {
+        color: $grid_head_ationicon_color
+      }
+    }
+    &.header-set_active {
+      background-color: $set-part_color_active;
+      svg {
+        color: $grid_head_ationicon_color
+      }
+    }
+    //内置图标
+    svg {
+      display: block;
+      color: $grid_head_ationicon_color
+    }
+  }
+}

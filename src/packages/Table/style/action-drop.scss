@@ -1,0 +1,80 @@
+@import "config";
+@import '../../../style/mixins/scrollbar';
+//头部设置下拉菜单
+//头部设置下拉菜单
+#head-setting-drag {
+  position: absolute;
+  visibility: hidden;
+  top: 41px;
+  right: 0;
+  width: 180px;
+  max-height: 0;
+  background-color: #ffffff;
+  border: 1px solid $grid_border_color;
+  border-radius: 4px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
+  z-index: 999;
+  overflow: hidden;
+  transition: all 0.4s linear;
+  &.opened {
+    visibility: visible;
+    max-height: 300px;
+  }
+
+  /*滚动条垂直方向的宽度*/
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  //下拉菜单条目 - 操作内容区域
+  .content {
+    max-height: 300px;
+    margin: 10px 0;
+    padding: 0 10px 0 20px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    @include scrollbarVisible;
+    //下拉菜单条目
+    li {
+      margin: 5px 0;
+      cursor: pointer;
+      overflow: hidden;
+      &.hide {
+        display: none;
+      }
+      //下拉菜单条目 - 左侧选择框
+      .ns-checkbox {
+        width: 80%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        span {
+          font-size: $header-drag_fs;
+        }
+      }
+      //下拉菜单条目 - 右侧图标
+      svg {
+        line-height: 24px;
+        visibility: hidden;
+        &.locked {
+          visibility: visible;
+        }
+      }
+      &:hover {
+        svg {
+          visibility: visible;
+        }
+      }
+    }
+  }
+
+  .submit {
+    width: 100%;
+    padding-bottom: 10px;
+    text-align: center;
+    .ns-button {
+      width: 120px;
+    }
+  }
+}
+

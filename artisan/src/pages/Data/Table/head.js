@@ -62,6 +62,93 @@ export default [
     },
   },
   {
+    'resourcecolumnName': '成立日期',//label
+    'resourcecolumnNameEn': 'createDate',//model-key
+    'resourcecolumnCode': 'createDate',
+    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnWidth': '150',//列的宽度
+    'resourcecolumnOrder': '7',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'date',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': 0,
+      'min': 0,
+      'placeHolder': null,
+      'require': true,
+      'validateRule': null,
+      'errorMsg': '请选择成立日期',
+    },
+  },
+  {
+    'resourcecolumnName': '等级调整',//label
+    'resourcecolumnNameEn': 'level',//model-key
+    'resourcecolumnCode': 'level',
+    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnWidth': '150',//列的宽度
+    'resourcecolumnOrder': '10',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'rate',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': 100,
+      'min': 0,
+      'placeHolder': null,
+      'require': true,
+      'validateRule': null,
+    },
+  },
+  {
+    'resourcecolumnName': '涉猎领域（多选）',//label
+    'resourcecolumnNameEn': 'field',//model-key
+    'resourcecolumnCode': 'field',
+    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnWidth': '500',//列的宽度
+    'resourcecolumnOrder': '5',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'checkbox',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': 5,
+      'min': 0,
+      'placeHolder': null,
+      'require': true,
+      'validateRule': null,
+      'errorMsg': '请选择涉猎领域',
+    },
+  },
+  {
+    'resourcecolumnName': '是否锁定（单选）',//label
+    'resourcecolumnNameEn': 'isLocked',//model-key
+    'resourcecolumnCode': 'isLocked',
+    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnWidth': '150',//列的宽度
+    'resourcecolumnOrder': '4',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'radio',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': null,
+      'min': null,
+      'placeHolder': null,
+      'require': true,
+      'validateRule': null,
+      'errorMsg': '请选择是否锁定',
+    },
+  },
+  {
     'resourcecolumnName': '使用人',//label
     'resourcecolumnNameEn': 'ownerName',//model-key
     'resourcecolumnCode': 'ownerName',//model-key
@@ -78,19 +165,7 @@ export default [
     'resourcecolumnWidth': '80',//列的宽度
     'resourcecolumnOrder': '6',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
-    'eidtConfig': {
-      'switchType': true,
-      'type': 'select',
-      'decimal': 2,
-      'disabled': false,
-      'maxlength': null,
-      'max': 80,
-      'min': 0,
-      'placeHolder': '请选择性别',
-      'require': true,
-      'validateRule': null,
-      'errorMsg': '请选择性别',
-    },
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '年龄',//label

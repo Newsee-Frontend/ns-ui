@@ -239,11 +239,19 @@ const navmenu = (req, res) => {
         hide: 1,
         childMenus: [
           {
+            funcId: 'table',
+            menuLabel: 'table表格',
+            menuRouter: 'table',
+            menuIcon: null,
+            menuIndex: 1,
+            hide: 1,
+          },
+          {
             funcId: 'badge',
             menuLabel: '标记',
             menuRouter: 'badge',
             menuIcon: null,
-            menuIndex: 1,
+            menuIndex: 2,
             hide: 1,
           },
           {
@@ -251,7 +259,7 @@ const navmenu = (req, res) => {
             menuLabel: '进度条',
             menuRouter: 'progress',
             menuIcon: null,
-            menuIndex: 2,
+            menuIndex: 3,
             hide: 1,
           },
           {
@@ -259,7 +267,7 @@ const navmenu = (req, res) => {
             menuLabel: 'Tree树形控件',
             menuRouter: 'tree',
             menuIcon: null,
-            menuIndex: 3,
+            menuIndex: 4,
             hide: 1,
           },
           {
@@ -267,7 +275,7 @@ const navmenu = (req, res) => {
             menuLabel: 'pagination分页',
             menuRouter: 'pagination',
             menuIcon: null,
-            menuIndex: 4,
+            menuIndex: 5,
             hide: 1,
           },
         ],

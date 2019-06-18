@@ -1,0 +1,13 @@
+
+.link-cell {
+  color: #409eff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+//table validate
+.is-error {
+  .el-input__inner, .el-input__inner:focus, .el-textarea__inner, .el-textarea__inner:focus {
+    border-color: #f56c6c;
+  }
+}
