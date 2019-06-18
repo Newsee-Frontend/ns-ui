@@ -77,6 +77,7 @@
         getDynamicOptions(this.dynamicUrl, this.dynamicQuery).then((response)=>{
           this.loading = false;
           this.options = response.resultData.list || [];
+          this.options.length === 0 && (this.noMatchText = this.emptyText)
         }, (err)=>{
           this.loading = false;
           this.noMatchText = this.errorText;

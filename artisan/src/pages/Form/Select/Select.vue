@@ -67,6 +67,20 @@
         ></ns-select-dictionary>
       </template>
     </demo-block>
+
+    <demo-block>
+      <template slot="title">ns-select-remote</template>
+      <template slot="describe">渐进式搜索</template>
+      <template slot="content">
+        <ns-select-remote
+          v-model="selectModelRemote"
+          :keyRefer="keyReferRemote"
+          width="300px"
+          placeholder="输入亲输入请输入请输入请输入"
+          @change="changeRemote"
+        ></ns-select-remote>
+      </template>
+    </demo-block>
   </div>
 </template>
 
@@ -74,23 +88,30 @@
   import { mapGetters } from 'vuex';
   import formmixins from '../../../mixins/form-mixins';
   import nsSelectDictionary from '../../../components/SelectDictionary/SelectDictionary.vue';
+  import nsSelectRemote from '../../../components/SelectRemote/SelectRemote'
 
   export default {
     name: 'select-demo',
     mixins: [formmixins],
     components: {
       nsSelectDictionary,
+      nsSelectRemote
     },
     data() {
       return {
         selectModel: 1,
         selectModels: [2, 5, 6],
         selectModelDictionary: ['100'],
+        selectModelRemote: 10000012,
         keyRefer: {
           label: 'label',
           value: 'value',
           disabled: 'disabled'
         },
+        keyReferRemote: {
+          label: 'houseName',
+          value: 'houseId',
+        }
       };
     },
     computed: {
@@ -153,6 +174,10 @@
       clearSelectModelDictionary: function(){
         console.log('SelectModelDictionary clear', this.selectModelDictionary)
       },
+
+      changeRemote: function(val){
+        console.log('SelectModelRemote clear', this.selectModelRemote);
+      }
     },
   };
 </script>

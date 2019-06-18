@@ -95,6 +95,12 @@ export const formRouter = [
         meta: { auth: true, key: 'form' },
         name: '表单',
       },
+      {
+        path: 'inputNumber',
+        component: () => import('../../pages/Form/InputNumber/InputNumber'),
+        meta: { auth: true, key: 'input-number' },
+        name: '计数器',
+      },
     ],
   },
 ];
