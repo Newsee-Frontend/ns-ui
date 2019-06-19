@@ -54,7 +54,7 @@ export default create({
             'cell-action': this.cellAction,
             'add-row': this.addRow,
             'delete-current-row': this.deleteCurrentRow,
-            'form-change': this.formChange,
+            'cell-form-change': this.cellFormChange,
           },
         },
       );
@@ -95,9 +95,9 @@ export default create({
     },
 
 
-    formChange(value, param) {
+    cellFormChange(value, param) {
       this.setCheckStator(param.cellKey);//set form-cell check config (check list) in table
-      this.$emit('form-change', value, param);
+      this.$emit('cell-form-change', value, param);
     },
 
     /**
