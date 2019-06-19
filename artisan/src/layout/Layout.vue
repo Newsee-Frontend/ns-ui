@@ -14,7 +14,7 @@
       <!--右边 - 用户下拉菜单 业务组在插槽内调用组件，传入值，并且调用方法即可  -->
       <div class="fr">
         <ns-screenfull></ns-screenfull>
-        <ns-skiner @change-theme="changeTheme" :init-theme="theme"></ns-skiner>
+        <biz-skiner></biz-skiner>
         <ns-user-dropdown
           :options="options"
           :avator="avatar"
@@ -66,11 +66,12 @@
 
   import { mapGetters } from 'vuex';
   import headerCustom from './header-custom';
+  import bizSkiner from '../components/Biz-skiner/Biz-skiner';
   import keyRefer from './sidebar-keyRefer';
 
   export default {
     name: 'layout',
-    components: { headerCustom },
+    components: { headerCustom, bizSkiner },
     data() {
       return {
         dialogSw: false,
@@ -89,7 +90,7 @@
       };
     },
     computed: {
-      ...mapGetters(['userName', 'avatar', 'theme', 'sideBarList']),
+      ...mapGetters(['userName', 'avatar', 'sideBarList']),
       key() {
         return this.$route.name !== undefined
           ? this.$route.name + +new Date()
@@ -136,10 +137,6 @@
       mouseEnter(index, item) {
         // console.log('mouseEvent-mouseEvent');
         // console.log(index, item);
-      },
-      changeTheme(key) {
-        console.log('changeTheme-changeTheme');
-        console.log(key);
       },
 
       secondNavSlot(scope) {

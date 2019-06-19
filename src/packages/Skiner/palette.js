@@ -7,5 +7,6 @@ export default [
   { key: 'red', color: '#E24C57' },
   { key: 'purple', color: '#8352AF' },
   { key: 'black', color: '#252836' },
+  { key: 'custom', color: null },
 ];
 

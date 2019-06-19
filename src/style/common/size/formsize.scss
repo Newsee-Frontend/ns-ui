@@ -4,6 +4,7 @@
 $size-type: 'mini' 'small' 'normal' 'medium' 'large';
 $width: 90px 120px 200px 400px 900px;
 $height: 32px 32px 32px 32px 32px;
+$height-ladder: 24px 28px 32px 36px 40px;
 
 @mixin form-component-size($block-type) {
   @each $type in $size-type {
@@ -20,24 +21,35 @@ $height: 32px 32px 32px 32px 32px;
           height: $h;
         }
       }
-    } @else if $block-type == 'xxx' {
-
-    } @else {
+    }
+      //color-picker 颜色选择器
+    @else if $block-type == 'color-picker' {
+      $h-ladder: nth($height-ladder, $i);
       @include rb($size-name) {
-        @include base-style-change($w, $h);
-
-        //计数器 特殊样式
-        @if $block-type == 'input-number' {
-          $d: -2px;
-          line-height: $h +  $d;
-          &.is-controls-right {
-            .el-input-number__increase,
-            .el-input-number__decrease {
-              height: $h/2;
-              line-height: $h/2;
-            }
+        .el-color-picker__trigger {
+          width: $h-ladder;
+          height: $h-ladder;
+        }
+      }
+    }
+      //input-number 计数器
+    @else if $block-type == 'input-number' {
+      @include rb($size-name) {
+        $d: -2px;
+        line-height: $h +  $d;
+        &.is-controls-right {
+          .el-input-number__increase,
+          .el-input-number__decrease {
+            height: $h/2;
+            line-height: $h/2;
           }
         }
+      }
+    }
+      //其他
+    @else {
+      @include rb($size-name) {
+        @include base-style-change($w, $h);
       }
       @include input-inner();
       @include icon-inner();
@@ -79,3 +91,4 @@ $height: 32px 32px 32px 32px 32px;
     line-height: inherit;
   }
 }
+
