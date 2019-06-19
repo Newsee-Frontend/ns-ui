@@ -16,7 +16,6 @@ export const listColumnService = (head, query) => {
 
 export const tableDataService = data => {
   dataFilter(data);
-
   return fetch({
     url: '/system/table/table-data',
     method: 'post',
