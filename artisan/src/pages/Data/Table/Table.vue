@@ -5,17 +5,6 @@
       <template slot="title">表格table 用法</template>
       <template slot="describe">基础用法</template>
       <template slot="content">
-
-        <biz-table ref="biz-table-demo1" :loadState="loadState" :data="Data"
-                   :showAddRowOperation="showAddRowOperation"
-                   :showHeadOperation="showHeadOperation"
-                   :showSummary="showSummary"
-                   @selection-change="selectionChange"
-                   @form-change="formChange"
-                   @add-row="addRow"
-                   @delete-current-row="deleteCurrentRow"
-                   @table-action="tableAction">
-        </biz-table>
         <div class="control-block form-block-line">
           <span>显示新增行列:</span>
           <ns-switch v-model="showAddRowOperation"></ns-switch>
@@ -23,21 +12,31 @@
           <ns-switch v-model="showHeadOperation"></ns-switch>
           <span>是否显示合计行:</span>
           <ns-switch v-model="showSummary"></ns-switch>
-        </div>
-        <div class="handle">
           <ns-button type="primary" @click="validate">验证</ns-button>
           <ns-button @click="reset">重置</ns-button>
         </div>
+        <biz-table ref="biz-table-demo1" :loadState="loadState" :data="tableData"
+                   :showAddRowOperation="showAddRowOperation"
+                   :showHeadOperation="showHeadOperation"
+                   :showSummary="showSummary"
+                   :searchConditions="searchConditions"
+                   @reload="getTableData"
+                   @selection-change="selectionChange"
+                   @cell-form-change="cellFormChange"
+                   @add-row="addRow"
+                   @delete-current-row="deleteCurrentRow"
+                   @table-action="tableAction">
+        </biz-table>
       </template>
     </demo-block>
 
-
-    <biz-table :loadState="loadState" :data="Data" @selection-change="selectionChange" @table-action="tableAction"></biz-table>
+    <biz-table :loadState="loadState" :data="tableData" @selection-change="selectionChange" @table-action="tableAction"></biz-table>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import { tableDataService } from '../../../service/Table';
+
 
   export default {
     name: 'table-demo',
@@ -48,33 +47,49 @@
           data: false,
           head: false,
         },
+        tableData: {},//表格数据
+        //搜索条件 searchConditions
+        searchConditions: {
+          companyId: '', //公司id
+          departmentId: '', //部门id
+          filterList: [], //条件
+          pageNum: 1, //当前页数
+          pageSize: 10, //每页显示条目个数
+          orderBy: '', //排序：升序还是降序
+          orderFieldName: '', //排序：字段名
+          mainSearch: '', //输入框值
+          filterConditions: [], //筛选器记录的条件
+          //add by xiaosisi on 20170320 用来存储其他检索条件
+          otherConditions: {},
+          organizationId: '',
+          totalType: 1,
+        },
         showAddRowOperation: true,
         showHeadOperation: true,
         showSummary: true,
       };
     },
-    computed: {
-      ...mapGetters(['tableData']),
-      Data() {
-        return this.tableData.map(item => {
-          item.fnsclick = [
-            { label: '编辑', value: 'gridEditBtn' }, { label: '删除', value: 'gridRemoveBtn' },
-            { label: '停用', value: 'stop' }, { label: '启用', value: 'work' },
-          ];
-          return item;
+    created() {
+      this.getTableData();
+    },
+    methods: {
+      getTableData() {
+        tableDataService({ query: {}, funcId: 'funcId' }).then(res => {
+          this.tableData = res.resultData || {};
+          console.log('请求到的表格数据：');
+          console.log(this.tableData);
+          this.tableData.list.forEach(item => {
+            item.fnsclick = [
+              { label: '编辑', value: 'gridEditBtn' }, { label: '删除', value: 'gridRemoveBtn' },
+              { label: '停用', value: 'sstop' }, { label: '启用', value: 'work' },
+            ];
+          });
+          this.loadState.data = true;
+        }).catch(() => {
+          this.loadState.data = true;
         });
       },
 
-    },
-    created() {
-      this.$store.dispatch('generateTableData', { query: {}, funcId: 'funcId' }).then(() => {
-        this.loadState.data = true;
-      }).catch(() => {
-        this.loadState.data = true;
-      });
-
-    },
-    methods: {
       selectionChange(row, index) {
         console.log('表数据 checkbox/radio 选择的时候');
         console.log(row);
@@ -96,7 +111,7 @@
        * @param value - change value
        * @param param
        */
-      formChange(value, param) {
+      cellFormChange(value, param) {
         console.log('表格单元格表单控件change事件');
         console.log(value);
         console.log(param);
