@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+
 import User from './modules/User';
 import Drawer from './modules/Drawer';
 import Sidebar from './modules/Sidebar';
@@ -14,6 +15,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
+
     User,
     Drawer,
     Sidebar,
