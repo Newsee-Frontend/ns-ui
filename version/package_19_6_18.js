@@ -7,11 +7,9 @@ module.exports = [
   'utils',
   '.DS_Store',
   'TestDemo',
-  'Select',
   'Only-MMDD-picker',
   'Time-interval',
   'VideoBackground',
   'Particles',
   'Tinymce',
-  'Table',
 ];
