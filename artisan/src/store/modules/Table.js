@@ -1,18 +1,14 @@
-import { listColumnService, tableDataService } from '../../service/Table';
+import { listColumnService } from '../../service/Table';
 
 const Table = {
   state: {
     tableHead: [],
-    tableData: [],
   },
   mutations: {
     SET_TABLE_HEAD: (state, data) => {
       state.tableHead = data;
     },
 
-    SET_TABLE_DATA: (state, data) => {
-      state.tableData = data;
-    },
   },
   actions: {
     generateTableHead({ commit }, query) {
@@ -21,16 +17,6 @@ const Table = {
         console.log('请求到的表头数据：');
         console.log(head);
         commit('SET_TABLE_HEAD', head);
-      });
-    },
-
-    generateTableData({ commit }, data) {
-      return tableDataService(data).then(res => {
-        const data = res.resultData.list || [];
-        console.log('请求到的表格数据：');
-        console.log(data);
-        commit('SET_TABLE_DATA', data);
-
       });
     },
   },
