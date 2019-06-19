@@ -15,6 +15,5 @@ const getters = {
 
   //table demo
   tableHead: state => state.Table.tableHead,
-  tableData: state => state.Table.tableData,
 };
 export default getters;
