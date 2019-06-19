@@ -38,6 +38,12 @@ const tableData = (req, res) => {
     restLog: null,
     resultData: {
       list: tableDataTemplate,
+      'pageNum': 1,
+      'pageSize': 10,
+      'size': 10,
+      'total': 100,
+      'nextPage': 2,
+      'lastPage': 8,
     },
   });
 };
