@@ -90,7 +90,7 @@ export default {
                      width={'100%'}
                      placeholder={this.formConfig.placeHolder}
                      disabled={this.formConfig.disabled} clearable={true}
-                     on-change={this.formChange}/>
+                     on-change={this.cellFormChange}/>
             );
           case 'select':
             return <Select value={scope.row[modelCode].picked.value}
@@ -104,7 +104,7 @@ export default {
                            placeholder={this.formConfig.placeHolder}
                            disabled={this.formConfig.disabled}
                            clearable={true}
-                           on-change={this.formChange}/>;
+                           on-change={this.cellFormChange}/>;
           case 'checkbox':
             return (
               <Checkbox value={scope.row[modelCode].picked.value}
@@ -115,7 +115,7 @@ export default {
                         options={scope.row[modelCode].options}
                         disabled={this.formConfig.disabled}
                         min={this.formConfig.min} max={this.formConfig.max}
-                        on-change={this.formChange}/>
+                        on-change={this.cellFormChange}/>
             );
           case 'radio':
             return (
@@ -126,7 +126,7 @@ export default {
                      }}
                      options={scope.row[modelCode].options}
                      disabled={this.formConfig.disabled}
-                     on-change={this.formChange}/>
+                     on-change={this.cellFormChange}/>
             );
           case 'date':
             return (
@@ -140,7 +140,7 @@ export default {
                           disabled={this.formConfig.disabled}
                           editable={false}
                           placeholder={this.formConfig.placeHolder} value-format="yyyy-MM-dd 00:00:00"
-                          on-change={this.formChange}/>
+                          on-change={this.cellFormChange}/>
             );
           case 'rate':
             return (
@@ -152,7 +152,7 @@ export default {
                            width={'100%'}
                            min={this.formConfig.min} max={this.formConfig.max}
                            disabled={this.formConfig.disabled}
-                           on-change={this.formChange}/>
+                           on-change={this.cellFormChange}/>
             );
 
           default:
@@ -267,9 +267,9 @@ export default {
      * form change event
      * @param value
      */
-    formChange(value) {
+    cellFormChange(value) {
       if (this.isFormRender) {
-        this.$emit('form-change', value, this.cellParam);//put this form cell key to check list
+        this.$emit('cell-form-change', value, this.cellParam);//put this form cell key to check list
       }
       // this.setFormCellCheck(Param);//set form-cell check config (check list) in grid
     },
