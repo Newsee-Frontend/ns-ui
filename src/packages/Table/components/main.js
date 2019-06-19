@@ -85,7 +85,7 @@ export default {
                               cell-fifter={this.cellFifter}
                               rules-config={this.rulesConfig}
                               on-cell-action={this.cellAction}
-                              on-form-change={this.formChange}/>
+                              on-cell-form-change={this.cellFormChange}/>
                 );
               },
             },
@@ -190,8 +190,8 @@ export default {
      * @param value
      * @param param
      */
-    formChange(value, param) {
-      this.$emit('form-change', value, param);
+    cellFormChange(value, param) {
+      this.$emit('cell-form-change', value, param);
     },
 
     /**
