@@ -2,6 +2,7 @@ import create from '../../create/create';
 import ColorPicker from '../ColorPicker/ColorPicker';
 import palette from './palette';
 import innerCode from './template';
+import { colorRGBtoHex, colorHexToRgba } from '../../utils/color';
 
 export default create({
   name: 'skiner',
@@ -9,18 +10,16 @@ export default create({
   data() {
     return {
       childSkiner: this.value,
-      themeprefix: 'theme-',
-      popoverWidth: '140px',
-      palette: palette,
+      popoverWidth: '150px',
+      colorPickerActive: false,
+      palette,
     };
   },
   props: {
     value: [String],
-    initTheme: {
-      type: String, default: 'black', validator: t => {
-        return palette.some(theme => {
-          return theme.key === t;
-        });
+    colorFormat: {
+      type: String, default: 'rgb', validate: f => {
+        return ['hax', 'rgb'].indexOf(f) > -1;
       },
     },
   },
@@ -33,21 +32,22 @@ export default create({
     const cycleRender = (theme, index) => {
       return theme.key === 'custom' ?
         <ColorPicker
-          showAlpha
+          class={this.colorPickerActive ? 'active' : ''}
           color-format={'hex'}
+          predefine={this.palette.predefine}
           on-change={this.changeTheme}
           value={this.childSkiner}
         /> :
-        <div
+        <li
           class={'fl theme-cycle'}
           key={index}
           style={{ 'background-color': theme.color }}
-          on-click={this.changeTheme.bind(this, theme.key, index)}
+          on-click={this.changeTheme.bind(this, theme.color, theme.key)}
         >
           {
             theme.key === this.childSkiner ? <icon-class class={'el-icon-check'}/> : null
           }
-        </div>;
+        </li>;
     };
 
 
@@ -67,8 +67,12 @@ export default create({
             <p>设置主题</p>
           }
           {
-            this.palette.map(
-              (theme, index) => cycleRender(theme, index))
+            <ul>
+              {
+                this.palette.commons.map(
+                  (theme, index) => cycleRender(theme, index))
+              }
+            </ul>
           }
         </div>
         <icon-svg slot="reference" icon-class={'pifu'}/>
@@ -76,24 +80,32 @@ export default create({
     );
   },
   methods: {
+    /**
+     * toggle theme by change className
+     * @param key
+     */
     toggleByAddClassName(key) {
+      const themeprefix = 'theme-';
       const Layout = document.getElementById('layout');
       if (!Layout) return;
       Array.prototype.slice.call(Layout.classList).forEach(cls => {
-        if (cls.includes(this.themeprefix)) {
+        if (cls.includes(themeprefix)) {
           Layout.classList.remove(cls);
         }
       });
-      Layout.classList.add(`${this.themeprefix}${key}`);
+      Layout.classList.add(`${themeprefix}${key}`);
     },
+
+    /**
+     * toggle theme by insert style tags in the Head
+     * @param key
+     */
     toggleByInline(key) {
       const mark = `${this.recls()}-inline`;
       const targetList = document.getElementsByTagName('style');
       //remove the same tag
       Array.prototype.slice.apply(targetList).forEach(item => {
         if (item.id === mark && item.title) {
-          console.log(33333);
-          console.log(item);
           item.remove();
         }
       });
@@ -103,13 +115,33 @@ export default create({
       document.head.appendChild(styleTag);
       styleTag.innerText = innerCode(key);
     },
-    changeTheme(key, index) {
-      console.log('changeTheme');
-      console.log(key);
-      this.childSkiner = key;
-      this.$emit('input', key);
-      this.toggleByInline(key);
-      this.$emit('change-theme', key);
+    /**
+     * change theme
+     * @param value   hax / rgb
+     * @param key
+     */
+    changeTheme(value, key) {
+      this.colorPickerActive = !Boolean(key);
+      const color = this.toggleFormat(value);
+      this.childSkiner = color;
+      this.$emit('input', color);
+      this.toggleByInline(color);
+      this.$emit('change-theme', color);
+    },
+
+    /**
+     * Togglr color format from hax <=> rgba
+     * @param color
+     * @returns {*}
+     */
+    toggleFormat(color) {
+      if (this.colorFormat === 'rgb' && color.indexOf('rgb') === -1) {
+        return colorHexToRgba(color).rgba;
+      }
+      else if (this.colorFormat === 'hax' && color.indexOf('hax') !== -1) {
+        return colorRGBtoHex(color);
+      }
+      return color;
     },
     show() {
       this.$emit('show');
@@ -125,10 +157,7 @@ export default create({
     },
   },
   created() {
-
-  },
-  mounted() {
-
+    this.toggleByInline(this.toggleFormat(this.childSkiner));
   },
 });
 
