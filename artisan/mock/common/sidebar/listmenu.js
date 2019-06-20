@@ -360,6 +360,14 @@ const navmenu = (req, res) => {
             menuIndex: 7,
             hide: 1,
           },
+          {
+            funcId: 'baidu-map',
+            menuLabel: '百度地图',
+            menuRouter: 'baidu-map',
+            menuIcon: null,
+            menuIndex: 8,
+            hide: 1,
+          },
         ],
       },
       {

@@ -133,7 +133,6 @@ export default create({
 
     //图片成功
     onSuccess(response) {
-      console.log(123123);
       this.setVal(response.resultData);
     },
     changeUpload(re){

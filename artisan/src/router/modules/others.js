@@ -48,6 +48,12 @@ export const othersRouter = [
         meta: { auth: true, key: 'rich-editor' },
         name: '富文本编辑器',
       },
+      {
+        path: 'baidu-map',
+        component: () => import('../../pages/Others/Map/Map.vue'),
+        meta: { auth: true, key: 'baidu-map' },
+        name: '百度地图',
+      },
     ],
   },
 ];
