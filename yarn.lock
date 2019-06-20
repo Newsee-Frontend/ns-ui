@@ -2745,10 +2745,10 @@ currently-unhandled@^0.4.1:
   dependencies:
     array-find-index "^1.0.1"
 
-cx-builder@^0.0.44:
-  version "0.0.44"
-  resolved "https://registry.npm.taobao.org/cx-builder/download/cx-builder-0.0.44.tgz#8fb5d4fc01c9b79ebdadaf7ce777d049182d8f6c"
-  integrity sha1-j7XU/AHJt569ra9853fQSRgtj2w=
+cx-builder@^0.0.46:
+  version "0.0.46"
+  resolved "https://registry.npmjs.org/cx-builder/-/cx-builder-0.0.46.tgz#06d8bd1f5419e2ae51ccc03caac8e4e47f11115f"
+  integrity sha512-oJUIN2aii+9SiYp55BBbDaB5/nR42Cw9tA2ONhSeKif9oaKh+0NgxacOec2/yYUBBEAwWk1tzu5syvhuXUYaxg==
   dependencies:
     "@babel/core" "^7.4.4"
     "@babel/helper-module-imports" "^7.0.0"
