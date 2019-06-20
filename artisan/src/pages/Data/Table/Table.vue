@@ -74,7 +74,7 @@
     },
     methods: {
       getTableData() {
-        tableDataService({ query: {}, funcId: 'funcId' }).then(res => {
+        tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
           this.tableData = res.resultData || {};
           console.log('请求到的表格数据：');
           console.log(this.tableData);
