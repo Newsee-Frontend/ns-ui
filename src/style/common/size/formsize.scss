@@ -26,9 +26,11 @@ $height-ladder: 24px 28px 32px 36px 40px;
     @else if $block-type == 'color-picker' {
       $h-ladder: nth($height-ladder, $i);
       @include rb($size-name) {
+        width: $h-ladder;
+        height: $h-ladder;
         .el-color-picker__trigger {
-          width: $h-ladder;
-          height: $h-ladder;
+          width: 100%;
+          height: 100%;
         }
       }
     }
