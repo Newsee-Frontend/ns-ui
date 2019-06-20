@@ -1,6 +1,6 @@
 {
   "name": "ns-form-components",
-  "version": "0.0.19",
+  "version": "0.0.25",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -43,13 +43,14 @@
     "screenfull": "^4.2.0",
     "tinymce": "^5.0.6",
     "vue": "2.5.21",
+    "vuedraggable": "^2.14.1",
     "watch-size": "^2.0.0"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.4.3",
     "@cx-ui-design-test1/cx-builder-test1": "^0.0.3",
     "@vant/compiler": "^1.0.0",
-    "axios": "^0.16.2",
+    "axios": "^0.19.0",
     "cx-builder": "^0.0.44",
     "dependency-tree": "^6.4.0",
     "echarts": "^4.2.1",

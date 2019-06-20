@@ -8,6 +8,7 @@ export default create({
   props: {
     data: { type: Array },
     limit: { type: Number, default: 6 },
+    autoJump: { type: Boolean, default: true },
     activeRule: { type: Function },
   },
   computed: {
@@ -49,7 +50,7 @@ export default create({
         ])}
         {this.visitedView.length ? (
           <div class={'all-close'} on-click={this.closeAllViewTabs}>
-            <icon-svg icon-class={'CombinedShapeCopy'} />
+            <icon-svg icon-class={'CombinedShapeCopy'}/>
           </div>
         ) : null}
       </ul>
@@ -74,10 +75,15 @@ export default create({
     },
     //click tab jump
     tabsjump(tag) {
-      this.$router.push({ path: tag.path });
+      if (this.autoJump) {
+        this.$router.push({ path: tag.path });
+      }
+      else {
+        this.$emit('click-view-tabs', tag);
+      }
     },
   },
   created() {
-    console.log();
+
   },
 });

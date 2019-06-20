@@ -6,13 +6,13 @@ export default create({
 
   data() {
     return {
-      childInputNum: this.value
+      childInputNum: this.value,
     };
   },
   props: {
     value: {
       type: Number,
-      default: 0
+      default: 0,
     },
     width: { type: [String, Number] },
     height: { type: [String, Number] },
@@ -28,44 +28,46 @@ export default create({
     disabled: Boolean,
     controls: {
       type: Boolean,
-      default: true
+      default: true,
     },
     controlsPosition: {
-      type: String
+      type: String,
     },
     name: String,
     label: String,
-    placeholder: String
+    placeholder: String,
   },
 
   computed: {
-    convert_style(){
-      return{
+    convert_style() {
+      return {
         width: this.convert_width,
         height: this.convert_height,
         lineHeight: this.convert_height,
-      }
-    }
+      };
+    },
   },
 
   watch: {
-    value(val){
+    value(val) {
       this.childInputNum = val;
     },
 
   },
 
   render(h) {
-    return(
+    return (
       <el-input-number
+        ref={this.recls()}
         class={this.recls([this.formsize])}
         style={this.convert_style}
         value={this.childInputNum}
-        onInput={ e => { this.handlerModel(e)} }
+        onInput={e => {
+          this.handlerModel(e);
+        }}
         onChange={this.inputChange.bind(this)}
         onBlur={this.inputBlur.bind(this)}
         onFocus={this.inputFocus.bind(this)}
-        ref="inputNumber"
         min={this.min}
         max={this.max}
         step={this.step}
@@ -77,10 +79,8 @@ export default create({
         name={this.name}
         label={this.label}
         placeholder={this.placeholder}
-      >
-
-      </el-input-number>
-    )
+      />
+    );
   },
 
   methods: {
@@ -113,21 +113,15 @@ export default create({
     /**
      *  method focus
      */
-    focus(){
-      this.$refs.inputNumber.focus();
+    focus() {
+      this.$refs[this.recls()].focus();
     },
 
     /**
      *  method select
      */
-    select(){
-      this.$refs.inputNumber.select();
-    }
-  },
-
-  created() {
-  },
-
-  mounted() {
+    select() {
+      this.$refs[this.recls()].select();
+    },
   },
 });

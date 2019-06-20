@@ -64,7 +64,7 @@ export default create({
 
   render(h) {
     let { label, value } = this.keyRefer;
-    const elOption = (item) => (
+    const optionRender = (item) => (
       <el-option
         key={item[value]}
         value={item[value]}
@@ -102,7 +102,7 @@ export default create({
       >
         {
           this.options.map((item) => {
-            return elOption(item);
+            return optionRender(item);
           })
         }
       </el-select>

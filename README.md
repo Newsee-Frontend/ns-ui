@@ -1,6 +1,6 @@
-#  新视窗收费易H5项目 （ Charge-Easy Frontend H5 project)
+#  新视窗V10前端基础组件库
 
-> Mobile project for charge-easy
+>  Base UI component Library Architecture for framework frontend
 
 ## Build Setup
 
@@ -37,4 +37,3 @@ npm run e2e
 npm test
 
 ```
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).

@@ -7,6 +7,12 @@ export const dataRouter = [
     name: '数据',
     children: [
       {
+        path: 'table',
+        component: () => import('../../pages/Data/Table/Table'),
+        meta: { auth: true, key: 'Table' },
+        name: 'Table 表格',
+      },
+      {
         path: 'badge',
         component: () => import('../../pages/Data/Badge/Badge'),
         meta: { auth: true, key: 'Badge' },
@@ -29,7 +35,7 @@ export const dataRouter = [
         component: () => import('../../pages/Data/Pagination/Pagination'),
         meta: { auth: true, key: 'pagination' },
         name: 'Pagination分页',
-      }
+      },
     ],
   },
 ];

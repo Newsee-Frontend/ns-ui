@@ -13,15 +13,21 @@ export const formRouter = [
         name: '输入框',
       },
       {
-        path: 'datepicker',
+        path: 'input-number',
+        component: () => import('../../pages/Form/InputNumber/InputNumber'),
+        meta: { auth: true, key: 'input-number' },
+        name: '计数器',
+      },
+      {
+        path: 'date-picker',
         component: () => import('../../pages/Form/datepicker'),
-        meta: { auth: true, key: 'datepicker' },
+        meta: { auth: true, key: 'date-picker' },
         name: '日期控件',
       },
       {
-        path: 'timepicker',
+        path: 'time-picker',
         component: () => import('../../pages/Form/timepicker'),
-        meta: { auth: true, key: 'timepicker' },
+        meta: { auth: true, key: 'time-picker' },
         name: '时间控件',
       },
       {
@@ -47,12 +53,6 @@ export const formRouter = [
         component: () => import('../../pages/Form/Cascader/Cascader'),
         meta: { auth: true, key: 'cascader' },
         name: '级联选择器',
-      },
-      {
-        path: 'avatar',
-        component: () => import('../../pages/Form/Avatar/Avatar'),
-        meta: { auth: true, key: 'avatar' },
-        name: '头像',
       },
       {
         path: 'checkbox',
@@ -89,18 +89,26 @@ export const formRouter = [
         component: () => import('../../pages/Form/Select-tree/Select-tree'),
         meta: { auth: true, key: 'select-tree' },
         name: '下拉选择树',
-      },{
+      },
+      {
+        path: 'color-picker',
+        component: () => import('../../pages/Form/ColorPicker/ColorPicker'),
+        meta: { auth: true, key: 'color-picker' },
+        name: '颜色选择器',
+      },
+      {
+        path: 'avatar',
+        component: () => import('../../pages/Form/Avatar/Avatar'),
+        meta: { auth: true, key: 'avatar' },
+        name: '头像',
+      },
+      {
         path: 'form',
         component: () => import('../../pages/Form/Form/Form'),
         meta: { auth: true, key: 'form' },
         name: '表单',
       },
-      {
-        path: 'inputNumber',
-        component: () => import('../../pages/Form/InputNumber/InputNumber'),
-        meta: { auth: true, key: 'input-number' },
-        name: '计数器',
-      },
+
     ],
   },
 ];

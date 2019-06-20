@@ -4,11 +4,16 @@ export default create({
   name: 'header',
   render(h) {
     return (
-      <div class={`${this.recls()} clear`}>
+      h(
+        'div',
         {
-          this.$slots.default
-        }
-      </div>
+          class: `${this.recls()} clear`,
+          attrs: {
+            id: 'Header',
+          },
+        },
+        this.$slots.default,
+      )
     );
   },
 });

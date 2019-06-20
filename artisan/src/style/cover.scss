@@ -1,0 +1,76 @@
+
+.el-table {
+  border: 1px solid #e8e8e8 !important;
+  .el-table__header {
+    th {
+      border-left: 1px solid #d8dade;
+      background-color: #ebedef;
+      color: #333;
+      &:first-child {
+        border-left: none
+      }
+    }
+  }
+
+  td {
+    border-right: none;
+    border-left: none;
+  }
+  td, th {
+    height: 32px;
+    max-height: 32px;
+    padding: 4px 0;
+    border-bottom: none;
+    border-bottom: 1px solid #d8dade !important;
+    box-sizing: border-box;
+    .cell {
+      height: inherit;
+      line-height: 32px;
+      vertical-align: middle;
+      overflow: hidden;
+    }
+  }
+  //表头最右侧滚动槽
+  .el-table__fixed-right-patch {
+    background-color: #ebedef;
+  }
+
+  //去除table 所有外框
+  .el-table__fixed-footer-wrapper, .el-table__footer-wrapper {
+    td {
+      border-bottom: none;
+    }
+    //tbody {
+    //  td:first-child, td:last-child {
+    //    border-top: none;
+    //  }
+    //}
+  }
+
+  .el-table--border:after, .el-table--group:after {
+    width: 0;
+  }
+
+  .el-table--border:after, .el-table--group:after, .el-table:before {
+    background-color: transparent;
+  }
+
+  .el-table__fixed-right, .el-table__fixed {
+    z-index: 999;
+    background-color: #fff;
+    &:before {
+      background-color: transparent;
+    }
+    .el-table__fixed-body-wrapper {
+      .el-table__body {
+        tr:last-child {
+          td {
+            //border-bottom: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+

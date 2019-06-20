@@ -10,10 +10,10 @@ export default create({
     };
   },
   props: {
-    value: [Array,String, Number, Boolean],
+    value: [Array, String, Number, Boolean],
     type: { type: String, default: 'normal' },
     size: { type: String, validator: s => sizeValidator(s) },
-    options: { type: Array,   default:() => [] },
+    options: { type: Array, default: () => ([]) },
     width: { type: [String, Number] },
     disabled: { type: Boolean, default: false },
     min: { type: Number, default: 0 }, //可被勾选的 checkbox 的最小数量
@@ -24,16 +24,11 @@ export default create({
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },
-    isGroup: {
-      type: Boolean,
-      default: true
-    },
+    isGroup: { type: Boolean, default: true },
 
-    //单独
+    //single
     trueLabel: [String, Number],
     falseLabel: [String, Number],
-    border: Boolean,
-    indeterminate: Boolean
   },
   watch: {
     value(val) {
@@ -63,7 +58,7 @@ export default create({
     };
 
     const checkboxGroup = <el-checkbox-group
-      className={this.recls()}
+      class={this.recls()}
       style={{ width: this.convert_width }}
       value={this.childCheckbox}
       textColor={this.textColor}
@@ -77,22 +72,22 @@ export default create({
       {options.map(item => (checkboxDom(item)))}
     </el-checkbox-group>;
 
-    const checkboxSingle =   <el-checkbox
-      class={this.recls()}
+    const checkboxSingle = <el-checkbox
+      class={`${this.recls()} ${this.recls('single')}`}
       value={this.childCheckbox}
-      onInput={e => { this.handleModel(e)}}
+      onInput={e => {
+        this.handleModel(e);
+      }}
       onChange={this.change}
       true-label={this.trueLabel}
       false-label={this.falseLabel}
       disabled={this.disabled}
-      border={this.border}
-      indeterminate={this.indeterminate}
     >
-      { this.$slots.default}
+      {this.$slots.default}
     </el-checkbox>;
 
     return (
-      this.isGroup? checkboxGroup: checkboxSingle
+      this.isGroup ? checkboxGroup : checkboxSingle
     );
   },
 

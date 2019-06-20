@@ -12,5 +12,8 @@ const getters = {
   //form demo
   optionsDataTemplate: state => state.Form.optionsDataTemplate,
   selectTreeOptions: state => state.Tree.selectTreeOptions,
+
+  //table demo
+  tableHead: state => state.Table.tableHead,
 };
 export default getters;

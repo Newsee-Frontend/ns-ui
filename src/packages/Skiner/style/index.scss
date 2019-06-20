@@ -1,9 +1,12 @@
 @import '../../../style/mixins/mixins';
 
+$skiner-action-height: 32px;
+$skiner-cycle-height: 20px;
+
 @include b(skiner) {
   svg {
-    width: 20px;
-    height: 20px;
+    width: $skiner-cycle-height;
+    height: $skiner-cycle-height;
     margin-bottom: -3px;
     cursor: pointer;
   }
@@ -14,22 +17,28 @@
   p {
     font-size: 12px;
     color: #999;
-    margin-bottom: 10px;
+    margin-bottom: 2px;
   }
-  .theme-cycle {
-    width: 20px;
-    height: 20px;
-    line-height: 20px;
-    border-radius: 50%;
-    margin-right: 10px;
-    text-align: center;
-    cursor: pointer;
-    i {
-      color: #fff;
-      font-weight: bold;
-    }
-    &:last-child {
-      margin-right: 0;
+  ul {
+    height: $skiner-action-height;
+    li.theme-cycle {
+      width: $skiner-cycle-height;
+      height: $skiner-cycle-height;
+      line-height: $skiner-cycle-height;
+      border-radius: 50%;
+      margin-top: ($skiner-action-height - $skiner-cycle-height)/2;
+      margin-right: $skiner-cycle-height/2;
+      text-align: center;
+      cursor: pointer;
+      i {
+        color: #fff;
+        font-weight: bold;
+        padding: 0;
+      }
+      &:last-child {
+        margin-right: 0;
+      }
     }
   }
+
 }

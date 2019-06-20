@@ -19,6 +19,7 @@ export default {
     if (to.meta.auth) {
       console.log('matched');
       console.log(to);
+
       addPageTabs(to.matched);
     }
   },
