@@ -1,6 +1,6 @@
 const Mock = require('mockjs');
 
-let tableDataTemplate = [...new Array(5)].map((item, index) => {
+let tableDataTemplate = [...new Array(100)].map((item, index) => {
   return Mock.mock({
     taskName: function(n) {
       const task = n.context.currentContext.ownerName;
@@ -32,12 +32,14 @@ let tableDataTemplate = [...new Array(5)].map((item, index) => {
 });
 
 const tableData = (req, res) => {
+  const { pageNum, pageSize } = req.body;
+  const list = tableDataTemplate.slice((pageNum - 1) * pageSize, pageSize * pageNum);
   return res.json({
     resultCode: '200',
     resultMsg: '操作成功。',
     restLog: null,
     resultData: {
-      list: tableDataTemplate,
+      list: list,
       'pageNum': 1,
       'pageSize': 10,
       'size': 10,
