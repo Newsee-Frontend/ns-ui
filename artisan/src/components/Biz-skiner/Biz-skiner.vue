@@ -1,6 +1,6 @@
 <template>
   <ns-skiner v-model="skinerModel"
-             :init-theme="theme"
+             :color-format="colorFormat"
              @change-theme="changeTheme"
              @show="show"
              @after-enter="afterEnter"
@@ -16,7 +16,8 @@
     name: 'Biz-skiner',
     data() {
       return {
-        skinerModel: '#0A7AF8',
+        skinerModel: '#252836',
+        colorFormat: 'hax',
       };
     },
     watch: {
@@ -51,7 +52,6 @@
   };
 
 </script>
-
-<style scoped>
+<style rel="stylesheet/scss" lang="scss">
 
 </style>
