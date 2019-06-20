@@ -1,0 +1,12 @@
+//datepicker 相关样式
+@import '../../../style/common/size/formsize';
+
+@include b(color-picker) {
+  @include form-component-size(color-picker);
+  &.active {
+    .el-color-picker__trigger {
+      border-color: #0a7af8;
+    }
+
+  }
+}
