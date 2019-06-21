@@ -12,6 +12,6 @@ module.exports = [
   'Time-interval',
   'VideoBackground',
   'Particles',
-  'Tinymce',
+  'Editor',
   'Table',
 ];
