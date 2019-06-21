@@ -10,5 +10,4 @@ module.exports = [
   'Only-MMDD-picker',
   'Time-interval',
   'VideoBackground',
-  'Editor',
 ];
