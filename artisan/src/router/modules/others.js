@@ -44,7 +44,7 @@ export const othersRouter = [
       },
       {
         path: 'rich-editor',
-        component: () => import('../../pages/Others/Tinymce/Tinymce'),
+        component: () => import('../../pages/Others/Editor/Editor'),
         meta: { auth: true, key: 'rich-editor' },
         name: '富文本编辑器',
       },

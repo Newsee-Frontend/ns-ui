@@ -1,18 +1,22 @@
 import create from '../../create/create';
-import tinymce from 'tinymce';
+import editorImage from './components/editor-image';
 import plugins from './plugins';
 import toolbar from './toolbar';
+import editorBtn from './components/editor-btn';
+
 
 export default create({
-  name: 'tinymce',
+  name: 'editor',
+  components: { editorImage, editorBtn },
   props: {
+    value: { type: String, default: '' },
     id: {
       type: String,
       default: function() {
         return 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '');
       },
     },
-    value: { type: String, default: '' },
+    height: { type: Number, required: false, default: 360 },
     toolbar: {
       type: Array, required: false,
       default() {
@@ -20,7 +24,6 @@ export default create({
       },
     },
     menubar: { type: String, default: 'file edit insert view format table' },
-    height: { type: Number, required: false, default: 360 },
   },
   data() {
     return {
@@ -28,6 +31,7 @@ export default create({
       hasInit: false,
       tinymceId: this.id,
       fullscreen: false,
+      isEn: false,
       languageTypeList: {
         'en': 'en',
         'zh': 'zh_CN',
@@ -36,7 +40,7 @@ export default create({
   },
   computed: {
     language() {
-      return this.languageTypeList[this.$store.getters.language];
+      return this.languageTypeList[this.isEn ? 'en' : 'zh'];
     },
   },
   watch: {
@@ -52,16 +56,24 @@ export default create({
     },
   },
   render(h) {
-    const props = {
-      class: { fullscreen: this.fullscreen },
-    };
     return (
-      <div class={'tinymce-container editor-container'} {...props}>
-        <textarea id={this.tinymceId} class={'tinymce-textarea'}/>
+      <div class={`${this.recls()} ${this.fullscreen ? 'fullscreen' : ''}`}>
+        <textarea id={this.tinymceId} class={'editor-textarea'}/>
+        <ul class={'editor-custom-btn-container '}>
+          <li>
+            <editor-btn on-editor-btn-click={() => {
+              this.isEn = !this.isEn;
+            }}/>
+          </li>
+          <li>
+            <editor-image on-image-submit={this.imageSubmit}/>
+          </li>
+        </ul>
       </div>
     );
   },
   methods: {
+    //init
     initTinymce() {
       const _this = this;
       window.tinymce.init({
@@ -102,13 +114,13 @@ export default create({
     },
 
     destroyTinymce() {
-      const tinymce = window.tinymce.get(this.tinymceId);
+      const editor = window.tinymce.get(this.tinymceId);
       if (this.fullscreen) {
-        tinymce.execCommand('mceFullScreen');
+        editor.execCommand('mceFullScreen');
       }
 
-      if (tinymce) {
-        tinymce.destroy();
+      if (editor) {
+        editor.destroy();
       }
     },
 
@@ -119,12 +131,17 @@ export default create({
     getContent() {
       window.tinymce.get(this.tinymceId).getContent();
     },
+    imageSubmit(arr) {
+      const _this = this;
+      arr.forEach(v => {
+        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
+      });
+    },
   },
 
   mounted() {
     this.initTinymce();
   },
-
   activated() {
     this.initTinymce();
   },

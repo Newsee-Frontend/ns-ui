@@ -1,0 +1,53 @@
+//Rich Editor
+@import '../../../style/mixins/mixins';
+
+$action-height: 34px;
+
+@include b(editor) {
+  position: relative;
+  line-height: normal;
+
+  .mce-fullscreen {
+    left: 50px;
+    top: 88px;
+    z-index: 9999;
+  }
+
+  //custom button
+  ul.editor-custom-btn-container {
+    position: absolute;
+    right: 4px;
+    top: 4+$action-height+$action-height;
+    clear: both;
+    li {
+      display: inline-block;
+      float: left;
+      margin-right: 2px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &.fullscreen {
+    .editor-custom-btn-container {
+      position: fixed;
+      top: 4+$action-height+$action-height+88px;
+      z-index: 10000;
+    }
+  }
+
+  .editor-btn {
+    button {
+      border: none;
+    }
+  }
+
+  //hide textarea
+  .editor-textarea{
+    visibility: hidden;
+    z-index: -1;
+  }
+}
+
+

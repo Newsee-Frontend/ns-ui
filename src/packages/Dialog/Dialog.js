@@ -43,6 +43,7 @@ export default create({
   watch: {
     visible(val) {
       this.show = val;
+
     },
   },
   computed: {

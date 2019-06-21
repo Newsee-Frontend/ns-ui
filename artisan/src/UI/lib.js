@@ -47,7 +47,7 @@ import Timeline from '../../../src/packages/Timeline/Timeline.js';
 import TimelineAxis from '../../../src/packages/TimelineAxis/TimelineAxis.js';
 import Particles from '../../../src/packages/Particles/Particles';
 import VideoBackground from '../../../src/packages/VideoBackground/VideoBackground';
-import Tinymce from '../../../src/packages/Tinymce/test123';
+import Editor from '../../../src/packages/Editor/Editor';
 import Screenfull from '../../../src/packages/Screenfull/Screenfull';
 
 //data
@@ -126,7 +126,7 @@ Vue.component('ns-popover', Popover);
 Vue.component('ns-timeline', Timeline);
 Vue.component('ns-timeline-axis', TimelineAxis);
 
-Vue.component('ns-tinymce', Tinymce);
+Vue.component('ns-editor', Editor);
 Vue.component('ns-particles', Particles);
 Vue.component('ns-video-background', VideoBackground);
 
@@ -187,4 +187,4 @@ import '../../../src/packages/Timeline/style/index.scss';
 import '../../../src/packages/TimelineAxis/style/index.scss';
 import '../../../src/packages/Particles/style/index.scss';
 import '../../../src/packages/VideoBackground/style/index.scss';
-import '../../../src/packages/Tinymce/style/index.scss';
+import '../../../src/packages/Editor/style/index.scss';

@@ -1,19 +1,14 @@
-<!--UI 组件库 - Tinymce - 页面测试-->
+<!--UI 组件库 - Editor - 页面测试-->
 <template>
   <div>
     <demo-block>
       <template slot="title">Tinymce - 富文本编辑器</template>
       <template slot="describe">基础用法</template>
       <template slot="content">
-        <div>
-          <ns-tinymce v-model="content"
-                      :disabled="false"
-                      ref="editor"></ns-tinymce>
-
-
-          <!--<ns-tinymce :height="300" v-model="content"/>-->
+        <ns-editor :height="500" v-model="content"/>
+        <div class="editor-content">
+          <h3>输入内容如下:</h3>{{content}}
         </div>
-        <div class="editor-content" v-html="content"/>
       </template>
     </demo-block>
   </div>
@@ -21,7 +16,7 @@
 
 <script>
   export default {
-    name: 'tinymce-demo',
+    name: 'editor-demo',
     data() {
       return {
         content: '',
@@ -32,11 +27,14 @@
 
     },
     methods: {},
-    mounted() {
-    },
   };
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-
+  .editor-content {
+    h3 {
+      margin-bottom: 10px;
+    }
+    margin: 20px 0;
+  }
 </style>

@@ -37,8 +37,8 @@ body {
     bottom: 1px;
     left: $navL;
     right: 0;
-    z-index: 1;
     box-sizing: border-box;
+    z-index: 1;
 
     /* ------------  右侧内容模块整体（固定不变，占位） ------------ */
     .app-main {
