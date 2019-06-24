@@ -38,7 +38,10 @@ $height-ladder: 24px 28px 32px 36px 40px;
     @else if $block-type == 'input-number' {
       @include rb($size-name) {
         $d: -2px;
+        width: $w;
+        height: $h;
         line-height: $h +  $d;
+        @include input-inner();
         &.is-controls-right {
           .el-input-number__increase,
           .el-input-number__decrease {

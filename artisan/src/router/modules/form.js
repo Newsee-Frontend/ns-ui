@@ -13,9 +13,9 @@ export const formRouter = [
         name: '输入框',
       },
       {
-        path: 'input-number',
+        path: 'inputNumber',
         component: () => import('../../pages/Form/InputNumber/InputNumber'),
-        meta: { auth: true, key: 'input-number' },
+        meta: { auth: true, key: 'inputNumber' },
         name: '计数器',
       },
       {

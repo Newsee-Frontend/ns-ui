@@ -9,5 +9,5 @@ module.exports = [
   'TestDemo',
   'Only-MMDD-picker',
   'Time-interval',
-  'VideoBackground',
+  'VideoBackground'
 ];
