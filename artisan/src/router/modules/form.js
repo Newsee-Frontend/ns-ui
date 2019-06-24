@@ -8,7 +8,7 @@ export const formRouter = [
     children: [
       {
         path: 'input',
-        component: () => import('../../pages/Form/input'),
+        component: () => import('../../pages/Form/Input/Input'),
         meta: { auth: true, key: 'input' },
         name: '输入框',
       },
