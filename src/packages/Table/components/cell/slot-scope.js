@@ -27,6 +27,7 @@ export default {
     checkStator: { type: Object },
     cellFifter: { type: Function },
     rulesConfig: { type: Array },
+    isTooltip: { type: Boolean },//是否单元格文字提示
   },
   computed: {
     //表单单元格配置信息
@@ -71,6 +72,23 @@ export default {
     },
   },
   render(h) {
+
+    /**
+     * render default cell ()
+     * @param scope
+     * @param modelCode
+     * @returns {*}
+     */
+    const defaultCell = (scope, modelCode) => {
+      const content = this.gridCellFifter(scope.row[modelCode], modelCode);
+      return <div>{content}</div>;
+      // return this.isTooltip ?
+      //   <el-tooltip content={content} effect={'dark'} placement={'top-start'}>
+      //     <div>{content}</div>
+      //   </el-tooltip>
+      //   : <div>{content}</div>;
+    };
+
 
     let cellRender = (scope, item, modelCode) => {
       if (this.isFormRender) {
@@ -156,11 +174,11 @@ export default {
             );
 
           default:
-            return <div>{this.gridCellFifter(scope.row[modelCode], modelCode)}</div>;
+            return defaultCell(scope, modelCode);
         }
       }
       else {
-        return <div>{this.gridCellFifter(scope.row[modelCode], modelCode)}</div>;
+        return defaultCell(scope, modelCode);
       }
     };
 
@@ -280,9 +298,10 @@ export default {
      * @returns {*|void}
      */
     gridCellFifter(val, key) {
+      if (!this.cellFifter) {
+        return val;
+      }
       return this.cellFifter(val, key);
     },
-
-
   },
 };
