@@ -1,9 +1,9 @@
 export default {
   data() {
     return {
-      normalColInclude: ['text', 'number'],
+      normalColInclude: ['text', 'number', 'select', 'date'],
       specialColInclude: ['index', 'selection', 'radio'],
-      actionColInclude: ['action','add-row'],
+      actionColInclude: ['action', 'add-row'],
     };
   },
 };
