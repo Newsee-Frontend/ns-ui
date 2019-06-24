@@ -18,12 +18,17 @@ export default {
   props: {
     value: [Boolean],
     settingState: { type: Object },
-    dropList: {
+    head: {
       type: Array, default() {
         return [];
       },
     },
     headRefer: { type: Object },
+  },
+  computed: {
+    dropList() {
+      return [...this.head];
+    },
   },
   render(h) {
 
@@ -42,7 +47,12 @@ export default {
             this.$emit('input', event);
           },
           change: (event) => {
-            item[this.headRefer['hidden']] = !event;
+            this.dropList[$index] = Object.assign(
+              {},
+              this.dropList[$index],
+              { [this.headRefer['hidden']]: !event },
+            );
+            this.$emit('sync-render', this.dropList);
           },
         },
       }, item[this.headRefer['label']]);
@@ -62,7 +72,6 @@ export default {
         [checkRender, icoRender]);
     };
 
-
     return (
       <div id={'head-setting-drag'}
            class={{ 'opened': this.settingState.setting }}
@@ -73,7 +82,7 @@ export default {
                      this.$emit('input', event);
                    }}
                    options={{ disabled: this.isLocked }}
-                   on-start={this.dragHandle} on-end={this.dropHandle}>
+                   on-start={this.dragHandle.bind(this)} on-end={this.dropHandle.bind(this)}>
           {
             this.dropList.map((item, $index) => liRender(item, $index))
           }
@@ -114,20 +123,21 @@ export default {
       const len = this.dropList.length;
       //修改前为锁定 true
       if (fixedType === 'left') {
-        this.$set(this.dropList[$index], [key], false);//去反
-        // this.dropList[$index][key] = false;
+        // this.$set(this.dropList[$index], [key], false);//去反
+        this.dropList[$index][key] = false;
         for (let i = $index; i < len; i++) {
-          // this.dropList[i][key] = false;
-          this.$set(this.dropList[i], [key], false);
+          this.dropList[i][key] = false;
+          // this.$set(this.dropList[i], [key], false);
         }
       }
       //修改前为未锁定 false
       else {
         for (let i = 0; i <= $index; i++) {
-          this.$set(this.dropList[i], [key], 'left');
-          // this.dropList[i][key] = 'left';
+          // this.$set(this.dropList[i], [key], 'left');
+          this.dropList[i][key] = 'left';
         }
       }
+      this.$emit('sync-render', this.dropList);
     },
 
     dragClick(e) {
@@ -147,6 +157,7 @@ export default {
 
       console.log('拖动前的索引 :' + oldIndex);
       console.log('拖动后的索引 :' + newIndex);
+      this.$emit('sync-render', this.dropList);
     },
 
     /**
@@ -167,12 +178,12 @@ export default {
     },
 
   },
-  beforeDestroy() {
-    //remove event Listener
-    removeEventHandler(document.body, 'click', this.listenDropClickEvent);
-  },
   mounted() {
     //listen drop modules click event
     addEventHandler(document.body, 'click', this.listenDropClickEvent);
+  },
+  beforeDestroy() {
+    //remove event Listener
+    removeEventHandler(document.body, 'click', this.listenDropClickEvent);
   },
 };
