@@ -35,6 +35,7 @@ export default create({
         return ['jpeg', 'png'];
       },
     },
+    beforeUpload: Function
   },
 
   computed: {
@@ -121,12 +122,16 @@ export default create({
     beforeAvatarUpload(file) {
       let type = file.type;
       let imageTypeList = this.addImageType(this.fileType);
-      if (imageTypeList.indexOf(type) === -1) {
-        this.$message.error(`上传头像图片只能是${this.fileType.join(',')}格式!`);
-        return false;
-      }
-      if (file.size / 1024 / 1024 > 3) {
-        return this.$message.error('上传头像图片大小不能超过3M');
+      if(this.beforeUpload){
+        this.beforeUpload(file)
+      }else{
+        if (imageTypeList.indexOf(type) === -1) {
+          this.$message.error(`上传头像图片只能是${this.fileType.join(',')}格式!`);
+          return false;
+        }
+        if (file.size / 1024 / 1024 > 3) {
+          return this.$message.error('上传头像图片大小不能超过3M');
+        }
       }
       return true;
     },
@@ -137,6 +142,7 @@ export default create({
     },
     changeUpload(re){
       console.log(re, '---------------------------');
+      this.$emit('change');
     },
 
 
