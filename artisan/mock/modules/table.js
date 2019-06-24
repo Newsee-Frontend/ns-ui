@@ -4,7 +4,8 @@ let tableDataTemplate = [...new Array(100)].map((item, index) => {
   return Mock.mock({
     taskName: function(n) {
       const task = n.context.currentContext.ownerName;
-      return task + '的项目';
+      const createDate = n.context.currentContext.createDate;
+      return task + '的项目-' + createDate;
     },//项目名称
     isChecked: {
       picked: { value: 1 },
@@ -63,7 +64,7 @@ const listColumn = (req, res) => {
           'resourcecolumnNameEn': 'taskName',//model-key
           'resourcecolumnCode': 'taskName',//model-key
           'resourcecolumnXtype': 'text',//筛选列 类型
-          'resourcecolumnWidth': '200',//列的宽度
+          'resourcecolumnWidth': '150',//列的宽度
           'resourcecolumnOrder': '4',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
           'eidtConfig': {
