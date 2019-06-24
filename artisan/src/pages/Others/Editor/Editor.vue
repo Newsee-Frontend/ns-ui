@@ -19,14 +19,15 @@
     name: 'editor-demo',
     data() {
       return {
+        visible: false,
         content: '',
       };
     },
-    computed: {},
-    created() {
-
+    methods: {
+      buttonClick() {
+        this.visible = true;
+      },
     },
-    methods: {},
   };
 </script>
 
