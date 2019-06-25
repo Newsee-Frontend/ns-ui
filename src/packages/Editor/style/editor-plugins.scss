@@ -11,6 +11,12 @@
         }
       }
     }
+    .v-modal {
+      z-index: -1;
+      &.hide {
+        display: none;
+      }
+    }
   }
   .el-upload {
     width: 100%;

@@ -2,6 +2,8 @@ import Dialog from '../../Dialog/Dialog';
 import Button from '../../Button/Button';
 import editorBtn from './editor-btn';
 
+
+
 export default {
   name: 'editor-image',
   components: { Dialog, Button, editorBtn },
@@ -43,11 +45,14 @@ export default {
           custom-class={'editor-image-dialog'}
           type={'autoHeight'}
           size={'small'}
+          modal={false}
           on-close={this.dialogClose}
+
         >
           {
             upload()
           }
+          <div class={`v-modal ${!this.dialogVisible ? 'hide' : ''}`}/>
           <div slot="footer">
             <Button on-click={_ => {
               this.dialogVisible = false;
@@ -67,7 +72,7 @@ export default {
           {
             class: 'editor-upload__btn',
             on: {
-              'editor-btn-click': () => {
+              'editor-btn-click': _=> {
                 this.dialogVisible = true;
               },
             },

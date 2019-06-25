@@ -1,3 +1,5 @@
+import { stopPropagation } from '../../../utils/event';
+
 export default {
   name: 'editor-btn',
   render(h) {
@@ -24,7 +26,8 @@ export default {
     );
   },
   methods: {
-    editorBtnClick() {
+    editorBtnClick(e) {
+      stopPropagation(e);
       this.$emit('editor-btn-click');
     },
   },
