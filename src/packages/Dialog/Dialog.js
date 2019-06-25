@@ -45,7 +45,6 @@ export default create({
     visible(val) {
       this.show = val;
     },
-
   },
   computed: {
     //遮罩层是否插入至 body 元素上
@@ -110,6 +109,10 @@ export default create({
     //Dialog open emit
     open() {
       this.$emit('open');
+    },
+    turnState(state) {
+      if (state !== !!state) return;
+      this.show = state;
     },
   },
   created() {
