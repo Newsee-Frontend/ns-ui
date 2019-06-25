@@ -12,33 +12,48 @@ export default {
     };
   },
   watch: {
-    visible(val) {
-      this.dialogVisible = val;
+    dialogVisible(value) {
+      this.$refs['editor-image-dialog'].turnState(value);
     },
   },
   render(h) {
     const upload = () => {
+      return h('el-upload', {
+          class: 'editor-slide-upload',
+          props: {
+            multiple: true,
+            'show-file-list': true,
+            'before-upload': this.beforeUpload,
+            action: 'https://httpbin.org/post',
+            'list-type': 'picture-card',
+            'on-remove': this.handleRemove,
+            'on-success': this.handleSuccess,
+          },
+        },
+        [
+          <i class="el-icon-upload"/>,
+        ],
+      );
+    };
+
+    const DialogUpload = () => {
       return (
         <Dialog
-          visible={this.dialogVisible}
-          on-update:visible={val => {
-            console.log(val);
-            this.dialogVisible = val;
-          }}
+          ref={'editor-image-dialog'}
+          custom-class={'editor-image-dialog'}
+          type={'autoHeight'}
+          size={'small'}
+          on-close={this.dialogClose}
         >
-          <el-upload
-            class="editor-slide-upload"
-            multiple
-            show-file-list
-            on-remove={this.handleRemove}
-            on-success={this.handleSuccess}
-            before-upload={this.beforeUpload}
-            action="https://httpbin.org/post"
-            list-type="picture-card">
-            <el-button size="small" type="primary">点击上传</el-button>
-          </el-upload>
-          <Button on-click={this.dialogVisible = false}>取 消</Button>
-          <Button type={'primary'} on-click={this.handleSubmit}>确 定</Button>
+          {
+            upload()
+          }
+          <div slot="footer">
+            <Button on-click={_ => {
+              this.dialogVisible = false;
+            }}>取 消</Button>
+            <Button type={'primary'} on-click={this.handleSubmit}>确 定</Button>
+          </div>
         </Dialog>
       );
     };
@@ -58,7 +73,7 @@ export default {
             },
           },
         ),
-          upload(),
+          DialogUpload(),
         ],
       )
     );
@@ -79,7 +94,6 @@ export default {
         this.$message('请等待所有图片上传成功 或 出现了网络问题，请刷新页面重新上传！');
         return;
       }
-
       this.$emit('image-submit', imgInfoList);
       this.listObj = {};
       this.dialogVisible = false;
@@ -134,6 +148,12 @@ export default {
           return;
         }
       }
+    },
+    /**
+     * dialog close
+     */
+    dialogClose() {
+      this.dialogVisible = false;
     },
   },
 };
