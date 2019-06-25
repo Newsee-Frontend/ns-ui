@@ -1,6 +1,6 @@
 const Mock = require('mockjs');
 
-let tableDataTemplate = [...new Array(100)].map((item, index) => {
+let tableDataTemplate = Array.from({ length: 100 }, k => k).map((item, index) => {
   return Mock.mock({
     taskName: function(n) {
       const task = n.context.currentContext.ownerName;
