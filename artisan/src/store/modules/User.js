@@ -33,7 +33,7 @@ const User = {
       userType: _deCryptoUserInfo().userType,
       userPhone: _deCryptoUserInfo().userPhone,
       userSex: _deCryptoUserInfo().userSex,
-      theme: _deCryptoUserInfo().theme,
+      themeColor: _deCryptoUserInfo().themeColor,
     },
   },
   mutations: {
@@ -48,7 +48,7 @@ const User = {
       state.userinfo.userType = data.userType;
       state.userinfo.userPhone = data.userPhone;
       state.userinfo.userSex = data.userSex;
-      state.userinfo.theme = data.theme;
+      state.userinfo.themeColor = data.themeColor;
 
       //cookie store - token info
       cryptoCookie(
