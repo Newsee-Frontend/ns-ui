@@ -148,9 +148,11 @@ export default create({
     this.initTinymce();
   },
   deactivated() {
+    console.log('deactivated')
     this.destroyTinymce();
   },
   destroyed() {
+    console.log('destroyed')
     this.destroyTinymce();
   },
 });

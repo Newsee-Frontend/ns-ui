@@ -42,6 +42,7 @@ export default {
     height: { type: Number, default: 500 },//表格渲染高度默认值
     showHeadOperation: { type: Boolean, default: true },//表头设置 新增行操作模块开关
     showSummary: { type: Boolean },//是否显示合计行
+    isTooltip: { type: Boolean, default: true },//是否单元格文字提示
     checkStator: { type: Object },
     cellFifter: {
       type: Function,
@@ -84,6 +85,7 @@ export default {
                               checkStator={this.checkStator}
                               cell-fifter={this.cellFifter}
                               rules-config={this.rulesConfig}
+                              is-tooltip={this.isTooltip}
                               on-cell-action={this.cellAction}
                               on-cell-form-change={this.cellFormChange}/>
                 );
@@ -133,9 +135,6 @@ export default {
                 if (this.specialColInclude.indexOf(type) > -1) {
                   return <first-table-column head-scope={item} headRefer={this.headRefer} on-selection-change={this.selectionChange}/>;
                 }
-                else if (this.normalColInclude.indexOf(type) > -1) {
-                  return normalColumn(item, index);
-                }
                 //操作列
                 else if (this.actionColInclude.indexOf(type) > -1) {
                   return <action-column head-scope={item} headRefer={this.headRefer} scopeRefer={this.scopeRefer}
@@ -143,6 +142,9 @@ export default {
                                         on-add-row={this.addRow}
                                         on-delete-current-row={this.deleteCurrentRow}
                   />;
+                }
+                else if (this.normalColInclude.indexOf(type) > -1) {
+                  return normalColumn(item, index);
                 }
                 else {
                   return null;
@@ -157,12 +159,22 @@ export default {
             this.showHeadOperation ? settingColumn() : null
           }
         </el-table>
-        <actionDrop drop-list={this.head} headRefer={this.headRefer} setting-state={this.settingState}/>
+        <actionDrop head={this.head} headRefer={this.headRefer} setting-state={this.settingState}
+                    on-sync-render={this.syncRender}
+        />
       </div>
     );
   },
 
   methods: {
+    /**
+     * 同步渲染
+     * @param data
+     */
+    syncRender(data) {
+      this.$emit('sync-render', data);
+    },
+
     selectionChange(row, index) {
       this.$emit('selection-change', row, index);
     },

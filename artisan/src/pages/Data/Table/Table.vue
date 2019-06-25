@@ -30,7 +30,7 @@
       </template>
     </demo-block>
 
-    <biz-table :loadState="loadState" :data="tableData" @selection-change="selectionChange" @table-action="tableAction"></biz-table>
+    <!--<biz-table :loadState="loadState" :data="tableData" @selection-change="selectionChange" @table-action="tableAction"></biz-table>-->
   </div>
 </template>
 

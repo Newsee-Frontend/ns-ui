@@ -50,8 +50,6 @@ const User = {
       state.userinfo.userSex = data.userSex;
       state.userinfo.theme = data.theme;
 
-      console.log(99999999);
-      console.log(state.userinfo);
       //cookie store - token info
       cryptoCookie(
         cookieName,

@@ -52,7 +52,7 @@
       },
       searchConditions: { type: Object },//筛选条件
       //第一列固定列类型（非自动表头配置）
-      firstColType: { type: String, default: 'selection', validator: t => ['index', 'selection', 'radio', null].indexOf(t) > -1 },
+      firstColType: { type: [String, Boolean, null], default: 'selection', validator: t => ['index', 'selection', 'radio', null].indexOf(t) > -1 },
       hasActionCol: { type: Boolean, default: true },//是否有操作列
       showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关

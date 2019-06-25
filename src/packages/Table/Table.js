@@ -12,6 +12,7 @@ export default create({
   mixins: [refer, column, check],
   data() {
     return {
+      tableHead: [],
       summaryCommand: 'current',//合计模块控制指令
     };
   },
@@ -29,8 +30,7 @@ export default create({
 
   watch: {
     head(val) {
-      console.log('head');
-      console.log(val);
+      this.tableHead = val;
     },
   },
 
@@ -42,19 +42,16 @@ export default create({
           'class': this.recls('container'),
           props: {
             keyRefer: this.keyRefer,
-            head: this.head,
+            head: this.tableHead,
             data: this.data,
             showSummary: this.showSummary,
             checkStator: this.checkStator,
             ...this.$attrs,
           },
           on: {
-            'selection-change': this.selectionChange,
-            'table-action': this.tableAction,
-            'cell-action': this.cellAction,
-            'add-row': this.addRow,
-            'delete-current-row': this.deleteCurrentRow,
             'cell-form-change': this.cellFormChange,
+            'sync-render': this.syncRender,
+            ...this.$listeners,
           },
         },
       );
@@ -82,16 +79,8 @@ export default create({
   },
 
   methods: {
-    selectionChange(row, index) {
-      this.$emit('selection-change', row, index);
-    },
-
-    tableAction(info, scope) {
-      this.$emit('table-action', info, scope);
-    },
-
-    cellAction(scope, item) {
-      this.$emit('cell-action', scope, item);
+    syncRender(data) {
+      this.tableHead = data;
     },
 
 
@@ -100,23 +89,10 @@ export default create({
       this.$emit('cell-form-change', value, param);
     },
 
-    /**
-     * add row to grid
-     */
-    addRow() {
-      this.$emit('add-row');
-    },
-    /**
-     * delete current row
-     * @param index
-     * @param row
-     */
-    deleteCurrentRow(index, row) {
-      this.$emit('delete-current-row', index, row);
-    },
   },
 
   created() {
+    this.tableHead = this.head;
     console.log('表头数据：');
     console.log(this.head);
     console.log('表数据：');
