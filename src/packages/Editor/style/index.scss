@@ -2,8 +2,6 @@
 @import '../../../style/mixins/mixins';
 @import './editor-plugins';
 
-$action-height: 34px;
-
 @include b(editor) {
   position: relative;
   line-height: normal;
@@ -18,7 +16,6 @@ $action-height: 34px;
   ul.editor-custom-btn-container {
     position: absolute;
     right: 4px;
-    top: 4+$action-height+$action-height;
     clear: both;
     li {
       display: inline-block;
@@ -33,7 +30,6 @@ $action-height: 34px;
   &.fullscreen {
     .editor-custom-btn-container {
       position: fixed;
-      top: 4+$action-height+$action-height+88px;
       z-index: 10000;
     }
   }

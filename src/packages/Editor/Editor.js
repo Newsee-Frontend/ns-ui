@@ -16,6 +16,11 @@ export default create({
         return 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '');
       },
     },
+    model: {
+      type: String, default: 'normal', validate: t => {
+        return ['normal', 'simple', 'rich'].indexOf(t) > -1;
+      },
+    },
     height: { type: Number, required: false, default: 360 },
     toolbar: {
       type: Array, required: false,
@@ -42,6 +47,14 @@ export default create({
     language() {
       return this.languageTypeList[this.isEn ? 'en' : 'zh'];
     },
+    toolbarConfig() {
+      return this.toolbar.length > 0 ? this.toolbar : toolbar[this.model];
+    },
+    customContainerStyle() {
+      return {
+        top: (this.toolbarConfig.length * 34 + 4 + (this.fullscreen ? 88 : 0)) + 'px',
+      };
+    },
   },
   watch: {
     value(val) {
@@ -50,7 +63,11 @@ export default create({
           window.tinymce.get(this.tinymceId).setContent(val || ''));
       }
     },
-    language() {
+    language(val) {
+      this.destroyTinymce();
+      this.$nextTick(() => this.initTinymce());
+    },
+    model(val) {
       this.destroyTinymce();
       this.$nextTick(() => this.initTinymce());
     },
@@ -59,7 +76,7 @@ export default create({
     return (
       <div class={`${this.recls()} ${this.fullscreen ? 'fullscreen' : ''}`}>
         <textarea id={this.tinymceId} class={'editor-textarea'}/>
-        <ul class={'editor-custom-btn-container '}>
+        <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
             <editor-btn on-editor-btn-click={() => {
               this.isEn = !this.isEn;
@@ -76,14 +93,14 @@ export default create({
     //init
     initTinymce() {
       const _this = this;
-      console.log('init tinymce')
+      console.log('init tinymce');
       window.tinymce.init({
         language: this.language,
         selector: `#${this.tinymceId}`,
         height: this.height,
         body_class: 'panel-body ',
         object_resizing: false,
-        toolbar: this.toolbar.length > 0 ? this.toolbar : toolbar,
+        toolbar: this.toolbarConfig,
         menubar: this.menubar,
         plugins: plugins,
         end_container_on_empty_block: true,
@@ -115,7 +132,7 @@ export default create({
     },
 
     destroyTinymce() {
-      console.log('destroy tinymce')
+      console.log('destroy tinymce');
       const editor = window.tinymce.get(this.tinymceId);
       if (this.fullscreen) {
         editor.execCommand('mceFullScreen');
@@ -148,11 +165,11 @@ export default create({
     this.initTinymce();
   },
   deactivated() {
-    console.log('deactivated')
+    console.log('deactivated');
     this.destroyTinymce();
   },
   destroyed() {
-    console.log('destroyed')
+    console.log('destroyed');
     this.destroyTinymce();
   },
 });
