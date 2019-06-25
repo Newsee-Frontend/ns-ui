@@ -2,10 +2,14 @@
 <template>
   <div>
     <demo-block>
-      <template slot="title">Tinymce - 富文本编辑器</template>
-      <template slot="describe">基础用法</template>
+      <template slot="title">Editor - 富文本编辑器</template>
+      <template slot="describe">基础用法 简单模式</template>
       <template slot="content">
-        <ns-editor :height="500" v-model="content"/>
+        <div class="control-block form-block-line">
+          <span>模式切换:  </span>
+          <ns-radio v-model="model" :options="modelOptions"></ns-radio>
+        </div>
+        <ns-editor v-model="content" :height="500" :model="model"/>
         <div class="editor-content">
           <h3>输入内容如下:</h3>{{content}}
         </div>
@@ -21,6 +25,12 @@
       return {
         visible: false,
         content: '',
+        model: 'normal',//模式选择 - "simple", "normal", "rich"
+        modelOptions: [
+          { label: 'simple', value: 'simple' },
+          { label: 'normal', value: 'normal' },
+          { label: 'rich', value: 'rich' },
+        ],
       };
     },
     methods: {
