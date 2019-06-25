@@ -113,6 +113,7 @@ export default create({
     turnState(state) {
       if (state !== !!state) return;
       this.show = state;
+      this.$emit('update:visible', state);
     },
   },
   created() {
