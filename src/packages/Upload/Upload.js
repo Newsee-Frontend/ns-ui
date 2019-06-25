@@ -123,7 +123,7 @@ export default create({
       let type = file.type;
       let imageTypeList = this.addImageType(this.fileType);
       if(this.beforeUpload){
-        this.beforeUpload(file)
+        return this.beforeUpload(file)
       }else{
         if (imageTypeList.indexOf(type) === -1) {
           this.$message.error(`上传头像图片只能是${this.fileType.join(',')}格式!`);
