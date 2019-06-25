@@ -43,11 +43,14 @@ export default {
           custom-class={'editor-image-dialog'}
           type={'autoHeight'}
           size={'small'}
+          modal={false}
           on-close={this.dialogClose}
+
         >
           {
             upload()
           }
+          <div class={`v-modal ${!this.dialogVisible ? 'hide' : ''}`}/>
           <div slot="footer">
             <Button on-click={_ => {
               this.dialogVisible = false;
