@@ -15,7 +15,6 @@
           :modal="modal"
 
           :is-append-to-body="false"
-
           :lock-scroll="lockScroll"
           :close-on-click-modal="closeOnClickModal"
           :close-on-press-escape="closeOnPressEscape"
