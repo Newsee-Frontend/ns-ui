@@ -2,6 +2,8 @@ import Dialog from '../../Dialog/Dialog';
 import Button from '../../Button/Button';
 import editorBtn from './editor-btn';
 
+
+
 export default {
   name: 'editor-image',
   components: { Dialog, Button, editorBtn },
@@ -70,7 +72,7 @@ export default {
           {
             class: 'editor-upload__btn',
             on: {
-              'editor-btn-click': () => {
+              'editor-btn-click': _=> {
                 this.dialogVisible = true;
               },
             },
