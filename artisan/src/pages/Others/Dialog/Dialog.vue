@@ -25,8 +25,6 @@
           :before-close="beforeClose"
           @close="close"
           @open="open"
-
-          v-if="visible"
         >
           <div>
             <h1>dialog-demo</h1>
