@@ -76,6 +76,10 @@ const User = {
       });
     },
 
+    updateLoginData({commit}, query) {
+      commit('SET_LOGIN_DATA', query);
+    },
+
     LogOut({ commit }) {
       commit('LOGOUT');
     },
