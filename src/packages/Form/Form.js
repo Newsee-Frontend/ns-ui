@@ -51,8 +51,8 @@ export default create({
       this.$refs[this.fromClass].resetFields();
     },
 
-    clearValidate: function() {
-      this.$refs[this.fromClass].clearValidate();
+    clearValidate: function(props) {
+      this.$refs[this.fromClass].clearValidate(props);
     },
   },
 });

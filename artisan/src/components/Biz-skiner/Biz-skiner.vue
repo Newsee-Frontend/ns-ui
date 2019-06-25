@@ -11,6 +11,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import { updateThemeColor } from '../../service/User/index'
 
   export default {
     name: 'Biz-skiner',
@@ -34,6 +35,11 @@
       changeTheme(key) {
         console.log('换肤改变');
         console.log(key);
+        console.log('换肤改变',  this.skinerModel);
+        updateThemeColor({themeColor: this.skinerModel}).then(()=>{
+          let userInfo = this.$store.state.User.userinfo;
+          this.$store.dispatch('updateLoginData',userInfo )
+        })
       },
 
       show() {

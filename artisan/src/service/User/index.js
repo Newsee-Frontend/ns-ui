@@ -14,3 +14,17 @@ export const oauthlogin = query => {
     data: query,
   });
 };
+
+/**
+ * user logout
+ */
+export const updateThemeColor = (query) => {
+  //fetch out
+  dataFilter(query);
+  return fetch({
+    url: '/system/user/update-themeColor',
+    method: 'get',
+    params: query
+  });
+};
+
