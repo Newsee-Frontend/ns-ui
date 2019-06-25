@@ -35,6 +35,7 @@
       color: #2a3f52;
       margin: 10px 0 5px;
     }
+
     .describe {
       font-size: 14px;
       color: #5e6d82;
@@ -53,6 +54,9 @@
           font-size: 14px;
           color: #505c6e;
           margin: 0 1px 0 8px;
+          &:first-child {
+            margin-left: 0;
+          }
         }
       }
       .form-block-line {
