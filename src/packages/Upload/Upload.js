@@ -98,7 +98,7 @@ export default create({
     setVal(val) {
       if (val instanceof Array) {
         this.childUpload = val;
-        val.length > 0 && (this.picSingleUrl = val[0][this.keyRefer.url]);
+        this.picSingleUrl = val.length > 0? val[0][this.keyRefer.url] : '';
       } else {
         throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
