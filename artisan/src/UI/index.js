@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'cx-theme/dist/cx-theme.min.css';
-import '../style/cover.scss';
+import '../style/cover/index.scss';
 import '../assets/iconfont/iconfont';
 import '../components/index.js';
 
