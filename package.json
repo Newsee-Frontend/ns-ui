@@ -41,6 +41,7 @@
     "ns-form-components": "0.0.18",
     "particles.js": "^2.0.0",
     "screenfull": "^4.2.0",
+    "svg-sprite-loader": "^4.1.6",
     "tinymce": "^5.0.6",
     "vue": "2.5.21",
     "vuedraggable": "^2.14.1",
