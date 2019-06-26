@@ -1,14 +1,18 @@
 @import '../../../style/mixins/mixins';
+@import '../../../style/config/head';
 
 $skiner-action-height: 32px;
 $skiner-cycle-height: 20px;
 
 @include b(skiner) {
-  svg {
-    width: $skiner-cycle-height;
-    height: $skiner-cycle-height;
-    margin-bottom: -3px;
+  i {
+    width: $--head-icon-size;
+    height: $--head-icon-size;
+    line-height: $--head-icon-size;
+    font-size: $--head-icon-size;
+    color:$--head-icon-color;
     cursor: pointer;
+
   }
 }
 
