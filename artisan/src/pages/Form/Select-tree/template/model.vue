@@ -63,7 +63,7 @@
           { label: '按照各节点级顺序', value: 'index' },
         ],
         flat: false,
-        defaultExpandLevel: 1,
+        defaultExpandLevel: 3,
         disableBranchNodes: false,
 
       };
