@@ -12,6 +12,7 @@
           :action="dynamicUrl"
         >
         </ns-upload>
+        <div class="gap"></div>
         <ns-upload
           v-model="childItem2"
           width="200px"
