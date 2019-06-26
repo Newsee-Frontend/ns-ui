@@ -1,5 +1,5 @@
 import draggable from 'vuedraggable';
-import IconSvg from '../../../Icon-svg/Icon-svg';
+import IconClass from '../../../Icon-class/Icon-class';
 import Checkbox from '../../../Checkbox/Checkbox';
 import Button from '../../../Button/Button';
 import column from '../../mixins/column';
@@ -9,7 +9,7 @@ import { hasClass } from '../../../../utils/class-handle';
 export default {
   name: 'action-drop',
   mixins: [column],
-  components: { draggable, Checkbox, IconSvg, Button },
+  components: { draggable, Checkbox, IconClass, Button },
   data() {
     return {
       isLocked: false,//是否锁着
@@ -57,11 +57,11 @@ export default {
         },
       }, item[this.headRefer['label']]);
 
-      const icoRender = <IconSvg
+      const icoRender = <IconClass
         class={['fr', { 'locked': item[this.headRefer['fixed']] === 'left' }]}
-        icon-class={item[this.headRefer['fixed']] === 'left' ? 'suo ' : 'suoopen'}
+        icon-class={item[this.headRefer['fixed']] === 'left' ? 'lock ' : 'unlock'}
         on-click={this.dropLock.bind(this, $index)}>
-      </IconSvg>;
+      </IconClass>;
 
       const isHide = [...this.specialColInclude, ...this.actionColInclude].indexOf(item[this.headRefer['xtype']]) > -1;
 
