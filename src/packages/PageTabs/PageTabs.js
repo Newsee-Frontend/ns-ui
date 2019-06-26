@@ -50,7 +50,7 @@ export default create({
         ])}
         {this.visitedView.length ? (
           <div class={'all-close'} on-click={this.closeAllViewTabs}>
-            <icon-svg icon-class={'CombinedShapeCopy'}/>
+            <icon-class icon-class={'close-all'}/>
           </div>
         ) : null}
       </ul>
