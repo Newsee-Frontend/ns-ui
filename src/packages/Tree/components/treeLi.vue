@@ -13,13 +13,14 @@
       </span>
       <!--一般的树图形-->
       <span @click="expandNode(item)" v-else>
-        <icon-svg
+        <icon-class
           v-if="hasChildren || item.async"
-          :icon-class="item.expanded? 'CombinedShape1' : 'CombinedShapeCopy1'"
-        ></icon-svg>
-        <icon-svg
-          v-else
-          icon-class="bushenbuzhan"/>
+          :icon-class="item.expanded? 'close-block' : 'open-block'"
+        ></icon-class>
+         <icon-class
+           v-else
+           icon-class="padding-block"
+         ></icon-class>
       </span>
 
       <!--多选框-->
@@ -73,7 +74,7 @@
   import mixins from '../mixins/mixins';
   import Render from './render';
   import CollapseTransition from './collapse-transition';
-  import iconSvg from '../../../packages/Icon-svg/Icon-svg';
+  import iconClass from '../../../packages/Icon-class/Icon-class';
 
   export default {
     name: 'TreeLi',
@@ -81,7 +82,7 @@
     components: {
       Render,
       CollapseTransition,
-      iconSvg,
+      iconClass,
     },
     beforeCreate() {
       this.$options.components.TreeUl = require('./treeUl').default;
