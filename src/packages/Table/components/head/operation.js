@@ -1,13 +1,13 @@
-import iconSvg from '../../../Icon-svg/Icon-svg';
+import iconClass from '../../../Icon-class/Icon-class';
 
 import { stopPropagation } from '../../../../utils/event';
 
 export default {
   name: 'head-operation',
-  components: { iconSvg },
+  components: { iconClass },
   data() {
     return {
-      settingInfo: [{ icon: 'shezhi-', event: 'headerSetting' }, { icon: 'unfold', event: 'headerSearch' }],
+      settingInfo: [{ icon: 'setting', event: 'headerSetting' }, { icon: 'unfold', event: 'headerSearch' }],
     };
   },
 
@@ -30,8 +30,9 @@ export default {
             },
           },
           [
-            h('icon-svg', {
-                attrs: { 'icon-class': item.icon },
+            h('icon-class',
+              {
+                props: { 'icon-class': item.icon },
               }, [],
             ),
           ]);
