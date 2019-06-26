@@ -10,9 +10,9 @@ export default create({
     },
     render(h) {
       return (
-        <icon-svg
+        <icon-class
           class={this.recls()}
-          icon-class={this.isFullscreen ? 'tuichuquanping' : 'quanping'}
+          icon-class={this.isFullscreen ? 'unFullscreen' : 'fullscreen'}
           on-click={this.click}
         />
       );

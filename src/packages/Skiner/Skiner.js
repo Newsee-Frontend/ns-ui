@@ -75,7 +75,7 @@ export default create({
             </ul>
           }
         </div>
-        <icon-svg slot="reference" icon-class={'pifu'}/>
+        <icon-class slot="reference" icon-class={'skin'}/>
       </el-popover>
     );
   },

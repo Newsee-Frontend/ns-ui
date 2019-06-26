@@ -1,11 +1,11 @@
 @import '../../../style/mixins/mixins';
+@import '../../../style/config/head';
 
-svg {
-  @include rb(screenfull) {
-    cursor: pointer;
-    width: 18px;
-    height: 18px;
-    margin-bottom: -1px;
-  }
+@include b(screenfull) {
+  cursor: pointer;
+  width: $--head-icon-size;
+  height: $--head-icon-size;
+  line-height: $--head-icon-size;
+  font-size: $--head-icon-size;
+  color: $--head-icon-color;
 }
-
