@@ -1,13 +1,9 @@
 import create from '../../create/create';
-import iconSvg from '../Icon-svg/Icon-svg';
+import iconClass from '../Icon-class/Icon-class';
 
 export default create({
   name: 'upload',
-
-  components: {
-    iconSvg,
-  },
-
+  components: { iconClass },
   data() {
     return {
       picSingleUrl: '',
@@ -35,7 +31,7 @@ export default create({
         return ['jpeg', 'png'];
       },
     },
-    beforeUpload: Function
+    beforeUpload: Function,
   },
 
   computed: {
@@ -65,32 +61,38 @@ export default create({
   },
 
   render(h) {
-    return h("el-upload", {
-      "class": ['avatar-uploader', this.recls()],
-      "style": this.convert_style,
-      "attrs": {
-        "action": this.action,
-        "disabled": this.disabled,
-        "headers": this.headers,
-        "with-credentials": true,
-        "show-file-list": false,
-        "before-upload": this.beforeAvatarUpload,
-        "on-success": this.onSuccess.bind(this),
-        "on-change": this.changeUpload.bind(this)
-      }
-    }, [this.picSingleUrl && h("img", {
-      "attrs": {
-        "src": this.picSingleUrl,
-        "alt": ""
+    return h('el-upload',
+      {
+        'class': ['avatar-uploader', this.recls()],
+        'style': this.convert_style,
+        'attrs': {
+          'action': this.action,
+          'disabled': this.disabled,
+          'headers': this.headers,
+          'with-credentials': true,
+          'show-file-list': false,
+          'before-upload': this.beforeAvatarUpload,
+          'on-success': this.onSuccess.bind(this),
+          'on-change': this.changeUpload.bind(this),
+        },
       },
-      "class": "avatar"
-    }), h("icon-svg", {
-      "attrs": {
-        "icon-class": "add"
-      },
-      "class": "avatar-uploader-icon",
-      "style": this.icon_style
-    })]);
+      [
+        this.picSingleUrl && h('img', {
+          'attrs': {
+            'src': this.picSingleUrl,
+            'alt': '',
+          },
+          'class': 'avatar',
+        }),
+        h('icon-class', {
+          class: 'avatar-uploader-icon',
+          props: {
+            'icon-class': 'add',
+          },
+          'style': this.icon_style,
+        }),
+      ],
+    );
   },
 
   methods: {
@@ -98,7 +100,7 @@ export default create({
     setVal(val) {
       if (val instanceof Array) {
         this.childUpload = val;
-        this.picSingleUrl = val.length > 0? val[0][this.keyRefer.url] : '';
+        this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
       } else {
         throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
@@ -122,9 +124,9 @@ export default create({
     beforeAvatarUpload(file) {
       let type = file.type;
       let imageTypeList = this.addImageType(this.fileType);
-      if(this.beforeUpload){
-        return this.beforeUpload(file)
-      }else{
+      if (this.beforeUpload) {
+        return this.beforeUpload(file);
+      } else {
         if (imageTypeList.indexOf(type) === -1) {
           this.$message.error(`上传头像图片只能是${this.fileType.join(',')}格式!`);
           return false;
@@ -140,7 +142,7 @@ export default create({
     onSuccess(response) {
       this.setVal(response.resultData);
     },
-    changeUpload(re){
+    changeUpload(re) {
       console.log(re, '---------------------------');
       this.$emit('change');
     },
@@ -149,7 +151,7 @@ export default create({
   },
 
   created() {
-    this.setVal(this.value)
+    this.setVal(this.value);
   },
 
   mounted() {
