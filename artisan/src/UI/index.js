@@ -3,8 +3,10 @@ import ElementUI from 'element-ui';
 import 'cx-theme/dist/cx-theme.min.css';
 import '../style/cover/index.scss';
 import '../assets/iconfont/iconfont';
+import '../icons';
 import '../components/index.js';
 
+import '../../../src/icons/index.scss';
 
 Vue.use(ElementUI);
 
