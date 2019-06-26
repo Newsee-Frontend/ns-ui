@@ -6,7 +6,6 @@ import '../assets/iconfont/iconfont';
 import '../icons';
 import '../components/index.js';
 
-import '../../../src/icons/index.scss';
 
 Vue.use(ElementUI);
 
