@@ -8,6 +8,9 @@
       搜索
       <ns-icon-class icon-class="el-icon-search" @click="classClick"></ns-icon-class>
     </ns-button>
+
+    <ns-icon-class icon-class="setting"></ns-icon-class>
+
   </div>
 </template>
 
