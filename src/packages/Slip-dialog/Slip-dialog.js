@@ -22,6 +22,7 @@ export default create({
     top: { type: String, default: '0' },
     bottom: { type: String, default: '0' },
     customClass: { type: String, default: '' },
+    domToClose: { type: String, default: 'app' },
     appendToBody: { type: Boolean, default: true },
     closeOnPressEscape: { type: Boolean, default: true },
     beforeClose: Function,
@@ -48,6 +49,15 @@ export default create({
         style[pos] = this[pos];
       });
       return style;
+    },
+
+    outerDomTarget() {
+      try {
+        const outer = document.getElementById(this.domToClose);
+        return outer ? outer : document.body;
+      } catch (e) {
+        return document.body;
+      }
     },
   },
 
@@ -138,14 +148,14 @@ export default create({
   },
   mounted() {
     //listen drop modules click event
-    addEventHandler(document.body, 'click', this.outerClickEvent);
+    addEventHandler(this.outerDomTarget, 'click', this.outerClickEvent);
     if (this.visible) {
       this.appendDialogToBody();
     }
   },
   beforeDestroy() {
     //remove event Listener
-    removeEventHandler(document.body, 'click', this.outerClickEvent);
+    removeEventHandler(this.outerDomTarget, 'click', this.outerClickEvent);
   },
   destroyed() {
     // if appendToBody is true, remove DOM node after destroy
