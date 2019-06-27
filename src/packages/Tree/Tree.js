@@ -19,7 +19,7 @@ export default create({
 
     //normalModel, 目前单选
     value: {
-      type: [String, Number],
+      type: [String, Number, Object, Array],
     },
 
     //show checkbox
@@ -33,13 +33,11 @@ export default create({
       type: Boolean,
       default: false,
     },
-    isObj: { type: Boolean },  //指代属性
 
-
-    modelFormat: {
-      type: String,
-      default: 'key',
-    },
+    isObjectData: {
+      type: Boolean,
+      default: false
+    },  //指代属性, v-model 是否是id还是node节点
 
     //是否可拖拉
     draggable: {
@@ -58,37 +56,19 @@ export default create({
       default: false,
     },
   },
-  computed: {
-    SelectList() {
-      if (this.isObj) {
-        return this.multiple ? this.value.map(item => item.id) : this.value.id;
-      }
-      else {
-        return this.multiple ? this.value.map(item => id) : this.value;
-      }
-
-    },
-
-  },
 
   watch: {
-    SelectList: {
+    value: {
       handler(newVal, oldval) {
-        this.$nextTick(() => {
-          this.$refs.tree.nodeSelected(newVal);
-        });
+        if(oldval) return
+        if(newVal instanceof Array){
+          newVal.forEach(item => this.nodeSelected(item))
+        }else{
+          this.nodeSelected(newVal);
+        }
       },
       deep: true,
-    },
-    value(val) {
-      if (val) {
-        this.$nextTick(() => {
-          //set selectData
-          this.nodeSelectedByKey([val]);
-          this.$refs.tree.nodeSelected(nodes[0]);
-        });
-      }
-    },
+    }
   },
 
 
@@ -124,11 +104,13 @@ export default create({
   methods: {
     //单选情况，手动set select的值(组件中保存了一个上一次前一次选中的node值)
     setRadioValue() {
-      let selectNodes = this.$refs.tree.getNodes({ selected: true }, this.treeModel, true);
-      if (selectNodes.length === 1) {
-        this.$refs.tree.setNodeAttr(selectNodes[0], 'selected', false);
-        this.$refs.tree.nodeSelected(selectNodes[0]);
-      }
+      this.$nextTick(()=>{
+        let selectNodes = this.$refs.tree.getNodes({ selected: true }, this.treeModel, true);
+        if (selectNodes.length > 0) {
+          this.$refs.tree.setNodeAttr(selectNodes[0], 'selected', false);
+          this.$refs.tree.nodeSelected(selectNodes[0]);
+        }
+      });
     },
 
     //异步加载
@@ -136,41 +118,17 @@ export default create({
       this.$emit('loadNode', ...arg);
     },
 
-    /**
-     * model data to filter change
-     * @param nodeList
-     * @returns {*}
-     */
-    modelFilter(nodeList) {
-      if (this.multiple) {
-        if (this.allinfo) {
-          return selectNodes;
-        }
-        else {
-          return modelData.map(obj => obj[this.modelFormat]);
-        }
-      }
-      else {
-        //点击 节点 是否 同步  checkbox 的状态
-        if (2) {
-          return selectNodes[0][this.modelFormat];
-        }
-        else {
-
-        }
-
-      }
-    },
-
 
     //node 点击 (node, selected, position, parent)
     nodeClick(...arg) {
       let selectNodes = this.getSelectedNodes();
-
-      // let id = selectNodes.length > 0 ? selectNodes[0].id : '';
-
-      // get model data
-      const modelData = modelFilter(selectNodes);
+      let modelData;
+      if(this.isObjectData){
+        modelData = this.multiple? selectNodes: selectNodes[0]
+      }else{
+        let ids = selectNodes.map(item => item.id);
+        modelData = this.multiple? ids : ids[0]
+      }
 
       this.$emit('input', modelData);
 
@@ -182,15 +140,7 @@ export default create({
 
     //node check
     nodeCheck(...arg) {
-      if (this.multiple) {
-
-        let selectNodes = this.getSelectedNodes();
-        // get model data
-        const modelData = modelFilter(selectNodes);
-
-        this.$emit('nodeCheck', ...arg);
-      }
-
+      this.$emit('nodeCheck', ...arg);
     },
 
     //node 展开
@@ -223,16 +173,16 @@ export default create({
       }
     },
 
-    /**
-     * 外暴方法，自定义select node
-     */
-    nodeSelectedByKey: function(ids) {
-      if (ids instanceof Array) {
-        ids.forEach((id) => {
-          let nodes = this.$refs.tree.getNodes({ id: id }, this.list, true);
+    //选中节点
+    nodeSelected: function(data){
+      this.$nextTick(()=>{
+        if(this.isObjectData){
+          this.$refs.tree.nodeSelected(data)
+        }else{
+          let nodes = this.$refs.tree.getNodes({ id: data }, this.treeModel, true);
           nodes.length > 0 && (this.$refs.tree.nodeSelected(nodes[0]));
-        });
-      }
+        }
+      })
     },
 
     /**
@@ -253,11 +203,8 @@ export default create({
 
   created() {
     if (!this.multiple) {
-
-      //store 数据获取
-      this.$nextTick(() => {
-        this.setRadioValue();
-      });
+      // store 数据获取
+      this.setRadioValue();
     }
   },
 });

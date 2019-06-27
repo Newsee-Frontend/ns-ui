@@ -31,6 +31,7 @@
         <ns-tree
           :treeModel="nodesListStore"
           v-model="nodesStoreModel"
+          isObjectData
           @nodeClick="nodeClickVuex"
         >
           <template slot-scope="{node, parent,index}">
@@ -42,46 +43,46 @@
       </template>
     </demo-block>
 
-    <demo-block>
-      <template slot="title">懒加载叶子节点</template>
-      <template slot="describe">lazy懒加载</template>
-      <template slot="content">
-        <ns-tree
-          style="width: 500px"
-          :treeModel="nodesListLazy"
-          ref="testTree"
-          @loadNode="loadNode"
-        >
-          <template slot-scope="{node, parent,index}">
-            <div class="slot-container">
-              <i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>
-              <i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>
-              <div class="title-text">
-                {{node.companyName || node.houseFullName}}
-              </div>
-            </div>
-          </template>
-        </ns-tree>
-      </template>
-    </demo-block>
+    <!--<demo-block>-->
+      <!--<template slot="title">懒加载叶子节点</template>-->
+      <!--<template slot="describe">lazy懒加载</template>-->
+      <!--<template slot="content">-->
+        <!--<ns-tree-->
+          <!--style="width: 500px"-->
+          <!--:treeModel="nodesListLazy"-->
+          <!--ref="testTree"-->
+          <!--@loadNode="loadNode"-->
+        <!--&gt;-->
+          <!--<template slot-scope="{node, parent,index}">-->
+            <!--<div class="slot-container">-->
+              <!--<i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>-->
+              <!--<i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>-->
+              <!--<div class="title-text">-->
+                <!--{{node.companyName || node.houseFullName}}-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</template>-->
+        <!--</ns-tree>-->
+      <!--</template>-->
+    <!--</demo-block>-->
 
-    <demo-block>
-      <template slot="title">可拖拉</template>
-      <template slot="content">
-        <ns-tree
-          :treeModel="nodeListdrag"
-          :draggable="true"
-          :dropJudge="dropJudge"
-          ref="dropTree"
-        >
-          <template slot-scope="{node, parent,index}">
-            <div class="title-text">
-              {{node.companyName || node.houseFullName}}
-            </div>
-          </template>
-        </ns-tree>
-      </template>
-    </demo-block>
+    <!--<demo-block>-->
+      <!--<template slot="title">可拖拉</template>-->
+      <!--<template slot="content">-->
+        <!--<ns-tree-->
+          <!--:treeModel="nodeListdrag"-->
+          <!--:draggable="true"-->
+          <!--:dropJudge="dropJudge"-->
+          <!--ref="dropTree"-->
+        <!--&gt;-->
+          <!--<template slot-scope="{node, parent,index}">-->
+            <!--<div class="title-text">-->
+              <!--{{node.companyName || node.houseFullName}}-->
+            <!--</div>-->
+          <!--</template>-->
+        <!--</ns-tree>-->
+      <!--</template>-->
+    <!--</demo-block>-->
 
     <!--<demo-block>-->
       <!--<template slot="title">可选择,多选</template>-->
@@ -298,7 +299,7 @@
     },
     mounted() {
       this.nodesListStore = this.$store.state.Tree.treeTempData;
-      this.nodesStoreModel =  114191;
+      this.nodesStoreModel =   this.nodesListStore[0];
     },
   };
 </script>
