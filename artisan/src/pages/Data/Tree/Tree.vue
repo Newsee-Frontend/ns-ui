@@ -7,8 +7,8 @@
       <template slot="describe">基础用法, keyRefer配置对应字段</template>
       <template slot="content">
         <ns-tree
-          :keyRefer="keyRefer"
-          :data="nodesListNormal"
+          v-model="normalModel"
+          :treeModel="nodesListNormal"
           @nodeClick="nodeClick"
           @nodeExpand="nodeExpand"
           ref="baseTree"
@@ -20,10 +20,25 @@
           </template>
         </ns-tree>
         <ns-button @click="getNodes('baseTree')">获取选中的节点</ns-button>
-        <ns-button @click="setNodes('baseTree')">设置选中的节点</ns-button>
         <el-input-number v-model="num" @change="handleChange" :min="0" :max="2" size="small"></el-input-number>
-        <ns-button @click="setDataToStore">set tree Data to store</ns-button>
-        <ns-button @click="getDataToStore">get tree Data from store</ns-button>
+      </template>
+    </demo-block>
+
+    <demo-block>
+      <template slot="title">store tree</template>
+      <template slot="describe">从vuex中获取数据</template>
+      <template slot="content">
+        <ns-tree
+          :treeModel="nodesListStore"
+          v-model="nodesStoreModel"
+          @nodeClick="nodeClickVuex"
+        >
+          <template slot-scope="{node, parent,index}">
+            <div class="title-text">
+              {{node.companyName || node.houseFullName}}
+            </div>
+          </template>
+        </ns-tree>
       </template>
     </demo-block>
 
@@ -33,11 +48,7 @@
       <template slot="content">
         <ns-tree
           style="width: 500px"
-          :data="nodesListLazy"
-          :keyRefer="keyRefer"
-          multiple
-          :showCheckbox="showCheckbox"
-          :lazy="lazy"
+          :treeModel="nodesListLazy"
           ref="testTree"
           @loadNode="loadNode"
         >
@@ -58,8 +69,7 @@
       <template slot="title">可拖拉</template>
       <template slot="content">
         <ns-tree
-          :keyRefer="keyRefer"
-          :data="nodeListdrag"
+          :treeModel="nodeListdrag"
           :draggable="true"
           :dropJudge="dropJudge"
           ref="dropTree"
@@ -73,47 +83,52 @@
       </template>
     </demo-block>
 
-    <demo-block>
-      <template slot="title">可选择,多选</template>
-      <template slot="describe">多选树</template>
-      <template slot="content">
-        <ns-tree
-          style="width: 500px"
-          :data="nodesListSelect"
-          :keyRefer="keyRefer"
-          :showCheckbox="true"
-          :checkStrictly="checkStrictly"
-          multiple
-          :lazy="lazy"
-          ref="selectTree"
-          @loadNode="loadNodeSelect"
-          @nodeCheck="nodeCheck"
-        >
-          <template slot-scope="{node, parent,index}">
-            <div class="slot-container">
-              <div class="title-text">
-                {{node.companyName || node.houseFullName}}
-              </div>
-            </div>
-          </template>
-        </ns-tree>
-        <ns-button @click="getNodes('selectTree')">获取选中的节点</ns-button>
-        <ns-button @click="setNodes('selectTree')">设置选中的节点</ns-button>
-        <ns-switch v-model="checkStrictly"   active-text="父子不关联" inactive-text="父子关联"> </ns-switch>
-      </template>
-    </demo-block>
+    <!--<demo-block>-->
+      <!--<template slot="title">可选择,多选</template>-->
+      <!--<template slot="describe">多选树</template>-->
+      <!--<template slot="content">-->
+        <!--<ns-tree-->
+          <!--style="width: 500px"-->
+          <!--:data="nodesListSelect"-->
+          <!--:keyRefer="keyRefer"-->
+          <!--:showCheckbox="true"-->
+          <!--:checkStrictly="checkStrictly"-->
+          <!--multiple-->
+          <!--:lazy="lazy"-->
+          <!--ref="selectTree"-->
+          <!--@loadNode="loadNodeSelect"-->
+          <!--@nodeCheck="nodeCheck"-->
+        <!--&gt;-->
+          <!--<template slot-scope="{node, parent,index}">-->
+            <!--<div class="slot-container">-->
+              <!--<div class="title-text">-->
+                <!--{{node.companyName || node.houseFullName}}-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</template>-->
+        <!--</ns-tree>-->
+        <!--<ns-button @click="getNodes('selectTree')">获取选中的节点</ns-button>-->
+        <!--<ns-button @click="setNodes('selectTree')">设置选中的节点</ns-button>-->
+        <!--<ns-switch v-model="checkStrictly"   active-text="父子不关联" inactive-text="父子关联"> </ns-switch>-->
+      <!--</template>-->
+    <!--</demo-block>-->
   </div>
 </template>
 
 <script>
   import fetch from '../../../fetch/fetch';
+  import transformNode from './transformNode'
 
   export default {
     name: '',
+    mixins: [transformNode],
     data() {
       return {
         data: [],
         nodesListNormal: [],
+        nodesListStore: [],
+        normalModel: '',
+        nodesStoreModel: '',
         nodesListLazy: [],
         nodesListSelect: [],
         nodeListdrag: [],
@@ -144,24 +159,34 @@
           url: '/system/data/initTree',
           method: 'get',
         }).then((res) => {
-          //initTree（data, expandLevel） 设置展开层级
+          // 基础树initTree（data, expandLevel） 设置展开层级
           this.data = this.deepCopy(res.resultData);
-          this.$refs.baseTree.initTree(this.data, this.num);
-          this.$refs.testTree.initTree(this.deepCopy(res.resultData),2);
-          this.$refs.selectTree.initTree(this.deepCopy(res.resultData),2);
-          this.$refs.dropTree.initTree(this.deepCopy(res.resultData),2);
+          this.handleChange();
+
+          //懒加载
+          this.nodesListLazy = this.transformKeyFun(this.deepCopy(res.resultData), {lazy: true, expandedIndex:2 });
+          this.nodeListdrag = this.transformKeyFun(this.deepCopy(res.resultData), {expandedIndex:2 });
+          // this.$refs.testTree.initTree(this.deepCopy(res.resultData),2);
+          // this.$refs.selectTree.initTree(this.deepCopy(res.resultData),2);
+          // this.$refs.dropTree.initTree(this.deepCopy(res.resultData),2);
         });
       },
 
 
       //handleChange 默认展开的层级
-      handleChange: function(val){
-        this.$refs.baseTree.initTree(this.deepCopy(this.data),val);
+      handleChange: function(){
+        this.nodesListNormal = this.transformKeyFun(this.data, {expandedIndex: this.num});
+        this.normalModel =  114191;
       },
 
       //node click
       nodeClick(...arg){
-        console.log(arg);
+        console.log(arg, this.normalModel);
+      },
+
+      //node click
+      nodeClickVuex(...arg){
+        console.log(arg, this.nodesStoreModel);
       },
 
       //当前节点node check
@@ -198,8 +223,11 @@
           method: 'get',
           params: { id: node.id },
         }).then((res) => {
-          res.resultData.length > 0 && this.$refs.testTree.addNodes(node, res.resultData);
           this.$set(node, 'loading', false);
+          if( res.resultData.length > 0){
+            let childNodes = this.transformKeyFun(res.resultData, {lazy: true});
+            this.$refs.testTree.addNodes(node, childNodes);
+          }
         });
       },
 
@@ -231,7 +259,7 @@
 
       //获取节点
       getNodes(ref) {
-        console.log(this.$refs[ref].getSelectedNodes(), 'getSelectedNodes');
+        console.log(this.$refs[ref].getSelectedNodes(), 'getSelectedNodes', JSON.stringify(this.nodesListNormal));
         console.log(this.$refs[ref].getCheckedNodes(), 'getCheckedNodes');
       },
 
@@ -252,23 +280,25 @@
         });
       },
 
-      setDataToStore(){
-        this.$store.dispatch('setTreeData', {key: 111, list: this.deepCopy(this.data)})
-      },
+      // setDataToStore(){
+      //   this.$store.dispatch('setTreeData', {list: this.deepCopy(this.data)})
+      // },
 
-      //从缓存中获取数组
-      getDataToStore(){
-        if(this.$store.state.Tree.treeTempData[111]){
-          this.data = this.$store.state.Tree.treeTempData[111];
-          this.$refs.baseTree.setTree(this.data);
-        }else{
-          this.$message('请先set-store');
-        }
-      }
+      // //从缓存中获取数组
+      // getDataToStore(){
+      //   if(this.$store.state.Tree.treeTempData[111]){
+      //     this.data = this.$store.state.Tree.treeTempData[111];
+      //     this.$refs.baseTree.setTree(this.data);
+      //   }else{
+      //     this.$message('请先set-store');
+      //   }
+      // }
 
 
     },
     mounted() {
+      this.nodesListStore = this.$store.state.Tree.treeTempData;
+      this.nodesStoreModel =  114191;
     },
   };
 </script>

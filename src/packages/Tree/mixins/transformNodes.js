@@ -29,7 +29,6 @@ export default {
     transformKeyFun: function(list, index){
       Object.assign(keyRefer, this.keyRefer);
       list.forEach((item) => {
-
         //设置树对应的字段
         Object.keys(keyRefer).forEach( key => {
           let hitKey = keyRefer[key];
@@ -58,5 +57,15 @@ export default {
       })
       return list;
     }
+  },
+
+  watch: {
+    treeModel: {
+      handler(newV, oldV){
+        this.list = this.transformKeyFun([newV], this.expandLevel);
+      },
+      deep: true
+    }
   }
 }
+

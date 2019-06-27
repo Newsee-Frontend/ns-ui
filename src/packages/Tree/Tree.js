@@ -1,23 +1,25 @@
 import create from '../../create/create';
 import VTree from './components/tree'
-import transformNodes from './mixins/transformNodes.js'
 export default create({
   name: 'tree',
   components: {
     VTree
   },
-  mixins: [transformNodes],
 
   data() {
     return {
-      list: []
     }
   },
   props: {
-    //是否懒加载
-    lazy: {
-      type: Boolean,
-      default: false
+    //树节点信息
+    treeModel: {
+      type: Array,
+      default: ()=> []
+    },
+
+    //normalModel, 目前单选
+    value: {
+      type: [String, Number]
     },
 
     //show checkbox
@@ -28,12 +30,6 @@ export default create({
 
     //是否是多选
     multiple: {
-      type: Boolean,
-      default: false
-    },
-
-    //是否全部展开所有的节点
-    expandAllNodes: {
       type: Boolean,
       default: false
     },
@@ -54,12 +50,19 @@ export default create({
       type: Boolean,
       default: false
     }
-
-
   },
   computed: {},
 
-  watch: {},
+  watch: {
+    value(val){
+      if(val){
+        this.$nextTick(()=>{
+          //set selectData
+          this.nodeSelectedByKey([val]);
+        })
+      }
+    }
+  },
 
 
   render(h) {
@@ -67,15 +70,14 @@ export default create({
       return h(
         'div',
         {},
-        this.$scopedSlots.default? this.$scopedSlots.default({node, parent, index}) :  node[this.keyRefer.title]
+        this.$scopedSlots.default? this.$scopedSlots.default({node, parent, index}) :  node.title
         )
     };
-
     return(
       <div class={[this.recls(), this.showCheckbox? this.recls('multiple'): {}]}>
         <v-tree
           ref="tree"
-          data={this.list}
+          data={this.treeModel}
           halfcheck={!this.checkStrictly}
           scoped={this.checkStrictly}
           draggable={this.draggable}
@@ -93,26 +95,12 @@ export default create({
   },
 
   methods: {
-    //初始化树节点
-    initTree(list, expandLevel){
-      if(list instanceof Array){
-        this.list = this.transformKeyFun(list, expandLevel);
-      }else{
-        throw 'the function initTree, argument must be Array'
-      }
-    },
-
-    //树数据从store中获取出来
-    setTree(list){
-      this.list = list;
-      if(!this.multiple){
-        //单选情况，手动set select的值(组件中保存了一个上一次前一次选中的node值)
-        let nodes = this.$refs.tree.getNodes({selected: true}, this.list, true);
-        if(nodes.length > 0){
-          let node = nodes[0];
-          this.$refs.tree.setNodeAttr(node, "selected", false);
-          this.$refs.tree.nodeSelected(node);
-        }
+    //单选情况，手动set select的值(组件中保存了一个上一次前一次选中的node值)
+    setRadioValue(){
+      let selectNodes = this.$refs.tree.getNodes({selected: true}, this.treeModel, true);
+      if(selectNodes.length === 1){
+        this.$refs.tree.setNodeAttr(selectNodes[0], "selected", false);
+        this.$refs.tree.nodeSelected(selectNodes[0])
       }
     },
 
@@ -121,9 +109,15 @@ export default create({
       this.$emit('loadNode', ...arg);
     },
 
-    //node 点击
+    //node 点击 (node, selected, position, parent)
     nodeClick(...arg){
-      this.$emit('nodeClick',...arg)
+      let selectNodes = this.getSelectedNodes();
+      let id = selectNodes.length > 0? selectNodes[0].id : '';
+      this.$emit('input', id);
+      //node click是否有点击的位置，有点击位置，则外传node-click
+      if(arg[2]){
+        this.$emit('nodeClick',...arg);
+      }
     },
 
     //node check
@@ -142,7 +136,6 @@ export default create({
      * @param children 增加的子节点
      */
     addNodes: function(node, children){
-      this.transformKeyFun(children);
       this.$refs.tree.addNodes(node, children)
     },
 
@@ -188,5 +181,15 @@ export default create({
       return this.$refs.tree.getCheckedNodes()
     }
 
+  },
+
+  created(){
+    if(!this.multiple){
+
+      //store 数据获取
+      this.$nextTick(()=>{
+        this.setRadioValue();
+      })
+    }
   }
 });

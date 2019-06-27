@@ -25,38 +25,36 @@ let childResultData = Array.from({ length: 7 }, k => k).map((item, index) => {
   };
 });
 
-let rootResultData = [
-  {
+let rootResultData =  [{
+  'organizationId': 263,
+  'companyName': 'new see',
+  'houseId': 0,
+  'id': 0,
+  'childOwnerHouseBaseInfoTreeNodeList': [{
+    'houseId': 114191,
     'organizationId': 263,
-    'companyName': 'new see',
-    'houseId': 0,
-    'id': 0,
-    'childOwnerHouseBaseInfoTreeNodeList': [{
-      'houseId': 114191,
-      'organizationId': 263,
-      'houseName': '红黄蓝项目',
-      'houseFullName': '红黄蓝项目',
-      'houseType': '2',
-      'parentId': 0,
-      'path': '/',
-      'level': 0,
-      'sort': 1,
-      'stage': '10',
-      'rentStage': '0',
-      'decorateStage': '0',
-      'isBlockUp': 0,
-      'isVirtual': 0,
-      'isLock': 0,
-      'editStatus': 0,
-      'parentHouseIds': '',
-      'childOwnerHouseBaseInfoTreeNodeList': [],
-      'isHasChild': true,
-    }],
+    'houseName': '红黄蓝项目',
+    'houseFullName': '红黄蓝项目',
+    'houseType': '2',
+    'parentId': 0,
+    'path': '/',
+    'level': 0,
+    'sort': 1,
+    'stage': '10',
+    'rentStage': '0',
+    'decorateStage': '0',
+    'isBlockUp': 0,
+    'isVirtual': 0,
+    'isLock': 0,
+    'editStatus': 0,
+    'parentHouseIds': '',
+    'childOwnerHouseBaseInfoTreeNodeList': [],
     'isHasChild': true,
-    'houseName': null,
-    'precinctId': '114191',
-  },
-];
+  }],
+  'isHasChild': true,
+  'houseName': null,
+  'precinctId': '114191',
+}];
 
 rootResultData[0].childOwnerHouseBaseInfoTreeNodeList[0].childOwnerHouseBaseInfoTreeNodeList = childResultData;
 
