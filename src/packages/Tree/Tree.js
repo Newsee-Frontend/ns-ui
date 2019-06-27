@@ -33,7 +33,7 @@ export default create({
       type: Boolean,
       default: false,
     },
-    keyRefer: { type: Object },  //指代属性
+    isObj: { type: Boolean },  //指代属性
 
 
     modelFormat: {
@@ -58,14 +58,34 @@ export default create({
       default: false,
     },
   },
-  computed: {},
+  computed: {
+    SelectList() {
+      if (this.isObj) {
+        return this.multiple ? this.value.map(item => item.id) : this.value.id;
+      }
+      else {
+        return this.multiple ? this.value.map(item => id) : this.value;
+      }
+
+    },
+
+  },
 
   watch: {
+    SelectList: {
+      handler(newVal, oldval) {
+        this.$nextTick(() => {
+          this.$refs.tree.nodeSelected(newVal);
+        });
+      },
+      deep: true,
+    },
     value(val) {
       if (val) {
         this.$nextTick(() => {
           //set selectData
           this.nodeSelectedByKey([val]);
+          this.$refs.tree.nodeSelected(nodes[0]);
         });
       }
     },
@@ -132,10 +152,10 @@ export default create({
       }
       else {
         //点击 节点 是否 同步  checkbox 的状态
-        if(2){
+        if (2) {
           return selectNodes[0][this.modelFormat];
         }
-        else{
+        else {
 
         }
 
