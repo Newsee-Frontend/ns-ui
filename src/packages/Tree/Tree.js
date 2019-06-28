@@ -12,7 +12,7 @@ export default create({
   },
   props: {
     //树节点信息
-    treeModel: {
+    data: {
       type: Array,
       default: () => [],
     },
@@ -84,7 +84,7 @@ export default create({
       <div class={[this.recls(), this.showCheckbox ? this.recls('multiple') : {}]}>
         <v-tree
           ref="tree"
-          data={this.treeModel}
+          data={this.data}
           halfcheck={!this.checkStrictly}
           scoped={this.checkStrictly}
           draggable={this.draggable}
@@ -105,7 +105,7 @@ export default create({
     //单选情况，手动set select的值(组件中保存了一个上一次前一次选中的node值)
     setRadioValue() {
       this.$nextTick(()=>{
-        let selectNodes = this.$refs.tree.getNodes({ selected: true }, this.treeModel, true);
+        let selectNodes = this.$refs.tree.getNodes({ selected: true }, this.data, true);
         if (selectNodes.length > 0) {
           this.$refs.tree.setNodeAttr(selectNodes[0], 'selected', false);
           this.$refs.tree.nodeSelected(selectNodes[0]);
@@ -179,7 +179,7 @@ export default create({
         if(this.isObjectData){
           this.$refs.tree.nodeSelected(data)
         }else{
-          let nodes = this.$refs.tree.getNodes({ id: data }, this.treeModel, true);
+          let nodes = this.$refs.tree.getNodes({ id: data }, this.data, true);
           nodes.length > 0 && (this.$refs.tree.nodeSelected(nodes[0]));
         }
       })

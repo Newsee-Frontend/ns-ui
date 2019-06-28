@@ -8,7 +8,7 @@
       <template slot="content">
         <ns-tree
           v-model="normalModel"
-          :treeModel="nodesListNormal"
+          :data="nodesListNormal"
           @nodeClick="nodeClick"
           @nodeExpand="nodeExpand"
           ref="baseTree"
@@ -29,7 +29,7 @@
       <template slot="describe">从vuex中获取数据</template>
       <template slot="content">
         <ns-tree
-          :treeModel="nodesListStore"
+          :data="nodesListStore"
           v-model="nodesStoreModel"
           isObjectData
           @nodeClick="nodeClickVuex"
@@ -49,7 +49,7 @@
       <!--<template slot="content">-->
         <!--<ns-tree-->
           <!--style="width: 500px"-->
-          <!--:treeModel="nodesListLazy"-->
+          <!--:data="nodesListLazy"-->
           <!--ref="testTree"-->
           <!--@loadNode="loadNode"-->
         <!--&gt;-->
@@ -70,7 +70,7 @@
       <!--<template slot="title">可拖拉</template>-->
       <!--<template slot="content">-->
         <!--<ns-tree-->
-          <!--:treeModel="nodeListdrag"-->
+          <!--:data="nodeListdrag"-->
           <!--:draggable="true"-->
           <!--:dropJudge="dropJudge"-->
           <!--ref="dropTree"-->
