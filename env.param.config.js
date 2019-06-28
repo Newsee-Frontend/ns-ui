@@ -28,14 +28,17 @@ module.exports = {
         // path.resolve('lib/packages/**/*.less'),
         path.resolve('es/packages/**/style/index.less'),
         path.resolve('lib/packages/**/style/index.less'),
+
         path.resolve('es/index.less'),
         path.resolve('lib/index.less'),
       ],
       scsspath: [
         path.resolve('es/packages/**/style/index.scss'),
         path.resolve('lib/packages/**/style/index.scss'),
+
         path.resolve('es/index.scss'),
         path.resolve('lib/index.scss'),
+
       ],
     },
     excludes: package_19_6_18,
