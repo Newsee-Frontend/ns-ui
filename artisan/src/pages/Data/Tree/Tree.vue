@@ -44,81 +44,81 @@
     </demo-block>
 
     <!--<demo-block>-->
-      <!--<template slot="title">懒加载叶子节点</template>-->
-      <!--<template slot="describe">lazy懒加载</template>-->
-      <!--<template slot="content">-->
-        <!--<ns-tree-->
-          <!--style="width: 500px"-->
-          <!--:data="nodesListLazy"-->
-          <!--ref="testTree"-->
-          <!--@loadNode="loadNode"-->
-        <!--&gt;-->
-          <!--<template slot-scope="{node, parent,index}">-->
-            <!--<div class="slot-container">-->
-              <!--<i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>-->
-              <!--<i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>-->
-              <!--<div class="title-text">-->
-                <!--{{node.companyName || node.houseFullName}}-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</template>-->
-        <!--</ns-tree>-->
-      <!--</template>-->
+    <!--<template slot="title">懒加载叶子节点</template>-->
+    <!--<template slot="describe">lazy懒加载</template>-->
+    <!--<template slot="content">-->
+    <!--<ns-tree-->
+    <!--style="width: 500px"-->
+    <!--:data="nodesListLazy"-->
+    <!--ref="testTree"-->
+    <!--@loadNode="loadNode"-->
+    <!--&gt;-->
+    <!--<template slot-scope="{node, parent,index}">-->
+    <!--<div class="slot-container">-->
+    <!--<i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>-->
+    <!--<i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>-->
+    <!--<div class="title-text">-->
+    <!--{{node.companyName || node.houseFullName}}-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</template>-->
+    <!--</ns-tree>-->
+    <!--</template>-->
     <!--</demo-block>-->
 
     <!--<demo-block>-->
-      <!--<template slot="title">可拖拉</template>-->
-      <!--<template slot="content">-->
-        <!--<ns-tree-->
-          <!--:data="nodeListdrag"-->
-          <!--:draggable="true"-->
-          <!--:dropJudge="dropJudge"-->
-          <!--ref="dropTree"-->
-        <!--&gt;-->
-          <!--<template slot-scope="{node, parent,index}">-->
-            <!--<div class="title-text">-->
-              <!--{{node.companyName || node.houseFullName}}-->
-            <!--</div>-->
-          <!--</template>-->
-        <!--</ns-tree>-->
-      <!--</template>-->
+    <!--<template slot="title">可拖拉</template>-->
+    <!--<template slot="content">-->
+    <!--<ns-tree-->
+    <!--:data="nodeListdrag"-->
+    <!--:draggable="true"-->
+    <!--:dropJudge="dropJudge"-->
+    <!--ref="dropTree"-->
+    <!--&gt;-->
+    <!--<template slot-scope="{node, parent,index}">-->
+    <!--<div class="title-text">-->
+    <!--{{node.companyName || node.houseFullName}}-->
+    <!--</div>-->
+    <!--</template>-->
+    <!--</ns-tree>-->
+    <!--</template>-->
     <!--</demo-block>-->
 
     <!--<demo-block>-->
-      <!--<template slot="title">可选择,多选</template>-->
-      <!--<template slot="describe">多选树</template>-->
-      <!--<template slot="content">-->
-        <!--<ns-tree-->
-          <!--style="width: 500px"-->
-          <!--:data="nodesListSelect"-->
-          <!--:keyRefer="keyRefer"-->
-          <!--:showCheckbox="true"-->
-          <!--:checkStrictly="checkStrictly"-->
-          <!--multiple-->
-          <!--:lazy="lazy"-->
-          <!--ref="selectTree"-->
-          <!--@loadNode="loadNodeSelect"-->
-          <!--@nodeCheck="nodeCheck"-->
-        <!--&gt;-->
-          <!--<template slot-scope="{node, parent,index}">-->
-            <!--<div class="slot-container">-->
-              <!--<div class="title-text">-->
-                <!--{{node.companyName || node.houseFullName}}-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</template>-->
-        <!--</ns-tree>-->
-        <!--<ns-button @click="getNodes('selectTree')">获取选中的节点</ns-button>-->
-        <!--<ns-button @click="setNodes('selectTree')">设置选中的节点</ns-button>-->
-        <!--<ns-switch v-model="checkStrictly"   active-text="父子不关联" inactive-text="父子关联"> </ns-switch>-->
-      <!--</template>-->
+    <!--<template slot="title">可选择,多选</template>-->
+    <!--<template slot="describe">多选树</template>-->
+    <!--<template slot="content">-->
+    <!--<ns-tree-->
+    <!--style="width: 500px"-->
+    <!--:data="nodesListSelect"-->
+    <!--:keyRefer="keyRefer"-->
+    <!--:showCheckbox="true"-->
+    <!--:checkStrictly="checkStrictly"-->
+    <!--multiple-->
+    <!--:lazy="lazy"-->
+    <!--ref="selectTree"-->
+    <!--@loadNode="loadNodeSelect"-->
+    <!--@nodeCheck="nodeCheck"-->
+    <!--&gt;-->
+    <!--<template slot-scope="{node, parent,index}">-->
+    <!--<div class="slot-container">-->
+    <!--<div class="title-text">-->
+    <!--{{node.companyName || node.houseFullName}}-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</template>-->
+    <!--</ns-tree>-->
+    <!--<ns-button @click="getNodes('selectTree')">获取选中的节点</ns-button>-->
+    <!--<ns-button @click="setNodes('selectTree')">设置选中的节点</ns-button>-->
+    <!--<ns-switch v-model="checkStrictly"   active-text="父子不关联" inactive-text="父子关联"> </ns-switch>-->
+    <!--</template>-->
     <!--</demo-block>-->
   </div>
 </template>
 
 <script>
   import fetch from '../../../fetch/fetch';
-  import transformNode from './transformNode'
+  import transformNode from './transformNode';
 
   export default {
     name: '',
@@ -142,7 +142,7 @@
           expanded: 'nodeExpanded',
           disabled: 'disabled',
         },
-        num:2,
+        num: 2,
 
         showCheckbox: false,
 
@@ -165,8 +165,8 @@
           this.handleChange();
 
           //懒加载
-          this.nodesListLazy = this.transformKeyFun(this.deepCopy(res.resultData), {lazy: true, expandedIndex:2 });
-          this.nodeListdrag = this.transformKeyFun(this.deepCopy(res.resultData), {expandedIndex:2 });
+          this.nodesListLazy = this.transformKeyFun(this.deepCopy(res.resultData), { lazy: true, expandedIndex: 2 });
+          this.nodeListdrag = this.transformKeyFun(this.deepCopy(res.resultData), { expandedIndex: 2 });
           // this.$refs.testTree.initTree(this.deepCopy(res.resultData),2);
           // this.$refs.selectTree.initTree(this.deepCopy(res.resultData),2);
           // this.$refs.dropTree.initTree(this.deepCopy(res.resultData),2);
@@ -175,28 +175,28 @@
 
 
       //handleChange 默认展开的层级
-      handleChange: function(){
-        this.nodesListNormal = this.transformKeyFun(this.data, {expandedIndex: this.num});
-        this.normalModel =  114191;
+      handleChange: function() {
+        this.nodesListNormal = this.transformKeyFun(this.data, { expandedIndex: this.num });
+        this.normalModel = 114191;
       },
 
       //node click
-      nodeClick(...arg){
+      nodeClick(...arg) {
         console.log(arg, this.normalModel);
       },
 
       //node click
-      nodeClickVuex(...arg){
+      nodeClickVuex(...arg) {
         console.log(arg, this.nodesStoreModel);
       },
 
       //当前节点node check
-      nodeCheck(...arg){
+      nodeCheck(...arg) {
         console.log(arg);
       },
 
       //node 展开关闭
-      nodeExpand(...arg){
+      nodeExpand(...arg) {
         console.log(arg);
       },
 
@@ -207,7 +207,7 @@
         for (let key in obj) {
           if (obj.hasOwnProperty(key)) {
             if (typeof obj[key] === 'object') {
-              result[key] =this.deepCopy(obj[key]);   //递归复制
+              result[key] = this.deepCopy(obj[key]);   //递归复制
             } else {
               result[key] = obj[key];
             }
@@ -225,8 +225,8 @@
           params: { id: node.id },
         }).then((res) => {
           this.$set(node, 'loading', false);
-          if( res.resultData.length > 0){
-            let childNodes = this.transformKeyFun(res.resultData, {lazy: true});
+          if (res.resultData.length > 0) {
+            let childNodes = this.transformKeyFun(res.resultData, { lazy: true });
             this.$refs.testTree.addNodes(node, childNodes);
           }
         });
@@ -252,9 +252,9 @@
       },
 
       //编辑节点
-      editNode(node){
-        this.$prompt('您要修改节点的名称', '提示').then( ({value}) => {
-          this.$refs.testTree.updateNode(node, {houseFullName: value});
+      editNode(node) {
+        this.$prompt('您要修改节点的名称', '提示').then(({ value }) => {
+          this.$refs.testTree.updateNode(node, { houseFullName: value });
         });
       },
 
@@ -266,7 +266,7 @@
 
       //设置选中的节点
       setNodes(ref) {
-        this.$refs[ref].nodeSelectedByKey([0,114191]);
+        this.$refs[ref].nodeSelectedByKey([0, 114191]);
       },
 
 
@@ -299,7 +299,7 @@
     },
     mounted() {
       this.nodesListStore = this.$store.state.Tree.treeTempData;
-      this.nodesStoreModel =   this.nodesListStore[0];
+      this.nodesStoreModel = this.nodesListStore[0];
     },
   };
 </script>
