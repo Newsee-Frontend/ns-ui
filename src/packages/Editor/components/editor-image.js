@@ -3,7 +3,6 @@ import Button from '../../Button/Button';
 import editorBtn from './editor-btn';
 
 
-
 export default {
   name: 'editor-image',
   components: { Dialog, Button, editorBtn },
@@ -71,8 +70,11 @@ export default {
         [h('editor-btn',
           {
             class: 'editor-upload__btn',
+            props: {
+              'icon-class': 'image',
+            },
             on: {
-              'editor-btn-click': _=> {
+              'editor-btn-click': _ => {
                 this.dialogVisible = true;
               },
             },
