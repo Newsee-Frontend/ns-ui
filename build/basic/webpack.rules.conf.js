@@ -34,6 +34,20 @@ const rules = [
     ],
   },
   {
+    test: /\.(scss$|sass$)$/,
+    use: [
+      'style-loader', // creates style nodes from JS strings
+      'css-loader', // translates CSS into CommonJS
+      'postcss-loader',
+      {
+        loader: 'sass-loader',// compiles Sass to CSS, using Node Sass by default
+        options: {
+          paths: [path.resolve(__dirname, 'node_modules')],
+        },
+      },
+    ],
+  },
+  {
     test: /\.md$/,
     use: [
       'vue-loader',
