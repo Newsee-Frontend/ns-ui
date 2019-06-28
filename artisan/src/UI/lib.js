@@ -134,6 +134,9 @@ Vue.component('ns-video-background', VideoBackground);
 Vue.component('ns-alert', Alert);
 
 
+//icons
+import '../../../src/style/base.scss';
+
 //layput
 import '../../../src/packages/Layout/style/index.scss';
 import '../../../src/packages/SideBar/style/index.scss';
