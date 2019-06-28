@@ -78,12 +78,12 @@ export default create({
         <textarea id={this.tinymceId} class={'editor-textarea'}/>
         <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
-            <editor-btn on-editor-btn-click={() => {
-              this.isEn = !this.isEn;
-            }}/>
+            <editor-image on-image-submit={this.imageSubmit}/>
           </li>
           <li>
-            <editor-image on-image-submit={this.imageSubmit}/>
+            <editor-btn icon-class={'language'} on-editor-btn-click={() => {
+              this.isEn = !this.isEn;
+            }}/>
           </li>
         </ul>
       </div>
