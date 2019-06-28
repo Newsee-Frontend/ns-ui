@@ -29,6 +29,9 @@ function buildAllComponentsStyleEntry(ext = '') {
   const needIntallList = Components.filter(name => !~uninstallComponents.indexOf(uppercamelize(name)));
 
   //import list template
+  const base = `@import './style/base.scss';`;
+
+  //import list template
   const importList = needIntallList.map(name => `@import './packages/${name}/style/index.css';`);
 
 
@@ -37,6 +40,7 @@ function buildAllComponentsStyleEntry(ext = '') {
 /**
  * Entry of all component's style
  */
+${base}
 
 ${importList.join('\n')}
 `;
