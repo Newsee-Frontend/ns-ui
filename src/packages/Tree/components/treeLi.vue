@@ -3,7 +3,7 @@
     <div class="tree-node-el" :draggable="draggable" @dragstart="drag(item, $event)">
       <!--展开 收缩-->
       <!--checkbox的树图形-->
-      <span @click="expandNode(item)"  v-if="multiple">
+      <span @click="expandNode(item)" v-if="multiple">
          <i
            :class="{
             'el-icon-caret-right': true,
@@ -131,7 +131,7 @@
       level: Number,
       topMustExpand: Boolean,
       allowGetParentNode: Boolean,
-      dropJudge: Function
+      dropJudge: Function,
     },
     inject: [
       'isLeaf',
@@ -212,8 +212,10 @@
        */
       expandNode(node) {
         const expended = !node.expanded;
-        node.expanded = expended;
-        node.hasExpanded = true;
+        this.$set(node, 'expanded', expended);
+        this.$set(node, 'hasExpanded', true);
+        // node.expanded = expended;
+        // node.hasExpanded = true;
         //zx修改，增加children 为空数组
         if (node.async && (!node.children || (node.children && node.children.length === 0))) {
           node.async = false;  //加载一次后不在异步加载
