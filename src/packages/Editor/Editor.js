@@ -1,6 +1,9 @@
+const merge = require('webpack-merge');
 import create from '../../create/create';
 import editorImage from './components/editor-image';
 import plugins from './plugins';
+import defaultConfig from './plugins-config';
+
 import toolbar from './toolbar';
 import editorBtn from './components/editor-btn';
 
@@ -29,6 +32,7 @@ export default create({
       },
     },
     menubar: { type: String, default: 'file edit insert view format table' },
+    pluginsConfig: { type: Object, required: false, default: defaultConfig },
   },
   data() {
     return {
@@ -55,6 +59,11 @@ export default create({
         top: (this.toolbarConfig.length * 34 + 4 + (this.fullscreen ? 88 : 0)) + 'px',
       };
     },
+    pluginsConf() {
+      console.log('editor - 插件参数配置信息如下：');
+      console.log(merge(defaultConfig, this.pluginsConfig));
+      return merge(defaultConfig, this.pluginsConfig);
+    },
   },
   watch: {
     value(val) {
@@ -78,7 +87,7 @@ export default create({
         <textarea id={this.tinymceId} class={'editor-textarea'}/>
         <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
-            <editor-image on-image-submit={this.imageSubmit}/>
+            <editor-image plugin-config={this.pluginsConf} on-image-submit={this.imageSubmit}/>
           </li>
           <li>
             <editor-btn icon-class={'language'} on-editor-btn-click={() => {
