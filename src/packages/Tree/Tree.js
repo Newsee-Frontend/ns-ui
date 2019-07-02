@@ -59,13 +59,16 @@ export default create({
 
   watch: {
     value: {
-      handler(newVal, oldval) {
-        if(oldval) return
-        if(newVal instanceof Array){
-          newVal.forEach(item => this.nodeSelected(item))
-        }else{
-          this.nodeSelected(newVal);
-        }
+      handler(newVal, oldVal) {
+        //只支持初始化时
+        if(Object.keys(oldVal || '').length) return
+        this.$nextTick(()=>{
+          if(newVal instanceof Array){
+            newVal.forEach(item => this.nodeSelected(item))
+          }else{
+            this.nodeSelected(newVal);
+          }
+        });
       },
       deep: true,
     }
@@ -175,14 +178,12 @@ export default create({
 
     //选中节点
     nodeSelected: function(data){
-      this.$nextTick(()=>{
-        if(this.isObjectData){
-          this.$refs.tree.nodeSelected(data)
-        }else{
-          let nodes = this.$refs.tree.getNodes({ id: data }, this.data, true);
-          nodes.length > 0 && (this.$refs.tree.nodeSelected(nodes[0]));
-        }
-      })
+      if(this.isObjectData){
+        this.$refs.tree.nodeSelected(data)
+      }else{
+        let nodes = this.$refs.tree.getNodes({ id: data }, this.data, true);
+        nodes.length > 0 && (this.$refs.tree.nodeSelected(nodes[0]));
+      }
     },
 
     /**
