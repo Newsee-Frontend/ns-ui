@@ -118,13 +118,15 @@
 
 <script>
   import fetch from '../../../fetch/fetch';
-  import transformNode from './transformNode';
+  import transformKeyFun from './utils';
+  import keyRefer from './keyRefer';
+
 
   export default {
     name: '',
-    mixins: [transformNode],
     data() {
       return {
+        keyRefer,
         data: [],
         nodesListNormal: [],
         nodesListStore: [],
@@ -134,14 +136,6 @@
         nodesListSelect: [],
         nodeListdrag: [],
         checkStrictly: true,
-        keyRefer: {
-          id: 'houseId',
-          title: 'houseName',
-          children: 'childOwnerHouseBaseInfoTreeNodeList',
-          isHasChild: 'isHasChild',
-          expanded: 'nodeExpanded',
-          disabled: 'disabled',
-        },
         num: 2,
 
         showCheckbox: false,
@@ -162,11 +156,13 @@
         }).then((res) => {
           // 基础树initTree（data, expandLevel） 设置展开层级
           this.data = this.deepCopy(res.resultData);
+
+
           this.handleChange();
 
-          //懒加载
-          this.nodesListLazy = this.transformKeyFun(this.deepCopy(res.resultData), { lazy: true, expandedIndex: 2 });
-          this.nodeListdrag = this.transformKeyFun(this.deepCopy(res.resultData), { expandedIndex: 2 });
+          // //懒加载
+          // this.nodesListLazy = transformKeyFun(this.deepCopy(res.resultData), keyRefer, { lazy: true, expandedIndex: 2 });
+          // this.nodeListdrag = transformKeyFun(this.deepCopy(res.resultData), keyRefer, { expandedIndex: 2 });
           // this.$refs.testTree.initTree(this.deepCopy(res.resultData),2);
           // this.$refs.selectTree.initTree(this.deepCopy(res.resultData),2);
           // this.$refs.dropTree.initTree(this.deepCopy(res.resultData),2);
@@ -176,7 +172,7 @@
 
       //handleChange 默认展开的层级
       handleChange: function() {
-        this.nodesListNormal = this.transformKeyFun(this.data, { expandedIndex: this.num });
+        this.nodesListNormal = transformKeyFun(this.data, keyRefer, { expandedIndex: this.num });
         this.normalModel = 114191;
       },
 
@@ -226,7 +222,7 @@
         }).then((res) => {
           this.$set(node, 'loading', false);
           if (res.resultData.length > 0) {
-            let childNodes = this.transformKeyFun(res.resultData, { lazy: true });
+            let childNodes = transformKeyFun(res.resultData, keyRefer, { lazy: true });
             this.$refs.testTree.addNodes(node, childNodes);
           }
         });
