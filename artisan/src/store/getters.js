@@ -15,5 +15,8 @@ const getters = {
 
   //table demo
   tableHead: state => state.Table.tableHead,
+
+  //requestHead
+  requestHead: state => state.RequestHead.base
 };
 export default getters;
