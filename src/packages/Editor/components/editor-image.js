@@ -2,14 +2,17 @@ import Dialog from '../../Dialog/Dialog';
 import Button from '../../Button/Button';
 import editorBtn from './editor-btn';
 
-
 export default {
   name: 'editor-image',
   components: { Dialog, Button, editorBtn },
+  props: {
+    pluginConfig: { type: Object },
+  },
   data() {
     return {
       dialogVisible: false,
       listObj: {},
+
     };
   },
   watch: {
@@ -25,7 +28,8 @@ export default {
             multiple: true,
             'show-file-list': true,
             'before-upload': this.beforeUpload,
-            action: 'https://httpbin.org/post',
+            action: this.pluginConfig.action,
+            headers: this.pluginConfig.headers,
             'list-type': 'picture-card',
             'on-remove': this.handleRemove,
             'on-success': this.handleSuccess,
@@ -132,11 +136,17 @@ export default {
      * @param file
      */
     handleSuccess(response, file) {
+      console.log('handleSuccess-handleSuccess-handleSuccess');
+      console.log('handleSuccess-handleSuccess-handleSuccess');
+      console.log(response);
+      console.log('handleSuccess-handleSuccess-handleSuccess');
+      console.log('handleSuccess-handleSuccess-handleSuccess');
       const uid = file.uid;
       const objKeyArr = Object.keys(this.listObj);
       for (let i = 0, len = objKeyArr.length; i < len; i++) {
         if (this.listObj[objKeyArr[i]].uid === uid) {
-          this.listObj[objKeyArr[i]].url = response.files.file;
+          // this.listObj[objKeyArr[i]].url = response.files.file;
+          this.listObj[objKeyArr[i]].url = response.resultData.file || '';
           this.listObj[objKeyArr[i]].hasSuccess = true;
           return;
         }
