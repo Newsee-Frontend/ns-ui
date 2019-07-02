@@ -19,7 +19,7 @@ export default {
      * @param config  配置节点 lazy（配置懒加载）, expandedIndex（默认展示层级）,expandAllNodes是否全部展开
      * @returns {*}  树节点数据
      */
-    transformKeyFun(list = [], config = {}) {
+    transformKeyFun(list = [], config = {},) {
       let keyRefer = Object.assign(this.keyReferNomal, this.keyRefer);
       list.forEach((item) => {
         //设置树对应的字段
@@ -40,7 +40,7 @@ export default {
 
 
         if (item.children && item.children.length > 0) {
-          if (config.expandedIndex> -1) config.expandedIndex--;
+          if (config.expandedIndex > -1) config.expandedIndex--;
           this.transformKeyFun(item.children, config);
         }
 
