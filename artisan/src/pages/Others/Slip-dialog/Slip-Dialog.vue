@@ -56,15 +56,23 @@
         :beforeClose="beforeClose"
       >
         <h2 style="text-align: center;padding: 15px 0 ;margin: 0">侧边滑入窗口</h2>
-        <ns-editor :height="500" v-model="content"/>
+
+        <ns-form ref="slip-dialog-form" :model="slipDialogForm" label-width="140px">
+          <ns-form-item label=" 详细内容:">
+            <ns-editor :height="500" v-model="slipDialogForm.content"/>
+          </ns-form-item>
+        </ns-form>
+
+
         <div class="editor-content">
-          <h3>输入内容如下:</h3>{{content}}
+          <h3>输入内容如下:</h3>{{slipDialogForm.content}}
         </div>
 
 
         <div style="text-align: right">
-          <el-button @click.stop="form.dialogSw2 = true">打开全屏弹窗</el-button>
-          <el-button type="danger" @click.stop="btnInDialogClick">关闭弹窗</el-button>
+          <ns-button @click="form.dialogSw2 = true">打开全屏弹窗</ns-button>
+          <ns-button type="danger" @click="formPublish">发布</ns-button>
+          <ns-button type="danger" @click="btnInDialogClick">返回</ns-button>
         </div>
       </ns-slip-dialog>
 
@@ -119,7 +127,9 @@
           { label: '上', value: 'top' },
           { label: '下', value: 'bottom' },
         ],
-        content: '',
+        slipDialogForm: {
+          content: '',
+        },
       };
     },
     methods: {
@@ -158,6 +168,17 @@
       },
       afterLeave(el) {
         console.log('afterEnter', el);
+      },
+      /***
+       * 发布/暂存
+       * @param submitType
+       */
+      formPublish(submitType) {
+        this.$refs['slip-dialog-form'].validate((valid) => {
+          if (valid) {
+            this.form.dialogSw = false;
+          }
+        });
       },
     },
   };
