@@ -9,7 +9,7 @@
           <span>模式切换:  </span>
           <ns-radio v-model="model" :options="modelOptions"></ns-radio>
         </div>
-        <ns-editor v-model="content" :height="500" :model="model"/>
+        <ns-editor v-model="content" :height="500" :model="model" :plugins-config="pluginsConfig"/>
         <div class="editor-content">
           <h3>输入内容如下:</h3>{{content}}
         </div>
@@ -19,6 +19,8 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
+
   export default {
     name: 'editor-demo',
     data() {
@@ -32,6 +34,17 @@
           { label: 'rich', value: 'rich' },
         ],
       };
+    },
+    computed: {
+      ...mapGetters(['requestHead']),
+      pluginsConfig() {
+        return {
+          'editor-image': {
+            action: '/o2o/activity/fileUploadBase64',//图片请求地址
+            headers: this.requestHead,//请求头
+          },
+        };
+      },
     },
     methods: {
       buttonClick() {
