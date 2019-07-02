@@ -87,7 +87,7 @@ export default create({
         <textarea id={this.tinymceId} class={'editor-textarea'}/>
         <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
-            <editor-image plugin-config={this.pluginsConf} on-image-submit={this.imageSubmit}/>
+            <editor-image plugin-config={this.pluginsConf['editor-image']} on-image-submit={this.imageSubmit}/>
           </li>
           <li>
             <editor-btn icon-class={'language'} on-editor-btn-click={() => {
