@@ -37,9 +37,11 @@ export default {
     );
   },
   methods: {
-    editorBtnClick(e) {
-      stopPropagation(e);
+    editorBtnClick(event) {
+      stopPropagation(event);
+      event.preventDefault();
       this.$emit('editor-btn-click');
+      return false;
     },
   },
 };
