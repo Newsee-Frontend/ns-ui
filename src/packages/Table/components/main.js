@@ -51,8 +51,8 @@ export default {
 
   watch: {
     head(val) {
-      console.log('head');
-      console.log(val);
+      // console.log('head');
+      // console.log(val);
     },
   },
 
