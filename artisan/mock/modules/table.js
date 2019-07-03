@@ -207,7 +207,7 @@ const listColumn = (req, res) => {
           'resourcecolumnAlign': 'center',//对齐
         },
         {
-          'resourcecolumnName': '备注',//label
+          'resourcecolumnName': '备注（邮箱)',//label
           'resourcecolumnNameEn': 'remark',//model-key
           'resourcecolumnCode': 'remark',
           'resourcecolumnXtype': 'text',//筛选列 类型
@@ -225,7 +225,7 @@ const listColumn = (req, res) => {
             'min': 0,
             'placeHolder': '请输入备注',
             'require': true,
-            'validateRule': '',
+            'validateRule': 'email',
             'errorMsg': '',
           },
         },
