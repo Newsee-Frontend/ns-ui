@@ -59,8 +59,6 @@ export default create({
       };
     },
     pluginsConf() {
-      console.log('editor - 插件参数配置信息如下：');
-      console.log(Object.assign(defaultConfig, this.pluginsConfig));
       return Object.assign(defaultConfig, this.pluginsConfig);
     },
   },
@@ -101,7 +99,6 @@ export default create({
     //init
     initTinymce() {
       const _this = this;
-      console.log('init tinymce');
       window.tinymce.init({
         language: this.language,
         selector: `#${this.tinymceId}`,
@@ -140,7 +137,6 @@ export default create({
     },
 
     destroyTinymce() {
-      console.log('destroy tinymce');
       const editor = window.tinymce.get(this.tinymceId);
       if (this.fullscreen) {
         editor.execCommand('mceFullScreen');
@@ -173,11 +169,9 @@ export default create({
     this.initTinymce();
   },
   deactivated() {
-    console.log('deactivated');
     this.destroyTinymce();
   },
   destroyed() {
-    console.log('destroyed');
     this.destroyTinymce();
   },
 });
