@@ -2,8 +2,7 @@ const keyRefer = {
   head: {
     'label': 'resourcecolumnName',//表头 label
     'width': 'resourcecolumnWidth',//表头 宽度
-    'model-key': 'resourcecolumnNameEn',//表头 对应字段名
-    'model-code': 'resourcecolumnCode',//表头 编码名称
+    'model-key': 'resourcecolumnCode',//表头 对应字段名
     'xtype': 'resourcecolumnXtype',//筛选列 类型
     'col-type': 'col-type',//列的类型
     'hidden': 'resourcecolumnHidden',//是否显示
