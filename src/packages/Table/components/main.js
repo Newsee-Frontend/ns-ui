@@ -36,7 +36,6 @@ export default {
         return [];
       },
     }, //表格显示的数据
-    align: { type: String, default: 'left' },//单元格内容位置
     border: { type: Boolean, default: true },//是否有边框
     resizable: { type: Boolean, default: true }, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
     height: { type: Number, default: 500 },//表格渲染高度默认值
@@ -68,7 +67,7 @@ export default {
               index: index,
               key: index,
               'min-width': item[this.headRefer['width']],
-              align: this.align,
+              align: item[this.headRefer['align']],
               label: item[this.headRefer['label']],
               resizable: this.resizable,
               sortable: 'custom',
@@ -105,7 +104,7 @@ export default {
               'class-name': `table-head-setting`,
               key: 'table-head-setting',
               width: '25',
-              align: this.align,
+              align: 'center',
               fixed: 'right',
             },
             scopedSlots: {
