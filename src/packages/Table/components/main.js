@@ -226,7 +226,7 @@ export default {
      * @returns {string}
      */
     normalColClassName(item) {
-      const normalCls = 'table-head-' + item[this.headRefer['model-code']] + ' ';
+      const normalCls = 'table-head-' + item[this.headRefer['model-key']] + ' ';
       const cellConfig = item[this.headRefer['cell-Config']];
       try {
         const require = cellConfig['require'];
