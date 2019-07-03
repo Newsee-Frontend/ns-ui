@@ -31,8 +31,8 @@ export default {
           props: {
             'class-name': `table-head-${this.headScope[this.headRefer['model-code']]}`,
             type: this.columnType,
-            align: 'center',
             fixed: true,
+            align: this.headScope[this.headRefer['align']],
             width: this.headScope[this.headRefer['width']],
             label: this.headScope[this.headRefer['label']],
             key: `grid-head-${this.headScope[this.headRefer['model-code']]}`,
