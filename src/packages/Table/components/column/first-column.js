@@ -29,13 +29,13 @@ export default {
         `el-table-column`,
         {
           props: {
-            'class-name': `table-head-${this.headScope[this.headRefer['model-code']]}`,
+            'class-name': `table-head-${this.headScope[this.headRefer['model-key']]}`,
             type: this.columnType,
             fixed: true,
             align: this.headScope[this.headRefer['align']],
             width: this.headScope[this.headRefer['width']],
             label: this.headScope[this.headRefer['label']],
-            key: `grid-head-${this.headScope[this.headRefer['model-code']]}`,
+            key: `grid-head-${this.headScope[this.headRefer['model-key']]}`,
           },
           scopedSlots: this.columnType === 'radio' ? {
             default: scope => {
