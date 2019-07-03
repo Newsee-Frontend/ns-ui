@@ -7,7 +7,7 @@ const keyRefer = {
     'xtype': 'resourcecolumnXtype',//筛选列 类型
     'col-type': 'col-type',//列的类型
     'hidden': 'resourcecolumnHidden',//是否显示
-    'align': 'align',//居中/左/右对齐
+    'align': 'resourcecolumnAlign',//居中/左/右对齐
     'cellFilterList': 'selectList',//单元格内容删选转换model-key
 
     'cell-Config': 'eidtConfig',//特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
