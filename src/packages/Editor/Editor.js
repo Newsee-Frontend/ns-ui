@@ -1,4 +1,3 @@
-const merge = require('webpack-merge');
 import create from '../../create/create';
 import editorImage from './components/editor-image';
 import plugins from './plugins';
@@ -61,8 +60,8 @@ export default create({
     },
     pluginsConf() {
       console.log('editor - 插件参数配置信息如下：');
-      console.log(merge(defaultConfig, this.pluginsConfig));
-      return merge(defaultConfig, this.pluginsConfig);
+      console.log(Object.assign(defaultConfig, this.pluginsConfig));
+      return Object.assign(defaultConfig, this.pluginsConfig);
     },
   },
   watch: {
