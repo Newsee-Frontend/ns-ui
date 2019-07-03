@@ -9,7 +9,6 @@ export default {
   watch: {
     toggletype: {
       handler: function(val) {
-        console.log(val);
         switch (val) {
           case 'day':
             this.delProperty([[this.keyRefer['mounthAndDay']], [this.keyRefer['week']], [this.keyRefer['day']]]); //delete property
