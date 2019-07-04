@@ -1,6 +1,6 @@
 'use strict';
 const path = require('path');
-const package_19_6_18 = require('./version/package_19_6_18');
+const package_19_07_03 = require('./version/package_19_07_03');
 
 
 module.exports = {
@@ -41,7 +41,7 @@ module.exports = {
 
       ],
     },
-    excludes: package_19_6_18,
+    excludes: package_19_07_03,
   },
   base: {
     mockPath: './artisan/mock',
