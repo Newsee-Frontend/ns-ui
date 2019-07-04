@@ -329,11 +329,19 @@ const navmenu = (req, res) => {
             hide: 1,
           },
           {
+            funcId: 'drawer',
+            menuLabel: '抽屉',
+            menuRouter: 'drawer',
+            menuIcon: null,
+            menuIndex: 4,
+            hide: 1,
+          },
+          {
             funcId: 'carousel',
             menuLabel: 'carousel 走马灯',
             menuRouter: 'carousel',
             menuIcon: null,
-            menuIndex: 4,
+            menuIndex: 5,
             hide: 1,
           },
           {
@@ -341,7 +349,7 @@ const navmenu = (req, res) => {
             menuLabel: 'popover 弹出框',
             menuRouter: 'popover',
             menuIcon: null,
-            menuIndex: 5,
+            menuIndex: 6,
             hide: 1,
           },
           {
@@ -349,7 +357,7 @@ const navmenu = (req, res) => {
             menuLabel: 'timeline 时间线',
             menuRouter: 'timeline',
             menuIcon: null,
-            menuIndex: 6,
+            menuIndex: 7,
             hide: 1,
           },
           {
@@ -357,7 +365,7 @@ const navmenu = (req, res) => {
             menuLabel: '富文本编辑器',
             menuRouter: 'rich-editor',
             menuIcon: null,
-            menuIndex: 7,
+            menuIndex: 8,
             hide: 1,
           },
           {
@@ -365,7 +373,7 @@ const navmenu = (req, res) => {
             menuLabel: '百度地图',
             menuRouter: 'baidu-map',
             menuIcon: null,
-            menuIndex: 8,
+            menuIndex: 9,
             hide: 1,
           },
         ],
