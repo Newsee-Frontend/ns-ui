@@ -25,6 +25,12 @@ export const othersRouter = [
         name: '滑动对话框',
       },
       {
+        path: 'drawer',
+        component: () => import('../../pages/Others/Drawer/Drawer'),
+        meta: { auth: true, key: 'drawer' },
+        name: '抽屉',
+      },
+      {
         path: 'carousel',
         component: () => import('../../pages/Others/Carousel/Carousel'),
         meta: { auth: true, key: 'carousel' },
