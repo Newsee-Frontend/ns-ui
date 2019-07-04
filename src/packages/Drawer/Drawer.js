@@ -68,10 +68,9 @@ export default create({
             }
           </div>
         </div>
-
-        <icon-class class={this.drawerSwitchCls}
-                    icon-class={this.iconClass}
-                    on-click={this.drwaerHandle}/>
+        <div class={this.drawerSwitchCls}>
+          <icon-class icon-class={this.iconClass} on-click={this.drwaerHandle}/>
+        </div>
       </div>
     );
   },
