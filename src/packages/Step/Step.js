@@ -109,8 +109,6 @@ export default create({
       </div>
     }
 
-    console.log(description)
-
     const header =
       <div class={['el-step__head', `is-${currentStatus}`]}>
         <div class="el-step__line"

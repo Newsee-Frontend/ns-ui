@@ -1,0 +1,108 @@
+@import '../../../style/mixins/mixins';
+
+@include b(drawer) {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+
+  //over mask
+  .over-hidden {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transition: inherit;
+  }
+  //container
+  @include b(drawer__container) {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+    transition: inherit;
+    z-index: 1;
+  }
+
+  //switch
+  @include b(drawer__switch) {
+    position: absolute;
+    font-size: 28px;
+    padding: 0;
+    cursor: pointer;
+    transition: inherit;
+    z-index: 2;
+  }
+
+  //direction type
+  &.to-left {
+    @include b(drawer__switch) {
+      right: -8px;
+      top: 50%;
+      margin-top: -16px;
+    }
+    &.hide {
+      width: 0 !important;
+      padding: 0 !important;
+      @include b(drawer__container) {
+        visibility: hidden;
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  &.to-right {
+    float: right;
+    @include b(drawer__switch) {
+      left: -8px;
+      top: 50%;
+      margin-top: -16px;
+    }
+    &.hide {
+      width: 0 !important;
+      padding: 0 !important;
+      @include b(drawer__container) {
+        visibility: hidden;
+        transform: translateX(100%);
+      }
+    }
+  }
+
+  &.to-top {
+    @include b(drawer__switch) {
+      left: 50%;
+      bottom: -10px;
+      margin-left: -16px;
+    }
+
+    &.hide {
+      height: 0 !important;
+      padding: 0 !important;
+      @include b(drawer__container) {
+        visibility: hidden;
+        transform: translateY(-100%);
+      }
+    }
+  }
+  &.to-bottom {
+    @include b(drawer__switch) {
+      left: 50%;
+      top: -10px;
+      margin-left: -16px;
+    }
+    &.hide {
+      @include b(drawer__container) {
+        visibility: hidden;
+        transform: translateY(100%);
+      }
+      @include b(drawer__switch) {
+        top: auto;
+        left: 50%;
+        bottom: -10px;
+        margin-left: -16px;
+      }
+    }
+  }
+}

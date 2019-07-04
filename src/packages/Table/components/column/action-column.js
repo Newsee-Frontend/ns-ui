@@ -87,11 +87,11 @@ export default {
         `el-table-column`,
         {
           props: {
-            'class-name': `table-head-${this.headScope[this.headRefer['model-code']]}`,
+            'class-name': `table-head-${this.headScope[this.headRefer['model-key']]}`,
             width: this.headScope[this.headRefer['width']],
             align: this.headScope[this.headRefer['align']],
             fixed: 'right',
-            key: `table-head-${this.headScope[this.headRefer['model-code']]}`,
+            key: `table-head-${this.headScope[this.headRefer['model-key']]}`,
           },
           scopedSlots: this.columnType === 'action' ?
             {

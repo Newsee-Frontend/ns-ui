@@ -7,6 +7,7 @@ export default {
     'resourcecolumnWidth': '60',//列的宽度
     'resourcecolumnOrder': '0-1',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
   selection: {
@@ -17,6 +18,7 @@ export default {
     'resourcecolumnWidth': '60',//列的宽度
     'resourcecolumnOrder': '0-2',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
   radio: {
@@ -27,6 +29,7 @@ export default {
     'resourcecolumnWidth': '60',//列的宽度
     'resourcecolumnOrder': '0-3',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
   action: {
@@ -37,6 +40,7 @@ export default {
     'resourcecolumnWidth': '125',//列的宽度
     'resourcecolumnOrder': '98',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
   'add-row': {
@@ -47,6 +51,7 @@ export default {
     'resourcecolumnWidth': '50',//列的宽度
     'resourcecolumnOrder': '99',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
 };

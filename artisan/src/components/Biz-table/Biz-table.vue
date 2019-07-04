@@ -6,6 +6,7 @@
               :cellFifter="cellFifter"
               :showHeadOperation="showHeadOperation"
               :showSummary="showSummary"
+              :rulesConfig="rulesConfig"
               @selection-change="selectionChange"
               @table-action="tableAction"
               @cell-action="cellAction"
@@ -26,6 +27,7 @@
   import { mapGetters } from 'vuex';
   import columnConfig from './column-template-config';
   import cellFifter from './cell-fifter';
+  import rulesConfig from '../../utils/validate/rules-config';
   import keyRefer from './keyRefer';
 
   export default {
@@ -34,6 +36,7 @@
       return {
         keyRefer,
         cellFifter,
+        rulesConfig,
         isLoading: true,
       };
     },

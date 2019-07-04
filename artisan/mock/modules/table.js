@@ -67,6 +67,7 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '150',//列的宽度
           'resourcecolumnOrder': '4',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'link',
@@ -89,6 +90,7 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '120',//列的宽度
           'resourcecolumnOrder': '4',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'select',
@@ -111,6 +113,7 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '150',//列的宽度
           'resourcecolumnOrder': '7',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'date',
@@ -133,6 +136,7 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '150',//列的宽度
           'resourcecolumnOrder': '10',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'rate',
@@ -154,6 +158,7 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '500',//列的宽度
           'resourcecolumnOrder': '5',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'checkbox',
@@ -176,6 +181,7 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '150',//列的宽度
           'resourcecolumnOrder': '4',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'radio',
@@ -198,15 +204,17 @@ const listColumn = (req, res) => {
           'resourcecolumnWidth': '100',//列的宽度
           'resourcecolumnOrder': '5',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'center',//对齐
         },
         {
-          'resourcecolumnName': '备注',//label
+          'resourcecolumnName': '备注（邮箱)',//label
           'resourcecolumnNameEn': 'remark',//model-key
           'resourcecolumnCode': 'remark',
           'resourcecolumnXtype': 'text',//筛选列 类型
           'resourcecolumnWidth': '300',//列的宽度
           'resourcecolumnOrder': '8',//列的序号
           'resourcecolumnHidden': '0', //是否隐藏
+          'resourcecolumnAlign': 'left',//对齐
           'eidtConfig': {
             'switchType': true,
             'type': 'input',
@@ -217,7 +225,7 @@ const listColumn = (req, res) => {
             'min': 0,
             'placeHolder': '请输入备注',
             'require': true,
-            'validateRule': '',
+            'validateRule': 'email',
             'errorMsg': '',
           },
         },

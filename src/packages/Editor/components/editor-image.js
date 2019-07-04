@@ -136,21 +136,19 @@ export default {
      * @param file
      */
     handleSuccess(response, file) {
-      console.log('handleSuccess-handleSuccess-handleSuccess');
-      console.log('handleSuccess-handleSuccess-handleSuccess');
-      console.log(response);
-      console.log('handleSuccess-handleSuccess-handleSuccess');
-      console.log('handleSuccess-handleSuccess-handleSuccess');
       const uid = file.uid;
       const objKeyArr = Object.keys(this.listObj);
+      const responseHandleFn = this.pluginConfig.response;
+
       for (let i = 0, len = objKeyArr.length; i < len; i++) {
         if (this.listObj[objKeyArr[i]].uid === uid) {
           // this.listObj[objKeyArr[i]].url = response.files.file;
-          this.listObj[objKeyArr[i]].url = response.resultData.file || '';
+          this.listObj[objKeyArr[i]].url = responseHandleFn(response);
           this.listObj[objKeyArr[i]].hasSuccess = true;
           return;
         }
       }
+
     },
     /**
      * remove img in picture-card

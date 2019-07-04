@@ -45,7 +45,7 @@ export default create({
           on-click={this.changeTheme.bind(this, theme.color, theme.key)}
         >
           {
-            theme.key === this.childSkiner ? <icon-class class={'el-icon-check'}/> : null
+            theme.color === this.childSkiner ? <i class={'el-icon-check'}/> : null
           }
         </li>;
     };

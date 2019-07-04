@@ -1,4 +1,3 @@
-const merge = require('webpack-merge');
 import create from '../../create/create';
 import editorImage from './components/editor-image';
 import plugins from './plugins';
@@ -60,9 +59,7 @@ export default create({
       };
     },
     pluginsConf() {
-      console.log('editor - 插件参数配置信息如下：');
-      console.log(merge(defaultConfig, this.pluginsConfig));
-      return merge(defaultConfig, this.pluginsConfig);
+      return Object.assign(defaultConfig, this.pluginsConfig);
     },
   },
   watch: {
@@ -102,7 +99,6 @@ export default create({
     //init
     initTinymce() {
       const _this = this;
-      console.log('init tinymce');
       window.tinymce.init({
         language: this.language,
         selector: `#${this.tinymceId}`,
@@ -141,7 +137,6 @@ export default create({
     },
 
     destroyTinymce() {
-      console.log('destroy tinymce');
       const editor = window.tinymce.get(this.tinymceId);
       if (this.fullscreen) {
         editor.execCommand('mceFullScreen');
@@ -174,11 +169,9 @@ export default create({
     this.initTinymce();
   },
   deactivated() {
-    console.log('deactivated');
     this.destroyTinymce();
   },
   destroyed() {
-    console.log('destroyed');
     this.destroyTinymce();
   },
 });
