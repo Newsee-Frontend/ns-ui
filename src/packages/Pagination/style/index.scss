@@ -2,7 +2,7 @@
 
 $panel-page_back_color: #EBEDEF; //分页模块背景颜色
 $grid_border_color: #e8e8e8; //表格边框颜色
-$grid-cell-base_height: 32px;
+$grid-cell-base_height: 28px;
 
 //分页模块
 @include b(pagination) {
@@ -10,6 +10,7 @@ $grid-cell-base_height: 32px;
   box-sizing: border-box;
   vertical-align: middle;
   line-height: $grid-cell-base_height;
+  padding: 5px;
 
   //padding: 5px;
   //background-color: $panel-page_back_color;
@@ -22,6 +23,14 @@ $grid-cell-base_height: 32px;
     font-weight: 400;
     vertical-align: top;
   }
+
+  .el-pagination {
+    height: $grid-cell-base_height;
+    line-height: $grid-cell-base_height;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   //button.panel-po_btn {
   //  margin-left: 5px;
   //}
