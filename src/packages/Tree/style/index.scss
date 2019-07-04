@@ -8,7 +8,6 @@ $disabled-font-color: #c0c4cc;
 @include b(tree) {
   height: 100%;
   color: #666;
-  font-size: 14px;
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity 0.2s;
@@ -32,7 +31,7 @@ $disabled-font-color: #c0c4cc;
     opacity: 0;
   }
   .halo-tree {
-    font-size: 14px;
+    font-size: 13px;
     -webkit-transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
     0.3s padding-bottom ease-in-out;
     transition: 0.3s height ease-in-out, 0.3s padding-top ease-in-out,
