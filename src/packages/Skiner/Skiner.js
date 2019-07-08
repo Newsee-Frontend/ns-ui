@@ -138,7 +138,7 @@ export default create({
       if (this.colorFormat === 'rgb' && color.indexOf('rgb') === -1) {
         return colorHexToRgba(color).rgba;
       }
-      else if (this.colorFormat === 'hax' && color.indexOf('hax') !== -1) {
+      else if (this.colorFormat === 'hax' && color.indexOf('#') === -1) {
         return colorRGBtoHex(color);
       }
       return color;
