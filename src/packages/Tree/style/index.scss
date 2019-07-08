@@ -47,7 +47,7 @@ $disabled-font-color: #c0c4cc;
   }
   .halo-tree li {
     margin: 0;
-    padding: 2px 0px 5px 0px;
+    padding: 1px 0px 1px 0px;
     position: relative;
     list-style: none;
   }
@@ -99,10 +99,8 @@ $disabled-font-color: #c0c4cc;
     z-index: 3;
     display: flex;
     align-items: center;
-    .ns-icon-svg{
-      color: #a6a6a6;
-      width: 1.1em;
-      padding: 0 5px;
+    .ns-icon-class{
+      color: #999;
       cursor: pointer;
     }
     .el-icon-caret-right{
