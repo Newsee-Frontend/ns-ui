@@ -73,7 +73,6 @@ export default create({
             }}
             /> : null
         }
-
       </div>
     );
   },
