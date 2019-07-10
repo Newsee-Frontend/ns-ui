@@ -137,7 +137,7 @@
           dialogSw: false,
           dialogSw2: false,
           model: true,
-          closeOnClickModal: false,
+          closeOnClickModal: true,
           modelSpeed: 300,
           animation: 'slip-pretend',
           postion: 'right',
@@ -218,7 +218,7 @@
 </script>
 <style rel="stylesheet/scss" lang="scss">
   .slipDialog2 {
-    z-index: 1003;
+    z-index: 1505;
   }
 </style>
 
