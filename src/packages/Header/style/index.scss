@@ -1,6 +1,7 @@
-@import '../../../style/config/public';
+@import '../../../style/var/layout';
 @import '../../Screenfull/style/index';
 @import '../../Skiner/style/index';
+
 
 /* ------------  顶部模块 ------------  */
 @include b(header) {
