@@ -1,4 +1,6 @@
 @import '../mixins/clearfix';
+
+
 //---------- base color ----------
 $--color-black: #000; //纯黑
 $--color-text-primary: #333333; //重要文字
@@ -23,70 +25,12 @@ $--color-danger: #ff5131;
 $--color-info: #0a7af8;
 
 
-//---------- layout - 布局  ----------
-$min-window_width: 1280px; //最小窗口宽度
-$min-window_height: 600px; //最小窗口高度
-$navL: 50px; //左侧导航栏宽度
-$tabs: 38px; //历史浏览标签卡高度
-$navH: 50px; //顶部导航高度
-$navH_p: 36px; //顶部导航下拉菜单，各个部分高度
-$navH_pl: 0px; //顶部导航左 padding
-$navH_pr: 25px; //顶部导航右 padding
-
-//---------- form - 表单 -------------
-$form-main_gapB: 16px;
-
-//---- 右侧窗口悬浮显示 上下左右 空隙值 ----
-$win_gapT: 10px;
-$win_gapB: 0px;
-$win_gapL: 10px;
-$win_gapR: 10px;
-//win 内边距
-$win_pt: 0px;
-$win_pb: 0px;
-$win_pl: 0px;
-$win_pr: 0px;
-
 //---- 内容部分 ----
 $head-module_back: #163c8f; //头部模块背景颜色
 $logo-top_back: #113174; //左上角logo背景颜色
 
 $app-main_back__white: #fff; //工作台主背景颜色 - 白色
 $app-main_back__gray: #f4f6f9; //工作台主背景颜色 - 灰色
-
-$container-border_color: #e8e8e8; //container 内容模块划分边框线
-
-//---------- 页面标签选项卡模块 ----------
-$tabs-height: 38px; //tabs模块 高度
-$tabs-back: #e1e4e9; //tabs模块 背景颜色  --  较深的灰色
-$tabs-allClose_color: #999; //tabs模块 关闭所有 背景颜色
-$tabs-allClose-hover_color: #333; //tabs模块 关闭所有 鼠标移入背景颜色
-
-//tabs 单个标签页
-$tabs-part_width: 120px; //tabs 单个标签页宽度
-$tabs-part_height: 30px; //tabs 单个标签页高度
-
-$tabs-part-back: #dcdee1; //tabs模块 背景颜色
-$tabs-part-back_active: #fff; //tabs模块 选中项背景颜色
-$tabs-part-back_hover: #fff; //tabs 鼠标移入背景颜色
-$tabs-part-border_color: #d4d6d8; //tabs模块 边框色
-$tabs-part-border-active_color: #d5d5d5; //tabs模块 选中项边框色
-$tabs-part-icon-close_color: #666; //tabs模块 单个关闭图标颜色
-
-$tabs-part_color: $--color-text-primary; //tabs模块  --  较浅的灰色
-$tabs-part-color_active: $--color-black; //tabs模块 选中项字体颜色  --  较深的灰色
-
-$tabs-icon-img_width: 12px; //tabs 标签页左侧图标宽度
-$tabs-icon-img_height: 12px; //tabs 标签页左侧图标高度
-
-$tabs-icon-close_width: 12px; //tabs 标签页右侧关闭图标宽度
-$tabs-icon-close_height: 12px; //tabs 标签页右侧关闭图标宽度
-
-//---------- 删选器模块 ----------
-$search-top-height: 36px; //删选器顶部高度
-
-//---------- 筛选器，分页模块，表格表头背景色 ----------
-$modules__decorate--back: #ebedef;
 
 body {
   -moz-osx-font-smoothing: grayscale;
@@ -103,18 +47,6 @@ li {
   list-style: none;
 }
 
-.inline-block {
-  display: inline-block;
-}
-
-.gap-normal_m_l {
-  margin-left: 30px;
-}
-
-.indent-2em {
-  text-indent: 2em;
-}
-
 .fl {
   float: left;
 }
@@ -127,21 +59,6 @@ li {
   @include clearfix;
 }
 
-.txtC {
-  text-align: center !important;
-}
-
-.txtL {
-  text-align: left !important;
-}
-
-.txtR {
-  text-align: right !important;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
 
 .oneline-ellipsis {
   overflow: hidden;
@@ -149,45 +66,11 @@ li {
   white-space: nowrap;
 }
 
-.not-render {
-  display: none;
-}
 
 .disabled {
   &:hover {
     cursor: not-allowed;
   }
-}
-
-/* iconfont - button */
-.el-button.btn-icon {
-  padding: 5px 7.5px;
-}
-
-/*滚动条垂直方向的宽度*/
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-/* 垂直滚动条的滑动块 */
-::-webkit-scrollbar-thumb:vertical {
-  border-radius: 0px;
-  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
-  //-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-  background-color: rgba(157, 157, 168, 0.5);
-}
-
-/* 水平滚动条的滑动块 */
-::-webkit-scrollbar-thumb:horizontal {
-  border-radius: 0px;
-  -webkit-box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
-  background-color: rgba(157, 157, 168, 0.5);
-}
-
-::-webkit-scrollbar-thumb:vertical:hover,
-::-webkit-scrollbar-thumb:horizontal:hover {
-  background-color: rgba(164, 164, 170, 0.68);
 }
 
 .noselect {
@@ -199,11 +82,8 @@ li {
   user-select: none; /* Non-prefixed version, currently not supported by any browser */
 }
 
+//=====================================================================
 
-
-//&:not(.ns-select-multiple) .el-input .el-input__inner {
-//  height: 100% !important;
-//}
 .el-form {
   .el-form-item {
     line-height: 40px;
