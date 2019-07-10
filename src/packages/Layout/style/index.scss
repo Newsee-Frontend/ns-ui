@@ -24,7 +24,7 @@ body {
   .header-wrapper {
     position: absolute;
     width: 100%;
-    z-index: 1000;
+    z-index: 1500;
   }
   /* ------------ 左侧导航栏模块 ------------*/
   .sidebar-wrapper {
@@ -32,7 +32,7 @@ body {
     top: $navH;
     bottom: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 1502;
   }
 
   .page-tabs-wrapper {
@@ -40,7 +40,7 @@ body {
     top: $navH;
     left: $navL;
     right: 0;
-    z-index: 1000;
+    z-index: 1500;
   }
 
   /* ------------ 内容 模块 ------------ */
