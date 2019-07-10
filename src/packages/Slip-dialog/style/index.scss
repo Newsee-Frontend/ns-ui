@@ -14,7 +14,7 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
   height: 100%;
   opacity: .5;
   background: #000;
-  z-index: 1001;
+  z-index: 1503;
 }
 
 @include b(slip-dialog) {
@@ -23,9 +23,9 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
   background: #FFF;
   border-radius: $--border-radius-small;
   box-shadow: $--slipDialog-box-shadow;
-  z-index: 999;
+  z-index: 1501;
   &.is-model {
-    z-index: 1002;
+    z-index: 1504;
   }
   @include e(container) {
     position: relative;
