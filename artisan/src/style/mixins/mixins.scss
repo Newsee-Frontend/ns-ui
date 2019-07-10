@@ -1,0 +1,63 @@
+@mixin clearFloat {
+  zoom: 1;
+  &:after {
+    clear: both;
+  }
+  &:after,
+  &:before {
+    display: table;
+    content: '';
+  }
+}
+
+@mixin setMockBlockByBatch($baseName, $start, $end) {
+  $class-slug: $baseName !default;
+  @for $i from $start to $end {
+    &.#{$class-slug}-#{$i} {
+      .el-form-item__error {
+        margin-left: $i + px;
+      }
+    }
+  }
+}
+@mixin scrollbarVisible() {
+  ::-webkit-scrollbar-thumb:vertical,
+  ::-webkit-scrollbar-thumb:horizontal {
+    visibility: hidden;
+  }
+  :hover {
+    &::-webkit-scrollbar-thumb:vertical,
+    &::-webkit-scrollbar-thumb:horizontal {
+      visibility: visible;
+      transition: all 3s linear;
+    }
+  }
+}
+
+@mixin scrollbarStyle() {
+  /*滚动条垂直方向的宽度*/
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* 垂直滚动条的滑动块 */
+  ::-webkit-scrollbar-thumb:vertical {
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: rgba(157, 157, 168, 0.5);
+  }
+
+  /* 水平滚动条的滑动块 */
+  ::-webkit-scrollbar-thumb:horizontal {
+    border-radius: 0;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+    background-color: rgba(157, 157, 168, 0.5);
+  }
+
+  ::-webkit-scrollbar-thumb:vertical:hover, ::-webkit-scrollbar-thumb:horizontal:hover {
+    background-color: rgba(164, 164, 170, 0.68);
+  }
+}
+
+
