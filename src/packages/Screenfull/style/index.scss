@@ -1,5 +1,5 @@
 @import '../../../style/mixins/mixins';
-@import '../../../style/config/head';
+@import '../../../style/var/head';
 
 i {
   @include rb(screenfull) {
