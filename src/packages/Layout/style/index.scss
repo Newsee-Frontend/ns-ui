@@ -1,4 +1,4 @@
-@import '../../../style/config/public';
+@import '../../../style/var/layout';
 @import '../../Header/style/index.scss';
 @import './modules/skin';
 
@@ -10,6 +10,7 @@ body {
     height: inherit;
     min-width: $min-window_width;
     min-height: $min-window_height;
+    font-size: 13px;
   }
 }
 
@@ -18,9 +19,12 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
   /* ------------  顶部模块 ------------  */
   .header-wrapper {
+    position: absolute;
     width: 100%;
+    z-index: 1000;
   }
   /* ------------ 左侧导航栏模块 ------------*/
   .sidebar-wrapper {
@@ -28,29 +32,29 @@ body {
     top: $navH;
     bottom: 0;
     left: 0;
-    z-index: 2;
+    z-index: 1000;
   }
+
+  .page-tabs-wrapper {
+    position: absolute;
+    top: $navH;
+    left: $navL;
+    right: 0;
+    z-index: 1000;
+  }
+
   /* ------------ 内容 模块 ------------ */
   .main-container {
     position: absolute;
-    top: $navH;
+    top: $navH + $tabs;
     bottom: 1px;
     left: $navL;
     right: 0;
+    padding: $win_gapT $win_gapR $win_gapB $win_gapL;
     box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: auto;
     z-index: 1;
-
-    /* ------------  右侧内容模块整体（固定不变，占位） ------------ */
-    .app-main {
-      //width: 100%;
-      height: calc(100% - #{$tabs});
-      min-height: calc(100% - #{$tabs});
-      //min-height:calc(100% - #{$tabs});
-      padding: $win_gapT $win_gapR $win_gapB $win_gapL;
-      overflow-y: auto;
-      overflow-x: auto;
-      box-sizing: border-box;
-      transition: all, 0.4s, linear;
-    }
+    transition: all, 0.4s, linear;
   }
 }
