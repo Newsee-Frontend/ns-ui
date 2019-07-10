@@ -1,5 +1,7 @@
 import create from '../../create/create';
 import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
+import { uuid } from '../../utils/uuid';
+import delayEvent from '../../utils/delay-event';
 
 export default create({
   name: 'slip-dialog',
@@ -21,7 +23,9 @@ export default create({
     right: { type: String, default: '0' },
     top: { type: String, default: '0' },
     bottom: { type: String, default: '0' },
-    customClass: { type: String, default: '' },
+    model: { type: Boolean, default: false },//是否含有遮罩层
+    modelSpeed: { type: Number, default: 200 },//遮罩层速率
+    closeOnClickModal: { type: Boolean, default: true },//是否可以通过点击 modal 关闭
     domToClose: { type: String, default: 'app' },
     appendToBody: { type: Boolean, default: true },
     closeOnPressEscape: { type: Boolean, default: true },
@@ -59,15 +63,48 @@ export default create({
         return document.body;
       }
     },
+
+    modelId() {
+      return `${this.recls('model')}-${uuid(5)}`;
+    },
+
+
+    createModelDom() {
+      let mask = document.createElement('div');
+      mask.setAttribute('id', this.modelId);
+      mask.setAttribute('class', this.recls('model'));
+      return mask;
+    },
+
+    outerModelTarget() {
+      try {
+        const outer = document.getElementById(this.modelId);
+        return outer ? outer : document.body;
+      } catch (e) {
+        return document.body;
+      }
+    },
+
   },
 
   watch: {
     visible(val) {
       this.lastVisible = this.visible;
       if (val) {
+
         this.appendDialogToBody();
+        this.appendModelToBody();
+
         this.open();
+
       } else {
+
+        delayEvent(this,
+          _ => this.destroyModel(),
+          this.modelSpeed,
+        );
+
+
         if (typeof this.beforeClose === 'function') {
           this.beforeClose(val);
         }
@@ -77,6 +114,7 @@ export default create({
   },
 
   render(h) {
+
     return (
       <transition
         name={this.animationName}
@@ -89,16 +127,17 @@ export default create({
       >{
         this.visible ?
           <div
-            class={this.recls() + ' ' + this.customClass}
+            class={this.recls() + ' ' + (this.model ? 'is-model' : '')}
             style={this.wrapperStyle}
             on-click={this.wrapperClick}
           >
-            <div class={this.recls('wrapper')} role={'dialog'}>
+            <div class={this.recls('container')} role={'dialog'}>
               {
                 this.$slots.default
               }
             </div>
-          </div> : null
+          </div>
+          : null
       }
       </transition>
     );
@@ -109,6 +148,18 @@ export default create({
       if (!this.appendToBody) return;
       document.body.appendChild(this.$el);
     },
+    appendModelToBody() {
+      if (!this.model) return;
+      if (document.getElementById(this.modelId)) return;
+      document.body.appendChild(this.createModelDom);
+    },
+
+    destroyModel() {
+      if (!this.model) return;
+      if (!document.getElementById(this.modelId)) return;
+      document.body.removeChild(this.createModelDom);
+    },
+
     open() {
       this.$emit('update:visible', true);
     },
@@ -149,18 +200,33 @@ export default create({
   mounted() {
     //listen drop modules click event
     addEventHandler(this.outerDomTarget, 'click', this.outerClickEvent);
+
+    if (this.model && this.closeOnClickModal) {
+      addEventHandler(this.outerModelTarget, 'click', this.outerClickEvent);
+    }
+
     if (this.visible) {
       this.appendDialogToBody();
+      this.appendModelToBody();
     }
   },
   beforeDestroy() {
     //remove event Listener
     removeEventHandler(this.outerDomTarget, 'click', this.outerClickEvent);
+
+    if (this.model && this.closeOnClickModal) {
+      removeEventHandler(this.outerModelTarget, 'click', this.outerClickEvent);
+    }
+
   },
   destroyed() {
     // if appendToBody is true, remove DOM node after destroy
     if (this.appendToBody && this.$el && this.$el.parentNode) {
       this.$el.parentNode.removeChild(this.$el);
     }
+
+    this.destroyModel();
+
+    this.timeout = null;
   },
 });
