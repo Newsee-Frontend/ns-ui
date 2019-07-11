@@ -93,6 +93,7 @@ export default create({
         class={this.recls([this.formsize])}
         splitButton={this.splitButton}
         type={this.type}
+        size={this.size}
         placement={this.placement}
         trigger={this.trigger}
         hideOnClick={this.hideOnClick}

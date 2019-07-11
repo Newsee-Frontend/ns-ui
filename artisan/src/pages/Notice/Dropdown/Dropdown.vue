@@ -15,13 +15,13 @@
 
     <demo-block>
       <template slot="title">dropdown 按钮组</template>
-      <template slot="describe">dropdown  split-button的用法, size控制按钮size	 </template>
+      <template slot="describe">dropdown  split-button的用法, size控制按钮size和dropdown的size	 </template>
       <template slot="content">
-        <ns-dropdown :options="options" splitButton type="primary" @command="handleCommand" @click="click">
+        <ns-dropdown :options="options" splitButton  size="small" type="primary" @command="handleCommand" @click="click">
           更多菜单
         </ns-dropdown>
 
-        <ns-dropdown :options="options" splitButton  size="large" type="primary" @command="handleCommand" @click="click">
+        <ns-dropdown :options="options" splitButton type="primary" @command="handleCommand" @click="click">
           更多菜单
         </ns-dropdown>
       </template>
