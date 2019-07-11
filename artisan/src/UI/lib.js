@@ -139,7 +139,7 @@ Vue.component('ns-video-background', VideoBackground);
 
 //notice
 Vue.component('ns-alert', Alert);
-Vue.component('ns-Loading-block', LoadingBlock);
+Vue.component('ns-loading-block', LoadingBlock);
 
 
 //icons
