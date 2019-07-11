@@ -3,6 +3,7 @@
 $img_size: 75px;
 
 @include b(loading-block) {
+  position: relative;
   width: 100%;
   height: 100%;
   background-color: hsla(0, 0%, 100%, .96);
