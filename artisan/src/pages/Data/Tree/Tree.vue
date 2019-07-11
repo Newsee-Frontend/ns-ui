@@ -260,12 +260,6 @@
         console.log(this.$refs[ref].getCheckedNodes(), 'getCheckedNodes');
       },
 
-      //设置选中的节点
-      setNodes(ref) {
-        this.$refs[ref].nodeSelectedByKey([0, 114191]);
-      },
-
-
       //判断是否可拖拉
       dropJudge(node, Pnode, resolve) {
         let name = node.companyName || node.houseFullName;
