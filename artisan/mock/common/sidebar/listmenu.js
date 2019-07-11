@@ -420,6 +420,14 @@ const navmenu = (req, res) => {
             menuIndex: 1,
             hide: 1,
           },
+          {
+            funcId: 'dropdown',
+            menuLabel: 'Dropdown 下拉菜单',
+            menuRouter: 'dropdown',
+            menuIcon: null,
+            menuIndex: 2,
+            hide: 1,
+          },
         ],
       },
       {
