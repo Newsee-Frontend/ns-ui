@@ -1,0 +1,11 @@
+//input 相关样式
+@import '../../../style/common/size/buttonsize';
+
+@include b(dropdown) {
+  @include button-size(dropdown);
+}
+
+.sub-menu-icon{
+  font-size: 14px;
+  vertical-align: -0.04em;
+}
