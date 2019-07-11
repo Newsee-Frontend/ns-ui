@@ -16,10 +16,18 @@ $--button-radius: 3px 3px 3px 4px 4px;
     $fs: nth($--button-frontsize, $i);
     $r: nth($--button-radius, $i);
 
-    @include rb($size-name) {
-      @include base-style-change($hor, $ver, $fs, $r);
+    @include rb($size-name){
+      @if $block-type == 'dropdown'{
+        .el-button{
+          padding: $ver $hor;
+          &.el-dropdown__caret-button{
+            padding: $ver 5px;
+          }
+        }
+      }@else {
+        @include base-style-change($hor, $ver, $fs, $r);
+      }
     }
-
   }
 }
 
