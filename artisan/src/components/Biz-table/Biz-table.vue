@@ -1,6 +1,6 @@
 <!--UI 组件库 - 业务 Table-->
 <template>
-  <div v-loading="!isRender">
+  <div>
     <ns-table ref="biz-table"
               :data="data.list" :head="finalHead" :keyRefer="keyRefer" :height="400"
               :cellFifter="cellFifter"
@@ -13,7 +13,8 @@
               @cell-form-change="cellFormChange"
               @add-row="addRow"
               @delete-current-row="deleteCurrentRow"
-              v-if="isRender"
+              @refresh="refresh"
+              :loadState="loadState"
     ></ns-table>
     <ns-pagination
       :total="data.total" :searchConditions="searchConditions"
@@ -138,6 +139,9 @@
       },
       resetCheck() {
         this.$refs['biz-table'].resetCheck();
+      },
+      refresh() {
+        this.$emit('reload');
       },
     },
     mounted() {
