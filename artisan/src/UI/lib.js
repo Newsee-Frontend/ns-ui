@@ -66,6 +66,7 @@ import TabPane from '../../../src/packages/Tab-pane/Tab-pane.js';
 
 //notice
 import Alert from '../../../src/packages/Alert/Alert.js';
+import Dropdown from '../../../src/packages/Dropdown/Dropdown.js';
 
 
 // layout
@@ -135,6 +136,7 @@ Vue.component('ns-video-background', VideoBackground);
 
 //notice
 Vue.component('ns-alert', Alert);
+Vue.component('ns-dropdown', Dropdown)
 
 
 //icons
@@ -195,6 +197,10 @@ import '../../../src/packages/TimelineAxis/style/index.scss';
 import '../../../src/packages/Particles/style/index.scss';
 import '../../../src/packages/VideoBackground/style/index.scss';
 import '../../../src/packages/Editor/style/index.scss';
+
+//notice
+
+import '../../../src/packages/Dropdown/style/index.scss';
 
 
 
