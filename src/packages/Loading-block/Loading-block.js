@@ -17,8 +17,11 @@ export default create({
 
             <div class={this.recls('content')}>
 
-              <div class={'loading-img'}/>
-
+              {
+                this.$slots.default ?
+                  this.$slots.default :
+                  <div class={'loading-img'}/>
+              }
             </div>
             : null
         }
