@@ -14,11 +14,11 @@ export const navigationRouter = [
       },
 
       {
-        path: 'dropdown',
-        component: () => import('../../pages/Notice/Dropdown/Dropdown'),
-        meta: { auth: true, key: 'dropdown' },
-        name: 'dropdown',
-      }
+        path: 'loading-block',
+        component: () => import('../../pages/Notice/Loading-block/Loading-block'),
+        meta: { auth: true, key: 'loading-block' },
+        name: 'loading-block',
+      },
     ],
   },
 ];
