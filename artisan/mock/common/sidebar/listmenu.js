@@ -402,6 +402,14 @@ const navmenu = (req, res) => {
             menuIndex: 2,
             hide: 1,
           },
+          {
+            funcId: 'dropdown',
+            menuLabel: 'Dropdown 下拉菜单',
+            menuRouter: 'dropdown',
+            menuIcon: null,
+            menuIndex: 3,
+            hide: 1,
+          },
         ],
       },
       {
@@ -421,9 +429,9 @@ const navmenu = (req, res) => {
             hide: 1,
           },
           {
-            funcId: 'dropdown',
-            menuLabel: 'Dropdown 下拉菜单',
-            menuRouter: 'dropdown',
+            funcId: 'loading-block',
+            menuLabel: 'loading-block 加载块',
+            menuRouter: 'loading-block',
             menuIcon: null,
             menuIndex: 2,
             hide: 1,
