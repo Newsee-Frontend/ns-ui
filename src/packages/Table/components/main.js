@@ -24,21 +24,11 @@ export default {
   },
   props: {
     keyRefer: { type: Object },  //指代属性
-    //表格数据加载状态
-    gridID: { type: String },//表格ID值
-    head: {
-      type: Array, default: function() {
-        return [];
-      },
-    }, //表头数据
-    data: {
-      type: Array, default() {
-        return [];
-      },
-    }, //表格显示的数据
+    head: { type: Array },
+    data: { type: Array },
     border: { type: Boolean, default: true },//是否有边框
     resizable: { type: Boolean, default: true }, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
-    height: { type: Number, default: 500 },//表格渲染高度默认值
+    height: { type: Number },//表格渲染高度默认值
     showHeadOperation: { type: Boolean, default: true },//表头设置 新增行操作模块开关
     showSummary: { type: Boolean },//是否显示合计行
     isTooltip: { type: Boolean, default: true },//是否单元格文字提示
