@@ -1,6 +1,6 @@
 const Mock = require('mockjs');
 
-let tableDataTemplate = Array.from({ length: 100 }, k => k).map((item, index) => {
+let tableDataTemplate = total => Array.from({ length: total }, k => k).map((item, index) => {
   return Mock.mock({
     taskName: function(n) {
       const task = n.context.currentContext.ownerName;
@@ -33,22 +33,41 @@ let tableDataTemplate = Array.from({ length: 100 }, k => k).map((item, index) =>
 });
 
 const tableData = (req, res) => {
-  const { pageNum, pageSize } = req.body;
-  const list = tableDataTemplate.slice((pageNum - 1) * pageSize, pageSize * pageNum);
-  return res.json({
-    resultCode: '200',
-    resultMsg: '操作成功。',
-    restLog: null,
-    resultData: {
-      list: list,
-      'pageNum': 1,
-      'pageSize': 10,
-      'size': 10,
-      'total': 100,
-      'nextPage': 2,
-      'lastPage': 8,
-    },
-  });
+  const { pageNum, pageSize, organizationId, mockType } = req.body;
+  console.log(organizationId);
+
+  const total = organizationId === 2 ? 40 : 100;
+
+  let list = null;
+
+  if (mockType === 'service-error') {
+    list = {};
+  }
+  else if (mockType === 'no-result') {
+    list = [];
+  }
+  else {
+    list = tableDataTemplate(total).slice((pageNum - 1) * pageSize, pageSize * pageNum);
+  }
+
+  setTimeout(() => {
+    return res.json({
+      resultCode: '200',
+      resultMsg: '操作成功。',
+      restLog: null,
+      resultData: {
+        list: list,
+        'pageNum': 1,
+        'pageSize': 10,
+        'size': 10,
+        'total': total,
+        'nextPage': 2,
+        'lastPage': 8,
+      },
+    });
+  }, 800);
+
+
 };
 
 
