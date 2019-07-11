@@ -9,8 +9,15 @@ export const navigationRouter = [
       {
         path: 'alert',
         component: () => import('../../pages/Notice/Alert/Alert'),
-        meta: { auth: true, key: 'steps' },
+        meta: { auth: true, key: 'alert' },
         name: 'alert',
+      },
+
+      {
+        path: 'dropdown',
+        component: () => import('../../pages/Notice/Dropdown/Dropdown'),
+        meta: { auth: true, key: 'dropdown' },
+        name: 'dropdown',
       }
     ],
   },
