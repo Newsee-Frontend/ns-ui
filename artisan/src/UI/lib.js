@@ -66,7 +66,7 @@ import TabPane from '../../../src/packages/Tab-pane/Tab-pane.js';
 
 //notice
 import Alert from '../../../src/packages/Alert/Alert.js';
-
+import LoadingBlock from '../../../src/packages/Loading-block/Loading-block.js';
 
 // layout
 Vue.component('ns-layout', Layout);
@@ -135,7 +135,7 @@ Vue.component('ns-video-background', VideoBackground);
 
 //notice
 Vue.component('ns-alert', Alert);
-
+Vue.component('ns-Loading-block', LoadingBlock);
 
 //icons
 import '../../../src/style/base.scss';
@@ -196,5 +196,5 @@ import '../../../src/packages/Particles/style/index.scss';
 import '../../../src/packages/VideoBackground/style/index.scss';
 import '../../../src/packages/Editor/style/index.scss';
 
-
-
+//notice
+import '../../../src/packages/Loading-block/style/index.scss';
