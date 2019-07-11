@@ -63,10 +63,13 @@ import Steps from '../../../src/packages/Steps/Steps.js';
 import Step from '../../../src/packages/Step/Step.js';
 import Tabs from '../../../src/packages/Tabs/Tabs.js';
 import TabPane from '../../../src/packages/Tab-pane/Tab-pane.js';
+import Dropdown from '../../../src/packages/Dropdown/Dropdown.js';
 
 //notice
 import Alert from '../../../src/packages/Alert/Alert.js';
 import LoadingBlock from '../../../src/packages/Loading-block/Loading-block.js';
+
+
 
 // layout
 Vue.component('ns-layout', Layout);
@@ -116,6 +119,7 @@ Vue.component('ns-steps', Steps);
 Vue.component('ns-step', Step);
 Vue.component('ns-tabs', Tabs);
 Vue.component('ns-tab-pane', TabPane);
+Vue.component('ns-dropdown', Dropdown)
 
 // other
 Vue.component('ns-page-tabs', PageTabs);
@@ -136,6 +140,7 @@ Vue.component('ns-video-background', VideoBackground);
 //notice
 Vue.component('ns-alert', Alert);
 Vue.component('ns-Loading-block', LoadingBlock);
+
 
 //icons
 import '../../../src/style/base.scss';
@@ -180,6 +185,7 @@ import '../../../src/packages/Table/style/index.scss';
 import '../../../src/packages/Step/style/index.scss';
 import '../../../src/packages/Steps/style/index.scss';
 import '../../../src/packages/Tabs/style/index.scss';
+import '../../../src/packages/Dropdown/style/index.scss';
 
 //other
 import '../../../src/packages/Skiner/style/index.scss';
