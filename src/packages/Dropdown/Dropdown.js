@@ -16,12 +16,12 @@ export default create({
     //下拉触发元素呈现为按钮组
     splitButton: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     //下拉触发元素呈现为按钮组时 按钮的type
     type: {
-      type: String
+      type: String,
     },
 
     //尺寸可选 medium,small,mini
@@ -33,26 +33,40 @@ export default create({
     //菜单弹出位置
     placement: {
       type: String,
-      default: 'bottom-end'
+      default: 'bottom-end',
     },
 
     // 触发下拉的行为
     trigger: {
       type: String,
-      default: 'hover'
+      default: 'hover',
     },
 
     // 是否在点击菜单项后隐藏菜单
     hideOnClick: {
       type: Boolean,
-      default: true
+      default: true,
     },
 
     // Dropdown 组件的 tabindex
     tabindex: {
       type: Number,
-      default: 0
-    }
+      default: 0,
+    },
+
+    //keyRefer
+    keyRefer: {
+      type: Object,
+      default: () => {
+        return {
+          label: 'label',
+          value: 'value',
+          disabled: 'disabled',
+          divided: 'divided',
+          children: 'children'
+        };
+      },
+    },
 
   },
 
@@ -61,28 +75,29 @@ export default create({
   watch: {},
 
   render(h) {
+    let {label, value, disabled, divided, children} = this.keyRefer;
     const itemMenuRender = (item) => {
-      let itemNode =  <el-dropdown-item
-        disabled={item.disabled}
-        divided={item.divided}
-        command={item.value}
+      let itemNode = <el-dropdown-item
+        disabled={item[disabled]}
+        divided={item[divided]}
+        command={item[value]}
       >
-        {item.label}
+        {item[label]}
       </el-dropdown-item>;
 
       let childrenNode = null;
 
-      if(item.children && item.children.length > 0){
-        childrenNode = item.children.map((childItem) => {
+      if (item[children] && item[children].length > 0) {
+        childrenNode = item[children].map((childItem) => {
           return <el-dropdown-item
-            disabled={childItem.disabled}
-            divided={childItem.divided}
-            command={childItem.value}
+            disabled={childItem[disabled]}
+            divided={childItem[divided]}
+            command={childItem[value]}
           >
             <icon-class icon-class="dian" class="sub-menu-icon"/>
-            {childItem.label}
-          </el-dropdown-item>
-        })
+            {childItem[label]}
+          </el-dropdown-item>;
+        });
       }
 
       return [itemNode, childrenNode];
@@ -120,24 +135,24 @@ export default create({
      * 点击菜单项触发的事件回调
      * @param val
      */
-    command(val){
-      this.$emit('command',val);
+    command(val) {
+      this.$emit('command', val);
     },
 
     /**
      * split-button 为 true 时，点击左侧按钮的回调
      * @param val
      */
-    click(val){
-      this.$emit('click',val);
+    click(val) {
+      this.$emit('click', val);
     },
 
     /**
      * 下拉框出现/隐藏时触发
      * @param val
      */
-    visibleChange(val){
-      this.$emit('visibleChange', val)
+    visibleChange(val) {
+      this.$emit('visibleChange', val);
     },
   },
 
