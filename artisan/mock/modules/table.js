@@ -50,23 +50,21 @@ const tableData = (req, res) => {
     list = tableDataTemplate(total).slice((pageNum - 1) * pageSize, pageSize * pageNum);
   }
 
-  setTimeout(() => {
-    return res.json({
-      resultCode: '200',
-      resultMsg: '操作成功。',
-      restLog: null,
-      resultData: {
-        list: list,
-        'pageNum': 1,
-        'pageSize': 10,
-        'size': 10,
-        'total': total,
-        'nextPage': 2,
-        'lastPage': 8,
-      },
-    });
-  }, 800);
 
+  return res.json({
+    resultCode: '200',
+    resultMsg: '操作成功。',
+    restLog: null,
+    resultData: {
+      list: list,
+      'pageNum': 1,
+      'pageSize': 10,
+      'size': 10,
+      'total': total,
+      'nextPage': 2,
+      'lastPage': 8,
+    },
+  });
 
 };
 

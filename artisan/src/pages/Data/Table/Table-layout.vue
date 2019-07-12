@@ -1,26 +1,31 @@
 <!--UI 组件库 - Table - 页面测试-->
 <template>
-  <div>
-    <demo-block>
-      <template slot="title">表格table 用法</template>
-      <template slot="describe">基础用法</template>
-      <template slot="content">
-        <div class="control-block form-block-line">
-          <span>显示新增行列:</span>
-          <ns-switch v-model="showAddRowOperation"></ns-switch>
-          <span>显示表头设置列:</span>
-          <ns-switch v-model="showHeadOperation"></ns-switch>
-          <span>是否显示合计行:</span>
-          <ns-switch v-model="showSummary"></ns-switch>
-          <ns-button type="primary" @click="validate">验证</ns-button>
-          <ns-button @click="reset">重置</ns-button>
-          <ns-button type="primary" @click="requestNew">获取新数据</ns-button>
-          <ns-button type="primary" @click="requestError">模拟服务器出错</ns-button>
-          <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
+  <div class="win">
+    <div class="ns-container">
+      <div class="ns-container-right">
+        <div class="action-module">
+          <demo-block>
+            <template slot="title">表格table 用法</template>
+            <template slot="describe">基础用法</template>
+            <template slot="content">
+              <div class="control-block form-block-line">
+                <span>显示新增行列:</span>
+                <ns-switch v-model="showAddRowOperation"></ns-switch>
+                <span>显示表头设置列:</span>
+                <ns-switch v-model="showHeadOperation"></ns-switch>
+                <span>是否显示合计行:</span>
+                <ns-switch v-model="showSummary"></ns-switch>
+                <ns-button type="primary" @click="validate">验证</ns-button>
+                <ns-button @click="reset">重置</ns-button>
+                <ns-button type="primary" @click="requestNew">获取新数据</ns-button>
+                <ns-button type="primary" @click="requestError">模拟服务器出错</ns-button>
+                <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
+              </div>
+
+            </template>
+          </demo-block>
         </div>
         <biz-table ref="biz-table-demo1" :loadState="loadState" :data="tableData"
-                   :autoResize="false"
-                   :customHeight="400"
                    :is-form-table="isFormTable"
                    :showAddRowOperation="showAddRowOperation"
                    :showHeadOperation="showHeadOperation"
@@ -34,10 +39,8 @@
                    @table-action="tableAction"
         >
         </biz-table>
-      </template>
-    </demo-block>
-
-    <!--<biz-table :loadState="loadState" :data="tableData" @selection-change="selectionChange" @table-action="tableAction"></biz-table>-->
+      </div>
+    </div>
   </div>
 </template>
 
@@ -55,7 +58,7 @@
           head: false,
         },
         tableData: {},//表格数据
-        isFormTable: true,
+        isFormTable: false,
         //搜索条件 searchConditions
         searchConditions: {
           companyId: '', //公司id
