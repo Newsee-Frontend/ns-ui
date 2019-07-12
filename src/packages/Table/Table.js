@@ -59,9 +59,9 @@ export default create({
             ...this.$attrs,
           },
           on: {
+            ...this.$listeners,
             'cell-form-change': this.cellFormChange,
             'sync-render': this.syncRender,
-            ...this.$listeners,
           },
         },
       );
@@ -119,7 +119,7 @@ export default create({
 
     cellFormChange(value, param) {
       this.setCheckStator(param.cellKey);//set form-cell check config (check list) in table
-      this.$emit('cell-form-change', value, param);
+      this.$emit('cell-change', value, param);
     },
 
   },
