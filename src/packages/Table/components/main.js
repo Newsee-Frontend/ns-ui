@@ -23,29 +23,21 @@ export default {
     };
   },
   props: {
-    keyRefer: { type: Object },  //指代属性
+    keyRefer: { type: Object },
     head: { type: Array },
     data: { type: Array },
+    isFormTable: { type: Boolean, default: false },//是否是表单表格
     border: { type: Boolean, default: true },//是否有边框
     resizable: { type: Boolean, default: true }, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
     height: { type: Number },//表格渲染高度默认值
     showHeadOperation: { type: Boolean, default: true },//表头设置 新增行操作模块开关
     showSummary: { type: Boolean },//是否显示合计行
-    isTooltip: { type: Boolean, default: true },//是否单元格文字提示
     checkStator: { type: Object },
     cellFifter: {
       type: Function,
     },
     rulesConfig: { type: Array },
   },
-
-  watch: {
-    head(val) {
-      // console.log('head');
-      // console.log(val);
-    },
-  },
-
   render(h) {
     const normalColumn = (item, index) => {
       return (
@@ -53,7 +45,7 @@ export default {
           `el-table-column`,
           {
             props: {
-              'class-name': this.normalColClassName(item),
+              'class-name': `table-head-'${item[this.headRefer['model-key']]}`,
               index: index,
               key: index,
               'min-width': item[this.headRefer['width']],
@@ -71,10 +63,10 @@ export default {
                   <slot-scope scope={scope} head-scope={item}
                               headRefer={this.headRefer} scopeRefer={this.scopeRefer}
                               rowIndex={scope.$index} colIndex={index}
+                              isFormTable={this.isFormTable}
                               checkStator={this.checkStator}
                               cell-fifter={this.cellFifter}
                               rules-config={this.rulesConfig}
-                              is-tooltip={this.isTooltip}
                               on-cell-action={this.cellAction}
                               on-cell-form-change={this.cellFormChange}/>
                 );
@@ -201,6 +193,7 @@ export default {
     addRow() {
       this.$emit('add-row');
     },
+
     /**
      * delete current row
      * @param index
@@ -209,34 +202,5 @@ export default {
     deleteCurrentRow(index, row) {
       this.$emit('delete-current-row', index, row);
     },
-
-    /**
-     *
-     * @param item
-     * @returns {string}
-     */
-    normalColClassName(item) {
-      const normalCls = 'table-head-' + item[this.headRefer['model-key']] + ' ';
-      const cellConfig = item[this.headRefer['cell-Config']];
-      try {
-        const require = cellConfig['require'];
-        const validateRule = cellConfig['validateRule'];
-        let rc = '';
-        if (validateRule || require) {
-          rc = 'is-require';
-        }
-        return normalCls + rc;
-      }
-      catch (e) {
-        return normalCls;
-      }
-    },
-  },
-
-  created() {
-
-  },
-
-  mounted() {
   },
 };
