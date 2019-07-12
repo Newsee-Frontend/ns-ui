@@ -25,9 +25,9 @@ export default {
     rowIndex: { type: Number },//行索引
     colIndex: { type: Number },//列索引
     checkStator: { type: Object },
+    isFormTable: { type: Boolean },
     cellFifter: { type: Function },
     rulesConfig: { type: Array },
-    isTooltip: { type: Boolean },//是否单元格文字提示
   },
   computed: {
     //表单单元格配置信息
@@ -57,6 +57,7 @@ export default {
         return false;
       }
     },
+
     cellParam() {
       const modelCode = this.headScope[this.headRefer['model-key']];
       return {
@@ -82,15 +83,11 @@ export default {
     const defaultCell = (scope, modelCode) => {
       const content = this.gridCellFifter(scope.row[modelCode], modelCode);
       return <div>{content}</div>;
-      // return this.isTooltip ?
-      //   <el-tooltip content={content} effect={'dark'} placement={'top-start'}>
-      //     <div>{content}</div>
-      //   </el-tooltip>
-      //   : <div>{content}</div>;
     };
 
 
     let cellRender = (scope, item, modelCode) => {
+      if (!this.isFormTable) return defaultCell(scope, modelCode);
       if (this.isFormRender) {
         switch (this.formType) {
           case 'link':
@@ -184,7 +181,7 @@ export default {
 
 
     const cellClass = () => {
-      const baseCls = this.isFormRender ? 'form-cell' : 'normal-cell';
+      const baseCls = !this.isFormTable ? 'normal-cell' : this.isFormRender ? 'form-cell' : 'normal-cell';
       const typeCls = this.formConfig && this.formType ? `${this.formType}-cell` : '';
       const errCls = this.validateCheck(this.cellParam) ? `is-error` : '';
       return `cell-container ${baseCls} ${typeCls} ${errCls}`;
@@ -286,10 +283,10 @@ export default {
      * @param value
      */
     cellFormChange(value) {
+      if (!this.isFormTable) return;
       if (this.isFormRender) {
         this.$emit('cell-form-change', value, this.cellParam);//put this form cell key to check list
       }
-      // this.setFormCellCheck(Param);//set form-cell check config (check list) in grid
     },
     /**
      * grid cell fifter function (old value => new value  base on business)
