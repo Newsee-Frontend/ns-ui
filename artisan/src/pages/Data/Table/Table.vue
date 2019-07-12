@@ -19,6 +19,9 @@
           <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
         </div>
         <biz-table ref="biz-table-demo1" :loadState="loadState" :data="tableData"
+                   :autoResize="false"
+                   :customHeight="400"
+                   :is-form-table="isFormTable"
                    :showAddRowOperation="showAddRowOperation"
                    :showHeadOperation="showHeadOperation"
                    :showSummary="showSummary"
@@ -52,6 +55,7 @@
           head: false,
         },
         tableData: {},//表格数据
+        isFormTable: true,
         //搜索条件 searchConditions
         searchConditions: {
           companyId: '', //公司id
