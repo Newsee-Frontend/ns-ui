@@ -2,7 +2,9 @@
 <template>
   <div>
     <ns-table ref="biz-table"
-              :data="data.list" :head="finalHead" :keyRefer="keyRefer" :height="400"
+              :data="data.list" :head="finalHead" :keyRefer="keyRefer" :height="height"
+              :loadState="loadState"
+              :is-form-table="isFormTable"
               :cellFifter="cellFifter"
               :showHeadOperation="showHeadOperation"
               :showSummary="showSummary"
@@ -14,10 +16,10 @@
               @add-row="addRow"
               @delete-current-row="deleteCurrentRow"
               @refresh="refresh"
-              :loadState="loadState"
     ></ns-table>
     <ns-pagination
-      :total="data.total" :searchConditions="searchConditions"
+      class="biz-pagination"
+      :total="data.total || 0" :searchConditions="searchConditions"
       @size-change="sizeChange"
       @current-change="currentChange"
     ></ns-pagination>
@@ -26,6 +28,7 @@
 
 <script>
   import { mapGetters } from 'vuex';
+  import resizeHeight from './resize-height';
   import columnConfig from './column-template-config';
   import cellFifter from './cell-fifter';
   import rulesConfig from '../../utils/validate/rules-config';
@@ -33,18 +36,17 @@
 
   export default {
     name: 'biz-table',
+    mixins: [resizeHeight],
     data() {
       return {
         keyRefer,
         cellFifter,
         rulesConfig,
-        isLoading: true,
       };
     },
     props: {
       data: { type: Object },
-      isLocalHead: { type: Boolean, default: false }, //是否为本地表头数据
-      head: { type: Array }, //表头数据
+      localHead: { type: Array, request: false }, //本地表头数据
       //表格数据加载状态
       loadState: {
         type: Object, default() {
@@ -55,6 +57,7 @@
         },
       },
       searchConditions: { type: Object },//筛选条件
+      isFormTable: { type: Boolean, default: false },//是否是表单表格
       //第一列固定列类型（非自动表头配置）
       firstColType: { type: [String, Boolean, null], default: 'selection', validator: t => ['index', 'selection', 'radio', null].indexOf(t) > -1 },
       hasActionCol: { type: Boolean, default: true },//是否有操作列
@@ -62,7 +65,6 @@
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
       showSummary: { type: Boolean, default: true },//是否显示合计行
     },
-
 
     computed: {
       ...mapGetters(['tableHead']),
@@ -72,7 +74,7 @@
       finalHead() {
         return [
           ...(this.firstColType ? [columnConfig[this.firstColType]] : []),
-          ...(this.isLocalHead ? this.head : this.tableHead),
+          ...(this.localHead ? this.localHead : this.tableHead),
           ...(this.hasActionCol ? [columnConfig['action']] : []),
           ...(this.showAddRowOperation ? [columnConfig['add-row']] : []),
 
@@ -82,14 +84,22 @@
         });
       },
     },
-    created() {
-      this.$store.dispatch('generateTableHead', { funcId: 'funcId' }).then(() => {
-        this.loadState.head = true;
-      }).catch(() => {
-        this.loadState.head = true;
-      });
-    },
     methods: {
+      /**
+       * get table head data
+       */
+      getTableHead() {
+        if (this.localHead) {
+          this.loadState.head = true;
+        }
+        else {
+          this.$store.dispatch('generateTableHead', { funcId: 'funcId' }).then(() => {
+            this.loadState.head = true;
+          }).catch(() => {
+            this.loadState.head = true;
+          });
+        }
+      },
       /**
        * 分页器当前显示条数改变
        * @param val
@@ -144,14 +154,18 @@
         this.$emit('reload');
       },
     },
-    mounted() {
-
+    created() {
+      this.getTableHead();
     },
   };
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
   .ns-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
     padding: 5px;
     z-index: 99;
     background-color: #ebedef;
