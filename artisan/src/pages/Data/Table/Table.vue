@@ -169,7 +169,9 @@
     },
     beforeDestroy() {
       this.tableData = null;
-    }
+      this.searchConditions = null;
+      this.loadState = null;
+    },
   };
 </script>
 
