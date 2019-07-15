@@ -9,6 +9,7 @@ export default {
     return {
       //form cell status
       formCellList: ['link', 'input', 'rate', 'date', 'checkbox', 'radio', 'select', 'select-unit'],
+      validateRule,
     };
   },
   props: {
@@ -234,7 +235,7 @@ export default {
           if (value || value === 0) {
             // console.log('有值！！！！！！！！！！！');
             if (ruleType) {
-              return validateRule(value, ruleType, this.rulesConfig);
+              return this.validateRule(value, ruleType, this.rulesConfig);
             }
             return true;
           }
@@ -247,7 +248,7 @@ export default {
           // console.log('无需必填 not required ');
           if (value || value === 0) {
             // console.log('有值！！！！！！！！！！！');
-            return validateRule(value, ruleType, this.rulesConfig);
+            return this.validateRule(value, ruleType, this.rulesConfig);
           }
           else {
             return true;
@@ -262,7 +263,7 @@ export default {
       // console.log('内容值');
       // console.log(value);
       // console.log('内容验证结果 ');
-      // console.log(validateRule(this,value, ruleType));
+      // console.log(this.validateRule(this,value, ruleType));
 
       const j = judge();//最终验证结果
       // console.log('最终验证结果');
@@ -300,5 +301,8 @@ export default {
       }
       return this.cellFifter(val, key);
     },
+  },
+  beforeDestroy() {
+    this.validateRule = null;
   },
 };
