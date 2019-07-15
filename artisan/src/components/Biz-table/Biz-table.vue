@@ -156,19 +156,13 @@
     },
     created() {
       this.getTableHead();
-      console.log(2222222222222222);
-      console.log(2222222222222222);
-      console.log(this.keyRefer);
-      console.log(this.rulesConfig);
-      console.log(2222222222222222);
+
     },
     beforeDestroy() {
-
-      this.head = null;
       this.keyRefer = null;
       this.rulesConfig = null;
       this.cellFifter = null;
-
+      this.data.list = null;
       // :data="data.list" :head="finalHead" :keyRefer="keyRefer" :height="height"
       // :loadState="loadState"
       // :is-form-table="isFormTable"
