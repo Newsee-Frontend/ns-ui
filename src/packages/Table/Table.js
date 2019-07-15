@@ -134,4 +134,9 @@ export default create({
     // console.log('table - $attrs:');
     // console.log(this.$attrs);
   },
+  beforeDestroy() {
+    this.data = null;
+    this.head = null;
+    this.keyRefer = null;
+  },
 });
