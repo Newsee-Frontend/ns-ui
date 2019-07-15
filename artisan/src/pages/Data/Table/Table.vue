@@ -167,6 +167,9 @@
     mounted() {
 
     },
+    beforeDestroy() {
+      this.tableData = null;
+    }
   };
 </script>
 
