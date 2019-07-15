@@ -4,14 +4,30 @@
 
 $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 
+@include b(slip-dialog__model) {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  background: #000;
+  z-index: 1503;
+}
+
 @include b(slip-dialog) {
   position: fixed;
   overflow: auto;
   background: #FFF;
   border-radius: $--border-radius-small;
   box-shadow: $--slipDialog-box-shadow;
-  z-index: 1999;
-  @include e(wrapper) {
+  z-index: 1501;
+  &.is-model {
+    z-index: 1504;
+  }
+  @include e(container) {
     position: relative;
     height: 100%;
     padding: 15px;
@@ -19,3 +35,4 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
     box-sizing: border-box;
   }
 }
+

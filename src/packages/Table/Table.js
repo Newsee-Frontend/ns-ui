@@ -1,30 +1,40 @@
 import create from '../../create/create';
 import tableMain from './components/main';
 import actionSummary from './components/action/actionSummary';
+import errorPrompt from './components/error/error-prompt';
+import LoadingBlock from '../Loading-block/Loading-block';
 
-import column from './mixins/column';
+
 import refer from './mixins/refer';
+import column from './mixins/column';
 import check from './mixins/check';
+import readyState from './mixins/readyState';
+import error from './mixins/error';
 
 export default create({
   name: 'table',
-  components: { tableMain, actionSummary },
-  mixins: [refer, column, check],
+  components: { tableMain, actionSummary, errorPrompt, LoadingBlock },
+  mixins: [refer, column, check, readyState, error],
   data() {
     return {
       tableHead: [],
       summaryCommand: 'current',//合计模块控制指令
+
     };
   },
   props: {
     keyRefer: { type: Object },  //指代属性
-    gridID: { type: String },//表格ID值
-    head: { type: Array }, //表头数据
+    head: {
+      type: Array, default() {
+        return [];
+      },
+    }, //表头
     data: {
       type: Array, default() {
         return [];
       },
-    }, //表格显示的数据
+    }, //表数据
+    height: { type: Number, default: 500 },
     showSummary: { type: Boolean, default: true },
   },
 
@@ -33,9 +43,8 @@ export default create({
       this.tableHead = val;
     },
   },
-
   render(h) {
-    const Table = () => {
+    const MainTable = () => {
       return h(
         `table-main`,
         {
@@ -44,23 +53,24 @@ export default create({
             keyRefer: this.keyRefer,
             head: this.tableHead,
             data: this.data,
+            height: this.height,
             showSummary: this.showSummary,
             checkStator: this.checkStator,
             ...this.$attrs,
           },
           on: {
+            ...this.$listeners,
             'cell-form-change': this.cellFormChange,
             'sync-render': this.syncRender,
-            ...this.$listeners,
           },
         },
       );
     };
 
     return (
-      <div class={this.recls()}>
+      <div class={this.recls()} style={{ height: this.height + 'px' }}>
         {
-          Table()
+          this.isMainReady ? MainTable() : null
         }
         {
           this.showSummary ?
@@ -73,7 +83,30 @@ export default create({
             }}
             /> : null
         }
-
+        {
+          !this.isLoadReady ?
+            <div class={'mask'}>
+              {
+                this.mask_head_state ? <LoadingBlock class={'table-loading head'} simple/> : null
+              }
+              {
+                !this.mask_body_state ? <LoadingBlock class={'table-loading body'}/> : null
+              }
+            </div> : null
+        }
+        {
+          h(
+            `error-prompt`,
+            {
+              props: {
+                'error-type': this.errorType,
+              },
+              on: {
+                ...this.$listeners,
+              },
+            },
+          )
+        }
       </div>
     );
   },
@@ -86,21 +119,19 @@ export default create({
 
     cellFormChange(value, param) {
       this.setCheckStator(param.cellKey);//set form-cell check config (check list) in table
-      this.$emit('cell-form-change', value, param);
+      this.$emit('cell-change', value, param);
     },
 
   },
 
   created() {
     this.tableHead = this.head;
-    console.log('表头数据：');
-    console.log(this.head);
-    console.log('表数据：');
-    console.log(this.data);
-    console.log('table - $attrs:');
-    console.log(this.$attrs);
-  },
 
-  mounted() {
+    // console.log('表头数据：');
+    // console.log(this.head);
+    // console.log('表数据：');
+    // console.log(this.data);
+    // console.log('table - $attrs:');
+    // console.log(this.$attrs);
   },
 });

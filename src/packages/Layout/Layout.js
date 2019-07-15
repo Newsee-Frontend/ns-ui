@@ -24,19 +24,16 @@ export default create({
             }
           </div>
 
-          <div class="main-container">
-
+          <div class="page-tabs-wrapper">
             {
               this.$slots['tabs-view']
             }
-
-            <section id="overview" class="app-main">
-              {
-                this.$slots['app-main']
-              }
-            </section>
           </div>
-
+          <section id="overview" class="main-container">
+            {
+              this.$slots['app-main']
+            }
+          </section>
         </div>
       );
     },

@@ -1,0 +1,26 @@
+//---------- layout - 布局  ----------
+$min-window_width: 1280px; //最小窗口宽度
+$min-window_height: 600px; //最小窗口高度
+
+
+$navL: 50px; //左侧导航栏宽度
+$tabs: 38px; //历史浏览标签卡高度
+
+
+$navH: 50px; //顶部导航高度
+$navH_p: 36px; //顶部导航下拉菜单，各个部分高度
+$navH_pl: 0px; //顶部导航左 padding
+$navH_pr: 25px; //顶部导航右 padding
+
+
+
+//---- 右侧窗口悬浮显示 上下左右 空隙值 ----
+$win_gapT: 10px;
+$win_gapB: 0px;
+$win_gapL: 10px;
+$win_gapR: 10px;
+//win 内边距
+$win_pt: 0px;
+$win_pb: 0px;
+$win_pl: 0px;
+$win_pr: 0px;

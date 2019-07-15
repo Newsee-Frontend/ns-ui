@@ -14,8 +14,14 @@
           <ns-switch v-model="showSummary"></ns-switch>
           <ns-button type="primary" @click="validate">验证</ns-button>
           <ns-button @click="reset">重置</ns-button>
+          <ns-button type="primary" @click="requestNew">获取新数据</ns-button>
+          <ns-button type="primary" @click="requestError">模拟服务器出错</ns-button>
+          <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
         </div>
         <biz-table ref="biz-table-demo1" :loadState="loadState" :data="tableData"
+                   :autoResize="false"
+                   :customHeight="400"
+                   :is-form-table="isFormTable"
                    :showAddRowOperation="showAddRowOperation"
                    :showHeadOperation="showHeadOperation"
                    :showSummary="showSummary"
@@ -25,7 +31,8 @@
                    @cell-form-change="cellFormChange"
                    @add-row="addRow"
                    @delete-current-row="deleteCurrentRow"
-                   @table-action="tableAction">
+                   @table-action="tableAction"
+        >
         </biz-table>
       </template>
     </demo-block>
@@ -48,6 +55,7 @@
           head: false,
         },
         tableData: {},//表格数据
+        isFormTable: true,
         //搜索条件 searchConditions
         searchConditions: {
           companyId: '', //公司id
@@ -61,8 +69,9 @@
           filterConditions: [], //筛选器记录的条件
           //add by xiaosisi on 20170320 用来存储其他检索条件
           otherConditions: {},
-          organizationId: '',
+          organizationId: 1,
           totalType: 1,
+          mockType: null,
         },
         showAddRowOperation: true,
         showHeadOperation: true,
@@ -74,6 +83,7 @@
     },
     methods: {
       getTableData() {
+        this.loadState.data = false;
         tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
           this.tableData = res.resultData || {};
           console.log('请求到的表格数据：');
@@ -137,6 +147,21 @@
       },
       reset() {
         this.$refs['biz-table-demo1'].resetCheck();
+      },
+      requestNew() {
+        this.searchConditions.organizationId = 2;
+        this.searchConditions.mockType = 'no-error';
+        this.getTableData();
+      },
+      requestError() {
+        this.searchConditions.organizationId = 1;
+        this.searchConditions.mockType = 'service-error';
+        this.getTableData();
+      },
+      requestEmpty() {
+        this.searchConditions.organizationId = 1;
+        this.searchConditions.mockType = 'no-result';
+        this.getTableData();
       },
     },
     mounted() {

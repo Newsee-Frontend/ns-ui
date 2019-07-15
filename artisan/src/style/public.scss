@@ -1,0 +1,139 @@
+@import 'mixins/mixins';
+//---------- base color ----------
+$--color-black: #000; //纯黑
+$--color-text-primary: #333333; //重要文字
+$--color-text-regular: #666666; //主力文字色系
+$--color-text-secondary: #999999; //辅助文字颜色
+$--color-text-placeholder: #cccccc; //失效文字颜色
+$--color-text-supply: #e3e3e3; //补充色系
+$--border-color-light: #d9d9d9; //边框颜色-浅
+$--border-color-lighter: #eeeeee; //边框颜色-更浅
+$--background-color-base: #f4f4f4; //base background-color
+$--color-white: #fff; //纯白
+
+//---------- base color ----------
+$--color-primary: #0a7af8;
+$--color-ns-form-hover: #33a1ff; //本项目中表单控件鼠标移入边框基础颜色 input / select
+$--color-primary-light: #4097f9; //基础主色-浅色
+
+//---------- theme color ----------
+$--color-success: #16ca37;
+$--color-warning: #ffae00;
+$--color-danger: #ff5131;
+$--color-info: #0a7af8;
+
+//---------- layout - 布局  ----------
+
+$navL: 50px; //左侧导航栏宽度
+$tabs: 38px; //历史浏览标签卡高度
+$navH: 50px; //顶部导航高度
+
+//---- 右侧窗口悬浮显示 上下左右 空隙值 ----
+$win_gapT: 10px;
+$win_gapB: 0px;
+$win_gapL: 10px;
+$win_gapR: 10px;
+//win 内边距
+$win_pt: 10px;
+$win_pb: 10px;
+$win_pl: 10px;
+$win_pr: 10px;
+
+$container-border_color: #e8e8e8; //container 内容模块划分边框线
+
+body {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, 'PingFang SC', Microsoft YaHei, SimSun, sans-serif;
+
+}
+
+a {
+  color: rgba(32, 160, 255, 1);
+}
+
+li {
+  list-style: none;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.clear {
+  @include clearFloat;
+}
+
+.txtC {
+  text-align: center !important;
+}
+
+.txtL {
+  text-align: left !important;
+}
+
+.txtR {
+  text-align: right !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.oneline-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.not-render {
+  display: none;
+}
+
+.disabled {
+  &:hover {
+    cursor: not-allowed;
+  }
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Chrome/Safari/Opera */
+  -khtml-user-select: none; /* Konqueror */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently not supported by any browser */
+}
+
+//=====================================================================
+
+.el-form {
+  .el-form-item {
+    line-height: 40px;
+    &.el-form-item--medium {
+      line-height: 32px;
+    }
+    &.el-form-item--small {
+      line-height: 32px;
+    }
+    &.el-form-item--mini {
+      line-height: 28px;
+    }
+    .el-form-item__content {
+      line-height: inherit;
+    }
+  }
+}
+
+//@include scrollbarVisible();
+@include scrollbarStyle();
+

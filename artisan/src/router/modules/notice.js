@@ -9,9 +9,16 @@ export const navigationRouter = [
       {
         path: 'alert',
         component: () => import('../../pages/Notice/Alert/Alert'),
-        meta: { auth: true, key: 'steps' },
+        meta: { auth: true, key: 'alert' },
         name: 'alert',
-      }
+      },
+
+      {
+        path: 'loading-block',
+        component: () => import('../../pages/Notice/Loading-block/Loading-block'),
+        meta: { auth: true, key: 'loading-block' },
+        name: 'loading-block',
+      },
     ],
   },
 ];

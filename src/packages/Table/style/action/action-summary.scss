@@ -1,3 +1,4 @@
+@import "../config";
 //合计按钮控制部分
 #action-summary {
   position: absolute;
@@ -6,11 +7,10 @@
   height: 32px;
   line-height: 32px;
   margin: 4px 0;
-  z-index: 999;
   cursor: pointer;
   background: #fff;
   span.el-dropdown-selfdefine {
-    font-size: 12px;
+    font-size: $action-summary_fs;
     margin: 0;
     padding: 0 0 0 10px;
   }

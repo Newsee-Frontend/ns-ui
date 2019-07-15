@@ -59,6 +59,12 @@
   //合计按钮控制部分
   @import "action/action-summary";
 
+  //错误提示
+  @import "./error/error-prompt.scss";
+
+  //loading - mask
+  @import "./loading/loading";
+
 }
 
 .el-tooltip__popper.is-dark[role="tooltip"], .el-tooltip__popper.is-light[role="tooltip"] {

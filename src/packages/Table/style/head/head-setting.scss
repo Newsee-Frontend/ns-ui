@@ -21,13 +21,13 @@
     &:hover {
       background-color: $set-part_color_active;
       i {
-        color: $grid_head_ationicon_color
+        color: $set-part_i_color;
       }
     }
     &.header-set_active {
       background-color: $set-part_color_active;
       i {
-        color: $grid_head_ationicon_color
+        color: $set-part_i_color;
       }
     }
     //内置图标
@@ -35,7 +35,7 @@
       width: 100%;
       padding: 0;
       font-size: 12px;
-      color: $grid_head_ationicon_color
+      color: $set-part_i_color;
     }
   }
 }

@@ -17,7 +17,13 @@ export const navigationRouter = [
         component: () => import('../../pages/Navigation/Tabs/Tabs'),
         meta: { auth: true, key: 'tabs' },
         name: 'tabs',
-      }
+      },
+      {
+        path: 'dropdown',
+        component: () => import('../../pages/Navigation/Dropdown/Dropdown'),
+        meta: { auth: true, key: 'dropdown' },
+        name: 'dropdown',
+      },
     ],
   },
 ];

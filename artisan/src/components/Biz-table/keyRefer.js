@@ -4,7 +4,6 @@ const keyRefer = {
     'width': 'resourcecolumnWidth',//表头 宽度
     'model-key': 'resourcecolumnCode',//表头 对应字段名
     'xtype': 'resourcecolumnXtype',//筛选列 类型
-    'col-type': 'col-type',//列的类型
     'hidden': 'resourcecolumnHidden',//是否显示
     'align': 'resourcecolumnAlign',//居中/左/右对齐
     'cellFilterList': 'selectList',//单元格内容删选转换model-key

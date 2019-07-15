@@ -1,0 +1,42 @@
+@import 'public';
+@import 'mixins/mixins';
+
+//右侧  转换 内容窗口
+.win {
+  min-height: 100%;
+  padding: $win_pt $win_pr $win_pb $win_pl;
+  border: 1px solid #dddddd;
+  box-sizing: border-box;
+  //container
+  .ns-container {
+    min-height: calc(
+      100vh - #{$tabs} - #{$win_pt} - #{$win_pb} - #{$navH} - #{$win_gapT} - #{$win_gapB} - 1px
+    );
+    box-sizing: border-box;
+    @include clearFloat;
+
+    //left of container (tree)
+    .ns-container-left {
+      float: left;
+      width: 210px;
+      height: calc(
+        100vh - #{$tabs} - #{$win_pt} - #{$win_pb} - #{$navH} - #{$win_gapT} - #{$win_gapB} - 1px
+      );
+      border: 1px solid $container-border_color;
+      background: $--color-white;
+      box-sizing: border-box;
+      margin-right: 10px;
+    }
+
+    //right of container (grid + search)
+    .ns-container-right {
+      position: relative;
+      height: calc(
+        100vh - #{$tabs} - #{$win_pt} - #{$win_pb} - #{$navH} - #{$win_gapT} - #{$win_gapB} - 1px
+      );
+      background: $--color-white;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+  }
+}
