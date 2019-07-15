@@ -204,7 +204,6 @@ export default {
     },
   },
   beforeDestroy() {
-    this.rulesConfig = null;
-    this.cellFifter = null;
+
   },
 };
