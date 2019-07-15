@@ -204,6 +204,6 @@ export default {
     },
   },
   beforeDestroy() {
-
+    this.settingState = null;
   },
 };
