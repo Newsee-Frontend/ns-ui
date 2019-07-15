@@ -78,9 +78,6 @@
         showSummary: true,
       };
     },
-    created() {
-      this.getTableData();
-    },
     methods: {
       getTableData() {
         this.loadState.data = false;
@@ -164,6 +161,12 @@
         this.getTableData();
       },
     },
+    created() {
+      this.getTableData();
+      console.log(2222222222222222);
+      console.log('table- !!!- created-created');
+      console.log(2222222222222222);
+    },
     mounted() {
 
     },
@@ -171,6 +174,11 @@
       this.tableData = null;
       this.searchConditions = null;
       this.loadState = null;
+      console.log(2222222222222222);
+      console.log('table- !!!- beforeDestroy-beforeDestroy');
+      console.log(2222222222222222);
+
+
     },
   };
 </script>
