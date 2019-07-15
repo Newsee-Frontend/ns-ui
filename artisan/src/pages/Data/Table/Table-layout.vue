@@ -177,7 +177,7 @@
       this.tableData = null;
       this.searchConditions = null;
       this.loadState = null;
-
+      this.tableAction = null;
       console.log(2222222222222222);
       console.log('table-layout !!!- beforeDestroy-beforeDestroy');
       console.log(2222222222222222);
