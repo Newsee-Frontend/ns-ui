@@ -203,4 +203,8 @@ export default {
       this.$emit('delete-current-row', index, row);
     },
   },
+  beforeDestroy() {
+    this.rulesConfig = null;
+    this.cellFifter = null;
+  },
 };
