@@ -110,7 +110,10 @@ const allPlugins = [
   'textpattern ' +
   'visualblocks ' +
   'visualchars ' +
-  'wordcount',
+  'wordcount' +
+  'fontsizeselect' +
+  'fontselect' +
+  'lineheight',
 ];
 
 export default allPlugins;
