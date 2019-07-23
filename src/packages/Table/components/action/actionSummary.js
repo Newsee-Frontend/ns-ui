@@ -33,9 +33,6 @@ export default {
       </div>
     );
   },
-  created() {
-  },
-  watch: {},
   methods: {
     /**
      * command value change

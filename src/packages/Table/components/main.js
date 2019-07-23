@@ -203,4 +203,7 @@ export default {
       this.$emit('delete-current-row', index, row);
     },
   },
+  beforeDestroy() {
+    this.settingState = null;
+  },
 };

@@ -23,3 +23,10 @@
     height: 140px;
   }
 }
+
+@include b(editor) {
+  .mce-menubtn.mce-fixed-width span {
+    width: auto;
+    padding: 0 2px;
+  }
+}

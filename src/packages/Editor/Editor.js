@@ -6,6 +6,7 @@ import defaultConfig from './plugins-config';
 import toolbar from './toolbar';
 import editorBtn from './components/editor-btn';
 
+import config from './config/config';
 
 export default create({
   name: 'editor',
@@ -108,6 +109,9 @@ export default create({
         toolbar: this.toolbarConfig,
         menubar: this.menubar,
         plugins: plugins,
+        lineheight_formats: config.lineheight_formats,
+        fontsize_formats: config.fontsize_formats,
+        font_formats: config.font_formats,
         end_container_on_empty_block: true,
         powerpaste_word_import: 'clean',
         code_dialog_height: 450,

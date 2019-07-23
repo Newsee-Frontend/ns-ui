@@ -41,4 +41,7 @@ export default {
       }
     },
   },
+  beforeDestroy() {
+    this.checkStator = null;
+  },
 };
