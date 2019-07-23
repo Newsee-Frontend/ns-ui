@@ -20,7 +20,7 @@ export const width = {
   computed: {
     convert_width() {
       const width = this.$options.propsData && this.$options.propsData.width;
-      return width ? convertunits(width) : undefined;
+      return width ? convertunits(width || this.width) : undefined;
     },
   },
 };
@@ -29,7 +29,7 @@ export const height = {
   computed: {
     convert_height() {
       const height = this.$options.propsData && this.$options.propsData.height;
-      return height ? convertunits(height) : undefined;
+      return height ? convertunits(height || this.height) : undefined;
     },
   },
 };

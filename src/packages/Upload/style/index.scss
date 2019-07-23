@@ -8,12 +8,20 @@ $upload_border: 2px dashed #d9d9d9;
 @include b(upload) {
   //上传点击框
   .el-upload {
-    position: relative;
+    .el-upload-list--picture-card .el-upload-list__item {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  //单独头像
+  &.ns-upload--singlePicture .el-upload {
     box-sizing: border-box;
     border: $upload_border;
     border-radius: $upload_radius;
+    position: relative;
     cursor: pointer;
     overflow: hidden;
+    @include size-inherit;
     &:hover {
       border-color: #20a0ff;
     }
@@ -26,13 +34,5 @@ $upload_border: 2px dashed #d9d9d9;
       width: 100%;
       height: 100%;
     }
-    .el-upload-list--picture-card .el-upload-list__item {
-      width: 100%;
-      height: 100%;
-    }
-  }
-  //单独头像
-  .el-upload {
-    @include size-inherit;
   }
 }

@@ -2,27 +2,49 @@
 <template>
   <div class="upload-wrapper">
     <demo-block>
-      <template slot="title">上传控件 - Upload</template>
-      <template slot="describe">默认用法</template>
+      <template slot="title">上传控件 - Upload type为 singlePicture</template>
+      <template slot="describe">单张照片， 用于头像上传</template>
       <template slot="content">
         <ns-upload
-          v-model="childItem1"
-          width="300px"
-          height="300px"
+          v-model="childItemSingle"
+          width="100px"
+          height="100px"
           :action="dynamicUrl"
+          onChange="changeModel"
         >
         </ns-upload>
-        <div class="gap"></div>
+      </template>
+    </demo-block>
+
+    <demo-block>
+      <template slot="title">上传控件 - Upload type为 pictureWall</template>
+      <template slot="describe">照片墙</template>
+      <template slot="content">
         <ns-upload
-          v-model="childItem2"
-          width="200px"
-          height="200px"
+          v-model="childItemWall"
+          type="pictureWall"
           :action="dynamicUrl"
         >
         </ns-upload>
       </template>
     </demo-block>
 
+
+    <demo-block>
+      <template slot="title">上传控件 - Upload type为 otherFileList</template>
+      <template slot="describe">文件上传</template>
+      <template slot="content">
+        <ns-upload
+          v-model="childItemOther"
+          type="otherFileList"
+          :action="dynamicUrl"
+          :limit="3"
+          :beforeRemove="beforeRemove"
+        >
+          <ns-button type="primary"> 点击上传文件 </ns-button>
+        </ns-upload>
+      </template>
+    </demo-block>
   </div>
 </template>
 
@@ -31,20 +53,26 @@
     name: '',
     data() {
       return {
-        dynamicUrl: '/post',
-        childItem1: [{
-          fileUrl: 'http://oa.new-see.com/upload/file/public/upload/file/public/201705/IMG_0680201705230907560.JPG',
-        }],
-        childItem2: [],
+        dynamicUrl: 'http://192.168.1.75/api/fastdfs/fastdfs/uploadFile',
+        childItemSingle: [],
+        childItemOther: [],
+        childItemWall: [
+          {
+            fileUrl: 'http://oa.new-see.com/upload/file/public/upload/file/public/201705/IMG_0680201705230907560.JPG',
+          }
+        ],
       };
     },
-    computed: {},
-    created() {
 
-    },
-    methods: {},
-    mounted() {
-    },
+    methods: {
+      changeModel(){
+        console.log(this.childItemSingle);
+      },
+
+      beforeRemove(){
+        return false;
+      }
+    }
   };
 </script>
 
