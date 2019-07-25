@@ -161,7 +161,7 @@ export default create({
       let imageTypeList = this.addImageType(this.fileType);
       if (this.beforeUpload) {
         return this.beforeUpload(file);
-      } else {
+      } else if(this.type !== 'otherFileList'){
         if (imageTypeList.indexOf(type) === -1) {
           this.$message.error(`上传头像图片只能是${this.fileType.join(',')}格式!`);
           return false;
