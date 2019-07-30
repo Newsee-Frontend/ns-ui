@@ -1,4 +1,5 @@
 import { selectTreeService } from '../../service/Form/select-tree';
+import fetch from '../../fetch/fetch';
 
 const SelectTreeOptions = {
   state: {
@@ -767,7 +768,7 @@ const SelectTreeOptions = {
         "expanded": true
       }],
       "title": {},
-      "expanded": false
+      "expanded": true
     }],
   },
   mutations: {
@@ -787,6 +788,21 @@ const SelectTreeOptions = {
         const options = res.resultData || [];
         commit('SET_SELECT_TREE_DATA', options);
       });
+    },
+
+    getRootTree(){
+      return fetch({
+        url: '/system/data/initTree',
+        method: 'get',
+      })
+    },
+
+    getChildTree({commit}, data){
+      return fetch({
+        url: '/system/data/childrenTree',
+        method: 'get',
+        params: data,
+      })
     },
 
     setTreeData({commit},data){

@@ -1,10 +1,11 @@
 import vue from 'vue';
 
 /**
- * 转化数组 为树节点
- * @param list 原始数据
- * @param config  配置节点 lazy（配置懒加载）, expandedIndex（默认展示层级）,expandAllNodes是否全部展开
- * @returns {*}  树节点数据
+ * transformKeyFun
+ * @param list       原始数据
+ * @param keyRefer   字段配置
+ * @param config     配置节点 lazy（配置懒加载）, expandedIndex（默认展示层级）,expandAllNodes是否全部展开
+ * @returns {Array}
  */
 const transformKeyFun = (list = [], keyRefer, config = {}) => {
   const addKeyRefer = {
@@ -17,6 +18,8 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
 
 
   list.forEach((item) => {
+
+    let newConfig = JSON.parse(JSON.stringify(config));
     //设置树对应的字段
     Object.keys(refer).forEach(key => {
       let hitKey = refer[key];
@@ -25,27 +28,24 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
     });
 
     if (
-      (config.expandedIndex > 0 && !(config.lazy && item.isHasChild && item.children.length === 0))
-      || config.expandAllNodes
+      (newConfig.expandedIndex > 0 && !(newConfig.lazy && item.isHasChild && item.children.length === 0))
+      || newConfig.expandAllNodes
     ) {
       vue.set(item, 'expanded', true);
-      // item['expanded'] = true;
     }
     else {
       vue.set(item, 'expanded', false);
-      // item['expanded'] = false;
     }
 
 
     if (item.children && item.children.length > 0) {
-      if (config.expandedIndex > -1) config.expandedIndex--;
-      transformKeyFun(item.children, keyRefer, config);
+      if (newConfig.expandedIndex > -1) newConfig.expandedIndex--;
+      transformKeyFun(item.children, keyRefer, newConfig);
     }
 
     //树的懒加载
     else if (config.lazy && item.isHasChild) {
       vue.set(item, 'async', true);
-      // item['async'] = true;
     }
   });
   return list;

@@ -22,12 +22,6 @@ export default create({
       type: [String, Number, Object, Array],
     },
 
-    //show checkbox
-    showCheckbox: {
-      type: Boolean,
-      default: false,
-    },
-
     //是否是多选
     multiple: {
       type: Boolean,
@@ -61,6 +55,7 @@ export default create({
     value: {
       handler(newVal, oldVal) {
         //只支持初始化时
+        console.log(newVal, oldVal);
         if(Object.keys(oldVal || '').length) return
         this.$nextTick(()=>{
           if(newVal instanceof Array){
@@ -84,7 +79,7 @@ export default create({
       );
     };
     return (
-      <div class={[this.recls(), this.showCheckbox ? this.recls('multiple') : {}]}>
+      <div class={[this.recls(), this.multiple ? this.recls('multiple') : {}]}>
         <v-tree
           ref="tree"
           data={this.data}
@@ -93,7 +88,7 @@ export default create({
           draggable={this.draggable}
           dropJudge={this.dropJudge}
           tpl={tpl.bind(this)}
-          multiple={this.showCheckbox}
+          multiple={this.multiple}
           radio={!this.multiple}
           onAsync-load-nodes={this.asyncLoad}
           onNode-click={this.nodeClick}
@@ -126,15 +121,11 @@ export default create({
     nodeClick(...arg) {
       let selectNodes = this.getSelectedNodes();
       let modelData;
-      if(this.isObjectData){
-        modelData = this.multiple? selectNodes: selectNodes[0]
-      }else{
-        let ids = selectNodes.map(item => item.id);
-        modelData = this.multiple? ids : ids[0]
+
+      if(!this.multiple){
+        modelData = this.isObjectData? selectNodes[0]: selectNodes[0].id;
+        this.$emit('input', modelData);
       }
-
-      this.$emit('input', modelData);
-
       //node click是否有点击的位置，有点击位置，则外传node-click
       if (arg[2]) {
         this.$emit('nodeClick', ...arg);
@@ -143,6 +134,7 @@ export default create({
 
     //node check
     nodeCheck(...arg) {
+      console.log('check');
       this.$emit('nodeCheck', ...arg);
     },
 
