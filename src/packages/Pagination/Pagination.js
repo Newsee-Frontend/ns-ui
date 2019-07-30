@@ -39,7 +39,7 @@ export default create({
   computed: {
     //pagination total information
     panelDescribe() {
-      const page = Math.ceil(this.total / this.searchConditions.pageSize);
+      const page = Math.ceil(this.total / this.searchConditions.pageSize) || 0;
       const text_c_page = `第${this.searchConditions.pageNum}页`;
       const text_pageNum = `${page}页`;
       const text_all_total = ` 共${this.total}条`;
