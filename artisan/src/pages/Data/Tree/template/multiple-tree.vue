@@ -7,9 +7,9 @@
         style="width: 500px"
         v-model="nodeModel"
         :data="nodeList"
-        :showCheckbox="true"
         :checkStrictly="checkStrictly"
         multiple
+        isObjectData
         ref="selectTree"
         @loadNode="loadNode"
         @nodeCheck="nodeCheck"
@@ -51,8 +51,8 @@
       },
 
       //获取节点
-      getNodes(ref) {
-        console.log(this.$refs[ref].getCheckedNodes(), 'getCheckedNodes', this.nodeModel, this);
+      getNodes() {
+        console.log(this.nodeModel);
       },
 
       setNodes(){

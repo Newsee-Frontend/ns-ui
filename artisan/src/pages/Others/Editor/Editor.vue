@@ -9,7 +9,7 @@
           <span>模式切换:  </span>
           <ns-radio v-model="model" :options="modelOptions"></ns-radio>
         </div>
-        <ns-editor v-model="content" :height="500" :model="model" :plugins-config="pluginsConfig"/>
+        <ns-editor v-model="content" :height="500" :model="model"/>
         <div class="editor-content">
           <h3>输入内容如下:</h3>{{content}}
         </div>

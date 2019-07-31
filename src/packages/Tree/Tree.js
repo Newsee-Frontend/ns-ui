@@ -55,7 +55,6 @@ export default create({
     value: {
       handler(newVal, oldVal) {
         //只支持初始化时
-        console.log(newVal, oldVal);
         if(Object.keys(oldVal || '').length) return
         this.$nextTick(()=>{
           if(newVal instanceof Array){
@@ -134,7 +133,9 @@ export default create({
 
     //node check
     nodeCheck(...arg) {
-      console.log('check');
+      let checkedNodes = this.getCheckedNodes();
+      let modelData = this.isObjectData? checkedNodes: checkedNodes.map( node => node.id);
+      this.$emit('input', modelData);
       this.$emit('nodeCheck', ...arg);
     },
 
@@ -189,6 +190,7 @@ export default create({
      * 外暴方法，获取check节点
      */
     getCheckedNodes: function() {
+      console.log(this.data);
       return this.$refs.tree.getCheckedNodes();
     },
 

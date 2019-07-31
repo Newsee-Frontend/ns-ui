@@ -27,6 +27,8 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
       // item[key] = item[hitKey];
     });
 
+    vue.set(item, 'halfcheck', false);
+
     if (
       (newConfig.expandedIndex > 0 && !(newConfig.lazy && item.isHasChild && item.children.length === 0))
       || newConfig.expandAllNodes
