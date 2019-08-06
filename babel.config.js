@@ -18,6 +18,7 @@ module.exports = {
     '@babel/plugin-transform-runtime',
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-transform-object-assign',
+    '@babel/plugin-transform-modules-commonjs',
     ['@babel/plugin-proposal-decorators', { 'legacy': true }],
     ['@babel/plugin-proposal-class-properties', { 'loose': true }],
     '@babel/plugin-syntax-jsx',
