@@ -18,10 +18,10 @@ export default {
       this.childRadio = val;
     },
   },
-  computed:{
-    columnType(){
-      return  this.headScope[this.headRefer['xtype']];
-    }
+  computed: {
+    columnType() {
+      return this.headScope[this.headRefer['xtype']];
+    },
   },
   render(h) {
     return (
@@ -68,6 +68,12 @@ export default {
   methods: {
     selectionChange(row, index) {
       this.$emit('selection-change', row, index);
+    },
+    /**
+     * reset select state
+     */
+    resetRadioState() {
+      this.childRadio = null;
     },
   },
 };
