@@ -10,7 +10,7 @@ export default create({
     list: { type: Array, default: []},
     height: String,
     width: String,
-    'initial-index	': { type: Number, default: 0 },
+    'initial-index': { type: Number, default: 0 },
     trigger: { type: String, default: 'click'}, //指示器的触发方式	click hover
     autoplay: { type: Boolean, default:  true},
     interval: { type: Number, default: 3000},

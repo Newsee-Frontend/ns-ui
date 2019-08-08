@@ -23,6 +23,8 @@
         <ns-upload
           v-model="childItemWall"
           type="pictureWall"
+          :limit="2"
+          exceedLimitHiddenEntrance
           :action="dynamicUrl"
         >
         </ns-upload>

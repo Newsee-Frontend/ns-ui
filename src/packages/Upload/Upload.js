@@ -10,7 +10,7 @@ export default create({
   data() {
     return {
       picSingleUrl: '',
-      childUpload: []
+      childUpload: [],
     };
   },
 
@@ -49,6 +49,10 @@ export default create({
     beforeUpload: Function,
     beforeRemove: Function,
     limit: Number, //最多上传
+    exceedLimitHiddenEntrance: {
+      type: Boolean,
+      default: false,
+    }, //照片墙超过后是否隐藏入口
   },
 
   computed: {
@@ -65,12 +69,23 @@ export default create({
         'font-size': parseInt(this.convert_width || this.width) * 0.14 + 'px',
       };
     },
+
+    hiddenEntrance() {
+      return {
+        'hidden-pictureWall': this.limit && this.exceedLimitHiddenEntrance && this.type === 'pictureWall' && this.limit <= this.childUpload.length,
+      };
+    },
   },
 
   watch: {
-    value(val, oldVal) {
+    value(val) {
       this.setVal(val);
-    }
+    },
+
+    childUpload(){
+      this.$emit('change');
+    },
+
   },
 
   render(h) {
@@ -93,7 +108,7 @@ export default create({
 
     return h('el-upload',
       {
-        'class': [this.recls([this.type])],
+        'class': [this.recls([this.type]), this.hiddenEntrance],
         'ref': 'upload',
         'style': this.type === 'singlePicture' && this.convert_style,
         'attrs': {
@@ -109,7 +124,7 @@ export default create({
           'on-exceed': this.onExceed.bind(this),
           'on-success': this.onSuccess.bind(this),
           'before-remove': this.beforeRemoveFun.bind(this),
-          'on-remove': this.onRemove.bind(this)
+          'on-remove': this.onRemove.bind(this),
         },
       },
       [
@@ -134,8 +149,8 @@ export default create({
     },
 
     // add  name和url
-    addAttribute(list){
-      list.forEach((item)=>{
+    addAttribute(list) {
+      list.forEach((item) => {
         item.name = item.fileName;
         item.url = item.fileUrl;
       });
@@ -161,11 +176,13 @@ export default create({
       let imageTypeList = this.addImageType(this.fileType);
       if (this.beforeUpload) {
         return this.beforeUpload(file);
-      } else if(this.type !== 'otherFileList'){
+      } else if (this.type !== 'otherFileList') {
         if (imageTypeList.indexOf(type) === -1) {
-          this.$message.error(`上传头像图片只能是${this.fileType.join(',')}格式!`);
+          this.$message.error(`上传图片只能是${this.fileType.join(',')}格式!`);
           return false;
         }
+      }
+      else if (this.type === 'singlePicture') {
         if (file.size / 1024 / 1024 > 3) {
           return this.$message.error('上传头像图片大小不能超过3M');
         }
@@ -174,18 +191,17 @@ export default create({
     },
 
     //图片成功
-    onSuccess(response,row) {
+    onSuccess(response, row) {
       let val = response.resultData;
       if (val instanceof Array) {
-        let addAttributeVal =  this.addAttribute(val);
+        let addAttributeVal = this.addAttribute(val);
         if (this.type === 'singlePicture') {
           this.childUpload = addAttributeVal;
           this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
-        }else{
-          this.childUpload = this.childUpload.concat(addAttributeVal)
+        } else {
+          this.childUpload = this.childUpload.concat(addAttributeVal);
         }
-        this.$emit('input',  this.childUpload);
-        this.$emit('change');
+        this.$emit('input', this.childUpload);
       } else {
         throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
@@ -196,16 +212,15 @@ export default create({
     //移除的钩子
     onRemove(file, fileList) {
       const uid = file.uid;
-      this.childUpload.forEach((item, index)=>{
-        if(item.uid === uid) {
+      this.childUpload.forEach((item, index) => {
+        if (item.uid === uid) {
           this.childUpload.splice(index, 1);
         }
       });
-      this.$emit('input',  this.childUpload);
-      this.$emit('change');
+      this.$emit('input', this.childUpload);
     },
 
-// 文件超出个数限制时的钩子
+    // 文件超出个数限制时的钩子
     onExceed(files, fileList) {
       this.$emit('on-exceed');
     },

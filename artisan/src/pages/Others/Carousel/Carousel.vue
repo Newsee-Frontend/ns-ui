@@ -6,6 +6,7 @@
         style="margin: auto"
         ref="nsCarousel"
         :list="list"
+        :initial-index="1"
         :autoplay="false"
         width="50%"
         height="300px"
@@ -41,7 +42,6 @@
     },
     computed: {},
     created() {
-
     },
     methods: {
       getChange: function(e){
