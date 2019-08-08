@@ -12,15 +12,21 @@
           <ns-switch v-model="showHeadOperation"></ns-switch>
           <span>是否显示合计行:</span>
           <ns-switch v-model="showSummary"></ns-switch>
+          <span>首列类型:</span>
+          <ns-select v-model="firstColType" :options="firstColTypeOpts" @change="getTableData"></ns-select>
+        </div>
+        <div class="control-block form-block-line">
           <ns-button type="primary" @click="validate">验证</ns-button>
           <ns-button @click="reset">重置</ns-button>
+          <ns-button @click="resetSelectState">重置选中状态</ns-button>
           <ns-button type="primary" @click="requestNew">获取新数据</ns-button>
           <ns-button type="primary" @click="requestError">模拟服务器出错</ns-button>
           <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
         </div>
-        <biz-table ref="biz-table-demo1" :loadState="loadState" :data="tableData"
+        <biz-table ref="biz-table-demo" :loadState="loadState" :data="tableData"
                    :autoResize="false"
                    :customHeight="400"
+                   :firstColType="firstColType"
                    :is-form-table="isFormTable"
                    :showAddRowOperation="showAddRowOperation"
                    :showHeadOperation="showHeadOperation"
@@ -32,6 +38,7 @@
                    @add-row="addRow"
                    @delete-current-row="deleteCurrentRow"
                    @table-action="tableAction"
+                   @refresh="getTableData"
         >
         </biz-table>
       </template>
@@ -55,6 +62,7 @@
           head: false,
         },
         tableData: {},//表格数据
+        firstColType: 'radio',//selection index radio
         isFormTable: true,
         //搜索条件 searchConditions
         searchConditions: {
@@ -76,6 +84,11 @@
         showAddRowOperation: true,
         showHeadOperation: true,
         showSummary: true,
+        firstColTypeOpts: [
+          { label: '索引', value: 'index' },
+          { label: '多选', value: 'selection' },
+          { label: '单选', value: 'radio' },
+        ],
       };
     },
     methods: {
@@ -140,10 +153,17 @@
         console.log(index, row);
       },
       validate() {
-        this.$refs['biz-table-demo1'].checkAll();
+        this.$refs['biz-table-demo'].checkAll();
       },
       reset() {
-        this.$refs['biz-table-demo1'].resetCheck();
+        this.$refs['biz-table-demo'].resetCheck();
+      },
+      /**
+       * reset select state
+       * @param type  - selection / radio
+       */
+      resetSelectState(type) {
+        this.$refs['biz-table-demo'].resetSelectState(this.firstColType);
       },
       requestNew() {
         this.searchConditions.organizationId = 2;

@@ -48,6 +48,7 @@ export default create({
       return h(
         `table-main`,
         {
+          ref: 'main-table',
           'class': this.recls('container'),
           props: {
             keyRefer: this.keyRefer,
@@ -120,6 +121,14 @@ export default create({
     cellFormChange(value, param) {
       this.setCheckStator(param.cellKey);//set form-cell check config (check list) in table
       this.$emit('cell-change', value, param);
+    },
+
+    /**
+     * reset select state
+     * @param type  - selection / radio
+     */
+    resetSelectState(type) {
+      this.$refs['main-table'].resetSelectState(type);
     },
 
   },

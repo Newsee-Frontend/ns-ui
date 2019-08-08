@@ -32,7 +32,7 @@ export default create({
       },
     },
     menubar: { type: String, default: 'file edit insert view format table' },
-    pluginsConfig: { type: Object, required: false, default: ()=> defaultConfig },
+    pluginsConfig: { type: Object, required: false, default: () => defaultConfig },
   },
   data() {
     return {

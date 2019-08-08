@@ -65,7 +65,6 @@
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
       showSummary: { type: Boolean, default: true },//是否显示合计行
     },
-
     computed: {
       ...mapGetters(['tableHead']),
       isRender() {
@@ -153,6 +152,19 @@
       refresh() {
         this.$emit('reload');
       },
+      /**
+       * reset select state
+       * @param type  - selection / radio
+       */
+      resetSelectState(type) {
+        this.$refs['biz-table'].resetSelectState(type);
+      },
+      getResponseColumn() {
+        return this.tableHead || [];
+      },
+      getAllColumn() {
+        return this.finalHead || [];
+      }
     },
     created() {
       this.getTableHead();

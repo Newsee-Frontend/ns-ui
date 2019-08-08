@@ -38,6 +38,7 @@ export default {
     },
     rulesConfig: { type: Array },
   },
+
   render(h) {
     const normalColumn = (item, index) => {
       return (
@@ -104,6 +105,7 @@ export default {
     return (
       <div>
         <el-table
+          ref={'el-table'}
           data={this.data} border={this.border}
           max-height={this.height} height={this.height}
           on-selection-change={this.selectionChange}
@@ -114,7 +116,9 @@ export default {
                 const type = item[this.headRefer['xtype']];
                 //序号列/选择列
                 if (this.specialColInclude.indexOf(type) > -1) {
-                  return <first-table-column head-scope={item} headRefer={this.headRefer} on-selection-change={this.selectionChange}/>;
+                  return <first-table-column ref={'first-table-column'}
+                                             head-scope={item} headRefer={this.headRefer}
+                                             value={this.xxxxx} on-selection-change={this.selectionChange}/>;
                 }
                 //操作列
                 else if (this.actionColInclude.indexOf(type) > -1) {
@@ -202,6 +206,20 @@ export default {
     deleteCurrentRow(index, row) {
       this.$emit('delete-current-row', index, row);
     },
+
+    /**
+     * reset select state
+     * @param type  - selection / radio
+     */
+    resetSelectState(type) {
+      if (type === 'selection') {
+        this.$refs['el-table'].clearSelection();
+      }
+      else if(type === 'radio'){
+        this.$refs['first-table-column'].resetRadioState();
+      }
+    },
+
   },
   beforeDestroy() {
     this.settingState = null;

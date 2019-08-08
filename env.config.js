@@ -12,13 +12,23 @@ const dev_env = {
 };
 
 /**
- * mock env config
+ * mock data in cloud
  * @type {{NODE_ENV: string, ENV_CONFIG: string, BASE_API: string}}
  */
-const mock_env = {
+const mock_cloud_env = {
   NODE_ENV: '"development"',
   ENV_CONFIG: '"mock"',
-  BASE_API: '""'
+  BASE_API: '"https://www.easy-mock.com/mock/5d240fe12102c0666393d2b7/gaocangxiong/"', //mock
+};
+
+/**
+ * mock data in local
+ * @type {{NODE_ENV: string, ENV_CONFIG: string, BASE_API: string}}
+ */
+const mock_local_env = {
+  NODE_ENV: '"development"',
+  ENV_CONFIG: '"mock"',
+  BASE_API: '""',
 };
 
 /**
@@ -47,7 +57,8 @@ const test_env = {
  */
 module.exports = {
   dev_env: merge(prod_env, dev_env),
-  mock_env: merge(prod_env, mock_env),
+  mock_local_env: merge(prod_env, mock_local_env),
+  mock_cloud_env: merge(prod_env, mock_cloud_env),
   prod_env: prod_env,
-  test_env: merge(dev_env, test_env)
+  test_env: merge(dev_env, test_env),
 };
