@@ -43,7 +43,7 @@ export default create({
     fileType: {
       type: Array,
       default: function() {
-        return ['jpeg', 'png'];
+        return ['jpg', 'jpeg', 'png'];
       },
     },
     beforeUpload: Function,
