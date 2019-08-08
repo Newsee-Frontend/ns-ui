@@ -184,7 +184,7 @@ export default create({
       }
       else if (this.type === 'singlePicture') {
         if (file.size / 1024 / 1024 > 3) {
-          return this.$message.error('上传头像图片大小不能超过3M');
+          return this.$message.error('上传图片大小不能超过3M');
         }
       }
       return true;
