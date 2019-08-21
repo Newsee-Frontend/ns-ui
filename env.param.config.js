@@ -72,5 +72,17 @@ module.exports = {
         'npm run build:lib',
       ],
     },
+    npmUpgradeList: [
+      {
+        module: 'neap-test1',
+        edition: 'beta',//beta / latest
+        version: null,
+      },
+      {
+        module: 'cx-builder',
+        edition: 'latest',//beta / latest
+        version: null,
+      },
+    ],
   },
 };
