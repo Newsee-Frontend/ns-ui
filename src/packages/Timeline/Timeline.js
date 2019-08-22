@@ -18,7 +18,9 @@ export default create({
       type: Object,
       default: () => ({
         timestamp: 'timestamp',
-        active: 'active'
+        active: 'active',
+        color: 'color',
+        size: 'size'
       })
     }
   },
