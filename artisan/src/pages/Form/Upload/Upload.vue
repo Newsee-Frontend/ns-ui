@@ -9,8 +9,9 @@
           v-model="childItemSingle"
           width="100px"
           height="100px"
+          :data="{name:1}"
           :action="dynamicUrl"
-          onChange="changeModel"
+          @change="changeModel"
         >
         </ns-upload>
       </template>

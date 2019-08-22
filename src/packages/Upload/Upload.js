@@ -29,6 +29,14 @@ export default create({
       type: [String, Number],
       default: '148px',
     },
+    data: {
+      type: Object,
+      default: ()=>{}
+    },
+    name: {
+      type: String,
+      default: 'file'
+    },
     action: { type: String }, //request url
     disabled: { type: Boolean, default: false },
     headers: Object,
@@ -113,6 +121,8 @@ export default create({
         'style': this.type === 'singlePicture' && this.convert_style,
         'attrs': {
           'action': this.action,
+          'data': this.data,
+          'name': this.name,
           'disabled': this.disabled,
           'headers': this.headers,
           'list-type': this.type === 'pictureWall' ? 'picture-card' : '',
