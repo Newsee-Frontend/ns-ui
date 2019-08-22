@@ -20,7 +20,7 @@ export default create({
         timestamp: 'timestamp',
         active: 'active',
         color: 'color',
-        size: ''
+        size: 'size'
       })
     }
   },
