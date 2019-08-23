@@ -70,8 +70,7 @@ const usePlugins = [
   'textpattern ' +
   'visualblocks ' +
   'visualchars ' +
-  'wordcount',
-
+  'wordcount ',
 ];
 
 
