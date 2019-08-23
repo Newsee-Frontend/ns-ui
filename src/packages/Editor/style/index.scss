@@ -49,8 +49,15 @@
     z-index: -1;
   }
 
+  //去除 品牌标志
+  .mce-statusbar {
+    .mce-branding {
+      display: none;
+    }
+  }
 }
 
+//去除 报错
 .mce-notification-error {
   display: none;
 }
