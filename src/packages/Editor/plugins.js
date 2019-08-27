@@ -59,6 +59,7 @@ const usePlugins = [
   'noneditable ' +
   'nonbreaking ' +
   'paste ' +
+  'powerpaste ' +
   'preview ' +
   'searchreplace ' +
   'spellchecker ' +
@@ -96,7 +97,7 @@ const allPlugins = [
   'nonbreaking ' +
   'noneditable ' +
   'pagebreak ' +
-  'paste ' +
+  'powerpaste ' +
   'preview ' +
   'print ' +
   'save ' +
