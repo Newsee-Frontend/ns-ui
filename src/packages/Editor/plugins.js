@@ -59,6 +59,7 @@ const usePlugins = [
   'noneditable ' +
   'nonbreaking ' +
   'paste ' +
+  'powerpaste ' +
   'preview ' +
   'searchreplace ' +
   'spellchecker ' +
@@ -70,8 +71,7 @@ const usePlugins = [
   'textpattern ' +
   'visualblocks ' +
   'visualchars ' +
-  'wordcount',
-
+  'wordcount ',
 ];
 
 
@@ -97,7 +97,7 @@ const allPlugins = [
   'nonbreaking ' +
   'noneditable ' +
   'pagebreak ' +
-  'paste ' +
+  'powerpaste ' +
   'preview ' +
   'print ' +
   'save ' +
@@ -110,10 +110,10 @@ const allPlugins = [
   'textpattern ' +
   'visualblocks ' +
   'visualchars ' +
-  'wordcount' +
-  'fontsizeselect' +
-  'fontselect' +
-  'lineheight',
+  'wordcount ' +
+  'fontsizeselect ' +
+  'fontselect ' +
+  'lineheight ',
 ];
 
 export default allPlugins;

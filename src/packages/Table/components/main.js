@@ -53,7 +53,6 @@ export default {
               align: item[this.headRefer['align']],
               label: item[this.headRefer['label']],
               resizable: this.resizable,
-              sortable: 'custom',
               'show-overflow-tooltip': true,
               fixed: item[this.headRefer['fixed']],
             },

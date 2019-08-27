@@ -113,7 +113,10 @@ export default create({
         fontsize_formats: config.fontsize_formats,
         font_formats: config.font_formats,
         end_container_on_empty_block: true,
-        powerpaste_word_import: 'clean',
+        paste_data_images: true,
+        powerpaste_word_import: 'propmt',//clean
+        powerpaste_html_import: 'propmt',
+        powerpaste_allow_local_images: true,
         code_dialog_height: 450,
         code_dialog_width: 1000,
         advlist_bullet_styles: 'square',
