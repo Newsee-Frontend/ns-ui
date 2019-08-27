@@ -133,6 +133,7 @@ export default create({
           'before-upload': this.beforeAvatarUpload,
           'on-exceed': this.onExceed.bind(this),
           'on-success': this.onSuccess.bind(this),
+          'on-error': this.onError.bind(this),
           'before-remove': this.beforeRemoveFun.bind(this),
           'on-remove': this.onRemove.bind(this),
         },
@@ -217,6 +218,13 @@ export default create({
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
           '            \']\'');
       }
+      this.$emit('success', response);
+    },
+
+
+    //error 图片上传失败
+    onError(err, file, fileList){
+      this.$emit('error', err, file, fileList);
     },
 
     //移除的钩子
