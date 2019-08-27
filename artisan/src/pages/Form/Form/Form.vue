@@ -9,7 +9,7 @@
         包括各种表单项，比如输入框、选择器、开关、单选框、多选框等。
       </template>
       <template slot="content">
-        <ns-form
+        <ns-form disabled
           style="width: 600px"
           label-width="100px"
           ref="checkForm"

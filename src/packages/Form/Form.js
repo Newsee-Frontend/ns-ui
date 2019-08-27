@@ -11,6 +11,7 @@ export default create({
     'label-suffix': { type: String },
     'show-message': { type: Boolean, default: true },
     cueType: { type: String, default: 'only-error' },
+    disabled: { type: Boolean, default: false}
   },
   computed: {
     fromClass() {
@@ -28,6 +29,7 @@ export default create({
             model: this.model,
             rules: this.rules,
             inline: this.inline,
+            disabled: this.disabled,
             'label-position': this.labelPosition,
             'label-width': this.labelWidth,
             'label-suffix': this.labelSuffix,
