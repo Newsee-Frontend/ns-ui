@@ -150,7 +150,12 @@ export default create({
       }
 
       if (editor) {
-        editor.destroy();
+        try {
+          editor.destroy();
+        }
+        catch (e) {
+          editor.destroy();
+        }
       }
     },
 
