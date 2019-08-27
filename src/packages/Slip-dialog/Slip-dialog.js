@@ -29,12 +29,13 @@ export default create({
     domToClose: { type: String, default: 'app' },
     appendToBody: { type: Boolean, default: true },
     closeOnPressEscape: { type: Boolean, default: true },
-    beforeClose: Function,
+    beforeClose: { type: Function },
   },
 
   data() {
     return {
       lastVisible: false,
+      allvisible: true,
     };
   },
 
@@ -52,12 +53,14 @@ export default create({
       ['left', 'right', 'top', 'bottom'].forEach(pos => {
         style[pos] = this[pos];
       });
+      style['display'] = this.visible ? 'block' : 'none';
       return style;
     },
 
     outerDomTarget() {
       try {
         const outer = document.getElementById(this.domToClose);
+
         return outer ? outer : document.body;
       } catch (e) {
         return document.body;
@@ -103,7 +106,6 @@ export default create({
           _ => this.destroyModel(),
           this.modelSpeed,
         );
-
 
         if (typeof this.beforeClose === 'function') {
           this.beforeClose(val);
@@ -169,6 +171,7 @@ export default create({
     outerClickEvent() {
       if (!this.visible) return;
       if (!this.lastVisible) return;
+
       this.close();
     },
     wrapperClick(e) {
