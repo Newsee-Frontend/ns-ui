@@ -62,6 +62,7 @@
           <ns-slip-dialog
             ref="slipDialog"
             class="slipDialog"
+            v-show="form.dialogSw"
             :visible.sync="form.dialogSw"
             customClass="slipDialog-test"
             :left="form.iptleft"
@@ -128,6 +129,8 @@
 </template>
 
 <script>
+  import editorContent from '../Editor/content';
+
   export default {
     name: 'slip-dialog',
     data() {
@@ -161,7 +164,7 @@
           { label: '下', value: 'bottom' },
         ],
         slipDialogForm: {
-          content: '',
+          content: editorContent.content,
         },
       };
     },
