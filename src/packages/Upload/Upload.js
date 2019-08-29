@@ -51,7 +51,7 @@ export default create({
     fileType: {
       type: Array,
       default: function() {
-        return ['jpeg', 'png'];
+        return ['jpeg','jpg', 'png'];
       },
     },
     beforeUpload: Function,
@@ -204,6 +204,7 @@ export default create({
     //图片成功
     onSuccess(response, row) {
       let val = response.resultData;
+      this.$emit('success', response);
       if (val instanceof Array) {
         let addAttributeVal = this.addAttribute(val);
         if (this.type === 'singlePicture') {
@@ -218,7 +219,6 @@ export default create({
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
           '            \']\'');
       }
-      this.$emit('success', response);
     },
 
 
