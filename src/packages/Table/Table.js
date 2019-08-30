@@ -19,7 +19,6 @@ export default create({
     return {
       tableHead: [],
       summaryCommand: 'current',//合计模块控制指令
-
     };
   },
   props: {
@@ -36,6 +35,7 @@ export default create({
     }, //表数据
     height: { type: Number, default: 500 },
     showSummary: { type: Boolean, default: true },
+    initSummaryState: { type: String, default: 'current' },//合计模块控制指令状态 - 'current' / 'total'
   },
 
   watch: {
@@ -75,10 +75,11 @@ export default create({
         }
         {
           this.showSummary ?
-            <action-summary command={this.summaryCommand}  {...{
+            <action-summary initSummaryState={this.initSummaryState}  {...{
               on: {
-                'update:command': value => {
-                  this.summaryCommand = value;
+                'update:command': command => {
+                  this.summaryCommand = command;
+                  this.$emit('summary-command', command);
                 },
               },
             }}

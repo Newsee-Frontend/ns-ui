@@ -30,6 +30,7 @@ export default {
         {
           props: {
             'class-name': `table-head-${this.headScope[this.headRefer['model-key']]}`,
+            property: this.headScope[this.headRefer['model-key']],
             type: this.columnType,
             fixed: true,
             align: this.headScope[this.headRefer['align']],

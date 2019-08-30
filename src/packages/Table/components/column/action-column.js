@@ -88,6 +88,7 @@ export default {
         {
           props: {
             'class-name': `table-head-${this.headScope[this.headRefer['model-key']]}`,
+            property: this.headScope[this.headRefer['model-key']],
             width: this.headScope[this.headRefer['width']],
             align: this.headScope[this.headRefer['align']],
             fixed: 'right',
