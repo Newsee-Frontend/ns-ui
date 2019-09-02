@@ -1,7 +1,7 @@
 import create from '../../create/create';
 import iconClass from '../Icon-class/Icon-class';
 
-const uploadTypes = ['singlePicture', 'pictureWall', 'otherFileList'];
+const uploadTypes = ['picture-single', 'picture-wall', 'file'];
 export default create({
   name: 'upload',
 
@@ -17,7 +17,7 @@ export default create({
   props: {
     value: [Array],
     type: {
-      type: String, default: 'singlePicture', validate: t => {
+      type: String, default: 'picture-single', validate: t => {
         return uploadTypes.some(t);
       },
     },
