@@ -8,6 +8,8 @@
               :cellFifter="cellFifter"
               :showHeadOperation="showHeadOperation"
               :showSummary="showSummary"
+              :summary-method="summaryMethod"
+              :initSummaryState="initSummaryState"
               :rulesConfig="rulesConfig"
               @selection-change="selectionChange"
               @table-action="tableAction"
@@ -15,6 +17,7 @@
               @cell-form-change="cellFormChange"
               @add-row="addRow"
               @delete-current-row="deleteCurrentRow"
+              @summary-command="summaryCommand"
               @refresh="refresh"
     ></ns-table>
     <ns-pagination
@@ -63,7 +66,9 @@
       hasActionCol: { type: Boolean, default: true },//是否有操作列
       showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
-      showSummary: { type: Boolean, default: true },//是否显示合计行
+      showSummary: { type: Boolean, default: false },//是否显示合计行
+      summaryMethod: { type: Function },//自定义的合计计算方法
+      initSummaryState: { type: String, default: 'current' },//初始合计模块控制指令状态 - 'current' / 'total'
     },
     computed: {
       ...mapGetters(['tableHead']),
@@ -143,11 +148,21 @@
       deleteCurrentRow(index, row) {
         this.$emit('delete-current-row', index, row);
       },
+      /**
+       * 选择全部事件
+       */
       checkAll() {
         this.$refs['biz-table'].checkAll();
       },
       resetCheck() {
         this.$refs['biz-table'].resetCheck();
+      },
+      /**
+       * 合计按钮切换
+       * @param command
+       */
+      summaryCommand(command) {
+        this.$emit('summary-command', command);
       },
       refresh() {
         this.$emit('reload');
@@ -164,7 +179,7 @@
       },
       getAllColumn() {
         return this.finalHead || [];
-      }
+      },
     },
     created() {
       this.getTableHead();

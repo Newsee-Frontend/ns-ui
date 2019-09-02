@@ -31,6 +31,8 @@
                    :showAddRowOperation="showAddRowOperation"
                    :showHeadOperation="showHeadOperation"
                    :showSummary="showSummary"
+                   :summary-method="summaryMethod"
+                   :initSummaryState="summaryState"
                    :searchConditions="searchConditions"
                    @reload="getTableData"
                    @selection-change="selectionChange"
@@ -38,6 +40,7 @@
                    @add-row="addRow"
                    @delete-current-row="deleteCurrentRow"
                    @table-action="tableAction"
+                   @summary-command="summaryCommand"
                    @refresh="getTableData"
         >
         </biz-table>
@@ -83,7 +86,8 @@
         },
         showAddRowOperation: true,
         showHeadOperation: true,
-        showSummary: true,
+        showSummary: true,//是否显示合计行
+        summaryState: 'total',//合计模块控制指令状态 - 'current' / 'total'
         firstColTypeOpts: [
           { label: '索引', value: 'index' },
           { label: '多选', value: 'selection' },
@@ -152,6 +156,56 @@
         console.log('删除当前行');
         console.log(index, row);
       },
+      /**
+       * 合计按钮切换
+       * @param command
+       */
+      summaryCommand(command) {
+        console.log('合计行切换，当前模式：');
+        console.log(command);
+        this.summaryState = command;
+      },
+      /**
+       * 合计计算时间
+       * 注意: 输出一个数组，对应表头长度
+       * @param param  -  包含表头数据和表数据，自行根据业务逻辑判断处理
+       */
+      summaryMethod(param) {
+        console.log('合计行计算，表头和表数据如下：');
+        console.log(param);
+
+        //通过 param 可以获取 表头 和 表 数据，其中表头数据为每列的基础传值对象数据，与后台返回的表头数据不符合。
+        //在数组 columns 中的每一项表头对象中，property 字段为 对应列内容的字段名，可作为唯一标识
+        //固定列，操作列，首列等有自己的property对应列内容的字段名，对应'index', 'selection', 'radio', 'action', 'add-row', 'setting'
+
+        const { columns, data } = param;
+
+        //可通过方法获取 较为完整的请求到的表头数据
+        const allColumn = this.$refs['biz-table-demo'].getAllColumn();
+        const responseColumn = this.$refs['biz-table-demo'].getResponseColumn();
+
+        function createSummary(type) {
+          const sums = [];
+          columns.forEach((col, index) => {
+            if (['index', 'selection', 'radio', 'action', 'add-row', 'setting'].indexOf(col.property) > -1) {
+              sums.push('');
+            }
+            else {
+              sums.push(`${type}合计-${index}`);
+            }
+          });
+          return sums;
+        }
+
+        //分页合计
+        if (this.summaryState === 'current') {
+          return createSummary('分页');
+        }
+        //全部合计
+        else if (this.summaryState === 'total') {
+          return createSummary('全部');
+        }
+      },
       validate() {
         this.$refs['biz-table-demo'].checkAll();
       },
@@ -183,22 +237,12 @@
     },
     created() {
       this.getTableData();
-      console.log(2222222222222222);
-      console.log('table- !!!- created-created');
-      console.log(2222222222222222);
-    },
-    mounted() {
-
     },
     beforeDestroy() {
       this.tableData = null;
       this.searchConditions = null;
       this.loadState = null;
       this.tableAction = null;
-      console.log(2222222222222222);
-      console.log('table- !!!- beforeDestroy-beforeDestroy');
-      console.log(2222222222222222);
-
 
     },
   };

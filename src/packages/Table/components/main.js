@@ -31,7 +31,8 @@ export default {
     resizable: { type: Boolean, default: true }, //对应列是否可以通过拖动改变宽度（需要在 el-table 上设置 border 属性为真）
     height: { type: Number },//表格渲染高度默认值
     showHeadOperation: { type: Boolean, default: true },//表头设置 新增行操作模块开关
-    showSummary: { type: Boolean },//是否显示合计行
+    showSummary: { type: Boolean, default: false },//是否显示合计行
+    summaryMethod: { type: Function },//自定义的合计计算方法
     checkStator: { type: Object },
     cellFifter: {
       type: Function,
@@ -46,7 +47,8 @@ export default {
           `el-table-column`,
           {
             props: {
-              'class-name': `table-head-'${item[this.headRefer['model-key']]}`,
+              'class-name': `table-head-${item[this.headRefer['model-key']]}`,
+              property: item[this.headRefer['model-key']],
               index: index,
               key: index,
               'min-width': item[this.headRefer['width']],
@@ -84,6 +86,7 @@ export default {
           {
             props: {
               'class-name': `table-head-setting`,
+              property: 'setting',
               key: 'table-head-setting',
               width: '25',
               align: 'center',
@@ -108,7 +111,9 @@ export default {
           data={this.data} border={this.border}
           max-height={this.height} height={this.height}
           on-selection-change={this.selectionChange}
-          show-summary={this.showSummary}>
+          show-summary={this.showSummary}
+          summary-method={this.summaryMethod}
+        >
           {
             this.head.map((item, index) => {
               if (!item[this.headRefer['hidden']]) {
@@ -214,7 +219,7 @@ export default {
       if (type === 'selection') {
         this.$refs['el-table'].clearSelection();
       }
-      else if(type === 'radio'){
+      else if (type === 'radio') {
         this.$refs['first-table-column'].resetRadioState();
       }
     },
