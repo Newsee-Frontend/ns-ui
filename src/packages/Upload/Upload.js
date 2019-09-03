@@ -80,7 +80,7 @@ export default create({
 
     hiddenEntrance() {
       return {
-        'hidden-pictureWall': this.limit && this.exceedLimitHiddenEntrance && this.type === 'pictureWall' && this.limit <= this.childUpload.length,
+        'hidden-pictureWall': this.limit && this.exceedLimitHiddenEntrance && this.type === 'picture-wall' && this.limit <= this.childUpload.length,
       };
     },
   },
@@ -118,17 +118,17 @@ export default create({
       {
         'class': [this.recls([this.type]), this.hiddenEntrance],
         'ref': 'upload',
-        'style': this.type === 'singlePicture' && this.convert_style,
+        'style': this.type === 'picture-single' && this.convert_style,
         'attrs': {
           'action': this.action,
           'data': this.data,
           'name': this.name,
           'disabled': this.disabled,
           'headers': this.headers,
-          'list-type': this.type === 'pictureWall' ? 'picture-card' : '',
+          'list-type': this.type === 'picture-wall' ? 'picture-card' : '',
           'with-credentials': true,
           'limit': this.limit,
-          'show-file-list': this.type !== 'singlePicture',
+          'show-file-list': this.type !== 'picture-single',
           'file-list': this.childUpload,
           'before-upload': this.beforeAvatarUpload,
           'on-exceed': this.onExceed.bind(this),
@@ -139,8 +139,8 @@ export default create({
         },
       },
       [
-        this.type === 'singlePicture' && this.picSingleUrl && singlePicImg,
-        this.type === 'otherFileList' ? null : addIconDom,
+        this.type === 'picture-single' && this.picSingleUrl && singlePicImg,
+        this.type === 'file' ? null : addIconDom,
         this.$slots.default,
       ],
     );
@@ -187,13 +187,13 @@ export default create({
       let imageTypeList = this.addImageType(this.fileType);
       if (this.beforeUpload) {
         return this.beforeUpload(file);
-      } else if (this.type !== 'otherFileList') {
+      } else if (this.type !== 'file') {
         if (imageTypeList.indexOf(type) === -1) {
           this.$message.error(`上传图片只能是${this.fileType.join(',')}格式!`);
           return false;
         }
       }
-      else if (this.type === 'singlePicture') {
+      else if (this.type === 'picture-single') {
         if (file.size / 1024 / 1024 > 3) {
           return this.$message.error('上传图片大小不能超过3M');
         }
@@ -207,7 +207,7 @@ export default create({
       this.$emit('success', response);
       if (val instanceof Array) {
         let addAttributeVal = this.addAttribute(val);
-        if (this.type === 'singlePicture') {
+        if (this.type === 'picture-single') {
           this.childUpload = addAttributeVal;
           this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
         } else {
