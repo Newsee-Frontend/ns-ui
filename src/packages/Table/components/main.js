@@ -8,11 +8,12 @@ import actionDrop from './action/actionDrop';
 
 import column from '../mixins/column';
 import refer from '../mixins/refer';
+import checkOperation from '../mixins/checkOperation';
 
 export default {
   name: 'table-main',
   components: { slotScope, firstTableColumn, actionColumn, headOperation, actionDrop },
-  mixins: [refer, column],
+  mixins: [refer, column, checkOperation],
   data() {
     return {
       summaryCommand: 'current',//合计模块控制指令
@@ -113,6 +114,7 @@ export default {
           on-selection-change={this.selectionChange}
           show-summary={this.showSummary}
           summary-method={this.summaryMethod}
+          highlight-current-row={this.highlightCurrentRow}
         >
           {
             this.head.map((item, index) => {
@@ -122,7 +124,7 @@ export default {
                 if (this.specialColInclude.indexOf(type) > -1) {
                   return <first-table-column ref={'first-table-column'}
                                              head-scope={item} headRefer={this.headRefer}
-                                             value={this.xxxxx} on-selection-change={this.selectionChange}/>;
+                                             on-selection-change={this.selectionChange}/>;
                 }
                 //操作列
                 else if (this.actionColInclude.indexOf(type) > -1) {
@@ -164,10 +166,6 @@ export default {
       this.$emit('sync-render', data);
     },
 
-    selectionChange(row, index) {
-      this.$emit('selection-change', row, index);
-    },
-
     /**
      * 操作列点击
      * @param info
@@ -187,7 +185,7 @@ export default {
     },
 
     /**
-     * form cell change
+     * form cell change - 但换个 change 事件
      * @param value
      * @param param
      */
@@ -196,34 +194,20 @@ export default {
     },
 
     /**
-     * add row to grid
+     * add row to grid - 增加行
      */
     addRow() {
       this.$emit('add-row');
     },
 
     /**
-     * delete current row
+     * delete current row - 删除当前行
      * @param index
      * @param row
      */
     deleteCurrentRow(index, row) {
       this.$emit('delete-current-row', index, row);
     },
-
-    /**
-     * reset select state
-     * @param type  - selection / radio
-     */
-    resetSelectState(type) {
-      if (type === 'selection') {
-        this.$refs['el-table'].clearSelection();
-      }
-      else if (type === 'radio') {
-        this.$refs['first-table-column'].resetRadioState();
-      }
-    },
-
   },
   beforeDestroy() {
     this.settingState = null;

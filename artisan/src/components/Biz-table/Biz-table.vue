@@ -167,6 +167,17 @@
       refresh() {
         this.$emit('reload');
       },
+
+      /**
+       * reset select state
+       * @param type  - selection / radio
+       * @param rowindex   - 操作行索引
+       * @param selected  -  选中状态 true / false
+       */
+      setSelectedRow(type, rowindex, selected) {
+        this.$refs['biz-table'].setSelectedRow(type, rowindex, selected);
+      },
+
       /**
        * reset select state
        * @param type  - selection / radio

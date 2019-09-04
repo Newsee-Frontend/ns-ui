@@ -71,10 +71,10 @@ export default {
       this.$emit('selection-change', row, index);
     },
     /**
-     * reset select state
+     * set radio selected state
      */
-    resetRadioState() {
-      this.childRadio = null;
+    setRadioState(data) {
+      this.childRadio = data || data === 0 ? data : null;
     },
   },
 };

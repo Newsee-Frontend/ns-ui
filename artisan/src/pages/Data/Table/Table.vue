@@ -16,16 +16,18 @@
           <ns-select v-model="firstColType" :options="firstColTypeOpts" @change="getTableData"></ns-select>
         </div>
         <div class="control-block form-block-line">
+          <ns-button type="primary" @click="setSelectedRow([2,4,6,8],true)">设置选中行</ns-button>
+          <ns-button type="primary" @click="setSelectedRow([6,8],false)">反选选中行</ns-button>
+          <ns-button @click="resetSelectState">重置选中状态</ns-button>
           <ns-button type="primary" @click="validate">验证</ns-button>
           <ns-button @click="reset">重置</ns-button>
-          <ns-button @click="resetSelectState">重置选中状态</ns-button>
           <ns-button type="primary" @click="requestNew">获取新数据</ns-button>
           <ns-button type="primary" @click="requestError">模拟服务器出错</ns-button>
           <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
         </div>
         <biz-table ref="biz-table-demo" :loadState="loadState" :data="tableData"
                    :autoResize="false"
-                   :customHeight="400"
+                   :customHeight="500"
                    :firstColType="firstColType"
                    :is-form-table="isFormTable"
                    :showAddRowOperation="showAddRowOperation"
@@ -65,7 +67,7 @@
           head: false,
         },
         tableData: {},//表格数据
-        firstColType: 'radio',//selection index radio
+        firstColType: 'selection',//selection index radio
         isFormTable: true,
         //搜索条件 searchConditions
         searchConditions: {
@@ -206,6 +208,21 @@
           return createSummary('全部');
         }
       },
+
+      /**
+       * 设置 表格中选中行
+       * @param target  -  目标 - 数组 如【1，2，3，4，5，9】
+       * @param state  -  设置状态 false / true
+       */
+      setSelectedRow(target, state) {
+        if (!(['selection', 'radio'].indexOf(this.firstColType) > -1)) return;
+        const list = this.firstColType === 'selection' ? target : [target[0]];
+        list.forEach(item => {
+          this.$refs['biz-table-demo'].setSelectedRow(this.firstColType, item, state);
+        });
+      },
+
+
       validate() {
         this.$refs['biz-table-demo'].checkAll();
       },
