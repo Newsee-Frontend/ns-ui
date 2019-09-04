@@ -37,6 +37,8 @@
                    :initSummaryState="summaryState"
                    :searchConditions="searchConditions"
                    @reload="getTableData"
+                   @selection-select="selectionSelect"
+                   @selection-select-all="selectionSelectAll"
                    @selection-change="selectionChange"
                    @cell-form-change="cellFormChange"
                    @add-row="addRow"
@@ -116,10 +118,35 @@
         });
       },
 
+      /**
+       * 当选择项发生变化时会触发该事件
+       * @param row
+       * @param index
+       */
       selectionChange(row, index) {
         console.log('表数据 checkbox/radio 选择的时候');
         console.log(row);
         console.log(index);
+      },
+
+      /**
+       * 当用户手动勾选数据行的 Checkbox 时触发的事件
+       * @param selection
+       * @param row
+       */
+      selectionSelect(selection, row) {
+        console.log('当用户手动勾选数据行的 Checkbox 时触发的事件');
+        console.log(selection);
+        console.log(row);
+      },
+
+      /**
+       * 当用户手动勾选全选 Checkbox 时触发的事件
+       * @param selection
+       */
+      selectionSelectAll(selection) {
+        console.log('当用户手动勾选全选 Checkbox 时触发的事件');
+        console.log(selection);
       },
 
       /**

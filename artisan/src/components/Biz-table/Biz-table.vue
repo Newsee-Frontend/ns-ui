@@ -11,6 +11,8 @@
               :summary-method="summaryMethod"
               :initSummaryState="initSummaryState"
               :rulesConfig="rulesConfig"
+              @selection-select="selectionSelect"
+              @selection-select-all="selectionSelectAll"
               @selection-change="selectionChange"
               @table-action="tableAction"
               @cell-action="cellAction"
@@ -121,9 +123,33 @@
         this.$emit('reload');
       },
 
+      /**
+       * 当选择项发生变化时会触发该事件
+       * @param row
+       * @param index
+       */
       selectionChange(row, index) {
         this.$emit('selection-change', row, index);
       },
+
+      /**
+       * 当用户手动勾选数据行的 Checkbox 时触发的事件
+       * @param selection
+       * @param row
+       */
+      selectionSelect(selection, row) {
+        this.$emit('selection-select', selection, row);
+      },
+
+      /**
+       * 当用户手动勾选全选 Checkbox 时触发的事件
+       * @param selection
+       */
+      selectionSelectAll(selection) {
+        this.$emit('selection-select-all', selection);
+      },
+
+
       tableAction(info, scope) {
         this.$emit('table-action', info, scope);
       },

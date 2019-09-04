@@ -10,10 +10,29 @@ export default {
     };
   },
   methods: {
+    /**
+     * 当用户手动勾选数据行的 Checkbox 时触发的事件
+     * @param selection
+     * @param row
+     */
+    selectionSelect(selection, row) {
+      this.$emit('selection-select', selection, row);
+    },
+
+    /**
+     * 当用户手动勾选全选 Checkbox 时触发的事件
+     * @param selection
+     */
+    selectionSelectAll(selection) {
+      this.$emit('selection-select-all', selection);
+    },
+
+
     selectionChange(row, index) {
       this.highlightCurrentRow = true;
       this.$emit('selection-change', row, index);
     },
+
 
     /**
      * reset select state

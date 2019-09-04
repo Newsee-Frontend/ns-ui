@@ -111,10 +111,12 @@ export default {
           ref={'el-table'}
           data={this.data} border={this.border}
           max-height={this.height} height={this.height}
-          on-selection-change={this.selectionChange}
           show-summary={this.showSummary}
           summary-method={this.summaryMethod}
           highlight-current-row={this.highlightCurrentRow}
+          on-select={this.selectionSelect}
+          on-select-all={this.selectionSelectAll}
+          on-selection-change={this.selectionChange}
         >
           {
             this.head.map((item, index) => {
