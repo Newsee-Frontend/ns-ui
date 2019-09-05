@@ -7,14 +7,14 @@ import LoadingBlock from '../Loading-block/Loading-block';
 
 import refer from './mixins/refer';
 import column from './mixins/column';
-import check from './mixins/check';
+import checkState from './mixins/checkState';
 import readyState from './mixins/readyState';
 import error from './mixins/error';
 
 export default create({
   name: 'table',
   components: { tableMain, actionSummary, errorPrompt, LoadingBlock },
-  mixins: [refer, column, check, readyState, error],
+  mixins: [refer, column, checkState, readyState, error],
   data() {
     return {
       tableHead: [],
@@ -122,6 +122,16 @@ export default create({
     cellFormChange(value, param) {
       this.setCheckStator(param.cellKey);//set form-cell check config (check list) in table
       this.$emit('cell-change', value, param);
+    },
+
+    /**
+     * reset select state
+     * @param type  - selection / radio
+     * @param rowindex   - 操作行索引
+     * @param selected  -  选中状态 true / false
+     */
+    setSelectedRow(type, rowindex, selected) {
+      this.$refs['main-table'].setSelectedRow(type, rowindex, selected);
     },
 
     /**

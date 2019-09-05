@@ -25,14 +25,15 @@ export default create({
     disabled: { type: Boolean, default: false },
     multiple: { type: Boolean, default: false },
     multipleLimit: { type: Number, default: 0 },
+    popperClass: { type: String },
     collapseTags: { type: Boolean, default: false },//多选时是否将选中值按文字的形式展示
     filterable: { type: Boolean, default: false },
     filterMethod: { type: Function, default: null }, //自定义过滤方法
     remote: { type: Boolean, default: false }, //是否为远程搜索
     remoteMethod: { type: Function, default: null }, //远程搜索方法
     allowCreate: { type: Boolean, default: false }, //是否允许用户创建新条目，需配合 filterable 使用
-    loadingText: {type: String, default: '加载中'},
-    noMatchText: {type: String, default: '无匹配数据'},
+    loadingText: { type: String, default: '加载中' },
+    noMatchText: { type: String, default: '无匹配数据' },
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
@@ -44,7 +45,7 @@ export default create({
       return this.recls([this.formsize, this.multiple && 'multiple']);
     },
     convert_style() {
-      return this.multiple? {
+      return this.multiple ? {
         width: this.convert_width,
         minHeight: this.convert_height,
         lineHeight: this.convert_height,
@@ -88,6 +89,7 @@ export default create({
         clearable={this.clearable}
         multiple={this.multiple}
         multipleLimit={this.multipleLimit}
+        popperClass={this.popperClass}
         collapseTags={this.collapseTags}
         filterable={this.filterable}
         filterMethod={this.filterMethod}
@@ -149,14 +151,11 @@ export default create({
     onBlur() {
       this.$emit('blur');
     },
-
     /**
      * 清除事件
      */
     onClear() {
       this.$emit('clear');
     },
-
-
   },
 });

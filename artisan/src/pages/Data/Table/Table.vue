@@ -16,16 +16,18 @@
           <ns-select v-model="firstColType" :options="firstColTypeOpts" @change="getTableData"></ns-select>
         </div>
         <div class="control-block form-block-line">
+          <ns-button type="primary" @click="setSelectedRow([2,4,6,8],true)">设置选中行</ns-button>
+          <ns-button type="primary" @click="setSelectedRow([6,8],false)">反选选中行</ns-button>
+          <ns-button @click="resetSelectState">重置选中状态</ns-button>
           <ns-button type="primary" @click="validate">验证</ns-button>
           <ns-button @click="reset">重置</ns-button>
-          <ns-button @click="resetSelectState">重置选中状态</ns-button>
           <ns-button type="primary" @click="requestNew">获取新数据</ns-button>
           <ns-button type="primary" @click="requestError">模拟服务器出错</ns-button>
           <ns-button type="primary" @click="requestEmpty">模拟空数据</ns-button>
         </div>
         <biz-table ref="biz-table-demo" :loadState="loadState" :data="tableData"
                    :autoResize="false"
-                   :customHeight="400"
+                   :customHeight="500"
                    :firstColType="firstColType"
                    :is-form-table="isFormTable"
                    :showAddRowOperation="showAddRowOperation"
@@ -35,6 +37,8 @@
                    :initSummaryState="summaryState"
                    :searchConditions="searchConditions"
                    @reload="getTableData"
+                   @selection-select="selectionSelect"
+                   @selection-select-all="selectionSelectAll"
                    @selection-change="selectionChange"
                    @cell-form-change="cellFormChange"
                    @add-row="addRow"
@@ -65,7 +69,7 @@
           head: false,
         },
         tableData: {},//表格数据
-        firstColType: 'radio',//selection index radio
+        firstColType: 'selection',//selection index radio
         isFormTable: true,
         //搜索条件 searchConditions
         searchConditions: {
@@ -114,10 +118,35 @@
         });
       },
 
+      /**
+       * 当选择项发生变化时会触发该事件
+       * @param row
+       * @param index
+       */
       selectionChange(row, index) {
         console.log('表数据 checkbox/radio 选择的时候');
         console.log(row);
         console.log(index);
+      },
+
+      /**
+       * 当用户手动勾选数据行的 Checkbox 时触发的事件
+       * @param selection
+       * @param row
+       */
+      selectionSelect(selection, row) {
+        console.log('当用户手动勾选数据行的 Checkbox 时触发的事件');
+        console.log(selection);
+        console.log(row);
+      },
+
+      /**
+       * 当用户手动勾选全选 Checkbox 时触发的事件
+       * @param selection
+       */
+      selectionSelectAll(selection) {
+        console.log('当用户手动勾选全选 Checkbox 时触发的事件');
+        console.log(selection);
       },
 
       /**
@@ -166,7 +195,7 @@
         this.summaryState = command;
       },
       /**
-       * 合计计算时间
+       * 合计计算
        * 注意: 输出一个数组，对应表头长度
        * @param param  -  包含表头数据和表数据，自行根据业务逻辑判断处理
        */
@@ -206,6 +235,21 @@
           return createSummary('全部');
         }
       },
+
+      /**
+       * 设置 表格中选中行
+       * @param target  -  目标 - 数组 如【1，2，3，4，5，9】
+       * @param state  -  设置状态 false / true
+       */
+      setSelectedRow(target, state) {
+        if (!(['selection', 'radio'].indexOf(this.firstColType) > -1)) return;
+        const list = this.firstColType === 'selection' ? target : [target[0]];
+        list.forEach(item => {
+          this.$refs['biz-table-demo'].setSelectedRow(this.firstColType, item, state);
+        });
+      },
+
+
       validate() {
         this.$refs['biz-table-demo'].checkAll();
       },
