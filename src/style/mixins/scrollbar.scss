@@ -15,8 +15,8 @@
 @mixin scrollbarStyle() {
   /*滚动条垂直方向的宽度*/
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 
   /* 垂直滚动条的滑动块 */
