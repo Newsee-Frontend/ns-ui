@@ -51,6 +51,21 @@ $height-ladder: 24px 28px 32px 36px 40px;
         }
       }
     }
+      //select  input-tag 选择器
+    @else if $block-type == 'select' or  $block-type == 'input-tag'{
+      @include rb($size-name) {
+        width: $w;
+        line-height: $h;
+        min-height: $h;
+      }
+      & .el-input__inner {
+        width: 100%;
+        height: inherit;
+        line-height:inherit;
+      }
+      @include icon-inner();
+    }
+
       //其他
     @else {
       @include rb($size-name) {
@@ -58,7 +73,6 @@ $height-ladder: 24px 28px 32px 36px 40px;
       }
       @include input-inner();
       @include icon-inner();
-
     }
 
   }

@@ -1,0 +1,18 @@
+@import '../../../style/common/size/formsize';
+
+@include b(input-tag) {
+  @include form-component-size(input-tag);
+  cursor: pointer;
+
+  .el-input {
+    height: inherit;
+  }
+
+  .el-input__suffix i.el-icon-arrow-up{
+    display: none;
+  }
+}
+
+.el-select-dropdown.el-popper.input-tag-popper{
+  //display: none;
+}

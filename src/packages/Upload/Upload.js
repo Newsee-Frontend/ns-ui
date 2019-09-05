@@ -1,6 +1,7 @@
 import create from '../../create/create';
 import iconClass from '../Icon-class/Icon-class';
 
+
 const uploadTypes = ['picture-single', 'picture-wall', 'file'];
 export default create({
   name: 'upload',

@@ -14,7 +14,7 @@ $upload_border: 2px dashed #d9d9d9;
     }
   }
   //单独头像
-  &.ns-upload--singlePicture .el-upload {
+  &.ns-upload--picture-single .el-upload {
     box-sizing: border-box;
     border: $upload_border;
     border-radius: $upload_radius;

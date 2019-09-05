@@ -13,6 +13,12 @@ export const formRouter = [
         name: '输入框',
       },
       {
+        path: 'input-tag',
+        component: () => import('../../pages/Form/Input-tag/Input-tag'),
+        meta: { auth: true, key: 'input-tag' },
+        name: 'input-tag选择器',
+      },
+      {
         path: 'inputNumber',
         component: () => import('../../pages/Form/InputNumber/InputNumber'),
         meta: { auth: true, key: 'inputNumber' },

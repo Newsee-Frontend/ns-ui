@@ -244,6 +244,14 @@ const navmenu = (req, res) => {
             menuIndex: 17,
             hide: 1,
           },
+          {
+            funcId: 'input-tag',
+            menuLabel: 'input-tag',
+            menuRouter: 'input-tag',
+            menuIcon: null,
+            menuIndex: 18,
+            hide: 1,
+          },
         ],
       },
       {

@@ -27,7 +27,7 @@
       return {
         visible: false,
         content: '',
-        model: 'normal',//模式选择 - "simple", "normal", "rich"
+        model: 'simple',//模式选择 - "simple", "normal", "rich"
         modelOptions: [
           { label: 'simple', value: 'simple' },
           { label: 'normal', value: 'normal' },

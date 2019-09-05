@@ -34,6 +34,7 @@ import Avatar from '../../../src/packages/Avatar/Avatar.js';
 import ColorPicker from '../../../src/packages/ColorPicker/ColorPicker.js';
 import Form from '../../../src/packages/Form/Form.js';
 import FormItem from '../../../src/packages/Form-item/Form-item.js';
+import InputTag from '../../../src/packages/Input-tag/Input-tag.js';
 
 
 //other
@@ -105,6 +106,7 @@ Vue.component('ns-color-picker', ColorPicker);
 Vue.component('ns-avatar', Avatar);
 Vue.component('ns-form', Form);
 Vue.component('ns-form-item', FormItem);
+Vue.component('ns-input-tag',InputTag)
 
 
 // data
@@ -166,6 +168,7 @@ import '../../../src/packages/TimePicker/style/index.scss';
 import '../../../src/packages/Only-MMDD-picker/style/index.scss';
 import '../../../src/packages/Time-interval/style/index.scss';
 import '../../../src/packages/Select/style/index.scss';
+import '../../../src/packages/Input-tag/style/index.scss';
 import '../../../src/packages/Cascader/style/index.scss';
 import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
