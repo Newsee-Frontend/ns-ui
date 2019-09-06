@@ -2,7 +2,7 @@
 
 $icon-block-width: 30px;
 $focus__border-color: #409eff;
-$hover__border-color: #dcdfe6;
+$hover__border-color: #c0c4cc;
 
 $prefix-name: input-tag--prefix;
 $suffix-name: input-tag--suffix;
@@ -12,6 +12,7 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
   display: inline-block;
   position: relative;
   box-sizing: border-box;
+  z-index: 1;
   @include form-component-size(input-tag);
 
   //有头部图标
@@ -73,7 +74,7 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
     height: 100%;
     top: 0;
     bottom: 0;
-    border: 1px solid $hover__border-color;
+    border: 1px solid #cccccc;
     z-index: -1;
     transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
   }
