@@ -41,6 +41,7 @@ export default create({
         ...this.recls([this.formsize, 'multiple', this.prefixIcon ? 'prefix' : '', this.suffixIcon ? 'suffix' : '']),
         ...[`${this.isFocus ? 'is-focus' : ''}`],
         ...[`${this.isHover ? 'is-hover' : ''}`],
+        'form-element__pseudo',
       ];
     },
     convert_style() {
