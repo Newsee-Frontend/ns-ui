@@ -77,7 +77,7 @@ export default create({
       >
         {
           this.prefixIcon ?
-            <div class={this.recls('icon', { prefix: 'prefix' })}>
+            <div class={this.recls('icon')}>
               <icon-svg icon-class={this.prefixIcon} on-click={this.iconClick.bind(this, 'prefix')}/>
             </div> : null
         }
@@ -108,7 +108,7 @@ export default create({
         </el-select>
         {
           this.suffixIcon ?
-            <div class={this.recls('icon', { suffix: 'suffix' })}>
+            <div class={this.recls('icon')}>
               <icon-svg icon-class={this.suffixIcon} on-click={this.iconClick.bind(this, 'suffix')}/>
             </div> : null
         }
