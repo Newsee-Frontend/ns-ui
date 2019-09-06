@@ -9,7 +9,7 @@
           size="normal"
           :options="optionsDataTemplate"
           :prefixIcon="prefixIcon"
-
+          @iconClick="iconClick"
         ></ns-input-tag>
       </template>
     </demo-block>
@@ -22,6 +22,7 @@
           size="medium"
           :options="optionsDataTemplate"
           :suffixIcon="suffixIcon"
+          @iconClick="iconClick"
         ></ns-input-tag>
       </template>
     </demo-block>
