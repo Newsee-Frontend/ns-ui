@@ -27,23 +27,29 @@
       </template>
     </demo-block>
 
-
     <demo-block>
-      <template slot="title">Input-tag 2</template>
+      <template slot="title">Input-tag in form</template>
       <template slot="content">
-        <ns-input-tag
-          size="large"
-          v-model="inputModel3"
-          :options="optionsDataTemplate"
-          :prefixIcon="prefixIcon"
-          :suffixIcon="suffixIcon"
-          @click="click"
-          @focus="onFocus"
-          @change="change"
-          @removeTag="removeTag"
-          @onClear="onClear"
-          @iconClick="iconClick"
-        ></ns-input-tag>
+        <ns-form label-width="100px"
+                 :model="formData"
+                 :rules="rules"
+        >
+          <ns-form-item label="姓名" prop="inputModel3">
+            <ns-input-tag
+              size="large"
+              v-model="formData.inputModel3"
+              :options="optionsDataTemplate"
+              :prefixIcon="prefixIcon"
+              :suffixIcon="suffixIcon"
+              @click="click"
+              @focus="onFocus"
+              @change="change"
+              @removeTag="removeTag"
+              @onClear="onClear"
+              @iconClick="iconClick"
+            ></ns-input-tag>
+          </ns-form-item>
+        </ns-form>
       </template>
     </demo-block>
   </div>
@@ -58,13 +64,32 @@
     mixins: [formmixins],
 
     data() {
+      let validator = function(rule, value, callback) {
+        console.log(1231231);
+        console.log(value);
+        if (value && value.length) {
+
+        }
+        else {
+          callback(new Error('错误'));
+        }
+      };
       return {
         inputModel1: [3, 4, 5],
         inputModel2: [1, 2, 3, 4, 5, 7],
-        inputModel3: [6],
+        formData: {
+          inputModel3: [6],
+        },
+
         prefixIcon: 'daohang', //输入框头部图标
         suffixIcon: 'gailan', //输入框尾部图标
         //'mini', 'small', 'normal', 'medium', 'large'
+        rules: {
+          // inputModel3: [
+          //   { validator: validator, trigger: 'blur,change' },
+          // ],
+          inputModel3: [{ required: true, trigger: 'change', message: '请添加项目负责人' }],
+        },
       };
     },
 
