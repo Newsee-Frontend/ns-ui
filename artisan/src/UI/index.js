@@ -3,7 +3,7 @@ import Vue from 'vue';
 
 import ElementUI from 'element-ui';
 import 'cx-theme/dist/cx-theme.min.css';
-import '../style/cover/index.scss';
+import '../style/element-cover/index.scss';
 
 import '../style/public.scss';
 import '../style/common.scss';
