@@ -1,0 +1,23 @@
+@import '../public';
+@import '../mixins/mixins';
+
+
+.el-select .el-input .el-input__icon,
+.el-input__icon,
+.el-tree-node__expand-icon {
+  color: $--color-text-secondary;
+  border-left-color: $--color-text-secondary;
+}
+
+
+.el-icon--right {
+  margin-left: 1px;
+}
+
+#action-summary {
+  background: white;
+}
+
+
+
+

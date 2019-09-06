@@ -1,0 +1,28 @@
+@import '../public';
+
+//下拉按钮
+.el-dropdown-selfdefine {
+  font-size: 13px;
+  height: 32px;
+  line-height: 0.5;
+  //padding: 0px 16px;
+}
+
+.el-button--small.el-dropdown-selfdefine {
+  font-size: 12px;
+}
+
+.el-dropdown-link.el-dropdown-selfdefine {
+  font-size: 14px;
+  padding: 0 9px;
+}
+
+/*下拉菜单字体*/
+.el-dropdown {
+  font-size: 14px;
+}
+
+/*下拉菜单内间距*/
+.el-dropdown-menu {
+  padding: 10px 0;
+}

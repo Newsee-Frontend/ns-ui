@@ -1,0 +1,77 @@
+@import '../public';
+@import '../mixins/mixins';
+
+.el-button--default {
+  //background: none;
+  color: $--color-text-regular;
+}
+
+.el-button {
+  &:hover {
+    color: $--color-text-regular;
+    border: 1px solid $--color-ns-form-hover;
+    background: $--color-white;
+  }
+  &.el-button--success {
+    border: none;
+    &:hover {
+      color: $--color-success;
+      border: 1px solid $--color-success;
+    }
+  }
+}
+
+.el-button--text {
+  &:focus {
+    color: $--color-primary;
+    border: none;
+  }
+  &:hover {
+    color: $--color-primary;
+    border: none;
+  }
+  &:active {
+    color: $--color-primary;
+    border: none;
+  }
+}
+
+.el-button.is-disabled {
+  background: $--color-text-supply;
+  color: $--color-white;
+  border: none;
+  &:focus {
+    background: $--color-text-supply;
+    color: $--color-white;
+    border: none;
+  }
+  &:hover {
+    background: $--color-text-supply;
+    color: $--color-white;
+    border: none;
+  }
+}
+
+.el-button--primary {
+  color: $--color-white;
+  background-color: $--color-primary;
+  border-color: $--color-primary;
+  margin-right: 8px;
+  &:hover {
+    color: $--color-white;
+    background-color: $--color-primary;
+    border-color: $--color-primary;
+    background: #0060cd;
+  }
+}
+
+.el-button--primary.is-active,
+.el-button--primary:active {
+  background: $--color-primary-light;
+  border-color: $--color-primary-light;
+}
+
+.el-button.is-active,
+.el-button:active {
+  border-color: $--color-primary-light;
+}

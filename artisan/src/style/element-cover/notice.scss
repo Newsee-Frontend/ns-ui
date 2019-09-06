@@ -1,0 +1,52 @@
+@import '../public';
+@import '../mixins/mixins';
+
+//==========================notice================================
+/*message*/
+.el-message {
+  min-width: 380px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ebeef5;
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  background-color: #fff !important;
+  -webkit-transition: opacity 0.3s, -webkit-transform 0.4s;
+  transition: opacity 0.3s, -webkit-transform 0.4s;
+  transition: opacity 0.3s, transform 0.4s;
+  transition: opacity 0.3s, transform 0.4s, -webkit-transform 0.4s;
+  padding: 15px 15px 15px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.el-message--success .el-message__content {
+  color: #67c23a;
+}
+
+.el-message--warning {
+  background-color: #fdf6ec;
+  border-color: #faecd8;
+}
+
+.el-message--warning .el-message__content {
+  color: #e6a23c;
+}
+
+.el-message--error {
+  background-color: #fef0f0;
+  border-color: #fde2e2;
+}
+
+.el-message--error .el-message__content {
+  color: #f56c6c;
+}

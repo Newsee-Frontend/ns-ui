@@ -1,0 +1,25 @@
+@import '../public';
+@import '../mixins/mixins';
+
+//============ el-loading style change=========
+.el-loading-spinner .circular {
+  display: none !important;
+}
+
+.el-loading-mask {
+  min-height: 80px;
+  height: 100%;
+  z-index: 1000;
+  .el-loading-spinner {
+    background: url('../../assets/img/loading/loading.gif') no-repeat !important;
+    background-size: 75px 75px !important;
+    width: 75px;
+    height: 75px;
+    left: 50%;
+    margin-left: -42px;
+    margin-top: -40px;
+    p {
+      display: none !important;
+    }
+  }
+}
