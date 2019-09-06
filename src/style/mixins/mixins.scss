@@ -18,6 +18,18 @@
   }
 }
 
+@mixin rbm($blocks) {
+  $B: '';
+
+  @each $block in $blocks {
+    $B: $B + '.'+$namespace + '-' + $block;
+  }
+
+  &#{$B} {
+    @content;
+  }
+}
+
 @mixin e($element) {
   $E: $element !global;
   $selector: &;
