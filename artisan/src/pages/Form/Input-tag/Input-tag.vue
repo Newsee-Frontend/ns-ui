@@ -2,7 +2,19 @@
 <template>
   <div class="input-tag-wrapper">
     <demo-block>
-      <template slot="title">Input-tag 1</template>
+      <template slot="title">Input-tag no icon</template>
+      <template slot="content">
+        <ns-input-tag
+          v-model="inputModel1"
+          size="normal"
+          :options="optionsDataTemplate"
+          @iconClick="iconClick"
+        ></ns-input-tag>
+      </template>
+    </demo-block>
+
+    <demo-block>
+      <template slot="title">Input-tag - prefix icon</template>
       <template slot="content">
         <ns-input-tag
           v-model="inputModel1"
@@ -15,7 +27,7 @@
     </demo-block>
 
     <demo-block>
-      <template slot="title">Input-tag 2</template>
+      <template slot="title">Input-tag - suffix icon</template>
       <template slot="content">
         <ns-input-tag
           v-model="inputModel2"
@@ -34,10 +46,10 @@
                  :model="formData"
                  :rules="rules"
         >
-          <ns-form-item label="姓名" prop="inputModel3">
+          <ns-form-item label="姓名" prop="inputModel4">
             <ns-input-tag
               size="large"
-              v-model="formData.inputModel3"
+              v-model="formData.inputModel4"
               :options="optionsDataTemplate"
               :prefixIcon="prefixIcon"
               :suffixIcon="suffixIcon"
@@ -75,10 +87,11 @@
         }
       };
       return {
-        inputModel1: [3, 4, 5],
-        inputModel2: [1, 2, 3, 4, 5, 7],
+        inputModel1: [3, 4],
+        inputModel2: [3, 4, 5],
+        inputModel3: [1, 2, 3, 4, 5, 7],
         formData: {
-          inputModel3: [6],
+          inputModel4: [6],
         },
 
         prefixIcon: 'daohang', //输入框头部图标

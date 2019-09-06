@@ -27,6 +27,9 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
       border-left: none;
       border-radius: 0 4px 4px 0;
     }
+    .el-select {
+      width: calc(100% - #{$icon-block-width});
+    }
   }
 
   //有尾部图标
@@ -40,6 +43,9 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
     .el-input__inner {
       border-right: none;
       border-radius: 4px 0 0 4px;
+    }
+    .el-select {
+      width: calc(100% - #{$icon-block-width});
     }
   }
 
@@ -99,7 +105,7 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
   }
 
   .el-select {
-    width: calc(100% - #{$icon-block-width});
+    width: 100%;
     height: inherit;
   }
 
