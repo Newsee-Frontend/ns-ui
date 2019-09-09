@@ -42,32 +42,34 @@
     },
 
     methods: {
-      initTree: function() {
+      initTree: function () {
         this.$store.dispatch('getRootTree').then((res) => {
-          this.nodeList = transformKeyFun(res.resultData, keyRefer, { expandedIndex: 2, lazy: true });
+          this.nodeList = transformKeyFun(res.resultData, keyRefer, {expandedIndex: 2, lazy: true});
         });
       },
 
       loadNode(node) {
         this.$set(node, 'loading', true);
-        this.$store.dispatch('getChildTree', { id: node.id }).then((res) => {
+        this.$store.dispatch('getChildTree', {id: node.id}).then((res) => {
           this.$set(node, 'loading', false);
           if (res.resultData.length > 0) {
-            let childNodes = transformKeyFun(res.resultData, keyRefer, { lazy: true });
+            let childNodes = transformKeyFun(res.resultData, keyRefer, {lazy: true});
             this.$refs.testTree.addNodes(node, childNodes);
           }
         });
       },
 
-      //删除树
+      /***
+       * 删除树
+       */
       delNode(...arg) {
         this.$refs.testTree.delNode(...arg);
       },
 
       //编辑节点
       editNode(node) {
-        this.$prompt('您要修改节点的名称', '提示').then(({ value }) => {
-          this.$refs.testTree.updateNode(node, { houseFullName: value });
+        this.$prompt('您要修改节点的名称', '提示').then(({value}) => {
+          this.$refs.testTree.updateNode(node, {houseFullName: value});
         });
       },
 

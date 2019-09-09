@@ -194,6 +194,21 @@ export default create({
       return this.$refs.tree.getCheckedNodes();
     },
 
+    /*
+    *
+    * 外暴方法，手动清除选中的node节点(主要用于多选)
+    * */
+    clearNodeById: function(id){
+      let nodes = this.$refs.tree.getNodes({ id: id }, this.data, true);
+      if(nodes && nodes.length > 0){
+        this.$refs.tree.setNodeAttr(nodes[0], 'checked', false);
+        this.$refs.tree.setNodeAttr(nodes[0], 'selected', false);
+        this.nodeCheck(nodes[0]);
+      }else {
+        throw ('no find this node');
+      }
+    }
+
   },
 
   created() {

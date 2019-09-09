@@ -22,8 +22,17 @@
           </div>
         </template>
       </ns-tree>
-      <ns-button @click="getNodes('selectTree')">获取选中的节点</ns-button>
-      <ns-button @click="setNodes('selectTree')">设置选中的节点</ns-button>
+
+      <div class="tags-container">
+        <el-tag
+          v-for="tag in nodeModel"
+          :key="tag.id"
+          closable
+          @close="handleClose(tag)"
+          style="margin: 5px;" >
+          {{tag.companyName || tag.houseFullName}}
+        </el-tag>
+      </div>
       <ns-switch v-model="checkStrictly" active-text="父子不关联" inactive-text="父子关联"></ns-switch>
     </template>
   </demo-block>
@@ -47,6 +56,7 @@
       initTree: function() {
         this.$store.dispatch('getRootTree').then((res) => {
           this.nodeList = transformKeyFun(res.resultData, keyRefer, { expandedIndex: 2, lazy: true });
+          this.nodeModel =  this.nodeList[0].children;
         });
       },
 
@@ -55,11 +65,15 @@
         console.log(this.nodeModel);
       },
 
-      setNodes(){
-        this.nodeModel = [];
-        this.nodeModel = [114191, 196983951];
+
+      //删除节点
+      handleClose(tag) {
+        //手动设置node checked 为false
+        this.$refs.selectTree.clearNodeById(tag.id);
       },
 
+
+      //按需加载子节点
       loadNode(node) {
         this.$set(node, 'loading', true);
         this.$store.dispatch('getChildTree', { id: node.id }).then((res) => {
@@ -71,9 +85,12 @@
         });
       },
 
+
       nodeCheck(...arg){
         console.log(...arg, this.nodeModel)
-      }
+      },
+
+
     },
 
     created(){
