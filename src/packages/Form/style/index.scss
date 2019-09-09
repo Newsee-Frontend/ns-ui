@@ -19,8 +19,14 @@ $formErrFs: 12px; //font size in error message
 
 //form - components border-color toggle
 @mixin border-color-Toggle($border-color) {
+  /**
+   * 除开 输入框本身需要改变外
+   * 还新增了一些自定义的伪装表单控件的伪类元素 需要同步更改，加上 form-element__pseudo 类即可修改其 ::after 与 ::before
+   */
   .el-input__inner,
-  .el-textarea__inner {
+  .el-textarea__inner,
+  .form-element__pseudo::after,
+  .form-element__pseudo::before {
     border-color: $border-color;
     transition: all 300ms ease-in;
   }

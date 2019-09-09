@@ -1,0 +1,49 @@
+@import '../public';
+
+//---------- dialog - 弹窗  ----------
+$dialog-default_width: 650px; //基础默认宽度
+$dialog-line_height: 24px; //基础默认行高
+$dialog-padding_left: 32px; //左边间距留白
+$dialog-padding_right: 32px; //右边间距留白
+$dialog-padding_top: 10px; //右边间距留白
+$dialog-padding_bottom: 24px; //右边间距留白
+$dialog-body_max_height: 550px; //body内容实际部分最大高度
+$dialog-body_min_height: 350px; //body内容实际部分最小高度
+
+/*dialog*/
+.el-dialog {
+  width: $dialog-default_width;
+  //头部
+  .el-dialog__header {
+    padding: 12px 15px 12px 15px;
+    font-size: 14px;
+    background: #f2f2f2;
+  }
+  //头部 - 标题
+  .el-dialog__title {
+    color: $--color-text-primary;
+    font-size: 14px;
+    line-height: $dialog-line_height;
+  }
+  //头部 - 关闭按钮
+  .el-dialog__headerbtn {
+    top: 16px;
+    .el-dialog__close {
+      color: $--color-text-secondary;
+    }
+  }
+  //内容部分
+  .el-dialog__body {
+    box-sizing: border-box;
+    max-height: $dialog-body-max-height;
+    padding: $dialog-padding-top $dialog-padding-right $dialog-padding-bottom $dialog-padding_left;
+    color: $--color-text-regular;
+    line-height: $dialog-line_height;
+    overflow-y: auto;
+  }
+  //底部
+  .el-dialog__footer {
+    border-top: none;
+    padding: 22px 42px;
+  }
+}

@@ -1,5 +1,6 @@
 import create from '../../create/create';
 import { sizeValidator } from '../../utils/props/validator';
+import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
 
 export default create({
   name: 'input-tag',
@@ -7,6 +8,8 @@ export default create({
   data() {
     return {
       childSelect: this.value,
+      isFocus: false,
+      isHover: false,
     };
   },
   props: {
@@ -16,10 +19,7 @@ export default create({
       default: () => ([]),
     },
     width: [String, Number],
-    height: {
-      type: [String, Number],
-      default: 32,
-    },
+    height: { type: [String, Number], default: 32 },
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
     name: { type: String },
@@ -27,8 +27,8 @@ export default create({
     disabled: { type: Boolean, default: false },
     multipleLimit: { type: Number, default: 0 },
     collapseTags: { type: Boolean, default: false },//多选时是否将选中值按文字的形式展示
-    prefixIcon: String,
-    suffixIcon: String,
+    prefixIcon: String,//头部图标
+    suffixIcon: String,//尾部图标
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
@@ -37,7 +37,12 @@ export default create({
 
   computed: {
     reClass() {
-      return this.recls([this.formsize, 'multiple']);
+      return [
+        ...this.recls([this.formsize, 'multiple', this.prefixIcon ? 'prefix' : '', this.suffixIcon ? 'suffix' : '']),
+        ...[`${this.isFocus ? 'is-focus' : ''}`],
+        ...[`${this.isHover ? 'is-hover' : ''}`],
+        'form-element__pseudo',
+      ];
     },
     convert_style() {
       return {
@@ -53,7 +58,6 @@ export default create({
       this.childSelect = val;
     },
   },
-
   render(h) {
     let { label, value } = this.keyRefer;
     const optionRender = (item) => (
@@ -67,37 +71,49 @@ export default create({
     );
 
     return (
-      <el-select
-        class={this.reClass}
-        value={this.childSelect}
-        onInput={e => this.handleModel(e)}
-        onChange={this.change.bind(this)}
-        onVisible-change={this.visibleChange.bind(this)}
-        onRemove-tag={this.removeTag.bind(this)}
-        onFocus={this.onFocus.bind(this)}
-        onBlur={this.onBlur.bind(this)}
-        onClear={this.onClear.bind(this)}
-        disabled={this.disabled}
-        clearable={this.clearable}
-        multiple={true}
-        multipleLimit={this.multipleLimit}
-        collapseTags={this.collapseTags}
-        placeholder={this.placeholder}
-        style={this.convert_style}
-        popperClass="input-tag-popper"
+      <div class={this.reClass}
+           on-click={($event) => this.inputTagClick($event)}
+           on-mouseenter={this.inputTagMouseenter.bind(this)}
+           on-mouseleave={this.inputTagMouseleave.bind(this)}
       >
         {
-          this.options.map((item) => {
-            return optionRender(item);
-          })
+          this.prefixIcon ?
+            <div class={this.recls('icon')}>
+              <icon-svg icon-class={this.prefixIcon} on-click={this.iconClick.bind(this, 'prefix')}/>
+            </div> : null
         }
+        <el-select
+          value={this.childSelect}
+          onInput={e => this.handleModel(e)}
+          onChange={this.change.bind(this)}
+          onVisible-change={this.visibleChange.bind(this)}
+          onRemove-tag={this.removeTag.bind(this)}
+          onFocus={this.onFocus.bind(this)}
+          onBlur={this.onBlur.bind(this)}
+          onClear={this.onClear.bind(this)}
+          disabled={this.disabled}
+          clearable={this.clearable}
+          multiple={true}
+          multipleLimit={this.multipleLimit}
+          collapseTags={this.collapseTags}
+          placeholder={this.placeholder}
+          style={this.convert_style}
+          popperClass="input-tag-popper"
+        >
+          {
+            this.options.map((item) => {
+              return optionRender(item);
+            })
+          }
 
-        {this.prefixIcon ?
-          <icon-svg slot="prefix" icon-class={this.prefixIcon} on-click={this.iconClick.bind(this, 'prefix')}/> : null}
-
-        {this.suffixIcon ?
-          <icon-svg slot="prefix" class="icon-right"  icon-class={this.suffixIcon} on-click={this.iconClick.bind(this, 'suffix')}/> : null}
-      </el-select>
+        </el-select>
+        {
+          this.suffixIcon ?
+            <div class={this.recls('icon')}>
+              <icon-svg icon-class={this.suffixIcon} on-click={this.iconClick.bind(this, 'suffix')}/>
+            </div> : null
+        }
+      </div>
     );
   },
 
@@ -110,7 +126,6 @@ export default create({
       this.childSelect = e;
       this.$emit('input', this.childSelect);
     },
-
     /**
      * visible-Change （下拉框显示隐藏）
      */
@@ -118,8 +133,16 @@ export default create({
       this.$emit('visible-change', e);
     },
 
-    removeTag() {
-      this.$emit('remove-tag');
+    inputTagClick(e) {
+      stopPropagation(e);
+      this.isFocus = true;
+      this.$emit('click');
+    },
+    inputTagMouseenter() {
+      this.isHover = true;
+    },
+    inputTagMouseleave() {
+      this.isHover = false;
     },
 
     /**
@@ -129,12 +152,27 @@ export default create({
     change(value) {
       this.$emit('change', value);
     },
+
+    removeTag() {
+      this.$emit('remove-tag');
+    },
+
+    /**
+     * 清除事件
+     */
+    onClear() {
+      this.isFocus = false;
+      this.$emit('clear');
+    },
+
     /**
      * on-focus
      */
     onFocus() {
+      this.isFocus = true;
       this.$emit('focus');
     },
+
     /**
      * on-blur
      */
@@ -143,19 +181,18 @@ export default create({
     },
 
     /**
-     * 清除事件
-     */
-    onClear() {
-      this.$emit('clear');
-    },
-
-    /**
      * icon click
      */
     iconClick(type) {
-      this.$emit('iconClick', this.childSelect, type);
+      this.$emit('iconClick', type, this.childSelect);
     },
-
-
+  },
+  mounted() {
+    //listen drop modules click event
+    addEventHandler(document.body, 'click', _ => this.isFocus = false);
+  },
+  beforeDestroy() {
+    //remove event Listener
+    removeEventHandler(document.body, 'click', _ => this.isFocus = false);
   },
 });

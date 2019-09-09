@@ -1,0 +1,48 @@
+@import '../public';
+@import '../mixins/mixins';
+
+$pagination__height: 28px;
+/* ===================== 分页 ==================== */
+.el-pagination {
+  display: inline-block;
+  color: $--color-text-regular;
+  height: $pagination__height;
+  line-height: $pagination__height;
+  padding-top: 0;
+  padding-bottom: 0;
+  //前往 ... 第x页
+  .el-pagination__jump .el-input__inner {
+    height: 22px;
+  }
+  //文字标签 共xx条/x页
+  span.page {
+    margin-top: -3px;
+  }
+
+  //页面数字按钮
+  .el-pager {
+    li {
+      border-radius: 2px;
+      margin-left: 6px;
+      &:last-child {
+        margin-right: 6px;
+      }
+      &.active {
+        background-color: $--color-primary;
+        color: #ffffff;
+        border-radius: 2px;
+        border: none;
+      }
+      &:hover {
+        background-color: $--color-primary;
+        color: #ffffff;
+        border-radius: 2px;
+        border: none;
+      }
+    }
+  }
+  //左箭头按钮
+  .btn-prev {
+    padding-right: 0;
+  }
+}
