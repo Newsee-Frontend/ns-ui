@@ -42,10 +42,10 @@ export default create({
 
   computed: {
     reClass() {
-      return this.recls([this.formsize, this.multiple && 'multiple']);
+      return this.recls([this.formsize, this.multiple && !this.collapseTags && 'auto_height']);
     },
     convert_style() {
-      return this.multiple ? {
+      return (this.multiple && !this.collapseTags) ? {
         width: this.convert_width,
         minHeight: this.convert_height,
         lineHeight: this.convert_height,

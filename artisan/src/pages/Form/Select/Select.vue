@@ -49,7 +49,6 @@
           collapseTags
           placeholder="请选择"
           width="300px"
-          height="40px"
         ></ns-select>
       </template>
     </demo-block>
@@ -61,7 +60,6 @@
           :clearable="true"
           v-model="selectModelDictionary"
           multiple
-          collapseTags
           @change="changeSelectModelDictionary"
           @clear="clearSelectModelDictionary"
         ></ns-select-dictionary>

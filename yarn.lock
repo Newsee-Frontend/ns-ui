@@ -1988,11 +1988,6 @@ caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000957, caniuse-lite@^1.0.30000980, can
   resolved "https://registry.npm.taobao.org/caniuse-lite/download/caniuse-lite-1.0.30000989.tgz#b9193e293ccf7e4426c5245134b8f2a56c0ac4b9"
   integrity sha1-uRk+KTzPfkQmxSRRNLjypWwKxLk=
 
-canvas-exif-orientation@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.npm.taobao.org/canvas-exif-orientation/download/canvas-exif-orientation-0.4.0.tgz#b487f3701998a9e879eb104010b2a58115368b6b"
-  integrity sha1-tIfzcBmYqeh56xBAELKlgRU2i2s=
-
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.npm.taobao.org/caseless/download/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -10957,13 +10952,10 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.0.tgz#bd76d6a23323e2ca8ffa12028dc04559c75f9019"
   integrity sha1-vXbWojMj4sqP+hICjcBFWcdfkBk=
 
-vue-croppa@^1.3.8:
-  version "1.3.8"
-  resolved "https://registry.npm.taobao.org/vue-croppa/download/vue-croppa-1.3.8.tgz#1aac95bf5d94020de7bc1ea7ca61e3aadfff1811"
-  integrity sha1-GqyVv12UAg3nvB6nymHjqt//GBE=
-  dependencies:
-    canvas-exif-orientation "^0.4.0"
-    object-assign "^4.1.1"
+vue-cropper@^0.4.9:
+  version "0.4.9"
+  resolved "https://registry.npm.taobao.org/vue-cropper/download/vue-cropper-0.4.9.tgz#fe650f32516ecf29014bbd4a9079191c8dc5a5ae"
+  integrity sha1-/mUPMlFuzykBS71KkHkZHI3Fpa4=
 
 vue-eslint-parser@^5.0.0:
   version "5.0.0"
