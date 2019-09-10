@@ -12,6 +12,7 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
     expanded: 'expanded',
     isHasChild: 'isHasChild',
     disabled: 'disabled',
+    checked: 'checked'
   };
 
   let refer = Object.assign(addKeyRefer, keyRefer);

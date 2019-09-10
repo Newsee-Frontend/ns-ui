@@ -56,8 +56,6 @@
       },
 
       setNodes(){
-        this.nodeModel = [];
-        this.nodeModel = [114191, 196983951];
       },
 
       loadNode(node) {

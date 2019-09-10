@@ -74,7 +74,6 @@
       </template>
     </demo-block>
 
-
     <demo-block>
       <template slot="title">上传控件 - Upload type为 otherFileList</template>
       <template slot="describe">文件上传</template>
@@ -87,6 +86,22 @@
           :beforeRemove="beforeRemove"
         >
           <ns-button type="primary"> 点击上传文件 </ns-button>
+        </ns-upload>
+      </template>
+    </demo-block>
+
+    <demo-block>
+      <template slot="title">上传控件 - Upload type为 picture-single，并且带截图功能</template>
+      <template slot="describe">isCropper：true,有截图</template>
+      <template slot="content">
+        <ns-upload
+          v-model="childItemSingle"
+          width="100px"
+          height="100px"
+          isCropper
+          :action="dynamicUrl"
+          @change="changeModel"
+        >
         </ns-upload>
       </template>
     </demo-block>

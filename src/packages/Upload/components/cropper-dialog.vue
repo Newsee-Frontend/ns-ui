@@ -3,25 +3,27 @@
   title="裁剪图片"
   type="autoHeight"
   @close="close"
+  ref="corpper-image-dialog"
+  :visible.sync="showDialog"
   >
-
-
-
+    vfvfvfvfv
   </Dialog>
 </template>
 
 <script>
   import Dialog from '../../Dialog/Dialog';
   import Button from '../../Button/Button';
-  import { VueCropper } from 'vue-cropper';
+  import { vueCropper } from 'vue-cropper';
   export default {
-    name: 'vue-cropper-dialog',
+    name: 'cropper-dialog',
+
     components: {
-      VueCropper,Dialog, Button
+      vueCropper,Dialog, Button
     },
-    watch: {
-      visible(val){
-        this.showDialog = val;
+
+    data(){
+      return {
+        showDialog: this.visible
       }
     },
 
@@ -30,6 +32,11 @@
       close(){
         this.showDialog = false;
         this.$emit('update:visible', this.showDialog);
+      },
+
+      //转换状态
+      turnState(val){
+        this.showDialog = val;
       }
     }
   };
