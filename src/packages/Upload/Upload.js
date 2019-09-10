@@ -1,13 +1,18 @@
 import create from '../../create/create';
 import iconClass from '../Icon-class/Icon-class';
-import corpperDialog from './components/cropper-dialog';
 
 const uploadTypes = ['picture-single', 'picture-wall', 'file'];
 export default create({
   name: 'upload',
 
-  components: { iconClass, corpperDialog },
+  components: { iconClass },
 
+  data() {
+    return {
+      picSingleUrl: '',
+      childUpload: [],
+    };
+  },
 
   props: {
     value: [Array],
@@ -26,12 +31,11 @@ export default create({
     },
     data: {
       type: Object,
-      default: () => {
-      },
+      default: ()=>{}
     },
     name: {
       type: String,
-      default: 'file',
+      default: 'file'
     },
     action: { type: String }, //request url
     disabled: { type: Boolean, default: false },
@@ -47,7 +51,7 @@ export default create({
     fileType: {
       type: Array,
       default: function() {
-        return ['jpeg', 'jpg', 'png'];
+        return ['jpeg','jpg', 'png'];
       },
     },
     beforeUpload: Function,
@@ -57,20 +61,6 @@ export default create({
       type: Boolean,
       default: false,
     }, //照片墙超过后是否隐藏入口
-    //是否有截图功能
-    isCropper: {
-      type: Boolean,
-      default: false,
-    },
-  },
-
-  data() {
-    return {
-      picSingleUrl: '',
-      childUpload: [],
-      showCropperDialog: false, //是否展示截图的弹框
-      corpperFileUrl: ''
-    };
   },
 
   computed: {
@@ -100,7 +90,7 @@ export default create({
       this.setVal(val);
     },
 
-    childUpload() {
+    childUpload(){
       this.$emit('change');
     },
 
@@ -124,9 +114,9 @@ export default create({
     });
 
 
-    const mainUpload = h('el-upload',
+    return h('el-upload',
       {
-        'class': [this.hiddenEntrance],
+        'class': [this.recls([this.type]), this.hiddenEntrance],
         'ref': 'upload',
         'style': this.type === 'picture-single' && this.convert_style,
         'attrs': {
@@ -137,12 +127,10 @@ export default create({
           'headers': this.headers,
           'list-type': this.type === 'picture-wall' ? 'picture-card' : '',
           'with-credentials': true,
-          'auto-upload': !this.isCropper,
           'limit': this.limit,
           'show-file-list': this.type !== 'picture-single',
           'file-list': this.childUpload,
           'before-upload': this.beforeAvatarUpload,
-          'on-change': this.changeFile,
           'on-exceed': this.onExceed.bind(this),
           'on-success': this.onSuccess.bind(this),
           'on-error': this.onError.bind(this),
@@ -156,148 +144,125 @@ export default create({
         this.$slots.default,
       ],
     );
+  },
 
-    return (<div class={this.recls([this.type])}>
-      {mainUpload}
-      {
-        this.isCropper ? h(
-          `corpper-dialog`,
-          {
-            props: {
-              'fileUrl': this.corpperFileUrl,
-            },
-            on: {
-              ...this.$listeners,
-            },
-          },
-        ): null
-      }
-      </div>);
-      },
-
-      methods: {
-        //childUpload 设置值
-        setVal(val) {
-        if (val instanceof Array) {
+  methods: {
+    //childUpload 设置值
+    setVal(val) {
+      if (val instanceof Array) {
         this.childUpload = this.addAttribute(val);
         this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
       } else {
         throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
-        '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
-        '            \']\'');
+          '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
+          '            \']\'');
       }
-      },
+    },
 
-        // add  name和url
-        addAttribute(list) {
-        list.forEach((item) => {
+    // add  name和url
+    addAttribute(list) {
+      list.forEach((item) => {
         item.name = item.fileName;
         item.url = item.fileUrl;
       });
-        return list;
-      },
-
-        //list change
-        changeFile (file, fileList) {
-        // 弹出剪裁框，将当前文件设置为文件
-       console.log(new Blob(file.row), fileList);
-      },
+      return list;
+    },
 
 
-        /**
-         * image-type name handle (add 'image/')
-         * @param arr
-         * @returns {Array}
-         */
-        addImageType(arr) {
-        let n = arr.map(item => {
+    /**
+     * image-type name handle (add 'image/')
+     * @param arr
+     * @returns {Array}
+     */
+    addImageType(arr) {
+      let n = arr.map(item => {
         return 'image/' + item;
       });
-        return n;
-      },
+      return n;
+    },
 
-        //校验格式
-        beforeAvatarUpload(file) {
-        let type = file.type;
-        let imageTypeList = this.addImageType(this.fileType);
-        if (this.beforeUpload) {
+    //校验格式
+    beforeAvatarUpload(file) {
+      let type = file.type;
+      let imageTypeList = this.addImageType(this.fileType);
+      if (this.beforeUpload) {
         return this.beforeUpload(file);
       } else if (this.type !== 'file') {
         if (imageTypeList.indexOf(type) === -1) {
-        this.$message.error(`上传图片只能是${this.fileType.join(',')}格式!`);
-        return false;
+          this.$message.error(`上传图片只能是${this.fileType.join(',')}格式!`);
+          return false;
+        }
       }
-      }
-        else if (this.type === 'picture-single') {
+      else if (this.type === 'picture-single') {
         if (file.size / 1024 / 1024 > 3) {
-        return this.$message.error('上传图片大小不能超过3M');
+          return this.$message.error('上传图片大小不能超过3M');
+        }
       }
-      }
-        return true;
-      },
+      return true;
+    },
 
-        //图片成功
-        onSuccess(response, row) {
-        let val = response.resultData;
-        this.$emit('success', response);
-        if (val instanceof Array) {
+    //图片成功
+    onSuccess(response, row) {
+      let val = response.resultData;
+      this.$emit('success', response);
+      if (val instanceof Array) {
         let addAttributeVal = this.addAttribute(val);
         if (this.type === 'picture-single') {
-        this.childUpload = addAttributeVal;
-        this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
-      } else {
-        this.childUpload = this.childUpload.concat(addAttributeVal);
-      }
+          this.childUpload = addAttributeVal;
+          this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
+        } else {
+          this.childUpload = this.childUpload.concat(addAttributeVal);
+        }
         this.$emit('input', this.childUpload);
       } else {
         throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
-        '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
-        '            \']\'');
+          '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
+          '            \']\'');
       }
-      },
+    },
 
 
-        //error 图片上传失败
-        onError(err, file, fileList) {
-        this.$emit('error', err, file, fileList);
-      },
+    //error 图片上传失败
+    onError(err, file, fileList){
+      this.$emit('error', err, file, fileList);
+    },
 
-        //移除的钩子
-        onRemove(file, fileList) {
-        const uid = file.uid;
-        this.childUpload.forEach((item, index) => {
+    //移除的钩子
+    onRemove(file, fileList) {
+      const uid = file.uid;
+      this.childUpload.forEach((item, index) => {
         if (item.uid === uid) {
-        this.childUpload.splice(index, 1);
-      }
+          this.childUpload.splice(index, 1);
+        }
       });
-        this.$emit('input', this.childUpload);
-      },
+      this.$emit('input', this.childUpload);
+    },
 
-        // 文件超出个数限制时的钩子
-        onExceed(files, fileList) {
-        this.$emit('on-exceed');
-      },
+    // 文件超出个数限制时的钩子
+    onExceed(files, fileList) {
+      this.$emit('on-exceed');
+    },
 
 //删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除。
-        beforeRemoveFun(file, fileList) {
-        if (this.beforeRemove) {
+    beforeRemoveFun(file, fileList) {
+      if (this.beforeRemove) {
         return this.beforeRemove(file, fileList);
       }
-      },
+    },
 
-        /**
-         * 外暴方法 清空已上传的文件列表, 不支持在before-upload方法中调用
-         */
-        clearFiles() {
-        this.$refs.upload.clearFiles();
-      },
+    /**
+     * 外暴方法 清空已上传的文件列表, 不支持在before-upload方法中调用
+     */
+    clearFiles() {
+      this.$refs.upload.clearFiles();
+    },
 
-      },
+  },
 
-      created() {
-        this.setVal(this.value);
-      },
+  created() {
+    this.setVal(this.value);
+  },
 
-      mounted() {
-      },
-      });
+  mounted() {
+  },
+});
