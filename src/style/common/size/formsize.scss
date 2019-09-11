@@ -55,20 +55,21 @@ $height-ladder: 24px 28px 32px 36px 40px;
     @else if $block-type == 'select' or  $block-type == 'input-tag'{
       @include rb($size-name) {
         width: $w;
-        height: $h;
-        line-height: $h;
-        .el-select__tags{
-          margin-top: 1px;
-        }
-        &.ns-select--auto_height{
-          height: auto;
-          .el-select__tags{
-            margin-top: 0;
-          }
-        }
+        //height: $h;
+        //line-height: $h;
+        //.el-select__tags{
+        //  margin-top: 1px;
+        //}
+        //@include rb($block-type + --auto_height){
+        //  height: auto;
+        //  .el-select__tags{
+        //    margin-top: 0;
+        //  }
+        //  .el-input input{
+        //    min-height: $h;
+        //  }
+        //}
       }
-      @include input-inner();
-      @include icon-inner();
     }
 
       //其他

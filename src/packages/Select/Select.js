@@ -17,7 +17,6 @@ export default create({
       default: () => ([]),
     },
     width: [String, Number],
-    height: [String, Number],
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
     name: { type: String },
@@ -45,15 +44,7 @@ export default create({
       return this.recls([this.formsize, this.multiple && !this.collapseTags && 'auto_height']);
     },
     convert_style() {
-      return (this.multiple && !this.collapseTags) ? {
-        width: this.convert_width,
-        minHeight: this.convert_height,
-        lineHeight: this.convert_height,
-      } : {
-        width: this.convert_width,
-        height: this.convert_height,
-        lineHeight: this.convert_height,
-      };
+      return { width: this.convert_width }
     },
   },
 
@@ -77,6 +68,7 @@ export default create({
     return (
       <el-select
         class={this.reClass}
+        size="small"
         value={this.childSelect}
         onInput={e => this.handleModel(e)}
         onChange={this.change.bind(this)}

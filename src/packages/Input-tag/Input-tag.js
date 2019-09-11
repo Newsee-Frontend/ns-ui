@@ -18,8 +18,7 @@ export default create({
       type: Array,
       default: () => ([]),
     },
-    width: [String, Number],
-    height: { type: [String, Number], default: 32 },
+    width: [String, Number],   //select 不对外暴露高度设置
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
     name: { type: String },
@@ -38,7 +37,7 @@ export default create({
   computed: {
     reClass() {
       return [
-        ...this.recls([this.formsize, 'multiple', this.prefixIcon ? 'prefix' : '', this.suffixIcon ? 'suffix' : '']),
+        ...this.recls([this.formsize, 'multiple', this.prefixIcon ? 'prefix' : '', this.suffixIcon ? 'suffix' : '', this.collapseTags? '' : 'auto_height']),
         ...[`${this.isFocus ? 'is-focus' : ''}`],
         ...[`${this.isHover ? 'is-hover' : ''}`],
         'form-element__pseudo',
@@ -46,9 +45,7 @@ export default create({
     },
     convert_style() {
       return {
-        width: this.convert_width,
-        minHeight: this.convert_height,
-        lineHeight: this.convert_height,
+        width: this.convert_width
       };
     },
   },
@@ -85,6 +82,7 @@ export default create({
         <el-select
           value={this.childSelect}
           onInput={e => this.handleModel(e)}
+          size="small"
           onChange={this.change.bind(this)}
           onVisible-change={this.visibleChange.bind(this)}
           onRemove-tag={this.removeTag.bind(this)}

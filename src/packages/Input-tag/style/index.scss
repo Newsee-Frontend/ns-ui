@@ -13,6 +13,7 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
   position: relative;
   box-sizing: border-box;
   z-index: 1;
+  line-height: normal;
   @include form-component-size(input-tag);
 
   //有头部图标

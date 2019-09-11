@@ -23,6 +23,15 @@
           :prefixIcon="prefixIcon"
           @iconClick="iconClick"
         ></ns-input-tag>
+        <div class="gap"></div>
+        <ns-input-tag
+          v-model="inputModel1"
+          size="normal"
+          collapseTags
+          :options="optionsDataTemplate"
+          :prefixIcon="prefixIcon"
+          @iconClick="iconClick"
+        ></ns-input-tag>
       </template>
     </demo-block>
 
@@ -87,11 +96,11 @@
         }
       };
       return {
-        inputModel1: [3, 4],
+        inputModel1: [3, 4, 5, 6],
         inputModel2: [3, 4, 5],
         inputModel3: [1, 2, 3, 4, 5, 7],
         formData: {
-          inputModel4: [6],
+          inputModel4: [6,7],
         },
 
         prefixIcon: 'daohang', //输入框头部图标
