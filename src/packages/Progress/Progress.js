@@ -34,7 +34,7 @@ export default create({
     },
     //进度条背景色（会覆盖 status 状态颜色）
     color: {
-      type: String
+      type: [Function, String, Array]
     },
     //环形进度条画布宽度（只在 type=circle 时可用）
     width: {

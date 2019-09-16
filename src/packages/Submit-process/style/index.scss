@@ -1,0 +1,19 @@
+@import '../../../style/mixins/mixins';
+
+@include b(submit-progress) {
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 2017;
+
+  .ns-progress{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    &.el-progress--line{
+      width: 800px;
+    }
+    .el-progress__text{
+      color: #fff;
+    }
+  }
+}

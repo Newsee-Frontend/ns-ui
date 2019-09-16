@@ -55,6 +55,7 @@ import Screenfull from '../../../src/packages/Screenfull/Screenfull';
 //data
 import Badge from '../../../src/packages/Badge/Badge.js';
 import Progress from '../../../src/packages/Progress/Progress.js';
+import SubmitProcess from '../../../src/packages/Submit-process/Submit-process.js';
 import Tree from '../../../src/packages/Tree/Tree.js';
 import Pagination from '../../../src/packages/Pagination/Pagination';
 import Table from '../../../src/packages/Table/Table.js';
@@ -112,6 +113,7 @@ Vue.component('ns-input-tag',InputTag)
 // data
 Vue.component('ns-badge', Badge);
 Vue.component('ns-progress', Progress);
+Vue.component('ns-submit-progress', SubmitProcess);
 Vue.component('ns-tree', Tree);
 Vue.component('ns-pagination', Pagination);
 Vue.component('ns-table', Table);
@@ -183,6 +185,7 @@ import '../../../src/packages/Form/style/index.scss';
 import '../../../src/packages/Tree/style/index.scss';
 import '../../../src/packages/Pagination/style/index.scss';
 import '../../../src/packages/Table/style/index.scss';
+import '../../../src/packages/Submit-process/style/index.scss';
 
 //navigation
 import '../../../src/packages/Step/style/index.scss';
