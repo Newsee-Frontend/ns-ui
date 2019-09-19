@@ -1,0 +1,11 @@
+@import '../../../style/mixins/mixins';
+
+@include b(upload-cropper) {
+  display: inline-block;
+}
+
+.cropper-dialog .cropper {
+  margin: auto;
+  height: 550px;
+  width: 100%;
+}

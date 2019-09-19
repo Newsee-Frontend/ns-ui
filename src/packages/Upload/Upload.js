@@ -61,6 +61,14 @@ export default create({
       type: Boolean,
       default: false,
     }, //照片墙超过后是否隐藏入口
+    autoUpload: {
+      type: Boolean,
+      default: true   //是否立即上传
+    },
+    onChange: {
+      type: Function,
+      default: ()=>{}
+    }
   },
 
   computed: {
@@ -130,10 +138,12 @@ export default create({
           'limit': this.limit,
           'show-file-list': this.type !== 'picture-single',
           'file-list': this.childUpload,
+          'auto-upload': this.autoUpload,
           'before-upload': this.beforeAvatarUpload,
           'on-exceed': this.onExceed.bind(this),
           'on-success': this.onSuccess.bind(this),
           'on-error': this.onError.bind(this),
+          'on-change': this.onChange.bind(this),
           'before-remove': this.beforeRemoveFun.bind(this),
           'on-remove': this.onRemove.bind(this),
         },

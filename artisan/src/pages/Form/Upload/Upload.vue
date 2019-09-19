@@ -2,7 +2,7 @@
 <template>
   <div class="upload-wrapper">
     <demo-block>
-      <template slot="title">上传控件 - Upload type为 singlePicture</template>
+      <template slot="title">上传控件 - Upload type为 picture-single</template>
       <template slot="describe">单张照片， 用于头像上传</template>
       <template slot="content">
         <ns-upload
@@ -18,12 +18,12 @@
     </demo-block>
 
     <demo-block>
-      <template slot="title">上传控件 - Upload type为 pictureWall</template>
+      <template slot="title">上传控件 - Upload type为 picture-wall</template>
       <template slot="describe">照片墙</template>
       <template slot="content">
         <ns-upload
           v-model="childItemWall"
-          type="pictureWall"
+          type="picture-wall"
           :limit="2"
           exceedLimitHiddenEntrance
           :action="dynamicUrl"
@@ -32,14 +32,13 @@
       </template>
     </demo-block>
 
-
     <demo-block>
-      <template slot="title">上传控件 - Upload type为 otherFileList</template>
+      <template slot="title">上传控件 - Upload type为 file</template>
       <template slot="describe">文件上传</template>
       <template slot="content">
         <ns-upload
           v-model="childItemOther"
-          type="otherFileList"
+          type="file"
           :action="dynamicUrl"
           :limit="3"
           :beforeRemove="beforeRemove"
@@ -48,12 +47,33 @@
         </ns-upload>
       </template>
     </demo-block>
+
+    <demo-block>
+      <template slot="title">带截图功能的上传图片</template>
+      <template slot="describe">
+        <div>fixedNumber: 控制截图大小</div>
+        <div>outputCropType: 输出格式</div>
+      </template>
+      <template slot="content">
+        <ns-upload-cropper v-model="childItemCropper"
+                           @upload="uploadPic"
+                           :fixedNumber="[100,100]"
+                           outputCropType="blob"
+                           @uploadImg="uploadImg"
+                           type="picture-single"></ns-upload-cropper>
+
+        <div class="cropper" style="width: 150px; height: 150px">
+          <!--<vueCropper ref="cropper"></vueCropper>-->
+        </div>
+      </template>
+    </demo-block>
   </div>
 </template>
 
 <script>
   export default {
     name: '',
+
     data() {
       return {
         dynamicUrl: 'http://192.168.1.75/api/fastdfs/fastdfs/uploadFile',
@@ -64,6 +84,8 @@
             fileUrl: 'http://oa.new-see.com/upload/file/public/upload/file/public/201705/IMG_0680201705230907560.JPG',
           }
         ],
+
+        childItemCropper: [],
       };
     },
 
@@ -74,6 +96,14 @@
 
       beforeRemove(){
         return false;
+      },
+
+      uploadPic(data){
+        console.log(data);
+      },
+
+      uploadImg(img){
+        console.log(img,'uploadImguploadImguploadImguploadImguploadImguploadImg');
       }
     }
   };

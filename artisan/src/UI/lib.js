@@ -29,6 +29,7 @@ import Radio from '../../../src/packages/Radio/Radio.js';
 import Switch from '../../../src/packages/Switch/Switch.js';
 import Slider from '../../../src/packages/Slider/Slider.js';
 import Upload from '../../../src/packages/Upload/Upload.js';
+import UploadCropper from '../../../src/packages/Upload-cropper/Upload-cropper.js';
 import TreeSelect from '../../../src/packages/Select-tree/Select-tree.js';
 import Avatar from '../../../src/packages/Avatar/Avatar.js';
 import ColorPicker from '../../../src/packages/ColorPicker/ColorPicker.js';
@@ -102,12 +103,13 @@ Vue.component('ns-radio', Radio);
 Vue.component('ns-switch', Switch);
 Vue.component('ns-slider', Slider);
 Vue.component('ns-upload', Upload);
+Vue.component('ns-upload-cropper', UploadCropper);
 Vue.component('ns-select-tree', TreeSelect);
 Vue.component('ns-color-picker', ColorPicker);
 Vue.component('ns-avatar', Avatar);
 Vue.component('ns-form', Form);
 Vue.component('ns-form-item', FormItem);
-Vue.component('ns-input-tag',InputTag)
+Vue.component('ns-input-tag',InputTag);
 
 
 // data
@@ -123,7 +125,7 @@ Vue.component('ns-steps', Steps);
 Vue.component('ns-step', Step);
 Vue.component('ns-tabs', Tabs);
 Vue.component('ns-tab-pane', TabPane);
-Vue.component('ns-dropdown', Dropdown)
+Vue.component('ns-dropdown', Dropdown);
 
 // other
 Vue.component('ns-page-tabs', PageTabs);
@@ -176,6 +178,7 @@ import '../../../src/packages/Checkbox/style/index.scss';
 import '../../../src/packages/Radio/style/index.scss';
 import '../../../src/packages/Switch/style/index.scss';
 import '../../../src/packages/Upload/style/index.scss';
+import '../../../src/packages/Upload-cropper/style/index.scss';
 import '../../../src/packages/Select-tree/style/index.scss';
 import '../../../src/packages/ColorPicker/style/index.scss';
 import '../../../src/packages/Avatar/style/index.scss';

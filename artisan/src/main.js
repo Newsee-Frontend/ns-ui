@@ -10,6 +10,7 @@ import './UI/index';
 
 Vue.use(mount);
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
