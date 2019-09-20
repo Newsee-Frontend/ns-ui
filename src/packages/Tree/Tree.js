@@ -86,6 +86,7 @@ export default create({
           scoped={this.checkStrictly}
           draggable={this.draggable}
           dropJudge={this.dropJudge}
+          selectAlone={true}  //check 和  select 不相干
           tpl={tpl.bind(this)}
           multiple={this.multiple}
           radio={!this.multiple}
@@ -190,7 +191,6 @@ export default create({
      * 外暴方法，获取check节点
      */
     getCheckedNodes: function() {
-      console.log(this.data);
       return this.$refs.tree.getCheckedNodes();
     },
 
