@@ -746,12 +746,9 @@
     to-fast-properties "^2.0.0"
 
 "@cx-ui-design-test1/cx-builder-test1@^0.0.3":
-  version "0.0.2"
-  resolved "https://registry.npm.taobao.org/@cx-ui-design-test1/cx-builder-test1/download/@cx-ui-design-test1/cx-builder-test1-0.0.2.tgz#696ff4fbc2dae61975913a0a294412ba7a2852dd"
-  integrity sha1-aW/0+8La5hl1kToKKUQSunooUt0=
-  dependencies:
-    bootstrap "^4.2.1"
-    jquery "^3.3.1"
+  version "0.0.3"
+  resolved "https://registry.npmjs.org/@cx-ui-design-test1/cx-builder-test1/-/cx-builder-test1-0.0.3.tgz#58e98198083a6d6b2adb06eee71e0f5ceaab8665"
+  integrity sha512-SLkt1kZcqhsDsgR7Zsel2AclCvKOVPOJJNFJHEN/919BJmxxBh5U2QkE/2UHjrzpNU50z8b/FA+xBixLZ6ldfw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1709,11 +1706,6 @@ boolbase@^1.0.0, boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/boolbase/download/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
-
-bootstrap@^4.2.1:
-  version "4.3.1"
-  resolved "https://registry.npm.taobao.org/bootstrap/download/bootstrap-4.3.1.tgz#280ca8f610504d99d7b6b4bfc4b68cec601704ac"
-  integrity sha1-KAyo9hBQTZnXtrS/xLaM7GAXBKw=
 
 brace-expansion@^1.0.0, brace-expansion@^1.1.7:
   version "1.1.11"
@@ -5807,11 +5799,6 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.npm.taobao.org/isstream/download/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
-
-jquery@^3.3.1:
-  version "3.4.1"
-  resolved "https://registry.npm.taobao.org/jquery/download/jquery-3.4.1.tgz#714f1f8d9dde4bdfa55764ba37ef214630d80ef2"
-  integrity sha1-cU8fjZ3eS9+lV2S6N+8hRjDYDvI=
 
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.5.1"
