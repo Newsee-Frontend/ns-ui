@@ -12,7 +12,7 @@ const Table = {
   },
   actions: {
     generateTableHead({ commit }, query) {
-      return listColumnService({ funcId: 'funcId' }, query).then(res => {
+      return listColumnService(query).then(res => {
         const head = res.resultData.columns || [];
         console.log('请求到的表头数据：');
         console.log(head);
