@@ -13,10 +13,16 @@ export const dataRouter = [
         name: 'Table 表格',
       },
       {
-        path: 'table-layout',
-        component: () => import('../../pages/Data/Table/Table-layout'),
-        meta: { auth: true, key: 'table-layout' },
-        name: '表格标准页',
+        path: 'normal-table-layout',
+        component: () => import('../../pages/Data/Table/Table-layout-normal'),
+        meta: { auth: true, key: 'table-layout-normal' },
+        name: '常规表格标准页',
+      },
+      {
+        path: 'form-table-layout',
+        component: () => import('../../pages/Data/Table/Table-layout-form'),
+        meta: { auth: true, key: 'table-layout-form' },
+        name: '表单表格标准页',
       },
       {
         path: 'badge',
