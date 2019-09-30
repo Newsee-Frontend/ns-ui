@@ -86,7 +86,7 @@
           otherConditions: {},
           organizationId: 1,
           totalType: 1,
-          mockType: null,
+          mockType: 'form',
         },
         showAddRowOperation: true,
         showHeadOperation: true,
