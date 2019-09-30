@@ -2,14 +2,13 @@ import fetch from '@/fetch/fetch';
 import { dataFilter } from '@/fetch/fetchDataType';
 
 
-export const listColumnService = (head, query) => {
-  dataFilter(query);
+export const listColumnService = head => {
+  dataFilter(head);
 
   return fetch({
     url: '/system/column/list-column',
     method: 'get',
     headers: head,
-    param: query,
   });
 };
 
