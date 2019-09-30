@@ -271,11 +271,19 @@ const navmenu = (req, res) => {
             hide: 1,
           },
           {
-            funcId: 'table-layout',
-            menuLabel: 'table表格标准页',
-            menuRouter: 'table-layout',
+            funcId: 'normal-table-layout',
+            menuLabel: '常规表格标准页',
+            menuRouter: 'normal-table-layout',
             menuIcon: null,
             menuIndex: 2,
+            hide: 1,
+          },
+          {
+            funcId: 'form-table-layout',
+            menuLabel: '表单表格标准页',
+            menuRouter: 'form-table-layout',
+            menuIcon: null,
+            menuIndex: 3,
             hide: 1,
           },
           {
@@ -283,7 +291,7 @@ const navmenu = (req, res) => {
             menuLabel: '标记',
             menuRouter: 'badge',
             menuIcon: null,
-            menuIndex: 3,
+            menuIndex: 4,
             hide: 1,
           },
           {
@@ -291,7 +299,7 @@ const navmenu = (req, res) => {
             menuLabel: '进度条',
             menuRouter: 'progress',
             menuIcon: null,
-            menuIndex: 4,
+            menuIndex: 5,
             hide: 1,
           },
           {
@@ -299,7 +307,7 @@ const navmenu = (req, res) => {
             menuLabel: 'Tree树形控件',
             menuRouter: 'tree',
             menuIcon: null,
-            menuIndex: 5,
+            menuIndex: 6,
             hide: 1,
           },
           {
@@ -307,7 +315,7 @@ const navmenu = (req, res) => {
             menuLabel: 'pagination分页',
             menuRouter: 'pagination',
             menuIcon: null,
-            menuIndex: 6,
+            menuIndex: 7,
             hide: 1,
           },
         ],
