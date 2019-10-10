@@ -16,6 +16,7 @@ export default {
   mixins: [refer, column, checkOperation],
   data() {
     return {
+
       summaryCommand: 'current',//合计模块控制指令
       settingState: {
         setting: false,
@@ -109,7 +110,7 @@ export default {
       <div>
         <el-table
           ref={'el-table'}
-          data={this.data} border={this.border}
+          data={this.freezeData} border={this.border}
           max-height={this.height} height={this.height}
           show-summary={this.showSummary}
           summary-method={this.summaryMethod}
@@ -211,6 +212,28 @@ export default {
       this.$emit('delete-current-row', index, row);
     },
   },
+
+
+  computed: {
+    freezeData() {
+      return this.isFormTable ? this.data : Object.freeze(this.data);
+    },
+  },
+
+  // watch: {
+  //   data: {
+  //     handler: function handler(newValue, oldValue) {
+  //       this.freezeData = newValue;
+  //     },
+  //     deep: true,
+  //     immediate: true,
+  //   },
+  // },
+
+  created() {
+
+  },
+
   beforeDestroy() {
     this.settingState = null;
   },
