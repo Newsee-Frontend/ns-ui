@@ -109,12 +109,12 @@
     }
   }
 
-  .all-close {
+  .operate-slot {
     float: right;
     height: 100%;
     line-height: $tabs-height;
     cursor: pointer;
-    i {
+    .operate-slot-icon {
       color: $tabs-allClose_color;
       font-size: 1.2em;
       &:hover {
