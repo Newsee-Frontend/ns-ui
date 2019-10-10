@@ -28,6 +28,7 @@ export default create({
   render(h) {
     return (
       <ul class={this.recls({ show: this.visitedView.length })}>
+
         {Array.from(this.visitedView).map((tag, i) => [
           <li class={['tab-tag', { 'tag-active': this.isActive(tag.path) }]} key={tag.path}>
             <el-tag
@@ -48,11 +49,18 @@ export default create({
             </el-tag>
           </li>,
         ])}
-        {this.visitedView.length ? (
-          <div class={'all-close'} on-click={this.closeAllViewTabs}>
-            <icon-class icon-class={'close-all'}/>
+
+        {
+          <div class={'operate-slot'}>
+            {
+              this.$slots['operate'] ?
+                <div slot="operate">{this.$slots['operate']}</div> :
+                this.visitedView.length ? (
+                  <icon-class icon-class={'close-all'} class={'operate-slot-icon'} on-click={this.closeAllViewTabs}/>
+                ) : null
+            }
           </div>
-        ) : null}
+        }
       </ul>
     );
   },
