@@ -2,7 +2,7 @@ import create from '../../create/create';
 
 import { sizeValidator } from '../../utils/props/validator';
 
-const _dialogtype = ['normal', 'simple', 'noFooter', 'noHeader', 'autoHeight'];
+const _dialogtype = ['normal', 'simple', 'noFooter', 'noHeader'];
 
 export default create({
   name: 'dialog',
@@ -22,6 +22,7 @@ export default create({
         return _dialogtype.includes(t);
       },
     }, //类型（'normal','simple','noFooter','noHeader','autoHeight'）
+    autoHeight: { type: Boolean, default: false },//是否自动高度（对话框内容部分由内容撑开)
     size: {
       type: String,
       validator: s => sizeValidator(s),
@@ -54,13 +55,21 @@ export default create({
     dialogWidth() {
       return this.width || this.sizeMap[this.size];
     },
+    dialogClass() {
+      const cls = [this.type];
+
+      if (this.autoHeight) {
+        cls.push('autoHeight');
+      }
+      return this.recls(cls);
+    },
   },
   render(h) {
     return (
       h(
         `el-dialog`,
         {
-          class: this.recls([this.type]),
+          class: this.dialogClass,
           props: {
             'custom-class': this.customClass,
             visible: this.show,
