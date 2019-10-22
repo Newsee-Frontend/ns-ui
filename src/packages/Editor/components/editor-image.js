@@ -47,7 +47,7 @@ export default {
           ref={'editor-image-dialog'}
           custom-class={'editor-image-dialog'}
           title={'上传'}
-          type={'autoHeight'}
+          autoHeight={true}
           size={'small'}
           modal={false}
           on-close={this.dialogClose}
