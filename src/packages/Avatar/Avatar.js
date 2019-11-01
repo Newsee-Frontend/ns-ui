@@ -3,10 +3,10 @@ export default create({
   name: 'avatar',
 
   props: {
-    type: { type: String, default: 'normal' },//round 或 normal
+    type: { type: String, default: 'normal' }, //round 或 normal
     width: { type: [Number, String] },
     height: { type: [Number, String] },
-    borderRadius: { type: String },    // 控制头像的border-Redius，type 为 round 则失效
+    borderRadius: { type: String }, // 控制头像的border-Redius，type 为 round 则失效
     dynamicSrc: { type: String, default: null },
   },
 
@@ -25,20 +25,16 @@ export default create({
   render(h) {
     return (
       <div
-        class={this.recls({ 'round': this.isRound })}
+        class={this.recls({ round: this.isRound })}
         style={this.avatarStyle}
         on-click={this.click}
       >
-        <img
-          src={this.dynamicSrc}
-          alt="avatar"
-        />
+        <img src={this.dynamicSrc} alt="avatar" />
       </div>
     );
   },
 
-  created(){
-  },
+  created() {},
 
   methods: {
     click() {
