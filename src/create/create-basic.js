@@ -10,7 +10,6 @@ import namespace from '../mixins/namespace';
 import i18n from '../utils/i18n';
 import recls from '../mixins/recls';
 
-
 /**
  * component install
  * @param Vue
