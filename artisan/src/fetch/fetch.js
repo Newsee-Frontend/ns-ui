@@ -24,7 +24,7 @@ service.interceptors.request.use(
   },
   error => {
     Promise.reject(error);
-  },
+  }
 );
 
 service.interceptors.response.use(
@@ -41,7 +41,7 @@ service.interceptors.response.use(
     Message({ message: error.resultMsg, type: 'error', duration: 2000 }); //throw message error
     let errorInfo = error.data.error ? error.data.error.message : error.data;
     return Promise.reject(errorInfo);
-  },
+  }
 );
 
 export default service;
