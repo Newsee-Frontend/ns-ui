@@ -5,4 +5,3 @@ export default {
   log: false, //log information show
   ui_extends: [],
 };
-
