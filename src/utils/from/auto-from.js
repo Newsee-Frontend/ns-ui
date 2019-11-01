@@ -1,5 +1,4 @@
-import { judgeType } from '../index'
-
+import { judgeType } from '../index';
 
 /**
  * convert width / height - units
@@ -7,7 +6,7 @@ import { judgeType } from '../index'
  * @param type
  * @returns {*}
  */
-export const convertUnits = function(val){
+export const convertUnits = function(val) {
   if (val || val === 0) {
     if (judgeType(val) === 'number') {
       return val + 'px';
@@ -16,9 +15,7 @@ export const convertUnits = function(val){
     } else {
       throw 'the value of the units must be string or number format ，you better find it';
     }
-  }else{
+  } else {
     throw 'the value is empty, please check you code';
   }
 };
-
-
