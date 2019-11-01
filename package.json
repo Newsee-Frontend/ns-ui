@@ -1,6 +1,6 @@
 {
   "name": "neap-ui",
-  "version": "0.0.1-21",
+  "version": "0.0.1-22",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -24,6 +24,12 @@
     "release": "./build/release.sh",
     "create:template": "./script/createTem/create.sh"
   },
+  "files": [
+    "es",
+    "lib",
+    "package",
+    "README"
+  ],
   "license": "ISC",
   "dependencies": {
     "@riophae/vue-treeselect": "^0.0.38",
@@ -32,24 +38,24 @@
     "crypto-js": "^3.1.9-1",
     "cx-theme": "^1.0.5",
     "easings-css": "^1.0.0",
-    "element-ui": "^2.7.0",
     "fuzzysearch": "^1.0.3",
     "is-promise": "^2.1.0",
     "js-cookie": "^2.1.4",
     "lodash": "^4.0.0",
     "material-colors": "^1.2.6",
-    "mockjs": "^1.0.1-beta3",
     "particles.js": "^2.0.0",
     "screenfull": "^4.2.0",
     "svg-sprite-loader": "^4.1.6",
     "tinymce": "^5.0.6",
-    "vue": "2.5.21",
     "vue-cropper": "^0.4.9",
     "vue-virtual-scroll-list": "^1.4.2",
     "vuedraggable": "^2.14.1",
     "watch-size": "^2.0.0"
   },
   "devDependencies": {
+    "vue": "2.5.21",
+    "mockjs": "^1.0.1-beta3",
+    "element-ui": "^2.7.0",
     "@babel/polyfill": "^7.4.3",
     "@cx-ui-design-test1/cx-builder-test1": "^0.0.3",
     "@vant/compiler": "^1.0.0",
