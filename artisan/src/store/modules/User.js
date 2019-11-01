@@ -5,7 +5,6 @@ import { oauthlogin } from '../../service/User';
 
 import $store from '@/store/index';
 
-
 const lifetime = 0;
 const cookieName = 'userInfo';
 const cookieKey = 'userPass';
@@ -18,8 +17,8 @@ const cookieKey = 'userPass';
 function _deCryptoUserInfo() {
   return Cookies.get(cookieName)
     ? JSON.parse(
-      CryptoJS.AES.decrypt(Cookies.get(cookieName), cookieKey).toString(CryptoJS.enc.Utf8),
-    )
+        CryptoJS.AES.decrypt(Cookies.get(cookieName), cookieKey).toString(CryptoJS.enc.Utf8)
+      )
     : {};
 }
 
@@ -51,12 +50,7 @@ const User = {
       state.userinfo.themeColor = data.themeColor;
 
       //cookie store - token info
-      cryptoCookie(
-        cookieName,
-        state.userinfo,
-        cookieKey,
-        lifetime,
-      );
+      cryptoCookie(cookieName, state.userinfo, cookieKey, lifetime);
     },
     LOGOUT: () => {
       Cookies.remove('token');
@@ -69,21 +63,19 @@ const User = {
   actions: {
     oauthlogin({ commit }, query) {
       oauthlogin(query).then(res => {
-
         const userinfo = res.resultData || [];
 
         commit('SET_LOGIN_DATA', userinfo);
       });
     },
 
-    updateLoginData({commit}, query) {
+    updateLoginData({ commit }, query) {
       commit('SET_LOGIN_DATA', query);
     },
 
     LogOut({ commit }) {
       commit('LOGOUT');
     },
-
   },
 };
 
