@@ -17,7 +17,6 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   modules: {
-
     User,
     Drawer,
     Sidebar,
