@@ -46,14 +46,7 @@ export default create({
   watch: {},
 
   render(h) {
-    let {
-      title,
-      type,
-      closable,
-      description,
-      showIcon,
-      closeText,
-    } = this;
+    let { title, type, closable, description, showIcon, closeText } = this;
     return (
       <el-alert
         class={this.recls()}
@@ -64,8 +57,7 @@ export default create({
         showIcon={showIcon}
         closeText={closeText}
         onClose={this.close.bind(this)}
-      >
-      </el-alert>
+      ></el-alert>
     );
   },
 
