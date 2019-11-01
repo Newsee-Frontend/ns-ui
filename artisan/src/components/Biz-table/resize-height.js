@@ -8,7 +8,7 @@ export default {
   },
   props: {
     autoResize: { type: Boolean, default: true }, //表格高度是否自适应窗口变化
-    customHeight: { type: Number, default: 300 },//自定义表格高度
+    customHeight: { type: Number, default: 300 }, //自定义表格高度
   },
   methods: {
     /**
@@ -37,8 +37,7 @@ export default {
       addEventHandler(window, 'resize', () => {
         this.height = this.getAutoResizeHeight();
       });
-    }
-    else {
+    } else {
       //需要使用者自行定义高度
       this.height = this.customHeight;
     }
