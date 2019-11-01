@@ -14,7 +14,6 @@ import Row from '../../../src/packages/Row/Row';
 import Button from '../../../src/packages/Button/Button';
 import ButtonGroup from '../../../src/packages/Button-group/Button-group';
 
-
 //form
 import Input from '../../../src/packages/Input/Input.js';
 import InputNumber from '../../../src/packages/InputNumber/InputNumber.js';
@@ -36,7 +35,6 @@ import ColorPicker from '../../../src/packages/ColorPicker/ColorPicker.js';
 import Form from '../../../src/packages/Form/Form.js';
 import FormItem from '../../../src/packages/Form-item/Form-item.js';
 import InputTag from '../../../src/packages/Input-tag/Input-tag.js';
-
 
 //other
 import PageTabs from '../../../src/packages/PageTabs/PageTabs.js';
@@ -72,7 +70,6 @@ import Dropdown from '../../../src/packages/Dropdown/Dropdown.js';
 import Alert from '../../../src/packages/Alert/Alert.js';
 
 import LoadingBlock from '../../../src/packages/Loading-block/Loading-block.js';
-
 
 // layout
 Vue.component('ns-layout', Layout);
@@ -111,7 +108,6 @@ Vue.component('ns-form', Form);
 Vue.component('ns-form-item', FormItem);
 Vue.component('ns-input-tag', InputTag);
 
-
 // data
 Vue.component('ns-badge', Badge);
 Vue.component('ns-progress', Progress);
@@ -146,7 +142,6 @@ Vue.component('ns-video-background', VideoBackground);
 //notice
 Vue.component('ns-alert', Alert);
 Vue.component('ns-loading-block', LoadingBlock);
-
 
 //icons
 import '../../../src/style/base.scss';
