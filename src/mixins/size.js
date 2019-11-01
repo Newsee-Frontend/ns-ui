@@ -1,7 +1,6 @@
 import config from '../config/config';
 import convertunits from '../utils/from/convertunits';
 
-
 export const size = {
   computed: {
     formsize() {
@@ -14,7 +13,6 @@ export const size = {
     },
   },
 };
-
 
 export const width = {
   computed: {
@@ -33,4 +31,3 @@ export const height = {
     },
   },
 };
-
