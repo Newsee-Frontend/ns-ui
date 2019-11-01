@@ -12,6 +12,12 @@ export const navigationRouter = [
         meta: { auth: true, key: 'alert' },
         name: 'alert',
       },
+      {
+        path: 'message',
+        component: () => import('../../pages/Notice/Message/Message'),
+        meta: { auth: true, key: 'message' },
+        name: 'message',
+      },
 
       {
         path: 'loading-block',
