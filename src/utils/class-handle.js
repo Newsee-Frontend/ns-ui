@@ -26,9 +26,6 @@ export const addClass = (elements, cName) => {
  */
 export const removeClass = (elements, cName) => {
   if (hasClass(elements, cName)) {
-    elements.className = elements.className.replace(
-      new RegExp('(\\s|^)' + cName + '(\\s|$)'),
-      ' ',
-    ); // replace方法是替换
+    elements.className = elements.className.replace(new RegExp('(\\s|^)' + cName + '(\\s|$)'), ' '); // replace方法是替换
   }
 };
