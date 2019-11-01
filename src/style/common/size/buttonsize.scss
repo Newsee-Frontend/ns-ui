@@ -16,27 +16,27 @@ $--button-radius: 3px 3px 3px 4px 4px;
     $fs: nth($--button-frontsize, $i);
     $r: nth($--button-radius, $i);
 
-    @include rb($size-name){
-      @if $block-type == 'dropdown'{
-        .el-button{
+    @include rb($size-name) {
+      @if $block-type == 'dropdown' {
+        .el-button {
           padding: $ver $hor;
-          &.el-dropdown__caret-button{
+          &.el-dropdown__caret-button {
             padding: $ver 5px;
           }
         }
-      }@else {
+      } @else {
         @include base-style-change($hor, $ver, $fs, $r);
       }
     }
   }
 }
 
-@mixin base-style-change($horizontal, $vertical,$frontsize,$radius) {
+@mixin base-style-change($horizontal, $vertical, $frontsize, $radius) {
   padding: $vertical $horizontal;
   font-size: $frontsize;
   border-radius: $radius;
   &.is-round {
-    border-radius: ($vertical*2+$frontsize+1*2)/2;
+    border-radius: ($vertical * 2 + $frontsize + 1 * 2)/2;
   }
   &.is-circle {
     border-radius: 50%;
