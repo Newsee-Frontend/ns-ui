@@ -63,7 +63,6 @@ const navmenu = (req, res) => {
             menuIndex: 4,
             hide: 1,
           },
-
         ],
       },
       {

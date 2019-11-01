@@ -23,14 +23,11 @@ const listDataDistribute = (req, res) => {
    */
   if (mockType === 'service-error') {
     list = {};
-  }
-  else if (mockType === 'no-result') {
+  } else if (mockType === 'no-result') {
     list = [];
-  }
-  else if (mockType === 'normal') {
+  } else if (mockType === 'normal') {
     list = normalTableData(total).slice((pageNum - 1) * pageSize, pageSize * pageNum);
-  }
-  else if (mockType === 'form') {
+  } else if (mockType === 'form') {
     list = formTableData(total).slice((pageNum - 1) * pageSize, pageSize * pageNum);
   }
 
@@ -40,12 +37,12 @@ const listDataDistribute = (req, res) => {
     restLog: null,
     resultData: {
       list: list,
-      'pageNum': 1,
-      'pageSize': 10,
-      'size': 10,
-      'total': total,
-      'nextPage': 2,
-      'lastPage': 8,
+      pageNum: 1,
+      pageSize: 10,
+      size: 10,
+      total: total,
+      nextPage: 2,
+      lastPage: 8,
     },
   });
 };
@@ -62,8 +59,7 @@ const listColumnDistribute = (req, res) => {
 
   if (mocktype === 'normal') {
     column = normalListColumn;
-  }
-  else if (mocktype === 'form') {
+  } else if (mocktype === 'form') {
     column = formlistColumn;
   }
 
@@ -85,9 +81,7 @@ const listColumnDistribute = (req, res) => {
   });
 };
 
-
 module.exports = {
   'GET /system/column/list-column': listColumnDistribute,
   'POST /system/table/table-data': listDataDistribute,
 };
-
