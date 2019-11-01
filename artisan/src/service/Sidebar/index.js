@@ -1,7 +1,6 @@
 import fetch from '@/fetch/fetch';
 import { dataFilter } from '@/fetch/fetchDataType';
 
-
 /**
  * role-side-bar
  * @param query

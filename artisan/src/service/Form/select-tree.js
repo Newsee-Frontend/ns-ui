@@ -1,7 +1,6 @@
 import fetch from '@/fetch/fetch';
 import { dataFilter } from '@/fetch/fetchDataType';
 
-
 /**
  * select tree service
  * @param query

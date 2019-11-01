@@ -1,7 +1,6 @@
 import fetch from '@/fetch/fetch';
 import { dataFilter } from '@/fetch/fetchDataType';
 
-
 export const listColumnService = head => {
   dataFilter(head);
 
@@ -11,7 +10,6 @@ export const listColumnService = head => {
     headers: head,
   });
 };
-
 
 export const tableDataService = data => {
   dataFilter(data);
@@ -23,7 +21,5 @@ export const tableDataService = data => {
       interceptorType: true, //当前页面是第二次进来的情况 && searchConditions 对象没有发生变化（用户没有操作分页或者更改任何查询条件）
     },
     data: data.query,
-
   });
 };
-

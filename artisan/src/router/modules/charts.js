@@ -65,7 +65,7 @@ export const chartsRouter = [
         component: () => import('../../pages/Charts/BarDoubleLineChart/BarDoubleLineChart'),
         meta: { auth: true, key: 'barDoubleLineChart' },
         name: '柱状双折线图',
-      }
+      },
     ],
   },
 ];

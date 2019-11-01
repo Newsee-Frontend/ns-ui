@@ -12,14 +12,12 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
     expanded: 'expanded',
     isHasChild: 'isHasChild',
     disabled: 'disabled',
-    checked: 'checked'
+    checked: 'checked',
   };
 
   let refer = Object.assign(addKeyRefer, keyRefer);
 
-
-  list.forEach((item) => {
-
+  list.forEach(item => {
     let newConfig = JSON.parse(JSON.stringify(config));
     //设置树对应的字段
     Object.keys(refer).forEach(key => {
@@ -31,15 +29,14 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
     vue.set(item, 'halfcheck', false);
 
     if (
-      (newConfig.expandedIndex > 0 && !(newConfig.lazy && item.isHasChild && item.children.length === 0))
-      || newConfig.expandAllNodes
+      (newConfig.expandedIndex > 0 &&
+        !(newConfig.lazy && item.isHasChild && item.children.length === 0)) ||
+      newConfig.expandAllNodes
     ) {
       vue.set(item, 'expanded', true);
-    }
-    else {
+    } else {
       vue.set(item, 'expanded', false);
     }
-
 
     if (item.children && item.children.length > 0) {
       if (newConfig.expandedIndex > -1) newConfig.expandedIndex--;
@@ -53,6 +50,5 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
   });
   return list;
 };
-
 
 export default transformKeyFun;

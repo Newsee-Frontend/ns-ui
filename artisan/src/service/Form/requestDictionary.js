@@ -39,9 +39,9 @@ const getOptionFromDictionary = (url, params) => {
   });
 };
 
-const getDynamicOptions = (url, queryData)=> {
+const getDynamicOptions = (url, queryData) => {
   let params = Object.assign({}, baseQuery, queryData);
-  return getOptionFromDictionary(url, params)
-}
+  return getOptionFromDictionary(url, params);
+};
 
 export default getDynamicOptions;
