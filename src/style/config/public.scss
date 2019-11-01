@@ -1,6 +1,5 @@
 @import '../mixins/clearfix';
 
-
 //---------- base color ----------
 $--color-black: #000; //纯黑
 $--color-text-primary: #333333; //重要文字
@@ -23,7 +22,6 @@ $--color-success: #16ca37;
 $--color-warning: #ffae00;
 $--color-danger: #ff5131;
 $--color-info: #0a7af8;
-
 
 //---- 内容部分 ----
 $head-module_back: #163c8f; //头部模块背景颜色
@@ -59,13 +57,11 @@ li {
   @include clearfix;
 }
 
-
 .oneline-ellipsis {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
 
 .disabled {
   &:hover {
@@ -101,4 +97,3 @@ li {
     }
   }
 }
-
