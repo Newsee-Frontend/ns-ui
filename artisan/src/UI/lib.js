@@ -70,8 +70,8 @@ import Dropdown from '../../../src/packages/Dropdown/Dropdown.js';
 
 //notice
 import Alert from '../../../src/packages/Alert/Alert.js';
-import LoadingBlock from '../../../src/packages/Loading-block/Loading-block.js';
 
+import LoadingBlock from '../../../src/packages/Loading-block/Loading-block.js';
 
 
 // layout
@@ -109,7 +109,7 @@ Vue.component('ns-color-picker', ColorPicker);
 Vue.component('ns-avatar', Avatar);
 Vue.component('ns-form', Form);
 Vue.component('ns-form-item', FormItem);
-Vue.component('ns-input-tag',InputTag);
+Vue.component('ns-input-tag', InputTag);
 
 
 // data
