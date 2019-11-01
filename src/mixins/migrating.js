@@ -44,8 +44,8 @@ export default {
     getMigratingConfig() {
       return {
         props: {},
-        events: {}
+        events: {},
       };
-    }
-  }
+    },
+  },
 };
