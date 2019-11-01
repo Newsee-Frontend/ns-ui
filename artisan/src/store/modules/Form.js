@@ -1,4 +1,7 @@
-import { optionsDataTemplateService, optionRemoteServiece } from '../../service/Form/options-data-template';
+import {
+  optionsDataTemplateService,
+  optionRemoteServiece,
+} from '../../service/Form/options-data-template';
 
 const Form = {
   state: {
@@ -17,9 +20,9 @@ const Form = {
       });
     },
 
-    getOptionRemote({commit}, data){
-      return optionRemoteServiece(data)
-    }
+    getOptionRemote({ commit }, data) {
+      return optionRemoteServiece(data);
+    },
   },
 };
 export default Form;
