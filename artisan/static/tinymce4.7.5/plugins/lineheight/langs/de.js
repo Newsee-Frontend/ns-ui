@@ -1,3 +1,3 @@
 tinymce.addI18n('de', {
-    "Line Height": "Zeilen Höhe"
+  'Line Height': 'Zeilen Höhe',
 });
