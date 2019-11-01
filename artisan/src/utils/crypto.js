@@ -57,7 +57,7 @@ export const cryptoCookie = (name, val, key, time) => {
 export const deCryptoCookie = (cookieName, cookieKey) => {
   return Cookies.get(cookieName)
     ? JSON.parse(
-      CryptoJS.AES.decrypt(Cookies.get(cookieName), cookieKey).toString(CryptoJS.enc.Utf8),
-    )
+        CryptoJS.AES.decrypt(Cookies.get(cookieName), cookieKey).toString(CryptoJS.enc.Utf8)
+      )
     : {};
 };
