@@ -40,10 +40,14 @@ const components = [
 ];
 
 const install = function (Vue, opts = {}) {
+
   //Former plug-in external param config
  const option = mergeOptions($Var, opts);
   Vue.prototype.$opts = option;
   Vue.$opts = option;
+  
+  Vue.prototype.$message = Message;
+  
   console.log('===== 全局合并后参数：=====', option);
 
 
