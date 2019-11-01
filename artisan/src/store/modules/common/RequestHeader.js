@@ -7,7 +7,7 @@ const requestHead = {
       appClientType: 'pc',
       'Set-Cookie': Cookies.get('token'),
     },
-  }
+  },
 };
 
 export default requestHead;
