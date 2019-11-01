@@ -30,7 +30,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       commonjs2: 'vue',
       amd: 'vue'
     },
-    'element-ui': 'Element',
+    'element-ui': 'ELEMENT',
   },
   optimization: {
     minimize: isMinify
