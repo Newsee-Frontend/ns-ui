@@ -63,11 +63,10 @@ export default create({
           value: 'value',
           disabled: 'disabled',
           divided: 'divided',
-          children: 'children'
+          children: 'children',
         };
       },
     },
-
   },
 
   computed: {},
@@ -75,28 +74,28 @@ export default create({
   watch: {},
 
   render(h) {
-    let {label, value, disabled, divided, children} = this.keyRefer;
-    const itemMenuRender = (item) => {
-      let itemNode = <el-dropdown-item
-        disabled={item[disabled]}
-        divided={item[divided]}
-        command={item[value]}
-      >
-        {item[label]}
-      </el-dropdown-item>;
+    let { label, value, disabled, divided, children } = this.keyRefer;
+    const itemMenuRender = item => {
+      let itemNode = (
+        <el-dropdown-item disabled={item[disabled]} divided={item[divided]} command={item[value]}>
+          {item[label]}
+        </el-dropdown-item>
+      );
 
       let childrenNode = null;
 
       if (item[children] && item[children].length > 0) {
-        childrenNode = item[children].map((childItem) => {
-          return <el-dropdown-item
-            disabled={childItem[disabled]}
-            divided={childItem[divided]}
-            command={childItem[value]}
-          >
-            <icon-class icon-class="dian" class="sub-menu-icon"/>
-            {childItem[label]}
-          </el-dropdown-item>;
+        childrenNode = item[children].map(childItem => {
+          return (
+            <el-dropdown-item
+              disabled={childItem[disabled]}
+              divided={childItem[divided]}
+              command={childItem[value]}
+            >
+              <icon-class icon-class="dian" class="sub-menu-icon" />
+              {childItem[label]}
+            </el-dropdown-item>
+          );
         });
       }
 
@@ -119,13 +118,10 @@ export default create({
       >
         {this.$slots.default}
         <el-dropdown-menu slot="dropdown">
-          {
-            this.options.map((item) => {
-              return itemMenuRender(item);
-            })
-          }
+          {this.options.map(item => {
+            return itemMenuRender(item);
+          })}
         </el-dropdown-menu>
-
       </el-dropdown>
     );
   },
@@ -156,9 +152,7 @@ export default create({
     },
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

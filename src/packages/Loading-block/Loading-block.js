@@ -12,19 +12,11 @@ export default create({
   render(h) {
     return (
       <div class={this.recls()}>
-        {
-          !this.simple ?
-
-            <div class={this.recls('content')}>
-
-              {
-                this.$slots.default ?
-                  this.$slots.default :
-                  <div class={'loading-img'}/>
-              }
-            </div>
-            : null
-        }
+        {!this.simple ? (
+          <div class={this.recls('content')}>
+            {this.$slots.default ? this.$slots.default : <div class={'loading-img'} />}
+          </div>
+        ) : null}
       </div>
     );
   },

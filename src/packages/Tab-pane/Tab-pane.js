@@ -5,7 +5,7 @@ export default create({
   data() {
     return {
       index: null,
-      loaded: false
+      loaded: false,
     };
   },
   props: {
@@ -29,31 +29,36 @@ export default create({
     },
     paneName() {
       return this.name || this.index;
-    }
+    },
   },
 
   watch: {
     label() {
       this.$parent.$emit('tabLabelChanged');
-    }
+    },
   },
 
   render(h) {
     let { lazy, loaded, active, paneName } = this;
     let isShow = active ? 'block' : 'none';
-    if ((!lazy || loaded) || active) {
+    if (!lazy || loaded || active) {
       return (
         <div
-          class={[this.recls(),{
-            "el-tab-pane": true
-          }]}
+          class={[
+            this.recls(),
+            {
+              'el-tab-pane': true,
+            },
+          ]}
           role="tabpanel"
           style={{ display: isShow }}
           aria-hidden={!active}
           id={`pane-${paneName}`}
-          aria-labelledby={`tab-${paneName}`}>
+          aria-labelledby={`tab-${paneName}`}
+        >
           {this.$slots.default}
-        </div>);
+        </div>
+      );
     }
-  }
+  },
 });

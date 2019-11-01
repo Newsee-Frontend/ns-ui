@@ -28,32 +28,26 @@ export default create({
   },
 
   render(h) {
-
-    return (
-      h(
-        'el-color-picker',
-        {
-          class: this.recls([this.formsize]),
-          props: {
-            value: this.childColorPicker,
-            size: this.size,
-            disabled: this.disabled,
-            showAlpha: this.showAlpha,
-            colorFormat: this.colorFormat,
-            popperClass: this.popperClass,
-            predefine: this.predefine,
-          },
-          on: {
-            input: e => {
-              this.childColorPicker = e;
-              this.$emit('input', this.childColorPicker);
-            },
-            change: this.change,
-            'active-change': this.activeChange,
-          },
+    return h('el-color-picker', {
+      class: this.recls([this.formsize]),
+      props: {
+        value: this.childColorPicker,
+        size: this.size,
+        disabled: this.disabled,
+        showAlpha: this.showAlpha,
+        colorFormat: this.colorFormat,
+        popperClass: this.popperClass,
+        predefine: this.predefine,
+      },
+      on: {
+        input: e => {
+          this.childColorPicker = e;
+          this.$emit('input', this.childColorPicker);
         },
-      )
-    );
+        change: this.change,
+        'active-change': this.activeChange,
+      },
+    });
   },
 
   methods: {
@@ -66,9 +60,7 @@ export default create({
     },
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

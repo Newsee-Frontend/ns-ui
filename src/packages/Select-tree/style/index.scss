@@ -1,4 +1,4 @@
-@import "../../../../node_modules/@riophae/vue-treeselect/dist/vue-treeselect.min.css";
+@import '../../../../node_modules/@riophae/vue-treeselect/dist/vue-treeselect.min.css';
 @import '../../../style/common/size/formsize';
 
 $gap-top: 2px;
@@ -10,7 +10,8 @@ $gap-bottom: 1px;
   &.vue-treeselect--has-value .vue-treeselect__multi-value {
     margin-bottom: 0;
   }
-  .vue-treeselect--searchable.vue-treeselect--multi.vue-treeselect--has-value .vue-treeselect__input-container {
+  .vue-treeselect--searchable.vue-treeselect--multi.vue-treeselect--has-value
+    .vue-treeselect__input-container {
     padding-top: $gap-top;
     padding-bottom: $gap-bottom;
   }
@@ -33,4 +34,3 @@ $gap-bottom: 1px;
     }
   }
 }
-

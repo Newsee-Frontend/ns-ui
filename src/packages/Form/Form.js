@@ -11,7 +11,7 @@ export default create({
     'label-suffix': { type: String },
     'show-message': { type: Boolean, default: true },
     cueType: { type: String, default: 'only-error' },
-    disabled: { type: Boolean, default: false}
+    disabled: { type: Boolean, default: false },
   },
   computed: {
     fromClass() {
@@ -19,25 +19,23 @@ export default create({
     },
   },
   render(h) {
-    return (
-      h(
-        'el-form',
-        {
-          ref: this.fromClass,
-          'class': this.fromClass,
-          props: {
-            model: this.model,
-            rules: this.rules,
-            inline: this.inline,
-            disabled: this.disabled,
-            'label-position': this.labelPosition,
-            'label-width': this.labelWidth,
-            'label-suffix': this.labelSuffix,
-            'show-message': this.showMessage,
-          },
+    return h(
+      'el-form',
+      {
+        ref: this.fromClass,
+        class: this.fromClass,
+        props: {
+          model: this.model,
+          rules: this.rules,
+          inline: this.inline,
+          disabled: this.disabled,
+          'label-position': this.labelPosition,
+          'label-width': this.labelWidth,
+          'label-suffix': this.labelSuffix,
+          'show-message': this.showMessage,
         },
-        this.$slots.default,
-      )
+      },
+      this.$slots.default
     );
   },
   methods: {
@@ -58,4 +56,3 @@ export default create({
     },
   },
 });
-

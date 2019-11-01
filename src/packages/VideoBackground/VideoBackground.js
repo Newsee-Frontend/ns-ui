@@ -13,23 +13,16 @@ export default create({
   },
 
   render(h) {
-
     const sourcePart = (s, i) => {
-      return <source src={s} key={i} type={this.getMediaType(s)}/>;
+      return <source src={s} key={i} type={this.getMediaType(s)} />;
     };
 
     return (
       <section class={this.recls()}>
         <video autoPlay loop muted ref={'video'}>
-          {
-            this.sources.map((s, i) => sourcePart(s, i))
-          }
+          {this.sources.map((s, i) => sourcePart(s, i))}
         </video>
-        <div class={'video-slots'}>
-          {
-            this.$slots.default
-          }
-        </div>
+        <div class={'video-slots'}>{this.$slots.default}</div>
       </section>
     );
   },
@@ -58,7 +51,9 @@ export default create({
     },
 
     setVideoSize() {
-      let width, height, containerRatio = this.$el.offsetWidth / this.$el.offsetHeight;
+      let width,
+        height,
+        containerRatio = this.$el.offsetWidth / this.$el.offsetHeight;
 
       if (containerRatio > this.videoRatio) {
         width = this.$el.offsetWidth;

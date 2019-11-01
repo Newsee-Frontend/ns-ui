@@ -1,7 +1,7 @@
 const sortMap = {
-  'order': 'ORDER_SELECTED',//按照选择的顺序
-  'level': 'LEVEL',//按照层级排序，如A，B，A-1，B-1。A-1-1，B-1-1
-  'index': 'INDEX',//按照各节点级顺序，如A，A-1，A-1-1，B，B-1，B-1-1
+  order: 'ORDER_SELECTED', //按照选择的顺序
+  level: 'LEVEL', //按照层级排序，如A，B，A-1，B-1。A-1-1，B-1-1
+  index: 'INDEX', //按照各节点级顺序，如A，A-1，A-1-1，B，B-1，B-1-1
 };
 
 /**
@@ -11,7 +11,9 @@ const sortMap = {
 export default {
   props: {
     sortModelBy: {
-      type: String, default: 'order', validator: s => {
+      type: String,
+      default: 'order',
+      validator: s => {
         return sortMap.hasOwnProperty(s);
       },
     },

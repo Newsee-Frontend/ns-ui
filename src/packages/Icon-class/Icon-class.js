@@ -16,11 +16,7 @@ export default create({
     },
   },
   render(h) {
-    return (
-      <i
-        class={`${this.recls()} ${this.iconName}`}
-        on-click={this.click}/>
-    );
+    return <i class={`${this.recls()} ${this.iconName}`} on-click={this.click} />;
   },
   methods: {
     //click时触发的事件

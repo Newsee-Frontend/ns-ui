@@ -27,30 +27,25 @@ export default create({
   },
 
   render(h) {
-    return (
-      h(
-        'date-picker',
-        {
-          'class': {
-            ...this.recls(),
-          },
-          props: {
-            ...this.$attrs,
-            value: this.childOnlyMMDD,
-            type: 'date',
-            format: 'MM-dd',
-            'value-format': 'MM-dd',
-            'popper-class': this.popperName,
-          },
-          on: {
-            input: e => this.handleModel(e),
-            change: this.change.bind(this),
-            focus: this.onlyMMDDfocus.bind(this),
-            blur: this.onlyMMDDblur.bind(this),
-          },
-        },
-      )
-    );
+    return h('date-picker', {
+      class: {
+        ...this.recls(),
+      },
+      props: {
+        ...this.$attrs,
+        value: this.childOnlyMMDD,
+        type: 'date',
+        format: 'MM-dd',
+        'value-format': 'MM-dd',
+        'popper-class': this.popperName,
+      },
+      on: {
+        input: e => this.handleModel(e),
+        change: this.change.bind(this),
+        focus: this.onlyMMDDfocus.bind(this),
+        blur: this.onlyMMDDblur.bind(this),
+      },
+    });
   },
   methods: {
     handleModel(e) {

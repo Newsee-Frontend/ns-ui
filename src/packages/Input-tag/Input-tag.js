@@ -16,18 +16,18 @@ export default create({
     value: [Array, String, Number],
     options: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
-    width: [String, Number],   //select 不对外暴露高度设置
+    width: [String, Number], //select 不对外暴露高度设置
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
     placeholder: { type: String, default: null },
     name: { type: String },
     clearable: { type: Boolean, default: true },
     disabled: { type: Boolean, default: false },
     multipleLimit: { type: Number, default: 0 },
-    collapseTags: { type: Boolean, default: false },//多选时是否将选中值按文字的形式展示
-    prefixIcon: String,//头部图标
-    suffixIcon: String,//尾部图标
+    collapseTags: { type: Boolean, default: false }, //多选时是否将选中值按文字的形式展示
+    prefixIcon: String, //头部图标
+    suffixIcon: String, //尾部图标
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
@@ -37,7 +37,13 @@ export default create({
   computed: {
     reClass() {
       return [
-        ...this.recls([this.formsize, 'multiple', this.prefixIcon ? 'prefix' : '', this.suffixIcon ? 'suffix' : '', this.collapseTags? '' : 'auto_height']),
+        ...this.recls([
+          this.formsize,
+          'multiple',
+          this.prefixIcon ? 'prefix' : '',
+          this.suffixIcon ? 'suffix' : '',
+          this.collapseTags ? '' : 'auto_height',
+        ]),
         ...[`${this.isFocus ? 'is-focus' : ''}`],
         ...[`${this.isHover ? 'is-hover' : ''}`],
         'form-element__pseudo',
@@ -45,7 +51,7 @@ export default create({
     },
     convert_style() {
       return {
-        width: this.convert_width
+        width: this.convert_width,
       };
     },
   },
@@ -57,28 +63,27 @@ export default create({
   },
   render(h) {
     let { label, value } = this.keyRefer;
-    const optionRender = (item) => (
+    const optionRender = item => (
       <el-option
         key={item[value]}
         value={item[value]}
         label={item[label]}
         disabled={item.disabled}
-      >
-      </el-option>
+      ></el-option>
     );
 
     return (
-      <div class={this.reClass}
-           on-click={($event) => this.inputTagClick($event)}
-           on-mouseenter={this.inputTagMouseenter.bind(this)}
-           on-mouseleave={this.inputTagMouseleave.bind(this)}
+      <div
+        class={this.reClass}
+        on-click={$event => this.inputTagClick($event)}
+        on-mouseenter={this.inputTagMouseenter.bind(this)}
+        on-mouseleave={this.inputTagMouseleave.bind(this)}
       >
-        {
-          this.prefixIcon ?
-            <div class={this.recls('icon')}>
-              <icon-svg icon-class={this.prefixIcon} on-click={this.iconClick.bind(this, 'prefix')}/>
-            </div> : null
-        }
+        {this.prefixIcon ? (
+          <div class={this.recls('icon')}>
+            <icon-svg icon-class={this.prefixIcon} on-click={this.iconClick.bind(this, 'prefix')} />
+          </div>
+        ) : null}
         <el-select
           value={this.childSelect}
           onInput={e => this.handleModel(e)}
@@ -98,19 +103,15 @@ export default create({
           style={this.convert_style}
           popperClass="input-tag-popper"
         >
-          {
-            this.options.map((item) => {
-              return optionRender(item);
-            })
-          }
-
+          {this.options.map(item => {
+            return optionRender(item);
+          })}
         </el-select>
-        {
-          this.suffixIcon ?
-            <div class={this.recls('icon')}>
-              <icon-svg icon-class={this.suffixIcon} on-click={this.iconClick.bind(this, 'suffix')}/>
-            </div> : null
-        }
+        {this.suffixIcon ? (
+          <div class={this.recls('icon')}>
+            <icon-svg icon-class={this.suffixIcon} on-click={this.iconClick.bind(this, 'suffix')} />
+          </div>
+        ) : null}
       </div>
     );
   },
@@ -187,10 +188,10 @@ export default create({
   },
   mounted() {
     //listen drop modules click event
-    addEventHandler(document.body, 'click', _ => this.isFocus = false);
+    addEventHandler(document.body, 'click', _ => (this.isFocus = false));
   },
   beforeDestroy() {
     //remove event Listener
-    removeEventHandler(document.body, 'click', _ => this.isFocus = false);
+    removeEventHandler(document.body, 'click', _ => (this.isFocus = false));
   },
 });

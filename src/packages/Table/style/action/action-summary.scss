@@ -1,4 +1,4 @@
-@import "../config";
+@import '../config';
 
 $summary_width: 60px;
 $summary_height: 32px;
@@ -31,7 +31,6 @@ $summary_fs: 12px;
     i {
       vertical-align: 5px;
     }
-
   }
   span.el-dropdown-selfdefine {
     font-size: $action-summary_fs;

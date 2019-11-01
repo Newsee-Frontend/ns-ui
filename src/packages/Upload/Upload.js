@@ -17,7 +17,9 @@ export default create({
   props: {
     value: [Array],
     type: {
-      type: String, default: 'picture-single', validate: t => {
+      type: String,
+      default: 'picture-single',
+      validate: t => {
         return uploadTypes.some(t);
       },
     },
@@ -31,11 +33,11 @@ export default create({
     },
     data: {
       type: Object,
-      default: ()=>{}
+      default: () => {},
     },
     name: {
       type: String,
-      default: 'file'
+      default: 'file',
     },
     action: { type: String }, //request url
     disabled: { type: Boolean, default: false },
@@ -51,7 +53,7 @@ export default create({
     fileType: {
       type: Array,
       default: function() {
-        return ['jpeg','jpg', 'png'];
+        return ['jpeg', 'jpg', 'png'];
       },
     },
     beforeUpload: Function,
@@ -63,12 +65,12 @@ export default create({
     }, //照片墙超过后是否隐藏入口
     autoUpload: {
       type: Boolean,
-      default: true   //是否立即上传
+      default: true, //是否立即上传
     },
     onChange: {
       type: Function,
-      default: ()=>{}
-    }
+      default: () => {},
+    },
   },
 
   computed: {
@@ -88,7 +90,11 @@ export default create({
 
     hiddenEntrance() {
       return {
-        'hidden-pictureWall': this.limit && this.exceedLimitHiddenEntrance && this.type === 'picture-wall' && this.limit <= this.childUpload.length,
+        'hidden-pictureWall':
+          this.limit &&
+          this.exceedLimitHiddenEntrance &&
+          this.type === 'picture-wall' &&
+          this.limit <= this.childUpload.length,
       };
     },
   },
@@ -98,10 +104,9 @@ export default create({
       this.setVal(val);
     },
 
-    childUpload(){
+    childUpload() {
       this.$emit('change');
     },
-
   },
 
   render(h) {
@@ -110,32 +115,32 @@ export default create({
       props: {
         'icon-class': 'add',
       },
-      'style': this.icon_style,
+      style: this.icon_style,
     });
 
     const singlePicImg = h('img', {
-      'attrs': {
-        'src': this.picSingleUrl,
-        'alt': '',
+      attrs: {
+        src: this.picSingleUrl,
+        alt: '',
       },
-      'class': 'avatar',
+      class: 'avatar',
     });
 
-
-    return h('el-upload',
+    return h(
+      'el-upload',
       {
-        'class': [this.recls([this.type]), this.hiddenEntrance],
-        'ref': 'upload',
-        'style': this.type === 'picture-single' && this.convert_style,
-        'attrs': {
-          'action': this.action,
-          'data': this.data,
-          'name': this.name,
-          'disabled': this.disabled,
-          'headers': this.headers,
+        class: [this.recls([this.type]), this.hiddenEntrance],
+        ref: 'upload',
+        style: this.type === 'picture-single' && this.convert_style,
+        attrs: {
+          action: this.action,
+          data: this.data,
+          name: this.name,
+          disabled: this.disabled,
+          headers: this.headers,
           'list-type': this.type === 'picture-wall' ? 'picture-card' : '',
           'with-credentials': true,
-          'limit': this.limit,
+          limit: this.limit,
           'show-file-list': this.type !== 'picture-single',
           'file-list': this.childUpload,
           'auto-upload': this.autoUpload,
@@ -152,7 +157,7 @@ export default create({
         this.type === 'picture-single' && this.picSingleUrl && singlePicImg,
         this.type === 'file' ? null : addIconDom,
         this.$slots.default,
-      ],
+      ]
     );
   },
 
@@ -163,21 +168,20 @@ export default create({
         this.childUpload = this.addAttribute(val);
         this.picSingleUrl = val.length > 0 ? val[0][this.keyRefer.url] : '';
       } else {
-        throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
+        throw "The format of the data is error in upload-components，example： [\\n' +\n" +
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
-          '            \']\'');
+          "            ']'";
       }
     },
 
     // add  name和url
     addAttribute(list) {
-      list.forEach((item) => {
+      list.forEach(item => {
         item.name = item.fileName;
         item.url = item.fileUrl;
       });
       return list;
     },
-
 
     /**
      * image-type name handle (add 'image/')
@@ -202,8 +206,7 @@ export default create({
           this.$message.error(`上传图片只能是${this.fileType.join(',')}格式!`);
           return false;
         }
-      }
-      else if (this.type === 'picture-single') {
+      } else if (this.type === 'picture-single') {
         if (file.size / 1024 / 1024 > 3) {
           return this.$message.error('上传图片大小不能超过3M');
         }
@@ -225,15 +228,14 @@ export default create({
         }
         this.$emit('input', this.childUpload);
       } else {
-        throw('The format of the data is error in upload-components，example： [\\n\' +\n' +
+        throw "The format of the data is error in upload-components，example： [\\n' +\n" +
           '            \'{"fileName": "xxx-picture.jpg", "fileUrl": "https://xxxx.xxxxx.com/xxx-picture.jpg"}\\n\' +\n' +
-          '            \']\'');
+          "            ']'";
       }
     },
 
-
     //error 图片上传失败
-    onError(err, file, fileList){
+    onError(err, file, fileList) {
       this.$emit('error', err, file, fileList);
     },
 
@@ -253,7 +255,7 @@ export default create({
       this.$emit('on-exceed');
     },
 
-//删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除。
+    //删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除。
     beforeRemoveFun(file, fileList) {
       if (this.beforeRemove) {
         return this.beforeRemove(file, fileList);
@@ -266,14 +268,11 @@ export default create({
     clearFiles() {
       this.$refs.upload.clearFiles();
     },
-
   },
 
   created() {
     this.setVal(this.value);
   },
 
-  mounted() {
-  },
+  mounted() {},
 });
-

@@ -1,8 +1,8 @@
 @import '../../../style/mixins/mixins';
 @import '../../../style/config/public';
 @import '../../../style/mixins/scrollbar';
-@import "mixins";
-@import "config";
+@import 'mixins';
+@import 'config';
 
 @include b(table) {
   position: relative;
@@ -12,14 +12,13 @@
     //表格主体部分
     .el-table {
       .el-table__header {
-
       }
 
       .cell {
         overflow: visible;
-        @import "column/action-column";
+        @import 'column/action-column';
 
-        @import "cell/slot-scope";
+        @import 'cell/slot-scope';
       }
 
       .el-table__fixed-header-wrapper {
@@ -29,7 +28,7 @@
           height: 36px;
           .cell {
             padding: 0;
-            @import "head/head-setting";
+            @import 'head/head-setting';
           }
         }
       }
@@ -42,32 +41,37 @@
     }
 
     //表格各模块 visible 设置
-    thead, th, th div, thead .cell, tbody .cell {
+    thead,
+    th,
+    th div,
+    thead .cell,
+    tbody .cell {
       overflow: visible;
     }
 
     //表格底部固定合计栏
-    .el-table__footer-wrapper tbody td, .el-table__header-wrapper tbody td, .el-table__fixed-footer-wrapper tbody td {
+    .el-table__footer-wrapper tbody td,
+    .el-table__header-wrapper tbody td,
+    .el-table__fixed-footer-wrapper tbody td {
       background-color: transparent;
     }
 
-    @import "column/column";
+    @import 'column/column';
 
-    @import "action/action-drop";
+    @import 'action/action-drop';
   }
 
   //合计按钮控制部分
-  @import "action/action-summary";
+  @import 'action/action-summary';
 
   //错误提示
-  @import "./error/error-prompt.scss";
+  @import './error/error-prompt.scss';
 
   //loading - mask
-  @import "./loading/loading";
-
+  @import './loading/loading';
 }
 
-.el-tooltip__popper.is-dark[role="tooltip"], .el-tooltip__popper.is-light[role="tooltip"] {
+.el-tooltip__popper.is-dark[role='tooltip'],
+.el-tooltip__popper.is-light[role='tooltip'] {
   //display: none;
 }
-

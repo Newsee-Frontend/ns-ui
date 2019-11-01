@@ -6,7 +6,8 @@ export default {
   },
   props: {
     loadState: {
-      type: Object, default() {
+      type: Object,
+      default() {
         return {
           data: false,
           head: false,

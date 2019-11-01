@@ -23,9 +23,9 @@ export default create({
     right: { type: String, default: '0' },
     top: { type: String, default: '0' },
     bottom: { type: String, default: '0' },
-    model: { type: Boolean, default: false },//是否含有遮罩层
-    modelSpeed: { type: Number, default: 200 },//遮罩层速率
-    closeOnClickModal: { type: Boolean, default: true },//是否可以通过点击 modal 关闭
+    model: { type: Boolean, default: false }, //是否含有遮罩层
+    modelSpeed: { type: Number, default: 200 }, //遮罩层速率
+    closeOnClickModal: { type: Boolean, default: true }, //是否可以通过点击 modal 关闭
     domToClose: { type: String, default: 'app' },
     appendToBody: { type: Boolean, default: true },
     closeOnPressEscape: { type: Boolean, default: true },
@@ -71,7 +71,6 @@ export default create({
       return `${this.recls('model')}-${uuid(5)}`;
     },
 
-
     createModelDom() {
       let mask = document.createElement('div');
       mask.setAttribute('id', this.modelId);
@@ -87,25 +86,18 @@ export default create({
         return document.body;
       }
     },
-
   },
 
   watch: {
     visible(val) {
       this.lastVisible = this.visible;
       if (val) {
-
         this.appendDialogToBody();
         this.appendModelToBody();
 
         this.open();
-
       } else {
-
-        delayEvent(this,
-          _ => this.destroyModel(),
-          this.modelSpeed,
-        );
+        delayEvent(this, _ => this.destroyModel(), this.modelSpeed);
 
         if (typeof this.beforeClose === 'function') {
           this.beforeClose(val);
@@ -116,7 +108,6 @@ export default create({
   },
 
   render(h) {
-
     return (
       <transition
         name={this.animationName}
@@ -126,21 +117,18 @@ export default create({
         on-before-leave={this.beforeLeave}
         on-leave={this.leave}
         on-after-leave={this.afterLeave}
-      >{
-        this.visible ?
+      >
+        {this.visible ? (
           <div
             class={this.recls() + ' ' + (this.model ? 'is-model' : '')}
             style={this.wrapperStyle}
             on-click={this.wrapperClick}
           >
             <div class={this.recls('container')} role={'dialog'}>
-              {
-                this.$slots.default
-              }
+              {this.$slots.default}
             </div>
           </div>
-          : null
-      }
+        ) : null}
       </transition>
     );
   },
@@ -220,7 +208,6 @@ export default create({
     if (this.model && this.closeOnClickModal) {
       removeEventHandler(this.outerModelTarget, 'click', this.outerClickEvent);
     }
-
   },
   destroyed() {
     // if appendToBody is true, remove DOM node after destroy

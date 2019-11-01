@@ -35,4 +35,3 @@ const LimitMessage = function(options, limit = 1) {
 });
 
 export default LimitMessage;
-

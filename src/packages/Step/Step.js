@@ -42,19 +42,23 @@ export default create({
       return this.$parent.steps.length;
     },
     space() {
-      const { isSimple, $parent: { space } } = this;
-      return isSimple ? '' : space ;
+      const {
+        isSimple,
+        $parent: { space },
+      } = this;
+      return isSimple ? '' : space;
     },
     style: function() {
       const style = {};
       const parent = this.$parent;
       const len = parent.steps.length;
 
-      const space = (typeof this.space === 'number'
-        ? this.space + 'px'
-        : this.space
+      const space =
+        typeof this.space === 'number'
+          ? this.space + 'px'
+          : this.space
           ? this.space
-          : 100 / (len - (this.isCenter ? 0 : 1)) + '%');
+          : 100 / (len - (this.isCenter ? 0 : 1)) + '%';
       style.flexBasis = space;
       if (this.isVertical) return style;
       if (this.isLast) {
@@ -64,7 +68,7 @@ export default create({
       }
 
       return style;
-    }
+    },
   },
 
   watch: {},
@@ -82,70 +86,79 @@ export default create({
       currentStatus,
       lineStyle,
       description,
-      title
-    } = this
+      title,
+    } = this;
 
-    let iconSlot,stepIcon, simpleArrow = null;
-    if(icon){
-      iconSlot = <i class={["el-step__icon-inner", icon]}/>
-    }else if(!icon && !isSimple){
-      iconSlot = <div class="el-step__icon-inner">{ index + 1}</div>
+    let iconSlot,
+      stepIcon,
+      simpleArrow = null;
+    if (icon) {
+      iconSlot = <i class={['el-step__icon-inner', icon]} />;
+    } else if (!icon && !isSimple) {
+      iconSlot = <div class="el-step__icon-inner">{index + 1}</div>;
     }
 
-    if(currentStatus !== 'success' && currentStatus !== 'error'){
-      stepIcon = <slot name="icon"> {iconSlot} </slot>
-    }else{
-      stepIcon = <i class={[
-        "el-step__icon-inner",
-        "is-status",
-        `el-icon-${currentStatus === 'success' ? 'check' : 'close'}`]}/>
+    if (currentStatus !== 'success' && currentStatus !== 'error') {
+      stepIcon = <slot name="icon"> {iconSlot} </slot>;
+    } else {
+      stepIcon = (
+        <i
+          class={[
+            'el-step__icon-inner',
+            'is-status',
+            `el-icon-${currentStatus === 'success' ? 'check' : 'close'}`,
+          ]}
+        />
+      );
     }
 
-    if(isSimple){
-      simpleArrow = <div class="el-step__arrow"></div>
-    }else{
-      simpleArrow = <div class={["el-step__description", `is-${currentStatus}`]}>
-        <slot name="description">{ description }</slot>
-      </div>
+    if (isSimple) {
+      simpleArrow = <div class="el-step__arrow"></div>;
+    } else {
+      simpleArrow = (
+        <div class={['el-step__description', `is-${currentStatus}`]}>
+          <slot name="description">{description}</slot>
+        </div>
+      );
     }
 
-    const header =
+    const header = (
       <div class={['el-step__head', `is-${currentStatus}`]}>
-        <div class="el-step__line"
-             style={isLast ? {} : { marginRight : this.$parent.stepOffset + 'px'}}
+        <div
+          class="el-step__line"
+          style={isLast ? {} : { marginRight: this.$parent.stepOffset + 'px' }}
         >
-          <i class="el-step__line-inner"
-             style={ lineStyle }
-          />
+          <i class="el-step__line-inner" style={lineStyle} />
         </div>
 
-        <span class={["el-step__icon",  `is-${icon ? 'icon' : 'text'}`]}>
-          { stepIcon }
-        </span>
-      </div>;
+        <span class={['el-step__icon', `is-${icon ? 'icon' : 'text'}`]}>{stepIcon}</span>
+      </div>
+    );
 
-    const main =
+    const main = (
       <div class="el-step__main">
-        <div class= {['el-step__title', `is-${currentStatus}`]} ref="title">
-          <slot name="title"> { title }</slot>
+        <div class={['el-step__title', `is-${currentStatus}`]} ref="title">
+          <slot name="title"> {title}</slot>
         </div>
-        { simpleArrow }
-      </div>;
+        {simpleArrow}
+      </div>
+    );
 
-    return(
+    return (
       <div
-        class= { [
-          "el-step",
+        class={[
+          'el-step',
           this.recls(),
           !isSimple && `is-${this.$parent.direction}`,
           isSimple && 'is-simple',
           isLast && !space && !isCenter && 'is-flex',
-          isCenter && !isVertical && !isSimple && 'is-center'
+          isCenter && !isVertical && !isSimple && 'is-center',
         ]}
-        style={ style }>
-        { [ header, main ]}
+        style={style}
+      >
+        {[header, main]}
       </div>
-    )
+    );
   },
 
   methods: {
@@ -172,16 +185,16 @@ export default create({
         step = this.currentStatus !== 'error' ? 0 : 0;
       } else if (status === 'wait') {
         step = 0;
-        style.transitionDelay = (-150 * this.index) + 'ms';
+        style.transitionDelay = -150 * this.index + 'ms';
       }
 
       style.borderWidth = step && !this.isSimple ? '1px' : 0;
       this.$parent.direction === 'vertical'
-        ? style.height = step + '%'
-        : style.width = step + '%';
+        ? (style.height = step + '%')
+        : (style.width = step + '%');
 
       this.lineStyle = style;
-    }
+    },
   },
 
   beforeCreate() {
@@ -191,10 +204,14 @@ export default create({
   mounted() {
     const unwatch = this.$watch('index', val => {
       this.$watch('$parent.active', this.updateStatus, { immediate: true });
-      this.$watch('$parent.processStatus', () => {
-        const activeIndex = this.$parent.active;
-        this.updateStatus(activeIndex);
-      }, { immediate: true });
+      this.$watch(
+        '$parent.processStatus',
+        () => {
+          const activeIndex = this.$parent.active;
+          this.updateStatus(activeIndex);
+        },
+        { immediate: true }
+      );
       unwatch();
     });
   },

@@ -11,6 +11,6 @@ const keyRefer = {
   menuIcon: 'menuIconcls', //图标
   menuIndex: 'syOrderindex', //序号
   childMenus: 'childMenus', //子集菜单
-  hide: 'hide',//隐藏
+  hide: 'hide', //隐藏
 };
 export default keyRefer;

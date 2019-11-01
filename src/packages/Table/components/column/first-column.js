@@ -24,47 +24,47 @@ export default {
     },
   },
   render(h) {
-    return (
-      h(
-        `el-table-column`,
-        {
-          props: {
-            'class-name': `table-head-${this.headScope[this.headRefer['model-key']]}`,
-            property: this.headScope[this.headRefer['model-key']],
-            type: this.columnType,
-            fixed: true,
-            align: this.headScope[this.headRefer['align']],
-            width: this.headScope[this.headRefer['width']],
-            label: this.headScope[this.headRefer['label']],
-            key: `grid-head-${this.headScope[this.headRefer['model-key']]}`,
-          },
-          scopedSlots: this.columnType === 'radio' ? {
-            default: scope => {
-              return (
-                h('Radio', {
-                  class: 'column-radio',
-                  domProps: {
-                    value: this.value,
-                  },
-                  props: {
-                    value: this.childRadio,
-                    label: scope.$index,
-                    isGroup: false,
-                  },
-                  on: {
-                    input: event => {
-                      this.childRadio = event;
-                      this.$emit('input', event);
+    return h(`el-table-column`, {
+      props: {
+        'class-name': `table-head-${this.headScope[this.headRefer['model-key']]}`,
+        property: this.headScope[this.headRefer['model-key']],
+        type: this.columnType,
+        fixed: true,
+        align: this.headScope[this.headRefer['align']],
+        width: this.headScope[this.headRefer['width']],
+        label: this.headScope[this.headRefer['label']],
+        key: `grid-head-${this.headScope[this.headRefer['model-key']]}`,
+      },
+      scopedSlots:
+        this.columnType === 'radio'
+          ? {
+              default: scope => {
+                return h(
+                  'Radio',
+                  {
+                    class: 'column-radio',
+                    domProps: {
+                      value: this.value,
                     },
-                    change: this.selectionChange.bind(this, scope.row, scope.$index),
+                    props: {
+                      value: this.childRadio,
+                      label: scope.$index,
+                      isGroup: false,
+                    },
+                    on: {
+                      input: event => {
+                        this.childRadio = event;
+                        this.$emit('input', event);
+                      },
+                      change: this.selectionChange.bind(this, scope.row, scope.$index),
+                    },
                   },
-                }, null)
-              );
-            },
-          } : null,
-        },
-      )
-    );
+                  null
+                );
+              },
+            }
+          : null,
+    });
   },
   methods: {
     selectionChange(row, index) {

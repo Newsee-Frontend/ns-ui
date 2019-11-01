@@ -68,9 +68,7 @@ export default create({
         vertical={this.vertical}
         height={this.convert_height}
         style={{ width: `${this.convert_width}!important` }}
-      >
-
-      </el-slider>
+      ></el-slider>
     );
   },
 
@@ -81,13 +79,11 @@ export default create({
     },
 
     change(e) {
-      this.$emit('change',e)
-    }
+      this.$emit('change', e);
+    },
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

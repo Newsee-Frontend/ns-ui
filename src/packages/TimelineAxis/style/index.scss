@@ -9,7 +9,7 @@
         .parent-node-title {
           padding-left: 20px;
           font-weight: 600;
-          font-size: 15px
+          font-size: 15px;
         }
       }
 
@@ -24,7 +24,7 @@
       padding: 5px 0;
       .el-timeline-item {
         padding-bottom: 0;
-        .el-timeline-item__node--normal{
+        .el-timeline-item__node--normal {
           height: 0;
           &.el-timeline-item__node--success {
             height: 6px;
@@ -35,10 +35,10 @@
         }
         .el-timeline-item__wrapper {
           padding-left: 20px;
-          .grey-text{
+          .grey-text {
             color: #ccc;
           }
-          .deep-grey-text{
+          .deep-grey-text {
             color: #636363;
           }
         }

@@ -3,7 +3,6 @@ import create from '../../create/create';
 import mixins from './mixins';
 import { sizeValidator } from '../../utils/props/validator';
 
-
 export default create({
   name: 'select-tree',
   components: { Treeselect },
@@ -13,40 +12,35 @@ export default create({
   },
   props: {
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
-    flat: { type: Boolean, default: false },//平面模式，设置后，父子节点都可同步选择。
-    defaultExpandLevel: { type: Number, default: 0 },//默认展开的层级，0 - 全部收齐，1-展开所有第一层级的几点
+    flat: { type: Boolean, default: false }, //平面模式，设置后，父子节点都可同步选择。
+    defaultExpandLevel: { type: Number, default: 0 }, //默认展开的层级，0 - 全部收齐，1-展开所有第一层级的几点
 
     /**
      * 是否禁止节点可以被选中（将其视为可折节点，类似于叠文件夹开关）
      * 一旦禁止之后 modelConsists 属性将会失效，应为几个父节点都失去了选中的功能
      */
     disableBranchNodes: { type: Boolean, default: false },
-    searchable: { type: Boolean, default: false },//是否启用搜索查询（前端查询)
-    isFuzzyMatching: { type: Boolean, default: true },//是否启用模糊查询（前端查询)
-    flattenSearchResults: { type: Boolean, default: false },//扁平化的搜索结果，父子节点以扁平化的展示形式出现
+    searchable: { type: Boolean, default: false }, //是否启用搜索查询（前端查询)
+    isFuzzyMatching: { type: Boolean, default: true }, //是否启用模糊查询（前端查询)
+    flattenSearchResults: { type: Boolean, default: false }, //扁平化的搜索结果，父子节点以扁平化的展示形式出现
     //Which keys of a node object to filter on.
     filterMatchKeys: {
-      type: [String, Array], default() {
+      type: [String, Array],
+      default() {
         return ['label'];
       },
     },
-
-
   },
   render(h) {
     return (
       <Treeselect
         value={this.childSelectTree}
-
         class={[this.recls([this.formsize])]}
-
         normalizer={this.normalizer}
-
         placeholder={this.placeholder}
         options={this.options}
         maxHeight={this.menuHeight}
         openDirection={this.menuOpenDirection}
-
         multiple={this.multiple}
         disabled={this.disabled}
         clearable={this.clearable}
@@ -58,43 +52,28 @@ export default create({
         default-expand-level={this.defaultExpandLevel}
         flat={this.flat}
         disable-branch-nodes={this.disableBranchNodes}
-
         alwaysOpen={this.isMenuOpened}
-
         allowClearingDisabled={true}
         allowSelectingDisabledDescendants={true}
-
-
         searchable={this.searchable}
         disableFuzzyMatching={true}
         matchKeys={this.filterMatchKeys}
         flatten-search-results={this.flattenSearchResults}
-
         noOptionsText={this.noOptionsText}
         noResultsText={this.noResultsText}
         noChildrenText={this.noChildrenText}
-
-
         async={this.async}
-
-
         auto-load-root-options={this.autoLoadRootOptions}
-
         load-options={this.loadOptions}
-
-
         onInput={e => this.handleModelSelectTree(e)}
         on-select={this.select}
         on-deselect={this.deselect}
         on-open={this.menuOpen}
         on-close={this.menuClose}
         on-search-change={this.searchChange}
-
-      >
-      </Treeselect>
+      ></Treeselect>
     );
   },
-
 
   methods: {
     /**
@@ -134,12 +113,7 @@ export default create({
       this.$emit('search-change', query);
     },
   },
-  created() {
+  created() {},
 
-  },
-
-  mounted() {
-
-  },
+  mounted() {},
 });
-

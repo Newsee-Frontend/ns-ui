@@ -6,8 +6,8 @@ $img_size: 75px;
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: hsla(0, 0%, 100%, .96);
-  transition: opacity .3s;
+  background-color: hsla(0, 0%, 100%, 0.96);
+  transition: opacity 0.3s;
   @include e(content) {
     position: absolute;
     height: $img_size;
@@ -19,11 +19,9 @@ $img_size: 75px;
     .loading-img {
       width: 100%;
       height: 100%;
-      background: url("../../../assets/loading.gif");
+      background: url('../../../assets/loading.gif');
       background-size: 100% 100%;
       //animation: loading-rotate 2s linear infinite;
     }
   }
 }
-
-

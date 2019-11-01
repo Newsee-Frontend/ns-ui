@@ -1,4 +1,3 @@
-
 /**
  * mode value - two way binding
  */

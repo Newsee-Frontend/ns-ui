@@ -19,8 +19,7 @@ export default function validateRule(val, type, rulesConfig = []) {
   //if rules-config not exists,return true
   if (!rulesConfig || rulesConfig.length === 0) {
     return true;
-  }
-  else {
+  } else {
     //use rules-config directly, otherwise, you need to get the rules-config value (search form rules-info).
     //search from rules-config list
     for (let rule of rulesConfig) {
@@ -30,9 +29,9 @@ export default function validateRule(val, type, rulesConfig = []) {
       }
     }
   }
-  const REG = info.ruleReg;//reg rule
-  if (!REG) return true;//如果验证内容规则不存在，则直接抛出验证正确（跳过验证）
-  const warmPrompt = info.warmPrompt;//warm prompt message
+  const REG = info.ruleReg; //reg rule
+  if (!REG) return true; //如果验证内容规则不存在，则直接抛出验证正确（跳过验证）
+  const warmPrompt = info.warmPrompt; //warm prompt message
 
   /*---------------------
   complex ? = >
@@ -41,13 +40,11 @@ export default function validateRule(val, type, rulesConfig = []) {
                   No  => 2、return true
   simple ? = >  validata value base on reg rule
   -----------------------*/
-  let ruleStatus = info.complex ?
-    judgeType(REG) === 'function' ?
-      REG(val, info) : true :
-    REG.test(val);
+  let ruleStatus = info.complex
+    ? judgeType(REG) === 'function'
+      ? REG(val, info)
+      : true
+    : REG.test(val);
   //throw resault to validate-check
   return ruleStatus;
 }
-
-
-

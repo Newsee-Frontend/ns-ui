@@ -73,7 +73,8 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
     }
   }
 
-  &::before, &::after {
+  &::before,
+  &::after {
     position: absolute;
     transform-origin: center;
     box-sizing: border-box;
@@ -83,16 +84,20 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
     bottom: 0;
     border: 1px solid #cccccc;
     z-index: -1;
-    transition: border-color .2s cubic-bezier(.645, .045, .355, 1);
+    transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 
   //聚焦
   &.is-focus {
-    &::before, &::after, .el-input__inner {
+    &::before,
+    &::after,
+    .el-input__inner {
       border-color: $focus__border-color;
     }
     &.is-hover {
-      &::before, &::after, .el-input__inner {
+      &::before,
+      &::after,
+      .el-input__inner {
         border-color: $focus__border-color;
       }
     }
@@ -100,7 +105,9 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
 
   //鼠标移入
   &.is-hover {
-    &:before, &::after, .el-input__inner {
+    &:before,
+    &::after,
+    .el-input__inner {
       border-color: $hover__border-color;
     }
   }

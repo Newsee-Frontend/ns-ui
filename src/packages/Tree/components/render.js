@@ -8,18 +8,18 @@ export default {
     index: Number,
     nodeMouseOver: Function,
     level: Number,
-    multiple: Boolean
+    multiple: Boolean,
   },
-  render (h, ctx) {
-    const {node, parent, index, nodeMouseOver, tpl, level, multiple} = ctx.props
-    const {selected, disabled = false} = node
-    let titleClass
+  render(h, ctx) {
+    const { node, parent, index, nodeMouseOver, tpl, level, multiple } = ctx.props;
+    const { selected, disabled = false } = node;
+    let titleClass;
     if (disabled) {
-      titleClass = 'node-title-disabled'
+      titleClass = 'node-title-disabled';
     }
     //多选 node有select
-    else if(!multiple){
-      titleClass = selected ? 'node-title node-selected' : 'node-title'
+    else if (!multiple) {
+      titleClass = selected ? 'node-title node-selected' : 'node-title';
     }
     return (
       <div
@@ -27,11 +27,12 @@ export default {
         onMouseover={() => nodeMouseOver(node, index, parent)}
         style={'user-select: none;'}
         onClick={() => {
-          if (disabled) return
-          ctx.parent.nodeSelected(node, {level, index}, parent)
-        }}>
+          if (disabled) return;
+          ctx.parent.nodeSelected(node, { level, index }, parent);
+        }}
+      >
         {tpl(node, parent, index)}
       </div>
-    )
-  }
-}
+    );
+  },
+};

@@ -9,7 +9,7 @@ export default create({
     };
   },
   props: {
-    trigger: { type: String, default: 'click' },//click/focus/hover/manual
+    trigger: { type: String, default: 'click' }, //click/focus/hover/manual
     title: String,
     content: String,
     width: [String, Number],
@@ -33,7 +33,21 @@ export default create({
   },
 
   render(h) {
-    let { trigger, title, content, width, placement, disabled, value, offset, transition, visibleArrow, popperClass, openDelay, tabindex } = this;
+    let {
+      trigger,
+      title,
+      content,
+      width,
+      placement,
+      disabled,
+      value,
+      offset,
+      transition,
+      visibleArrow,
+      popperClass,
+      openDelay,
+      tabindex,
+    } = this;
     return h(
       'el-popover',
       {
@@ -54,14 +68,14 @@ export default create({
           tabindex,
         },
         on: {
-          'input': this.handlemodel,
-          'show': this.show,
+          input: this.handlemodel,
+          show: this.show,
           'after-enter': this.afterEnter,
-          'hide': this.hide,
+          hide: this.hide,
           'after-leave': this.afterLeave,
         },
       },
-      [this.$slots.default, <template slot="reference">{this.$slots.reference}</template>],
+      [this.$slots.default, <template slot="reference">{this.$slots.reference}</template>]
     );
   },
 

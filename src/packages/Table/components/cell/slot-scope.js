@@ -14,17 +14,18 @@ export default {
   },
   props: {
     scope: {
-      type: Object, default() {
+      type: Object,
+      default() {
         return {
           row: {},
         };
       },
-    },//当前行-表格数据
+    }, //当前行-表格数据
     headScope: { type: Object },
     headRefer: { type: Object },
     scopeRefer: { type: Object },
-    rowIndex: { type: Number },//行索引
-    colIndex: { type: Number },//列索引
+    rowIndex: { type: Number }, //行索引
+    colIndex: { type: Number }, //列索引
     checkStator: { type: Object },
     isFormTable: { type: Boolean },
     cellFifter: { type: Function },
@@ -53,8 +54,7 @@ export default {
           return false;
         }
         return true;
-      }
-      catch (e) {
+      } catch (e) {
         return false;
       }
     },
@@ -65,16 +65,15 @@ export default {
         cellKey: `${modelCode}-${this.rowIndex}-${this.colIndex}`, //cell key ( modelCode + row-index + row-index )
         rowIndex: this.rowIndex,
         colIndex: this.colIndex,
-        modelCode: modelCode,  //get this col model key in gird head data
-        scope: this.scope,            //get this row data
-        headScope: this.headScope,              //this col data in grid head
-        headRefer: this.headRefer,    //head refer
-        scopeRefer: this.scopeRefer,   //scope refer
+        modelCode: modelCode, //get this col model key in gird head data
+        scope: this.scope, //get this row data
+        headScope: this.headScope, //this col data in grid head
+        headRefer: this.headRefer, //head refer
+        scopeRefer: this.scopeRefer, //scope refer
       };
     },
   },
   render(h) {
-
     /**
      * render default cell ()
      * @param scope
@@ -86,103 +85,121 @@ export default {
       return <div>{content}</div>;
     };
 
-
     let cellRender = (scope, item, modelCode) => {
       if (!this.isFormTable) return defaultCell(scope, modelCode);
       if (this.isFormRender) {
         switch (this.formType) {
           case 'link':
-            return <div on-click={this.cellAction.bind(this, scope, item)}
-            >
-              {scope.row[modelCode]}
-            </div>;
+            return (
+              <div on-click={this.cellAction.bind(this, scope, item)}>{scope.row[modelCode]}</div>
+            );
           case 'input':
             return (
-              <Input value={scope.row[modelCode]}
-                     onInput={e => {
-                       scope.row[modelCode] = e;
-                       this.$emit('input', e);
-                     }}
-                     width={'100%'}
-                     placeholder={this.formConfig.placeHolder}
-                     disabled={this.formConfig.disabled} clearable={true}
-                     on-change={this.cellFormChange}/>
+              <Input
+                value={scope.row[modelCode]}
+                onInput={e => {
+                  scope.row[modelCode] = e;
+                  this.$emit('input', e);
+                }}
+                width={'100%'}
+                placeholder={this.formConfig.placeHolder}
+                disabled={this.formConfig.disabled}
+                clearable={true}
+                on-change={this.cellFormChange}
+              />
             );
           case 'select':
-            return <Select value={scope.row[modelCode].picked.value}
-                           onInput={e => {
-                             scope.row[modelCode].picked.value = e;
-                             this.$emit('input', e);
-                           }}
-                           options={scope.row[modelCode].options}
-                           width={'100%'}
-                           editable={false}
-                           placeholder={this.formConfig.placeHolder}
-                           disabled={this.formConfig.disabled}
-                           clearable={true}
-                           on-change={this.cellFormChange}/>;
+            return (
+              <Select
+                value={scope.row[modelCode].picked.value}
+                onInput={e => {
+                  scope.row[modelCode].picked.value = e;
+                  this.$emit('input', e);
+                }}
+                options={scope.row[modelCode].options}
+                width={'100%'}
+                editable={false}
+                placeholder={this.formConfig.placeHolder}
+                disabled={this.formConfig.disabled}
+                clearable={true}
+                on-change={this.cellFormChange}
+              />
+            );
           case 'checkbox':
             return (
-              <Checkbox value={scope.row[modelCode].picked.value}
-                        onInput={e => {
-                          scope.row[modelCode].picked.value = e;
-                          this.$emit('input', e);
-                        }}
-                        options={scope.row[modelCode].options}
-                        disabled={this.formConfig.disabled}
-                        min={this.formConfig.min} max={this.formConfig.max}
-                        on-change={this.cellFormChange}/>
+              <Checkbox
+                value={scope.row[modelCode].picked.value}
+                onInput={e => {
+                  scope.row[modelCode].picked.value = e;
+                  this.$emit('input', e);
+                }}
+                options={scope.row[modelCode].options}
+                disabled={this.formConfig.disabled}
+                min={this.formConfig.min}
+                max={this.formConfig.max}
+                on-change={this.cellFormChange}
+              />
             );
           case 'radio':
             return (
-              <Radio value={scope.row[modelCode].picked.value}
-                     onInput={e => {
-                       scope.row[modelCode].picked.value = e;
-                       this.$emit('input', e);
-                     }}
-                     options={scope.row[modelCode].options}
-                     disabled={this.formConfig.disabled}
-                     on-change={this.cellFormChange}/>
+              <Radio
+                value={scope.row[modelCode].picked.value}
+                onInput={e => {
+                  scope.row[modelCode].picked.value = e;
+                  this.$emit('input', e);
+                }}
+                options={scope.row[modelCode].options}
+                disabled={this.formConfig.disabled}
+                on-change={this.cellFormChange}
+              />
             );
           case 'date':
             return (
-              <DatePicker value={scope.row[modelCode]}
-                          onInput={e => {
-                            scope.row[modelCode] = e;
-                            this.$emit('input', e);
-                          }}
-                          width={'100%'}
-                          type="date"
-                          disabled={this.formConfig.disabled}
-                          editable={false}
-                          placeholder={this.formConfig.placeHolder} value-format="yyyy-MM-dd 00:00:00"
-                          on-change={this.cellFormChange}/>
+              <DatePicker
+                value={scope.row[modelCode]}
+                onInput={e => {
+                  scope.row[modelCode] = e;
+                  this.$emit('input', e);
+                }}
+                width={'100%'}
+                type="date"
+                disabled={this.formConfig.disabled}
+                editable={false}
+                placeholder={this.formConfig.placeHolder}
+                value-format="yyyy-MM-dd 00:00:00"
+                on-change={this.cellFormChange}
+              />
             );
           case 'rate':
             return (
-              <InputNumber value={scope.row[modelCode]}
-                           onInput={e => {
-                             scope.row[modelCode] = e;
-                             this.$emit('input', e);
-                           }}
-                           width={'100%'}
-                           min={this.formConfig.min} max={this.formConfig.max}
-                           disabled={this.formConfig.disabled}
-                           on-change={this.cellFormChange}/>
+              <InputNumber
+                value={scope.row[modelCode]}
+                onInput={e => {
+                  scope.row[modelCode] = e;
+                  this.$emit('input', e);
+                }}
+                width={'100%'}
+                min={this.formConfig.min}
+                max={this.formConfig.max}
+                disabled={this.formConfig.disabled}
+                on-change={this.cellFormChange}
+              />
             );
 
           default:
             return defaultCell(scope, modelCode);
         }
-      }
-      else {
+      } else {
         return defaultCell(scope, modelCode);
       }
     };
 
-
     const cellClass = () => {
-      const baseCls = !this.isFormTable ? 'normal-cell' : this.isFormRender ? 'form-cell' : 'normal-cell';
+      const baseCls = !this.isFormTable
+        ? 'normal-cell'
+        : this.isFormRender
+        ? 'form-cell'
+        : 'normal-cell';
       const typeCls = this.formConfig && this.formType ? `${this.formType}-cell` : '';
       const errCls = this.validateCheck(this.cellParam) ? `is-error` : '';
       return `cell-container ${baseCls} ${typeCls} ${errCls}`;
@@ -191,9 +208,9 @@ export default {
     return h(
       `div`,
       {
-        'class': cellClass(),
+        class: cellClass(),
       },
-      [cellRender(this.cellParam.scope, this.cellParam.headScope, this.cellParam.modelCode)],
+      [cellRender(this.cellParam.scope, this.cellParam.headScope, this.cellParam.modelCode)]
     );
   },
   methods: {
@@ -216,19 +233,22 @@ export default {
         const val = scope.row[key];
         try {
           return val[scopeRefer['modelData']].value;
-        }
-        catch (e) {
+        } catch (e) {
           return val;
         }
       };
-      const required = this.formConfig.require;          //form of cell  require switch
-      const ruleType = this.formConfig.validateRule;     //form of cell validate rule
-      const value = getValue(Param.scope, Param.modelCode, Param.scopeRefer);     //get form-cell value
+      const required = this.formConfig.require; //form of cell  require switch
+      const ruleType = this.formConfig.validateRule; //form of cell validate rule
+      const value = getValue(Param.scope, Param.modelCode, Param.scopeRefer); //get form-cell value
 
       let judge = () => {
         // console.log('judge 开始 ');
         //是否验证通过
-        if (this.checkStator.list.indexOf(Param.cellKey) === -1 && this.checkStator.state !== 'CHECK_ALL') return true;
+        if (
+          this.checkStator.list.indexOf(Param.cellKey) === -1 &&
+          this.checkStator.state !== 'CHECK_ALL'
+        )
+          return true;
         // console.log('需要验证！！！');
         if (required) {
           // console.log('需要必填 is required ');
@@ -238,19 +258,16 @@ export default {
               return this.validateRule(value, ruleType, this.rulesConfig);
             }
             return true;
-          }
-          else {
+          } else {
             // console.log('没有值！！！！！！！！！！！');
             return false;
           }
-        }
-        else {
+        } else {
           // console.log('无需必填 not required ');
           if (value || value === 0) {
             // console.log('有值！！！！！！！！！！！');
             return this.validateRule(value, ruleType, this.rulesConfig);
-          }
-          else {
+          } else {
             return true;
           }
         }
@@ -265,7 +282,7 @@ export default {
       // console.log('内容验证结果 ');
       // console.log(this.validateRule(this,value, ruleType));
 
-      const j = judge();//最终验证结果
+      const j = judge(); //最终验证结果
       // console.log('最终验证结果');
       // console.log(judge());
       return !j;
@@ -286,7 +303,7 @@ export default {
     cellFormChange(value) {
       if (!this.isFormTable) return;
       if (this.isFormRender) {
-        this.$emit('cell-form-change', value, this.cellParam);//put this form cell key to check list
+        this.$emit('cell-form-change', value, this.cellParam); //put this form cell key to check list
       }
     },
     /**

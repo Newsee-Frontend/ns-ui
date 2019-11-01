@@ -18,7 +18,9 @@ export default create({
   props: {
     value: [String],
     colorFormat: {
-      type: String, default: 'rgb', validate: f => {
+      type: String,
+      default: 'rgb',
+      validate: f => {
         return ['hax', 'rgb'].indexOf(f) > -1;
       },
     },
@@ -30,26 +32,25 @@ export default create({
   },
   render(h) {
     const cycleRender = (theme, index) => {
-      return theme.key === 'custom' ?
+      return theme.key === 'custom' ? (
         <ColorPicker
           class={this.colorPickerActive ? 'active' : ''}
           color-format={'hex'}
           predefine={this.palette.predefine}
           on-change={this.changeTheme}
           value={this.childSkiner}
-        /> :
+        />
+      ) : (
         <li
           class={'fl theme-cycle'}
           key={index}
           style={{ 'background-color': theme.color }}
           on-click={this.changeTheme.bind(this, theme.color, theme.key)}
         >
-          {
-            theme.color === this.childSkiner ? <i class={'el-icon-check'}/> : null
-          }
-        </li>;
+          {theme.color === this.childSkiner ? <i class={'el-icon-check'} /> : null}
+        </li>
+      );
     };
-
 
     return (
       <el-popover
@@ -63,19 +64,10 @@ export default create({
         on-after-leave={this.afterLeave}
       >
         <div class={`${this.recls('container')} clear`}>
-          {
-            <p>设置主题</p>
-          }
-          {
-            <ul>
-              {
-                this.palette.commons.map(
-                  (theme, index) => cycleRender(theme, index))
-              }
-            </ul>
-          }
+          {<p>设置主题</p>}
+          {<ul>{this.palette.commons.map((theme, index) => cycleRender(theme, index))}</ul>}
         </div>
-        <icon-class slot="reference" icon-class={'skin'}/>
+        <icon-class slot="reference" icon-class={'skin'} />
       </el-popover>
     );
   },
@@ -137,8 +129,7 @@ export default create({
     toggleFormat(color) {
       if (this.colorFormat === 'rgb' && color.indexOf('rgb') === -1) {
         return colorHexToRgba(color).rgba;
-      }
-      else if (this.colorFormat === 'hax' && color.indexOf('#') === -1) {
+      } else if (this.colorFormat === 'hax' && color.indexOf('#') === -1) {
         return colorRGBtoHex(color);
       }
       return color;
@@ -160,4 +151,3 @@ export default create({
     this.toggleByInline(this.toggleFormat(this.childSkiner));
   },
 });
-

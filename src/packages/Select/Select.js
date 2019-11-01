@@ -14,7 +14,7 @@ export default create({
     loading: { type: Boolean, default: false },
     options: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     width: [String, Number],
     size: { type: String, validator: s => sizeValidator(s) }, //尺寸
@@ -25,7 +25,7 @@ export default create({
     multiple: { type: Boolean, default: false },
     multipleLimit: { type: Number, default: 0 },
     popperClass: { type: String },
-    collapseTags: { type: Boolean, default: false },//多选时是否将选中值按文字的形式展示
+    collapseTags: { type: Boolean, default: false }, //多选时是否将选中值按文字的形式展示
     filterable: { type: Boolean, default: false },
     filterMethod: { type: Function, default: null }, //自定义过滤方法
     remote: { type: Boolean, default: false }, //是否为远程搜索
@@ -44,7 +44,7 @@ export default create({
       return this.recls([this.formsize, this.multiple && !this.collapseTags && 'auto_height']);
     },
     convert_style() {
-      return { width: this.convert_width }
+      return { width: this.convert_width };
     },
   },
 
@@ -56,14 +56,13 @@ export default create({
 
   render(h) {
     let { label, value } = this.keyRefer;
-    const optionRender = (item) => (
+    const optionRender = item => (
       <el-option
         key={item[value]}
         value={item[value]}
         label={item[label]}
         disabled={item.disabled}
-      >
-      </el-option>
+      ></el-option>
     );
     return (
       <el-select
@@ -94,11 +93,9 @@ export default create({
         placeholder={this.placeholder}
         style={this.convert_style}
       >
-        {
-          this.options.map((item) => {
-            return optionRender(item);
-          })
-        }
+        {this.options.map(item => {
+          return optionRender(item);
+        })}
       </el-select>
     );
   },

@@ -14,16 +14,14 @@ export default {
      * "auto", "below", "bottom", "above" or "top"
      */
     menuOpenDirection: { type: String, default: 'auto' },
-    isMenuOpened: { type: Boolean, default: false },//Whether the menu should be always open
+    isMenuOpened: { type: Boolean, default: false }, //Whether the menu should be always open
     multiple: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     clearable: { type: Boolean, default: true },
     appendToBody: { type: Boolean, default: false },
-    limit: { type: Number },//多选情况下，在select显示框中显示的个数限制，超出部分以 limitText 设置内容显示
+    limit: { type: Number }, //多选情况下，在select显示框中显示的个数限制，超出部分以 limitText 设置内容显示
     limitText: { type: Function, default: count => `+ ${count} more` },
   },
   computed: {},
-  created() {
-
-  },
+  created() {},
 };

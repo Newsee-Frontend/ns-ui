@@ -19,7 +19,8 @@ export default create({
     height: { type: [String, Number] },
     disabled: { type: Boolean, default: false }, //禁用
     keyRefer: {
-      type: Object, default() {
+      type: Object,
+      default() {
         return defaultKeyRefer;
       },
     },
@@ -54,12 +55,10 @@ export default create({
       <div
         class={[this.recls(), 'clear']}
         value={this.childInterval}
-        onInput={
-          val => {
-            this.childInterval = val;
-            this.$emit('input', this.childInterval);
-          }
-        }
+        onInput={val => {
+          this.childInterval = val;
+          this.$emit('input', this.childInterval);
+        }}
         style={this.convert_style}
       >
         <Select
@@ -71,10 +70,9 @@ export default create({
           placeholder="请选择"
           disabled={this.disabled}
           on-change={this.typeChange}
-        >
-        </Select>
+        ></Select>
         <div class={'time-interval-part fl'}>
-          <time-interval-toggle/>
+          <time-interval-toggle />
         </div>
         <Time-picker
           class={'time-interval-part fl'}
@@ -85,8 +83,7 @@ export default create({
           format={'HH:mm:ss'}
           value-format={'HH:mm:ss'}
           disabled={this.disabled}
-        >
-        </Time-picker>
+        ></Time-picker>
       </div>
     );
   },
@@ -96,6 +93,3 @@ export default create({
     },
   },
 });
-
-
-

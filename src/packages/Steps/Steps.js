@@ -1,7 +1,6 @@
 import create from '../../create/create';
 import Migrating from '../../mixins/migrating';
 
-
 export default create({
   name: 'steps',
 
@@ -18,13 +17,13 @@ export default create({
     active: Number,
     direction: {
       type: String,
-      default: 'horizontal'
+      default: 'horizontal',
     },
     alignCenter: Boolean,
     simple: Boolean,
     finishStatus: {
       type: String,
-      default: 'finish'
+      default: 'finish',
     },
   },
 
@@ -39,7 +38,7 @@ export default create({
       steps.forEach((child, index) => {
         child.index = index;
       });
-    }
+    },
   },
 
   render(h) {
@@ -50,26 +49,25 @@ export default create({
           'el-steps',
           this.recls(),
           !simple && 'el-steps--' + direction,
-          simple && 'el-steps--simple'
-          ]}>
+          simple && 'el-steps--simple',
+        ]}
+      >
         {this.$slots.default}
       </div>
-    )
+    );
   },
 
   methods: {
     getMigratingConfig() {
       return {
         props: {
-          'center': 'center is removed.'
-        }
+          center: 'center is removed.',
+        },
       };
-    }
+    },
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

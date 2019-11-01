@@ -29,7 +29,6 @@ export default create({
       default: 'line',
     },
 
-
     //进度条显示文字内置在进度条内（只在 type=separator 时可用）
     textInside: {
       type: Boolean,
@@ -61,9 +60,7 @@ export default create({
 
   render(h) {
     return (
-      <div
-        v-show={this.showProgress}
-        class={[this.recls(), 'el-loading-mask', 'is-fullscreen']}>
+      <div v-show={this.showProgress} class={[this.recls(), 'el-loading-mask', 'is-fullscreen']}>
         <Progress
           type={this.type}
           color={this.color}
@@ -71,8 +68,8 @@ export default create({
           stroke-width={this.strokeWidth}
           width={this.width}
           percentage={parseInt(this.percentage)}
-          show-text={this.showText}>
-        </Progress>
+          show-text={this.showText}
+        ></Progress>
       </div>
     );
   },
@@ -95,8 +92,8 @@ export default create({
       let widthInc = 100 / fps;
       let timeSpace = 1000 / fps;
       let that = this;
-      let k = 1.02;   // 增速比率
-      let breakPoint = 70;  //临界值
+      let k = 1.02; // 增速比率
+      let breakPoint = 70; //临界值
       let leakPoint = 0.3;
       let reStartWidthIncMin = 1;
 
@@ -115,7 +112,6 @@ export default create({
             }
 
             that.percentage = Math.min(that.percentage + widthInc, 100);
-
           }, timeSpace);
         } else {
           that._ended();
@@ -130,9 +126,7 @@ export default create({
     },
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

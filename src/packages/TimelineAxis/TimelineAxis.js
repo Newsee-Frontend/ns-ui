@@ -18,66 +18,61 @@ export default create({
       type: Object,
       default: () => {
         return {
-          'pTitle': 'title',
-          'pActive': 'active',
-          'children': 'children',
-          'cTiTle': 'title',
-          'cActive': 'active',
-          'cObvious' : 'obvious',   // 子时间轴内容是否清晰
-          'cDate': 'date',
-          'cInfo': 'info'
-        }
-      }
+          pTitle: 'title',
+          pActive: 'active',
+          children: 'children',
+          cTiTle: 'title',
+          cActive: 'active',
+          cObvious: 'obvious', // 子时间轴内容是否清晰
+          cDate: 'date',
+          cInfo: 'info',
+        };
+      },
     },
   },
 
   computed: {
-    childKeyRefer(){
+    childKeyRefer() {
       let { cActive } = this.keyRefer;
-      return { active: cActive }
+      return { active: cActive };
     },
 
-    perentKeyRefer(){
+    perentKeyRefer() {
       let { pActive } = this.keyRefer;
-      return { active: pActive }
-    }
+      return { active: pActive };
+    },
   },
 
   watch: {},
 
   render(h) {
-    let {pTitle, cTiTle, children, cObvious, cDate, cInfo} = this.keyRefer;
-    const childrenNode = (childList) => (
+    let { pTitle, cTiTle, children, cObvious, cDate, cInfo } = this.keyRefer;
+    const childrenNode = childList => (
       <timeline
         class="children-nodes"
         hideTimestamp
         keyRefer={this.childKeyRefer}
         options={childList}
-        {
-          ...{
+        {...{
           scopedSlots: {
             default: props => {
               return (
-                <div class={
-                  props.item[cObvious]? 'deep-grey-text' : 'grey-text'
-                }>
-                  { props.item[cTiTle]? <span>[{props.item[cTiTle]}]&nbsp;&nbsp;</span>: null}
-                  { props.item[cDate]? <span>{props.item[cDate]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>: null}
-                  { props.item[cInfo]? <span>{props.item[cInfo]}&nbsp;&nbsp;</span>: null}
+                <div class={props.item[cObvious] ? 'deep-grey-text' : 'grey-text'}>
+                  {props.item[cTiTle] ? <span>[{props.item[cTiTle]}]&nbsp;&nbsp;</span> : null}
+                  {props.item[cDate] ? (
+                    <span>{props.item[cDate]}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                  ) : null}
+                  {props.item[cInfo] ? <span>{props.item[cInfo]}&nbsp;&nbsp;</span> : null}
                 </div>
               );
             },
           },
-          }
-        }
-      >
-      </timeline>
+        }}
+      ></timeline>
     );
 
     return (
-      <div
-        class={this.recls()}
-      >
+      <div class={this.recls()}>
         <timeline
           options={this.options}
           keyRefer={this.perentKeyRefer}
@@ -86,26 +81,21 @@ export default create({
               default: props => {
                 return (
                   <div class="parent-node">
-                    <div class="parent-node-title">
-                      {props.item[pTitle]}
-                    </div>
+                    <div class="parent-node-title">{props.item[pTitle]}</div>
                     {props.item[children].length > 0 && childrenNode(props.item[children])}
                   </div>
                 );
               },
             },
           }}
-        >
-        </timeline>
+        ></timeline>
       </div>
     );
   },
 
   methods: {},
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

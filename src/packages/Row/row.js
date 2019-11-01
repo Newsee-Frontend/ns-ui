@@ -44,7 +44,7 @@ export default create({
         ],
         style: this.style,
       },
-      this.$slots.default,
+      this.$slots.default
     );
   },
 });

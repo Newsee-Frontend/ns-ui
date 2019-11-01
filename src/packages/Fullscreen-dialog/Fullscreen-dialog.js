@@ -16,7 +16,9 @@ export default create({
     'custom-class': { type: String },
     title: { type: String },
     type: {
-      type: String, default: 'normal', validator: t => {
+      type: String,
+      default: 'normal',
+      validator: t => {
         return _fullscreen_dialogtype.includes(t);
       },
     }, //类型（'normal','simple','noFooter','noHeader'）
@@ -38,29 +40,22 @@ export default create({
     return (
       <Dialog
         visible={this.show}
-        on-update:visible={val => this.show = val}
-
+        on-update:visible={val => (this.show = val)}
         custom-class={this.customClass}
-
         title={this.title}
         type={this.type}
-
         close-on-press-escape={this.closeOnPressEscape}
         modal-append-to-body
         append-to-body
         isfullscreen
-
         show-close={this.showClose}
         before-close={this.beforeClose}
-
         on-close={this.close}
         on-open={this.open}
       >
-        {
-          this.$slots.default
-        }
+        {this.$slots.default}
         <span slot={'footer'} className={'dialog-footer'}>
-           {this.$slots.footer}
+          {this.$slots.footer}
         </span>
       </Dialog>
     );

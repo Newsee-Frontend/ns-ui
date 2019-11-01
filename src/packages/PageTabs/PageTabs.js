@@ -28,7 +28,6 @@ export default create({
   render(h) {
     return (
       <ul class={this.recls({ show: this.visitedView.length })}>
-
         {Array.from(this.visitedView).map((tag, i) => [
           <li class={['tab-tag', { 'tag-active': this.isActive(tag.path) }]} key={tag.path}>
             <el-tag
@@ -52,13 +51,15 @@ export default create({
 
         {
           <div class={'operate-slot'}>
-            {
-              this.$slots['operate'] ?
-                <div slot="operate">{this.$slots['operate']}</div> :
-                this.visitedView.length ? (
-                  <icon-class icon-class={'close-all'} class={'operate-slot-icon'} on-click={this.closeAllViewTabs}/>
-                ) : null
-            }
+            {this.$slots['operate'] ? (
+              <div slot="operate">{this.$slots['operate']}</div>
+            ) : this.visitedView.length ? (
+              <icon-class
+                icon-class={'close-all'}
+                class={'operate-slot-icon'}
+                on-click={this.closeAllViewTabs}
+              />
+            ) : null}
           </div>
         }
       </ul>
@@ -85,13 +86,10 @@ export default create({
     tabsjump(tag) {
       if (this.autoJump) {
         this.$router.push({ path: tag.path });
-      }
-      else {
+      } else {
         this.$emit('click-view-tabs', tag);
       }
     },
   },
-  created() {
-
-  },
+  created() {},
 });

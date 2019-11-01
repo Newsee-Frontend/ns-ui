@@ -4,7 +4,6 @@ import modelConsists from './model-consists';
 import sortModel from './sort-model';
 import loadOptions from './load-options';
 
-
 import props_basic from './props/basic';
 import emptyText from './props/empty-text';
 

@@ -11,8 +11,8 @@ export default {
     };
   },
   props: {
-    initSummaryState: { type: String },//初始 command 状态
-    command: { type: String },//用于切换
+    initSummaryState: { type: String }, //初始 command 状态
+    command: { type: String }, //用于切换
   },
   render(h) {
     return (
@@ -23,15 +23,14 @@ export default {
               <li>{this.dropTit}</li>
               <li>合计</li>
             </ul>
-            <i class="el-icon-arrow-down el-icon--right"/>
+            <i class="el-icon-arrow-down el-icon--right" />
           </div>
           <el-dropdown-menu slot="dropdown">
-            {
-              this.dropConf.map(item => [
-                  <el-dropdown-item command={item.command} class="">{item.tit}</el-dropdown-item>,
-                ],
-              )
-            }
+            {this.dropConf.map(item => [
+              <el-dropdown-item command={item.command} class="">
+                {item.tit}
+              </el-dropdown-item>,
+            ])}
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -54,4 +53,3 @@ export default {
     this.dropTit = this.getTitBycommand(this.initSummaryState);
   },
 };
-

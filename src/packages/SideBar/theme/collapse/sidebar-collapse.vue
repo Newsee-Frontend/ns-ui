@@ -20,7 +20,7 @@
           ></icon-svg>
           <span v-text="firstitem[keyRefer.menuLabel]"></span>
           <span class="first-slot">
-             <slot name="first-slot" :item="firstitem"></slot>
+            <slot name="first-slot" :item="firstitem"></slot>
           </span>
         </div>
       </div>
@@ -66,7 +66,7 @@
                   )
                 "
               >
-                {{seconditem[keyRefer.menuLabel]}}
+                {{ seconditem[keyRefer.menuLabel] }}
                 <!--<slot-->
                 <!--name="second-slot"-->
                 <!--:item="{-->
@@ -84,141 +84,142 @@
   </ul>
 </template>
 <script>
-  import create from '../../../../create/create';
-  import Navcontrol from '../../control';
-  import defaultKeyRefer from '../../keyRefer';
-  import { compute, delaynav } from '../../utils';
+import create from '../../../../create/create';
+import Navcontrol from '../../control';
+import defaultKeyRefer from '../../keyRefer';
+import { compute, delaynav } from '../../utils';
 
-  export default create({
-    name: 'sidebar-collapse',
-    data() {
-      return {
-        control: null,
-        activeStore: { first: '', second: '' }, //active index store
-        second_nav_top: 0,
-        secNavASC: true,
-        maxSecNavHeight: null,
-        ishover: false,
-      };
-    },
-    props: {
-      data: {
-        type: Array, default() {
-          return [];
-        },
-      },
-      arrowDec: { type: Boolean, default: false }, //二级悬浮框箭头修饰
-      jumpByNavEmpty: { type: Boolean, default: true },
-      showTimeout: { type: Number, default: 200 },
-      hideTimeout: { type: Number, default: 200 },
-      keyRefer: {
-        type: Object,
-        default() {
-          return defaultKeyRefer;
-        },
+export default create({
+  name: 'sidebar-collapse',
+  data() {
+    return {
+      control: null,
+      activeStore: { first: '', second: '' }, //active index store
+      second_nav_top: 0,
+      secNavASC: true,
+      maxSecNavHeight: null,
+      ishover: false,
+    };
+  },
+  props: {
+    data: {
+      type: Array,
+      default() {
+        return [];
       },
     },
-    computed: {
-      second_nav_container_maxheight() {
-        return parseInt(this.maxSecNavHeight) - 2 - 12 - 40 + 'px';
+    arrowDec: { type: Boolean, default: false }, //二级悬浮框箭头修饰
+    jumpByNavEmpty: { type: Boolean, default: true },
+    showTimeout: { type: Number, default: 200 },
+    hideTimeout: { type: Number, default: 200 },
+    keyRefer: {
+      type: Object,
+      default() {
+        return defaultKeyRefer;
       },
     },
-    created() {
-      this.control = new Navcontrol({
-        state: {
-          isCollapse: false,
-          firstActiveNow: 1,
-          secondActiveNow: 0,
-          secondNavTop: 0,
-          secondNavASC: true,
-        },
-      });
+  },
+  computed: {
+    second_nav_container_maxheight() {
+      return parseInt(this.maxSecNavHeight) - 2 - 12 - 40 + 'px';
     },
-    methods: {
-      //set collapse status for nav-list
-      navcollapse() {
-        const collapse = this.control.state.isCollapse;
-        this.control.setCollapse(!collapse);
+  },
+  created() {
+    this.control = new Navcontrol({
+      state: {
+        isCollapse: false,
+        firstActiveNow: 1,
+        secondActiveNow: 0,
+        secondNavTop: 0,
+        secondNavASC: true,
       },
-      /**
-       * link to router web ,and set funcId
-       * @param url
-       * @param firstaIndex
-       * @param secondIndex
-       */
-      linkTo(url, firstaIndex, secondIndex) {
+    });
+  },
+  methods: {
+    //set collapse status for nav-list
+    navcollapse() {
+      const collapse = this.control.state.isCollapse;
+      this.control.setCollapse(!collapse);
+    },
+    /**
+     * link to router web ,and set funcId
+     * @param url
+     * @param firstaIndex
+     * @param secondIndex
+     */
+    linkTo(url, firstaIndex, secondIndex) {
+      //set acitev of first nav
+      this.control.setFirstActive(firstaIndex);
+      //set acitev of second nav
+      this.control.setSecondActive(secondIndex);
+      //set first active to active-store
+      this.activeStore.first = firstaIndex;
+      //set second active to active-store
+      this.activeStore.second = secondIndex;
+      //jump
+      this.$router.push({ path: url });
+    },
+    /**
+     * first nav click handle
+     * @param item
+     */
+    firstNavClick(item) {
+      const firstindex = item[this.keyRefer.menuIndex] - 1;
+
+      this.$emit('first-nav-click', firstindex, item);
+      if (
+        (!item[this.keyRefer.childMenus] || item[this.keyRefer.childMenus].length === 0) &&
+        this.jumpByNavEmpty
+      ) {
         //set acitev of first nav
-        this.control.setFirstActive(firstaIndex);
-        //set acitev of second nav
-        this.control.setSecondActive(secondIndex);
-        //set first active to active-store
-        this.activeStore.first = firstaIndex;
-        //set second active to active-store
-        this.activeStore.second = secondIndex;
-        //jump
-        this.$router.push({ path: url });
-      },
-      /**
-       * first nav click handle
-       * @param item
-       */
-      firstNavClick(item) {
-        const firstindex = item[this.keyRefer.menuIndex] - 1;
-
-        this.$emit('first-nav-click', firstindex, item);
-        if (
-          (!item[this.keyRefer.childMenus] || item[this.keyRefer.childMenus].length === 0) &&
-          this.jumpByNavEmpty
-        ) {
-          //set acitev of first nav
-          this.control.setFirstActive(firstindex);
-          this.$router.push({ path: '/' + item[this.keyRefer.menuRouter] }); //jump
-        }
-      },
-
-      /**
-       * nav mouse enter
-       * @param item
-       * @param event
-       */
-      navMouseEnter(item, event) {
-        const index = item[this.keyRefer.menuIndex] - 1;
-        //set hover of first nav
-        this.control.setFirstHover(index);
-
-        compute(event, this);
-
-        delaynav(
-          this,
-          () => {
-            this.ishover = false;
-            this.ishover = true;
-          },
-          this.showTimeout,
-        );
-
-        this.$emit('mouse-enter', index, item);
-      },
-
-      /**
-       * nav mouse leave
-       * @param item
-       */
-      navMouseLeave(item) {
-        delaynav(
-          this,
-          () => {
-            this.ishover = false;
-          },
-          this.hideTimeout,
-        );
-        this.$emit('mouse-leave', item[this.keyRefer.menuIndex] - 1, item);
-      },
+        this.control.setFirstActive(firstindex);
+        this.$router.push({ path: '/' + item[this.keyRefer.menuRouter] }); //jump
+      }
     },
-  });
+
+    /**
+     * nav mouse enter
+     * @param item
+     * @param event
+     */
+    navMouseEnter(item, event) {
+      const index = item[this.keyRefer.menuIndex] - 1;
+      //set hover of first nav
+      this.control.setFirstHover(index);
+
+      compute(event, this);
+
+      delaynav(
+        this,
+        () => {
+          this.ishover = false;
+          this.ishover = true;
+        },
+        this.showTimeout
+      );
+
+      this.$emit('mouse-enter', index, item);
+    },
+
+    /**
+     * nav mouse leave
+     * @param item
+     */
+    navMouseLeave(item) {
+      delaynav(
+        this,
+        () => {
+          this.ishover = false;
+        },
+        this.hideTimeout
+      );
+      this.$emit('mouse-leave', item[this.keyRefer.menuIndex] - 1, item);
+    },
+  },
+});
 </script>
 <style rel="stylesheet/scss" lang="scss">
-  /*@import '../../style/collapse/var';*/
-  /*@import '../../style/base';*/
-  /*@import '../../style/collapse/collapse';*/
+/*@import '../../style/collapse/var';*/
+/*@import '../../style/base';*/
+/*@import '../../style/collapse/collapse';*/
 </style>

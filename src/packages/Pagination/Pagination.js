@@ -16,9 +16,9 @@ export default create({
   },
   props: {
     gridID: { type: String },
-    total: { type: Number },//总条目数
-    layout: { type: String, default: 'total, sizes, prev, pager, next, jumper' },//组件布局，子组件名用逗号分隔
-    pagerCount: { type: Number, default: 7 },//页码按钮的数量，当总页数超过该值时会折叠
+    total: { type: Number }, //总条目数
+    layout: { type: String, default: 'total, sizes, prev, pager, next, jumper' }, //组件布局，子组件名用逗号分隔
+    pagerCount: { type: Number, default: 7 }, //页码按钮的数量，当总页数超过该值时会折叠
     //每页显示个数选择器的选项设置
     pageSizes: {
       type: Array,
@@ -28,7 +28,8 @@ export default create({
     },
     //搜索条件 searchConditions
     searchConditions: {
-      type: Object, default() {
+      type: Object,
+      default() {
         return {
           pageNum: 1, //当前页数
           pageSize: 10, //每页显示条目个数
@@ -47,9 +48,9 @@ export default create({
       if (this.layout.indexOf(this.totalKey) !== -1) {
         switch (this.TEMPLATE_MAP) {
           case 'as/ap':
-            return text_all_total + slash + text_pageNum;//共**条/**页(共)
+            return text_all_total + slash + text_pageNum; //共**条/**页(共)
           case 'cp/ap-as':
-            return text_c_page + slash + text_pageNum + text_all_total;//：第**页/**页 共**条
+            return text_c_page + slash + text_pageNum + text_all_total; //：第**页/**页 共**条
           default:
             return null;
         }
@@ -60,14 +61,19 @@ export default create({
   render(h) {
     return (
       <div class={`${this.recls()} clear`}>
+        {this.panelDescribe ? <span class="panel-pre__text fl">{this.panelDescribe}</span> : null}
         {
-          this.panelDescribe ? <span class="panel-pre__text fl">{this.panelDescribe}</span> : null
-        }
-        {
-          <el-pagination class="fl" current-page={this.searchConditions.pageNum} page-sizes={this.pageSizes} page-size={this.searchConditions.pageSize}
-                         total={this.total} layout={this.layout} pager-count={this.pagerCount}
-                         on-size-change={this.sizeChange} on-current-change={this.currentChange}>
-          </el-pagination>
+          <el-pagination
+            class="fl"
+            current-page={this.searchConditions.pageNum}
+            page-sizes={this.pageSizes}
+            page-size={this.searchConditions.pageSize}
+            total={this.total}
+            layout={this.layout}
+            pager-count={this.pagerCount}
+            on-size-change={this.sizeChange}
+            on-current-change={this.currentChange}
+          ></el-pagination>
         }
       </div>
     );

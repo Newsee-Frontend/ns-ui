@@ -14,7 +14,7 @@ export default create({
     width: [String, Number],
     options: {
       type: Array,
-      default: () => ([]),
+      default: () => [],
     },
     type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
     size: { type: String, validator: s => sizeValidator(s) },
@@ -27,7 +27,7 @@ export default create({
     },
 
     isGroup: { type: Boolean, default: true },
-    label: [String, Number, Boolean],  //单个
+    label: [String, Number, Boolean], //单个
   },
 
   computed: {},
@@ -40,50 +40,48 @@ export default create({
 
   render(h) {
     const radioDom = item => {
-      return (
-        h(
-          this.type === 'button' ? `el-radio-button` : `el-radio`,
-          {
-            props: {
-              label: item[this.keyRefer.value],
-              key: item[this.keyRefer.value],
-              disabled: item[this.keyRefer.disabled],
-            },
+      return h(
+        this.type === 'button' ? `el-radio-button` : `el-radio`,
+        {
+          props: {
+            label: item[this.keyRefer.value],
+            key: item[this.keyRefer.value],
+            disabled: item[this.keyRefer.disabled],
           },
-          item[this.keyRefer.label],
-        )
+        },
+        item[this.keyRefer.label]
       );
     };
 
-    const radioGroup = <el-radio-group
-      class={this.recls()}
-      value={this.childRadio}
-      onInput={e => this.handlemodel(e)}
-      disabled={this.disabled}
-      fill={this.fill}
-      textColor={this.textColor}
-      style={{ width: this.convert_width }}
-      on-change={this.change}
-    >
-      {
-        this.options.map(item => (radioDom(item)))
-      }
-    </el-radio-group>;
-
-    const radioSingle = <el-radio
-      class={`${this.recls()} ${this.recls('single')}`}
-      value={this.childRadio}
-      onInput={e => this.handlemodel(e)}
-      onChange={this.change}
-      label={this.label}
-      disabled={this.disabled}
-    >
-      {this.$slots.default}
-    </el-radio>;
-
-    return (
-      this.isGroup ? radioGroup : radioSingle
+    const radioGroup = (
+      <el-radio-group
+        class={this.recls()}
+        value={this.childRadio}
+        onInput={e => this.handlemodel(e)}
+        disabled={this.disabled}
+        fill={this.fill}
+        textColor={this.textColor}
+        style={{ width: this.convert_width }}
+        on-change={this.change}
+      >
+        {this.options.map(item => radioDom(item))}
+      </el-radio-group>
     );
+
+    const radioSingle = (
+      <el-radio
+        class={`${this.recls()} ${this.recls('single')}`}
+        value={this.childRadio}
+        onInput={e => this.handlemodel(e)}
+        onChange={this.change}
+        label={this.label}
+        disabled={this.disabled}
+      >
+        {this.$slots.default}
+      </el-radio>
+    );
+
+    return this.isGroup ? radioGroup : radioSingle;
   },
 
   methods: {

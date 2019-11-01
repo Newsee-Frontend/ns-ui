@@ -43,7 +43,11 @@ export default create({
 
     ['span', 'offset', 'pull', 'push'].forEach(prop => {
       if (this[prop] || this[prop] === 0) {
-        classList.push(prop !== 'span' ? `${this.recls()}-${prop}-${this[prop]}` : `${this.recls()}-${this[prop]}`);
+        classList.push(
+          prop !== 'span'
+            ? `${this.recls()}-${prop}-${this[prop]}`
+            : `${this.recls()}-${this[prop]}`
+        );
       }
     });
 
@@ -56,7 +60,7 @@ export default create({
           classList.push(
             prop !== 'span'
               ? `${this.recls()}-${size}-${prop}-${props[prop]}`
-              : `${this.recls()}-${size}-${props[prop]}`,
+              : `${this.recls()}-${size}-${props[prop]}`
           );
         });
       }
@@ -68,7 +72,7 @@ export default create({
         class: [this.recls(), classList],
         style,
       },
-      this.$slots.default,
+      this.$slots.default
     );
   },
 });

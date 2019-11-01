@@ -20,13 +20,16 @@ export default create({
       },
     },
     model: {
-      type: String, default: 'normal', validate: t => {
+      type: String,
+      default: 'normal',
+      validate: t => {
         return ['normal', 'simple', 'rich'].indexOf(t) > -1;
       },
     },
     height: { type: Number, required: false, default: 360 },
     toolbar: {
-      type: Array, required: false,
+      type: Array,
+      required: false,
       default() {
         return [];
       },
@@ -42,8 +45,8 @@ export default create({
       fullscreen: false,
       isEn: false,
       languageTypeList: {
-        'en': 'en',
-        'zh': 'zh_CN',
+        en: 'en',
+        zh: 'zh_CN',
       },
     };
   },
@@ -56,7 +59,7 @@ export default create({
     },
     customContainerStyle() {
       return {
-        top: (this.toolbarConfig.length * 34 + 4 + (this.fullscreen ? 88 : 0)) + 'px',
+        top: this.toolbarConfig.length * 34 + 4 + (this.fullscreen ? 88 : 0) + 'px',
       };
     },
     pluginsConf() {
@@ -66,8 +69,7 @@ export default create({
   watch: {
     value(val) {
       if (!this.hasChange && this.hasInit) {
-        this.$nextTick(() =>
-          window.tinymce.get(this.tinymceId).setContent(val || ''));
+        this.$nextTick(() => window.tinymce.get(this.tinymceId).setContent(val || ''));
       }
     },
     language(val) {
@@ -82,15 +84,21 @@ export default create({
   render(h) {
     return (
       <div class={`${this.recls()} ${this.fullscreen ? 'fullscreen' : ''}`}>
-        <textarea id={this.tinymceId} class={'editor-textarea'}/>
+        <textarea id={this.tinymceId} class={'editor-textarea'} />
         <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
-            <editor-image plugin-config={this.pluginsConf['editor-image']} on-image-submit={this.imageSubmit}/>
+            <editor-image
+              plugin-config={this.pluginsConf['editor-image']}
+              on-image-submit={this.imageSubmit}
+            />
           </li>
           <li>
-            <editor-btn icon-class={'language'} on-editor-btn-click={() => {
-              this.isEn = !this.isEn;
-            }}/>
+            <editor-btn
+              icon-class={'language'}
+              on-editor-btn-click={() => {
+                this.isEn = !this.isEn;
+              }}
+            />
           </li>
         </ul>
       </div>
@@ -114,7 +122,7 @@ export default create({
         font_formats: config.font_formats,
         end_container_on_empty_block: true,
         paste_data_images: true,
-        powerpaste_word_import: 'propmt',//clean
+        powerpaste_word_import: 'propmt', //clean
         powerpaste_html_import: 'propmt',
         powerpaste_allow_local_images: true,
         code_dialog_height: 450,
@@ -136,7 +144,7 @@ export default create({
           });
         },
         setup(editor) {
-          editor.on('FullscreenStateChanged', (e) => {
+          editor.on('FullscreenStateChanged', e => {
             _this.fullscreen = e.state;
           });
         },
@@ -152,8 +160,7 @@ export default create({
       if (editor) {
         try {
           editor.destroy();
-        }
-        catch (e) {
+        } catch (e) {
           editor.destroy();
         }
       }

@@ -21,19 +21,17 @@ export default {
   },
 
   render(h) {
-
     const xxx = () => {
       return h('Input', {
         domProps: {
           value: this.childInterval.ipt,
         },
         on: {
-          input: (event) => {
+          input: event => {
             console.log(2222222);
             console.log(event);
             // this.$emit('input', event.target.value);
             this.childInterval.ipt = event;
-
           },
         },
       });
@@ -48,12 +46,9 @@ export default {
           // console.log(this.childInterval);
           // this.childInterval = e;
           // this.$emit('input', this.childInterval);
-        }
-        }
+        }}
       >
-        {
-          xxx()
-        }
+        {xxx()}
       </div>
     );
   },

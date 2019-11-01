@@ -23,7 +23,7 @@ export default create({
     min: Number,
     max: Number,
     step: Number,
-    stepStrictly: Number,  //是否只能输入 step 的倍数
+    stepStrictly: Number, //是否只能输入 step 的倍数
     precision: Number, //数值精度
     disabled: Boolean,
     controls: {
@@ -52,7 +52,6 @@ export default create({
     value(val) {
       this.childInputNum = val;
     },
-
   },
 
   render(h) {

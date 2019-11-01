@@ -40,19 +40,19 @@ $formErrFs: 12px; //font size in error message
     @if $state == 'error' {
       @include border-color-Toggle($--color-danger); //切换为红色边框
     }
-      //非错误情况（处于验证激活状态，且验证正确，这种情况需要区别于表单加载后的初始状态（验证未激活））
+    //非错误情况（处于验证激活状态，且验证正确，这种情况需要区别于表单加载后的初始状态（验证未激活））
     @else {
       @include border-color-Toggle($--color-success); //切换为绿色边框
     }
   }
-    //表单验证提示类型二（只有错误的展现）
+  //表单验证提示类型二（只有错误的展现）
   @else if $cueType == 'cue-only-error' {
     @include border-color-Toggle($--color-text-placeholder); //切换默认边框颜色
     @if $state == 'error' {
       @include border-color-Toggle($--color-danger); //切换为红色边框
     }
   }
-    //表单验证提示类型三（只有错误的展现，且鼠标移入展现错误提示）
+  //表单验证提示类型三（只有错误的展现，且鼠标移入展现错误提示）
   @else if $cueType == 'cue-only-error-hover' {
     @include border-color-Toggle($--color-text-placeholder); //切换默认边框颜色
     @if $state == 'error' {
@@ -146,4 +146,3 @@ $formErrFs: 12px; //font size in error message
     }
   }
 }
-

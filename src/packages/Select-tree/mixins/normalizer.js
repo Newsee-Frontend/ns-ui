@@ -6,18 +6,18 @@ import defaultKeyRefer from '../keyRefer';
 export default {
   props: {
     keyRefer: {
-      type: Object, default() {
+      type: Object,
+      default() {
         return defaultKeyRefer;
       },
     },
   },
   computed: {
     normalizer() {
-      return (node) => {
+      return node => {
         let obj = {};
         Object.keys(this.keyRefer).forEach(k => {
           obj[k] = node[this.keyRefer[k]];
-
         });
         return obj;
       };

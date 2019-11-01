@@ -2,9 +2,9 @@
 $tabsHeight: 40px; //tabs normal height
 $tabsMl: 6px; //向左偏移值
 $normalColor: #d1e3f8;
-$activeColor: #0A7AF8;
+$activeColor: #0a7af8;
 
-@mixin triangle($color){
+@mixin triangle($color) {
   content: '';
   display: block;
   border-top: $tabsHeight/2 solid transparent;
@@ -16,7 +16,7 @@ $activeColor: #0A7AF8;
   z-index: 10;
 }
 
-@mixin blankTriangle($color){
+@mixin blankTriangle($color) {
   content: '';
   display: block;
   border-top: $tabsHeight/2 solid $color;
@@ -27,7 +27,7 @@ $activeColor: #0A7AF8;
   top: 0;
 }
 
-@include b(tabs){
+@include b(tabs) {
   &.arrowTabs {
     width: inherit;
     .el-tabs__header {
@@ -37,12 +37,12 @@ $activeColor: #0A7AF8;
       display: none;
     }
 
-    .el-tabs__nav{
+    .el-tabs__nav {
       width: 100%;
       display: flex;
     }
     .el-tabs__item {
-      flex:1;
+      flex: 1;
       height: $tabsHeight;
       border-radius: 0;
       line-height: $tabsHeight;
@@ -52,30 +52,29 @@ $activeColor: #0A7AF8;
       box-sizing: border-box;
       background: $normalColor;
       position: relative;
-      &:hover{
+      &:hover {
         color: inherit;
       }
       &:first-of-type {
-        margin-left:0;
+        margin-left: 0;
       }
-      &:not(:first-of-type):before{
-        @include blankTriangle($normalColor)
+      &:not(:first-of-type):before {
+        @include blankTriangle($normalColor);
       }
 
-      &:not(:last-of-type):after{
-        @include triangle($normalColor)
+      &:not(:last-of-type):after {
+        @include triangle($normalColor);
       }
       &.is-active {
         color: #fff !important;
         background: $activeColor;
         &:not(:first-of-type):before {
-          @include blankTriangle($activeColor)
+          @include blankTriangle($activeColor);
         }
         &:not(:last-of-type):after {
-          @include triangle($activeColor)
+          @include triangle($activeColor);
         }
       }
     }
   }
 }
-

@@ -14,7 +14,7 @@ export default create({
     width: { type: [String, Number] },
     height: { type: [String, Number] },
     name: { type: String, default: '' },
-    type: { type: String, default: 'text' },//text，textarea
+    type: { type: String, default: 'text' }, //text，textarea
     placeholder: { type: String, default: null },
     size: {
       type: String,
@@ -32,13 +32,13 @@ export default create({
   },
 
   computed: {
-    convert_style(){
-      return{
+    convert_style() {
+      return {
         width: this.convert_width,
         height: this.convert_height,
         lineHeight: this.convert_height,
-      }
-    }
+      };
+    },
   },
 
   watch: {
@@ -55,7 +55,7 @@ export default create({
     return (
       <el-input
         class={this.recls([this.formsize])}
-        value ={this.childIpt}
+        value={this.childIpt}
         onInput={e => this.handleModelInput(e)}
         type={this.type}
         name={this.name}
@@ -75,12 +75,8 @@ export default create({
         {ipticon('prefix', this.prefixIcon)}
         {ipticon('suffix', this.suffixIcon)}
 
-        <template slot="prefix">
-          {this.$slots.prefix}
-        </template>
-        <template slot="suffix">
-          {this.$slots.suffix}
-        </template>
+        <template slot="prefix">{this.$slots.prefix}</template>
+        <template slot="suffix">{this.$slots.suffix}</template>
       </el-input>
     );
   },

@@ -13,7 +13,7 @@ export default create({
     value: [Array, String, Number, Boolean],
     type: { type: String, default: 'normal' },
     size: { type: String, validator: s => sizeValidator(s) },
-    options: { type: Array, default: () => ([]) },
+    options: { type: Array, default: () => [] },
     width: { type: [String, Number] },
     disabled: { type: Boolean, default: false },
     min: { type: Number, default: 0 }, //可被勾选的 checkbox 的最小数量
@@ -41,54 +41,54 @@ export default create({
 
     const checkboxDom = item => {
       const isBtn = this.type === 'button';
-      return (
-        h(
-          isBtn ? `el-checkbox-button` : `el-checkbox`,
-          {
-            'class': isBtn ? [this.recls('btn', [this.formsize])] : '',
-            props: {
-              label: item[this.keyRefer.value],
-              key: item[this.keyRefer.value],
-              disabled: item[this.keyRefer.disabled],
-            },
+      return h(
+        isBtn ? `el-checkbox-button` : `el-checkbox`,
+        {
+          class: isBtn ? [this.recls('btn', [this.formsize])] : '',
+          props: {
+            label: item[this.keyRefer.value],
+            key: item[this.keyRefer.value],
+            disabled: item[this.keyRefer.disabled],
           },
-          item[this.keyRefer.label],
-        )
+        },
+        item[this.keyRefer.label]
       );
     };
 
-    const checkboxGroup = <el-checkbox-group
-      class={this.recls()}
-      style={{ width: this.convert_width }}
-      value={this.childCheckbox}
-      textColor={this.textColor}
-      fill={this.fill}
-      min={this.min}
-      max={this.max}
-      disabled={this.disabled}
-      onInput={(e) => this.handleModel(e)}
-      onChange={this.change}
-    >
-      {options.map(item => (checkboxDom(item)))}
-    </el-checkbox-group>;
-
-    const checkboxSingle = <el-checkbox
-      class={`${this.recls()} ${this.recls('single')}`}
-      value={this.childCheckbox}
-      onInput={e => {
-        this.handleModel(e);
-      }}
-      onChange={this.change}
-      true-label={this.trueLabel}
-      false-label={this.falseLabel}
-      disabled={this.disabled}
-    >
-      {this.$slots.default}
-    </el-checkbox>;
-
-    return (
-      this.isGroup ? checkboxGroup : checkboxSingle
+    const checkboxGroup = (
+      <el-checkbox-group
+        class={this.recls()}
+        style={{ width: this.convert_width }}
+        value={this.childCheckbox}
+        textColor={this.textColor}
+        fill={this.fill}
+        min={this.min}
+        max={this.max}
+        disabled={this.disabled}
+        onInput={e => this.handleModel(e)}
+        onChange={this.change}
+      >
+        {options.map(item => checkboxDom(item))}
+      </el-checkbox-group>
     );
+
+    const checkboxSingle = (
+      <el-checkbox
+        class={`${this.recls()} ${this.recls('single')}`}
+        value={this.childCheckbox}
+        onInput={e => {
+          this.handleModel(e);
+        }}
+        onChange={this.change}
+        true-label={this.trueLabel}
+        false-label={this.falseLabel}
+        disabled={this.disabled}
+      >
+        {this.$slots.default}
+      </el-checkbox>
+    );
+
+    return this.isGroup ? checkboxGroup : checkboxSingle;
   },
 
   methods: {

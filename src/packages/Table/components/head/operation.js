@@ -7,7 +7,10 @@ export default {
   components: { iconClass },
   data() {
     return {
-      settingInfo: [{ icon: 'setting', event: 'headerSetting' }, { icon: 'unfold', event: 'headerSearch' }],
+      settingInfo: [
+        { icon: 'setting', event: 'headerSetting' },
+        { icon: 'unfold', event: 'headerSearch' },
+      ],
     };
   },
 
@@ -18,25 +21,31 @@ export default {
   render(h) {
     return h(
       'div',
-      { 'class': 'head-setting' },
+      { class: 'head-setting' },
       this.settingInfo.map((item, index) => {
-        return h('div', {
-            class: ['head-setting__part fl',
+        return h(
+          'div',
+          {
+            class: [
+              'head-setting__part fl',
               { 'header-set_active': this.settingState.setting && index === 0 },
               { 'header-set_active': this.settingState.search && index === 1 },
             ],
             on: {
-              click: ($event) => this[item.event]($event),
+              click: $event => this[item.event]($event),
             },
           },
           [
-            h('icon-class',
+            h(
+              'icon-class',
               {
                 props: { 'icon-class': item.icon },
-              }, [],
+              },
+              []
             ),
-          ]);
-      }),
+          ]
+        );
+      })
     );
   },
   methods: {
@@ -51,9 +60,5 @@ export default {
       stopPropagation(e);
     },
   },
-  beforeDestroy() {
-
-  },
+  beforeDestroy() {},
 };
-
-

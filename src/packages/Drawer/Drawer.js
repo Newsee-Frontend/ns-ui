@@ -10,7 +10,9 @@ export default create({
   },
   props: {
     direction: {
-      type: String, default: 'left', validate: d => {
+      type: String,
+      default: 'left',
+      validate: d => {
         return ['left', 'right', 'top', 'bottom'].indexOf(d) > -1;
       },
     },
@@ -34,9 +36,7 @@ export default create({
       };
     },
     drawerSwitchCls() {
-      return [
-        this.recls('switch'),
-      ];
+      return [this.recls('switch')];
     },
     iconClass() {
       switch (this.direction) {
@@ -58,18 +58,12 @@ export default create({
 
   render(h) {
     return (
-      <div
-        class={this.drawerCls} style={this.drawerStyle}
-      >
+      <div class={this.drawerCls} style={this.drawerStyle}>
         <div class="over-hidden">
-          <div class={this.recls('container')}>
-            {
-              this.$slots.default
-            }
-          </div>
+          <div class={this.recls('container')}>{this.$slots.default}</div>
         </div>
         <div class={this.drawerSwitchCls}>
-          <icon-class icon-class={this.iconClass} on-click={this.drwaerHandle}/>
+          <icon-class icon-class={this.iconClass} on-click={this.drwaerHandle} />
         </div>
       </div>
     );

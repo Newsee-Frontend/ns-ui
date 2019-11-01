@@ -18,11 +18,13 @@ export default create({
     'custom-class': { type: String }, //Dialog 的自定义类名
     title: { type: String, default: 'title' }, //Dialog 的标题
     type: {
-      type: String, default: 'normal', validator: t => {
+      type: String,
+      default: 'normal',
+      validator: t => {
         return _dialogtype.includes(t);
       },
     }, //类型（'normal','simple','noFooter','noHeader'）
-    autoHeight: { type: Boolean, default: false },//是否自动高度（对话框内容部分由内容撑开)
+    autoHeight: { type: Boolean, default: false }, //是否自动高度（对话框内容部分由内容撑开)
     size: {
       type: String,
       validator: s => sizeValidator(s),
@@ -32,7 +34,7 @@ export default create({
     top: { type: String, default: '7%' }, //	Dialog CSS 中的 top 值（仅在 size 不为 full 时有效）
 
     modal: { type: Boolean, default: true }, //是否需要遮罩层
-    isAppendToBody: { type: Boolean, default: true },//Dialog 自身是否插入至 body 元素上
+    isAppendToBody: { type: Boolean, default: true }, //Dialog 自身是否插入至 body 元素上
     'lock-scroll': { type: Boolean, default: false }, //是否在 Dialog 出现时将 body 滚动锁定
 
     'close-on-click-modal': { type: Boolean, default: false }, //是否可以通过点击 modal 关闭 Dialog
@@ -65,48 +67,46 @@ export default create({
     },
   },
   render(h) {
-    return (
-      h(
-        `el-dialog`,
-        {
-          class: this.dialogClass,
-          props: {
-            'custom-class': this.customClass,
-            visible: this.show,
-            width: this.dialogWidth,
-            top: this.top,
-            title: this.title,
+    return h(
+      `el-dialog`,
+      {
+        class: this.dialogClass,
+        props: {
+          'custom-class': this.customClass,
+          visible: this.show,
+          width: this.dialogWidth,
+          top: this.top,
+          title: this.title,
 
-            'lock-scroll': this.lockScroll,
-            'close-on-click-modal': this.closeOnClickModal,
-            'close-on-press-escape': this.closeOnPressEscape,
+          'lock-scroll': this.lockScroll,
+          'close-on-click-modal': this.closeOnClickModal,
+          'close-on-press-escape': this.closeOnPressEscape,
 
-            modal: this.modal,
-            'modal-append-to-body': this.modalAppendToBody,
-            'append-to-body': this.isAppendToBody,
+          modal: this.modal,
+          'modal-append-to-body': this.modalAppendToBody,
+          'append-to-body': this.isAppendToBody,
 
-            fullscreen: this.isfullscreen,
+          fullscreen: this.isfullscreen,
 
-            'show-close': this.showClose,
-            'before-close': this.beforeClose,
-
+          'show-close': this.showClose,
+          'before-close': this.beforeClose,
+        },
+        on: {
+          'update:visible': value => {
+            this.show = value;
           },
-          on: {
-            'update:visible': value => {
-              this.show = value;
-            },
-            close: this.close,
-            open: this.open,
-          },
-          scopedSlots: {
-            default: slots => this.$slots.default,
-          },
-        }, [
-          <span slot={'footer'} class={'dialog-footer'}>
-             {this.$slots.footer}
-          </span>,
-        ],
-      )
+          close: this.close,
+          open: this.open,
+        },
+        scopedSlots: {
+          default: slots => this.$slots.default,
+        },
+      },
+      [
+        <span slot={'footer'} class={'dialog-footer'}>
+          {this.$slots.footer}
+        </span>,
+      ]
     );
   },
   methods: {

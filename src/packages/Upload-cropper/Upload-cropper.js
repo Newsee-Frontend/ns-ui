@@ -4,7 +4,7 @@ import CropperDialog from './components/cropper-dialog';
 export default create({
   name: 'upload-cropper',
 
-  components: { Upload, CropperDialog},
+  components: { Upload, CropperDialog },
 
   props: {
     value: [Array],
@@ -28,14 +28,13 @@ export default create({
       default: false,
     }, //照片墙超过后是否隐藏入口
 
-
     //截图的size
     fixedNumber: {
       type: Array,
       default: () => [320, 160],
     },
 
-    outputCropType: String,  //输出的类型  data（base64） 或者 blob
+    outputCropType: String, //输出的类型  data（base64） 或者 blob
   },
 
   data() {
@@ -56,7 +55,7 @@ export default create({
 
   render(h) {
     const upload = h(Upload, {
-      'attrs': {
+      attrs: {
         action: 'string',
         value: this.childUpload,
         type: this.type,
@@ -70,40 +69,39 @@ export default create({
         'on-change': this.changeFile,
       },
       on: {
-        'input': e => this.handleModel(e),
-        'change':  e => this.$emit('change', e),
+        input: e => this.handleModel(e),
+        change: e => this.$emit('change', e),
       },
     });
 
     const cropperDialog = h(CropperDialog, {
-        'attrs': {
-          visible: this.showDialog,
-          imgFile: this.imgFile,
-          fixedNumber: this.fixedNumber,
-          outputCropType: this.outputCropType
+      attrs: {
+        visible: this.showDialog,
+        imgFile: this.imgFile,
+        fixedNumber: this.fixedNumber,
+        outputCropType: this.outputCropType,
+      },
+      on: {
+        'update:visible': value => {
+          this.showDialog = value;
         },
-        'on': {
-          'update:visible': value => {
-            this.showDialog = value;
-          },
-          close: () => {
-            this.showDialog = false;
-          },
+        close: () => {
+          this.showDialog = false;
+        },
 
-          uploadImg: (data) => {
-            this.$emit('uploadImg', data);
-          }
+        uploadImg: data => {
+          this.$emit('uploadImg', data);
         },
-      }
+      },
+    });
+
+    return h(
+      'div',
+      {
+        class: this.recls([this.type]),
+      },
+      [upload, cropperDialog]
     );
-
-
-    return h('div', {
-      'class': this.recls([this.type]),
-    }, [
-      upload,
-      cropperDialog,
-    ]);
   },
 
   methods: {
@@ -116,12 +114,9 @@ export default create({
       this.imgFile = URL.createObjectURL(file.raw);
       this.showDialog = true;
     },
-
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });

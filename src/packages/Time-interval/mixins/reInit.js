@@ -11,7 +11,11 @@ export default {
       handler: function(val) {
         switch (val) {
           case 'day':
-            this.delProperty([[this.keyRefer['mounthAndDay']], [this.keyRefer['week']], [this.keyRefer['day']]]); //delete property
+            this.delProperty([
+              [this.keyRefer['mounthAndDay']],
+              [this.keyRefer['week']],
+              [this.keyRefer['day']],
+            ]); //delete property
             break;
           case 'week':
             this.initModel([this.keyRefer['week']], 'Mon');

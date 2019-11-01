@@ -3,7 +3,6 @@
 
 //dialog style
 @include b(dialog) {
-
   // === 常规 ===
   .el-dialog {
     width: $dialog-default_width;
@@ -53,7 +52,6 @@
   //normal
   @include ms2link(normal) {
     .el-dialog {
-
     }
   }
 
@@ -90,5 +88,3 @@
     }
   }
 }
-
-

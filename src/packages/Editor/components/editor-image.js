@@ -12,7 +12,6 @@ export default {
     return {
       dialogVisible: false,
       listObj: {},
-
     };
   },
   watch: {
@@ -22,7 +21,9 @@ export default {
   },
   render(h) {
     const upload = () => {
-      return h('el-upload', {
+      return h(
+        'el-upload',
+        {
           class: 'editor-slide-upload',
           props: {
             multiple: true,
@@ -35,9 +36,7 @@ export default {
             'on-success': this.handleSuccess,
           },
         },
-        [
-          <i class="el-icon-upload"/>,
-        ],
+        [<i class="el-icon-upload" />]
       );
     };
 
@@ -51,43 +50,44 @@ export default {
           size={'small'}
           modal={false}
           on-close={this.dialogClose}
-
         >
-          {
-            upload()
-          }
-          <div class={`v-modal ${!this.dialogVisible ? 'hide' : ''}`}/>
+          {upload()}
+          <div class={`v-modal ${!this.dialogVisible ? 'hide' : ''}`} />
           <div slot="footer">
-            <Button on-click={_ => {
-              this.dialogVisible = false;
-            }}>取 消</Button>
-            <Button type={'primary'} on-click={this.handleSubmit}>确 定</Button>
+            <Button
+              on-click={_ => {
+                this.dialogVisible = false;
+              }}
+            >
+              取 消
+            </Button>
+            <Button type={'primary'} on-click={this.handleSubmit}>
+              确 定
+            </Button>
           </div>
         </Dialog>
       );
     };
 
-    return (
-      h('div',
-        {
-          class: 'editor-image',
-        },
-        [h('editor-btn',
-          {
-            class: 'editor-upload__btn',
-            props: {
-              'icon-class': 'image',
-            },
-            on: {
-              'editor-btn-click': _ => {
-                this.dialogVisible = true;
-              },
+    return h(
+      'div',
+      {
+        class: 'editor-image',
+      },
+      [
+        h('editor-btn', {
+          class: 'editor-upload__btn',
+          props: {
+            'icon-class': 'image',
+          },
+          on: {
+            'editor-btn-click': _ => {
+              this.dialogVisible = true;
             },
           },
-        ),
-          DialogUpload(),
-        ],
-      )
+        }),
+        DialogUpload(),
+      ]
     );
   },
   methods: {
@@ -125,7 +125,12 @@ export default {
         const img = new Image();
         img.src = _URL.createObjectURL(file);
         img.onload = function() {
-          _self.listObj[fileName] = { hasSuccess: false, uid: file.uid, width: this.width, height: this.height };
+          _self.listObj[fileName] = {
+            hasSuccess: false,
+            uid: file.uid,
+            width: this.width,
+            height: this.height,
+          };
         };
         resolve(true);
       });
@@ -149,7 +154,6 @@ export default {
           return;
         }
       }
-
     },
     /**
      * remove img in picture-card

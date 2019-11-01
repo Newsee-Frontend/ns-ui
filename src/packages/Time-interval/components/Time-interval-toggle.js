@@ -49,7 +49,6 @@ export default {
   },
   render(h) {
     const toggletComponents = () => {
-
       switch (this.toggletype) {
         //选择星期
         case 'week':
@@ -60,8 +59,7 @@ export default {
               options={this.weekOpt}
               disabled={this.parent.disabled}
               size={'small'}
-            >
-            </Select>
+            ></Select>
           );
         case 'mouth':
           return (
@@ -73,8 +71,7 @@ export default {
                 options={this.monthOpt}
                 disabled={this.parent.disabled}
                 size={'small'}
-              >
-              </Select>
+              ></Select>
               <span class={'day'}>日</span>
             </div>
           );
@@ -94,8 +91,6 @@ export default {
       }
     };
 
-    return (
-      toggletComponents()
-    );
+    return toggletComponents();
   },
 };

@@ -37,13 +37,13 @@ export default create({
   },
 
   computed: {
-    convert_style(){
-      return{
+    convert_style() {
+      return {
         width: this.convert_width,
         height: this.convert_height,
         lineHeight: this.convert_height,
-      }
-    }
+      };
+    },
   },
 
   watch: {

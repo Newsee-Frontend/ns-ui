@@ -1,4 +1,4 @@
-@import "../config";
+@import '../config';
 
 .error-prompt {
   position: absolute;
@@ -32,7 +32,8 @@
       font-size: 13px;
       color: $error-prompt_subcolor;
     }
-    p, h4 {
+    p,
+    h4 {
       margin: 6px 0;
     }
   }

@@ -27,12 +27,10 @@ export default {
       this.$emit('selection-select-all', selection);
     },
 
-
     selectionChange(row, index) {
       this.highlightCurrentRow = true;
       this.$emit('selection-change', row, index);
     },
-
 
     /**
      * reset select state
@@ -41,21 +39,19 @@ export default {
      * @param selected
      */
     setSelectedRow(type, rowindex, selected) {
-
-      if (parseInt(rowindex) >= this.data.length) throw 'the index of selected row should be less than table data length';
+      if (parseInt(rowindex) >= this.data.length)
+        throw 'the index of selected row should be less than table data length';
 
       const setobj = this.data[rowindex];
 
       if (type === 'selection') {
         this.$refs['el-table'].toggleRowSelection(setobj, selected);
-      }
-      else if (type === 'radio') {
+      } else if (type === 'radio') {
         if (selected) {
           this.highlightCurrentRow = true;
-          this.$refs['el-table'].setCurrentRow(setobj);//set highlight current row
-          this.$refs['first-table-column'].setRadioState(rowindex);//set radio state
-        }
-        else {
+          this.$refs['el-table'].setCurrentRow(setobj); //set highlight current row
+          this.$refs['first-table-column'].setRadioState(rowindex); //set radio state
+        } else {
           this.resetSelectState('radio');
         }
       }
@@ -68,11 +64,10 @@ export default {
     resetSelectState(type) {
       if (type === 'selection') {
         this.$refs['el-table'].clearSelection();
-      }
-      else if (type === 'radio') {
+      } else if (type === 'radio') {
         this.highlightCurrentRow = false;
-        this.$refs['first-table-column'].setRadioState(null);//remove highlight current row
-        this.$refs['el-table'].setCurrentRow();//remove radio state
+        this.$refs['first-table-column'].setRadioState(null); //remove highlight current row
+        this.$refs['el-table'].setCurrentRow(); //remove radio state
       }
     },
   },

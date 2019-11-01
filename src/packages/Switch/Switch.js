@@ -25,7 +25,6 @@ export default create({
     name: { type: String, default: '' },
   },
 
-
   watch: {
     value(val) {
       this.childSwitch = val;
@@ -37,11 +36,8 @@ export default create({
       <el-switch
         class={this.recls()}
         style={{ width: this.convert_width, height: this.convert_height }}
-
         value={this.childSwitch}
-        onInput={e =>
-          this.handleModel(e)
-        }
+        onInput={e => this.handleModel(e)}
         onChange={this.change}
         activeText={this.activeText}
         inactiveText={this.inactiveText}
@@ -54,8 +50,7 @@ export default create({
         width={this.switchWidth}
         disabled={this.disabled}
         name={this.name}
-      >
-      </el-switch>
+      ></el-switch>
     );
   },
 

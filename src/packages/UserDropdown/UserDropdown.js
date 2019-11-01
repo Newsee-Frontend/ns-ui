@@ -13,7 +13,7 @@ export default create({
     abbreviation: { type: Boolean, default: false },
     avator: {
       type: String,
-      default: '\'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif\'',
+      default: "'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'",
     },
     trigger: String,
     options: {
@@ -33,35 +33,26 @@ export default create({
       <el-dropdown
         class={this.recls()}
         trigger={this.trigger}
-        on-visible-change={this.visibleChange}>
+        on-visible-change={this.visibleChange}
+      >
         {
           <section>
-            {
-              this.abbreviation ?
-                <div class={'user-abbreviation'}>{this.simple}</div> :
-                (
-                  this.avator ?
-                    <img class={'user-avatar'} src={this.avator}/> : null
-                )
-            }
+            {this.abbreviation ? (
+              <div class={'user-abbreviation'}>{this.simple}</div>
+            ) : this.avator ? (
+              <img class={'user-avatar'} src={this.avator} />
+            ) : null}
             <span class={'hello'}>{this.userName}</span>
-            <icon-class icon-class={this.isopen ? 'el-icon-caret-top' : 'el-icon-caret-bottom'}/>
+            <icon-class icon-class={this.isopen ? 'el-icon-caret-top' : 'el-icon-caret-bottom'} />
           </section>
         }
         {
           <el-dropdown-menu class={this.recls('menu')} slot={'dropdown'}>
-            {
-              this.options.map(
-                (opt, index) => [
-                  <el-dropdown-item
-                    key={index}
-                    nativeOnClick={this.click.bind(this, opt.value, index)}
-                  >
-                    {opt.label}
-                  </el-dropdown-item>,
-                ],
-              )
-            }
+            {this.options.map((opt, index) => [
+              <el-dropdown-item key={index} nativeOnClick={this.click.bind(this, opt.value, index)}>
+                {opt.label}
+              </el-dropdown-item>,
+            ])}
           </el-dropdown-menu>
         }
       </el-dropdown>
@@ -76,4 +67,3 @@ export default create({
     },
   },
 });
-

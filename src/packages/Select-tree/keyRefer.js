@@ -7,8 +7,8 @@
 const keyRefer = {
   id: 'id',
   label: 'label',
-  children: 'children',//子节点
-  isDisabled: 'isDisabled',//是否禁用
-  isDefaultExpanded: 'isDefaultExpanded',//当前节点是否展开,默认不展开
+  children: 'children', //子节点
+  isDisabled: 'isDisabled', //是否禁用
+  isDefaultExpanded: 'isDefaultExpanded', //当前节点是否展开,默认不展开
 };
 export default keyRefer;

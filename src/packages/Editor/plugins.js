@@ -2,7 +2,6 @@
 // Detail plugins list see https://www.tinymce.com/docs/plugins/
 // Custom builds see https://www.tinymce.com/download/custom-builds/
 
-
 /**
  * plugins list ...
  * ================================================================
@@ -41,79 +40,78 @@
  */
 const usePlugins = [
   'advlist ' +
-  'print ' +
-  'save ' +
-  'autolink ' +
-  'autosave ' +
-  'contextmenu ' +
-  'fullscreen ' +
-  'code ' +
-  'codesample ' +
-  'colorpicker ' +
-  'textcolor ' +
-  'emoticons ' +
-  'link ' +
-  'media ' +
-  'image ' +
-  'insertdatetime ' +
-  'noneditable ' +
-  'nonbreaking ' +
-  'paste ' +
-  'powerpaste ' +
-  'preview ' +
-  'searchreplace ' +
-  'spellchecker ' +
-  'tabfocus ' +
-  'table ' +
-  'template ' +
-  'pagebreak ' +
-  'anchor ' +
-  'textpattern ' +
-  'visualblocks ' +
-  'visualchars ' +
-  'wordcount ',
+    'print ' +
+    'save ' +
+    'autolink ' +
+    'autosave ' +
+    'contextmenu ' +
+    'fullscreen ' +
+    'code ' +
+    'codesample ' +
+    'colorpicker ' +
+    'textcolor ' +
+    'emoticons ' +
+    'link ' +
+    'media ' +
+    'image ' +
+    'insertdatetime ' +
+    'noneditable ' +
+    'nonbreaking ' +
+    'paste ' +
+    'powerpaste ' +
+    'preview ' +
+    'searchreplace ' +
+    'spellchecker ' +
+    'tabfocus ' +
+    'table ' +
+    'template ' +
+    'pagebreak ' +
+    'anchor ' +
+    'textpattern ' +
+    'visualblocks ' +
+    'visualchars ' +
+    'wordcount ',
 ];
-
 
 const allPlugins = [
   'advlist ' +
-  'anchor ' +
-  'autolink ' +
-  'autosave ' +
-  'code ' +
-  'codesample ' +
-  'colorpicker ' +
-  'contextmenu ' +
-  'directionality ' +
-  'emoticons ' +
-  'fullscreen ' +
-  'hr ' +
-  'image ' +
-  'imagetools ' +
-  'insertdatetime ' +
-  'link ' +
-  'lists ' +
-  'media ' +
-  'nonbreaking ' +
-  'noneditable ' +
-  'pagebreak ' +
-  'powerpaste ' +
-  'preview ' +
-  'print ' +
-  'save ' +
-  'searchreplace ' +
-  'spellchecker ' +
-  'tabfocus ' +
-  'table ' +
-  'template ' +
-  'textcolor ' +
-  'textpattern ' +
-  'visualblocks ' +
-  'visualchars ' +
-  'wordcount ' +
-  'fontsizeselect ' +
-  'fontselect ' +
-  'lineheight ',
+    'anchor ' +
+    'autolink ' +
+    'autosave ' +
+    'code ' +
+    'codesample ' +
+    'colorpicker ' +
+    'contextmenu ' +
+    'directionality ' +
+    'emoticons ' +
+    'fullscreen ' +
+    'hr ' +
+    'image ' +
+    'imagetools ' +
+    'insertdatetime ' +
+    'link ' +
+    'lists ' +
+    'media ' +
+    'nonbreaking ' +
+    'noneditable ' +
+    'pagebreak ' +
+    'powerpaste ' +
+    'preview ' +
+    'print ' +
+    'save ' +
+    'searchreplace ' +
+    'spellchecker ' +
+    'tabfocus ' +
+    'table ' +
+    'template ' +
+    'textcolor ' +
+    'textpattern ' +
+    'visualblocks ' +
+    'visualchars ' +
+    'wordcount ' +
+    'fontsizeselect ' +
+    'fontselect ' +
+    'lineheight ',
 ];
 
 export default allPlugins;

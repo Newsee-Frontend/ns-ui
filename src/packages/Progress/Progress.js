@@ -3,9 +3,7 @@ import create from '../../create/create';
 export default create({
   name: 'progress',
   data() {
-    return {
-
-    };
+    return {};
   },
   props: {
     //百分比（必填） 0-100
@@ -34,7 +32,7 @@ export default create({
     },
     //进度条背景色（会覆盖 status 状态颜色）
     color: {
-      type: [Function, String, Array]
+      type: [Function, String, Array],
     },
     //环形进度条画布宽度（只在 type=circle 时可用）
     width: {
@@ -53,21 +51,19 @@ export default create({
     return (
       <el-progress
         class={this.recls()}
-        type={ this.type }
-        percentage={ this.percentage }
-        stroke-width= { this.strokeWidth }
-        text-inside= {  this.textInside }
-        status= { this.status }
-        color= { this.color }
-        width= { this.width }
-        show-text = {this.showText}
-  >
-      </el-progress>
+        type={this.type}
+        percentage={this.percentage}
+        stroke-width={this.strokeWidth}
+        text-inside={this.textInside}
+        status={this.status}
+        color={this.color}
+        width={this.width}
+        show-text={this.showText}
+      ></el-progress>
     );
   },
 
   methods: {},
 
-  created() {
-  },
+  created() {},
 });

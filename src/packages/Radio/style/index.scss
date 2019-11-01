@@ -1,6 +1,6 @@
 //input 相关样式
 @import '../../../style/common/size/choosebtnsize';
-@import "../../../style/mixins/form";
+@import '../../../style/mixins/form';
 
 @include b(radio) {
   .el-radio__inner {

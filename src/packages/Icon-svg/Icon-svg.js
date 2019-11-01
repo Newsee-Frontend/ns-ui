@@ -16,12 +16,8 @@ export default create({
   },
   render(h) {
     return (
-      <svg
-        class={this.recls()}
-        ref={this.recls()}
-        aria-hidden="true"
-        on-click={this.click}>
-        <use xlinkHref={this.iconName}/>
+      <svg class={this.recls()} ref={this.recls()} aria-hidden="true" on-click={this.click}>
+        <use xlinkHref={this.iconName} />
       </svg>
     );
   },
@@ -31,5 +27,3 @@ export default create({
     },
   },
 });
-
-

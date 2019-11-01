@@ -30,8 +30,8 @@ export default create({
 
     isObjectData: {
       type: Boolean,
-      default: false
-    },  //指代属性, v-model 是否是id还是node节点
+      default: false,
+    }, //指代属性, v-model 是否是id还是node节点
 
     //是否可拖拉
     draggable: {
@@ -55,26 +55,25 @@ export default create({
     value: {
       handler(newVal, oldVal) {
         //只支持初始化时
-        if(Object.keys(oldVal || '').length) return
-        this.$nextTick(()=>{
-          if(newVal instanceof Array){
-            newVal.forEach(item => this.nodeSelected(item))
-          }else{
+        if (Object.keys(oldVal || '').length) return;
+        this.$nextTick(() => {
+          if (newVal instanceof Array) {
+            newVal.forEach(item => this.nodeSelected(item));
+          } else {
             this.nodeSelected(newVal);
           }
         });
       },
       deep: true,
-    }
+    },
   },
-
 
   render(h) {
     const tpl = function(node, parent, index) {
       return h(
         'div',
         {},
-        this.$scopedSlots.default ? this.$scopedSlots.default({ node, parent, index }) : node.title,
+        this.$scopedSlots.default ? this.$scopedSlots.default({ node, parent, index }) : node.title
       );
     };
     return (
@@ -86,7 +85,7 @@ export default create({
           scoped={this.checkStrictly}
           draggable={this.draggable}
           dropJudge={this.dropJudge}
-          selectAlone={true}  //check 和  select 不相干
+          selectAlone={true} //check 和  select 不相干
           tpl={tpl.bind(this)}
           multiple={this.multiple}
           radio={!this.multiple}
@@ -102,7 +101,7 @@ export default create({
   methods: {
     //单选情况，手动set select的值(组件中保存了一个上一次前一次选中的node值)
     setRadioValue() {
-      this.$nextTick(()=>{
+      this.$nextTick(() => {
         let selectNodes = this.$refs.tree.getNodes({ selected: true }, this.data, true);
         if (selectNodes.length > 0) {
           this.$refs.tree.setNodeAttr(selectNodes[0], 'selected', false);
@@ -116,14 +115,13 @@ export default create({
       this.$emit('loadNode', ...arg);
     },
 
-
     //node 点击 (node, selected, position, parent)
     nodeClick(...arg) {
       let selectNodes = this.getSelectedNodes();
       let modelData;
 
-      if(!this.multiple){
-        modelData = this.isObjectData? selectNodes[0]: selectNodes[0].id;
+      if (!this.multiple) {
+        modelData = this.isObjectData ? selectNodes[0] : selectNodes[0].id;
         this.$emit('input', modelData);
       }
       //node click是否有点击的位置，有点击位置，则外传node-click
@@ -135,7 +133,7 @@ export default create({
     //node check
     nodeCheck(...arg) {
       let checkedNodes = this.getCheckedNodes();
-      let modelData = this.isObjectData? checkedNodes: checkedNodes.map( node => node.id);
+      let modelData = this.isObjectData ? checkedNodes : checkedNodes.map(node => node.id);
       this.$emit('input', modelData);
       this.$emit('nodeCheck', ...arg);
     },
@@ -171,12 +169,12 @@ export default create({
     },
 
     //选中节点
-    nodeSelected: function(data){
-      if(this.isObjectData){
-        this.$refs.tree.nodeSelected(data)
-      }else{
+    nodeSelected: function(data) {
+      if (this.isObjectData) {
+        this.$refs.tree.nodeSelected(data);
+      } else {
         let nodes = this.$refs.tree.getNodes({ id: data }, this.data, true);
-        nodes.length > 0 && (this.$refs.tree.nodeSelected(nodes[0]));
+        nodes.length > 0 && this.$refs.tree.nodeSelected(nodes[0]);
       }
     },
 
@@ -195,20 +193,19 @@ export default create({
     },
 
     /*
-    *
-    * 外暴方法，手动清除选中的node节点(主要用于多选)
-    * */
-    clearNodeById: function(id){
+     *
+     * 外暴方法，手动清除选中的node节点(主要用于多选)
+     * */
+    clearNodeById: function(id) {
       let nodes = this.$refs.tree.getNodes({ id: id }, this.data, true);
-      if(nodes && nodes.length > 0){
+      if (nodes && nodes.length > 0) {
         this.$refs.tree.setNodeAttr(nodes[0], 'checked', false);
         this.$refs.tree.setNodeAttr(nodes[0], 'selected', false);
         this.nodeCheck(nodes[0]);
-      }else {
-        throw ('no find this node');
+      } else {
+        throw 'no find this node';
       }
-    }
-
+    },
   },
 
   created() {
