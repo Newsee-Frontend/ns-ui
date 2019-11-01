@@ -8,7 +8,6 @@ const Table = {
     SET_TABLE_HEAD: (state, data) => {
       state.tableHead = data;
     },
-
   },
   actions: {
     generateTableHead({ commit }, query) {
