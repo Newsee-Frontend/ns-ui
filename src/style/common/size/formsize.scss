@@ -22,7 +22,7 @@ $height-ladder: 24px 28px 32px 36px 40px;
         }
       }
     }
-      //color-picker 颜色选择器
+    //color-picker 颜色选择器
     @else if $block-type == 'color-picker' {
       $h-ladder: nth($height-ladder, $i);
       @include rb($size-name) {
@@ -34,13 +34,13 @@ $height-ladder: 24px 28px 32px 36px 40px;
         }
       }
     }
-      //input-number 计数器
+    //input-number 计数器
     @else if $block-type == 'input-number' {
       @include rb($size-name) {
         $d: -2px;
         width: $w;
         height: $h;
-        line-height: $h +  $d;
+        line-height: $h + $d;
         @include input-inner();
         &.is-controls-right {
           .el-input-number__increase,
@@ -51,8 +51,8 @@ $height-ladder: 24px 28px 32px 36px 40px;
         }
       }
     }
-      //select  input-tag 选择器
-    @else if $block-type == 'select' or  $block-type == 'input-tag'{
+    //select  input-tag 选择器
+    @else if $block-type == 'select' or $block-type == 'input-tag' {
       @include rb($size-name) {
         width: $w;
         //height: $h;
@@ -72,7 +72,7 @@ $height-ladder: 24px 28px 32px 36px 40px;
       }
     }
 
-      //其他
+    //其他
     @else {
       @include rb($size-name) {
         @include base-style-change($w, $h);
@@ -80,7 +80,6 @@ $height-ladder: 24px 28px 32px 36px 40px;
       @include input-inner();
       @include icon-inner();
     }
-
   }
 }
 
@@ -116,4 +115,3 @@ $height-ladder: 24px 28px 32px 36px 40px;
     line-height: inherit;
   }
 }
-
