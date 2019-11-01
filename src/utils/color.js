@@ -17,12 +17,12 @@ export const colorRGBtoHex = color => {
   return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
 };
 
-
 // 将hex颜色转成rgb
 export const colorHexToRgba = (hex, opacity) => {
-
   const isAlpha = opacity || opacity === 0;
-  const RGBA = `${isAlpha ? 'rgba' : 'rgb'}(${parseInt('0x' + hex.slice(1, 3))},${parseInt('0x' + hex.slice(3, 5))},${parseInt('0x' + hex.slice(5, 7))}${isAlpha ? ',' + opacity : ''})`;
+  const RGBA = `${isAlpha ? 'rgba' : 'rgb'}(${parseInt('0x' + hex.slice(1, 3))},${parseInt(
+    '0x' + hex.slice(3, 5)
+  )},${parseInt('0x' + hex.slice(5, 7))}${isAlpha ? ',' + opacity : ''})`;
   console.log(RGBA);
   return {
     red: parseInt('0x' + hex.slice(1, 3)),
