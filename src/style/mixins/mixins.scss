@@ -22,7 +22,7 @@
   $B: '';
 
   @each $block in $blocks {
-    $B: $B + '.'+$namespace + '-' + $block;
+    $B: $B + '.' + $namespace + '-' + $block;
   }
 
   &#{$B} {
@@ -101,5 +101,3 @@
   line-height: inherit;
   min-height: inherit;
 }
-
-
