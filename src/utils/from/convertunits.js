@@ -1,12 +1,11 @@
 import { judgeType } from '../index';
 
-
 /**
  * convert width / height - units
  * @param val
  * @returns {*}
  */
-export default (val) => {
+export default val => {
   if (val || val === 0) {
     if (judgeType(val) === 'number') {
       return val + 'px';
@@ -18,6 +17,4 @@ export default (val) => {
   } else {
     throw 'the value is empty, please check you code';
   }
-}
-
-
+};
