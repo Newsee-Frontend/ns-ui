@@ -17,6 +17,6 @@ const getters = {
   tableHead: state => state.Table.tableHead,
 
   //requestHead
-  requestHead: state => state.RequestHead.base
+  requestHead: state => state.RequestHead.base,
 };
 export default getters;
