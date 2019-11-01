@@ -64,7 +64,8 @@ module.exports = {
       switch: false,
       files: [
         'src/**/*.{vue,less,scss,css,js,jsx,ts,tsx,json}',
-        'artisan/**/*.{js,ts,json}',
+        'artisan/mock/*.{js,ts,json}',
+        'artisan/src/*.{js,ts,json}',
         'script/**/*.{js,ts,json}',
       ],
     },
