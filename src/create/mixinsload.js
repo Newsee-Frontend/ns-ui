@@ -5,7 +5,7 @@ import * as sizeComputed from '../mixins/size';
 
 const propser = ['size', 'width', 'height'];
 
-export default (sfc) => {
+export default sfc => {
   let mixinslist = [];
 
   mixinslist.push(i18n, recls, namespace);
@@ -16,4 +16,4 @@ export default (sfc) => {
     }
   });
   return mixinslist;
-}
+};
