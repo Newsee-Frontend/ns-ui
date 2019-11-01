@@ -3,7 +3,7 @@
  * @param value
  * @returns {*}
  */
-export const judgeType = (value) => {
+export const judgeType = value => {
   const t = Object.prototype.toString.call(value);
   let map = {
     '[object Boolean]': 'boolean',
