@@ -11,29 +11,24 @@ export default {
     },
   },
   render(h) {
-    return (
-      h('div',
-        {
-          class: 'editor-btn mce-btn',
-          on: {
-            click: this.editorBtnClick,
-          },
+    return h(
+      'div',
+      {
+        class: 'editor-btn mce-btn',
+        on: {
+          click: this.editorBtnClick,
         },
-        [
-          h(
-            'button',
-            [
-              h('IconClass', {
-                  class: 'mce-ico',
-                  props: {
-                    'icon-class': this.iconClass,
-                  },
-                },
-              ),
-            ],
-          ),
-        ],
-      )
+      },
+      [
+        h('button', [
+          h('IconClass', {
+            class: 'mce-ico',
+            props: {
+              'icon-class': this.iconClass,
+            },
+          }),
+        ]),
+      ]
     );
   },
   methods: {
