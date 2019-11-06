@@ -10,9 +10,6 @@
         <div class="gap">
           <ns-date-picker
             v-model="date"
-            size="medium"
-            :width="width"
-            :height="height"
             :readonly="readonly"
             :disabled="disabled"
             :editable="editable"
