@@ -1,6 +1,7 @@
 import create from '../../create/create';
 import Upload from '../Upload/Upload';
 import CropperDialog from './components/cropper-dialog';
+
 export default create({
   name: 'upload-cropper',
 
@@ -48,8 +49,11 @@ export default create({
   computed: {},
 
   watch: {
-    value(val) {
-      this.childUpload = val;
+    value: {
+      handler(val){
+        this.childUpload = val;
+      },
+      immediate: true
     },
   },
 
@@ -100,7 +104,7 @@ export default create({
       {
         class: this.recls([this.type]),
       },
-      [upload, cropperDialog]
+      [upload, cropperDialog],
     );
   },
 
@@ -116,7 +120,9 @@ export default create({
     },
   },
 
-  created() {},
+  created() {
+  },
 
-  mounted() {},
+  mounted() {
+  },
 });
