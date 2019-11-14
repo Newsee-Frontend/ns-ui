@@ -3,7 +3,12 @@
     <template slot="title">Dialog - 对话框</template>
     <template slot="describe">基础用法</template>
     <template slot="content">
-      <div v-bind:class="['ns-input--disabled', 'ns-input--primary',{'ns-input__text--disabled': true}]"></div>
+      <div v-bind:class="['ns-input--disabled', 'ns-input--primary',{'ns-input__text--disabled': true}]">123123</div>
+
+      <el-input v-model="inoutModel" placeholder="请输入内容1231" @change="change"></el-input>
+
+
+
       <div class="control-block form-block-line">
         <ns-input
           v-model="inoutModel"
@@ -35,7 +40,7 @@
         <span>输入值: {{num}},  我的数据类型是: {{ typeof(num) }}</span>
       </div>
       <div class="control-block form-block-line">
-        <ns-input size=""></ns-input>
+        <ns-input :size="size"></ns-input>
       </div>
     </template>
   </demo-block>
