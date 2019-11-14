@@ -1,4 +1,4 @@
-import delayEvent from '../../../utils/delay-event';
+import delayEvent from '../../../utils/library/delay-event';
 
 const modelConsistsMap = {
   all: 'ALL', //选中的任何节点都将包含在值数组中，但是不包含半选中节点
