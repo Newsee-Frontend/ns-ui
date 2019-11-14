@@ -5,7 +5,9 @@ import $Var from '../variable/index';
 import mixinsload from './mixinsload';
 import resmount from '../utils/resmount';
 import ui_extends from '../ui-extends/index';
-import { isDef, judgeType, mergeOptions } from '../utils/index';
+import { isDef, mergeOptions } from '../utils/index';
+import { judgeType } from '../utils/library/basic';
+
 import namespace from '../mixins/namespace';
 import i18n from '../utils/i18n';
 import recls from '../mixins/recls';
