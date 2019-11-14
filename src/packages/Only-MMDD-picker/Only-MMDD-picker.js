@@ -1,6 +1,6 @@
 import create from '../../create/create';
 import datePicker from '../DatePicker/DatePicker';
-import { hasClass, removeClass } from '../../utils/class-handle';
+import { hasClass, removeClass } from '../../utils/library/class-handle';
 
 export default create({
   name: 'onlyMMDD-picker',
