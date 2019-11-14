@@ -19,7 +19,7 @@ module.exports = {
       'import',
       {
         'libraryName': 'vxe-table',
-        'style': true, // 样式是否也按需加载
+        'style': false, // 样式是否也按需加载
       },
     ],
     '@babel/plugin-transform-runtime',

@@ -39,6 +39,10 @@ Vue.use(Validator);
 Vue.use(Resize);
 Vue.use(Table);
 
+
+// import VXETable from 'vxe-table'
+
+
 import VXETablePluginElement from 'vxe-table-plugin-element';
 
 VXETable.use(VXETablePluginElement);

@@ -3,10 +3,10 @@
   <div class="biz-table" :style="`height: ${height+38}px`">
 
 
-    <ns-table-v4 ref="bizTable"
+    <ns-table ref="bizTable"
                  v-bind="curProps"
                  v-on="curEvent"
-    ></ns-table-v4>
+    ></ns-table>
 
     <!--合计区域-->
     <table-summary @summary-change="summaryChange"></table-summary>

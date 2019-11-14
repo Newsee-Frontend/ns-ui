@@ -117,7 +117,7 @@ Vue.component('ns-submit-progress', SubmitProcess);
 Vue.component('ns-tree', Tree);
 Vue.component('ns-pagination', Pagination);
 Vue.component('ns-table-v3', TableV3);
-Vue.component('ns-table-v4', TableV4);
+Vue.component('ns-table', TableV4);
 
 
 //navigation

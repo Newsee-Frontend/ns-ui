@@ -1,6 +1,6 @@
 {
   "name": "neap-ui",
-  "version": "0.0.1-23",
+  "version": "0.0.1-24",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -45,6 +45,7 @@
     "material-colors": "^1.2.6",
     "particles.js": "^2.0.0",
     "screenfull": "^4.2.0",
+    "style-loader": "^1.0.0",
     "svg-sprite-loader": "^4.1.6",
     "tinymce": "^5.0.6",
     "vue-cropper": "^0.4.9",
