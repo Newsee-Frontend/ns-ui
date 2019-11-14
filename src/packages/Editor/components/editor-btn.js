@@ -1,5 +1,5 @@
 import IconClass from '../../Icon-class/Icon-class';
-import { stopPropagation } from '../../../utils/event';
+import { stopPropagation } from '../../../utils/library/event';
 
 export default {
   name: 'editor-btn',
