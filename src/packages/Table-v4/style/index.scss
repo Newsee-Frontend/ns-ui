@@ -1,0 +1,54 @@
+//@import '~vxe-table/lib/index.css';
+// import 'vxe-table-plugin-element/dist/style.css';
+
+@import '../../../style/mixins/mixins';
+
+$grid-border__color: #e8e8e8; //边框色
+
+@include b(table) {
+  // 1、==== border style change ====
+  border-color: $grid-border__color;
+
+  &:after,
+  &:before {
+    background-color: $grid-border__color;
+  }
+
+  .vxe-table--fixed-left-wrapper:before,
+  .vxe-table--fixed-right-wrapper:before {
+    border-color: $grid-border__color;
+  }
+
+  //内容部分下边框
+  .vxe-body--row .vxe-body--column {
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  // 1、===============================
+
+  // 2、==== background style change ====
+  th.col--gutter {
+    background-color: #ebedef;
+  }
+
+  //表头
+  .vxe-header--column {
+    background-color: #ebedef;
+    .vxe-resizable.is--line:before {
+      height: 100%;
+      background-color: #d6d8da;
+    }
+  }
+
+  // 2、===============================
+
+  //修复多选列-全选框半选状态下伪类显示异常
+  .vxe-checkbox.is--indeterminate > input:not(:checked) + .vxe-checkbox--icon:before {
+    left: 0;
+  }
+
+  @import 'loading';
+}
+
+@import 'action-scope';
+@import 'action-drop';

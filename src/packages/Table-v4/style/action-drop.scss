@@ -1,0 +1,45 @@
+//setting column  && drag menu
+.column-setting {
+  .vxe-cell {
+    padding: 0 5px;
+    .el-dropdown-selfdefine {
+      font-size: 18px;
+      padding: 0;
+      cursor: pointer;
+    }
+  }
+}
+
+.column-setting-drag {
+  padding: 10px 0;
+  text-align: inherit;
+  li {
+    &.hide {
+      display: none;
+    }
+    line-height: 28px;
+    margin: 5px 0;
+    label {
+      overflow: hidden;
+      max-width: 166px;
+      margin-right: 10px;
+    }
+  }
+  .content {
+    max-height: 300px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    font-size: 14px;
+    i.iconfont {
+      font-size: inherit;
+    }
+  }
+  .submit {
+    width: 100%;
+    text-align: center;
+    .ns-button {
+      width: 120px;
+    }
+  }
+}
