@@ -1,7 +1,7 @@
 <template>
   <Dialog
     title="截图"
-    type="autoHeight"
+    autoHeight
     width="1000px"
     :visible.sync="showDialog"
     @close="close"

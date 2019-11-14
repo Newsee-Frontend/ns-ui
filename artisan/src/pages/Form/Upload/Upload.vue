@@ -56,9 +56,8 @@
       </template>
       <template slot="content">
         <ns-upload-cropper v-model="childItemCropper"
-                           @upload="uploadPic"
                            :fixedNumber="[100,100]"
-                           outputCropType="blob"
+                           outputCropType="data"
                            @uploadImg="uploadImg"
                            type="picture-single"></ns-upload-cropper>
 
@@ -85,7 +84,11 @@
           }
         ],
 
-        childItemCropper: [],
+        childItemCropper: [
+          {
+            fileUrl: 'http://oa.new-see.com/upload/file/public/upload/file/public/201705/IMG_0680201705230907560.JPG'
+          }
+        ],
       };
     },
 
@@ -98,12 +101,11 @@
         return false;
       },
 
-      uploadPic(data){
-        console.log(data);
-      },
-
-      uploadImg(img){
-        console.log(img,'uploadImguploadImguploadImguploadImguploadImguploadImg');
+      uploadImg(fileUrl){
+        this.childItemCropper = [];
+        this.childItemCropper.push({
+          fileUrl
+        });
       }
     }
   };
