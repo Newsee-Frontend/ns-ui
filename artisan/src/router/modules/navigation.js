@@ -4,7 +4,7 @@ export const navigationRouter = [
     path: '/navigation',
     component: Layout,
     redirect: '/navigation/steps',
-    name: '表单',
+    name: '导航',
     children: [
       {
         path: 'steps',
