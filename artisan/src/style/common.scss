@@ -6,11 +6,12 @@
   min-height: 100%;
   padding: $win_pt $win_pr $win_pb $win_pl;
   border: 1px solid #dddddd;
+  border-bottom: none;
   box-sizing: border-box;
   //container
   .ns-container {
     min-height: calc(
-      100vh - #{$tabs} - #{$win_pt} - #{$win_pb} - #{$navH} - #{$win_gapT} - #{$win_gapB} - 1px
+      100vh - #{$tabs} - #{$win_pt} - #{$win_pb} - #{$navH} - #{$win_gapT} - #{$win_gapB} - 2px
     );
     box-sizing: border-box;
     @include clearFloat;
