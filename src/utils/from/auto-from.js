@@ -1,4 +1,4 @@
-import { judgeType } from '../index';
+import { judgeType } from '../library/basic';
 
 /**
  * convert width / height - units
