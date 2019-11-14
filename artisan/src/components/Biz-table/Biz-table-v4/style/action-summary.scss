@@ -1,0 +1,30 @@
+$cell-height: 40px;
+.summary-area {
+  position: absolute;
+  bottom: 40px;
+  background: #fff;
+  left: 1px;
+  cursor: pointer;
+  box-sizing: border-box;
+  z-index: 1;
+
+  span.el-dropdown-selfdefine {
+    display: inline-block;
+    width: 45px;
+    height: $cell-height;
+    line-height: $cell-height;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+}
+
+ul.el-dropdown-menu.summary-menu {
+  margin: 0;
+  li.el-dropdown-menu__item {
+    line-height: 32px;
+    font-size: 12px;
+    padding: 0 10px;
+  }
+}
