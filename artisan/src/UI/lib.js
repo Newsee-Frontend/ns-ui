@@ -57,7 +57,9 @@ import Progress from '../../../src/packages/Progress/Progress.js';
 import SubmitProcess from '../../../src/packages/Submit-process/Submit-process.js';
 import Tree from '../../../src/packages/Tree/Tree.js';
 import Pagination from '../../../src/packages/Pagination/Pagination';
-import Table from '../../../src/packages/Table/Table.js';
+import TableV3 from '../../../src/packages/Table-v3/Table-v3.js';
+import TableV4 from '../../../src/packages/Table-v4/Table-v4.js';
+
 
 //Navigation
 import Steps from '../../../src/packages/Steps/Steps.js';
@@ -114,7 +116,9 @@ Vue.component('ns-progress', Progress);
 Vue.component('ns-submit-progress', SubmitProcess);
 Vue.component('ns-tree', Tree);
 Vue.component('ns-pagination', Pagination);
-Vue.component('ns-table', Table);
+Vue.component('ns-table-v3', TableV3);
+Vue.component('ns-table-v4', TableV4);
+
 
 //navigation
 Vue.component('ns-steps', Steps);
@@ -182,8 +186,9 @@ import '../../../src/packages/Form/style/index.scss';
 //data
 import '../../../src/packages/Tree/style/index.scss';
 import '../../../src/packages/Pagination/style/index.scss';
-import '../../../src/packages/Table/style/index.scss';
 import '../../../src/packages/Submit-process/style/index.scss';
+import '../../../src/packages/Table-v3/style/index.scss';
+import '../../../src/packages/Table-v4/style/index.scss';
 
 //navigation
 import '../../../src/packages/Step/style/index.scss';
