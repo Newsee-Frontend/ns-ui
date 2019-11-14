@@ -1,5 +1,6 @@
 import create from '../../create/create';
 import { sizeValidator } from '../../utils/props/validator';
+
 export default create({
   name: 'time-picker',
 
@@ -60,6 +61,7 @@ export default create({
         onInput={e => this.handleModel(e)}
         readonly={this.readonly}
         disabled={this.disabled}
+        editable={this.editable}
         clearable={this.clearable}
         placeholder={this.placeholder}
         start-placeholder={this.startPlaceholder}
