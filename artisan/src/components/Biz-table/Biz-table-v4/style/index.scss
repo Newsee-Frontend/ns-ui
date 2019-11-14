@@ -1,0 +1,19 @@
+.biz-table {
+  position: relative;
+  .ns-pagination {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    z-index: 99;
+    background-color: #ebedef;
+    border-left: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+  }
+
+  .ns-new-table.scroll--x + .summary-area {
+    bottom: 56px;
+  }
+
+}
