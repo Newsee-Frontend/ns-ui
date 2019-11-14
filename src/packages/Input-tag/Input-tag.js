@@ -1,6 +1,6 @@
 import create from '../../create/create';
 import { sizeValidator } from '../../utils/props/validator';
-import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
+import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/library/event';
 
 export default create({
   name: 'input-tag',
