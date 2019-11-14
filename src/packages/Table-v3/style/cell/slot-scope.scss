@@ -1,0 +1,31 @@
+@import '../../../../style/mixins/ellipsis';
+
+.cell-container {
+  height: 100%;
+  @include ellipsis;
+}
+
+.link-cell {
+  color: #409eff;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+//form components style change
+.ns-input,
+.ns-date-picker,
+.ns-select,
+.ns-input-number {
+  height: 28px;
+  line-height: 28px;
+}
+
+//table validate
+.is-error {
+  .el-input__inner,
+  .el-input__inner:focus,
+  .el-textarea__inner,
+  .el-textarea__inner:focus {
+    border-color: #f56c6c;
+  }
+}
