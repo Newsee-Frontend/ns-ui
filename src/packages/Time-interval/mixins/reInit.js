@@ -1,4 +1,4 @@
-import { judgeType } from '../../../utils';
+import { judgeType } from '../../../utils/library/basic';
 
 export default {
   computed: {
