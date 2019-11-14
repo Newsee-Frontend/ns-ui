@@ -1,7 +1,7 @@
 import create from '../../create/create';
-import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/event';
+import { addEventHandler, removeEventHandler, stopPropagation } from '../../utils/library/event';
 import { uuid } from '../../utils/uuid';
-import delayEvent from '../../utils/delay-event';
+import delayEvent from '../../utils/library/delay-event';
 
 export default create({
   name: 'slip-dialog',
