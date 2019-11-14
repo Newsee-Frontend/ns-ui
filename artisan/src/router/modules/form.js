@@ -4,7 +4,7 @@ export const formRouter = [
     path: '/form',
     component: Layout,
     redirect: '/form/input',
-    name: '表单',
+    name: '表单总',
     children: [
       {
         path: 'input',
