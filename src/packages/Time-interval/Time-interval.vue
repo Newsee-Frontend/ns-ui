@@ -73,7 +73,7 @@
 <script>
 import timePicker from '../TimePicker/TimePicker';
 import onlyMMDDPicker from '../Only-MMDD-picker/Only-MMDD-picker';
-import { judgeType } from '../../utils';
+import { judgeType } from '../../utils/library/basic';
 import keyRefer from './keyRefer';
 
 import create from '../../create/create';
