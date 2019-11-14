@@ -2,7 +2,7 @@ import create from '../../create/create';
 import ColorPicker from '../ColorPicker/ColorPicker';
 import palette from './palette';
 import innerCode from './template';
-import { colorRGBtoHex, colorHexToRgba } from '../../utils/color';
+import { colorRGBtoHex, colorHexToRgba } from '../../utils/library/color';
 
 export default create({
   name: 'skiner',
