@@ -485,6 +485,22 @@ const navmenu = (req, res) => {
             menuIndex: 4,
             hide: 1,
           },
+          {
+            funcId: 'new-hugeDataTable',
+            menuLabel: '新表格-大数据量',
+            menuRouter: 'new-hugeDataTable',
+            menuIcon: null,
+            menuIndex: 5,
+            hide: 1,
+          },
+          {
+            funcId: 'new-formTable',
+            menuLabel: '新表格-表单',
+            menuRouter: 'new-formTable',
+            menuIcon: null,
+            menuIndex: 6,
+            hide: 1,
+          },
         ],
       },
       {
