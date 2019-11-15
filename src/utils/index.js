@@ -54,7 +54,7 @@ function prefixName(name, opts, $Var) {
   // console.log('原始名称，前缀名，默认前缀名称：', name, defname, newname);
   if (!name)
     throw 'the component should be set with the initial name，' +
-    'please check every component\' name whether it\'s property is set';
+      "please check every component' name whether it's property is set";
   if (typeof opts.prefix !== 'string' || !opts.prefix) return name;
   if (typeof opts.tie !== 'string' || !opts.tie) return name;
   if (name.indexOf(defname) === 0) {
