@@ -13,7 +13,6 @@ import store from './store';
 //load router && page
 import router from './router';
 
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
