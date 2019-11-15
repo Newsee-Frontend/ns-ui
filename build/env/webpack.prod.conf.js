@@ -31,7 +31,7 @@ const prodWebpackConfig = merge(baseWebpackConfig, {
       amd: 'vue',
     },
     'element-ui': 'element-ui',
-    // 'vxe-table': 'vxe-table',
+    'vxe-table': 'vxe-table',
   },
   optimization: {
     minimize: isMinify,

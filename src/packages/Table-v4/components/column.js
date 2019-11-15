@@ -136,11 +136,27 @@ export default {
       };
     }
 
+    else {
+
+    }
+
+
+
+    console.log('当前字段');
+    console.log(this.column[this.headRefer['model-key']]);
+    console.log('当前列类型');
+    console.log(this.columnType);
+
+    if (this.column[this.headRefer['model-key']] === 'organizationShortName') {
+      console.log('问题列');
+    }
+
+
+
     const general = {
       props: {
         type: this.columnType,
         title: this.column[this.headRefer['label']],
-        'min-width': this.column[this.headRefer['width']],
         align: this.column[this.headRefer['align']],
         fixed: this.column[this.headRefer['fixed']],
         'header-class-name': ({ column }) => {
@@ -148,6 +164,15 @@ export default {
         },
       },
     };
+
+    /**
+     * special columns use width ,other use min-width
+     * @type {string}
+     */
+    const wk = this.specialColumns.indexOf(this.columnType) > -1 ? 'width' : 'min-width';
+
+    general.props[wk] = this.column[this.headRefer['width']];
+
 
     return h(`vxe-table-column`, deepObjectMerge(general, injection));
   },
@@ -185,5 +210,6 @@ export default {
       this.$emit('column-setting-submit', column);
     },
   },
-  created() {},
+  created() {
+  },
 };

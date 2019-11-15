@@ -2,7 +2,7 @@ export default {
   data() {
     return {
       normalColInclude: ['text', 'number', 'date', 'select'],
-      specialColInclude: ['index', 'selection', 'radio'],
+      specialColInclude: ['index', 'checkbox', 'radio'],
       actionColInclude: ['action', 'add-row'],
       settingColInclude: ['setting'],
     };

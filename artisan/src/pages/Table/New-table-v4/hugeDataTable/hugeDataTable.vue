@@ -36,7 +36,8 @@
 <script>
   import bizTableV4 from '../../../../components/Biz-table/Biz-table-v4/Biz-table-v4';
   import getData from './getTableData';
-  import tableHead from './simple-column';
+  // import tableHead from './simple-column';
+  import tableHead from './xxxxxxxxxx';
 
   export default {
     name: 'new-hugeDataTable',

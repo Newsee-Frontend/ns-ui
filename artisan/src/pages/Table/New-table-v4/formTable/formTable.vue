@@ -91,10 +91,10 @@
 
         isCheckedOptions: [],//是否审核的options，激活单元格动态生成
 
-        firstColType: 'selection',//selection index radio
+        firstColType: 'checkbox',//selection index radio
         firstColTypeOpts: [
           { label: '索引', value: 'index' },
-          { label: '多选', value: 'selection' },
+          { label: '多选', value: 'checkbox' },
           { label: '单选', value: 'radio' },
         ],
 

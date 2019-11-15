@@ -12,10 +12,10 @@ export default {
     'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
-  selection: {
+  checkbox: {
     'resourcecolumnName': '',//label
-    'resourcecolumnCode': 'selection',//model-key
-    'resourcecolumnXtype': 'selection',//筛选列类型:index/selection/radio/text/number
+    'resourcecolumnCode': 'checkbox',//model-key
+    'resourcecolumnXtype': 'checkbox',//筛选列类型:index/selection/radio/text/number
     'resourcecolumnWidth': '46',//列的宽度
     'resourcecolumnOrder': '0-2',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏

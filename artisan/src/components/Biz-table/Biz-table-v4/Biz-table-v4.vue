@@ -4,8 +4,8 @@
 
 
     <ns-table ref="bizTable"
-                 v-bind="curProps"
-                 v-on="curEvent"
+              v-bind="curProps"
+              v-on="curEvent"
     ></ns-table>
 
     <!--合计区域-->
@@ -15,7 +15,7 @@
     <ns-pagination
       class="biz-pagination"
       :total="total || 0" :searchConditions="searchConditions"
-      :pageSizes="[10, 20, 50, 100,200,500,1000,5000,10000,50000,100000]"
+      :pageSizes="[10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
       @size-change="sizeChange"
       @current-change="currentChange"
     ></ns-pagination>
@@ -38,7 +38,7 @@
         rulesConfig,
 
         normalColInclude: ['text', 'number', 'date', 'select'],
-        specialColInclude: ['index', 'selection', 'radio'],
+        specialColInclude: ['index', 'checkbox', 'radio'],
         actionColInclude: ['action', 'add-row'],
         settingColInclude: ['setting'],
 
@@ -60,7 +60,7 @@
       searchConditions: { type: Object },//筛选条件
 
       //第一列固定列类型（非自动表头配置）
-      firstColType: { type: String, default: 'selection', validator: t => ['index', 'selection', 'radio', null].indexOf(t) > -1 },
+      firstColType: { type: String, default: 'checkbox', validator: t => ['index', 'checkbox', 'radio', null].indexOf(t) > -1 },
       hasActionCol: { type: Boolean, default: true },//是否有操作列
       showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关

@@ -1,27 +1,28 @@
 import Vue from 'vue';
 
-import ElementUI from 'element-ui';
+import './ElementUI/index';//load element-ui
+import './Table/index.js';//load new table components
 
-Vue.use(ElementUI);
-
-import 'cx-theme/dist/cx-theme.min.css';
-import '../style/element-cover/index.scss';
-import 'vxe-table/lib/index.css'
-
-
+//load applaction style
 import '../style/public.scss';
 import '../style/common.scss';
 
+//iconfont style
 import '../assets/iconfont/iconfont';
 import '../icons';
+
+//load components
 import '../components/index.js';
+
 
 //测试 - 单独引入各个组件模块
 // import './lib';
 import Message from '../../../src/packages/Message/Message.js';
+
 Vue.prototype.$message = Message;
 
-// 测试 - 全局挂载全部组件
+
+//测试 - 全局挂载全部组件
 
 import nsui from '../../../lib/ns-ui';
 import '../../../lib/index.scss';
@@ -34,3 +35,5 @@ Vue.use(nsui, {
   log: false, //show log information
   type: 'globle',
 });
+
+

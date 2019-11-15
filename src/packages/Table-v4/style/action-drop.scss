@@ -1,3 +1,7 @@
+$drap-content__max-height: 300px; //下拉内容区域最大高度
+$drap-label__max-width: 166px; //下拉内容区域 - 选择label名称最大宽度
+$drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽度
+
 //setting column  && drag menu
 .column-setting {
   .vxe-cell {
@@ -19,14 +23,16 @@
     }
     line-height: 28px;
     margin: 5px 0;
+    min-width: $drap-label__min-width + 20px + 20px;
     label {
       overflow: hidden;
-      max-width: 166px;
+      max-width: $drap-label__max-width;
+      min-width: $drap-label__min-width;
       margin-right: 10px;
     }
   }
   .content {
-    max-height: 300px;
+    max-height: $drap-content__max-height;
     margin-bottom: 10px;
     box-sizing: border-box;
     overflow-y: auto;

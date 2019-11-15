@@ -8,7 +8,27 @@ export default [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '1', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
+  },
+  {
+    eidtConfig: null,
+    fixed: '',
+    organizationId: 1,
+    resourcecolumnAlign: 'left',
+    resourcecolumnAllowedit: '0',
+    resourcecolumnCode: 'organizationShortName',
+    resourcecolumnColumntip: '0',
+    resourcecolumnFieldorderindex: 0,
+    resourcecolumnFuncinfoId: '2DEJjvjOcDM5caR4bce',
+    resourcecolumnHidden: false,
+    resourcecolumnName: '组织简称',
+    resourcecolumnNameEn: 'organizationShortName',
+    resourcecolumnOrder: '0',
+    resourcecolumnStatisticstype: '',
+    resourcecolumnSummaryformat: '',
+    resourcecolumnWidth: '110',
+    resourcecolumnXtype: 'text',
+    selectList: null,
   },
   {
     'resourcecolumnName': '拥有人',//label
@@ -18,7 +38,7 @@ export default [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '年龄',//label
@@ -28,7 +48,7 @@ export default [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '成立日期',//label
@@ -38,7 +58,7 @@ export default [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '等级调整',//label
@@ -49,7 +69,7 @@ export default [
     'resourcecolumnOrder': '10',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '是否审核',//label
@@ -60,7 +80,7 @@ export default [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
 
   {
@@ -72,7 +92,7 @@ export default [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '邮箱',//label
@@ -82,7 +102,7 @@ export default [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
 
   {
@@ -94,7 +114,7 @@ export default [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null
+    'eidtConfig': null,
   },
 ];
 

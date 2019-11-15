@@ -15,13 +15,13 @@ module.exports = {
     ],
   ],
   'plugins': [
-    [
-      'import',
-      {
-        'libraryName': 'vxe-table',
-        'style': false, // 样式是否也按需加载
-      },
-    ],
+    // [
+    //   'import',
+    //   {
+    //     'libraryName': 'vxe-table',
+    //     'style': false, // 样式是否也按需加载
+    //   },
+    // ],
     '@babel/plugin-transform-runtime',
     '@babel/plugin-syntax-dynamic-import',
     '@babel/plugin-transform-object-assign',
