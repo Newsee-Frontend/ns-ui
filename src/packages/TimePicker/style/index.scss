@@ -2,9 +2,9 @@
 @import '../../../style/common/size/formsize';
 
 @include b(time-picker) {
-  &.el-date-editor{
-    @include form-component-size(time-picker)
-  };
+  &.el-date-editor {
+    @include form-component-size(time-picker);
+  }
 
   //special 时间范围选择的修改
   @include date-range-modefy();
