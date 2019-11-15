@@ -3,12 +3,16 @@
 import '@babel/polyfill';
 import Vue from 'vue';
 import App from './App';
-import router from './router';
-import store from './store';
-import mount from './utils/mount';
+
+//load  UI / plugins / style / components
 import './UI/index';
 
-Vue.use(mount);
+//load vuex for data store
+import store from './store';
+
+//load router && page
+import router from './router';
+
 
 /* eslint-disable no-new */
 new Vue({
