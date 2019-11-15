@@ -15,7 +15,7 @@ import Button from '../../../../src/packages/Button/Button';
 import ButtonGroup from '../../../../src/packages/Button-group/Button-group';
 
 //form
-import Input from '../../../../src/packages/Input/input.js';
+import Input from '../../../../src/packages/Input/Input.js';
 import InputNumber from '../../../../src/packages/InputNumber/InputNumber.js';
 import DatePicker from '../../../../src/packages/DatePicker/DatePicker.js';
 import TimePicker from '../../../../src/packages/TimePicker/TimePicker.js';
@@ -151,65 +151,65 @@ Vue.component('ns-loading-block', LoadingBlock);
 import '../../../../src/style/base.scss';
 
 //layput
-import '../../../src/packages/Layout/style/index.scss';
-import '../../../src/packages/SideBar/style/index.scss';
-import '../../../src/packages/UserDropdown/style/index.scss';
+import '../../../../src/packages/Layout/style/index.scss';
+import '../../../../src/packages/SideBar/style/index.scss';
+import '../../../../src/packages/UserDropdown/style/index.scss';
 
 //basic
-import '../../../src/packages/Icon-svg/style/index.scss';
-import '../../../src/packages/Icon-class/style/index.scss';
-import '../../../src/packages/Col/style/index.scss';
-import '../../../src/packages/Row/style/index.scss';
-import '../../../src/packages/Button/style/index.scss';
-import '../../../src/packages/Button-group/style/index.scss';
+import '../../../../src/packages/Icon-svg/style/index.scss';
+import '../../../../src/packages/Icon-class/style/index.scss';
+import '../../../../src/packages/Col/style/index.scss';
+import '../../../../src/packages/Row/style/index.scss';
+import '../../../../src/packages/Button/style/index.scss';
+import '../../../../src/packages/Button-group/style/index.scss';
 
 //form
-import '../../../src/packages/Input/style/index.scss';
-import '../../../src/packages/InputNumber/style/index.scss';
-import '../../../src/packages/DatePicker/style/index.scss';
-import '../../../src/packages/TimePicker/style/index.scss';
-import '../../../src/packages/Only-MMDD-picker/style/index.scss';
-import '../../../src/packages/Time-interval/style/index.scss';
-import '../../../src/packages/Select/style/index.scss';
-import '../../../src/packages/Input-tag/style/index.scss';
-import '../../../src/packages/Cascader/style/index.scss';
-import '../../../src/packages/Checkbox/style/index.scss';
-import '../../../src/packages/Radio/style/index.scss';
-import '../../../src/packages/Switch/style/index.scss';
-import '../../../src/packages/Upload/style/index.scss';
-import '../../../src/packages/Upload-cropper/style/index.scss';
-import '../../../src/packages/Select-tree/style/index.scss';
-import '../../../src/packages/ColorPicker/style/index.scss';
-import '../../../src/packages/Avatar/style/index.scss';
-import '../../../src/packages/Form/style/index.scss';
+import '../../../../src/packages/Input/style/index.scss';
+import '../../../../src/packages/InputNumber/style/index.scss';
+import '../../../../src/packages/DatePicker/style/index.scss';
+import '../../../../src/packages/TimePicker/style/index.scss';
+import '../../../../src/packages/Only-MMDD-picker/style/index.scss';
+import '../../../../src/packages/Time-interval/style/index.scss';
+import '../../../../src/packages/Select/style/index.scss';
+import '../../../../src/packages/Input-tag/style/index.scss';
+import '../../../../src/packages/Cascader/style/index.scss';
+import '../../../../src/packages/Checkbox/style/index.scss';
+import '../../../../src/packages/Radio/style/index.scss';
+import '../../../../src/packages/Switch/style/index.scss';
+import '../../../../src/packages/Upload/style/index.scss';
+import '../../../../src/packages/Upload-cropper/style/index.scss';
+import '../../../../src/packages/Select-tree/style/index.scss';
+import '../../../../src/packages/ColorPicker/style/index.scss';
+import '../../../../src/packages/Avatar/style/index.scss';
+import '../../../../src/packages/Form/style/index.scss';
 
 //data
-import '../../../src/packages/Tree/style/index.scss';
-import '../../../src/packages/Pagination/style/index.scss';
-import '../../../src/packages/Submit-process/style/index.scss';
-import '../../../src/packages/Table-v3/style/index.scss';
-import '../../../src/packages/Table-v4/style/index.scss';
+import '../../../../src/packages/Tree/style/index.scss';
+import '../../../../src/packages/Pagination/style/index.scss';
+import '../../../../src/packages/Submit-process/style/index.scss';
+import '../../../../src/packages/Table-v3/style/index.scss';
+import '../../../../src/packages/Table-v4/style/index.scss';
 
 //navigation
-import '../../../src/packages/Step/style/index.scss';
-import '../../../src/packages/Steps/style/index.scss';
-import '../../../src/packages/Tabs/style/index.scss';
-import '../../../src/packages/Dropdown/style/index.scss';
+import '../../../../src/packages/Step/style/index.scss';
+import '../../../../src/packages/Steps/style/index.scss';
+import '../../../../src/packages/Tabs/style/index.scss';
+import '../../../../src/packages/Dropdown/style/index.scss';
 
 //other
-import '../../../src/packages/Skiner/style/index.scss';
-import '../../../src/packages/Screenfull/style/index.scss';
-import '../../../src/packages/PageTabs/style/index.scss';
-import '../../../src/packages/Dialog/style/index.scss';
-import '../../../src/packages/Fullscreen-dialog/style/index.scss';
-import '../../../src/packages/Slip-dialog/style/index.scss';
-import '../../../src/packages/Drawer/style/index.scss';
-import '../../../src/packages/Carousel/style/index.scss';
-import '../../../src/packages/Timeline/style/index.scss';
-import '../../../src/packages/TimelineAxis/style/index.scss';
-import '../../../src/packages/Particles/style/index.scss';
-import '../../../src/packages/VideoBackground/style/index.scss';
-import '../../../src/packages/Editor/style/index.scss';
+import '../../../../src/packages/Skiner/style/index.scss';
+import '../../../../src/packages/Screenfull/style/index.scss';
+import '../../../../src/packages/PageTabs/style/index.scss';
+import '../../../../src/packages/Dialog/style/index.scss';
+import '../../../../src/packages/Fullscreen-dialog/style/index.scss';
+import '../../../../src/packages/Slip-dialog/style/index.scss';
+import '../../../../src/packages/Drawer/style/index.scss';
+import '../../../../src/packages/Carousel/style/index.scss';
+import '../../../../src/packages/Timeline/style/index.scss';
+import '../../../../src/packages/TimelineAxis/style/index.scss';
+import '../../../../src/packages/Particles/style/index.scss';
+import '../../../../src/packages/VideoBackground/style/index.scss';
+import '../../../../src/packages/Editor/style/index.scss';
 
 //notice
-import '../../../src/packages/Loading-block/style/index.scss';
+import '../../../../src/packages/Loading-block/style/index.scss';
