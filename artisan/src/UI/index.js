@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 Vue.use(mount);
 
 import './Element-UI/index';//load element-ui
