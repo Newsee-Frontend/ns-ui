@@ -50,10 +50,10 @@ export default create({
 
   watch: {
     value: {
-      handler(val){
+      handler(val) {
         this.childUpload = val;
       },
-      immediate: true
+      immediate: true,
     },
   },
 
@@ -104,7 +104,7 @@ export default create({
       {
         class: this.recls([this.type]),
       },
-      [upload, cropperDialog],
+      [upload, cropperDialog]
     );
   },
 
@@ -120,9 +120,7 @@ export default create({
     },
   },
 
-  created() {
-  },
+  created() {},
 
-  mounted() {
-  },
+  mounted() {},
 });
