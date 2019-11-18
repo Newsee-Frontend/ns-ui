@@ -13,10 +13,10 @@
             <ns-button @click="scrollTo(0,0)">表格滚动复位</ns-button>
             <ns-button @click="fullValidate">表单表格验证</ns-button>
             <ns-select v-model="firstColType" :options="firstColTypeOpts"></ns-select>
-            <span>{{tableData[0].createDate}}</span>
-            <span>{{tableData[0].level}}</span>
-            <span>{{tableData[0].sex.picked.value}}</span>
-            <span>{{tableData[0].isChecked.picked.value}}</span>
+            <!--<span>{{tableData[0].createDate}}</span>-->
+            <!--<span>{{tableData[0].level}}</span>-->
+            <!--<span>{{tableData[0].sex.picked.value}}</span>-->
+            <!--<span>{{tableData[0].isChecked.picked.value}}</span>-->
           </div>
           <div class="control-block form-block-line">
             <ns-button @click="setActiveRow(2)">设置第二行激活</ns-button>
@@ -24,13 +24,14 @@
             <ns-button @click="setSelection([2,3,4],true)">设置第二，三，四行选中</ns-button>
             <ns-button @click="setAllSelection(true)">设置全部选中</ns-button>
             <ns-button @click="clearSelection">清除所有选中状态</ns-button>
+
+
           </div>
           <biz-table-v4
             ref="formTable"
             :loading="loading"
             :data="tableData"
             :total="total"
-            :localHead="tableHead"
             :searchConditions="searchConditions"
 
             :firstColType="firstColType"
@@ -58,19 +59,21 @@
 
 
 <script>
+  import { tableDataService } from '../../../../service/Table/index';
   import bizTableV4 from '../../../../components/Biz-table/Biz-table-v4/Biz-table-v4';
-  import getData from './getTableData';
-  import tableHead from './head';
+  // import getData from './getTableData';
+  // import tableHead from './head';
 
   export default {
     name: 'new-formTable',
     components: { bizTableV4 },
     data() {
       return {
-        data: {},
+        loading: false,//表格loading 状态
+        data: {},//表格数据
         summaryState: 'current',//合计行切换状态
-        loading: false,
-        tableHead,
+
+        // tableHead,
         searchConditions: {
           companyId: '', //公司id
           departmentId: '', //部门id
@@ -85,7 +88,8 @@
           otherConditions: {},
           organizationId: 1,
           totalType: 1,
-          mockType: 'normal',
+          mockType: 'newform',
+          total: 100,
         },
 
 
@@ -105,7 +109,7 @@
         return this.$refs['formTable'];
       },
       tableData() {
-        return this.data.list;
+        return this.data.list || [];
       },
       total() {
         return this.data.total;
@@ -120,10 +124,31 @@
 
       getTableData() {
         this.loading = true;
-        this.data = getData.mockData(1000, this.searchConditions.pageSize);
 
+        tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
+
+
+          console.log('请求到的表格数据：');
+          console.log(this.data);
+          this.data = res.resultData || {};
+          this.tableData.forEach(item => {
+            item.fnsclick = [
+              { label: '新增授权人', value: 'addshouquanren' },
+              { label: '编辑', value: 'gridEditBtn' },
+              { label: '删除', value: 'gridRemoveBtn' },
+            ];
+          });
+
+
+          this.loading = false;
+        }).catch(() => {
+          this.loading = false;
+        });
+
+
+        // this.data = getData.mockData(1000, this.searchConditions.pageSize);
         // this.tableData = mockTableFromData(100, this.searchConditions.pageSize);
-        this.loading = false;
+
       },
 
       /**
