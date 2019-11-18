@@ -29,36 +29,36 @@ export default {
               </Button>
             }
             {//more than 2 operation buttons, use drop-down menu to display
-            list.length > 2 ? (
-              <el-dropdown trigger="click">
+              list.length > 2 ? (
+                  <el-dropdown trigger="click">
                 <span class={'el-dropdown-link'}>
                   更多
-                  <i class={'el-icon-arrow-down el-icon--right'} />
+                  <i class={'el-icon-arrow-down el-icon--right'}/>
                 </span>
-                <el-dropdown-menu slot="dropdown">
-                  {list.map((item, index) => [
-                    index > 0 ? (
-                      <el-dropdown-item
-                        key={index}
-                        nativeOnClick={() =>
-                          events.click(item, { row, column, rowIndex, columnIndex })
-                        }
-                      >
-                        {item.label}
-                      </el-dropdown-item>
-                    ) : null,
-                  ])}
-                </el-dropdown-menu>
-              </el-dropdown>
-            ) : // 普通按钮
-            list.length === 2 ? (
-              <Button
-                type="text"
-                on-click={() => events.click(list[1], { row, column, rowIndex, columnIndex })}
-              >
-                {list[1].label}
-              </Button>
-            ) : null}
+                    <el-dropdown-menu slot="dropdown">
+                      {list.map((item, index) => [
+                        index > 0 ? (
+                          <el-dropdown-item
+                            key={index}
+                            nativeOnClick={() =>
+                              events.click(item, { row, column, rowIndex, columnIndex })
+                            }
+                          >
+                            {item.label}
+                          </el-dropdown-item>
+                        ) : null,
+                      ])}
+                    </el-dropdown-menu>
+                  </el-dropdown>
+                ) : // 普通按钮
+                list.length === 2 ? (
+                  <Button
+                    type="text"
+                    on-click={() => events.click(list[1], { row, column, rowIndex, columnIndex })}
+                  >
+                    {list[1].label}
+                  </Button>
+                ) : null}
           </div>
         );
       };
