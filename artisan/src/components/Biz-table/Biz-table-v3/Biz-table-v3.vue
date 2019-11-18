@@ -99,7 +99,7 @@
           this.loadState.head = true;
         }
         else {
-          this.$store.dispatch('generateTableHead', { funcId: 'funcId', mockType: this.isFormTable ? 'form' : 'normal' }).then(() => {
+          this.$store.dispatch('generateTableHead', { funcId: 'funcId', mockType: this.searchConditions.mockType }).then(() => {
             this.loadState.head = true;
           }).catch(() => {
             this.loadState.head = true;
