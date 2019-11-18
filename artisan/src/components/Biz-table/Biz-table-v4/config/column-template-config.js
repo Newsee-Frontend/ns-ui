@@ -53,7 +53,7 @@ export default {
     'eidtConfig': null,
   },
   setting: {
-    resourcecolumnName: '设置', //label
+    resourcecolumnName: '', //label
     resourcecolumnCode: 'setting', //model-key
     resourcecolumnXtype: 'setting', //筛选列 类型
     resourcecolumnWidth: '28', //列的宽度
