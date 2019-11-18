@@ -10,11 +10,11 @@ export default {
       const obj = {};
 
       this.head
-        .filter(column => column[this.headRefer['cell-Config']])
+        .filter(column => column['cell-Config'])
         .forEach(col => {
-          const formConfig = col[this.headRefer['cell-Config']];
-          const label = col[this.headRefer['label']];
-          const modelCode = col[this.headRefer['model-key']];
+          const formConfig = col['cell-Config'];
+          const modelCode = col.field;//字段
+          const label = col.title;//显示值
 
           if (formConfig.require) {
             obj[modelCode] = [{ required: true, message: `请输入/选择${label}` }];
