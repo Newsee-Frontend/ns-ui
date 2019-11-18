@@ -1,6 +1,4 @@
 import create from '../../create/create';
-
-import keyRefer from './mixins/keyRefer';
 import selection from './mixins/selection';
 import reRender from './mixins/reRender';
 import validate from './mixins/validate';
@@ -10,7 +8,7 @@ import columnRender from './components/column';
 export default create({
   name: 'table',
   components: { columnRender },
-  mixins: [keyRefer, selection, reRender, validate, namefactory],
+  mixins: [selection, reRender, validate, namefactory],
   props: {
     loading: { type: Boolean },
     keyRefer: { type: Object },
@@ -20,7 +18,11 @@ export default create({
         return [];
       },
     },
-    head: { type: Array },
+    head: {
+      type: Array, default() {
+        return [];
+      },
+    },
     isHugeData: { type: Boolean, default: false }, //大数据量渲染，不支持表单表格的功能
     height: { type: Number, default: 300 },
     showFooter: { type: Boolean, default: false },
@@ -43,13 +45,18 @@ export default create({
       handler: function(val) {
         this.customColumns = val.map(item => {
           return {
-            field: item[this.headRefer['model-key']],
-            visible: !item[this.headRefer['hidden']],
+            field: item.field,
+            visible: !item.hidden,
           };
         });
+
+        // if (this.$refs['main-table']) {
+        //   const TableColumn = this.$refs['main-table'].getTableColumn();
+        //   this.$refs['main-table'].loadColumn(val);
+        // }
       },
       deep: true,
-      immediate: true,
+      // immediate: true,
     },
   },
   render(h) {
@@ -81,6 +88,12 @@ export default create({
       props.data = this.data;
     }
 
+    // console.log('表格渲染的数据如下：');
+    // console.log('表格渲染的数据如下：');
+    // console.log(this.data);
+    // console.log(this.head);
+    // console.log('==================');
+
     return h(
       `vxe-table`,
       {
@@ -108,11 +121,10 @@ export default create({
             },
             on: {
               ...this.$listeners,
-              // 'cell-event': this.cellEvent,
-              // 'table-action': this.tableAction,
-              // 'column-setting-submit': this.columnSettingSubmit,
               'sync-column-render': data => {
-                console.log(data.customColumns);
+
+                // console.log(data.customColumns);
+
                 const target = this.$refs['main-table'];
                 ['change', 'lock'].indexOf(data.event) > -1
                   ? target.refreshColumn()
@@ -121,7 +133,7 @@ export default create({
             },
           });
         }),
-      ]
+      ],
     );
   },
   methods: {
@@ -166,9 +178,11 @@ export default create({
       this.$refs['main-table'].clearActived();
     },
   },
-  created() {},
+  created() {
+
+
+  },
   mounted() {
-    console.log('created-created-created');
-    console.log(this.data);
+
   },
 });
