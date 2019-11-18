@@ -47,13 +47,13 @@ export default {
         },//涉猎领域（多选）
         describe: Mock.Random.csentence(), //备注
         email: Mock.Random.email(),
-        fnsclick: [
-          { label: '新增授权人', value: 'addshouquanren' },
-          { label: '编辑', value: 'gridEditBtn' },
-          { label: '删除', value: 'gridRemoveBtn' },
-
-          // { label: '停用', value: 'sstop' }, { label: '启用', value: 'work' },
-        ],
+        // fnsclick: [
+        //   { label: '新增授权人', value: 'addshouquanren' },
+        //   { label: '编辑', value: 'gridEditBtn' },
+        //   { label: '删除', value: 'gridRemoveBtn' },
+        //
+        //   // { label: '停用', value: 'sstop' }, { label: '启用', value: 'work' },
+        // ],
       });
     }),
     total: total,
