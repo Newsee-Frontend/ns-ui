@@ -7,6 +7,7 @@ export default {
     return {
       headLoading: false,//表头loading状态
       headRefer: keyRefer.head,
+      finalHead:[],
     };
   },
   computed: {
