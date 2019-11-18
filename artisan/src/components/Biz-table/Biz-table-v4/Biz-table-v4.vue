@@ -2,14 +2,14 @@
 <template>
   <div class="biz-table" :style="`height: ${height+38}px`">
 
-
     <ns-table ref="bizTable"
               v-bind="curProps"
               v-on="curEvent"
+
     ></ns-table>
 
     <!--合计区域-->
-    <table-summary @summary-change="summaryChange"></table-summary>
+    <table-summary @summary-change="summaryChange" v-if="showFooter"></table-summary>
 
 
     <ns-pagination
@@ -24,19 +24,19 @@
 </template>
 
 <script>
+  import headFactory from './mixins/headFactory';
   import keyRefer from './config/keyRefer';
-  import columnConfig from './config/column-template-config';
   import rulesConfig from './config/rulesInfo';
   import tableSummary from './components/summary';
 
   export default {
     name: 'biz-table',
+    mixins: [headFactory],
     components: { tableSummary },
     data() {
       return {
         keyRefer,
         rulesConfig,
-
         normalColInclude: ['text', 'number', 'date', 'select'],
         specialColInclude: ['index', 'checkbox', 'radio'],
         actionColInclude: ['action', 'add-row'],
@@ -71,9 +71,12 @@
 
     },
     computed: {
+      tableLoading() {
+        return !(!this.loading && !this.headLoading);
+      },
       curProps() {
         const props = {
-          loading: this.loading,
+          loading: this.tableLoading,
           isHugeData: this.isHugeData,
           head: this.finalHead,
           keyRefer: this.keyRefer,
@@ -98,49 +101,8 @@
           'select-all': this.selectAll,
         };
       },
-      finalHead() {
-        return [
-          ...(this.firstColType ? [columnConfig[this.firstColType]] : []),
-          ...(this.localHead ? this.localHead : this.tableHead),
-          ...(this.hasActionCol ? [columnConfig['action']] : []),
-          ...(this.showAddRowOperation ? [columnConfig['add-row']] : []),
-          ...(this.showHeadOperation ? [columnConfig['setting']] : []),
-        ].map(col => {
-          col.resourcecolumnHidden = col.resourcecolumnHidden === true || col.resourcecolumnHidden === '1';
-
-          const key = col.resourcecolumnCode;
-          if (this.specialColInclude.indexOf(key) > -1) {
-            col.fixed = 'left';
-          }
-          else if ([...this.actionColInclude, ...this.settingColInclude].indexOf(key) > -1) {
-            col.fixed = 'right';
-          }
-          else {
-            col.fixed = '';
-          }
-          return col;
-        });
-      },
     },
-
-
     methods: {
-      /**
-       * get table head data
-       */
-      getTableHead() {
-        if (this.localHead) {
-          this.loadState.head = true;
-        }
-        else {
-          this.$store.dispatch('generateTableHead', { funcId: 'funcId', mockType: this.isFormTable ? 'form' : 'normal' }).then(() => {
-            this.loadState.head = true;
-          }).catch(() => {
-            this.loadState.head = true;
-          });
-        }
-      },
-
       /**
        * loadData table data - 加载数据（对于表格数据需要重载、局部递增场景下可能会用到）
        * @param tableData
@@ -347,7 +309,6 @@
         console.log('current-page-change', val);
         this.$emit('reload');
       },
-
 
     },
     created() {
