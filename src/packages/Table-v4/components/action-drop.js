@@ -1,5 +1,4 @@
 import draggable from 'vuedraggable';
-import keyRefer from '../mixins/keyRefer';
 import columntype from '../mixins/columntype';
 import IconClass from '../../Icon-class/Icon-class';
 import Checkbox from '../../Checkbox/Checkbox';
@@ -7,7 +6,7 @@ import Button from '../../Button/Button';
 
 export default {
   name: 'action-drop',
-  mixins: [keyRefer, columntype],
+  mixins: [columntype],
   components: {
     draggable,
     Checkbox,
@@ -26,7 +25,7 @@ export default {
     return (
       <el-dropdown ref={'column-setting-dropdown'} hide-on-click={false} trigger={'click'}>
         <span class={'el-dropdown-link'} on-click={() => (this.menuRender = true)}>
-          <i class={'el-icon-setting'} />
+          <i class={'el-icon-setting'}/>
         </span>
         <el-dropdown-menu slot="dropdown" class={'column-setting-drag'}>
           {this.menuRender ? (
@@ -67,7 +66,7 @@ export default {
                           },
                         },
                       },
-                      item.title
+                      item.title,
                     )}
                     {h('Icon-class', {
                       class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,
@@ -168,6 +167,8 @@ export default {
       this.$emit('column-setting-submit', this.customColumns);
     },
   },
-  mounted() {},
-  beforeDestroy() {},
+  mounted() {
+  },
+  beforeDestroy() {
+  },
 };
