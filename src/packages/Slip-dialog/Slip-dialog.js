@@ -36,6 +36,7 @@ export default create({
     return {
       lastVisible: false,
       allvisible: true,
+      activating: false  //动画是否进行中（enter/leave）
     };
   },
 
@@ -159,28 +160,35 @@ export default create({
     outerClickEvent() {
       if (!this.visible) return;
       if (!this.lastVisible) return;
-
+      if(this.activating) return;
+      if(!this.closeOnClickModal) return;
       this.close();
     },
     wrapperClick(e) {
       stopPropagation(e);
     },
     beforeEnter(el) {
+      this.activating = false;
       this.$emit('before-enter', el);
     },
     enter(el) {
+      this.activating = true;
       this.$emit('enter', el);
     },
     afterEnter(el) {
+      this.activating = false;
       this.$emit('after-enter', el);
     },
     beforeLeave(el) {
+      this.activating = false;
       this.$emit('before-leave', el);
     },
     leave(el) {
+      this.activating = true;
       this.$emit('leave', el);
     },
     afterLeave(el) {
+      this.activating = false;
       this.$emit('after-leave', el);
     },
   },
