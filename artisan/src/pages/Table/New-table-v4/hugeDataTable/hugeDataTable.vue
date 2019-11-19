@@ -3,31 +3,32 @@
   <div class="win">
     <!-- 容器左边 -->
     <div class="ns-container">
+      <!--右边主题内容区域-->
+      <div class="ns-container-right">
+        <!--action-module (search / button)-->
+        <div class="action-module handle">
 
-      <demo-block>
-        <template slot="title">复杂表格用法示例</template>
-        <template slot="describe">
-          超大数据量表格示例，当前页数总条目: <span style="color: #ff275c">{{searchConditions.pageSize}} </span>
-        </template>
-        <template slot="content">
+          <h1>大数据量表格用法示例</h1>
+          <h3> 超大数据量表格示例，当前页数总条目: <span style="color: #ff275c">{{searchConditions.pageSize}} </span></h3>
+
           <div class="control-block form-block-line">
+
             <ns-button @click="getTableData('loadData')">loadData</ns-button>
+
             <ns-button @click="getTableData('reloadData')">reloadData</ns-button>
 
           </div>
-          <biz-table-v4
-            ref="hugeDataTable"
-            :loading="loading"
-            :total="total"
-            isHugeData
-            :localHead="tableHead"
-            :searchConditions="searchConditions"
-            @reload="getTableData()"
+        </div>
 
-          ></biz-table-v4>
-        </template>
-      </demo-block>
-
+        <biz-table-v4
+          ref="hugeDataTable"
+          :loading="loading"
+          :total="total"
+          isHugeData
+          :searchConditions="searchConditions"
+          @reload="getTableData()"
+        ></biz-table-v4>
+      </div>
     </div>
   </div>
 </template>
@@ -35,9 +36,8 @@
 
 <script>
   import bizTableV4 from '../../../../components/Biz-table/Biz-table-v4/Biz-table-v4';
-  import getData from './getTableData';
-  // import tableHead from './simple-column';
-  import tableHead from './xxxxxxxxxx';
+  import { tableDataService } from '../../../../service/Table/index';
+
 
   export default {
     name: 'new-hugeDataTable',
@@ -46,7 +46,6 @@
       return {
         loading: false,
         data: {},
-        tableHead,
 
         searchConditions: {
           companyId: '', //公司id
@@ -62,14 +61,12 @@
           otherConditions: {},
           organizationId: 1,
           totalType: 1,
-          mockType: 'normal',
+          mockType: 'hugeData-table',
+          total: 10000,
         },
       };
     },
     computed: {
-      tableData() {
-        return this.data.list;
-      },
       total() {
         return this.data.total;
       },
@@ -78,28 +75,36 @@
       getTableData(type = 'reloadData') {
         this.loading = true;
 
-        this.data = getData(10000, this.searchConditions.pageSize);
+        tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
+          this.data = res.resultData || {};
 
-        let hugeDataTable = this.$refs['hugeDataTable'];
+          console.log('请求到的表格数据：');
+          console.log(this.data);
 
-        if (hugeDataTable) {
+          this.data.list.forEach(item => {
+            item.fnsclick = [
+              { label: '新增授权人', value: 'addshouquanren' },
+              { label: '编辑', value: 'gridEditBtn' },
+              { label: '删除', value: 'gridRemoveBtn' },
+            ];
+          });
+
+          let hugeDataTable = this.$refs['hugeDataTable'];
+
           if (type === 'reloadData') {
-
-            hugeDataTable.reloadData(this.tableData).then(() => {
+            hugeDataTable.reloadData(this.data.list).then(() => {
               this.loading = false;
             });
           }
           else {
-
-            hugeDataTable.loadData(this.tableData).then(() => {
+            hugeDataTable.loadData(this.data.list).then(() => {
               this.loading = false;
             });
           }
 
-        }
-        else {
+        }).catch(() => {
           this.loading = false;
-        }
+        });
       },
     },
 
@@ -112,3 +117,12 @@
 
   };
 </script>
+<style rel="stylesheet/scss" lang="scss">
+  .form-block-line {
+    height: 32px;
+    line-height: 32px;
+    margin: 5px 0;
+  }
+</style>
+
+
