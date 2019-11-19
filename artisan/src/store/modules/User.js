@@ -1,6 +1,6 @@
 import Cookies from 'js-cookie';
 import CryptoJS from 'crypto-js';
-import { cryptoCookie } from '../../utils/crypto';
+import { cryptoCookie } from '../../utils/library/crypto';
 import { oauthlogin } from '../../service/User';
 
 import $store from '@/store/index';
