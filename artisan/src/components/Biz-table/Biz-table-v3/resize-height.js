@@ -1,4 +1,4 @@
-import { addEventHandler, removeEventHandler } from '../../../utils/event';
+import { addEventHandler, removeEventHandler } from '../../../utils/library/event';
 
 export default {
   data() {
