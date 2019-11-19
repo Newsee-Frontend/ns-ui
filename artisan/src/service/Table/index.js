@@ -11,6 +11,16 @@ export const listColumnService = head => {
   });
 };
 
+export const changeListColumnService = head => {
+  dataFilter(head);
+
+  return fetch({
+    url: '/system/column/change-list-column',
+    method: 'get',
+    headers: head,
+  });
+};
+
 export const tableDataService = data => {
   dataFilter(data);
   return fetch({
