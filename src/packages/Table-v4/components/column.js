@@ -43,7 +43,11 @@ export default {
     },
     //表单单元格类型
     formType() {
-      return this.formConfig[this.scopeRefer['type']];
+      try {
+        return this.formConfig.type;
+      } catch (e) {
+        return undefined;
+      }
     },
     //是否为表单渲染
     isFormRender() {
@@ -135,7 +139,6 @@ export default {
       }
     }
 
-
     const general = {
       props: {
         type: this.columnType,
@@ -198,6 +201,5 @@ export default {
       this.$emit('column-setting-submit', column);
     },
   },
-  created() {
-  },
+  created() {},
 };
