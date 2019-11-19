@@ -1,17 +1,17 @@
-import { mapGetters } from 'vuex';
 import columnConfig from '../config/column-template-config';
 import keyRefer from '../config/keyRefer';
+import { listColumnService } from '../../../../service/Table';
 
 export default {
   data() {
     return {
       headLoading: false,//表头loading状态
+      tableHead: [],//请求到的表头数据
+      finalHead: [],//最终处理好的表头数据
       headRefer: keyRefer.head,
-      finalHead:[],
     };
   },
   computed: {
-    ...mapGetters(['tableHead']),
     connectHead() {
       return [
         ...(this.firstColType ? [columnConfig[this.firstColType]] : []),
@@ -25,35 +25,38 @@ export default {
   watch: {
     connectHead: {
       handler: function(val) {
-        this.finalHead = this.connectHead.map(col => {
+        console.log('connectHead - connectHead - 变化');
+        console.log('connectHead - connectHead - 变化');
+        this.finalHead = val.map(col => {
           return this.transformCol(col);
         });
+        console.log(this.finalHead);
       },
       deep: true,
+      // immediate: true,
     },
   },
   methods: {
     /**
-     * get table head data
+     * get table head data - 获取表头数据
      */
     getTableHead() {
-      if (this.localHead) {
-        this.tableHead = this.localHead;
-      }
-      else {
-        this.headLoading = true;
-        this.$store.dispatch('generateTableHead', { funcId: 'funcId', mockType: this.searchConditions.mockType }).then(() => {
+      this.headLoading = true;
 
-          this.finalHead = this.connectHead.map(col => this.transformCol(col));
+      listColumnService({ funcId: 'funcId', mockType: this.searchConditions.mockType }).then(res => {
+        this.tableHead = res.resultData.columns || [];
 
+        console.log('请求到的表头数据：');
+        console.log(this.tableHead);
 
-          this.headLoading = false;
-        }).catch(() => {
-          this.headLoading = false;
-        });
-      }
+        this.$store.dispatch('setTableHead', this.tableHead);//store head data
+
+        this.headLoading = false;
+
+      }).catch(() => {
+        this.headLoading = false;
+      });
     },
-
 
     /**
      * Convert header fields by key refer - 转化表头字段
@@ -93,21 +96,6 @@ export default {
       return newCol;
     },
 
-
-    addcol() {
-      this.finalHead.push(
-        this.transformCol({
-          'resourcecolumnName': '',//label
-          'resourcecolumnCode': 'radio',//model-key
-          'resourcecolumnXtype': 'radio',//筛选列类型:index/selection/radio/text/number
-          'resourcecolumnWidth': '46',//列的宽度
-          'resourcecolumnOrder': '0-3',//列的序号
-          'resourcecolumnHidden': '0', //是否隐藏
-          'resourcecolumnAlign': 'center',//对齐
-          'eidtConfig': null,
-        }),
-      );
-    },
   },
   created() {
     this.getTableHead();
