@@ -10,6 +10,9 @@ const Table = {
     },
   },
   actions: {
+    setTableHead({ commit }, data) {
+      commit('SET_TABLE_HEAD', data);
+    },
     generateTableHead({ commit }, query) {
       return listColumnService(query).then(res => {
         const head = res.resultData.columns || [];
