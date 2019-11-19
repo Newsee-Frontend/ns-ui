@@ -2,14 +2,11 @@
 <template>
   <div class="biz-table" :style="`height: ${height+38}px`">
 
-    <ns-table ref="bizTable"
-              v-bind="curProps"
-              v-on="curEvent"
-
-    ></ns-table>
+    <!--表格-->
+    <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent"></ns-table>
 
     <!--合计区域-->
-    <table-summary @summary-change="summaryChange" v-if="showFooter"></table-summary>
+    <table-summary @summary-change="summaryChange"></table-summary>
 
 
     <ns-pagination
@@ -25,13 +22,14 @@
 
 <script>
   import headFactory from './mixins/headFactory';
+  import resizeHeight from './mixins/resize-height';
   import keyRefer from './config/keyRefer';
   import rulesConfig from './config/rulesInfo';
   import tableSummary from './components/summary';
 
   export default {
     name: 'biz-table',
-    mixins: [headFactory],
+    mixins: [headFactory, resizeHeight],
     components: { tableSummary },
     data() {
       return {
@@ -41,9 +39,6 @@
         specialColInclude: ['index', 'checkbox', 'radio'],
         actionColInclude: ['action', 'add-row'],
         settingColInclude: ['setting'],
-
-        height: 500,
-
       };
     },
     props: {
@@ -65,7 +60,7 @@
       showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
 
-      showFooter: { type: Boolean },//是否显示表尾合计
+      showFooter: { type: Boolean, default: false },//是否显示表尾合计
       footerMethod: { type: Function },//表尾合计的计算方法
       checkMethod: { type: Function },//控制 CheckBox 是否允许勾选的方法，该方法 Function({row}) 的返回值用来决定这一行的 CheckBox 是否可以勾选.
 
