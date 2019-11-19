@@ -36,7 +36,7 @@ export default create({
     return {
       lastVisible: false,
       allvisible: true,
-      activating: false  //动画是否进行中（enter/leave）
+      activating: false, //动画是否进行中（enter/leave）
     };
   },
 
@@ -160,8 +160,8 @@ export default create({
     outerClickEvent() {
       if (!this.visible) return;
       if (!this.lastVisible) return;
-      if(this.activating) return;
-      if(!this.closeOnClickModal) return;
+      if (this.activating) return;
+      if (!this.closeOnClickModal) return;
       this.close();
     },
     wrapperClick(e) {
