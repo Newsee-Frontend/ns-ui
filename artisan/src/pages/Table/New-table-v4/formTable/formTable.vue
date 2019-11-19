@@ -1,6 +1,6 @@
 <!--新表格-表单 示例-->
 <template>
-  <div class="win">
+  <div class="win formTable-template">
     <div class="ns-container">
       <demo-block>
         <template slot="title">复杂表格用法示例</template>
@@ -9,16 +9,22 @@
         </template>
         <template slot="content">
           <div class="control-block form-block-line">
-            <ns-button @click="scrollTo(200,200)">表格滚动至</ns-button>
-            <ns-button @click="scrollTo(0,0)">表格滚动复位</ns-button>
-            <ns-button @click="fullValidate">表单表格验证</ns-button>
+            <span>当前页数总条目:</span>
+            <ns-input v-model.number="searchConditions.pageSize"></ns-input>
+            <ns-button @click="tableLoader('form-table')">刷新表格数据</ns-button>
+            <ns-button @click="tableLoader('hugeData-table',true)">更换表头数据</ns-button>
+            <ns-button @click="tableLoader('form-table',true)">复原表头数据</ns-button>
             <ns-select v-model="firstColType" :options="firstColTypeOpts"></ns-select>
+            <ns-button @click="scrollTo(200,200)">表格滚动至(200,200)</ns-button>
+            <ns-button @click="scrollTo(0,0)">表格滚动复位</ns-button>
+
             <!--<span>{{tableData[0].createDate}}</span>-->
             <!--<span>{{tableData[0].level}}</span>-->
             <!--<span>{{tableData[0].sex.picked.value}}</span>-->
             <!--<span>{{tableData[0].isChecked.picked.value}}</span>-->
           </div>
           <div class="control-block form-block-line">
+            <ns-button @click="fullValidate">表单表格验证</ns-button>
             <ns-button @click="setActiveRow(2)">设置第二行激活</ns-button>
             <ns-button @click="clearActived">取消激活状态</ns-button>
             <ns-button @click="setSelection([2,3,4],true)">设置第二，三，四行选中</ns-button>
@@ -32,6 +38,11 @@
             :loading="loading"
             :data="tableData"
             :total="total"
+
+            :autoResize="false"
+            :customHeight="600"
+
+            :localHead="localHead"
             :searchConditions="searchConditions"
 
             :firstColType="firstColType"
@@ -43,7 +54,7 @@
             @edit-actived="editActived"
             @cell-event="cellEvent"
             @table-action="tableAction"
-            @reload="getTableData"
+            @reload="tableLoader('form-table')"
             @summary-change="summaryChange"
             @select-change="selectChange"
             @select-all="selectAll"
@@ -61,11 +72,11 @@
 <script>
   import { tableDataService } from '../../../../service/Table/index';
   import bizTableV4 from '../../../../components/Biz-table/Biz-table-v4/Biz-table-v4';
-  // import getData from './getTableData';
-  // import tableHead from './head';
+  import { listColumnService } from '../../../../service/Table';
+
 
   export default {
-    name: 'new-formTable',
+    name: 'formTable-template',
     components: { bizTableV4 },
     data() {
       return {
@@ -73,7 +84,9 @@
         data: {},//表格数据
         summaryState: 'current',//合计行切换状态
 
-        // tableHead,
+        localHead: null,
+
+        //筛选器数据
         searchConditions: {
           companyId: '', //公司id
           departmentId: '', //部门id
@@ -88,8 +101,8 @@
           otherConditions: {},
           organizationId: 1,
           totalType: 1,
-          mockType: 'newform',
-          total: 100,
+          mockType: 'form-table',
+          total: 10000,
         },
 
 
@@ -117,20 +130,39 @@
     },
     methods: {
 
-      nextPage() {
-        if (this.$route.name === 'gridDemo1') return;
-        this.$router.push('gridDemo1');
-      },
-
-      getTableData() {
+      /**
+       * 单元格被激活编辑时会触发该事件
+       * @param type - 如果需要自定义表头数据的情况下 - 表头的类型，关系到当前表格的展示类型
+       * @param isNeedHead - 是否需要请求表头数据
+       *        在本示例中：
+       *          初始状态获取，表头使用业务封装中的表头请求数据
+       *          后续手动改变表头数据，则额外再次请求获取改变
+       */
+      tableLoader(type, isNeedHead = false) {
+        this.searchConditions.mockType = type;
         this.loading = true;
 
-        tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
+        const promiseList = [this.requestTableData()];
+        if (isNeedHead) {
+          promiseList.push(this.requestTableHeadData());
+        }
+        Promise.all(promiseList).then(() => {
+          this.loading = false;
+        }).catch(() => {
+          this.loading = false;
+        });
+      },
 
+      /**
+       * 获取表格数据
+       */
+      requestTableData() {
+        tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
+          this.data = res.resultData || {};
 
           console.log('请求到的表格数据：');
           console.log(this.data);
-          this.data = res.resultData || {};
+
           this.tableData.forEach(item => {
             item.fnsclick = [
               { label: '新增授权人', value: 'addshouquanren' },
@@ -138,18 +170,28 @@
               { label: '删除', value: 'gridRemoveBtn' },
             ];
           });
-
-
-          this.loading = false;
         }).catch(() => {
-          this.loading = false;
+
         });
-
-
-        // this.data = getData.mockData(1000, this.searchConditions.pageSize);
-        // this.tableData = mockTableFromData(100, this.searchConditions.pageSize);
-
       },
+
+      /**
+       * 请求表头数据 - 赋予自定义本地表头数据 localHead 传入
+       */
+      requestTableHeadData() {
+        const mockType = this.searchConditions.mockType;
+        if (mockType === 'form-table') {
+          listColumnService({ funcId: 'funcId', mockType: mockType }).then(res => {
+            this.localHead = res.resultData.columns || [];
+          });
+        }
+        else if (mockType === 'hugeData-table') {
+          listColumnService({ funcId: 'funcId', mockType: mockType }).then(res => {
+            this.localHead = res.resultData.columns || [];
+          });
+        }
+      },
+
 
       /**
        * 单元格被激活编辑时会触发该事件
@@ -400,9 +442,23 @@
     },
 
     created() {
-      this.getTableData();
+      this.tableLoader('form-table');
     },
 
 
   };
 </script>
+
+
+<style rel="stylesheet/scss" lang="scss">
+  .win.formTable-template {
+    .demo-block {
+      h1 {
+        margin: 10px 0 5px;
+      }
+      .demo-block-content {
+        padding: 5px;
+      }
+    }
+  }
+</style>
