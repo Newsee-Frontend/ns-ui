@@ -1,5 +1,5 @@
-import { normalListColumn, newFormlistColumn, formlistColumn } from './data/listColumn';
-import { normalTableData, formTableData, newFormTableData } from './data/listData';
+import { hugeDataListColumn, formlistColumn } from './data/listColumn';
+import { hugeDataTableData, formTableData } from './data/listData';
 
 /**
  * 表数据分发
@@ -27,16 +27,13 @@ const listDataDistribute = (req, res) => {
   else if (mockType === 'no-result') {
     list = [];
   }
-  else if (mockType === 'normal') {
-    list = normalTableData(total).slice((pageNum - 1) * pageSize, pageSize * pageNum);
+  //大数据 - 表格 （非表单表格)
+  else if (mockType === 'hugeData-table') {
+    list = hugeDataTableData(pageSize);
   }
-  else if (mockType === 'form') {
-    list = formTableData(total).slice((pageNum - 1) * pageSize, pageSize * pageNum);
-  }
-  else if (mockType === 'newform') {
-    console.log('newform-newform-newform');
-
-    list = newFormTableData(pageSize);
+  //表单 - 表格
+  else if (mockType === 'form-table') {
+    list = formTableData(pageSize);
   }
 
   console.log(list);
@@ -66,14 +63,11 @@ const listColumnDistribute = (req, res) => {
   const { mocktype } = req.headers;
   let column = null;
 
-  if (mocktype === 'normal') {
-    column = normalListColumn;
+  if (mocktype === 'hugeData-table') {
+    column = hugeDataListColumn;
   }
-  else if (mocktype === 'form') {
+  else if (mocktype === 'form-table') {
     column = formlistColumn;
-  }
-  else if (mocktype === 'newform') {
-    column = newFormlistColumn;
   }
 
   return res.json({
@@ -94,7 +88,44 @@ const listColumnDistribute = (req, res) => {
   });
 };
 
+
+/**
+ * 改变表头数据
+ * @param req
+ * @param res
+ * @returns {any | Promise<any>}
+ */
+const changelistColumn = (req, res) => {
+
+  const column = formlistColumn.map((col, index) => {
+    if (index < 4) {
+      col.resourcecolumnHidden = '1';
+      return col;
+    }
+    return col;
+  });
+
+  return res.json({
+    resultCode: '200',
+    resultMsg: '操作成功。',
+    restLog: null,
+    resultData: {
+      columns: column,
+      columnsEnNames: {
+        hasRelevance: '',
+        isBlockUp: '',
+        isLock: '',
+        isVirtual: '',
+        roomPropertyId: '',
+        roomTypeId: '',
+      },
+    },
+  });
+};
+
+
 module.exports = {
   'GET /system/column/list-column': listColumnDistribute,
+  'GET /system/column/change-list-column': changelistColumn,
   'POST /system/table/table-data': listDataDistribute,
 };
