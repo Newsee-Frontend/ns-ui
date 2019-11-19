@@ -384,7 +384,10 @@ export default {
             attrs.push('searched');
           }
           this.setAttrs(node, attrs);
-          this._showSearchNodes(node, matched.map(x => x.slice(1)).filter(x => x.length));
+          this._showSearchNodes(
+            node,
+            matched.map(x => x.slice(1)).filter(x => x.length)
+          );
         } else {
           this.setAttr(node, 'visible', false);
         }
