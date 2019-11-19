@@ -13,8 +13,8 @@ export default {
         .filter(column => column['cell-Config'])
         .forEach(col => {
           const formConfig = col['cell-Config'];
-          const modelCode = col.field;//字段
-          const label = col.title;//显示值
+          const modelCode = col.field; //字段
+          const label = col.title; //显示值
 
           if (formConfig.require) {
             obj[modelCode] = [{ required: true, message: `请输入/选择${label}` }];
