@@ -19,7 +19,8 @@ export default create({
       },
     },
     head: {
-      type: Array, default() {
+      type: Array,
+      default() {
         return [];
       },
     },
@@ -49,14 +50,20 @@ export default create({
             visible: !item.hidden,
           };
         });
+        console.log('表格组件 - 表头数据发生变化');
+        console.log('表格组件 - 表头数据发生变化');
+        console.log('表格组件 - 表头数据发生变化');
+        console.log(val);
+        console.log(this.customColumns);
+        console.log('表格组件 - 表头数据发生变化');
+        console.log('表格组件 - 表头数据发生变化');
 
-        // if (this.$refs['main-table']) {
-        //   const TableColumn = this.$refs['main-table'].getTableColumn();
-        //   this.$refs['main-table'].loadColumn(val);
-        // }
+        if (this.$refs['main-table']) {
+          this.$refs['main-table'].refreshColumn();
+        }
       },
       deep: true,
-      // immediate: true,
+      immediate: true,
     },
   },
   render(h) {
@@ -88,53 +95,64 @@ export default create({
       props.data = this.data;
     }
 
+    // console.log(111111111111);
+    // console.log(111111111111);
+    // console.log(this.head);
+    // console.log(this.customColumns);
+    // console.log(111111111111);
+    // console.log(111111111111);
+
     // console.log('表格渲染的数据如下：');
     // console.log('表格渲染的数据如下：');
     // console.log(this.data);
     // console.log(this.head);
     // console.log('==================');
 
-    return h(
-      `vxe-table`,
-      {
-        ref: 'main-table',
-        class: this.recls(),
-        props: props,
-        on: {
-          'edit-actived': this.editActived,
-          'select-change': this.selectChange,
-          'select-all': this.selectAll,
-          'update:customs': value => {
-            this.customColumns = value;
-          },
-        },
-      },
-      [
-        this.head.map((item, $index) => {
-          return h(`column-render`, {
-            key: `column-render-${$index}`,
-            props: {
-              column: item,
-              columns: this.head,
-              keyRefer: this.keyRefer,
-              customColumns: this.customColumns,
-            },
+    return this.head && this.head.length
+      ? h(
+          `vxe-table`,
+          {
+            ref: 'main-table',
+            class: this.recls(),
+            props: props,
             on: {
-              ...this.$listeners,
-              'sync-column-render': data => {
-
-                // console.log(data.customColumns);
-
-                const target = this.$refs['main-table'];
-                ['change', 'lock'].indexOf(data.event) > -1
-                  ? target.refreshColumn()
-                  : target.reloadColumn(data.customColumns);
+              'edit-actived': this.editActived,
+              'select-change': this.selectChange,
+              'select-all': this.selectAll,
+              'update:customs': value => {
+                console.log('update:customs - update:customs');
+                console.log(value);
+                this.customColumns = value;
+                this.$refs['main-table'].refreshColumn();
               },
             },
-          });
-        }),
-      ],
-    );
+          },
+          [
+            this.head.map((item, $index) => {
+              return h(`column-render`, {
+                key: `column-render-${$index}`,
+                props: {
+                  column: item,
+                  columns: this.head,
+                  keyRefer: this.keyRefer,
+                  customColumns: this.customColumns,
+                },
+                on: {
+                  ...this.$listeners,
+                  'sync-column-render': data => {
+                    // console.log(data.customColumns);
+
+                    const target = this.$refs['main-table'];
+                    ['change', 'lock'].indexOf(data.event) > -1
+                      ? target.refreshColumn()
+                      : target.reloadColumn(data.customColumns);
+                  },
+                },
+              });
+            }),
+          ]
+        )
+      : null;
   },
   methods: {
     fullValidate(cb) {
@@ -178,11 +196,6 @@ export default create({
       this.$refs['main-table'].clearActived();
     },
   },
-  created() {
-
-
-  },
-  mounted() {
-
-  },
+  created() {},
+  mounted() {},
 });
