@@ -50,13 +50,14 @@ export default create({
             visible: !item.hidden,
           };
         });
-        console.log('表格组件 - 表头数据发生变化');
-        console.log('表格组件 - 表头数据发生变化');
-        console.log('表格组件 - 表头数据发生变化');
-        console.log(val);
-        console.log(this.customColumns);
-        console.log('表格组件 - 表头数据发生变化');
-        console.log('表格组件 - 表头数据发生变化');
+
+        // console.log('表格组件 - 表头数据发生变化');
+        // console.log('表格组件 - 表头数据发生变化');
+        // console.log('表格组件 - 表头数据发生变化');
+        // console.log(val);
+        // console.log(this.customColumns);
+        // console.log('表格组件 - 表头数据发生变化');
+        // console.log('表格组件 - 表头数据发生变化');
 
         if (this.$refs['main-table']) {
           this.$refs['main-table'].refreshColumn();
@@ -120,8 +121,6 @@ export default create({
               'select-change': this.selectChange,
               'select-all': this.selectAll,
               'update:customs': value => {
-                console.log('update:customs - update:customs');
-                console.log(value);
                 this.customColumns = value;
                 this.$refs['main-table'].refreshColumn();
               },
