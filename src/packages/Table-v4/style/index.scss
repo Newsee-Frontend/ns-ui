@@ -40,6 +40,10 @@ $grid-border__color: #e8e8e8; //边框色
       }
     }
 
+    vxe-table--header-wrapper {
+      background-color: #ebedef;
+    }
+
     // 2、===============================
 
     //修复多选列-全选框半选状态下伪类显示异常
@@ -48,6 +52,7 @@ $grid-border__color: #e8e8e8; //边框色
     }
 
     @import 'loading';
+    @import 'error-prompt';
   }
 }
 
