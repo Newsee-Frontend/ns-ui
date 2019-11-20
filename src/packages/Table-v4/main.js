@@ -5,6 +5,8 @@ import validate from './mixins/validate';
 import namefactory from './mixins/namefactory';
 import columnRender from './components/column';
 
+import img_null from '../../assets/null.jpg';
+
 export default create({
   name: 'table',
   components: { columnRender },
@@ -123,6 +125,16 @@ export default create({
               'update:customs': value => {
                 this.customColumns = value;
                 this.$refs['main-table'].refreshColumn();
+              },
+            },
+            scopedSlots: {
+              empty: scope => {
+                return (
+                  <span class={'error-prompt'}>
+                    <img class={'errorImg'} src={img_null} />
+                    <p> 抱歉, 没有搜索到你要的结果 </p>
+                  </span>
+                );
               },
             },
           },
