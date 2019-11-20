@@ -1,16 +1,15 @@
 export const formlistColumn = [
   {
     'resourcecolumnName': '项目名称',//label
-    'resourcecolumnNameEn': 'taskName',//model-key
     'resourcecolumnCode': 'taskName',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'link',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '1', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
       'switchType': true,
-      'type': 'link',
+      'type': 'link',//input select checkbox redio datepicker timepicker link
       'decimal': 2,
       'disabled': false,
       'maxlength': null,
@@ -25,7 +24,7 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '拥有人',//label
     'resourcecolumnCode': 'ownerName',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'input',//筛选列 类型
     'resourcecolumnWidth': '100',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -47,14 +46,14 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '年龄',//label
     'resourcecolumnCode': 'age',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'inputNumber',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
       'switchType': true,
-      'type': 'rate',
+      'type': 'inputNumber',
       'decimal': 2,
       'disabled': false,
       'maxlength': null,
@@ -67,16 +66,15 @@ export const formlistColumn = [
   },
   {
     'resourcecolumnName': '等级调整',//label
-    'resourcecolumnNameEn': 'level',//model-key
     'resourcecolumnCode': 'level',
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'inputNumber',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
     'resourcecolumnOrder': '10',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
       'switchType': true,
-      'type': 'rate',
+      'type': 'inputNumber',
       'decimal': 2,
       'disabled': false,
       'maxlength': null,
@@ -89,9 +87,8 @@ export const formlistColumn = [
   },
   {
     'resourcecolumnName': '性别',//label
-    'resourcecolumnNameEn': 'sex',//model-key
     'resourcecolumnCode': 'sex',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'select',//筛选列 类型
     'resourcecolumnWidth': '120',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -112,9 +109,8 @@ export const formlistColumn = [
   },
   {
     'resourcecolumnName': '是否审核',//label
-    'resourcecolumnNameEn': 'isChecked',//model-key
     'resourcecolumnCode': 'isChecked',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'select',//筛选列 类型
     'resourcecolumnWidth': '120',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -135,9 +131,8 @@ export const formlistColumn = [
   },
   {
     'resourcecolumnName': '审核类型',//label
-    'resourcecolumnNameEn': 'checkedType',//model-key
     'resourcecolumnCode': 'checkedType',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'select',//筛选列 类型
     'resourcecolumnWidth': '120',//列的宽度
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -159,7 +154,7 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '成立日期',//label
     'resourcecolumnCode': 'createDate',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'datetime',//筛选列 类型
     'resourcecolumnWidth': '200',//列的宽度
     'resourcecolumnOrder': '6',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -181,7 +176,7 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '结束 - 日期',//label
     'resourcecolumnCode': 'endDate',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'date',//筛选列 类型
     'resourcecolumnWidth': '200',//列的宽度
     'resourcecolumnOrder': '7',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -203,7 +198,7 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '结束 -  时间点',//label
     'resourcecolumnCode': 'endTime',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'time',//筛选列 类型
     'resourcecolumnWidth': '200',//列的宽度
     'resourcecolumnOrder': '8',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -224,16 +219,15 @@ export const formlistColumn = [
   },
   {
     'resourcecolumnName': '是否锁定（单选）',//label
-    'resourcecolumnNameEn': 'isLocked',//model-key
     'resourcecolumnCode': 'isLocked',
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'radiobutton',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
       'switchType': true,
-      'type': 'radio',
+      'type': 'radiobutton',
       'decimal': 2,
       'disabled': false,
       'maxlength': null,
@@ -248,7 +242,7 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '邮箱',//label
     'resourcecolumnCode': 'email',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'input',//筛选列 类型
     'resourcecolumnWidth': '200',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
@@ -269,16 +263,15 @@ export const formlistColumn = [
   },
   {
     'resourcecolumnName': '涉猎领域（多选）',//label
-    'resourcecolumnNameEn': 'fieldArea',//model-key
     'resourcecolumnCode': 'fieldArea',
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'checkbutton',//筛选列 类型
     'resourcecolumnWidth': '600',//列的宽度
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
       'switchType': true,
-      'type': 'checkbox',
+      'type': 'checkbutton',
       'decimal': 2,
       'disabled': false,
       'maxlength': null,
@@ -380,7 +373,6 @@ export const hugeDataListColumn = [
 // export const formlistColumn = [
 //   {
 //     resourcecolumnName: '项目名称', //label
-//     resourcecolumnNameEn: 'taskName', //model-key
 //     resourcecolumnCode: 'taskName', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -403,7 +395,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '是否审核', //label
-//     resourcecolumnNameEn: 'isChecked', //model-key
 //     resourcecolumnCode: 'isChecked', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '120', //列的宽度
@@ -426,7 +417,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '成立日期', //label
-//     resourcecolumnNameEn: 'createDate', //model-key
 //     resourcecolumnCode: 'createDate',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -449,7 +439,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '等级调整', //label
-//     resourcecolumnNameEn: 'level', //model-key
 //     resourcecolumnCode: 'level',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -471,7 +460,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '涉猎领域（多选）', //label
-//     resourcecolumnNameEn: 'field', //model-key
 //     resourcecolumnCode: 'field',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '500', //列的宽度
@@ -494,7 +482,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '是否锁定（单选）', //label
-//     resourcecolumnNameEn: 'isLocked', //model-key
 //     resourcecolumnCode: 'isLocked',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -517,7 +504,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '使用人', //label
-//     resourcecolumnNameEn: 'ownerName', //model-key
 //     resourcecolumnCode: 'ownerName', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -527,7 +513,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '备注（邮箱)', //label
-//     resourcecolumnNameEn: 'remark', //model-key
 //     resourcecolumnCode: 'remark',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '300', //列的宽度
@@ -554,7 +539,6 @@ export const hugeDataListColumn = [
 // export const normalListColumn = [
 //   {
 //     resourcecolumnName: '项目名称', //label
-//     resourcecolumnNameEn: 'taskName', //model-key
 //     resourcecolumnCode: 'taskName', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -577,7 +561,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '成立日期', //label
-//     resourcecolumnNameEn: 'createDate', //model-key
 //     resourcecolumnCode: 'createDate',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -600,7 +583,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '使用人', //label
-//     resourcecolumnNameEn: 'ownerName', //model-key
 //     resourcecolumnCode: 'ownerName', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -610,7 +592,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '等级调整', //label
-//     resourcecolumnNameEn: 'level', //model-key
 //     resourcecolumnCode: 'level',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '150', //列的宽度
@@ -632,7 +613,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: 'ID编号', //label
-//     resourcecolumnNameEn: 'id', //model-key
 //     resourcecolumnCode: 'id', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -642,7 +622,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '地址', //label
-//     resourcecolumnNameEn: 'address', //model-key
 //     resourcecolumnCode: 'address', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -652,7 +631,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '邮政编码', //label
-//     resourcecolumnNameEn: 'zip', //model-key
 //     resourcecolumnCode: 'zip', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -662,7 +640,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: 'ip地址', //label
-//     resourcecolumnNameEn: 'ip', //model-key
 //     resourcecolumnCode: 'ip', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -672,7 +649,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '邮箱地址', //label
-//     resourcecolumnNameEn: 'email', //model-key
 //     resourcecolumnCode: 'email', //model-key
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '100', //列的宽度
@@ -682,7 +658,6 @@ export const hugeDataListColumn = [
 //   },
 //   {
 //     resourcecolumnName: '备注（邮箱)', //label
-//     resourcecolumnNameEn: 'remark', //model-key
 //     resourcecolumnCode: 'remark',
 //     resourcecolumnXtype: 'text', //筛选列 类型
 //     resourcecolumnWidth: '300', //列的宽度
