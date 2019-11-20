@@ -41,21 +41,29 @@ export default {
      * get table head data - 获取表头数据
      */
     getTableHead() {
-      this.headLoading = true;
+      //本地表头数据
+      if (this.localHead) {
+        this.finalHead = this.connectHead.map(col => {
+          return this.transformCol(col);
+        });
+      }
+      //异步请求表头数据
+      else {
+        this.headLoading = true;
+        listColumnService({ funcId: 'funcId', mockType: this.searchConditions.mockType }).then(res => {
+          this.tableHead = res.resultData.columns || [];
 
-      listColumnService({ funcId: 'funcId', mockType: this.searchConditions.mockType }).then(res => {
-        this.tableHead = res.resultData.columns || [];
+          console.log('请求到的表头数据：');
+          console.log(this.tableHead);
 
-        console.log('请求到的表头数据：');
-        console.log(this.tableHead);
+          this.$store.dispatch('setTableHead', this.tableHead);//store head data
 
-        this.$store.dispatch('setTableHead', this.tableHead);//store head data
+          this.headLoading = false;
 
-        this.headLoading = false;
-
-      }).catch(() => {
-        this.headLoading = false;
-      });
+        }).catch(() => {
+          this.headLoading = false;
+        });
+      }
     },
 
     /**
