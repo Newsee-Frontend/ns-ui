@@ -240,9 +240,9 @@
         console.log('单元格事件 - 点击/修改');
         console.log({ row, rowIndex, column, columnIndex });
         console.log(event);
-
+        console.log(column);
         //当前单元格事件触发在是否审核字段单元格上时
-        if (column.resourcecolumnCode === 'isChecked') {
+        if (column.field === 'isChecked') {
           const isChecked = row.isChecked.picked.value;
           console.log(isChecked);
 
