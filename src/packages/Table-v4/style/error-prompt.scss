@@ -1,0 +1,9 @@
+$error-prompt_subcolor: #666; //错误提示模块 - 小标题颜色
+
+.error-prompt {
+  p {
+    font-size: 13px;
+    color: $error-prompt_subcolor;
+    margin-top: 10px;
+  }
+}
