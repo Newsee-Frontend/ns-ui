@@ -47,6 +47,7 @@
         loading: false,
         data: {},
 
+        roleBtns: [],
         searchConditions: {
           companyId: '', //公司id
           departmentId: '', //部门id
@@ -82,24 +83,31 @@
           console.log(this.data);
 
           this.data.list.forEach(item => {
-            item.fnsclick = [
-              { label: '新增授权人', value: 'addshouquanren' },
-              { label: '编辑', value: 'gridEditBtn' },
-              { label: '删除', value: 'gridRemoveBtn' },
-            ];
+            item.fnsclick = this.roleBtns;
           });
 
-          let hugeDataTable = this.$refs['hugeDataTable'];
 
+          console.log(3333333333333);
+          console.log(this.$refs['hugeDataTable']);
+          console.log(this.$refs['hugeDataTable'].reloadData);
           if (type === 'reloadData') {
-            hugeDataTable.reloadData(this.data.list).then(() => {
+            this.$refs['hugeDataTable'].reloadData(this.data.list).then(() => {
+              this.loading = false;
+            }).catch(err => {
+              console.log('catch-catch');
+              console.log(err);
               this.loading = false;
             });
           }
           else {
-            hugeDataTable.loadData(this.data.list).then(() => {
+            this.$refs['hugeDataTable'].loadData(this.data.list).then(() => {
+              this.loading = false;
+            }).catch(err => {
+              console.log('catch-catch');
+              console.log(err);
               this.loading = false;
             });
+
           }
 
         }).catch(() => {
@@ -109,7 +117,18 @@
     },
 
     created() {
-
+      setTimeout(() => {
+        this.roleBtns = [
+          { label: '新增授权人', value: 'addshouquanren' },
+          { label: '编辑', value: 'gridEditBtn' },
+          { label: '删除', value: 'gridRemoveBtn' },
+        ];
+        console.log(4444444444);
+        this.data.list.forEach(item => {
+          item.fnsclick = this.roleBtns;
+        });
+        this.$refs['hugeDataTable'].reloadData(this.data.list);
+      }, 2000);
     },
     mounted() {
       this.getTableData('reloadData');
