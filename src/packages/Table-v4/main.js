@@ -10,7 +10,7 @@ export default create({
   components: { columnRender },
   mixins: [selection, reRender, validate, namefactory],
   props: {
-    loading: { type: Boolean },
+    loading: { type: Boolean, default: true },
     keyRefer: { type: Object },
     data: {
       type: Array,
