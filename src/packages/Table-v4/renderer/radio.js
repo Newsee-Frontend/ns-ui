@@ -2,7 +2,7 @@ import Radio from '../../Radio/Radio';
 import { getLabelByValue } from '../utils/index';
 
 export default {
-  name: 'ns-table-radio',
+  name: 'ns-table-radiobutton',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;
