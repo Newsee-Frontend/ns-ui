@@ -14,20 +14,7 @@ export default {
     keyRefer: { type: Object },
   },
   data() {
-    return {
-      formCellList: [
-        'link',
-        'input',
-        'rate',
-        'time',
-        'date',
-        'datetime',
-        'checkbox',
-        'radio',
-        'select',
-        'select-unit',
-      ],
-    };
+    return {};
   },
   computed: {
     columnType() {
@@ -60,7 +47,7 @@ export default {
           return false;
         }
 
-        if (this.formCellList.indexOf(this.formType) === -1) {
+        if (this.formColInclude.indexOf(this.formType) === -1) {
           return false;
         }
         return true;
@@ -105,8 +92,8 @@ export default {
       };
     }
 
-    //常规列( 常规列 / 链接列 / 表单列 )
-    else if (this.normalColInclude.indexOf(this.columnType) > -1) {
+    //内容列( 常规列 / 链接列 / 表单列 )
+    else if (this.contentColumns.indexOf(this.columnType) > -1) {
       injection.props = {
         field: this.column.field,
       };
@@ -141,23 +128,27 @@ export default {
 
     const general = {
       props: {
-        type: this.columnType,
         title: this.column.title,
         align: this.column.align,
         fixed: this.column.fixed,
         'header-class-name': ({ column }) => {
           return `column-${column.property || column.type}`;
         },
+
+        /**
+         * special columns use width && type ,other use min-width
+         * @type {string}
+         */
+        ...(this.specialColumns.indexOf(this.columnType) > -1
+          ? {
+              type: this.columnType,
+              width: this.column.width,
+            }
+          : {
+              'min-width': this.column.width,
+            }),
       },
     };
-
-    /**
-     * special columns use width ,other use min-width
-     * @type {string}
-     */
-    const wk = this.specialColumns.indexOf(this.columnType) > -1 ? 'width' : 'min-width';
-
-    general.props[wk] = this.column.width;
 
     return h(`vxe-table-column`, deepObjectMerge(general, injection));
   },
