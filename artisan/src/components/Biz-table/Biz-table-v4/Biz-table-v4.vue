@@ -107,8 +107,8 @@
         return new Promise((resolve, reject) => {
           this.$refs['bizTable'].loadData(tableData).then(() => {
             resolve();
-          }).catch(() => {
-              reject();
+          }).catch(err => {
+              reject(err);
             },
           );
         });
@@ -123,8 +123,8 @@
         return new Promise((resolve, reject) => {
           this.$refs['bizTable'].reloadData(tableData).then(() => {
             resolve();
-          }).catch(() => {
-              reject();
+          }).catch(err => {
+              reject(err);
             },
           );
         });
