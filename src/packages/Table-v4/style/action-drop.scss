@@ -3,7 +3,7 @@ $drap-label__max-width: 166px; //下拉内容区域 - 选择label名称最大宽
 $drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽度
 
 //setting column  && drag menu
-.column-setting {
+th.column-setting {
   .vxe-cell {
     padding: 0 5px;
     .el-dropdown-selfdefine {
