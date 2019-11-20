@@ -6,13 +6,13 @@
     <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent"></ns-table>
 
     <!--合计区域-->
-    <table-summary @summary-change="summaryChange"></table-summary>
+    <table-summary @summary-change="summaryChange" v-if="showFooter"></table-summary>
 
 
     <ns-pagination
       class="biz-pagination"
       :total="total || 0" :searchConditions="searchConditions"
-      :pageSizes="[10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
+      :pageSizes="[0,10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
       @size-change="sizeChange"
       @current-change="currentChange"
     ></ns-pagination>
@@ -69,6 +69,7 @@
       tableLoading() {
         return !(!this.loading && !this.headLoading);
       },
+
       curProps() {
         const props = {
           loading: this.tableLoading,
