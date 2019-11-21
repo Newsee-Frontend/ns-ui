@@ -1,15 +1,30 @@
+@import '../../../style/mixins/mixins';
+@import '../../../style/mixins/scrollbar';
+
 $drap-content__max-height: 300px; //下拉内容区域最大高度
 $drap-label__max-width: 166px; //下拉内容区域 - 选择label名称最大宽度
 $drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽度
 
-//setting column  && drag menu
-th.column-setting {
-  .vxe-cell {
-    padding: 0 5px;
-    .el-dropdown-selfdefine {
-      font-size: 18px;
-      padding: 0;
-      cursor: pointer;
+@include b(table) {
+  &.vxe-table {
+    //setting column  && drag menu
+    th.column-setting {
+      .vxe-cell {
+        padding: 0 3px;
+        .el-dropdown-selfdefine {
+          font-size: 16px;
+          padding: 0;
+          cursor: pointer;
+        }
+      }
+    }
+
+    &.scroll--y {
+      th.column-setting {
+        .vxe-cell {
+          padding: 0 0 0 7px;
+        }
+      }
     }
   }
 }
@@ -37,6 +52,7 @@ th.column-setting {
     box-sizing: border-box;
     overflow-y: auto;
     font-size: 14px;
+    @include scrollbarVisible;
     i.iconfont {
       font-size: inherit;
     }
