@@ -65,31 +65,10 @@ export const formlistColumn = [
     },
   },
   {
-    'resourcecolumnName': '等级调整',//label
-    'resourcecolumnCode': 'level',
-    'resourcecolumnXtype': 'inputNumber',//筛选列 类型
-    'resourcecolumnWidth': '150',//列的宽度
-    'resourcecolumnOrder': '10',//列的序号
-    'resourcecolumnHidden': '0', //是否隐藏
-    'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
-      'switchType': true,
-      'type': 'inputNumber',
-      'decimal': 2,
-      'disabled': false,
-      'maxlength': null,
-      'max': 100,
-      'min': 0,
-      'placeHolder': null,
-      'require': true,
-      'validateRule': null,
-    },
-  },
-  {
     'resourcecolumnName': '性别',//label
     'resourcecolumnCode': 'sex',//model-key
-    'resourcecolumnXtype': 'link',//筛选列 类型
-    'resourcecolumnWidth': '120',//列的宽度
+    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnWidth': '80',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
@@ -97,6 +76,22 @@ export const formlistColumn = [
       0: '男',
       1: '女',
       2: '保密',
+    },
+    'eidtConfig': null
+  },
+  {
+    'resourcecolumnName': '等级',//label
+    'resourcecolumnCode': 'level',
+    'resourcecolumnXtype': 'link',//筛选列 类型
+    'resourcecolumnWidth': '80',//列的宽度
+    'resourcecolumnOrder': '10',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'selectMap': {
+      0: '较差',
+      1: '一般',
+      2: '较好',
+      3: '优秀',
     },
     'eidtConfig': {
       'switchType': true,
@@ -348,16 +343,16 @@ export const hugeDataListColumn = [
     'resourcecolumnName': '性别',//label
     'resourcecolumnCode': 'sex',//model-key
     'resourcecolumnXtype': 'text',//筛选列 类型
-    'resourcecolumnWidth': '120',//列的宽度
+    'resourcecolumnWidth': '80',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'selectList': {
+    'selectMap': {
       0: '男',
       1: '女',
       2: '保密',
     },
-    'eidtConfig': null,
+    'eidtConfig': null
   },
   {
     'resourcecolumnName': '成立日期',//label
