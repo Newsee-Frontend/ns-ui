@@ -127,9 +127,6 @@ export default {
       else {
         //link column
         if (this.formType === 'link') {
-          console.log(2222222222);
-          console.log(this.column.field);
-          console.log(2222222222);
           injection.props['cell-render'] = {
             ...renderProps,
             events: {
@@ -138,13 +135,16 @@ export default {
           };
         }
 
-        //add value formatter
-        injection.props.formatter = ({ cellValue }) => {
-          //no formatter config => use value
-          if (!this.column.formatter) return cellValue;
-          //cover by formatter config
-          return this.column.formatter[cellValue];
-        };
+        /**
+         * cover by formatter config
+         * Note: the current usage only applies to non form rendering (normal text cell render)
+         */
+        if (this.column.formatter) {
+          //add value formatter
+          injection.props.formatter = ({ cellValue }) => {
+            return this.column.formatter[cellValue];
+          };
+        }
       }
     }
 
