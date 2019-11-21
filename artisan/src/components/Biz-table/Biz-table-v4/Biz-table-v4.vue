@@ -8,7 +8,7 @@
     <!--合计区域-->
     <table-summary @summary-change="summaryChange" v-if="showFooter"></table-summary>
 
-
+    <!--分页器-->
     <ns-pagination
       class="biz-pagination"
       :total="total || 0" :searchConditions="searchConditions"
