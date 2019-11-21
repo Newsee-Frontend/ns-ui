@@ -86,6 +86,7 @@ const listColumnDistribute = (req, res) => {
       },
     },
   });
+
 };
 
 
@@ -125,7 +126,15 @@ const changelistColumn = (req, res) => {
 
 
 module.exports = {
-  'GET /system/column/list-column': listColumnDistribute,
+  'GET /system/column/list-column': (req, res) => {
+    setTimeout(() => {
+      return listColumnDistribute(req, res);
+    }, 150);
+  },
   'GET /system/column/change-list-column': changelistColumn,
-  'POST /system/table/table-data': listDataDistribute,
+  'POST /system/table/table-data': (req, res) => {
+    setTimeout(() => {
+      return listDataDistribute(req, res);
+    }, 200);
+  },
 };
