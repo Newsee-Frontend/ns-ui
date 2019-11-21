@@ -9,6 +9,9 @@ export default {
       tableHead: [],//请求到的表头数据
       finalHead: [],//最终处理好的表头数据
       headRefer: keyRefer.head,
+      firstColInclude: ['index', 'checkbox', 'radio'],
+      actionColInclude: ['action', 'add-row'],
+      settingColInclude: ['setting'],
     };
   },
   computed: {
@@ -25,12 +28,9 @@ export default {
   watch: {
     connectHead: {
       handler: function(val) {
-        console.log('connectHead - connectHead - 变化');
-        console.log('connectHead - connectHead - 变化');
         this.finalHead = val.map(col => {
           return this.transformCol(col);
         });
-        console.log(this.finalHead);
       },
       deep: true,
       // immediate: true,
@@ -41,7 +41,7 @@ export default {
      * get table head data - 获取表头数据
      */
     getTableHead() {
-      //本地表头数据
+      //本地表头数据 （目前只能为本地静态数据)
       if (this.localHead) {
         this.finalHead = this.connectHead.map(col => {
           return this.transformCol(col);
@@ -50,6 +50,7 @@ export default {
       //异步请求表头数据
       else {
         this.headLoading = true;
+
         listColumnService({ funcId: 'funcId', mockType: this.searchConditions.mockType }).then(res => {
           this.tableHead = res.resultData.columns || [];
 
@@ -91,7 +92,7 @@ export default {
        */
       const coltype = newCol.type;
 
-      if (this.specialColInclude.indexOf(coltype) > -1) {
+      if (this.firstColInclude.indexOf(coltype) > -1) {
         newCol.fixed = 'left';
       }
       else if ([...this.actionColInclude, ...this.settingColInclude].indexOf(coltype) > -1) {
