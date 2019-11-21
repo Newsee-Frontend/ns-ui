@@ -24,8 +24,6 @@ $grid-border__color: #e8e8e8; //边框色
       border-bottom: 1px solid #ebeef5;
     }
 
-    // 1、===============================
-
     // 2、==== background style change ====
     th.col--gutter {
       background-color: #ebedef;
@@ -40,15 +38,17 @@ $grid-border__color: #e8e8e8; //边框色
       }
     }
 
-    vxe-table--header-wrapper {
+    .vxe-table--header-wrapper {
       background-color: #ebedef;
     }
-
-    // 2、===============================
 
     //修复多选列-全选框半选状态下伪类显示异常
     .vxe-checkbox.is--indeterminate > input:not(:checked) + .vxe-checkbox--icon:before {
       left: 0;
+    }
+
+    .vxe-cell a.cell-link {
+      cursor: pointer;
     }
 
     @import 'loading';
