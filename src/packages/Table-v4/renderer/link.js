@@ -5,7 +5,7 @@ export default {
       const { modelCode, column } = editRender.props;
       let { events } = editRender;
       return [
-        <a on-click={() => events.click({ row, rowIndex, column, columnIndex })}>
+        <a class={'cell-link'} on-click={() => events.click({ row, rowIndex, column, columnIndex })}>
           {row[modelCode]}
         </a>,
       ];
