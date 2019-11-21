@@ -14,10 +14,7 @@ export const formTableData = pageSize => {
       }, //项目名称
       ownerName: '@cname',
       age: Mock.Random.float(20, 60, 0, 0), //年龄
-      sex: {
-        picked: { value: Mock.Random.float(0, 2, 0, 0) },
-        options: [{ label: '男', value: 0 }, { label: '女', value: 1 }, { label: '保密', value: 2 }],
-      },//性别
+      sex: Mock.Random.float(0, 2, 0, 0) ,//性别
       isChecked: {
         picked: { value: '' },
         options: [],
@@ -66,6 +63,7 @@ export const hugeDataTableData = (pageSize) => {
       }, //项目名称
       ownerName: `gcx-${random}`,
       age: random, //年龄
+      sex: Mock.Random.float(0, 2, 0, 0) ,//性别
       createDate: '@datetime', //成立日期
       level: random, //等级调整
       isChecked: '已审核',//是否审核
