@@ -32,9 +32,14 @@ $grid-border__color: #e8e8e8; //边框色
     //表头
     .vxe-header--column {
       background-color: #ebedef;
+      //表格分割线 - 高度/颜色
       .vxe-resizable.is--line:before {
         height: 100%;
         background-color: #d6d8da;
+      }
+      //表格分割线 - 高度
+      .vxe-resizable {
+        height: inherit;
       }
     }
 
