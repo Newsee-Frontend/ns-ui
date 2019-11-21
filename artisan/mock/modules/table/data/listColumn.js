@@ -88,17 +88,51 @@ export const formlistColumn = [
   {
     'resourcecolumnName': '性别',//label
     'resourcecolumnCode': 'sex',//model-key
-    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnXtype': 'link',//筛选列 类型
     'resourcecolumnWidth': '120',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'selectList': {
+    'selectMap': {
       0: '男',
       1: '女',
       2: '保密',
     },
-    'eidtConfig': null,
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'link',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': 0,
+      'min': 0,
+      'placeHolder': '',
+      'require': false,
+      'validateRule': null,
+      'errorMsg': '',
+    },
+  },
+  {
+    'resourcecolumnName': '学历',//label
+    'resourcecolumnCode': 'education',//model-key
+    'resourcecolumnXtype': 'select',//筛选列 类型
+    'resourcecolumnWidth': '120',//列的宽度
+    'resourcecolumnOrder': '4',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'select',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': 0,
+      'min': 0,
+      'placeHolder': '请选择学历',
+      'require': true,
+      'validateRule': null,
+      'errorMsg': '请选择学历',
+    },
   },
   {
     'resourcecolumnName': '是否审核',//label
