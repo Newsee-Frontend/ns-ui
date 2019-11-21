@@ -98,6 +98,7 @@ export default {
         field: this.column.field,
       };
 
+      //form column
       if (this.isFormRender) {
         let renderProps = {
           name: `ns-table-${this.formType}`,
@@ -124,7 +125,18 @@ export default {
           };
         }
       }
+      //normal column
+      else {
+        //add value formatter
+        injection.props.formatter = ({ cellValue }) => {
+          //no formatter config => use value
+          if (!this.column.formatter) return cellValue;
+          //cover by formatter config
+          return this.column.formatter[cellValue];
+        };
+      }
     }
+
 
     const general = {
       props: {
@@ -141,12 +153,12 @@ export default {
          */
         ...(this.specialColumns.indexOf(this.columnType) > -1
           ? {
-              type: this.columnType,
-              width: this.column.width,
-            }
+            type: this.columnType,
+            width: this.column.width,
+          }
           : {
-              'min-width': this.column.width,
-            }),
+            'min-width': this.column.width,
+          }),
       },
     };
 
@@ -192,5 +204,6 @@ export default {
       this.$emit('column-setting-submit', column);
     },
   },
-  created() {},
+  created() {
+  },
 };
