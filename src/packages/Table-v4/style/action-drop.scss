@@ -30,10 +30,8 @@ $drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽�
     }
 
     &.scroll--y {
-
       .vxe-table--fixed-right-wrapper {
         @include resizable-line-show(block);
-
       }
       @include resizable-line-show(none);
 
@@ -82,4 +80,3 @@ $drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽�
     }
   }
 }
-
