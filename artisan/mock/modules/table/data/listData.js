@@ -14,7 +14,20 @@ export const formTableData = pageSize => {
       }, //项目名称
       ownerName: '@cname',
       age: Mock.Random.float(20, 60, 0, 0), //年龄
-      sex: Mock.Random.float(0, 2, 0, 0) ,//性别
+      sex: Mock.Random.float(0, 2, 0, 0),//性别
+      education: {
+        picked: { value: Mock.Random.float(1, 8, 0, 0) },
+        options: [
+          { label: '小学', value: 1 },
+          { label: '初中', value: 2 },
+          { label: '高中', value: 3 },
+          { label: '大专', value: 4 },
+          { label: '本科', value: 5 },
+          { label: '研究生', value: 6 },
+          { label: '博世', value: 7 },
+          { label: '其他', value: 8 },
+        ],
+      },//学历
       isChecked: {
         picked: { value: '' },
         options: [],
@@ -63,7 +76,7 @@ export const hugeDataTableData = (pageSize) => {
       }, //项目名称
       ownerName: `gcx-${random}`,
       age: random, //年龄
-      sex: Mock.Random.float(0, 2, 0, 0) ,//性别
+      sex: Mock.Random.float(0, 2, 0, 0),//性别
       createDate: '@datetime', //成立日期
       level: random, //等级调整
       isChecked: '已审核',//是否审核
