@@ -11,6 +11,7 @@ const keyRefer = {
     hidden: 'resourcecolumnHidden', //是否显示
     align: 'resourcecolumnAlign', //居中/左/右对齐
     fixed: 'fixed', //锁定
+    formatter: 'selectList',//格式化过滤规则
     'cell-Config': 'eidtConfig', //特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
   },
   scope: {
