@@ -148,7 +148,6 @@ export default {
       }
     }
 
-
     const general = {
       props: {
         title: this.column.title,
@@ -164,12 +163,12 @@ export default {
          */
         ...(this.specialColumns.indexOf(this.columnType) > -1
           ? {
-            type: this.columnType,
-            width: this.column.width,
-          }
+              type: this.columnType,
+              width: this.column.width,
+            }
           : {
-            'min-width': this.column.width,
-          }),
+              'min-width': this.column.width,
+            }),
       },
     };
 
@@ -215,6 +214,5 @@ export default {
       this.$emit('column-setting-submit', column);
     },
   },
-  created() {
-  },
+  created() {},
 };
