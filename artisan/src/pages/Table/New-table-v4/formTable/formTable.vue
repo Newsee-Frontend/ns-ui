@@ -259,10 +259,10 @@
           }
         }
         else if (column.field === 'taskName') {
-          this.$message.success(`我是项目名称,字段名：${column.field},点击链接触发`);
+          this.$message.success(`我是：${column.title},字段名：${column.field},点击链接触发`);
         }
-        else if (column.field === 'sex') {
-          this.$message.success(`我是性别,字段名：${column.field},点击链接触发`);
+        else if (column.field === 'level') {
+          this.$message.success(`我是：${column.title},字段名：${column.field},点击链接触发`);
         }
 
       },
@@ -418,8 +418,6 @@
        */
       setSelection(rows, checked) {
         const targets = rows.map(i => this.tableData[i]);
-        console.log(2222222);
-        console.log(targets);
         this.tableRef.setSelection(targets, checked);
       },
 
