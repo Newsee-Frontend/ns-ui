@@ -21,6 +21,7 @@
 </template>
 
 <script>
+  import dataRender from './mixins/dataRender';
   import headFactory from './mixins/headFactory';
   import resizeHeight from './mixins/resize-height';
   import keyRefer from './config/keyRefer';
@@ -29,18 +30,15 @@
 
   export default {
     name: 'biz-table',
-    mixins: [headFactory, resizeHeight],
+    mixins: [dataRender, headFactory, resizeHeight],
     components: { tableSummary },
     data() {
       return {
         keyRefer,
         rulesConfig,
-        normalColInclude: ['text', 'number', 'date', 'select'],
-        specialColInclude: ['index', 'checkbox', 'radio'],
-        actionColInclude: ['action', 'add-row'],
-        settingColInclude: ['setting'],
       };
     },
+
     props: {
       loading: { type: Boolean },
       data: {
@@ -66,8 +64,9 @@
 
     },
     computed: {
+
       tableLoading() {
-        return !(!this.loading && !this.headLoading);
+        return (this.loading || this.headLoading || this.renderLoading);
       },
 
       curProps() {
