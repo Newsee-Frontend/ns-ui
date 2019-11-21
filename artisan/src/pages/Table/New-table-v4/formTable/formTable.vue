@@ -241,6 +241,7 @@
         console.log({ row, rowIndex, column, columnIndex });
         console.log(event);
         console.log(column);
+
         //当前单元格事件触发在是否审核字段单元格上时
         if (column.field === 'isChecked') {
           const isChecked = row.isChecked.picked.value;
@@ -257,6 +258,13 @@
             ];
           }
         }
+        else if (column.field === 'taskName') {
+          this.$message.success(`我是项目名称,字段名：${column.field},点击链接触发`);
+        }
+        else if (column.field === 'sex') {
+          this.$message.success(`我是性别,字段名：${column.field},点击链接触发`);
+        }
+
       },
 
       /**
