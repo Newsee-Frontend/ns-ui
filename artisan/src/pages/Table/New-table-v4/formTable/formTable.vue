@@ -18,10 +18,6 @@
             <ns-button @click="scrollTo(200,200)">表格滚动至(200,200)</ns-button>
             <ns-button @click="scrollTo(0,0)">表格滚动复位</ns-button>
 
-            <!--<span>{{tableData[0].createDate}}</span>-->
-            <!--<span>{{tableData[0].level}}</span>-->
-            <!--<span>{{tableData[0].sex.picked.value}}</span>-->
-            <!--<span>{{tableData[0].isChecked.picked.value}}</span>-->
           </div>
           <div class="control-block form-block-line">
             <ns-button @click="fullValidate">表单表格验证</ns-button>
@@ -36,7 +32,7 @@
           <biz-table-v4
             ref="formTable"
             :loading="loading"
-            :data="tableData"
+            :data="tableData.list"
             :total="total"
 
             :autoResize="false"
@@ -81,7 +77,8 @@
     data() {
       return {
         loading: false,//表格loading 状态
-        data: {},//表格数据
+        tableData: {},//表格数据
+        gridBtns: [],
         summaryState: 'current',//合计行切换状态
 
         localHead: null,
@@ -121,11 +118,8 @@
       tableRef() {
         return this.$refs['formTable'];
       },
-      tableData() {
-        return this.data.list || [];
-      },
       total() {
-        return this.data.total;
+        return this.tableData.total;
       },
     },
     methods: {
@@ -158,22 +152,37 @@
        */
       requestTableData() {
         tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
-          this.data = res.resultData || {};
+          this.tableData = res.resultData || {};
 
           console.log('请求到的表格数据：');
-          console.log(this.data);
+          console.log(this.tableData);
 
-          this.tableData.forEach(item => {
-            item.fnsclick = [
-              { label: '新增授权人', value: 'addshouquanren' },
-              { label: '编辑', value: 'gridEditBtn' },
-              { label: '删除', value: 'gridRemoveBtn' },
-            ];
-          });
+          this.dataHandle(this.gridBtns);
+
         }).catch(() => {
 
         });
       },
+
+      /**
+       * 表格加载处理
+       * 可在其中做一些业务操作，如：
+       *  1、增加权限按钮
+       *  2、过滤数据
+       *  3、其他异步请求
+       * @param gridBtns  - 参数，表格的权限按钮列表数据
+       */
+      dataHandle(gridBtns = []) {
+        //当表数据和表格权限按钮数据同时获取到位后，才进行后续操作
+        if (gridBtns.length === 0) return;
+        if (!this.tableData.list) return;
+
+        //为表格增加权限按钮
+        this.tableData.list.forEach(item => {
+          this.$set(item, 'fnsclick', gridBtns);
+        });
+      },
+
 
       /**
        * 请求表头数据 - 赋予自定义本地表头数据 localHead 传入
@@ -403,7 +412,7 @@
 
       setActiveRow(index) {
         console.log('设置激活行');
-        this.tableRef.setActiveRow(this.tableData[index]);
+        this.tableRef.setActiveRow(this.tableData.list[index]);
       },
       clearActived() {
         console.log('清除选中行');
@@ -417,7 +426,7 @@
        * @param checked - 选中与否（布尔)
        */
       setSelection(rows, checked) {
-        const targets = rows.map(i => this.tableData[i]);
+        const targets = rows.map(i => this.tableData.list[i]);
         this.tableRef.setSelection(targets, checked);
       },
 
@@ -448,7 +457,20 @@
     },
 
     created() {
+
       this.tableLoader('form-table');
+
+      setTimeout(() => {
+
+        this.gridBtns = [
+          { label: '新增授权人', value: 'addshouquanren' },
+          { label: '编辑', value: 'gridEditBtn' },
+          { label: '删除', value: 'gridRemoveBtn' },
+        ];
+
+        this.dataHandle(this.gridBtns);
+
+      }, 2000);
     },
 
 
