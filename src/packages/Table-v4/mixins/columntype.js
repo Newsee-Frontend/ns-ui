@@ -25,9 +25,8 @@
 export default {
   data() {
     return {
-      normalColInclude: ['text', 'number'],
+      normalColInclude: ['text', 'link', 'number'],
       formColInclude: [
-        'link',
         'input',
         'select',
         'inputNumber',
