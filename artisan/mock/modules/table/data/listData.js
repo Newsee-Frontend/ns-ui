@@ -15,6 +15,7 @@ export const formTableData = pageSize => {
       ownerName: '@cname',
       age: Mock.Random.float(20, 60, 0, 0), //年龄
       sex: Mock.Random.float(0, 2, 0, 0),//性别
+      level: Mock.Random.float(0, 3, 0, 0), //等级
       education: {
         picked: { value: Mock.Random.float(1, 8, 0, 0) },
         options: [
@@ -40,7 +41,6 @@ export const formTableData = pageSize => {
       createDate: Mock.Random.date('yyyy-MM-dd hh:mm:ss'),//成立日期
       endDate: Mock.Random.date('yyyy-MM-dd'),//结束 - 日期
       endTime: Mock.Random.date('hh:mm:ss'),//结束 -  时间点
-      level: Mock.Random.float(1, 100, 0, 1), //等级调整
       isLocked: {
         picked: { value: 1 },
         options: [{ 'label': '是', 'value': 1 }, { 'label': '否', 'value': 0 }],
