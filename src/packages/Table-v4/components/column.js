@@ -36,7 +36,13 @@ export default {
         return undefined;
       }
     },
-    //是否为表单渲染
+    /**
+     * is form column render:
+     *    1、has current column data
+     *    2、has right data format （'cell-Config')
+     *    3、current column type in  list（formColInclude)
+     * @returns {boolean}
+     */
     isFormRender() {
       try {
         if (!this.column) {
@@ -98,35 +104,40 @@ export default {
         field: this.column.field,
       };
 
+      //default column render config
+      let renderProps = {
+        name: `ns-table-${this.formType}`,
+        props: {
+          modelCode: this.modelCode,
+          column: this.column,
+          formConfig: this.formConfig,
+        },
+      };
+
       //form column
       if (this.isFormRender) {
-        let renderProps = {
-          name: `ns-table-${this.formType}`,
-          props: {
-            modelCode: this.modelCode,
-            column: this.column,
-            formConfig: this.formConfig,
+        injection.props['edit-render'] = {
+          ...renderProps,
+          events: {
+            change: this.cellEvent,
           },
         };
-
+      }
+      //normal column
+      else {
+        //link column
         if (this.formType === 'link') {
+          console.log(2222222222);
+          console.log(this.column.field);
+          console.log(2222222222);
           injection.props['cell-render'] = {
             ...renderProps,
             events: {
               click: this.cellEvent,
             },
           };
-        } else {
-          injection.props['edit-render'] = {
-            ...renderProps,
-            events: {
-              change: this.cellEvent,
-            },
-          };
         }
-      }
-      //normal column
-      else {
+
         //add value formatter
         injection.props.formatter = ({ cellValue }) => {
           //no formatter config => use value
