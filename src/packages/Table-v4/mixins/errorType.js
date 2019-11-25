@@ -2,7 +2,10 @@ export default {
   computed: {
     errorType() {
       if (
-        !this.head.some(h => [...this.formColInclude, ...this.normalColInclude].indexOf(h.type) > -1) || !this.data
+        !this.head.some(
+          h => [...this.formColInclude, ...this.normalColInclude].indexOf(h.type) > -1
+        ) ||
+        !this.data
       ) {
         return 'service-error';
       }
