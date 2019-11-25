@@ -1,9 +1,6 @@
 @import '../../../style/mixins/mixins';
 @import '../../../style/mixins/scrollbar';
-
-$drap-content__max-height: 300px; //下拉内容区域最大高度
-$drap-label__max-width: 166px; //下拉内容区域 - 选择label名称最大宽度
-$drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽度
+@import "config";
 
 @mixin resizable-line-show($display) {
   th.vxe-header--column:nth-last-child(2) {
@@ -16,7 +13,7 @@ $drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽�
 }
 
 @include b(table) {
-  &.vxe-table {
+  .vxe-table {
     //setting column  && drag menu
     th.column-setting {
       .vxe-cell {
