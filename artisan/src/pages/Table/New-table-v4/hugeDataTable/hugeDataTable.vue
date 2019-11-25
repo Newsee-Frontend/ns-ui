@@ -13,10 +13,10 @@
 
           <div class="control-block form-block-line">
 
-            <ns-button @click="getTableData('loadData')">loadData</ns-button>
-
-            <ns-button @click="getTableData('reloadData')">reloadData</ns-button>
-
+            <ns-button @click="getTableData">刷新表格数据</ns-button>
+            <ns-button @click="getTableData('no-result')">模拟空数据</ns-button>
+            <ns-button @click="searchConditions.mockColType='service-error'">模拟服务异常</ns-button>
+            <ns-button @click="loading = true">模拟loading状态</ns-button>
           </div>
         </div>
 
@@ -52,7 +52,7 @@
           departmentId: '', //部门id
           filterList: [], //条件
           pageNum: 1, //当前页数
-          pageSize: 1000, //每页显示条目个数
+          pageSize: 10000, //每页显示条目个数
           orderBy: '', //排序：升序还是降序
           orderFieldName: '', //排序：字段名
           mainSearch: '', //输入框值
@@ -61,6 +61,7 @@
           otherConditions: {},
           organizationId: 1,
           totalType: 1,
+          mockColType: 'hugeData-table',
           mockType: 'hugeData-table',
           total: 10000,
         },
@@ -72,7 +73,11 @@
       },
     },
     methods: {
-      getTableData() {
+      getTableData(type = 'hugeData-table') {
+
+        this.searchConditions.mockColType = 'hugeData-table';
+        this.searchConditions.mockType = type;
+
         this.loading = true;
 
         tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
@@ -123,7 +128,7 @@
 
     },
     mounted() {
-      this.getTableData('reloadData');
+      this.getTableData();
     },
 
   };
