@@ -1,0 +1,59 @@
+@import '../../../style/mixins/mixins';
+@import "config";
+
+@include b(table__mask) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background: rgba(255, 255, 255, 1);
+
+  //loading content
+  .table--spinner {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    &:after {
+      position: absolute;
+      content: "";
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      background: url('../../../assets/loading.gif') no-repeat;
+      background-size: 100% 100%;
+      border-radius: 2%;
+      animation: none;
+    }
+  }
+
+  //错误模块
+  .error-prompt-content {
+    position: absolute;
+    width: $error-prompt_baseWidth;
+    height: $error-prompt_baseHeight;
+    top: 50%;
+    left: 50%;
+    margin-left: -$error-prompt_baseWidth/2;
+    margin-top: -($error-prompt_baseHeight/2 + 20px);
+    text-align: center;
+    h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: $error-prompt_color;
+    }
+    p {
+      font-size: 13px;
+      color: $error-prompt_subcolor;
+    }
+    p, h4 {
+      margin: 6px 0;
+    }
+  }
+}
