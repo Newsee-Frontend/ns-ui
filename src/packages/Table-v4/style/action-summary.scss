@@ -1,0 +1,42 @@
+@import '../../../style/mixins/mixins';
+@import "config";
+
+$cell-height: 40px;
+
+//summary action area
+@include b(table) {
+  .summary-area {
+    position: absolute;
+    background: #fff;
+    left: 1px;
+    bottom: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    z-index: 1;
+
+    span.el-dropdown-selfdefine {
+      display: inline-block;
+      width: 45px;
+      height: $cell-height;
+      line-height: $cell-height;
+      font-size: $action-summary_fs;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+  }
+
+  .vxe-table.scroll--x + .summary-area {
+    bottom: 8px;
+  }
+
+}
+
+ul.el-dropdown-menu.summary-menu {
+  margin: 0;
+  li.el-dropdown-menu__item {
+    line-height: 32px;
+    font-size: $action-summary_fs;
+    padding: 0 10px;
+  }
+}
