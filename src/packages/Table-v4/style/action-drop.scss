@@ -1,6 +1,6 @@
 @import '../../../style/mixins/mixins';
 @import '../../../style/mixins/scrollbar';
-@import "config";
+@import 'config';
 
 @mixin resizable-line-show($display) {
   th.vxe-header--column:nth-last-child(2) {
