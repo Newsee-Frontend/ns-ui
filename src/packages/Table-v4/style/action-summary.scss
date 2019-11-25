@@ -1,5 +1,5 @@
 @import '../../../style/mixins/mixins';
-@import "config";
+@import 'config';
 
 $cell-height: 40px;
 
@@ -29,7 +29,6 @@ $cell-height: 40px;
   .vxe-table.scroll--x + .summary-area {
     bottom: 8px;
   }
-
 }
 
 ul.el-dropdown-menu.summary-menu {
