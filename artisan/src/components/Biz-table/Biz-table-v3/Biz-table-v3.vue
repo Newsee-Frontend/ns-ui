@@ -190,6 +190,7 @@
       summaryCommand(command) {
         this.$emit('summary-command', command);
       },
+
       refresh() {
         this.$emit('reload');
       },
