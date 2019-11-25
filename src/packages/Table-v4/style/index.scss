@@ -1,22 +1,24 @@
 //@import '~vxe-table/lib/index.css';
 // import 'vxe-table-plugin-element/dist/style.css';
+@import "config";
 @import '../../../style/mixins/mixins';
 
-$grid-border__color: #e8e8e8; //边框色
-
 @include b(table) {
-  &.vxe-table {
+  position: relative;
+
+  //main - table content
+  .vxe-table {
     // 1、==== border style change ====
-    border-color: $grid-border__color;
+    border-color: $table-border__color;
 
     &:after,
     &:before {
-      background-color: $grid-border__color;
+      background-color: $table-border__color;
     }
 
     .vxe-table--fixed-left-wrapper:before,
     .vxe-table--fixed-right-wrapper:before {
-      border-color: $grid-border__color;
+      border-color: $table-border__color;
     }
 
     //内容部分下边框
@@ -26,16 +28,16 @@ $grid-border__color: #e8e8e8; //边框色
 
     // 2、==== background style change ====
     th.col--gutter {
-      background-color: #ebedef;
+      background-color: $table-head__backgroundcolor;
     }
 
     //表头
     .vxe-header--column {
-      background-color: #ebedef;
+      background-color: $table-head__backgroundcolor;
       //表格分割线 - 高度/颜色
       .vxe-resizable.is--line:before {
         height: 100%;
-        background-color: #d6d8da;
+        background-color: $table-head__linecolor;
       }
       //表格分割线 - 高度
       .vxe-resizable {
@@ -44,7 +46,19 @@ $grid-border__color: #e8e8e8; //边框色
     }
 
     .vxe-table--header-wrapper {
-      background-color: #ebedef;
+      background-color: $table-head__backgroundcolor;
+    }
+
+    //表格行 - 鼠标移入背景色
+    tr.vxe-body--row.row--hover {
+      background-color: $table-row__hover;
+      td:hover {
+        background-color: $table-row__hover;
+      }
+    }
+
+    tr.vxe-body--row:hover {
+      background-color: $table-row__hover;
     }
 
     //修复多选列-全选框半选状态下伪类显示异常
@@ -56,10 +70,28 @@ $grid-border__color: #e8e8e8; //边框色
       cursor: pointer;
     }
 
-    @import 'loading';
-    @import 'error-prompt';
+    //屏蔽自带 loading
+    .vxe-table--loading {
+      display: none !important;
+    }
+
+    //空结果
+    .vxe-table--empty-content p {
+      font-size: 13px;
+      color: $error-prompt_subcolor;
+      margin-top: 10px;
+    }
+
   }
+
+  //error / loading identifier content
+  @import 'identifier';
 }
 
+//表格操作列
 @import 'action-scope';
+//表头设置
 @import 'action-drop';
+//合计操作
+@import 'action-summary';
+
