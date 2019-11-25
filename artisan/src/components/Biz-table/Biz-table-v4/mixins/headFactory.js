@@ -35,6 +35,12 @@ export default {
       deep: true,
       // immediate: true,
     },
+    'searchConditions.mockColType': {
+      handler: function(val) {
+        this.getTableHead();
+      },
+      deep: true,
+    },
   },
   methods: {
     /**
@@ -51,7 +57,7 @@ export default {
       else {
         this.headLoading = true;
 
-        listColumnService({ funcId: 'funcId', mockType: this.searchConditions.mockType }).then(res => {
+        listColumnService({ funcId: 'funcId', mockColType: this.searchConditions.mockColType }).then(res => {
           this.tableHead = res.resultData.columns || [];
 
           console.log('请求到的表头数据：');
