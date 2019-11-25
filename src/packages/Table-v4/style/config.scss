@@ -1,0 +1,32 @@
+/*
+ * config style for table
+ * created: 2019/11/11.
+ * author: Broccoli spring( 高仓雄 - gcx )
+ * copyright (c) 2019 Broccoli spring( gcx )
+ */
+
+$head_Height: 40px;
+
+// ========== 表格色系 ==========
+$table-border__color: #e8e8e8; //边框色
+$table-head__backgroundcolor: #ebedef; //表头背景色
+$table-head__linecolor: #d6d8da; //表头 - 分割线颜色
+$table-row__hover: #ecf5ff; //行 - 鼠标移入背景色
+
+// ========== 字体大小 ==========
+$action-summary_fs: 12px; //合计按钮控制下拉菜单字体
+
+//========== 验证错误提示信息 error message ==========
+$error-prompt_baseWidth: 240px; //错误提示模块 - 基础宽度
+$error-prompt_baseHeight: 280px; //错误提示模块 - 基础高度
+$error-prompt_color: #999; //错误提示模块 - 大标题颜色
+$error-prompt_subcolor: #666; //错误提示模块 - 小标题颜色
+
+//========== 表格 - 操作列 - 权限按钮 ==========
+$action-scope_text__color:#409eff;//表格操作列字体颜色
+$action-scope_text__hovercolor: #0a7af8;//表格操作列字体-鼠标移入颜色
+
+//========== 表头设置 - 下拉菜单 ==========
+$drap-content__max-height: 300px; //下拉内容区域最大高度
+$drap-label__max-width: 166px; //下拉内容区域 - 选择label名称最大宽度
+$drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽度
