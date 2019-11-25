@@ -9,7 +9,6 @@ export default {
     errorType: { type: String, default: 'no-error' },
   },
   render(h) {
-
     /**
      * identifier content
      * @param type
@@ -20,7 +19,7 @@ export default {
         case 'service-error':
           return (
             <div class="error-prompt-content">
-              <img class={'errorImg'} src={img_error}/>
+              <img class={'errorImg'} src={img_error} />
               <h4>服务器出错</h4>
               <p>蛋定！伸个懒腰喝杯水，过会再试试吧</p>
               <Button type={'primary'} on-click={this.reload}>
@@ -46,19 +45,19 @@ export default {
      * @param errorType
      * @returns {null}
      */
-    const promptblock = (errorType) => {
-      return errorType === 'no-error' ?
-        null :
-        <div class="table--mask">{identifier(errorType)}</div>;
+    const promptblock = errorType => {
+      return errorType === 'no-error' ? null : (
+        <div class="table--mask">{identifier(errorType)}</div>
+      );
     };
 
-
-    return this.loading ?
+    return this.loading ? (
       <div>
-        <div class="table--spinner"/>
-      </div> :
-      promptblock(this.errorType);
-
+        <div class="table--spinner" />
+      </div>
+    ) : (
+      promptblock(this.errorType)
+    );
   },
   methods: {
     reload() {
@@ -66,6 +65,3 @@ export default {
     },
   },
 };
-
-
-
