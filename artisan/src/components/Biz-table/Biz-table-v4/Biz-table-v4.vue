@@ -5,9 +5,6 @@
     <!--表格-->
     <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent"></ns-table>
 
-    <!--合计区域-->
-    <table-summary @summary-change="summaryChange" v-if="showFooter"></table-summary>
-
     <!--分页器-->
     <ns-pagination
       class="biz-pagination"
@@ -26,12 +23,12 @@
   import resizeHeight from './mixins/resize-height';
   import keyRefer from './config/keyRefer';
   import rulesConfig from './config/rulesInfo';
-  import tableSummary from './components/summary';
+
 
   export default {
     name: 'biz-table',
     mixins: [dataRender, headFactory, resizeHeight],
-    components: { tableSummary },
+    components: {},
     data() {
       return {
         keyRefer,
@@ -66,7 +63,7 @@
     computed: {
 
       tableLoading() {
-        return (this.loading || this.headLoading || this.renderLoading);
+        return this.loading || this.headLoading || this.renderLoading;
       },
 
       curProps() {
@@ -88,12 +85,14 @@
       },
       curEvent() {
         return {
+          reload: this.reload,
           'edit-actived': this.editActived,
           'cell-event': this.cellEvent,
           'table-action': this.tableAction,
           'column-setting-submit': this.columnSettingSubmit,
           'select-change': this.selectChange,
           'select-all': this.selectAll,
+          'summary-change': this.summaryChange,
         };
       },
     },
@@ -128,6 +127,10 @@
             },
           );
         });
+      },
+
+      reload() {
+        this.$emit('reload');
       },
 
       /**
