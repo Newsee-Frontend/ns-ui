@@ -16,15 +16,12 @@ const listDataDistribute = (req, res) => {
 
   /*
    * 状态类型
-   * service-error => 服务错误
    * no-result => 无表格数据
-   * normal => 获取常规表格数据
-   * form => 获取表单表格数据
+   * hugeData-table => 获取大数据表格数据
+   * form-table => 获取大数据表格数据
    */
-  if (mockType === 'service-error') {
-    list = {};
-  }
-  else if (mockType === 'no-result') {
+
+  if (mockType === 'no-result') {
     list = [];
   }
   //大数据 - 表格 （非表单表格)
@@ -60,14 +57,23 @@ const listDataDistribute = (req, res) => {
  * @returns {any | Promise<any>}
  */
 const listColumnDistribute = (req, res) => {
-  const { mocktype } = req.headers;
+  const { mockcoltype } = req.headers;
   let column = null;
 
-  if (mocktype === 'hugeData-table') {
+  /*
+    * 状态类型
+    * hugeData-table => 大数据表格表头数据
+    * form-table => 获取表单表格表头数据
+    * service-error => 服务错误
+    */
+  if (mockcoltype === 'hugeData-table') {
     column = hugeDataListColumn;
   }
-  else if (mocktype === 'form-table') {
+  else if (mockcoltype === 'form-table') {
     column = formlistColumn;
+  }
+  else if (mockcoltype === 'service-error') {
+    column = null;
   }
 
   return res.json({
@@ -129,12 +135,12 @@ module.exports = {
   'GET /system/column/list-column': (req, res) => {
     setTimeout(() => {
       return listColumnDistribute(req, res);
-    }, 150);
+    }, 300);
   },
   'GET /system/column/change-list-column': changelistColumn,
   'POST /system/table/table-data': (req, res) => {
     setTimeout(() => {
       return listDataDistribute(req, res);
-    }, 200);
+    }, 800);
   },
 };
