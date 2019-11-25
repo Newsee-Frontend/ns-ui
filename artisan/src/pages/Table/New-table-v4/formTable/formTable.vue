@@ -89,7 +89,7 @@
           departmentId: '', //部门id
           filterList: [], //条件
           pageNum: 1, //当前页数
-          pageSize: 10, //每页显示条目个数
+          pageSize: 100, //每页显示条目个数
           orderBy: '', //排序：升序还是降序
           orderFieldName: '', //排序：字段名
           mainSearch: '', //输入框值
@@ -98,6 +98,7 @@
           otherConditions: {},
           organizationId: 1,
           totalType: 1,
+          mockColType: 'form-table',
           mockType: 'form-table',
           total: 10000,
         },
@@ -345,9 +346,9 @@
        * @returns {*[]}
        */
       footerMethod({ columns, data }) {
-        console.log('表尾合计的计算方法');
-        console.log(columns);
-        console.log(data);
+        // console.log('表尾合计的计算方法');
+        // console.log(columns);
+        // console.log(data);
         return [
           columns.map((column, columnIndex) => {
             const modelKey = column.property;
