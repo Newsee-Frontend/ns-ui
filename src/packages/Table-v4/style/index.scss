@@ -1,6 +1,6 @@
 //@import '~vxe-table/lib/index.css';
 // import 'vxe-table-plugin-element/dist/style.css';
-@import "config";
+@import 'config';
 @import '../../../style/mixins/mixins';
 
 @include b(table) {
@@ -81,7 +81,6 @@
       color: $error-prompt_subcolor;
       margin-top: 10px;
     }
-
   }
 
   //error / loading identifier content
@@ -94,4 +93,3 @@
 @import 'action-drop';
 //合计操作
 @import 'action-summary';
-
