@@ -129,6 +129,7 @@
         });
       },
 
+      //重新刷新
       reload() {
         this.$emit('reload');
       },
