@@ -106,7 +106,7 @@
 
         isCheckedOptions: [],//是否审核的options，激活单元格动态生成
 
-        firstColType: 'checkbox',//selection index radio
+        firstColType: 'checkbox',//checkbox index radio
         firstColTypeOpts: [
           { label: '索引', value: 'index' },
           { label: '多选', value: 'checkbox' },
@@ -391,13 +391,17 @@
       },
 
       /**
-       * 当选择项发生变化时会触发该事件
-       * @param {checked, row, $rowIndex, column, $columnIndex}
+       * 单选列，多选列 （当选择项发生变化时会触发该事件）
+       * @param { row, $rowIndex, column, $columnIndex, checked, selection }
+       * 注意：单选列的情况下，参数：checked, selection 不存在
        * @param event
        */
-      selectChange({ checked, row, $rowIndex, column, $columnIndex }, event) {
+      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
+
+        console.log(`当前列操作类型：${this.firstColType}`);
         console.log('当选择项发生变化时会触发该事件');
-        console.log({ checked, row, $rowIndex, column, $columnIndex }, event);
+
+        console.log({ row, $rowIndex, column, $columnIndex, checked, selection }, event);
       },
 
       /**
