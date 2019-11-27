@@ -247,11 +247,14 @@
 
       /**
        * set selection state - 设置行的选中状态
-       * @param rows  - 选中的对象列表（数组)
+       * @param type - 类型，单选还是多选
+       * @param rows  - 选中的对象
+       *              ~ checkbox - 选中的行数据列表（数组)
+       *              ~ radio - 单个行数据
        * @param checked - 选中与否（布尔)
        */
-      setSelection(rows, checked) {
-        this.$refs['bizTable'].setSelection(rows, checked);
+      setSelection(type, rows, checked) {
+        this.$refs['bizTable'].setSelection(type, rows, checked);
       },
 
       /**
@@ -261,11 +264,13 @@
       setAllSelection(checked) {
         this.$refs['bizTable'].setAllSelection(checked);
       },
+
       /**
        * clear all selection state - 清空选中状态
+       * @param type - 类型，单选还是多选
        */
-      clearSelection() {
-        this.$refs['bizTable'].clearSelection();
+      clearSelection(type) {
+        this.$refs['bizTable'].clearSelection(type);
       },
 
 
