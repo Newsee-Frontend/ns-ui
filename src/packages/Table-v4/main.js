@@ -113,6 +113,7 @@ export default create({
                 props: props,
                 on: {
                   'edit-actived': this.editActived,
+                  'radio-change': this.selectChange,
                   'select-change': this.selectChange,
                   'select-all': this.selectAll,
                   'update:customs': value => {
