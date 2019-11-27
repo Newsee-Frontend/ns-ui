@@ -7,7 +7,11 @@ export default {
       { selection, checked, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell },
       event
     ) {
-      this.$emit('select-change', { checked, row, $rowIndex, column, $columnIndex }, event);
+      this.$emit(
+        'select-change',
+        { row, $rowIndex, column, $columnIndex, checked, selection },
+        event
+      );
     },
 
     /**
@@ -43,6 +47,14 @@ export default {
      */
     clearSelection() {
       this.$refs['main-table'].clearSelection();
+    },
+
+    /**
+     * radio change in column
+     */
+    radioChange({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }, event) {
+      console.log('单选事件');
+      this.$emit('select-change', { row, $rowIndex, column, $columnIndex }, event);
     },
   },
 };
