@@ -17,6 +17,9 @@
             <ns-button @click="getTableData('no-result')">模拟空数据</ns-button>
             <ns-button @click="searchConditions.mockColType='service-error'">模拟服务异常</ns-button>
             <ns-button @click="loading = true">模拟loading状态</ns-button>
+            <ns-button @click="setSelection('radio',1,true)">设置第二行选中</ns-button>
+            <ns-button @click="setSelection('radio',1,false)">清除第二行选中</ns-button>
+            <ns-button @click="clearSelection('radio')">清除所有选中状态</ns-button>
           </div>
         </div>
 
@@ -73,6 +76,9 @@
       total() {
         return this.tableData.total;
       },
+      tableRef() {
+        return this.$refs['hugeDataTable'];
+      },
     },
     methods: {
       getTableData(type = 'hugeData-table') {
@@ -126,6 +132,25 @@
 
         console.log({ row, $rowIndex, column, $columnIndex, checked, selection }, event);
       },
+
+      /**
+       * set selection state - 设置行的选中状态
+       * @param type - 类型，单选还是多选
+       * @param index  - 选中的索引
+       * @param checked - 选中与否（布尔)
+       */
+      setSelection(type, index, checked) {
+        this.tableRef.setSelection('radio', this.tableData.list[index], checked);
+      },
+
+      /**
+       * clear all selection state - 清空选中状态
+       * @param type
+       */
+      clearSelection(type) {
+        this.tableRef.clearSelection(type);
+      },
+
     },
 
     created() {
