@@ -203,12 +203,13 @@
       },
 
       /**
-       * 当选择项发生变化时会触发该事件
-       * @param {checked, row, $rowIndex, column, $columnIndex}
+       * 单选列，多选列 （当选择项发生变化时会触发该事件）
+       * @param { row, $rowIndex, column, $columnIndex, checked, selection }
+       * 注意：单选列的情况下，参数：checked, selection 不存在
        * @param event
        */
-      selectChange({ checked, row, $rowIndex, column, $columnIndex }, event) {
-        this.$emit('select-change', { checked, row, $rowIndex, column, $columnIndex }, event);
+      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
+        this.$emit('select-change', { row, $rowIndex, column, $columnIndex, checked, selection }, event);
       },
 
       /**
