@@ -5,12 +5,12 @@ export default {
      */
     selectChange(
       { selection, checked, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell },
-      event,
+      event
     ) {
       this.$emit(
         'select-change',
         { row, $rowIndex, column, $columnIndex, checked, selection },
-        event,
+        event
       );
     },
 
@@ -33,12 +33,10 @@ export default {
     setSelection(type, rows, checked) {
       if (type === 'checkbox') {
         this.$refs['main-table'].setSelection(rows, checked);
-      }
-      else if (type === 'radio') {
+      } else if (type === 'radio') {
         if (checked) {
           this.$refs['main-table'].setRadioRow(rows);
-        }
-        else {
+        } else {
           this.$refs['main-table'].clearRadioRow();
         }
       }
@@ -59,12 +57,10 @@ export default {
     clearSelection(type = 'checkbox') {
       if (type === 'checkbox') {
         this.$refs['main-table'].clearSelection();
-      }
-      else if (type === 'radio') {
+      } else if (type === 'radio') {
         this.$refs['main-table'].clearRadioRow();
       }
     },
-
 
     /**
      * radio change in column
