@@ -23,9 +23,10 @@
             <ns-button @click="fullValidate">表单表格验证</ns-button>
             <ns-button @click="setActiveRow(2)">设置第二行激活</ns-button>
             <ns-button @click="clearActived">取消激活状态</ns-button>
-            <ns-button @click="setSelection([2,3,4],true)">设置第二，三，四行选中</ns-button>
+            <ns-button @click="setSelection('checkbox',[2,3,4],true)">设置第二，三，四行选中</ns-button>
+            <ns-button @click="setSelection('checkbox',[2,3,4],false)">清除第二，三，四行选中</ns-button>
             <ns-button @click="setAllSelection(true)">设置全部选中</ns-button>
-            <ns-button @click="clearSelection">清除所有选中状态</ns-button>
+            <ns-button @click="clearSelection('checkbox')">清除所有选中状态</ns-button>
 
 
           </div>
@@ -427,12 +428,13 @@
 
       /**
        * set selection state - 设置行的选中状态
-       * @param rows  - 选中的对象列表（数组)
+       * @param type - 类型，单选还是多选
+       * @param indexList  - 选中的索引列表
        * @param checked - 选中与否（布尔)
        */
-      setSelection(rows, checked) {
-        const targets = rows.map(i => this.tableData.list[i]);
-        this.tableRef.setSelection(targets, checked);
+      setSelection(type, indexList, checked) {
+        const targets = indexList.map(i => this.tableData.list[i]);
+        this.tableRef.setSelection('checkbox', targets, checked);
       },
 
       /**
@@ -442,6 +444,7 @@
       setAllSelection(checked) {
         this.tableRef.setAllSelection(checked);
       },
+
       /**
        * clear all selection state - 清空选中状态
        */
