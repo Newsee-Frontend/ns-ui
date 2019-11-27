@@ -26,7 +26,9 @@
           :data="tableData.list"
           :total="total"
           isHugeData
+          firstColType="radio"
           :searchConditions="searchConditions"
+          @select-change="selectChange"
           @reload="getTableData()"
         ></biz-table-v4>
       </div>
@@ -111,6 +113,18 @@
         this.tableData.list.forEach(item => {
           this.$set(item, 'fnsclick', gridBtns);
         });
+      },
+      /**
+       * 单选列，多选列 （当选择项发生变化时会触发该事件）
+       * @param { row, $rowIndex, column, $columnIndex, checked, selection }
+       * 注意：单选列的情况下，参数：checked, selection 不存在
+       * @param event
+       */
+      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
+
+        console.log('当选择项发生变化时会触发该事件');
+
+        console.log({ row, $rowIndex, column, $columnIndex, checked, selection }, event);
       },
     },
 
