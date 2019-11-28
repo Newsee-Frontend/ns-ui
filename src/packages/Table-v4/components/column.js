@@ -183,12 +183,6 @@ export default {
      * @param columnIndex
      */
     cellEvent({ row, rowIndex, column, columnIndex }) {
-      // this.$refs.xTable.updateStatus(scope)
-      // console.log('cellEvent-cellEvent-cellEvent');
-      // console.log(this.$parent);
-      // console.log(this.$parent.$options);
-      // console.log(this.$parent.$options.name);
-      // this.$parent.updateStatus()
       this.$emit('cell-event', { row, rowIndex, column, columnIndex }, event);
     },
 
