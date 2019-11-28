@@ -164,14 +164,12 @@
 
       /**
        * 单元格事件 - 点击/修改
-       * @param row
-       * @param rowIndex
-       * @param column
-       * @param columnIndex
+       * @param { row, rowIndex, column, columnIndex, rows, columns }
+       *  注释：1、row - 行数据 , 2、rowIndex - 行索引, 3、column - 列数据, 4、columnIndex - 列索引 , 5、rows - 全部表格数据 , 6、columns - 全部列数据
        * @param event
        */
-      cellEvent({ row, rowIndex, column, columnIndex }, event) {
-        this.$emit('cell-event', { row, rowIndex, column, columnIndex }, event);
+      cellEvent({ row, rowIndex, column, columnIndex, rows, columns }, event) {
+        this.$emit('cell-event', { row, rowIndex, column, columnIndex, rows, columns }, event);
       },
 
       /**
