@@ -223,7 +223,6 @@
         //当前激活单元格 判断字段为 'isChecked' 的情况下，我们为其下拉控件新增options
         if (column.property === 'isChecked') {
 
-
           /**
            * 如果已经有option数据，则我们不重复添加
            * 若当前单元格下拉内容需根据当前行数据变化（相同字段不同单元下拉options数据不同)，则需要每次都去请求
@@ -233,42 +232,60 @@
             this.isCheckedOptions = [{ label: '已审核', value: 1 }, { label: '未审核', value: 0 }];
           }
 
-          //将options数据赋予表数据中对应字段
-          row['isChecked'].options = this.isCheckedOptions;
+          //获取到表头相应的渲染的options字段位置,将options数据赋予表数据中对应字段
+          column.editRender.props.formConfig.options = this.isCheckedOptions;
+
         }
 
       },
 
       /**
        * 单元格事件 - 点击/修改
-       * @param row
-       * @param rowIndex
-       * @param column
-       * @param columnIndex
+       * @param { row, rowIndex, column, columnIndex, rows, columns }
+       *  注释：1、row - 行数据 , 2、rowIndex - 行索引, 3、column - 列数据, 4、columnIndex - 列索引 , 5、rows - 全部表格数据 , 6、columns - 全部列数据
        * @param event
        */
-      cellEvent({ row, rowIndex, column, columnIndex }, event) {
+      cellEvent({ row, rowIndex, column, columnIndex, rows, columns }, event) {
         console.log('单元格事件 - 点击/修改');
-        console.log({ row, rowIndex, column, columnIndex });
+        console.log({ row, rowIndex, column, columnIndex, rows, columns });
         console.log(event);
         console.log(column);
 
         //当前单元格事件触发在是否审核字段单元格上时
         if (column.field === 'isChecked') {
-          const isChecked = row.isChecked.picked.value;
-          console.log(isChecked);
+          const isChecked = row.isChecked;
 
           //当是否审核字段值为已审核（1)时候，请求获取审核类型下拉opeions数据
           if (isChecked === 1) {
-            //模拟数据，这里可以发起服务端请求获取数据
-            row.checkedType.picked.value = 1;
-            row.checkedType.options = [
-              { label: '市级审核', value: 1 },
-              { label: '省级审核', value: 2 },
-              { label: '国家级审核', value: 3 },
-            ];
+
+            //以下操作模拟数据，这里可以发起服务端请求获取数据
+            row.checkedType = 1;
+
+            //循环全部表头数据,找到对应字段下，赋值给表头 cell-Config 下 options 值
+            columns.forEach(col => {
+              if (col.field === 'checkedType') {
+                col['cell-Config'].options = [
+                  { label: '市级审核', value: 1 },
+                  { label: '省级审核', value: 2 },
+                  { label: '国家级审核', value: 3 },
+                ];
+              }
+            });
+
+          }
+          //当是否审核字段值为未审核（0)时候
+          else {
+            //以下操作模拟数据，这里可以发起服务端请求获取数据
+            row.checkedType = null;
+            //循环全部表头数据,找到对应字段下，赋值给表头 cell-Config 下 options 值
+            columns.forEach(col => {
+              if (col.field === 'checkedType') {
+                col['cell-Config'].options = [];
+              }
+            });
           }
         }
+        //以下两个示例是 link 类型 的点击事件
         else if (column.field === 'taskName') {
           this.$message.success(`我是：${column.title},字段名：${column.field},点击链接触发`);
         }
