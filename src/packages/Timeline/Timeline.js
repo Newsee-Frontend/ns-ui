@@ -9,11 +9,9 @@ export default create({
   props: {
     options: { type: Array, default: [] },
     reverse: { type: Boolean, default: true }, //指定节点排序方向，默认为正序
-    timestamp: String,
     hideTimestamp: { type: Boolean, default: false },
     placement: { type: String, default: 'bottom' },
     size: { type: String, default: 'normal' },
-    icon: String, //节点图标
     keyRefer: {
       type: Object,
       default: () => ({
