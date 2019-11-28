@@ -16,9 +16,11 @@ export const formlistColumn = [
       'max': 0,
       'min': 0,
       'placeHolder': '请输入',
+      'multiple': null,
       'require': true,
       'validateRule': null,
       'errorMsg': '输入项目名称',
+      'options': [],
     },
   },
   {
@@ -38,9 +40,11 @@ export const formlistColumn = [
       'max': 0,
       'min': 0,
       'placeHolder': '请输入',
+      'multiple': null,
       'require': true,
       'validateRule': '',
       'errorMsg': '输入拥有人',
+      'options': [],
     },
   },
   {
@@ -60,8 +64,11 @@ export const formlistColumn = [
       'max': 100,
       'min': 0,
       'placeHolder': null,
+      'multiple': null,
       'require': true,
       'validateRule': null,
+      'errorMsg': '请选择年龄',
+      'options': [],
     },
   },
   {
@@ -77,7 +84,7 @@ export const formlistColumn = [
       1: '女',
       2: '保密',
     },
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '等级',//label
@@ -102,9 +109,11 @@ export const formlistColumn = [
       'max': 0,
       'min': 0,
       'placeHolder': '',
+      'multiple': null,
       'require': false,
       'validateRule': null,
       'errorMsg': '',
+      'options': [],
     },
   },
   {
@@ -118,15 +127,25 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'select',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': '请选择学历',
+      'multiple': false,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择学历',
+      'options': [
+        { label: '小学', value: 1 },
+        { label: '初中', value: 2 },
+        { label: '高中', value: 3 },
+        { label: '大专', value: 4 },
+        { label: '本科', value: 5 },
+        { label: '研究生', value: 6 },
+        { label: '博世', value: 7 },
+        { label: '其他', value: 8 },
+      ],
     },
   },
   {
@@ -140,15 +159,16 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'select',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': '请选择',
+      'multiple': false,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择是否审核',
+      'options': [],
     },
   },
   {
@@ -162,15 +182,16 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'select',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': '请选择',
+      'multiple': false,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择审核类型',
+      'options': [],
     },
   },
   {
@@ -184,15 +205,16 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'datetime',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': null,
+      'multiple': null,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择成立日期',
+      'options': [],
     },
   },
   {
@@ -206,15 +228,16 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'date',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': null,
+      'multiple': null,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择成立日期',
+      'options': [],
     },
   },
   {
@@ -228,15 +251,16 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'time',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': null,
+      'multiple': null,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择成立日期',
+      'options': [],
     },
   },
   {
@@ -250,17 +274,52 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'radiobutton',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': null,
       'min': null,
       'placeHolder': null,
+      'multiple': null,
       'require': false,
       'validateRule': null,
       'errorMsg': '请选择是否锁定',
+      'options': [
+        { 'label': '是', 'value': 1 },
+        { 'label': '否', 'value': 0 },
+      ],
     },
   },
+  {
+    'resourcecolumnName': '锁定信息（多选）',//label
+    'resourcecolumnCode': 'lockedInfo',
+    'resourcecolumnXtype': 'select',//筛选列 类型
+    'resourcecolumnWidth': '240',//列的宽度
+    'resourcecolumnOrder': '4',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'eidtConfig': {
+      'switchType': true,
+      'type': 'select',
+      'disabled': false,
+      'maxlength': null,
+      'max': 3,
+      'min': 1,
+      'placeHolder': null,
+      'multiple': true,
+      'require': false,
+      'validateRule': null,
+      'errorMsg': '请选择锁定信息',
+      'options': [
+        { 'label': '超时', 'value': 0 },
+        { 'label': '欠费', 'value': 1 },
+        { 'label': '违规', 'value': 2 },
+        { 'label': '投诉', 'value': 3 },
+        { 'label': '其他', 'value': 4 },
+      ],
+    },
+  },
+
+
   {
     'resourcecolumnName': '邮箱',//label
     'resourcecolumnCode': 'email',//model-key
@@ -272,15 +331,16 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'input',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 0,
       'min': 0,
       'placeHolder': '请输入邮箱',
+      'multiple': null,
       'require': true,
       'validateRule': 'email',
       'errorMsg': '请输入正确邮箱',
+      'options': [],
     },
   },
   {
@@ -294,15 +354,22 @@ export const formlistColumn = [
     'eidtConfig': {
       'switchType': true,
       'type': 'checkbutton',
-      'decimal': 2,
       'disabled': false,
       'maxlength': null,
       'max': 5,
       'min': 0,
       'placeHolder': null,
+      'multiple': null,
       'require': true,
       'validateRule': null,
       'errorMsg': '请选择涉猎领域',
+      'options': [
+        { label: '互联网', value: 1 },
+        { label: '电子芯片', value: 2 },
+        { label: '传统制造', value: 3 },
+        { label: '物联网', value: 4 },
+        { label: '广告服务', value: 5 },
+      ],
     },
   },
 ];
@@ -352,7 +419,7 @@ export const hugeDataListColumn = [
       1: '女',
       2: '保密',
     },
-    'eidtConfig': null
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '成立日期',//label
