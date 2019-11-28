@@ -9,12 +9,12 @@ export default {
       let { events } = editRender;
       return [
         <Checkbox
-          value={row[modelCode].picked.value}
+          value={row[modelCode]}
           onInput={e => {
-            row[modelCode].picked.value = e;
+            row[modelCode] = e;
             this.$emit('input', e);
           }}
-          options={row[modelCode].options}
+          options={formConfig.options}
           disabled={formConfig.disabled}
           min={formConfig.min}
           max={formConfig.max}
@@ -24,17 +24,17 @@ export default {
     },
 
     renderCell(h, editRender, { row }) {
-      const { modelCode } = editRender.props;
-      let data = row[modelCode];
+      const { modelCode, column } = editRender.props;
 
-      const model = data.picked.value;
+      const model = row[modelCode];
+      const options = column['cell-Config'].options;
 
       if (!Array.isArray(model)) {
         return [];
       }
 
       return model.map(value => {
-        return <span>{`${getLabelByValue(value, data.options)}  `}</span>;
+        return <span>{`${getLabelByValue(value, options)}  `}</span>;
       });
     },
   },
