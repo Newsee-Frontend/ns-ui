@@ -146,6 +146,7 @@ export default create({
                     },
                     on: {
                       ...this.$listeners,
+                      'cell-event': this.cellEvent,
                       'sync-column-render': data => {
                         // console.log(data.customColumns);
 
@@ -195,6 +196,21 @@ export default create({
     },
 
     /**
+     * cell for form-table change event
+     * @param row
+     * @param rowIndex
+     * @param column
+     * @param columnIndex
+     */
+    cellEvent({ row, rowIndex, column, columnIndex }) {
+      this.$emit(
+        'cell-event',
+        { row, rowIndex, column, columnIndex, ...{ rows: this.data }, ...{ columns: this.head } },
+        event
+      );
+    },
+
+    /**
      * form edit actived in table
      * @param row
      * @param rowIndex
@@ -206,6 +222,9 @@ export default create({
      */
     editActived({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }) {
       this.$emit('edit-actived', { row, $rowIndex, column, $columnIndex, cell });
+      // if (this.$refs['main-table']) {
+      //   this.$refs['main-table'].refreshColumn();
+      // }
     },
 
     /**
