@@ -1,5 +1,5 @@
-@import '../public';
-@import '../mixins/mixins';
+@import '../../public';
+@import '../../mixins/mixins';
 
 //==========================form================================
 
@@ -104,7 +104,7 @@
   border-color: $--color-primary !important;
   box-shadow: none !important;
   background-color: transparent !important;
-  background: url(../../assets/img/other/chioce.png) right bottom no-repeat;
+  background: url(../../../assets/img/other/chioce.png) right bottom no-repeat;
 }
 
 

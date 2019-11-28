@@ -1,4 +1,3 @@
-
 .el-table {
   border: 1px solid #e8e8e8 !important;
   .el-table__header {
@@ -17,17 +16,44 @@
     border-left: none;
   }
   td, th {
-    height: 32px;
-    max-height: 32px;
+    height: 28px;
+    max-height: 28px;
     padding: 4px 0;
     border-bottom: none;
     border-bottom: 1px solid #d8dade !important;
     box-sizing: border-box;
     .cell {
       height: inherit;
-      line-height: 32px;
+      line-height: 28px;
+      font-size: 13px;
       vertical-align: middle;
       overflow: hidden;
+
+      //字体更改
+      .el-dropdown, button, span, p {
+        font-size: 13px;
+      }
+
+      //表头排序icon样式更改
+      .caret-wrapper {
+        height: 28px;
+        .sort-caret {
+          &.ascending {
+            top: 2px;
+          }
+          &.descending {
+            bottom: 4px;
+          }
+
+        }
+      }
+
+      //表格操作列内容
+      .el-dropdown {
+        .el-dropdown-selfdefine {
+          vertical-align: -1px;
+        }
+      }
     }
   }
   //表头最右侧滚动槽
@@ -59,7 +85,7 @@
     z-index: 999;
     background-color: #fff;
     &:before {
-      background-color: transparent;
+      //background-color: transparent;
     }
     .el-table__fixed-body-wrapper {
       .el-table__body {

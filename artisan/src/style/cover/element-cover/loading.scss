@@ -1,5 +1,5 @@
-@import '../public';
-@import '../mixins/mixins';
+@import '../../public';
+@import '../../mixins/mixins';
 
 //============ el-loading style change=========
 .el-loading-spinner .circular {
@@ -11,7 +11,7 @@
   height: 100%;
   z-index: 1000;
   .el-loading-spinner {
-    background: url('../../assets/img/loading/loading.gif') no-repeat !important;
+    background: url('../../../assets/img/loading/loading.gif') no-repeat !important;
     background-size: 75px 75px !important;
     width: 75px;
     height: 75px;

@@ -1,0 +1,112 @@
+/*
+ * config style for table
+ * created: 2019/11/11.
+ * author: Broccoli spring( 高仓雄 - gcx )
+ * copyright (c) 2019 Broccoli spring( gcx )
+ */
+@import '../../public';
+
+$table-border__color: #e8e8e8; //边框色
+$table-head__backgroundcolor: #ebedef; //表头背景色
+$table-head__linecolor: #d6d8da; //表头 - 分割线颜色
+$table-row__hover: #ecf5ff; //行 - 鼠标移入背景色
+
+.vxe-table {
+  //整体字体颜色
+  color: #606266;
+
+  //表头字体颜色
+  th {
+    color: #333;
+  }
+
+  .vxe-header--column {
+
+  }
+
+  // ==== border style change ====
+  border-color: $table-border__color;
+
+  &:after,
+  &:before {
+    background-color: $table-border__color;
+  }
+
+  .vxe-table--fixed-left-wrapper:before,
+  .vxe-table--fixed-right-wrapper:before {
+    border-color: $table-border__color;
+  }
+
+  //内容部分下边框
+  .vxe-body--row .vxe-body--column {
+    border-bottom: 1px solid #ebeef5;
+  }
+
+  // ==== background style change ====
+  th.col--gutter {
+    background-color: $table-head__backgroundcolor;
+  }
+
+  //表头设置
+  .vxe-header--column {
+    background-color: $table-head__backgroundcolor;
+    //表格分割线 - 高度/颜色
+    .vxe-resizable.is--line:before {
+      height: 100%;
+      background-color: $table-head__linecolor;
+    }
+    //表格分割线 - 高度
+    .vxe-resizable {
+      height: inherit;
+    }
+  }
+
+  //表头背景色
+  .vxe-table--header-wrapper {
+    background-color: $table-head__backgroundcolor;
+  }
+
+  //表格行 - 鼠标移入背景色
+  tr.vxe-body--row.row--hover {
+    background-color: $table-row__hover;
+    td:hover {
+      background-color: $table-row__hover;
+    }
+  }
+
+  tr.vxe-body--row:hover {
+    background-color: $table-row__hover;
+  }
+
+  //多选框边框色
+  .vxe-checkbox > input {
+    .vxe-checkbox--icon {
+
+    }
+    & + .vxe-checkbox--icon {
+      border-color: #999;
+    }
+    &:checked + .vxe-checkbox--icon {
+      background-color: $--color-primary-link;
+      border-color: $--color-primary-link;
+    }
+  }
+
+  //多选框 - 伪类（选中状态下 - 白色打钩宽度粗细度)
+  .vxe-checkbox > input:checked + .vxe-checkbox--icon:before {
+    border-width: .1em;
+  }
+
+  //多选框 - 半选状态下
+  .vxe-checkbox.is--indeterminate > input:not(:checked) + .vxe-checkbox--icon {
+    background-color: $--color-primary-link;
+    border-color: $--color-primary-link;
+    //修复多选列-全选框半选状态下伪类显示异常
+    &:before {
+      left: 0;
+    }
+  }
+
+}
+
+
