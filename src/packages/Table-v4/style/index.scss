@@ -8,64 +8,7 @@
 
   //main - table content
   .vxe-table {
-    // 1、==== border style change ====
-    border-color: $table-border__color;
-
-    &:after,
-    &:before {
-      background-color: $table-border__color;
-    }
-
-    .vxe-table--fixed-left-wrapper:before,
-    .vxe-table--fixed-right-wrapper:before {
-      border-color: $table-border__color;
-    }
-
-    //内容部分下边框
-    .vxe-body--row .vxe-body--column {
-      border-bottom: 1px solid #ebeef5;
-    }
-
-    // 2、==== background style change ====
-    th.col--gutter {
-      background-color: $table-head__backgroundcolor;
-    }
-
-    //表头
-    .vxe-header--column {
-      background-color: $table-head__backgroundcolor;
-      //表格分割线 - 高度/颜色
-      .vxe-resizable.is--line:before {
-        height: 100%;
-        background-color: $table-head__linecolor;
-      }
-      //表格分割线 - 高度
-      .vxe-resizable {
-        height: inherit;
-      }
-    }
-
-    .vxe-table--header-wrapper {
-      background-color: $table-head__backgroundcolor;
-    }
-
-    //表格行 - 鼠标移入背景色
-    tr.vxe-body--row.row--hover {
-      background-color: $table-row__hover;
-      td:hover {
-        background-color: $table-row__hover;
-      }
-    }
-
-    tr.vxe-body--row:hover {
-      background-color: $table-row__hover;
-    }
-
-    //修复多选列-全选框半选状态下伪类显示异常
-    .vxe-checkbox.is--indeterminate > input:not(:checked) + .vxe-checkbox--icon:before {
-      left: 0;
-    }
-
+    //连接单元格手型
     .vxe-cell a.cell-link {
       cursor: pointer;
     }
