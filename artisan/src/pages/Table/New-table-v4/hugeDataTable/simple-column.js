@@ -1,34 +1,23 @@
 export default [
   {
     'resourcecolumnName': '项目名称',//label
-    'resourcecolumnNameEn': 'taskName',//model-key
     'resourcecolumnCode': 'taskName',//model-key
     'resourcecolumnXtype': 'text',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
-    'resourcecolumnHidden': '1', //是否隐藏
+    'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': null,
   },
   {
-    eidtConfig: null,
-    fixed: '',
-    organizationId: 1,
-    resourcecolumnAlign: 'left',
-    resourcecolumnAllowedit: '0',
-    resourcecolumnCode: 'organizationShortName',
-    resourcecolumnColumntip: '0',
-    resourcecolumnFieldorderindex: 0,
-    resourcecolumnFuncinfoId: '2DEJjvjOcDM5caR4bce',
-    resourcecolumnHidden: false,
-    resourcecolumnName: '组织简称',
-    resourcecolumnNameEn: 'organizationShortName',
-    resourcecolumnOrder: '0',
-    resourcecolumnStatisticstype: '',
-    resourcecolumnSummaryformat: '',
-    resourcecolumnWidth: '110',
-    resourcecolumnXtype: 'text',
-    selectList: null,
+    'resourcecolumnName': '组织简称',//label
+    'resourcecolumnCode': 'organizationShortName',//model-key
+    'resourcecolumnXtype': 'text',//筛选列 类型
+    'resourcecolumnWidth': '110',//列的宽度
+    'resourcecolumnOrder': '2',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'eidtConfig': null,
   },
   {
     'resourcecolumnName': '拥有人',//label
@@ -62,7 +51,6 @@ export default [
   },
   {
     'resourcecolumnName': '等级调整',//label
-    'resourcecolumnNameEn': 'level',//model-key
     'resourcecolumnCode': 'level',
     'resourcecolumnXtype': 'text',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
@@ -73,7 +61,6 @@ export default [
   },
   {
     'resourcecolumnName': '是否审核',//label
-    'resourcecolumnNameEn': 'isChecked',//model-key
     'resourcecolumnCode': 'isChecked',//model-key
     'resourcecolumnXtype': 'text',//筛选列 类型
     'resourcecolumnWidth': '120',//列的宽度
@@ -82,10 +69,8 @@ export default [
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': null,
   },
-
   {
     'resourcecolumnName': '是否锁定（单选）',//label
-    'resourcecolumnNameEn': 'isLocked',//model-key
     'resourcecolumnCode': 'isLocked',
     'resourcecolumnXtype': 'text',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
@@ -104,10 +89,8 @@ export default [
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': null,
   },
-
   {
     'resourcecolumnName': '涉猎领域（多选）',//label
-    'resourcecolumnNameEn': 'fieldArea',//model-key
     'resourcecolumnCode': 'fieldArea',
     'resourcecolumnXtype': 'text',//筛选列 类型
     'resourcecolumnWidth': '600',//列的宽度

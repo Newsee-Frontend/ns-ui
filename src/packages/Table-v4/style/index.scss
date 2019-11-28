@@ -1,54 +1,95 @@
 //@import '~vxe-table/lib/index.css';
 // import 'vxe-table-plugin-element/dist/style.css';
-
+@import 'config';
 @import '../../../style/mixins/mixins';
 
-$grid-border__color: #e8e8e8; //边框色
-
 @include b(table) {
-  // 1、==== border style change ====
-  border-color: $grid-border__color;
+  position: relative;
 
-  &:after,
-  &:before {
-    background-color: $grid-border__color;
-  }
+  //main - table content
+  .vxe-table {
+    // 1、==== border style change ====
+    border-color: $table-border__color;
 
-  .vxe-table--fixed-left-wrapper:before,
-  .vxe-table--fixed-right-wrapper:before {
-    border-color: $grid-border__color;
-  }
+    &:after,
+    &:before {
+      background-color: $table-border__color;
+    }
 
-  //内容部分下边框
-  .vxe-body--row .vxe-body--column {
-    border-bottom: 1px solid #ebeef5;
-  }
+    .vxe-table--fixed-left-wrapper:before,
+    .vxe-table--fixed-right-wrapper:before {
+      border-color: $table-border__color;
+    }
 
-  // 1、===============================
+    //内容部分下边框
+    .vxe-body--row .vxe-body--column {
+      border-bottom: 1px solid #ebeef5;
+    }
 
-  // 2、==== background style change ====
-  th.col--gutter {
-    background-color: #ebedef;
-  }
+    // 2、==== background style change ====
+    th.col--gutter {
+      background-color: $table-head__backgroundcolor;
+    }
 
-  //表头
-  .vxe-header--column {
-    background-color: #ebedef;
-    .vxe-resizable.is--line:before {
-      height: 100%;
-      background-color: #d6d8da;
+    //表头
+    .vxe-header--column {
+      background-color: $table-head__backgroundcolor;
+      //表格分割线 - 高度/颜色
+      .vxe-resizable.is--line:before {
+        height: 100%;
+        background-color: $table-head__linecolor;
+      }
+      //表格分割线 - 高度
+      .vxe-resizable {
+        height: inherit;
+      }
+    }
+
+    .vxe-table--header-wrapper {
+      background-color: $table-head__backgroundcolor;
+    }
+
+    //表格行 - 鼠标移入背景色
+    tr.vxe-body--row.row--hover {
+      background-color: $table-row__hover;
+      td:hover {
+        background-color: $table-row__hover;
+      }
+    }
+
+    tr.vxe-body--row:hover {
+      background-color: $table-row__hover;
+    }
+
+    //修复多选列-全选框半选状态下伪类显示异常
+    .vxe-checkbox.is--indeterminate > input:not(:checked) + .vxe-checkbox--icon:before {
+      left: 0;
+    }
+
+    .vxe-cell a.cell-link {
+      cursor: pointer;
+    }
+
+    //屏蔽自带 loading
+    .vxe-table--loading {
+      display: none !important;
+    }
+
+    //空结果
+    .vxe-table--empty-content p {
+      font-size: 13px;
+      color: $error-prompt_subcolor;
+      margin-top: 10px;
     }
   }
 
-  // 2、===============================
-
-  //修复多选列-全选框半选状态下伪类显示异常
-  .vxe-checkbox.is--indeterminate > input:not(:checked) + .vxe-checkbox--icon:before {
-    left: 0;
-  }
-
-  @import 'loading';
+  //error / loading identifier content
+  @import 'identifier';
 }
 
+//表格操作列
 @import 'action-scope';
+//表头设置
 @import 'action-drop';
+//合计操作
+@import 'action-summary';

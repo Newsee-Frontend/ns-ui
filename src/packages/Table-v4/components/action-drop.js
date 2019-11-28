@@ -1,5 +1,4 @@
 import draggable from 'vuedraggable';
-import keyRefer from '../mixins/keyRefer';
 import columntype from '../mixins/columntype';
 import IconClass from '../../Icon-class/Icon-class';
 import Checkbox from '../../Checkbox/Checkbox';
@@ -7,7 +6,7 @@ import Button from '../../Button/Button';
 
 export default {
   name: 'action-drop',
-  mixins: [keyRefer, columntype],
+  mixins: [columntype],
   components: {
     draggable,
     Checkbox,

@@ -2,20 +2,14 @@
 <template>
   <div class="biz-table" :style="`height: ${height+38}px`">
 
+    <!--表格-->
+    <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent"></ns-table>
 
-    <ns-table ref="bizTable"
-              v-bind="curProps"
-              v-on="curEvent"
-    ></ns-table>
-
-    <!--合计区域-->
-    <table-summary @summary-change="summaryChange"></table-summary>
-
-
+    <!--分页器-->
     <ns-pagination
       class="biz-pagination"
       :total="total || 0" :searchConditions="searchConditions"
-      :pageSizes="[10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
+      :pageSizes="[0,10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
       @size-change="sizeChange"
       @current-change="currentChange"
     ></ns-pagination>
@@ -24,28 +18,24 @@
 </template>
 
 <script>
+  import dataRender from './mixins/dataRender';
+  import headFactory from './mixins/headFactory';
+  import resizeHeight from './mixins/resize-height';
   import keyRefer from './config/keyRefer';
-  import columnConfig from './config/column-template-config';
   import rulesConfig from './config/rulesInfo';
-  import tableSummary from './components/summary';
+
 
   export default {
     name: 'biz-table',
-    components: { tableSummary },
+    mixins: [dataRender, headFactory, resizeHeight],
+    components: {},
     data() {
       return {
         keyRefer,
         rulesConfig,
-
-        normalColInclude: ['text', 'number', 'date', 'select'],
-        specialColInclude: ['index', 'checkbox', 'radio'],
-        actionColInclude: ['action', 'add-row'],
-        settingColInclude: ['setting'],
-
-        height: 500,
-
       };
     },
+
     props: {
       loading: { type: Boolean },
       data: {
@@ -65,15 +55,20 @@
       showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
       showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
 
-      showFooter: { type: Boolean },//是否显示表尾合计
+      showFooter: { type: Boolean, default: false },//是否显示表尾合计
       footerMethod: { type: Function },//表尾合计的计算方法
       checkMethod: { type: Function },//控制 CheckBox 是否允许勾选的方法，该方法 Function({row}) 的返回值用来决定这一行的 CheckBox 是否可以勾选.
 
     },
     computed: {
+
+      tableLoading() {
+        return this.loading || this.headLoading || this.renderLoading;
+      },
+
       curProps() {
         const props = {
-          loading: this.loading,
+          loading: this.tableLoading,
           isHugeData: this.isHugeData,
           head: this.finalHead,
           keyRefer: this.keyRefer,
@@ -90,57 +85,18 @@
       },
       curEvent() {
         return {
+          reload: this.reload,
           'edit-actived': this.editActived,
           'cell-event': this.cellEvent,
           'table-action': this.tableAction,
           'column-setting-submit': this.columnSettingSubmit,
           'select-change': this.selectChange,
           'select-all': this.selectAll,
+          'summary-change': this.summaryChange,
         };
       },
-      finalHead() {
-        return [
-          ...(this.firstColType ? [columnConfig[this.firstColType]] : []),
-          ...(this.localHead ? this.localHead : this.tableHead),
-          ...(this.hasActionCol ? [columnConfig['action']] : []),
-          ...(this.showAddRowOperation ? [columnConfig['add-row']] : []),
-          ...(this.showHeadOperation ? [columnConfig['setting']] : []),
-        ].map(col => {
-          col.resourcecolumnHidden = col.resourcecolumnHidden === true || col.resourcecolumnHidden === '1';
-
-          const key = col.resourcecolumnCode;
-          if (this.specialColInclude.indexOf(key) > -1) {
-            col.fixed = 'left';
-          }
-          else if ([...this.actionColInclude, ...this.settingColInclude].indexOf(key) > -1) {
-            col.fixed = 'right';
-          }
-          else {
-            col.fixed = '';
-          }
-          return col;
-        });
-      },
     },
-
-
     methods: {
-      /**
-       * get table head data
-       */
-      getTableHead() {
-        if (this.localHead) {
-          this.loadState.head = true;
-        }
-        else {
-          this.$store.dispatch('generateTableHead', { funcId: 'funcId', mockType: this.isFormTable ? 'form' : 'normal' }).then(() => {
-            this.loadState.head = true;
-          }).catch(() => {
-            this.loadState.head = true;
-          });
-        }
-      },
-
       /**
        * loadData table data - 加载数据（对于表格数据需要重载、局部递增场景下可能会用到）
        * @param tableData
@@ -150,8 +106,8 @@
         return new Promise((resolve, reject) => {
           this.$refs['bizTable'].loadData(tableData).then(() => {
             resolve();
-          }).catch(() => {
-              reject();
+          }).catch(err => {
+              reject(err);
             },
           );
         });
@@ -166,11 +122,16 @@
         return new Promise((resolve, reject) => {
           this.$refs['bizTable'].reloadData(tableData).then(() => {
             resolve();
-          }).catch(() => {
-              reject();
+          }).catch(err => {
+              reject(err);
             },
           );
         });
+      },
+
+      //重新刷新
+      reload() {
+        this.$emit('reload');
       },
 
       /**
@@ -203,14 +164,12 @@
 
       /**
        * 单元格事件 - 点击/修改
-       * @param row
-       * @param rowIndex
-       * @param column
-       * @param columnIndex
+       * @param { row, rowIndex, column, columnIndex, rows, columns }
+       *  注释：1、row - 行数据 , 2、rowIndex - 行索引, 3、column - 列数据, 4、columnIndex - 列索引 , 5、rows - 全部表格数据 , 6、columns - 全部列数据
        * @param event
        */
-      cellEvent({ row, rowIndex, column, columnIndex }, event) {
-        this.$emit('cell-event', { row, rowIndex, column, columnIndex }, event);
+      cellEvent({ row, rowIndex, column, columnIndex, rows, columns }, event) {
+        this.$emit('cell-event', { row, rowIndex, column, columnIndex, rows, columns }, event);
       },
 
       /**
@@ -242,12 +201,13 @@
       },
 
       /**
-       * 当选择项发生变化时会触发该事件
-       * @param {checked, row, $rowIndex, column, $columnIndex}
+       * 单选列，多选列 （当选择项发生变化时会触发该事件）
+       * @param { row, $rowIndex, column, $columnIndex, checked, selection }
+       * 注意：单选列的情况下，参数：checked, selection 不存在
        * @param event
        */
-      selectChange({ checked, row, $rowIndex, column, $columnIndex }, event) {
-        this.$emit('select-change', { checked, row, $rowIndex, column, $columnIndex }, event);
+      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
+        this.$emit('select-change', { row, $rowIndex, column, $columnIndex, checked, selection }, event);
       },
 
       /**
@@ -285,11 +245,14 @@
 
       /**
        * set selection state - 设置行的选中状态
-       * @param rows  - 选中的对象列表（数组)
+       * @param type - 类型，单选还是多选
+       * @param rows  - 选中的对象
+       *              ~ checkbox - 选中的行数据列表（数组)
+       *              ~ radio - 单个行数据
        * @param checked - 选中与否（布尔)
        */
-      setSelection(rows, checked) {
-        this.$refs['bizTable'].setSelection(rows, checked);
+      setSelection(type, rows, checked) {
+        this.$refs['bizTable'].setSelection(type, rows, checked);
       },
 
       /**
@@ -299,11 +262,13 @@
       setAllSelection(checked) {
         this.$refs['bizTable'].setAllSelection(checked);
       },
+
       /**
        * clear all selection state - 清空选中状态
+       * @param type - 类型，单选还是多选
        */
-      clearSelection() {
-        this.$refs['bizTable'].clearSelection();
+      clearSelection(type) {
+        this.$refs['bizTable'].clearSelection(type);
       },
 
 
@@ -347,7 +312,6 @@
         console.log('current-page-change', val);
         this.$emit('reload');
       },
-
 
     },
     created() {

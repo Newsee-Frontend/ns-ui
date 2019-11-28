@@ -67,7 +67,7 @@ export default create({
             class="fl"
             current-page={this.searchConditions.pageNum}
             page-sizes={this.pageSizes}
-            page-size={this.searchConditions.pageSize}
+            page-size={parseInt(this.searchConditions.pageSize)}
             total={this.total}
             layout={this.layout}
             pager-count={this.pagerCount}

@@ -7,7 +7,7 @@ export default {
     'resourcecolumnCode': 'index',//model-key
     'resourcecolumnXtype': 'index',//筛选列类型:index/selection/radio/text/number
     'resourcecolumnWidth': '46',//列的宽度
-    'resourcecolumnOrder': '0-1',//列的序号
+    'resourcecolumnOrder': '1-1',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
@@ -17,7 +17,7 @@ export default {
     'resourcecolumnCode': 'checkbox',//model-key
     'resourcecolumnXtype': 'checkbox',//筛选列类型:index/selection/radio/text/number
     'resourcecolumnWidth': '46',//列的宽度
-    'resourcecolumnOrder': '0-2',//列的序号
+    'resourcecolumnOrder': '1-2',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
@@ -27,7 +27,7 @@ export default {
     'resourcecolumnCode': 'radio',//model-key
     'resourcecolumnXtype': 'radio',//筛选列类型:index/selection/radio/text/number
     'resourcecolumnWidth': '46',//列的宽度
-    'resourcecolumnOrder': '0-3',//列的序号
+    'resourcecolumnOrder': '1-3',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
@@ -47,17 +47,17 @@ export default {
     'resourcecolumnCode': 'add-row',//model-key
     'resourcecolumnXtype': 'add-row',//筛选列 类型
     'resourcecolumnWidth': '42',//列的宽度
-    'resourcecolumnOrder': '99',//列的序号
+    'resourcecolumnOrder': '99-1',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'center',//对齐
     'eidtConfig': null,
   },
   setting: {
-    resourcecolumnName: '设置', //label
+    resourcecolumnName: '', //label
     resourcecolumnCode: 'setting', //model-key
     resourcecolumnXtype: 'setting', //筛选列 类型
-    resourcecolumnWidth: '28', //列的宽度
-    resourcecolumnOrder: '99', //列的序号
+    resourcecolumnWidth: '22', //列的宽度
+    resourcecolumnOrder: '99-2', //列的序号
     resourcecolumnHidden: '0', //是否隐藏
     resourcecolumnAlign: 'center', //对齐
     eidtConfig: null,

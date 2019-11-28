@@ -7,7 +7,10 @@ export default {
   data() {
     return {
       dropTit: null,
-      dropConf: [{ command: 'current', tit: '分页' }, { command: 'total', tit: '全部' }],
+      dropConf: [
+        { command: 'current', tit: '分页' },
+        { command: 'total', tit: '全部' },
+      ],
     };
   },
   props: {

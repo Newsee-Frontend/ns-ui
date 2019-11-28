@@ -8,6 +8,7 @@
 /*==========================================================================================================================*/
 import axios from 'axios';
 import { Message } from 'element-ui';
+import solveGetCache from './solveGetCache';
 
 console.log('当前运行环境：', process.env);
 
@@ -20,11 +21,12 @@ const service = axios.create({
 
 service.interceptors.request.use(
   config => {
+    solveGetCache(config);
     return config;
   },
   error => {
     Promise.reject(error);
-  }
+  },
 );
 
 service.interceptors.response.use(
@@ -41,7 +43,7 @@ service.interceptors.response.use(
     Message({ message: error.resultMsg, type: 'error', duration: 2000 }); //throw message error
     let errorInfo = error.data.error ? error.data.error.message : error.data;
     return Promise.reject(errorInfo);
-  }
+  },
 );
 
 export default service;

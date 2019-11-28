@@ -1,5 +1,4 @@
-$el-dropdown_text_color: #409eff; //表头固定操作列-下拉框内文字颜色
-$--color-info: #0a7af8;
+@import 'config';
 
 //action area in column for table
 .action-scope {
@@ -10,7 +9,7 @@ $--color-info: #0a7af8;
     border: none;
     font-size: inherit;
     &:hover {
-      color: $--color-info;
+      color: $action-scope_text__hovercolor;
       background-color: transparent;
     }
     &:last-child {
@@ -22,7 +21,7 @@ $--color-info: #0a7af8;
     vertical-align: middle;
     font-size: inherit;
     span {
-      color: $el-dropdown_text_color;
+      color: $action-scope_text__color;
       font-weight: 500;
       font-size: inherit;
       cursor: pointer;
@@ -30,7 +29,7 @@ $--color-info: #0a7af8;
       padding: 0;
       line-height: inherit;
       &:hover {
-        color: $--color-info;
+        color: $action-scope_text__hovercolor;
       }
     }
   }

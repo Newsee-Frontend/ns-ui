@@ -47,22 +47,21 @@
       .gap {
         margin-top: 20px;
       }
-
-      .control-block {
-        margin: 10px 0;
-        span {
-          font-size: 14px;
-          color: #505c6e;
-          margin: 0 1px 0 8px;
-          &:first-child {
-            margin-left: 0;
-          }
+    }
+    .control-block {
+      margin: 10px 0;
+      span {
+        font-size: 14px;
+        color: #505c6e;
+        margin: 0 1px 0 8px;
+        &:first-child {
+          margin-left: 0;
         }
       }
-      .form-block-line {
-        height: 32px;
-        line-height: 32px;
-      }
+    }
+    .form-block-line {
+      height: 32px;
+      line-height: 32px;
     }
   }
 </style>

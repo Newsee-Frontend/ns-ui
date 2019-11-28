@@ -7,7 +7,11 @@ export default {
       { selection, checked, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell },
       event
     ) {
-      this.$emit('select-change', { checked, row, $rowIndex, column, $columnIndex }, event);
+      this.$emit(
+        'select-change',
+        { row, $rowIndex, column, $columnIndex, checked, selection },
+        event
+      );
     },
 
     /**
@@ -22,11 +26,20 @@ export default {
 
     /**
      * set selection state
+     * @param type
      * @param rows
      * @param checked
      */
-    setSelection(rows, checked) {
-      this.$refs['main-table'].setSelection(rows, checked);
+    setSelection(type, rows, checked) {
+      if (type === 'checkbox') {
+        this.$refs['main-table'].setSelection(rows, checked);
+      } else if (type === 'radio') {
+        if (checked) {
+          this.$refs['main-table'].setRadioRow(rows);
+        } else {
+          this.$refs['main-table'].clearRadioRow();
+        }
+      }
       this.$refs['main-table'].refreshColumn();
     },
 
@@ -40,9 +53,22 @@ export default {
 
     /**
      * clear all selection state
+     * @param type - checkbox/radio
      */
-    clearSelection() {
-      this.$refs['main-table'].clearSelection();
+    clearSelection(type = 'checkbox') {
+      if (type === 'checkbox') {
+        this.$refs['main-table'].clearSelection();
+      } else if (type === 'radio') {
+        this.$refs['main-table'].clearRadioRow();
+      }
+    },
+
+    /**
+     * radio change in column
+     */
+    radioChange({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }, event) {
+      console.log('单选事件');
+      this.$emit('select-change', { row, $rowIndex, column, $columnIndex }, event);
     },
   },
 };

@@ -4,9 +4,15 @@ export default {
     renderDefault(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, column } = editRender.props;
       let { events } = editRender;
+      const value = row[modelCode];
+      const formatter = column.formatter;
+
       return [
-        <a on-click={() => events.click({ row, rowIndex, column, columnIndex })}>
-          {row[modelCode]}
+        <a
+          class={'cell-link'}
+          on-click={() => events.click({ row, rowIndex, column, columnIndex })}
+        >
+          {formatter ? formatter[value] : value}
         </a>,
       ];
     },

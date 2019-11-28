@@ -14,38 +14,35 @@ export default {
     keyRefer: { type: Object },
   },
   data() {
-    return {
-      formCellList: [
-        'link',
-        'input',
-        'rate',
-        'time',
-        'date',
-        'datetime',
-        'checkbox',
-        'radio',
-        'select',
-        'select-unit',
-      ],
-    };
+    return {};
   },
   computed: {
     columnType() {
-      return this.column[this.headRefer['xtype']];
+      return this.column.type;
     },
     modelCode() {
-      return this.column[this.headRefer['model-key']];
+      return this.column.field;
     },
 
     //表单单元格配置信息
     formConfig() {
-      return this.column[this.headRefer['cell-Config']];
+      return this.column['cell-Config'];
     },
     //表单单元格类型
     formType() {
-      return this.formConfig[this.scopeRefer['type']];
+      try {
+        return this.formConfig.type;
+      } catch (e) {
+        return undefined;
+      }
     },
-    //是否为表单渲染
+    /**
+     * is form column render:
+     *    1、has current column data
+     *    2、has right data format （'cell-Config')
+     *    3、current column type in  list（formColInclude)
+     * @returns {boolean}
+     */
     isFormRender() {
       try {
         if (!this.column) {
@@ -56,7 +53,7 @@ export default {
           return false;
         }
 
-        if (this.formCellList.indexOf(this.formType) === -1) {
+        if (this.formColInclude.indexOf(this.formType) === -1) {
           return false;
         }
         return true;
@@ -73,7 +70,7 @@ export default {
       injection.props = {
         field: this.column[this.headRefer['model-key']],
       };
-      
+
       if (this.isFormRender) {
         let renderProps = {
           name: `ns-table-${this.formType}`,
@@ -101,9 +98,8 @@ export default {
         }
       }
     }
-
     //操作列
-    else if (this.actionColInclude.indexOf(this.columnType) > -1) {
+    if (this.actionColInclude.indexOf(this.columnType) > -1) {
       injection.props = {
         'cell-render': {
           name: 'ns-table-action-cell',
@@ -117,9 +113,8 @@ export default {
         },
       };
     }
-
     //设置列
-    else if (this.settingColInclude.indexOf(this.columnType) > -1) {
+    if (this.settingColInclude.indexOf(this.columnType) > -1) {
       injection.scopedSlots = {
         default: () => {
           return [];
@@ -134,37 +129,81 @@ export default {
           );
         },
       };
-    } else {
     }
 
-    console.log('当前字段');
-    console.log(this.column[this.headRefer['model-key']]);
-    console.log('当前列类型');
-    console.log(this.columnType);
+    //内容列( 常规列 / 链接列 / 表单列 )
+    else if (this.contentColumns.indexOf(this.columnType) > -1) {
+      injection.props = {
+        field: this.column.field,
+      };
 
-    if (this.column[this.headRefer['model-key']] === 'organizationShortName') {
-      console.log('问题列');
+      //default column render config
+      let renderProps = {
+        name: `ns-table-${this.formType}`,
+        props: {
+          modelCode: this.modelCode,
+          column: this.column,
+          formConfig: this.formConfig,
+        },
+      };
+
+      //form column
+      if (this.isFormRender) {
+        injection.props['edit-render'] = {
+          ...renderProps,
+          events: {
+            change: this.cellEvent,
+          },
+        };
+      }
+      //normal column
+      else {
+        //link column
+        if (this.formType === 'link') {
+          injection.props['cell-render'] = {
+            ...renderProps,
+            events: {
+              click: this.cellEvent,
+            },
+          };
+        }
+
+        /**
+         * cover by formatter config
+         * Note: the current usage only applies to non form rendering (normal text cell render)
+         */
+        if (this.column.formatter) {
+          //add value formatter
+          injection.props.formatter = ({ cellValue }) => {
+            return this.column.formatter[cellValue];
+          };
+        }
+      }
     }
 
     const general = {
       props: {
-        type: this.columnType,
-        title: this.column[this.headRefer['label']],
-        align: this.column[this.headRefer['align']],
-        fixed: this.column[this.headRefer['fixed']],
+        title: this.column.title,
+        align: this.column.align,
+        fixed: this.column.fixed,
         'header-class-name': ({ column }) => {
           return `column-${column.property || column.type}`;
         },
+
+        /**
+         * special columns use width && type ,other use min-width
+         * @type {string}
+         */
+        ...(this.specialColumns.indexOf(this.columnType) > -1
+          ? {
+              type: this.columnType,
+              width: this.column.width,
+            }
+          : {
+              'min-width': this.column.width,
+            }),
       },
     };
-
-    /**
-     * special columns use width ,other use min-width
-     * @type {string}
-     */
-    const wk = this.specialColumns.indexOf(this.columnType) > -1 ? 'width' : 'min-width';
-
-    general.props[wk] = this.column[this.headRefer['width']];
 
     return h(`vxe-table-column`, deepObjectMerge(general, injection));
   },
@@ -177,12 +216,6 @@ export default {
      * @param columnIndex
      */
     cellEvent({ row, rowIndex, column, columnIndex }) {
-      // this.$refs.xTable.updateStatus(scope)
-      // console.log('cellEvent-cellEvent-cellEvent');
-      // console.log(this.$parent);
-      // console.log(this.$parent.$options);
-      // console.log(this.$parent.$options.name);
-      // this.$parent.updateStatus()
       this.$emit('cell-event', { row, rowIndex, column, columnIndex }, event);
     },
 
@@ -208,6 +241,5 @@ export default {
       this.$emit('column-setting-submit', column);
     },
   },
-  created() {
-  },
+  created() {},
 };
