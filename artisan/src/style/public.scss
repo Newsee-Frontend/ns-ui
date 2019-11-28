@@ -13,6 +13,7 @@ $--color-white: #fff; //纯白
 
 //---------- base color ----------
 $--color-primary: #0a7af8;
+$--color-primary-link: #409eff;
 $--color-ns-form-hover: #33a1ff; //本项目中表单控件鼠标移入边框基础颜色 input / select
 $--color-primary-light: #4097f9; //基础主色-浅色
 
@@ -50,7 +51,7 @@ body {
 }
 
 a {
-  color: rgba(32, 160, 255, 1);
+  color: $--color-primary-link;
 }
 
 li {
