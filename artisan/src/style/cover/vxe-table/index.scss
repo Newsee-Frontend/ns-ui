@@ -6,10 +6,18 @@
  */
 @import '../../public';
 
+$table-height: 38px;
 $table-border__color: #e8e8e8; //边框色
 $table-head__backgroundcolor: #ebedef; //表头背景色
 $table-head__linecolor: #d6d8da; //表头 - 分割线颜色
 $table-row__hover: #ecf5ff; //行 - 鼠标移入背景色
+
+.vxe-table.size--small .vxe-body--column.col--ellipsis,
+.vxe-table.size--small .vxe-footer--column.col--ellipsis,
+.vxe-table.size--small .vxe-header--column.col--ellipsis,
+.vxe-table.vxe-editable.size--small .vxe-body--column {
+  //height: $table-height;
+}
 
 .vxe-table {
   //整体字体颜色
@@ -107,6 +115,21 @@ $table-row__hover: #ecf5ff; //行 - 鼠标移入背景色
     }
   }
 
+  .action-scope {
+    //操作列-操作按钮 - dropdown
+    .el-dropdown {
+      span {
+        color: $--color-primary-link;
+        &:hover {
+          color: $--color-primary;
+        }
+      }
+    }
+
+    .ns-button {
+      margin-top: 1px;
+    }
+  }
 }
 
 
