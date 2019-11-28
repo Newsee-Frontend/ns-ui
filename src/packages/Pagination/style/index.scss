@@ -29,12 +29,13 @@ $grid-cell-base_height: 28px;
     line-height: $grid-cell-base_height;
     padding-top: 0;
     padding-bottom: 0;
+
+    span.el-pagination__total {
+      display: none;
+    }
   }
 
   //button.panel-po_btn {
   //  margin-left: 5px;
   //}
-  span.el-pagination__total {
-    display: none;
-  }
 }
