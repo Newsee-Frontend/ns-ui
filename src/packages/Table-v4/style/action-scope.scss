@@ -9,7 +9,7 @@
     border: none;
     font-size: inherit;
     &:hover {
-      color: $action-scope_text__hovercolor;
+      //color: $action-scope_text__hovercolor;
       background-color: transparent;
     }
     &:last-child {
@@ -21,16 +21,16 @@
     vertical-align: middle;
     font-size: inherit;
     span {
-      color: $action-scope_text__color;
+      //color: $action-scope_text__color;
       font-weight: 500;
       font-size: inherit;
       cursor: pointer;
       margin: 0;
       padding: 0;
       line-height: inherit;
-      &:hover {
-        color: $action-scope_text__hovercolor;
-      }
+      //&:hover {
+      //  color: $action-scope_text__hovercolor;
+      //}
     }
   }
 }
