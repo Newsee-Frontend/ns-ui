@@ -23,8 +23,8 @@ export default create({
     right: { type: String, default: '0' },
     top: { type: String, default: '0' },
     bottom: { type: String, default: '0' },
-    model: { type: Boolean, default: false }, //是否含有遮罩层
-    modelSpeed: { type: Number, default: 200 }, //遮罩层速率
+    modal: { type: Boolean, default: false }, //是否含有遮罩层
+    modalSpeed: { type: Number, default: 200 }, //遮罩层速率
     closeOnClickModal: { type: Boolean, default: true }, //是否可以通过点击 modal 关闭
     domToClose: { type: String, default: 'app' },
     appendToBody: { type: Boolean, default: true },
@@ -68,20 +68,20 @@ export default create({
       }
     },
 
-    modelId() {
-      return `${this.recls('model')}-${uuid(5)}`;
+    modalId() {
+      return `${this.recls('modal')}-${uuid(5)}`;
     },
 
-    createModelDom() {
+    createModalDom() {
       let mask = document.createElement('div');
-      mask.setAttribute('id', this.modelId);
-      mask.setAttribute('class', this.recls('model'));
+      mask.setAttribute('id', this.modalId);
+      mask.setAttribute('class', this.recls('modal'));
       return mask;
     },
 
-    outerModelTarget() {
+    outerModalTarget() {
       try {
-        const outer = document.getElementById(this.modelId);
+        const outer = document.getElementById(this.modalId);
         return outer ? outer : document.body;
       } catch (e) {
         return document.body;
@@ -94,11 +94,11 @@ export default create({
       this.lastVisible = this.visible;
       if (val) {
         this.appendDialogToBody();
-        this.appendModelToBody();
+        this.appendModalToBody();
 
         this.open();
       } else {
-        delayEvent(this, _ => this.destroyModel(), this.modelSpeed);
+        delayEvent(this, _ => this.destroyModal(), this.modalSpeed);
 
         if (typeof this.beforeClose === 'function') {
           this.beforeClose(val);
@@ -121,7 +121,7 @@ export default create({
       >
         {this.visible ? (
           <div
-            class={this.recls() + ' ' + (this.model ? 'is-model' : '')}
+            class={this.recls() + ' ' + (this.modal ? 'is-modal' : '')}
             style={this.wrapperStyle}
             on-click={this.wrapperClick}
           >
@@ -139,16 +139,16 @@ export default create({
       if (!this.appendToBody) return;
       document.body.appendChild(this.$el);
     },
-    appendModelToBody() {
-      if (!this.model) return;
-      if (document.getElementById(this.modelId)) return;
-      document.body.appendChild(this.createModelDom);
+    appendModalToBody() {
+      if (!this.modal) return;
+      if (document.getElementById(this.modalId)) return;
+      document.body.appendChild(this.createModalDom);
     },
 
-    destroyModel() {
-      if (!this.model) return;
-      if (!document.getElementById(this.modelId)) return;
-      document.body.removeChild(this.createModelDom);
+    destroyModal() {
+      if (!this.modal) return;
+      if (!document.getElementById(this.modalId)) return;
+      document.body.removeChild(this.createModalDom);
     },
 
     open() {
@@ -200,21 +200,21 @@ export default create({
     //listen drop modules click event
     addEventHandler(this.outerDomTarget, 'click', this.outerClickEvent);
 
-    if (this.model && this.closeOnClickModal) {
-      addEventHandler(this.outerModelTarget, 'click', this.outerClickEvent);
+    if (this.modal && this.closeOnClickModal) {
+      addEventHandler(this.outerModalTarget, 'click', this.outerClickEvent);
     }
 
     if (this.visible) {
       this.appendDialogToBody();
-      this.appendModelToBody();
+      this.appendModalToBody();
     }
   },
   beforeDestroy() {
     //remove event Listener
     removeEventHandler(this.outerDomTarget, 'click', this.outerClickEvent);
 
-    if (this.model && this.closeOnClickModal) {
-      removeEventHandler(this.outerModelTarget, 'click', this.outerClickEvent);
+    if (this.modal && this.closeOnClickModal) {
+      removeEventHandler(this.outerModalTarget, 'click', this.outerClickEvent);
     }
   },
   destroyed() {
@@ -223,7 +223,7 @@ export default create({
       this.$el.parentNode.removeChild(this.$el);
     }
 
-    this.destroyModel();
+    this.destroyModal();
 
     this.timeout = null;
   },

@@ -20,7 +20,7 @@ export default create({
     activeValue: { type: [Boolean, String, Number], default: true },
     inactiveValue: { type: [Boolean, String, Number], default: false },
     activeIconClass: { type: String, default: null },
-    offIconClass: { type: String, default: null },
+    inactiveIconClass: { type: String, default: null },
     disabled: { type: Boolean, default: false },
     name: { type: String, default: '' },
   },

@@ -23,7 +23,7 @@ export default create({
       validator: t => {
         return _dialogtype.includes(t);
       },
-    }, //类型（'normal','simple','noFooter','noHeader'）
+    }, //类型（'normal','simple','noFooter'）
     autoHeight: { type: Boolean, default: false }, //是否自动高度（对话框内容部分由内容撑开)
     size: {
       type: String,

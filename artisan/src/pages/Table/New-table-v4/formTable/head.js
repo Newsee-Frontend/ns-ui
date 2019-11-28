@@ -6,7 +6,7 @@ export default [
     'resourcecolumnXtype': 'text',//筛选列 类型
     'resourcecolumnWidth': '150',//列的宽度
     'resourcecolumnOrder': '4',//列的序号
-    'resourcecolumnHidden': '1', //是否隐藏
+    'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
       'switchType': true,

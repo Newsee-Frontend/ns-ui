@@ -65,6 +65,39 @@ export default {
   render(h) {
     const injection = {};
 
+    //常规列( 常规列 / 链接列 / 表单列 )
+    if (this.normalColInclude.indexOf(this.columnType) > -1) {
+      injection.props = {
+        field: this.column[this.headRefer['model-key']],
+      };
+
+      if (this.isFormRender) {
+        let renderProps = {
+          name: `ns-table-${this.formType}`,
+          props: {
+            modelCode: this.modelCode,
+            column: this.column,
+            formConfig: this.formConfig,
+          },
+        };
+
+        if (this.formType === 'link') {
+          injection.props['cell-render'] = {
+            ...renderProps,
+            events: {
+              click: this.cellEvent,
+            },
+          };
+        } else {
+          injection.props['edit-render'] = {
+            ...renderProps,
+            events: {
+              change: this.cellEvent,
+            },
+          };
+        }
+      }
+    }
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
       injection.props = {
