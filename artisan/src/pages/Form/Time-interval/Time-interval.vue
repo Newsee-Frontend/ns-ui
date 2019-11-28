@@ -40,7 +40,7 @@
           weeks: 'Wed',//星期
           mSenconds: '22:22:22',//时间
         },
-        disabled: true,
+        disabled: false,
       };
     },
     computed: {},

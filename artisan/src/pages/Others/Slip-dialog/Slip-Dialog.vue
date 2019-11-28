@@ -23,7 +23,7 @@
           <div class="control-block form-block-line">
             <span>是否显示遮罩: </span>
             <ns-switch
-              v-model="form.model"
+              v-model="form.modal"
               active-color="#13ce66"
               inactive-color="#ff4949"
               style="margin-right: 10px"
@@ -38,7 +38,7 @@
             >点击modal关闭
             </ns-switch>
             <span>遮罩层速率: </span>
-            <ns-input v-model="form.modelSpeed" placeholder="请输入遮罩层速率"></ns-input>
+            <ns-input v-model="form.modalSpeed" placeholder="请输入遮罩层速率"></ns-input>
 
           </div>
           <div class="control-block form-block-line">
@@ -69,9 +69,9 @@
             :right="form.iptright"
             :top="form.ipttop"
             :bottom="form.iptbottom"
-            :model="form.model"
+            :modal="form.modal"
             :closeOnClickModal="form.closeOnClickModal"
-            :modelSpeed="form.modelSpeed"
+            :modalSpeed="form.modalSpeed"
             appendToBody
             :entr-position="form.postion"
             :animation="form.animation"
@@ -139,9 +139,9 @@
         form: {
           dialogSw: false,
           dialogSw2: false,
-          model: true,
+          modal: true,
           closeOnClickModal: true,
-          modelSpeed: 300,
+          modalSpeed: 300,
           animation: 'slip-pretend',
           postion: 'right',
           iptleft: '300px',

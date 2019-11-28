@@ -73,7 +73,7 @@ export default {
       injection.props = {
         field: this.column[this.headRefer['model-key']],
       };
-
+      
       if (this.isFormRender) {
         let renderProps = {
           name: `ns-table-${this.formType}`,

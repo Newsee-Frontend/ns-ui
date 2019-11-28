@@ -4,7 +4,7 @@
 
 $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
 
-@include b(slip-dialog__model) {
+@include b(slip-dialog__modal) {
   position: fixed;
   left: 0;
   right: 0;
@@ -24,7 +24,7 @@ $--slipDialog-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) !default;
   border-radius: $--border-radius-small;
   box-shadow: $--slipDialog-box-shadow;
   z-index: 1501;
-  &.is-model {
+  &.is-modal {
     z-index: 1504;
   }
   @include e(container) {

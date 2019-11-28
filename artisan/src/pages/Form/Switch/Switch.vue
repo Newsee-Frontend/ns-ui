@@ -3,10 +3,10 @@
   <div class="switch-wrapper">
     <ns-switch
       v-model="value"
-      onText="季报"
-      offText="月报"
-      onColor="#13ce66"
-      offColor="#ff4949"
+      activeText="季报"
+      inactiveText="月报"
+      activeColor="#13ce66"
+      inactiveColor="#ff4949"
       @change="getChange"
     ></ns-switch>
 
