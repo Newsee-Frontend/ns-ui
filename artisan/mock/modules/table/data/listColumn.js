@@ -8,19 +8,19 @@ export const formlistColumn = [
     'resourcecolumnHidden': '1', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'eidtConfig': {
-      'switchType': true,
-      'type': 'link',//input select checkbox redio datepicker timepicker link
-      'decimal': 2,
-      'disabled': false,
-      'maxlength': null,
-      'max': 0,
-      'min': 0,
-      'placeHolder': '请输入',
-      'multiple': null,
-      'require': true,
-      'validateRule': null,
-      'errorMsg': '输入项目名称',
-      'options': [],
+      dataSources:'',//数据来源
+      'filterType': 'link',//筛选器表单类型
+      'type': 'link',//表单类型
+      'disabled': false,//表单控件是否禁用
+      'maxlength': null,//表单控件输入最大长度（只在 input 中有用)
+      'max': 0,//选择的最大个数（只在checkbox，radio，select-多选  中有用)
+      'min': 0,//选择的最小个数只在checkbox，radio 中有用)
+      'placeHolder': '请输入',//占位符
+      'multiple': null,//是否多选（只在select-多选  中有用)
+      'require': true,//是否必填
+      'validateRule': null,//内容验证规则（只在 input 中有用)
+      'errorMsg': '输入项目名称',//验证出错时的 提示消息
+      'options': [],//下拉项/展示内容，（只在checkbox，radio，select 中有用)
     },
   },
   {
