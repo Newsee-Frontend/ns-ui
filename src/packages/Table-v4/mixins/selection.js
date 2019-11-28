@@ -53,6 +53,7 @@ export default {
 
     /**
      * clear all selection state
+     * @param type - checkbox/radio
      */
     clearSelection(type = 'checkbox') {
       if (type === 'checkbox') {
