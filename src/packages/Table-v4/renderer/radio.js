@@ -10,12 +10,12 @@ export default {
 
       return [
         <Radio
-          value={row[modelCode].picked.value}
+          value={row[modelCode]}
           onInput={e => {
-            row[modelCode].picked.value = e;
+            row[modelCode] = e;
             this.$emit('input', e);
           }}
-          options={row[modelCode].options}
+          options={formConfig.options}
           disabled={formConfig.disabled}
           on-change={() => events.change({ row, column, rowIndex, columnIndex })}
         />,
@@ -23,9 +23,12 @@ export default {
     },
 
     renderCell(h, editRender, { row }) {
-      const { modelCode } = editRender.props;
-      let data = row[modelCode];
-      return getLabelByValue(data.picked.value, data.options);
+      const { modelCode, column } = editRender.props;
+
+      const model = row[modelCode];
+      const options = column['cell-Config'].options;
+
+      return getLabelByValue(model, options);
     },
   },
 };
