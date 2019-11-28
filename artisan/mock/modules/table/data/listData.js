@@ -16,45 +16,16 @@ export const formTableData = pageSize => {
       age: Mock.Random.float(20, 60, 0, 0), //年龄
       sex: Mock.Random.float(0, 2, 0, 0),//性别
       level: Mock.Random.float(0, 3, 0, 0), //等级
-      education: {
-        picked: { value: Mock.Random.float(1, 8, 0, 0) },
-        options: [
-          { label: '小学', value: 1 },
-          { label: '初中', value: 2 },
-          { label: '高中', value: 3 },
-          { label: '大专', value: 4 },
-          { label: '本科', value: 5 },
-          { label: '研究生', value: 6 },
-          { label: '博世', value: 7 },
-          { label: '其他', value: 8 },
-        ],
-      },//学历
-      isChecked: {
-        picked: { value: '' },
-        options: [],
-      },//是否审核
-      checkedType: {
-        picked: { value: '' },
-        options: [],
-      },//审核类型
+      education: Mock.Random.float(1, 8, 0, 0),//学历
+      isChecked: '',//是否审核
+      checkedType: '',//审核类型
       // createDate: '@datetime', //成立日期
       createDate: Mock.Random.date('yyyy-MM-dd hh:mm:ss'),//成立日期
       endDate: Mock.Random.date('yyyy-MM-dd'),//结束 - 日期
       endTime: Mock.Random.date('hh:mm:ss'),//结束 -  时间点
-      isLocked: {
-        picked: { value: 1 },
-        options: [{ 'label': '是', 'value': 1 }, { 'label': '否', 'value': 0 }],
-      },//是否锁定（单选）
-      fieldArea: {
-        picked: { value: [1, 2, 4, 5] },
-        options: [
-          { label: '互联网', value: 1 },
-          { label: '电子芯片', value: 2 },
-          { label: '传统制造', value: 3 },
-          { label: '物联网', value: 4 },
-          { label: '广告服务', value: 5 },
-        ],
-      },//涉猎领域（多选）
+      isLocked: Mock.Random.float(0, 1, 0, 0),//是否锁定（单选）
+      lockedInfo: [1, 4],//锁定信息（多选）
+      fieldArea: [1, 2, 4, 5],//涉猎领域（多选）
       describe: Mock.Random.csentence(), //备注
       email: Mock.Random.email(),
     });
