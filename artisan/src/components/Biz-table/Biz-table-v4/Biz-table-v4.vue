@@ -38,11 +38,7 @@
 
     props: {
       loading: { type: Boolean },
-      data: {
-        type: Array, default() {
-          return [];
-        },
-      },
+      data: { type: Array },
       isHugeData: { type: Boolean },//大数据量渲染，不支持表单表格的功能
       localHead: { type: Array, request: false }, //本地表头数据
 
