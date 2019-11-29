@@ -116,8 +116,17 @@
         if (!this.tableData.list) return;
 
         //为表格增加权限按钮
-        this.tableData.list.forEach(item => {
-          this.$set(item, 'fnsclick', gridBtns);
+        this.tableData.list.forEach((item, index) => {
+          if (index === 1) {
+            this.$set(item, 'fnsclick', [
+              { label: '新增授权人', value: 'addshouquanren' },
+              { label: '编辑', value: 'gridEditBtn' },
+            ]);
+          }
+          else {
+            this.$set(item, 'fnsclick', gridBtns);
+          }
+
         });
       },
       /**
