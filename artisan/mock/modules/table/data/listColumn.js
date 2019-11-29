@@ -3,7 +3,7 @@ export const formlistColumn = [
     'resourcecolumnName': '项目名称',//label
     'resourcecolumnCode': 'taskName',//model-key
     'resourcecolumnXtype': 'link',//筛选列 类型
-    'resourcecolumnWidth': '150',//列的宽度
+    'resourcecolumnWidth': '150',//列的宽度等级
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '1', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
