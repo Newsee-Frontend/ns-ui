@@ -43,6 +43,13 @@ export const tableRouter = [
         meta: { auth: true, key: 'new-formTable' },
         name: '新表格-表单',
       },
+      {
+        path: 'new-formTable-changeCol',
+        component: () => import('../../pages/Table/New-table-v4/formTable/changeCol'),
+        meta: { auth: true, key: 'new-formTable-changeCol' },
+        name: '切换表头',
+      },
+
 
     ],
   },
