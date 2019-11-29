@@ -3,7 +3,7 @@
   <div class="win formTable-template">
     <div class="ns-container">
       <demo-block>
-        <template slot="title">复杂表格用法示例</template>
+        <template slot="title">表单表格-用法示例</template>
         <template slot="describe">
           复杂表格示例-当前页数总条目: <span style="color: #ff275c">{{searchConditions.pageSize}} </span>
         </template>
@@ -11,9 +11,7 @@
           <div class="control-block form-block-line">
             <span>当前页数总条目:</span>
             <ns-input v-model.number="searchConditions.pageSize"></ns-input>
-            <ns-button @click="tableLoader('form-table')">刷新表格数据</ns-button>
-            <ns-button @click="tableLoader('hugeData-table',true)">更换表头数据</ns-button>
-            <ns-button @click="tableLoader('form-table',true)">复原表头数据</ns-button>
+            <ns-button @click="requestTableData">刷新表格数据</ns-button>
             <ns-select v-model="firstColType" :options="firstColTypeOpts"></ns-select>
             <ns-button @click="scrollTo(200,200)">表格滚动至(200,200)</ns-button>
             <ns-button @click="scrollTo(0,0)">表格滚动复位</ns-button>
@@ -51,7 +49,7 @@
             @edit-actived="editActived"
             @cell-event="cellEvent"
             @table-action="tableAction"
-            @reload="tableLoader('form-table')"
+            @reload="requestTableData"
             @summary-change="summaryChange"
             @select-change="selectChange"
             @select-all="selectAll"
@@ -125,34 +123,11 @@
       },
     },
     methods: {
-
       /**
        * 单元格被激活编辑时会触发该事件
-       * @param type - 如果需要自定义表头数据的情况下 - 表头的类型，关系到当前表格的展示类型
-       * @param isNeedHead - 是否需要请求表头数据
-       *        在本示例中：
-       *          初始状态获取，表头使用业务封装中的表头请求数据
-       *          后续手动改变表头数据，则额外再次请求获取改变
-       */
-      tableLoader(type, isNeedHead = false) {
-        this.searchConditions.mockType = type;
-        this.loading = true;
-
-        const promiseList = [this.requestTableData()];
-        if (isNeedHead) {
-          promiseList.push(this.requestTableHeadData());
-        }
-        Promise.all(promiseList).then(() => {
-          this.loading = false;
-        }).catch(() => {
-          this.loading = false;
-        });
-      },
-
-      /**
-       * 获取表格数据
        */
       requestTableData() {
+        this.loading = true;
         tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
           this.tableData = res.resultData || {};
 
@@ -161,8 +136,9 @@
 
           this.dataHandle(this.gridBtns);
 
+          this.loading = false;
         }).catch(() => {
-
+          this.loading = false;
         });
       },
 
@@ -483,7 +459,7 @@
 
     created() {
 
-      this.tableLoader('form-table');
+      this.requestTableData();
 
       setTimeout(() => {
 
