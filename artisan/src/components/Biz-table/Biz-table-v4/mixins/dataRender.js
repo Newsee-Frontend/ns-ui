@@ -9,15 +9,17 @@ export default {
       handler: function(val) {
 
         if (this.isHugeData) {
-          const target = this.$refs['bizTable'];
-          if (target) {
-            target.reloadData(val)
-              .then(() => {
-                this.renderLoading = false;
-              })
-              .catch(e => {
-                this.renderLoading = false;
-              });
+          if (!this.loading && !this.headLoading) {
+            const target = this.$refs['bizTable'];
+            if (target) {
+              target.reloadData(val)
+                .then(() => {
+                  this.renderLoading = false;
+                })
+                .catch(e => {
+                  this.renderLoading = false;
+                });
+            }
           }
         }
       },
