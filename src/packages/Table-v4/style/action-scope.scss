@@ -3,7 +3,7 @@
 //action area in column for table
 .action-scope {
   height: inherit;
-  font-size: 12px;
+  font-size: 13px;
   button.ns-button--normal {
     padding: 0 10px 0 0;
     border: none;
@@ -13,6 +13,7 @@
       background-color: transparent;
     }
     &:last-child {
+      margin-left: 0;
       padding-right: 0;
     }
   }
