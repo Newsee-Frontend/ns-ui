@@ -501,6 +501,14 @@ const navmenu = (req, res) => {
             menuIndex: 6,
             hide: 1,
           },
+          {
+            funcId: 'new-formTable-changeCol',
+            menuLabel: '切换表头',
+            menuRouter: 'new-formTable-changeCol',
+            menuIcon: null,
+            menuIndex: 7,
+            hide: 1,
+          },
         ],
       },
       {
