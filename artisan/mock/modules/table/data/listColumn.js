@@ -7,7 +7,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '1', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       dataSources:'',//数据来源
       'filterType': 'link',//筛选器表单类型
       'type': 'link',//表单类型
@@ -31,7 +31,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'input',
       'decimal': 2,
@@ -55,7 +55,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'inputNumber',
       'decimal': 2,
@@ -84,7 +84,7 @@ export const formlistColumn = [
       1: '女',
       2: '保密',
     },
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '等级',//label
@@ -100,7 +100,7 @@ export const formlistColumn = [
       2: '较好',
       3: '优秀',
     },
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'link',
       'decimal': 2,
@@ -124,7 +124,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'select',
       'disabled': false,
@@ -156,7 +156,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'select',
       'disabled': false,
@@ -179,7 +179,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'select',
       'disabled': false,
@@ -202,7 +202,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '6',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'datetime',
       'disabled': false,
@@ -225,7 +225,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '7',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'date',
       'disabled': false,
@@ -248,7 +248,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '8',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'time',
       'disabled': false,
@@ -271,7 +271,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'radiobutton',
       'disabled': false,
@@ -297,7 +297,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'select',
       'disabled': false,
@@ -328,7 +328,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'input',
       'disabled': false,
@@ -351,7 +351,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': {
+    'editConfig': {
       'switchType': true,
       'type': 'checkbutton',
       'disabled': false,
@@ -384,7 +384,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '拥有人',//label
@@ -394,7 +394,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '年龄',//label
@@ -404,7 +404,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '性别',//label
@@ -419,7 +419,7 @@ export const hugeDataListColumn = [
       1: '女',
       2: '保密',
     },
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '成立日期',//label
@@ -429,7 +429,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '5',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '等级调整',//label
@@ -439,7 +439,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '10',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '是否审核',//label
@@ -449,7 +449,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '是否锁定（单选）',//label
@@ -459,7 +459,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
   {
     'resourcecolumnName': '邮箱',//label
@@ -469,7 +469,7 @@ export const hugeDataListColumn = [
     'resourcecolumnOrder': '4',//列的序号
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
-    'eidtConfig': null,
+    'editConfig': null,
   },
 ];
 
@@ -483,7 +483,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '4', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'link',
 //       decimal: 2,
@@ -505,7 +505,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '4', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'select',
 //       decimal: 2,
@@ -527,7 +527,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '7', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'date',
 //       decimal: 2,
@@ -549,7 +549,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '10', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'rate',
 //       decimal: 2,
@@ -570,7 +570,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '5', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'checkbox',
 //       decimal: 2,
@@ -592,7 +592,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '4', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'radio',
 //       decimal: 2,
@@ -623,7 +623,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '8', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'input',
 //       decimal: 2,
@@ -649,7 +649,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '4', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'link',
 //       decimal: 2,
@@ -671,7 +671,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '7', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'date',
 //       decimal: 2,
@@ -702,7 +702,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '10', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'rate',
 //       decimal: 2,
@@ -768,7 +768,7 @@ export const hugeDataListColumn = [
 //     resourcecolumnOrder: '8', //列的序号
 //     resourcecolumnHidden: '0', //是否隐藏
 //     resourcecolumnAlign: 'left', //对齐
-//     eidtConfig: {
+//     editConfig: {
 //       switchType: true,
 //       type: 'input',
 //       decimal: 2,
