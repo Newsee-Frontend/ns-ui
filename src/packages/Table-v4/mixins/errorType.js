@@ -1,11 +1,12 @@
 export default {
   computed: {
     errorType() {
+      // alert(this.data);
+      // alert(this.loading);
       if (
         !this.head.some(
-          h => [...this.formColInclude, ...this.normalColInclude].indexOf(h.type) > -1
-        ) ||
-        !this.data
+          h => [...this.formColInclude, ...this.normalColInclude].indexOf(h.type) > -1,
+        )
       ) {
         return 'service-error';
       }
