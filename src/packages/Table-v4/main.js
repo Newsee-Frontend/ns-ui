@@ -20,12 +20,7 @@ export default create({
   props: {
     loading: { type: Boolean, default: true },
     keyRefer: { type: Object },
-    data: {
-      type: Array,
-      default() {
-        return [];
-      },
-    },
+    data: { type: Array },
     head: {
       type: Array,
       default() {
@@ -107,77 +102,79 @@ export default create({
       <div class={this.recls()} style={`height: ${this.height}px`}>
         {this.isMainReady
           ? h(
-              `vxe-table`,
-              {
-                ref: 'main-table',
-                props: props,
-                on: {
-                  'edit-actived': this.editActived,
-                  'radio-change': this.selectChange,
-                  'select-change': this.selectChange,
-                  'select-all': this.selectAll,
-                  'update:customs': value => {
-                    this.customColumns = value;
-                    this.$nextTick(() => {
-                      this.$refs['main-table'].refreshColumn();
-                    });
-                  },
-                },
-                scopedSlots: {
-                  empty: scope => {
-                    return (
-                      <span class={'error-prompt'}>
-                        <img class={'errorImg'} src={img_null} />
-                        <p> 抱歉, 没有搜索到你要的结果 </p>
-                      </span>
-                    );
-                  },
+            `vxe-table`,
+            {
+              ref: 'main-table',
+              props: props,
+              on: {
+                'edit-actived': this.editActived,
+                'radio-change': this.selectChange,
+                'select-change': this.selectChange,
+                'select-all': this.selectAll,
+                'update:customs': value => {
+                  this.customColumns = value;
+                  this.$nextTick(() => {
+                    this.$refs['main-table'].refreshColumn();
+                  });
                 },
               },
-              [
-                this.head.map((item, $index) => {
-                  return h(`column-render`, {
-                    key: `column-render-${$index}`,
-                    props: {
-                      column: item,
-                      columns: this.head,
-                      keyRefer: this.keyRefer,
-                      customColumns: this.customColumns,
-                    },
-                    on: {
-                      ...this.$listeners,
-                      'cell-event': this.cellEvent,
-                      'sync-column-render': data => {
-                        // console.log(data.customColumns);
+              scopedSlots: {
+                empty: scope => {
+                  return (
+                    <span class={'error-prompt'}>
+                        <img class={'errorImg'} src={img_null}/>
+                        <p> 抱歉, 没有搜索到你要的结果 </p>
+                    </span>
+                  );
+                },
+              },
+            },
+            [
+              this.head.map((item, $index) => {
+                return h(`column-render`, {
+                  key: `column-render-${$index}`,
+                  props: {
+                    column: item,
+                    columns: this.head,
+                    keyRefer: this.keyRefer,
+                    customColumns: this.customColumns,
+                  },
+                  on: {
+                    ...this.$listeners,
+                    'cell-event': this.cellEvent,
+                    'sync-column-render': data => {
+                      // console.log(data.customColumns);
 
-                        const target = this.$refs['main-table'];
-                        ['change', 'lock'].indexOf(data.event) > -1
-                          ? target.refreshColumn()
-                          : target.reloadColumn(data.customColumns);
-                      },
+                      const target = this.$refs['main-table'];
+                      ['change', 'lock'].indexOf(data.event) > -1
+                        ? target.refreshColumn()
+                        : target.reloadColumn(data.customColumns);
                     },
-                  });
-                }),
-              ]
-            )
+                  },
+                });
+              }),
+            ],
+          )
           : null}
         {this.showFooter
           ? h('summary-drop', {
-              on: {
-                ...this.$listeners,
-              },
-            })
+            on: {
+              ...this.$listeners,
+            },
+          })
           : null}
-        {h('identifier', {
-          class: this.recls('mask'),
-          props: {
-            loading: this.loading,
-            errorType: this.errorType,
-          },
-          on: {
-            ...this.$listeners,
-          },
-        })}
+        {
+          h('identifier', {
+            class: this.recls('mask'),
+            props: {
+              loading: this.loading,
+              errorType: this.errorType,
+            },
+            on: {
+              ...this.$listeners,
+            },
+          })
+        }
       </div>
     );
   },
@@ -206,7 +203,7 @@ export default create({
       this.$emit(
         'cell-event',
         { row, rowIndex, column, columnIndex, ...{ rows: this.data }, ...{ columns: this.head } },
-        event
+        event,
       );
     },
 
@@ -241,6 +238,11 @@ export default create({
       this.$refs['main-table'].clearActived();
     },
   },
-  created() {},
-  mounted() {},
+  created() {
+    // alert(this.loading)
+    // alert(this.data)
+  },
+  mounted() {
+
+  },
 });
