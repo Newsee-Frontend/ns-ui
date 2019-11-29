@@ -67,6 +67,23 @@ export default {
 
           this.headLoading = false;
 
+          if (!this.loading && !this.headLoading) {
+            this.$nextTick(() => {
+              const target = this.$refs['bizTable'];
+              if (target) {
+                target.reloadData(this.data)
+                  .then(() => {
+                    this.renderLoading = false;
+                  })
+                  .catch(e => {
+                    this.renderLoading = false;
+                  });
+              }
+              this.headLoading = false;
+            });
+          }
+
+
         }).catch(() => {
           this.headLoading = false;
         });
