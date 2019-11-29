@@ -12,12 +12,12 @@ const keyRefer = {
     align: 'resourcecolumnAlign', //居中/左/右对齐
     fixed: 'fixed', //锁定
     formatter: 'selectMap',//格式化过滤规则
-    'cell-Config': 'eidtConfig', //特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
+    'cell-Config': 'editConfig', //特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
   },
   scope: {
     'actionBtnList': 'fnsclick',//操作列操作按钮列表
 
-    'formConfig': 'eidtConfig',//表格-表单-配置字段
+    'formConfig': 'editConfig',//表格-表单-配置字段
     'type': 'type',//表格-表单-类型
 
     'modelData': 'picked',//选中对象字段
