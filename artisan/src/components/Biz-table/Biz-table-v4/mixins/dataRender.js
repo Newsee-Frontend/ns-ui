@@ -9,7 +9,7 @@ export default {
       handler: function(val) {
 
         if (this.isHugeData) {
-          if (!this.loading && !this.headLoading) {
+          if (!this.loading) {
             const target = this.$refs['bizTable'];
             if (target) {
               target.reloadData(val)
