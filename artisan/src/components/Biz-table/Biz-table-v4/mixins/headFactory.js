@@ -67,7 +67,7 @@ export default {
 
           this.headLoading = false;
 
-          if (!this.loading && !this.headLoading) {
+          if (!this.loading) {
             this.$nextTick(() => {
               const target = this.$refs['bizTable'];
               if (target) {
