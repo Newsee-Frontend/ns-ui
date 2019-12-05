@@ -57,7 +57,7 @@
           departmentId: '', //部门id
           filterList: [], //条件
           pageNum: 1, //当前页数
-          pageSize: 10000, //每页显示条目个数
+          pageSize: 100, //每页显示条目个数
           orderBy: '', //排序：升序还是降序
           orderFieldName: '', //排序：字段名
           mainSearch: '', //输入框值
@@ -172,7 +172,7 @@
 
         this.tableLoader(this.gridBtns);
 
-      }, 5000);
+      }, 2000);
 
     },
     mounted() {
