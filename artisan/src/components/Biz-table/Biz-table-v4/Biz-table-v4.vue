@@ -79,6 +79,7 @@
           showFooter: this.showFooter,
           footerMethod: this.footerMethod,
           checkMethod: this.checkMethod,
+          highlightHoverRow: true,
         };
         if (!this.isHugeData) {
           props.data = this.data;
