@@ -9,7 +9,7 @@
     <ns-pagination
       class="biz-pagination"
       :total="total || 0" :searchConditions="searchConditions"
-      :pageSizes="[0,10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
+      :pageSizes="[0, 10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
       @size-change="sizeChange"
       @current-change="currentChange"
     ></ns-pagination>
@@ -56,10 +56,16 @@
       checkMethod: { type: Function },//控制 CheckBox 是否允许勾选的方法，该方法 Function({row}) 的返回值用来决定这一行的 CheckBox 是否可以勾选.
 
     },
-    computed: {
 
+    computed: {
+      //表头 / 表数据 获取 - 是否准备完毕
+      fetchReady() {
+        return !(this.loading || this.headLoading);
+      },
+
+      //表头/表数据获取，以及渲染完毕（大数据表格) - 是否全部准备完毕
       tableLoading() {
-        return this.loading || this.headLoading || this.renderLoading;
+        return !this.fetchReady || this.renderLoading;
       },
 
       curProps() {
