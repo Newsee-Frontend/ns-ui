@@ -2,6 +2,13 @@ import columnConfig from '../config/column-template-config';
 import keyRefer from '../config/keyRefer';
 import { listColumnService } from '../../../../service/Table';
 
+/**
+ * 关于业务表格表头的一系列操作
+ * 1、表头数据获取
+ * 2、表头数据字段以及值的转换
+ * 3、表头数据根据配置项 - 增加首列操作列等
+ * 4、初始化获取表头数据
+ */
 export default {
   data() {
     return {
@@ -66,23 +73,6 @@ export default {
           this.$store.dispatch('setTableHead', this.tableHead);//store head data
 
           this.headLoading = false;
-
-          if (!this.loading) {
-            this.$nextTick(() => {
-              const target = this.$refs['bizTable'];
-              if (target) {
-                target.reloadData(this.data)
-                  .then(() => {
-                    this.renderLoading = false;
-                  })
-                  .catch(e => {
-                    this.renderLoading = false;
-                  });
-              }
-              this.headLoading = false;
-            });
-          }
-
 
         }).catch(() => {
           this.headLoading = false;
