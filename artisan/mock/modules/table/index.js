@@ -8,7 +8,9 @@ import { hugeDataTableData, formTableData } from './data/listData';
  * @returns {any | Promise<any>}
  */
 const listDataDistribute = (req, res) => {
+  console.log(req);
   console.log(req.body);
+  if (!req.body) return;
   const { pageNum, pageSize, total, mockType } = req.body;
 
   console.log(`当前请求表格数据的类型为：${mockType}`);
@@ -135,12 +137,12 @@ module.exports = {
   'GET /system/column/list-column': (req, res) => {
     setTimeout(() => {
       return listColumnDistribute(req, res);
-    }, 300);
+    }, 200);
   },
   'GET /system/column/change-list-column': changelistColumn,
   'POST /system/table/table-data': (req, res) => {
     setTimeout(() => {
       return listDataDistribute(req, res);
-    }, 800);
+    }, 300);
   },
 };
