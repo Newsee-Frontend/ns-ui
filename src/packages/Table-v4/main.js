@@ -38,6 +38,7 @@ export default create({
         return { trigger: 'click', mode: 'row', showStatus: true };
       },
     },
+    highlightHoverRow: { type: Boolean, default: true }, //鼠标移到行是否要高亮显示
   },
   data() {
     return {
@@ -78,7 +79,7 @@ export default create({
       size: 'small',
       height: this.height,
       resizable: true,
-      'highlight-hover-row': true,
+      'highlight-hover-row': this.highlightHoverRow,
       'show-overflow': true,
       'show-header-overflow': true,
       'edit-config': this.editConfig,
@@ -239,6 +240,7 @@ export default create({
   created() {
     // alert(this.loading)
     // alert(this.data)
+    alert(this.highlightHoverRow);
   },
   mounted() {},
 });
