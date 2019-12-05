@@ -77,13 +77,12 @@ $table-row__hover: #ecf5ff; //行 - 鼠标移入背景色
   //表格行 - 鼠标移入背景色
   tr.vxe-body--row.row--hover {
     background-color: $table-row__hover;
+    &:hover {
+      background-color: $table-row__hover;
+    }
     td:hover {
       background-color: $table-row__hover;
     }
-  }
-
-  tr.vxe-body--row:hover {
-    background-color: $table-row__hover;
   }
 
   //多选框边框色
