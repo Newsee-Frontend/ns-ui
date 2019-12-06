@@ -36,7 +36,7 @@ export default {
             'on-success': this.handleSuccess,
           },
         },
-        [<i class="el-icon-upload" />]
+        [<i class="el-icon-upload"/>],
       );
     };
 
@@ -52,7 +52,7 @@ export default {
           on-close={this.dialogClose}
         >
           {upload()}
-          <div class={`v-modal ${!this.dialogVisible ? 'hide' : ''}`} />
+          <div class={`v-modal ${!this.dialogVisible ? 'hide' : ''}`}/>
           <div slot="footer">
             <Button
               on-click={_ => {
@@ -87,7 +87,7 @@ export default {
           },
         }),
         DialogUpload(),
-      ]
+      ],
     );
   },
   methods: {
@@ -114,9 +114,12 @@ export default {
     /**
      * before upload
      * @param file
-     * @returns {Promise<any>}
+     * @returns {boolean}
      */
     beforeUpload(file) {
+      if (this.pluginConfig.beforeUpload && this.pluginConfig.beforeUpload(file) !== true) {
+        return false;
+      }
       const _self = this;
       const _URL = window.URL || window.webkitURL;
       const fileName = file.uid;

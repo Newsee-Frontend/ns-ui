@@ -240,7 +240,7 @@ export default create({
   created() {
     // alert(this.loading)
     // alert(this.data)
-    alert(this.highlightHoverRow);
+    // alert(this.highlightHoverRow);
   },
   mounted() {},
 });
