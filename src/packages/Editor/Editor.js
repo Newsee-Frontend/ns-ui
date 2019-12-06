@@ -125,6 +125,13 @@ export default create({
         powerpaste_word_import: 'propmt', //clean
         powerpaste_html_import: 'propmt',
         powerpaste_allow_local_images: true,
+        images_upload_handler: function (blobInfo, success, failure) {
+          console.log(blobInfo.blob().size );
+          // failure('wwwwwwwww');
+          // success('')
+          if(blobInfo.blob().size /1024 / 1024)
+          success('http://e.hiphotos.baidu.com/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg');
+        },
         code_dialog_height: 450,
         code_dialog_width: 1000,
         advlist_bullet_styles: 'square',
