@@ -84,7 +84,7 @@ export default create({
   render(h) {
     return (
       <div class={`${this.recls()} ${this.fullscreen ? 'fullscreen' : ''}`}>
-        <textarea id={this.tinymceId} class={'editor-textarea'}/>
+        <textarea id={this.tinymceId} class={'editor-textarea'} />
         <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
             <editor-image
@@ -128,7 +128,7 @@ export default create({
         images_upload_handler: (blobInfo, success, failure) => {
           let { beforeUpload, action, headers, response } = this.pluginsConf['editor-image'];
 
-          if (beforeUpload && beforeUpload(blobInfo.blob()) || !beforeUpload) {
+          if ((beforeUpload && beforeUpload(blobInfo.blob())) || !beforeUpload) {
             //入参拼接
             const formData = new FormData();
             formData.append('file', blobInfo.blob());
@@ -146,7 +146,7 @@ export default create({
             xhr.send(formData);
 
             //返回
-            xhr.onload = ()=>{
+            xhr.onload = () => {
               if (xhr.status === 200) {
                 success(response(JSON.parse(xhr.response)));
               }
