@@ -84,7 +84,7 @@ export default create({
   render(h) {
     return (
       <div class={`${this.recls()} ${this.fullscreen ? 'fullscreen' : ''}`}>
-        <textarea id={this.tinymceId} class={'editor-textarea'} />
+        <textarea id={this.tinymceId} class={'editor-textarea'}/>
         <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
           <li>
             <editor-image
@@ -125,12 +125,35 @@ export default create({
         powerpaste_word_import: 'propmt', //clean
         powerpaste_html_import: 'propmt',
         powerpaste_allow_local_images: true,
-        images_upload_handler: function (blobInfo, success, failure) {
-          console.log(blobInfo.blob().size );
-          // failure('wwwwwwwww');
-          // success('')
-          if(blobInfo.blob().size /1024 / 1024)
-          success('http://e.hiphotos.baidu.com/image/h%3D300/sign=a9e671b9a551f3dedcb2bf64a4eff0ec/4610b912c8fcc3cef70d70409845d688d53f20f7.jpg');
+        images_upload_handler: (blobInfo, success, failure) => {
+          let { beforeUpload, action, headers, response } = this.pluginsConf['editor-image'];
+
+          if (beforeUpload && beforeUpload(blobInfo.blob()) || !beforeUpload) {
+            //入参拼接
+            const formData = new FormData();
+            formData.append('file', blobInfo.blob());
+            formData.append('filename', blobInfo.filename());
+
+            //请求发送
+            const xhr = new XMLHttpRequest();
+            xhr.open('post', action, true);
+            xhr.withCredentials = true;
+            for (let item in headers || {}) {
+              if (headers.hasOwnProperty(item) && headers[item] !== null) {
+                xhr.setRequestHeader(item, headers[item]);
+              }
+            }
+            xhr.send(formData);
+
+            //返回
+            xhr.onload = ()=>{
+              if (xhr.status === 200) {
+                success(response(JSON.parse(xhr.response)));
+              }
+            };
+          } else {
+            success('');
+          }
         },
         code_dialog_height: 450,
         code_dialog_width: 1000,

@@ -25,7 +25,7 @@ const transformKeyFun = (list = [], keyRefer, config = {}) => {
       vue.set(item, [key], item[hitKey]);
       // item[key] = item[hitKey];
     });
-
+    // vue.set(item, 'iconClass', 'zhankai');
     vue.set(item, 'halfcheck', false);
 
     if (
