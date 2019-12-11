@@ -46,25 +46,16 @@ const install = function (Vue, opts = {}) {
   Vue.prototype.$opts = option;
   Vue.$opts = option;
   
+  Vue.prototype.$message = Message;
+  
   console.log('===== 全局合并后参数：=====', option);
 
 
   //binding component
   components.forEach(Component => {
-
-    let { name } = Component;
-
-    if (name !== 'LimitMessage') {
-      name ? resmount(Vue, Component, opts) : Vue.use(Component);
-    }
-    else {
-      console.log(11111111111);
-      console.log(name);
-    }
-
+   let {name} = Component;
+    name ? resmount(Vue, Component, opts) : Vue.use(Component);
   });
-
-  Vue.prototype.$message = Message;
 
   //register global utility filters.
   Object.keys(filters).forEach(key => {
