@@ -1,6 +1,5 @@
 import { Message } from 'element-ui';
 
-
 let messageInstance = null;
 
 /**
@@ -20,11 +19,9 @@ const LimitMessage = function(options, limit = 1) {
   //compatible with IE self execution
   if (options && typeof options === 'object') {
     messageInstance = Message(options);
-  }
-  else {
+  } else {
     messageInstance = Message;
   }
-
 
   return messageInstance;
 };
