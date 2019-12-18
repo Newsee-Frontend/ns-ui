@@ -3,7 +3,7 @@ const path = require('path');
 
 const package_19_07_03 = require('./version/neap/package_19_07_03');
 
-const package_saas_19_12_18 = require('./version/saas/package_saas_19_12_18');
+// const package_saas_19_12_18 = require('./version/saas/package_saas_19_12_18');
 
 
 module.exports = {
@@ -44,7 +44,7 @@ module.exports = {
 
       ],
     },
-    excludes: package_saas_19_12_18, //package_saas_19_8_30,
+    excludes: package_19_07_03, //package_saas_19_8_30,
   },
   base: {
     mockPath: './artisan/mock',
