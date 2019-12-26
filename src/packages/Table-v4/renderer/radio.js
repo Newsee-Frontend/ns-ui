@@ -21,8 +21,7 @@ export default {
           onInput={e => {
             if (isDictionary) {
               row[modelCode] = e;
-            }
-            else {
+            } else {
               row[modelCode].picked.value = e;
             }
             this.$emit('input', e);
@@ -40,7 +39,6 @@ export default {
       const isDictionary = column.isDictionary;
       const model = modelCover(isDictionary, modelCode, row);
       const options = optionsCover(isDictionary, modelCode, row, column);
-
 
       return getLabelByValue(model, options);
     },
