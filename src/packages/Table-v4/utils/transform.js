@@ -10,16 +10,15 @@
  *      表数据返回格式示例如下：
  *
  *      xxkey：{
-       *          picked:{ value: 1 },
-       *          options:[ { label: '已审核', value: 1 }, { label: '未审核', value: 0 } ]
-       *      }
+ *          picked:{ value: 1 },
+ *          options:[ { label: '已审核', value: 1 }, { label: '未审核', value: 0 } ]
+ *      }
  *
  *      options 取值=> row => 对应key => options
  *      data 取值 => row=> 对应key => picked => value
  *
  * ====================================================================================
  */
-
 
 /**
  * 表格表单 model 值转换
@@ -31,8 +30,7 @@
 export const modelCover = (isDictionary, code, row) => {
   if (isDictionary) {
     return row[code];
-  }
-  else {
+  } else {
     return row[code].picked.value;
   }
 };
@@ -46,11 +44,9 @@ export const modelCover = (isDictionary, code, row) => {
  * @returns {*}
  */
 export const optionsCover = (isDictionary, code, row, column) => {
-
   if (isDictionary) {
     return column['cell-Config'].options;
-  }
-  else {
+  } else {
     return row[code].options;
   }
 };
