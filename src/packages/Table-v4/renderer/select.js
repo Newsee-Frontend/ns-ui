@@ -1,20 +1,33 @@
 import Select from '../../Select/Select';
+import { modelCover, optionsCover } from '../utils/transform';
 import { getLabelByValue } from '../utils/index';
 
 export default {
-  name: 'ns-table-select',
+  name: 'table-render-select',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;
       let { events } = editRender;
+
+      //是否为字典项（内部数据源)
+      const isDictionary = column.isDictionary;
+
+      const model = modelCover(isDictionary, modelCode, row);
+      const options = optionsCover(isDictionary, modelCode, row, column);
+
       return [
         <Select
-          value={row[modelCode]}
+          value={model}
           onInput={e => {
-            row[modelCode] = e;
+            if (isDictionary) {
+              row[modelCode] = e;
+            }
+            else {
+              row[modelCode].picked.value = e;
+            }
             this.$emit('input', e);
           }}
-          options={formConfig.options}
+          options={options}
           width={'100%'}
           editable={false}
           placeholder={formConfig.placeHolder}
@@ -28,10 +41,13 @@ export default {
     },
 
     renderCell(h, editRender, { row }) {
+
       const { modelCode, formConfig, column } = editRender.props;
 
-      const model = row[modelCode];
-      const options = column['cell-Config'].options;
+      const isDictionary = column.isDictionary;
+      const model = modelCover(isDictionary, modelCode, row);
+      const options = optionsCover(isDictionary, modelCode, row, column);
+
 
       if (formConfig.multiple) {
         if (!Array.isArray(model)) {
@@ -41,9 +57,11 @@ export default {
         return model.map(value => {
           return <span>{`${getLabelByValue(value, options)}  `}</span>;
         });
-      } else {
+      }
+      else {
         return getLabelByValue(model, options);
       }
+
     },
   },
 };

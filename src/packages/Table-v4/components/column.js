@@ -73,7 +73,7 @@ export default {
 
       if (this.isFormRender) {
         let renderProps = {
-          name: `ns-table-${this.formType}`,
+          name: `table-render-${this.formType}`,
           props: {
             modelCode: this.modelCode,
             column: this.column,
@@ -102,7 +102,7 @@ export default {
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
       injection.props = {
         'cell-render': {
-          name: 'ns-table-action-cell',
+          name: 'table-render-action-cell',
           props: {
             column: this.column,
             scopeRefer: this.scopeRefer,
@@ -139,7 +139,7 @@ export default {
 
       //default column render config
       let renderProps = {
-        name: `ns-table-${this.formType}`,
+        name: `table-render-${this.formType}`,
         props: {
           modelCode: this.modelCode,
           column: this.column,

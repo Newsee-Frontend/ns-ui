@@ -1,20 +1,33 @@
 import Checkbox from '../../Checkbox/Checkbox';
 import { getLabelByValue } from '../utils/index';
+import { modelCover, optionsCover } from '../utils/transform';
 
 export default {
-  name: 'ns-table-checkbutton',
+  name: 'table-render-checkbutton',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;
       let { events } = editRender;
+
+      //是否为字典项（内部数据源)
+      const isDictionary = column.isDictionary;
+
+      const model = modelCover(isDictionary, modelCode, row);
+      const options = optionsCover(isDictionary, modelCode, row, column);
+
       return [
         <Checkbox
-          value={row[modelCode]}
+          value={model}
           onInput={e => {
-            row[modelCode] = e;
+            if (isDictionary) {
+              row[modelCode] = e;
+            }
+            else {
+              row[modelCode].picked.value = e;
+            }
             this.$emit('input', e);
           }}
-          options={formConfig.options}
+          options={options}
           disabled={formConfig.disabled}
           min={formConfig.min}
           max={formConfig.max}
@@ -26,8 +39,11 @@ export default {
     renderCell(h, editRender, { row }) {
       const { modelCode, column } = editRender.props;
 
-      const model = row[modelCode];
-      const options = column['cell-Config'].options;
+
+      const isDictionary = column.isDictionary;
+      const model = modelCover(isDictionary, modelCode, row);
+      const options = optionsCover(isDictionary, modelCode, row, column);
+
 
       if (!Array.isArray(model)) {
         return [];
@@ -36,6 +52,7 @@ export default {
       return model.map(value => {
         return <span>{`${getLabelByValue(value, options)}  `}</span>;
       });
+
     },
   },
 };

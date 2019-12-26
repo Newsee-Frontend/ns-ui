@@ -1,6 +1,6 @@
 import DatePicker from '../../DatePicker/DatePicker';
 export default {
-  name: 'ns-table-date',
+  name: 'table-render-date',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;

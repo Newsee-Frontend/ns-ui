@@ -16,16 +16,36 @@ export const formTableData = pageSize => {
       age: Mock.Random.float(20, 60, 0, 0), //年龄
       sex: Mock.Random.float(0, 2, 0, 0),//性别
       level: Mock.Random.float(0, 3, 0, 0), //等级
-      education: Mock.Random.float(1, 8, 0, 0),//学历
-      isChecked: '',//是否审核
-      checkedType: '',//审核类型
-      // createDate: '@datetime', //成立日期
+      education: Mock.Random.float(1, 8, 0, 0),//学历 - 字典项
+      //是否审核 - 外部数据源（非字典项）
+      isChecked: {
+        picked: { value: '' },
+        options: [],
+      },
+      checkedType: {
+        picked: { value: '' },
+        options: [],
+      },//审核类型
       createDate: Mock.Random.date('yyyy-MM-dd hh:mm:ss'),//成立日期
       endDate: Mock.Random.date('yyyy-MM-dd'),//结束 - 日期
       endTime: Mock.Random.date('hh:mm:ss'),//结束 -  时间点
-      isLocked: Mock.Random.float(0, 1, 0, 0),//是否锁定（单选）
-      lockedInfo: [1, 4],//锁定信息（多选）
-      fieldArea: [1, 2, 4, 5],//涉猎领域（多选）
+      //是否锁定（单选）- 外部数据源（非字典项）
+      isLocked: {
+        picked: { value: Mock.Random.float(0, 1, 0, 0) },
+        options: [{ 'label': '是', 'value': 1 }, { 'label': '否', 'value': 0 }],
+      },
+      //锁定信息（多选） - 外部数据源（非字典项）
+      lockedInfo: {
+        picked: { value: [1, 4] },
+        options: [
+          { 'label': '超时', 'value': 0 },
+          { 'label': '欠费', 'value': 1 },
+          { 'label': '违规', 'value': 2 },
+          { 'label': '投诉', 'value': 3 },
+          { 'label': '其他', 'value': 4 },
+        ],
+      },
+      fieldArea: [1, 2, 4, 5],//涉猎领域（多选）- 内部数据源（字典项）
       describe: Mock.Random.csentence(), //备注
       email: Mock.Random.email(),
     });

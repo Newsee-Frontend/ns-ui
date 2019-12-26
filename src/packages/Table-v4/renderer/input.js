@@ -1,7 +1,7 @@
 import Input from '../../Input/Input';
 
 export default {
-  name: 'ns-table-input',
+  name: 'table-render-input',
   render: {
     // 可编辑激活模板
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {

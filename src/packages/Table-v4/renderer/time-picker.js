@@ -1,7 +1,7 @@
 import TimePicker from '../../TimePicker/TimePicker';
 
 export default {
-  name: 'ns-table-time',
+  name: 'table-render-time',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;

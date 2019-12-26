@@ -1,7 +1,7 @@
 import InputNumber from '../../InputNumber/InputNumber';
 
 export default {
-  name: 'ns-table-inputNumber',
+  name: 'table-render-inputNumber',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;

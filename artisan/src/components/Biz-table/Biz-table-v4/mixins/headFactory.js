@@ -94,6 +94,9 @@ export default {
         if (key === 'hidden') {
           newCol[key] = col[this.headRefer[key]] === true || col.resourcecolumnHidden === '1';
         }
+        else if (key === 'isDictionary') {
+          newCol[key] = !col[this.headRefer[key]];
+        }
         //其他字段正常转换
         else {
           newCol[key] = col[this.headRefer[key]];

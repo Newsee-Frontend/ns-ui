@@ -1,5 +1,5 @@
 export default {
-  name: 'ns-table-link',
+  name: 'table-render-link',
   render: {
     renderDefault(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, column } = editRender.props;

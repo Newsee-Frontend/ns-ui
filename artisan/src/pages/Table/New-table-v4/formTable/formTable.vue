@@ -25,8 +25,7 @@
             <ns-button @click="setSelection('checkbox',[2,3,4],false)">清除第二，三，四行选中</ns-button>
             <ns-button @click="setAllSelection(true)">设置全部选中</ns-button>
             <ns-button @click="clearSelection('checkbox')">清除所有选中状态</ns-button>
-
-
+            <span>{{value123}}</span>
           </div>
           <biz-table-v4
             ref="formTable"
@@ -35,7 +34,35 @@
             :total="total"
 
             :autoResize="false"
-            :customHeight="600"
+            :customHeight="300"
+
+            :localHead="localHead"
+            :searchConditions="searchConditions"
+
+            :firstColType="firstColType"
+
+            show-footer
+            :footer-method="footerMethod"
+            :checkMethod="checkMethod"
+
+            @edit-actived="editActived"
+            @cell-event="cellEvent"
+            @table-action="tableAction"
+            @reload="requestTableData"
+            @summary-change="summaryChange"
+            @select-change="selectChange"
+            @select-all="selectAll"
+
+          ></biz-table-v4>
+
+          <biz-table-v4
+            ref="formTable"
+            :loading="loading"
+            :data="tableData.list"
+            :total="total"
+
+            :autoResize="false"
+            :customHeight="200"
 
             :localHead="localHead"
             :searchConditions="searchConditions"
@@ -88,7 +115,7 @@
           departmentId: '', //部门id
           filterList: [], //条件
           pageNum: 1, //当前页数
-          pageSize: 100, //每页显示条目个数
+          pageSize: 1, //每页显示条目个数
           orderBy: '', //排序：升序还是降序
           orderFieldName: '', //排序：字段名
           mainSearch: '', //输入框值
@@ -114,7 +141,28 @@
 
       };
     },
+    watch: {
+      'tableData.list': {
+        handler: function(val) {
+          console.log('tableData.list');
+          console.log('tableData.list');
+          console.log(val[0].isChecked.picked.value);
+          console.log('tableData.list');
+          console.log('tableData.list');
+        },
+        deep: true,
+      },
+    },
     computed: {
+      value123() {
+        try {
+          const row = this.tableData.list[0];
+          return `${row.isChecked.picked.value} ${row.education}`;
+        }
+        catch (e) {
+          return 'error';
+        }
+      },
       tableRef() {
         return this.$refs['formTable'];
       },
@@ -208,11 +256,27 @@
             this.isCheckedOptions = [{ label: '已审核', value: 1 }, { label: '未审核', value: 0 }];
           }
 
-          //获取到表头相应的渲染的options字段位置,将options数据赋予表数据中对应字段
-          column.editRender.props.formConfig.options = this.isCheckedOptions;
 
+          //是否为字典项数据
+          const isDictionary = column.editRender.props.column.isDictionary;
+
+          /**
+           *
+           * 获取到表头相应的渲染的options字段位置,将options数据赋予表数据中对应字段
+           * 注意：如实非常明确该字段是否为字典项，则可直接进行复制，无需判断
+           *
+           * 1、字典项（内部数据源):
+           *      options 取值=> editor-config => options
+           * 2、非字典项 （外部数据源):
+           *      options 取值=> row => 对应key => options
+           */
+          if (isDictionary) {
+            column.editRender.props.formConfig.options = this.isCheckedOptions;
+          }
+          else {
+            row[column.property].options = this.isCheckedOptions;
+          }
         }
-
       },
 
       /**
@@ -229,18 +293,22 @@
 
         //当前单元格事件触发在是否审核字段单元格上时
         if (column.field === 'isChecked') {
-          const isChecked = row.isChecked;
+
+          //是否为字典项数据
+          const isDictionary = column.isDictionary;
+
+          const isChecked = row.isChecked.picked.value;
 
           //当是否审核字段值为已审核（1)时候，请求获取审核类型下拉opeions数据
           if (isChecked === 1) {
 
             //以下操作模拟数据，这里可以发起服务端请求获取数据
-            row.checkedType = 1;
+            row.checkedType.picked.value = 1;
 
             //循环全部表头数据,找到对应字段下，赋值给表头 cell-Config 下 options 值
             columns.forEach(col => {
               if (col.field === 'checkedType') {
-                col['cell-Config'].options = [
+                row.checkedType.options = [
                   { label: '市级审核', value: 1 },
                   { label: '省级审核', value: 2 },
                   { label: '国家级审核', value: 3 },
@@ -252,11 +320,11 @@
           //当是否审核字段值为未审核（0)时候
           else {
             //以下操作模拟数据，这里可以发起服务端请求获取数据
-            row.checkedType = null;
+            row.checkedType.picked.value = null;
             //循环全部表头数据,找到对应字段下，赋值给表头 cell-Config 下 options 值
             columns.forEach(col => {
               if (col.field === 'checkedType') {
-                col['cell-Config'].options = [];
+                row.checkedType.options = [];
               }
             });
           }
@@ -353,7 +421,7 @@
             //分页合计时候
             else if (this.summaryState === 'current') {
               //在特定字段内开始操作
-              if (['age', 'level'].indexOf(modelKey) > -1) {
+              if (['age'].indexOf(modelKey) > -1) {
 
                 //累加
                 let val = 0;

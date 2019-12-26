@@ -2,7 +2,7 @@ import { judgeType } from '../../../utils/library/basic';
 import Button from '../../Button/Button';
 
 export default {
-  name: 'ns-table-action-cell',
+  name: 'table-render-action-cell',
   render: {
     renderDefault(h, editRender, { row, rowIndex, columnIndex }) {
       const { column, scopeRefer } = editRender.props;

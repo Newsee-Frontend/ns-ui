@@ -1,21 +1,33 @@
 import Radio from '../../Radio/Radio';
 import { getLabelByValue } from '../utils/index';
+import { modelCover, optionsCover } from '../utils/transform';
 
 export default {
-  name: 'ns-table-radiobutton',
+  name: 'table-render-radiobutton',
   render: {
     renderEdit(h, editRender, { row, rowIndex, columnIndex }) {
       const { modelCode, formConfig, column } = editRender.props;
       let { events } = editRender;
 
+      //是否为字典项（内部数据源)
+      const isDictionary = column.isDictionary;
+
+      const model = modelCover(isDictionary, modelCode, row);
+      const options = optionsCover(isDictionary, modelCode, row, column);
+
       return [
         <Radio
-          value={row[modelCode]}
+          value={model}
           onInput={e => {
-            row[modelCode] = e;
+            if (isDictionary) {
+              row[modelCode] = e;
+            }
+            else {
+              row[modelCode].picked.value = e;
+            }
             this.$emit('input', e);
           }}
-          options={formConfig.options}
+          options={options}
           disabled={formConfig.disabled}
           on-change={() => events.change({ row, column, rowIndex, columnIndex })}
         />,
@@ -25,8 +37,10 @@ export default {
     renderCell(h, editRender, { row }) {
       const { modelCode, column } = editRender.props;
 
-      const model = row[modelCode];
-      const options = column['cell-Config'].options;
+      const isDictionary = column.isDictionary;
+      const model = modelCover(isDictionary, modelCode, row);
+      const options = optionsCover(isDictionary, modelCode, row, column);
+
 
       return getLabelByValue(model, options);
     },
