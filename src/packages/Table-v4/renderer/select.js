@@ -21,8 +21,7 @@ export default {
           onInput={e => {
             if (isDictionary) {
               row[modelCode] = e;
-            }
-            else {
+            } else {
               row[modelCode].picked.value = e;
             }
             this.$emit('input', e);
@@ -41,13 +40,11 @@ export default {
     },
 
     renderCell(h, editRender, { row }) {
-
       const { modelCode, formConfig, column } = editRender.props;
 
       const isDictionary = column.isDictionary;
       const model = modelCover(isDictionary, modelCode, row);
       const options = optionsCover(isDictionary, modelCode, row, column);
-
 
       if (formConfig.multiple) {
         if (!Array.isArray(model)) {
@@ -57,11 +54,9 @@ export default {
         return model.map(value => {
           return <span>{`${getLabelByValue(value, options)}  `}</span>;
         });
-      }
-      else {
+      } else {
         return getLabelByValue(model, options);
       }
-
     },
   },
 };
