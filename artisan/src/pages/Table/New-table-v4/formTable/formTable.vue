@@ -25,7 +25,6 @@
             <ns-button @click="setSelection('checkbox',[2,3,4],false)">清除第二，三，四行选中</ns-button>
             <ns-button @click="setAllSelection(true)">设置全部选中</ns-button>
             <ns-button @click="clearSelection('checkbox')">清除所有选中状态</ns-button>
-            <span>{{value123}}</span>
           </div>
           <biz-table-v4
             ref="formTable"
@@ -154,15 +153,6 @@
       },
     },
     computed: {
-      value123() {
-        try {
-          const row = this.tableData.list[0];
-          return `${row.isChecked.picked.value} ${row.education}`;
-        }
-        catch (e) {
-          return 'error';
-        }
-      },
       tableRef() {
         return this.$refs['formTable'];
       },
