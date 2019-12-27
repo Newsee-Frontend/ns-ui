@@ -12,7 +12,7 @@ const keyRefer = {
     align: 'resourcecolumnAlign', //居中/左/右对齐
     fixed: 'fixed', //锁定
     formatter: 'selectMap',//格式化过滤规则
-    isDictionary:'filterSource',//是否为字典项 0字典 1外部
+    isDictionary:'filterSource',//是否为外部数据源：   0 - 内部数据源（字典项） 1 - 外部数据源（非字典项）
     'cell-Config': 'editConfig', //特殊单元格（如：表单元素单元格/链接跳转单元格）的属性配置字段
   },
   scope: {
