@@ -25,6 +25,7 @@
     "create:template": "./script/createTem/create.sh"
   },
   "files": [
+    "es",
     "lib",
     "package",
     "README"
