@@ -13,7 +13,7 @@ module.exports = [
   'Dropdown',
   'Editor',
   'Particles',
-  'Select',
+  // 'Select',
   'Only-MMDD-picker',
   'Time-interval',
   'Tree',
