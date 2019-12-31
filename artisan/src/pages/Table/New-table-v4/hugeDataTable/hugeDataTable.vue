@@ -29,7 +29,7 @@
           :data="tableData.list"
           :total="total"
           isHugeData
-          firstColType="radio"
+          firstColType="checkbox"
           :searchConditions="searchConditions"
           @select-change="selectChange"
           @reload="getTableData()"
