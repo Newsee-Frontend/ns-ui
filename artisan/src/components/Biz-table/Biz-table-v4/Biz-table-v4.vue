@@ -211,6 +211,7 @@
        */
       selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
         this.$emit('select-change', { row, $rowIndex, column, $columnIndex, checked, selection }, event);
+        this.$refs['bizTable'].refreshColumn();
       },
 
       /**

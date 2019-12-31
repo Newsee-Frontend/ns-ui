@@ -54,5 +54,15 @@ export default {
           });
       });
     },
+
+    /**
+     * 刷新表头
+     */
+    refreshColumn() {
+      const target = this.$refs['main-table'];
+      if (target) {
+        target.refreshColumn();
+      }
+    },
   },
 };
