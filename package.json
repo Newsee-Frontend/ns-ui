@@ -1,6 +1,6 @@
 {
   "name": "ns-saas-ui",
-  "version": "0.0.2-10",
+  "version": "0.0.2-11",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -51,7 +51,7 @@
     "vue-cropper": "^0.4.9",
     "vue-virtual-scroll-list": "^1.4.2",
     "vuedraggable": "^2.14.1",
-    "vxe-table": "^2.6.18",
+    "vxe-table": "2.6.18",
     "vxe-table-plugin-element": "^1.5.10",
     "watch-size": "^2.0.0",
     "xe-utils": "^2.2.11"
