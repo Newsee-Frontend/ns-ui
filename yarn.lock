@@ -11229,10 +11229,10 @@ vxe-table-plugin-element@^1.5.10:
   resolved "https://registry.npmjs.org/vxe-table-plugin-element/-/vxe-table-plugin-element-1.5.10.tgz#8fb3268cc52e0613e957086bc7d81159c74fc86b"
   integrity sha512-hW1orwxHQVjFPc5vjtALO6GzN/CtVki+3lAVywAlByu6R7fvbI8UXV3chf77vKRf4q+7EO5Zk77fm6E0HDd81A==
 
-vxe-table@^2.6.18:
-  version "2.6.22"
-  resolved "https://registry.npmjs.org/vxe-table/-/vxe-table-2.6.22.tgz#5c82f8094b0b3d46475197cbf24001ae6cec0cfd"
-  integrity sha512-rz5ayorJmMZar3ftjF3Tz0U0Gce9yJU5hOST3yN4kr1UULqay+f3XHiFmQb/vp2IJ1emjI8ka8abKZCDsRK8Nw==
+vxe-table@2.6.18:
+  version "2.6.18"
+  resolved "https://registry.npmjs.org/vxe-table/-/vxe-table-2.6.18.tgz#4293eb4b4b813ac40661f93dda149388bd5aa9f0"
+  integrity sha512-ZjNBweUY3zDpqgAFuAAlQ671lEt719pFpa+dLjphY9m5tRhHqETWDt8rpZB3SeSeXArc6+ZqxbZB6Y/1KreE2g==
 
 watch-size@^2.0.0:
   version "2.0.0"
