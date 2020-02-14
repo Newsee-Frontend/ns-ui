@@ -23,6 +23,16 @@
           :prefixIcon="prefixIcon"
           @iconClick="iconClick"
         ></ns-input-tag>
+
+        <ns-input-tag
+          v-model="inputModel1"
+          size="normal"
+          disabled
+          :options="optionsDataTemplate"
+          :prefixIcon="prefixIcon"
+          @iconClick="iconClick"
+        ></ns-input-tag>
+
         <div class="gap"></div>
         <ns-input-tag
           v-model="inputModel1"
@@ -41,6 +51,15 @@
         <ns-input-tag
           v-model="inputModel2"
           size="medium"
+          :options="optionsDataTemplate"
+          :suffixIcon="suffixIcon"
+          @iconClick="iconClick"
+        ></ns-input-tag>
+
+        <ns-input-tag
+          v-model="inputModel2"
+          size="medium"
+          disabled
           :options="optionsDataTemplate"
           :suffixIcon="suffixIcon"
           @iconClick="iconClick"

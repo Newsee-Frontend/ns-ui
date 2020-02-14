@@ -3,10 +3,12 @@
 $icon-block-width: 30px;
 $focus__border-color: #409eff;
 $hover__border-color: #c0c4cc;
+$disabled__border-color: #e4e7ed;
 
 $prefix-name: input-tag--prefix;
 $suffix-name: input-tag--suffix;
 $pre-suffix-name: input-tag--prefix input-tag--suffix;
+$disable-name: input-tag--disabled;
 
 @include b(input-tag) {
   display: inline-block;
@@ -111,6 +113,46 @@ $pre-suffix-name: input-tag--prefix input-tag--suffix;
       border-color: $hover__border-color;
     }
   }
+
+  //disabled 样式处理
+  @include rb($disable-name) {
+    cursor: not-allowed;
+    &::before,
+    &::after {
+      background-color: #f5f7fa;
+      border-color: $disabled__border-color;
+    }
+
+    @include b(input-tag__icon){
+      cursor: not-allowed;
+    }
+
+    &.is-focus {
+      &::before,
+      &::after,
+      .el-input__inner {
+        border-color: $disabled__border-color;
+      }
+      &.is-hover {
+        &::before,
+        &::after,
+        .el-input__inner {
+          border-color: $disabled__border-color;
+        }
+      }
+    }
+
+    //鼠标移入
+    &.is-hover {
+      &:before,
+      &::after,
+      .el-input__inner {
+        border-color: $disabled__border-color;;
+      }
+    }
+  }
+
+
 
   .el-select {
     width: 100%;

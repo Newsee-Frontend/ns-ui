@@ -40,6 +40,7 @@ export default create({
         ...this.recls([
           this.formsize,
           'multiple',
+          this.disabled? 'disabled' : '',
           this.prefixIcon ? 'prefix' : '',
           this.suffixIcon ? 'suffix' : '',
           this.collapseTags ? '' : 'auto_height',
@@ -183,6 +184,7 @@ export default create({
      * icon click
      */
     iconClick(type) {
+      if(this.disabled) return;
       this.$emit('iconClick', type, this.childSelect);
     },
   },
