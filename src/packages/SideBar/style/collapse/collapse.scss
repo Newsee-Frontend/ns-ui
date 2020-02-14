@@ -6,8 +6,16 @@
 * side bar collapse style
 * ==============================
 */
+.test{
+  height: 100%;
+  background: salmon;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
 
 .first-nav {
+
   @include rb(sidebar-collapse) {
     width: $first-nav-width-collapse;
     color: $first-nav-text-color;
