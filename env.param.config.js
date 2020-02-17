@@ -11,7 +11,7 @@ module.exports = {
     entry: './artisan/src/main.js',
     templateSPA: './artisan/index.html',
     staticPath: './artisan/static',
-    port: 8066,
+    port: 8067,
     useEslint: false,
   },
   prod: {
