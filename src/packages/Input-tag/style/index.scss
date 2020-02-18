@@ -123,7 +123,7 @@ $disable-name: input-tag--disabled;
       border-color: $disabled__border-color;
     }
 
-    @include b(input-tag__icon){
+    @include b(input-tag__icon) {
       cursor: not-allowed;
     }
 
@@ -147,12 +147,10 @@ $disable-name: input-tag--disabled;
       &:before,
       &::after,
       .el-input__inner {
-        border-color: $disabled__border-color;;
+        border-color: $disabled__border-color;
       }
     }
   }
-
-
 
   .el-select {
     width: 100%;
