@@ -174,7 +174,8 @@ export default {
           this.ishover = false;
           this.ishover = true;
         },
-        this.showTimeout
+        this.showTimeout,
+        this
       );
 
       this.$emit('mouse-enter', index);
@@ -190,7 +191,8 @@ export default {
         () => {
           this.ishover = false;
         },
-        this.hideTimeout
+        this.hideTimeout,
+        this
       );
       this.$emit('mouse-leave', index);
     },

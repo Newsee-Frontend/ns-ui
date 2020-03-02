@@ -1,0 +1,105 @@
+@import '../../../../style/mixins/scrollbar';
+@import "var";
+
+//主菜单（1级)
+.main-menu {
+  height: 100%;
+  width: $first-nav-width-collapse;
+
+  color: $first-nav-text-color;
+  background-color: $first-nav-back-color;
+
+  transition: width $transition-speed ease-in-out;
+
+  @include scrollbarStyle(0);
+
+  //内容部分
+  .main-menu__content {
+    height: calc(100% - 40px);
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    //滚动条
+
+    @include scrollbarHidden();
+
+    li.main-menu__item {
+      position: relative;
+      height: $first-nav-item-height;
+      line-height: $first-nav-item-height;
+      padding-left: $first-nav-left-gap;
+      font-size: $first-nav-font-size;
+      transition: all $transition-speed ease-in-out;
+      box-sizing: border-box;
+      cursor: pointer;
+      span {
+        display: none;
+      }
+      svg {
+        width: $nav-icon-width;
+        height: $nav-icon-height;
+        padding: 0;
+        color: $first-nav-icon-color;
+      }
+
+      //首项 - 特殊样式标识
+      &:first-child {
+        border-top: 1px solid $first-nav-line;
+        border-bottom: 1px solid $first-nav-line;
+      }
+
+      //选中状态
+      &.is-active {
+        background-color: $first-nav-back-color-active;
+        border: none;
+        span {
+          color: $first-nav-text-color-active;
+        }
+        svg {
+          color: $first-nav-icon-color-active;
+        }
+      }
+
+      //鼠标移入
+      &:hover {
+        &:not(.is-active) {
+          background-color: $first-nav-back-color-hover;
+          span {
+            color: $first-nav-text-color-hover;
+          }
+          svg {
+            color: $first-nav-icon-color-hover;
+          }
+        }
+
+        //过度垫片
+        &:after {
+          content: "";
+          position: absolute;
+          top: 40px;
+          right: 0;
+          width: 0;
+          height: 0;
+          border-top: 30px solid transparent;
+          border-left: 20px solid transparent;
+          z-index: 1;
+        }
+      }
+    }
+
+  }
+
+  //展开按钮（底部)
+  .main-menu__expanded {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    i.ns-icon-class {
+      font-size: 13px;
+      cursor: pointer;
+    }
+  }
+}

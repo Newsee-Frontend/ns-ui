@@ -1,0 +1,73 @@
+@import '../../../../style/mixins/mixins';
+@import '../../../../style/mixins/scrollbar';
+@import 'var';
+
+@mixin subMenuTransition($inTime,$outTinme,$distance) {
+  .slide-fade-enter-active {
+    transition: all $inTime ease;
+  }
+
+  .slide-fade-leave-active {
+    transition: all $outTinme cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+
+  .slide-fade-enter, .slide-fade-leave-to {
+    transform: translateX($distance);
+    opacity: 0;
+  }
+}
+
+.menu-wrapper {
+  position: relative;
+  height: 100%;
+
+  @include rb(multiple-navMenu) {
+
+  }
+
+  //主菜单展开状态
+  &.is-expand {
+    //主菜单（1级)
+    .main-menu {
+      width: $first-nav-width;
+      //内容部分
+      .main-menu__content {
+        li.main-menu__item {
+          //标题名称
+          span {
+            display: inline-block;
+            color: $first-nav-text-color;
+          }
+          //图标
+          svg {
+            padding: 0 5px 0 0;
+          }
+        }
+      }
+    }
+
+    //副菜单（2级 - n级)
+    .sub-menu.is-expand {
+      left: 120px;
+    }
+  }
+
+  //主菜单收起状态
+  &.is-collapse {
+    //副菜单（2级 - n级)
+    .sub-menu.is-expand {
+      left: 50px;
+    }
+  }
+
+  //主菜单（1级)
+  @import "main-menu";
+  //副菜单（2级 - n级)
+  @import "sub-menu";
+
+  //动画
+  @include subMenuTransition(200ms, 300ms, -180px);
+}
+
+
+
