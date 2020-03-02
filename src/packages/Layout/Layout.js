@@ -19,6 +19,7 @@ export default create({
         <section id="overview" class="main-container">
           {this.$slots['app-main']}
         </section>
+        <div class="other">{this.$slots.other}</div>
       </div>
     );
   },
