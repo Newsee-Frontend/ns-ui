@@ -2,9 +2,11 @@ import Vue from 'vue';
 
 //layout
 import Layout from '../../../../src/packages/Layout/Layout';
-import Sidebar from '../../../../src/packages/SideBar/Sidebar';
 import Skiner from '../../../../src/packages/Skiner/Skiner';
 import UserDropdown from '../../../../src/packages/UserDropdown/UserDropdown';
+import SecondNavMenu from '../../../../src/packages/SideBar/Sidebar';
+import MultipleNavMenu from '../../../../src/packages/SideBar/theme/multiple/multiple-navMenu';
+
 
 //basic
 import IconSvg from '../../../../src/packages/Icon-svg/Icon-svg';
@@ -75,10 +77,11 @@ import LoadingBlock from '../../../../src/packages/Loading-block/Loading-block.j
 
 // layout
 Vue.component('ns-layout', Layout);
-Vue.component('ns-sidebar', Sidebar);
 Vue.component('ns-screenfull', Screenfull);
 Vue.component('ns-skiner', Skiner);
 Vue.component('ns-user-dropdown', UserDropdown);
+Vue.component('ns-second-navMenu', SecondNavMenu);
+Vue.component('ns-multiple-navMenu', MultipleNavMenu);
 
 // basic
 Vue.component('ns-icon-svg', IconSvg);
@@ -152,7 +155,10 @@ import '../../../../src/style/base.scss';
 
 //layput
 import '../../../../src/packages/Layout/style/index.scss';
-import '../../../../src/packages/SideBar/style/index.scss';
+import '../../../../src/packages/SideBar/style/collapse/index.scss';
+import '../../../../src/packages/SideBar/style/multiple/index.scss';
+
+
 import '../../../../src/packages/UserDropdown/style/index.scss';
 
 //basic
