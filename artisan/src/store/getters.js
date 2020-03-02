@@ -7,7 +7,8 @@ const getters = {
 
   //layout
   visitedPages: state => state.PageTabs.visitedPages,
-  sideBarList: state => state.Sidebar.sideBarList,
+  navMenuType: state => state.NavMenu.navMenuType,//菜单栏类型
+  navMenuList: state => state.NavMenu.navMenuList,//菜单栏数据
 
   //form demo
   optionsDataTemplate: state => state.Form.optionsDataTemplate,

@@ -3,7 +3,7 @@ import Vuex from 'vuex';
 
 import User from './modules/User';
 import Drawer from './modules/Drawer';
-import Sidebar from './modules/Sidebar';
+import NavMenu from './modules/NavMenu';
 import PageTabs from './modules/PageTabs';
 import Form from './modules/Form';
 import Tree from './modules/Tree';
@@ -19,7 +19,7 @@ const store = new Vuex.Store({
   modules: {
     User,
     Drawer,
-    Sidebar,
+    NavMenu,
     Form,
     Tree,
     Table,
