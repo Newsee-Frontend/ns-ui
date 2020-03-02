@@ -12,7 +12,7 @@
   </ns-page-tabs>
 </template>
 <script>
-  import { addPageTabs } from '../../router/pageTabsData';
+  import { addPageTabs } from '../../../router/pageTabsData';
   import { mapGetters } from 'vuex';
 
   export default {

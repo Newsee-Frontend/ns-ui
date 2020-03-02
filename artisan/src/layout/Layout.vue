@@ -28,22 +28,7 @@
 
     <!--侧边栏 - 业务组直接调用封装的侧边栏组件即可 -->
     <template slot="sidebar">
-      <ns-sidebar :type="sidebarType"
-                  :data="sideBarList"
-                  :jumpByNavEmpty="jumpByNavEmpty"
-                  :showTimeout="200"
-                  :hideTimeout="200"
-                  :keyRefer="keyRefer"
-                  @first-nav-click="firstNavClick"
-                  @mouse-enter="mouseEnter">
-        <template slot="first-slot" slot-scope="scope">
-          <ns-icon-svg icon-class="jiantou" v-if="scope.item.menuIndex === 1" style="margin-left: 25px"></ns-icon-svg>
-          <!--<span v-if="scope.item.menuIndex === 1" style="margin-left: 25px">=>12312321312312</span>-->
-        </template>
-        <template slot="second-slot" slot-scope="scope">
-          <span v-if="secondNavSlot(scope)">=></span>
-        </template>
-      </ns-sidebar>
+      <biz-nav-menu></biz-nav-menu>
     </template>
 
     <!--history task-tabs link-->
@@ -59,22 +44,30 @@
       </transition>
     </template>
 
+    <template slot="other">
+      <right-panel>
+        <biz-settings/>
+      </right-panel>
+    </template>
+
   </ns-layout>
 </template>
 
 <script>
 
   import { mapGetters } from 'vuex';
-  import headerCustom from './header-custom';
-  import bizSkiner from '../components/Biz-skiner/Biz-skiner';
-  import keyRefer from './sidebar-keyRefer';
+  import headerCustom from './components/header-custom';
+  import BizSkiner from './components/Biz-skiner/Biz-skiner';
+  import BizNavMenu from './components/Biz-nav-menu/Biz-nav-menu';
+  import RightPanel from './components/Right-panel/Right-panel';
+  import BizSettings from './components/Biz-settings/Biz-settings';
+
 
   export default {
     name: 'layout',
-    components: { headerCustom, bizSkiner },
+    components: { headerCustom, BizSkiner, BizNavMenu, BizSettings, RightPanel },
     data() {
       return {
-        dialogSw: false,
         options: [
           { label: '修改密码', value: 'editPassword' },
           { label: '退出登录', value: 'logout' },
@@ -83,22 +76,16 @@
         dialogVisible: {
           editPasswordVisible: { visible: false },
         },
-        sidebarType: 'collapse', //bubble,collapse
-        jumpByNavEmpty: true,
-        keyRefer: keyRefer,
         operatorInfo: {},
       };
     },
     computed: {
-      ...mapGetters(['userName', 'avatar', 'sideBarList']),
+      ...mapGetters(['userName', 'avatar']),
       key() {
         return this.$route.name !== undefined
           ? this.$route.name + +new Date()
           : this.$route + +new Date();
       },
-    },
-    created() {
-      this.$store.dispatch('generateSideBar');
     },
     methods: {
       userDropdownClick(value, index) {
@@ -111,47 +98,12 @@
 
         }
       },
-      /**
-       * first nav click handle
-       * @param index
-       * @param item
-       */
-      firstNavClick(index, item) {
-        // if (index === 0) {
-        //   this.jumpByNavEmpty = false;
-        // }
-        console.log(index, item);
-        if (index === 0) {
-          this.dialogSw = true;
-        }
-        else {
-          this.dialogSw = false;
-        }
-      },
+    },
+    created() {
 
-      /**
-       * nav mouse event
-       * @param index
-       * @param item
-       */
-      mouseEnter(index, item) {
-        // console.log('mouseEvent-mouseEvent');
-        // console.log(index, item);
-      },
-
-      secondNavSlot(scope) {
-        const firstitem = scope.item.firstitem;
-        const seconditem = scope.item.seconditem;
-        if (!firstitem && !firstitem.childMenus && !firstitem.childMenus.length) {
-          return false;
-        }
-        return firstitem.menuIndex === 3 && seconditem.menuIndex === 1;
-      },
     },
   };
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
-  .slipDialog-side {
-    z-index: 1;
-  }
+
 </style>
