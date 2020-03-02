@@ -251,7 +251,7 @@
 //          //max-height: calc(100% - #{$bubble-nav2st_bottomgap} - #{$bubble-nav2st_topgap} - #{$bubble-nav2st-title_height});;
 //          overflow-x: hidden;
 //          overflow-y: auto;
-//          @include scrollbarVisible();
+//          @include scrollbarVisibleHover();
 //          li.second-nav-items {
 //            padding: $bubble-nav2st-item-around_gap1 $bubble-nav2st-item-around_gap2;
 //            height: $bubble-nav2st-item_height;

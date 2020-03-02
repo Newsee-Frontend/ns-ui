@@ -80,7 +80,7 @@
           height: auto;
           overflow-x: hidden;
           overflow-y: auto;
-          @include scrollbarVisible();
+          @include scrollbarVisibleHover();
 
           li.second-nav-items {
             padding: $second-nav-item-paddind-tb $second-nav-item-paddind-lr;
