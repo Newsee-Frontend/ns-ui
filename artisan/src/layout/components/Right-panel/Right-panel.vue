@@ -31,7 +31,7 @@
     },
     data() {
       return {
-        show: true,
+        show: false,
         panelHover: false,
       };
     },
