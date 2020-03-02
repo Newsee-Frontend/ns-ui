@@ -41,29 +41,41 @@ export const compute = (e, vm, maxheight = 350 || window.screen.height * 0.6) =>
 
 /**
  * delay nav
- * @param vm
  * @param callback
  * @param speed
+ * @param vm
  */
-export const delaynav = (vm, callback, speed) => {
-  clearTimeout(vm.timeout);
-  vm.timeout = setTimeout(() => {
-    callback();
+export const delaynav = (callback, speed, vm = null) => {
+  let timeout;
+  if (vm) {
+    timeout = vm.timeout;
+  }
+  clearTimeout(timeout);
+  timeout = setTimeout(() => {
+    if (callback) {
+      callback();
+    }
   }, speed);
 };
 
 export const debounce = (func, wait, immediate = false) => {
   let timeout, args, context, timestamp, result;
-
+  console.log(111111111);
   const later = function() {
     const last = +new Date() - timestamp;
+    console.log(last);
+    console.log(timestamp);
+    console.log(wait);
 
     if (last < wait && last > 0) {
+      console.log(111111111);
       timeout = setTimeout(later, wait - last);
     } else {
+      console.log(2222222);
       timeout = null;
 
       if (!immediate) {
+        console.log(33333333);
         result = func.apply(context, args);
         if (!timeout) context = args = null;
       }
