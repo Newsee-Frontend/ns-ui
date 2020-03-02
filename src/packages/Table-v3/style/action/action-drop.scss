@@ -33,7 +33,7 @@
     padding: 0 10px 0 20px;
     box-sizing: border-box;
     overflow-y: auto;
-    @include scrollbarVisible;
+    @include scrollbarVisibleHover;
     //下拉菜单条目
     li {
       margin: 5px 0;

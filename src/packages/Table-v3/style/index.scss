@@ -35,9 +35,9 @@
 
       //内容部分滚动条设置
       .el-table__body-wrapper {
-        //@include scrollbarVisible;
+        //@include scrollbarVisibleHover;
       }
-      @include scrollbarStyle;
+      @include scrollbarStyle();
     }
 
     //表格各模块 visible 设置

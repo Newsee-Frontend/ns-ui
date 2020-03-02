@@ -64,7 +64,7 @@
     box-sizing: border-box;
     overflow-y: auto;
     font-size: 14px;
-    @include scrollbarVisible;
+    @include scrollbarVisibleHover;
     i.iconfont {
       font-size: inherit;
     }

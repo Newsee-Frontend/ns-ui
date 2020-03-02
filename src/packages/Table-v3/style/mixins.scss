@@ -1,4 +1,4 @@
-@mixin scrollbarVisible() {
+@mixin scrollbarVisibleHover() {
   &::-webkit-scrollbar-thumb:vertical,
   &::-webkit-scrollbar-thumb:horizontal {
     visibility: hidden;

@@ -1,4 +1,4 @@
-@mixin scrollbarVisible() {
+@mixin scrollbarVisibleHover() {
   &::-webkit-scrollbar-thumb:vertical,
   &::-webkit-scrollbar-thumb:horizontal {
     visibility: hidden;
@@ -12,11 +12,19 @@
   }
 }
 
-@mixin scrollbarStyle() {
+@mixin scrollbarHidden() {
+  &::-webkit-scrollbar-thumb:vertical,
+  &::-webkit-scrollbar-thumb:horizontal {
+    visibility: hidden;
+  }
+}
+
+@mixin scrollbarStyle($size:10px) {
+
   /*滚动条垂直方向的宽度*/
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
+    width: $size;
+    height: $size;
   }
 
   /* 垂直滚动条的滑动块 */
