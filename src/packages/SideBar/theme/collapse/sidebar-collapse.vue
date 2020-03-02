@@ -1,5 +1,8 @@
 <template>
-  <ul v-bind:class="`${recls()} first-nav noselect`">
+  <ul v-bind:class="[
+  `${recls()} first-nav noselect`,
+  {'hasVirtualNode':hasVirtualNode},
+  ]">
     <li
       v-for="(firstitem, firstIndex) in data"
       :index="firstitem[keyRefer.menuIndex]"
@@ -50,13 +53,20 @@
                     firstitem[keyRefer.menuIndex] - 1 === control.state.firstActiveNow &&
                     seconditem[keyRefer.menuIndex] - 1 === control.state.secondActiveNow,
                 },
+                 {'is-virtual-node':seconditem[keyRefer.isVirtual]}
               ]"
               v-for="(seconditem, secondIndex) in firstitem[keyRefer.children]"
               :index="firstitem[keyRefer.menuIndex] + '-' + seconditem[keyRefer.menuIndex]"
               :key="firstitem[keyRefer.menuIndex] + '-' + seconditem[keyRefer.menuIndex]"
-              v-if="seconditem[keyRefer.visible]"
+              v-if="!seconditem[keyRefer.visible]"
             >
+              <!--虚拟节点 - 假的二级菜单节点 - 临时方案后续删除-->
+              <a class="nav-link oneline-ellipsis" v-if="seconditem[keyRefer.isVirtual]">
+                {{ seconditem[keyRefer.label] }}
+              </a>
+              <!--正常节点显示-->
               <a
+                v-if="!seconditem[keyRefer.isVirtual]"
                 class="nav-link oneline-ellipsis"
                 @click="
                   linkTo(
@@ -112,6 +122,7 @@
       jumpByNavEmpty: { type: Boolean, default: true },
       showTimeout: { type: Number, default: 200 },
       hideTimeout: { type: Number, default: 200 },
+      hasVirtualNode: { type: Boolean, default: true },//是否含有虚拟节点 - 用作假的二级分类
       keyRefer: {
         type: Object,
         default() {
@@ -125,10 +136,6 @@
       },
     },
     created() {
-      console.log(898989898989);
-      console.log(898989898989);
-      console.log(this.data);
-      console.log(898989898989);
       this.control = new Navcontrol({
         state: {
           isCollapse: false,
@@ -223,7 +230,32 @@
   });
 </script>
 <style rel="stylesheet/scss" lang="scss">
-  /*@import '../../style/collapse/var';*/
-  /*@import '../../style/base';*/
-  /*@import '../../style/collapse/collapse';*/
+  .first-nav.hasVirtualNode {
+    ul.second-nav .right {
+      padding-top: 0 !important;
+      .second-nav-tit {
+        font-size: 16px !important;
+        padding-left: 16px !important;
+        background-color: #eeeeee;
+      }
+      li.second-nav-items {
+        padding-left: 32px;
+        &.is-virtual-node {
+          a.nav-link {
+            color: #222222 !important;
+            text-indent: 8px !important;
+            cursor: auto !important;
+            font-weight: 600;
+          }
+          &:hover {
+            a.nav-link {
+              background-color: transparent !important;
+            }
+
+          }
+        }
+      }
+    }
+
+  }
 </style>

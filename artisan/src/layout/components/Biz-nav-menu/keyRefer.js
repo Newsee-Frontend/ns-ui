@@ -12,6 +12,8 @@ const keyRefer = {
   menuIndex: 'menuIndex', //序号 syOrderindex
   visible: 'syStatus', //隐藏 syStatus
   menuRouter: 'menuMenusubname', //路径符号
+  virtualLabel: 'syPyqc',//虚拟节点的名称 - 暂时存在，后续去除
+  isVirtual:'isVirtual',//是否虚拟几点 -  暂时存在，后续去除
 };
 
 export default keyRefer;

@@ -57,6 +57,7 @@
 
   import { mapGetters } from 'vuex';
   import headerCustom from './components/header-custom';
+  import bizTabsViews from './components/Biz-tabs-view/Biz-tabs-view';
   import BizSkiner from './components/Biz-skiner/Biz-skiner';
   import BizNavMenu from './components/Biz-nav-menu/Biz-nav-menu';
   import RightPanel from './components/Right-panel/Right-panel';
@@ -65,7 +66,7 @@
 
   export default {
     name: 'layout',
-    components: { headerCustom, BizSkiner, BizNavMenu, BizSettings, RightPanel },
+    components: { headerCustom, bizTabsViews, BizSkiner, BizNavMenu, BizSettings, RightPanel },
     data() {
       return {
         options: [
