@@ -24,6 +24,7 @@ export default create({
     jumpByNavEmpty: { type: Boolean },
     showTimeout: { type: Number },
     hideTimeout: { type: Number },
+    hasVirtualNode: { type: Boolean }, //是否含有虚拟节点 - 用作假的二级分类
     keyRefer: { type: Object },
   },
   computed: {},
@@ -35,6 +36,7 @@ export default create({
         jumpByNavEmpty: this.jumpByNavEmpty,
         showTimeout: this.showTimeout,
         hideTimeout: this.hideTimeout,
+        hasVirtualNode: this.hasVirtualNode,
       },
       on: this.$listeners,
       scopedSlots: {

@@ -1,5 +1,5 @@
 @import '../../../../style/mixins/scrollbar';
-@import "var";
+@import 'var';
 
 //主菜单（1级)
 .main-menu {
@@ -74,7 +74,7 @@
 
         //过度垫片
         &:after {
-          content: "";
+          content: '';
           position: absolute;
           top: 40px;
           right: 0;
@@ -86,7 +86,6 @@
         }
       }
     }
-
   }
 
   //展开按钮（底部)

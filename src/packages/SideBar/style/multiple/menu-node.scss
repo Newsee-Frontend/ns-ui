@@ -1,4 +1,4 @@
-@import "/var";
+@import '/var';
 
 //副菜单 - 实际内容递归渲染部分
 .menu-item {
@@ -26,7 +26,6 @@
       .menu-node__label {
         color: $first-nav-back-color-active;
       }
-
     }
 
     //图标 - 下拉箭头
@@ -51,7 +50,5 @@
       cursor: pointer;
       text-indent: $second-nav-item-text-indent;
     }
-
   }
-
 }

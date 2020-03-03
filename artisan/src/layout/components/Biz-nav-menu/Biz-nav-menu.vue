@@ -14,6 +14,7 @@
                        :jumpByNavEmpty="jumpByNavEmpty"
                        :showTimeout="200"
                        :hideTimeout="200"
+                       hasVirtualNode
                        :keyRefer="keyRefer"
                        @first-nav-click="firstNavClick"
                        @mouse-enter="mouseEnter"

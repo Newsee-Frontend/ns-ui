@@ -1,4 +1,3 @@
-
 import Node from './node';
 
 export default class TreeStore {
@@ -12,7 +11,7 @@ export default class TreeStore {
 
     this.root = new Node({
       data: this.data,
-      store: this
+      store: this,
     });
   }
   /**
@@ -25,12 +24,8 @@ export default class TreeStore {
     if (isDataChanged) {
       //执行 root 中的 setTreeData 方法后，等于重头创建了一个数据root 数据对象
       this.root.setNodeData(newVal);
-
     } else {
       // this.root.updateChildren();
     }
   }
-
-
-
 }
