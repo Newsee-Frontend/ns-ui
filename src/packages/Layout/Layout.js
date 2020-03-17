@@ -16,9 +16,7 @@ export default create({
         <div class="sidebar-wrapper">{this.$slots.sidebar}</div>
 
         <div class="page-tabs-wrapper">{this.$slots['tabs-view']}</div>
-        <section class="main-container">
-          {this.$slots['app-main']}
-        </section>
+        <section class="main-container">{this.$slots['app-main']}</section>
         <div class="other">{this.$slots.other}</div>
       </div>
     );
