@@ -41,7 +41,7 @@ let _filterMenu = list => {
 
       if (index === list.length - 1 && inserts.length) {
         inserts.forEach((insert, i) => {
-         
+
           list.splice(insert.index + i, 0, {
             [labelKey]: insert.label,
             [isVirtualKey]: true,
