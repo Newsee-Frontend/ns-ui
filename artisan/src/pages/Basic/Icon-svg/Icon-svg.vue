@@ -1,6 +1,6 @@
 <!--UI 组件库 - Icon-svg - 页面测试-->
 <template>
-  <div>
+  <div class="win">
     <demo-block>
       <template slot="title">图标-SVG 用法</template>
       <template slot="describe">基础用法</template>

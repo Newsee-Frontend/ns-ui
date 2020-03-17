@@ -1,6 +1,6 @@
 <!--UI 组件库 - Icon-class - 页面测试-->
 <template>
-  <div>
+  <div class="win">
     <ns-icon-class icon-class="el-icon-edit"></ns-icon-class>
     <ns-icon-class icon-class="el-icon-share"></ns-icon-class>
     <ns-icon-class icon-class="el-icon-delete"></ns-icon-class>
@@ -10,7 +10,6 @@
     </ns-button>
 
     <ns-icon-class icon-class="setting"></ns-icon-class>
-
   </div>
 </template>
 
