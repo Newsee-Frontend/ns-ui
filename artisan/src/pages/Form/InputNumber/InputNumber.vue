@@ -1,6 +1,6 @@
 <!--UI 组件库 - InputNumber - 页面测试-->
 <template>
-  <div class="input-number-wrapper">
+  <div class="win input-number-wrapper">
     <demo-block>
       <template slot="title">普通计数器</template>
       <template slot="content">

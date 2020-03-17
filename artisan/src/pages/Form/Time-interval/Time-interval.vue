@@ -1,6 +1,6 @@
 <!--UI 组件库 - Time-interval - 页面测试-->
 <template>
-  <div>
+  <div class="win">
     <ns-row>
       <p>时间频率控件1值：</p>
       <pre>{{timeIntervalModel1}}</pre>

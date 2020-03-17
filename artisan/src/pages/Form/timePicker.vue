@@ -1,5 +1,5 @@
 <template>
-    <div class="time-picker-wrapper">
+    <div class="win time-picker-wrapper">
       <demo-block>
         <template slot="title">默认 时间选择</template>
         <template slot="describe">默认时间选择，使用size（width，height）定义宽高，禁用状态，编辑状态 和自定义展示的格式</template>

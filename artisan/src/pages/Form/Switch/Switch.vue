@@ -1,6 +1,6 @@
 <!--UI 组件库 - Switch - 页面测试-->
 <template>
-  <div class="switch-wrapper">
+  <div class="win switch-wrapper">
     <ns-switch
       v-model="value"
       activeText="季报"

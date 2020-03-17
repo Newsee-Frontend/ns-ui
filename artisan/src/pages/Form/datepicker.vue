@@ -1,5 +1,5 @@
 <template>
-  <div class="date-picker-wrapper">
+  <div class="win date-picker-wrapper">
     <demo-block>
       <template slot="title">默认 日期选择</template>
       <template slot="describe">

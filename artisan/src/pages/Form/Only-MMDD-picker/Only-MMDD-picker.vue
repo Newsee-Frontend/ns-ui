@@ -1,6 +1,6 @@
 <!--UI 组件库 - Only-MMDD-picker - 页面测试-->
 <template>
-  <div>
+  <div class="win">
     <ns-row>
       <p>
         MMDD-日期控件1值：
