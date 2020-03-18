@@ -6,8 +6,26 @@
         默认日期选择，使用size（width，height）定义宽高，禁用状态，编辑状态 和自定义展示的格式
       </template>
       <template slot="content">
-        <div>选择的时间： {{date}}</div>
+        <div>选择的时间： {{dataTime}}</div>
         <div class="gap">
+          <ns-date-picker
+            v-model="dataTime"
+            size="medium"
+            :width="width"
+            :height="height"
+            :readonly="readonly"
+            :editable="editable"
+            :clearable="clearable"
+            align="right"
+            type="datetime"
+            format="yyyy/MM/dd HH:mm:ss"
+            value-format="yyyy-MM-dd HH:mm:ss"
+            placeholder="请选择"
+            :popper-class="popperClass"
+            @change="onChange"
+            @focus="onFocus"
+            @blur="onBlur"
+          ></ns-date-picker>
           <ns-date-picker
             v-model="date"
             :readonly="readonly"
@@ -109,6 +127,7 @@
     data(){
       return {
         date: '2016-12-12',
+        dataTime: new Date(),
         dateRange: ['2011/12/12','2011/12/22'],
         width:'500px',
         height: '50px',

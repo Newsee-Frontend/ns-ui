@@ -23,7 +23,10 @@ export default create({
     min: Number,
     max: Number,
     step: Number,
-    stepStrictly: Number, //是否只能输入 step 的倍数
+    stepStrictly: {
+      type: Boolean,
+      default: false
+    },
     precision: Number, //数值精度
     disabled: Boolean,
     controls: {
