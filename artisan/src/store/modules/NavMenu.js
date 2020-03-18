@@ -31,21 +31,22 @@ let _filterMenu = list => {
       item[visibleKey] = item[visibleKey] === '1';
       item[isVirtualKey] = false;
 
-
+      const virtualLabe = item[virtualLabelKey];
       if (item[virtualLabelKey]) {
-        inserts.push(index);
-      }
+        inserts.push({ index: index, label: virtualLabe });
+    }
 
       item[indexKey] = index + 1;
 
 
       if (index === list.length - 1 && inserts.length) {
         inserts.forEach((insert, i) => {
-          list.splice(insert + i, 0, {
-            [labelKey]: item[virtualLabelKey],
+
+          list.splice(insert.index + i, 0, {
+            [labelKey]: insert.label,
             [isVirtualKey]: true,
             [visibleKey]: false,
-            [indexKey]: 'virtual-' + (insert + i),
+            [indexKey]: 'virtual-' + (insert.index + i),
           });
         });
 
@@ -113,3 +114,5 @@ const NavMenu = {
   },
 };
 export default NavMenu;
+
+

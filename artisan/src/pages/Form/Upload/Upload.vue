@@ -1,6 +1,6 @@
 <!--UI 组件库 - Upload - 页面测试-->
 <template>
-  <div class="upload-wrapper">
+  <div class="win upload-wrapper">
     <demo-block>
       <template slot="title">上传控件 - Upload type为 picture-single</template>
       <template slot="describe">单张照片， 用于头像上传</template>

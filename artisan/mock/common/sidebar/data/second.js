@@ -32,6 +32,7 @@ export default [
         menuIconcls: null,
         menuIndex: 1,
         syStatus: 1,
+        syPyqc: '栅格布局分类1',
       },
       {
         funcId: 'icon-svg',

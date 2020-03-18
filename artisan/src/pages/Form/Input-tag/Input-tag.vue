@@ -1,6 +1,6 @@
 <!--UI 组件库 - Input-tag - 页面测试-->
 <template>
-  <div class="input-tag-wrapper">
+  <div class="win input-tag-wrapper">
     <demo-block>
       <template slot="title">Input-tag no icon</template>
       <template slot="content">
@@ -119,7 +119,7 @@
         inputModel2: [3, 4, 5],
         inputModel3: [1, 2, 3, 4, 5, 7],
         formData: {
-          inputModel4: [6,7],
+          inputModel4: [6, 7],
         },
 
         prefixIcon: 'daohang', //输入框头部图标

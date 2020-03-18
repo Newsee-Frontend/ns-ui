@@ -1,6 +1,6 @@
 <!--UI 组件库 - Select - 页面测试-->
 <template>
-  <div class="select-wrapper">
+  <div class="win select-wrapper">
     <demo-block>
       <template slot="title">
         基础用法（单选）

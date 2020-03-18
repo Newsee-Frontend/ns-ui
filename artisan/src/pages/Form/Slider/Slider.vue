@@ -1,6 +1,6 @@
 <!--UI 组件库 - Slider - 页面测试-->
 <template>
-  <div class="slider-wrapper">
+  <div class="win slider-wrapper">
     <demo-block>
       <template slot="title">slider 基础用法</template>
       <template slot="describe">slider基础用法, 不展示tooltip, width定义宽度，自定义tooltip, disabled滑块， 显示间断点，显示input， 触发change事件</template>

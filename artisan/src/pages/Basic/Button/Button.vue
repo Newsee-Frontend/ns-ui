@@ -1,6 +1,6 @@
 <!--UI 组件库 - Button - 页面测试-->
 <template>
-  <div>
+  <div class="win">
     <demo-block>
       <template slot="title">按钮 Button 用法</template>
       <template slot="describe">尺寸</template>
