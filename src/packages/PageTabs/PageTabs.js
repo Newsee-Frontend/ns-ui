@@ -44,7 +44,7 @@ export default create({
                   }
                 />
               }
-              <span class={'el-tag-text'}> {tag.name}</span>
+              <span class={'el-tag-text'}> {tag.title}</span>
             </el-tag>
           </li>,
         ])}

@@ -25,7 +25,7 @@ export default create({
     step: Number,
     stepStrictly: {
       type: Boolean,
-      default: false
+      default: false,
     },
     precision: Number, //数值精度
     disabled: Boolean,
