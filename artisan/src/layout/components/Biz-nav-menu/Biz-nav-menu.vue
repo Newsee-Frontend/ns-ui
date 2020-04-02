@@ -60,6 +60,7 @@
         //   this.jumpByNavEmpty = false;
         // }
         console.log(firstIndex, firstItem);
+
         if (firstItem === 0) {
           this.dialogSw = true;
         }
@@ -80,7 +81,7 @@
       secondNavClick(firstItem, secondItem, firstaIndex, secondIndex) {
         console.log(firstItem, secondItem, firstaIndex, secondIndex);
 
-        const url = '/' + firstItem[keyRefer.menuRouter] + '/' + secondItem[keyRefer.menuRouter];
+        const url = '/' + firstItem[this.keyRefer.menuRouter] + '/' + secondItem[this.keyRefer.menuRouter];
 
         //jump
         this.$router.push({ path: url });
