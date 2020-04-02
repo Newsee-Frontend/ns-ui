@@ -17,6 +17,7 @@
                        hasVirtualNode
                        :keyRefer="keyRefer"
                        @first-nav-click="firstNavClick"
+                       @second-nav-click="secondNavClick"
                        @mouse-enter="mouseEnter"
     >
       <template slot="first-slot" slot-scope="scope">
@@ -51,20 +52,38 @@
     methods: {
       /**
        * first nav click handle
-       * @param index
-       * @param item
+       * @param firstItem
+       * @param firstIndex
        */
-      firstNavClick(index, item) {
+      firstNavClick(firstItem, firstIndex) {
         // if (index === 0) {
         //   this.jumpByNavEmpty = false;
         // }
-        console.log(index, item);
-        if (index === 0) {
+        console.log(firstIndex, firstItem);
+        if (firstItem === 0) {
           this.dialogSw = true;
         }
         else {
           this.dialogSw = false;
         }
+
+        this.$router.push({ path: '/' + firstItem[this.keyRefer.menuRouter] }); //jump
+      },
+
+      /**
+       * first nav click handle
+       * @param firstItem
+       * @param secondItem
+       * @param firstaIndex
+       * @param secondIndex
+       */
+      secondNavClick(firstItem, secondItem, firstaIndex, secondIndex) {
+        console.log(firstItem, secondItem, firstaIndex, secondIndex);
+
+        const url = '/' + firstItem[keyRefer.menuRouter] + '/' + secondItem[keyRefer.menuRouter];
+
+        //jump
+        this.$router.push({ path: url });
       },
 
       /**

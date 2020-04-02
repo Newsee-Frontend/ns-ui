@@ -66,8 +66,9 @@
                 v-if="!seconditem[keyRefer.isVirtual]"
                 class="nav-link oneline-ellipsis"
                 @click="
-                  linkTo(
-                    '/' + firstitem[keyRefer.menuRouter] + '/' + seconditem[keyRefer.menuRouter],
+                  secondNavClick(
+                    firstitem,
+                    seconditem,
                     firstitem[keyRefer.menuIndex] - 1,
                     seconditem[keyRefer.menuIndex] - 1
                   )
@@ -149,13 +150,33 @@ export default create({
       const collapse = this.control.state.isCollapse;
       this.control.setCollapse(!collapse);
     },
+
+    /**
+     * first nav click handle
+     * @param item
+     */
+    firstNavClick(item) {
+      const firstindex = item[this.keyRefer.menuIndex] - 1;
+
+      if (
+        (!item[this.keyRefer.children] || item[this.keyRefer.children].length === 0) &&
+        this.jumpByNavEmpty
+      ) {
+        //set acitev of first nav
+        this.control.setFirstActive(firstindex);
+      }
+
+      this.$emit('first-nav-click', item, firstindex);
+    },
+
     /**
      * link to router web ,and set funcId
-     * @param url
+     * @param firstItem
+     * @param secondItem
      * @param firstaIndex
      * @param secondIndex
      */
-    linkTo(url, firstaIndex, secondIndex) {
+    secondNavClick(firstItem, secondItem, firstaIndex, secondIndex) {
       //set acitev of first nav
       this.control.setFirstActive(firstaIndex);
       //set acitev of second nav
@@ -164,25 +185,8 @@ export default create({
       this.activeStore.first = firstaIndex;
       //set second active to active-store
       this.activeStore.second = secondIndex;
-      //jump
-      this.$router.push({ path: url });
-    },
-    /**
-     * first nav click handle
-     * @param item
-     */
-    firstNavClick(item) {
-      const firstindex = item[this.keyRefer.menuIndex] - 1;
 
-      this.$emit('first-nav-click', firstindex, item);
-      if (
-        (!item[this.keyRefer.children] || item[this.keyRefer.children].length === 0) &&
-        this.jumpByNavEmpty
-      ) {
-        //set acitev of first nav
-        this.control.setFirstActive(firstindex);
-        this.$router.push({ path: '/' + item[this.keyRefer.menuRouter] }); //jump
-      }
+      this.$emit('second-nav-click', firstItem, secondItem, firstaIndex, secondIndex);
     },
 
     /**
