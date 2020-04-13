@@ -15,6 +15,11 @@ export default create({
     visible: { type: Boolean, default: false },
     'custom-class': { type: String },
     title: { type: String },
+    left: { type: String, default: '0' },
+    right: { type: String, default: '0' },
+    top: { type: String, default: '0' },
+    bottom: { type: String, default: '0' },
+    modal: { type: Boolean, default: true }, //是否需要遮罩层
     type: {
       type: String,
       default: 'normal',
@@ -28,7 +33,15 @@ export default create({
     'before-close': { type: Function },
   },
 
-  computed: {},
+  computed: {
+    wrapperStyle() {
+      let style = {};
+      ['left', 'right', 'top', 'bottom'].forEach(pos => {
+        style[pos] = this[pos];
+      });
+      return style;
+    },
+  },
 
   watch: {
     visible(val) {
@@ -45,6 +58,7 @@ export default create({
         title={this.title}
         type={this.type}
         close-on-press-escape={this.closeOnPressEscape}
+        modal={this.modal}
         modal-append-to-body
         append-to-body
         isfullscreen
@@ -52,6 +66,7 @@ export default create({
         before-close={this.beforeClose}
         on-close={this.close}
         on-open={this.open}
+        style={this.wrapperStyle}
       >
         {this.$slots.default}
         <span slot={'footer'} className={'dialog-footer'}>

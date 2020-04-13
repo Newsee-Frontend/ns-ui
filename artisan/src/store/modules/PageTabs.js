@@ -14,7 +14,7 @@ const PageTabs = {
       //if this tabs-view is not existed, push this in list
       if (!exist) {
         state.visitedPages = state.visitedPages.filter(item => item.path !== view.path);
-        state.visitedPages.push({ name: view.name, path: view.path, meta: view.meta });
+        state.visitedPages.push({ name: view.name, title: view.name, path: view.path, meta: view.meta });
       }
       sessionStorage.setItem('visitedPages', JSON.stringify(state.visitedPages));
     },

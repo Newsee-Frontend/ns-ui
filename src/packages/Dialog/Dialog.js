@@ -35,7 +35,7 @@ export default create({
 
     modal: { type: Boolean, default: true }, //是否需要遮罩层
     isAppendToBody: { type: Boolean, default: true }, //Dialog 自身是否插入至 body 元素上
-    'lock-scroll': { type: Boolean, default: false }, //是否在 Dialog 出现时将 body 滚动锁定
+    'lock-scroll': { type: Boolean, default: true }, //是否在 Dialog 出现时将 body 滚动锁定
 
     'close-on-click-modal': { type: Boolean, default: false }, //是否可以通过点击 modal 关闭 Dialog
     'close-on-press-escape': { type: Boolean, default: false }, //是否可以通过按下 ESC 关闭 Dialog
