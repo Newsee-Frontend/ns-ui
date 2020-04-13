@@ -43,6 +43,7 @@ import PageTabs from '../../../../src/packages/PageTabs/PageTabs.js';
 import Dialog from '../../../../src/packages/Dialog/Dialog.js';
 import FullscreenDialog from '../../../../src/packages/Fullscreen-dialog/Fullscreen-dialog.js';
 import SlipDialog from '../../../../src/packages/Slip-dialog/Slip-dialog.js';
+import DrawerDialog from '../../../../src/packages/Drawer-dialog/Drawer-dialog';
 import Drawer from '../../../../src/packages/Drawer/Drawer.js';
 import Carousel from '../../../../src/packages/Carousel/Carousel.js';
 import Popover from '../../../../src/packages/Popover/Popover.js';
@@ -135,6 +136,7 @@ Vue.component('ns-page-tabs', PageTabs);
 Vue.component('ns-dialog', Dialog);
 Vue.component('ns-fullscreen-dialog', FullscreenDialog);
 Vue.component('ns-slip-dialog', SlipDialog);
+Vue.component('ns-drawer-dialog', DrawerDialog);
 Vue.component('ns-drawer', Drawer);
 
 Vue.component('ns-carousel', Carousel);

@@ -25,6 +25,12 @@ export const othersRouter = [
         name: '滑动对话框',
       },
       {
+        path: 'drawer-dialog',
+        component: () => import('../../pages/Others/Drawer-dialog/Drawer-dialog'),
+        meta: { auth: true, key: 'drawer-dialog' },
+        name: '侧滑对话框',
+      },
+      {
         path: 'drawer',
         component: () => import('../../pages/Others/Drawer/Drawer'),
         meta: { auth: true, key: 'drawer' },

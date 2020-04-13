@@ -530,6 +530,14 @@ export default [
         childMenus: null,
       },
       {
+        funcId: 'drawer-dialog',
+        menuMenuname: '侧滑对话框',
+        menuMenusubname: 'drawer-dialog',
+        menuIconcls: null,
+        syStatus: '1',
+        childMenus: null,
+      },
+      {
         funcId: 'drawer',
         menuMenuname: '抽屉',
         menuMenusubname: 'drawer',
