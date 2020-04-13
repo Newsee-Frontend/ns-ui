@@ -28,6 +28,16 @@
             </ns-switch>
           </div>
           <div class="control-block form-block-line">
+            <span>是有显示header: </span>
+            <ns-switch
+              v-model="form.showHeader"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              style="margin-right: 10px"
+            >
+            </ns-switch>
+          </div>
+          <div class="control-block form-block-line">
             <span>进入位置: </span>
             <ns-select v-model="form.postion" placeholder="进入位置" :options="postionList"></ns-select>
           </div>
@@ -48,6 +58,7 @@
             class="drawerDialog"
             :visible.sync="form.dialogSw"
             customClass="drawerDialog-test"
+            title="title"
             :left="form.iptleft"
             :right="form.iptright"
             :top="form.ipttop"
@@ -55,6 +66,7 @@
             :modal="form.modal"
             :entr-position="form.postion"
             :animation="form.animation"
+            :showHeader="form.showHeader"
           >
             <h2 style="text-align: center;padding: 15px 0 ;margin: 0">侧边滑入窗口</h2>
             <ns-form ref="slip-dialog-form" :model="slipDialogForm" label-width="140px">
@@ -108,6 +120,7 @@
           dialogSw: false,
           modal: false,
           postion: 'right',
+          showHeader: false
         },
 
         slipDialogForm: {
@@ -116,6 +129,17 @@
         }
       };
     },
+
+    methods: {
+      beforeClose(done){
+        this.$confirm('确定要提交表单吗？')
+          .then(_ => {
+            this.form.dialogSw = false;
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
   };
 </script>
 

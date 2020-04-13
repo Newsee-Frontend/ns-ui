@@ -211,6 +211,7 @@ import '../../../../src/packages/PageTabs/style/index.scss';
 import '../../../../src/packages/Dialog/style/index.scss';
 import '../../../../src/packages/Fullscreen-dialog/style/index.scss';
 import '../../../../src/packages/Slip-dialog/style/index.scss';
+import '../../../../src/packages/Drawer-dialog/style/index.scss';
 import '../../../../src/packages/Drawer/style/index.scss';
 import '../../../../src/packages/Carousel/style/index.scss';
 import '../../../../src/packages/Timeline/style/index.scss';

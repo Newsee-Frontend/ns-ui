@@ -22,7 +22,7 @@ export default create({
 
     showHeader: { type: Boolean, default: false},
     title: String,
-    showClose: Boolean,
+    showClose: { type: Boolean, default: true},
 
     beforeClose: Function,
     wrapperClosable: {
@@ -64,6 +64,8 @@ export default create({
         visible: this.showDialog,
         'destroy-on-close': true,
         direction: this.direction,
+        title: this.title,
+        showClose: this.showClose,
         modal: this.modal,
         customClass: this.customClass,
         'before-close': this.handleClose.bind(this)
@@ -74,7 +76,7 @@ export default create({
         }
       }
     }, [
-      <div className={this.recls('container')} role={'dialog'}>
+      <div class={this.recls('container')} role={'dialog'}>
         {this.$slots.default}
       </div>
     ]);
@@ -85,9 +87,9 @@ export default create({
   },
 
   methods:{
-    handleClose(){
+    handleClose(done){
       if(this.beforeClose){
-        return this
+        return this.beforeClose(done)
       }
       this.showDialog = false;
       this.$emit('update:visible', this.showDialog)
