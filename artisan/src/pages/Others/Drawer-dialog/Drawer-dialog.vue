@@ -43,49 +43,55 @@
           </div>
 
           <!--侧滑入窗口-->
-          <!--<ns-drawer-dialog-->
-          <!--ref="drawerDialog"-->
-          <!--class="drawerDialog"-->
-          <!--:visible.sync="form.dialogSw"-->
-          <!--customClass="drawerDialog-test"-->
-          <!--:left="form.iptleft"-->
-          <!--:right="form.iptright"-->
-          <!--:top="form.ipttop"-->
-          <!--:bottom="form.iptbottom"-->
-          <!--:modal="form.modal"-->
-          <!--:entr-position="form.postion"-->
-          <!--:animation="form.animation"-->
-          <!--&gt;-->
-          <!--<h2 style="text-align: center;padding: 15px 0 ;margin: 0">侧边滑入窗口</h2>-->
-          <!--&lt;!&ndash;<ns-form ref="slip-dialog-form" :model="slipDialogForm" label-width="140px">&ndash;&gt;-->
-          <!--&lt;!&ndash;<ns-form-item label=" 详细内容:">&ndash;&gt;-->
-          <!--&lt;!&ndash;<ns-editor :height="500" v-model="slipDialogForm.content"/>&ndash;&gt;-->
-          <!--&lt;!&ndash;</ns-form-item>&ndash;&gt;-->
-          <!--&lt;!&ndash;</ns-form>&ndash;&gt;-->
+          <ns-drawer-dialog
+            ref="drawerDialog"
+            class="drawerDialog"
+            :visible.sync="form.dialogSw"
+            customClass="drawerDialog-test"
+            :left="form.iptleft"
+            :right="form.iptright"
+            :top="form.ipttop"
+            :bottom="form.iptbottom"
+            :modal="form.modal"
+            :entr-position="form.postion"
+            :animation="form.animation"
+          >
+            <h2 style="text-align: center;padding: 15px 0 ;margin: 0">侧边滑入窗口</h2>
+            <ns-form ref="slip-dialog-form" :model="slipDialogForm" label-width="140px">
+              <ns-form-item label=" 详细内容:">
+                <ns-input v-model="slipDialogForm.input"></ns-input>
+              </ns-form-item>
+              <ns-form-item label=" 详细内容:">
+                <ns-input v-model="slipDialogForm.input"></ns-input>
+              </ns-form-item>
+              <ns-form-item label=" 详细内容:">
+                <ns-input v-model="slipDialogForm.input"></ns-input>
+              </ns-form-item>
+              <ns-form-item label=" 详细内容:">
+                <ns-input v-model="slipDialogForm.input"></ns-input>
+              </ns-form-item>
+              <ns-form-item label=" 详细内容:">
+                <ns-editor v-model="slipDialogForm.content"></ns-editor>
+              </ns-form-item>
+            </ns-form>
 
 
-          <!--&lt;!&ndash;<div class="editor-content">&ndash;&gt;-->
-          <!--&lt;!&ndash;</div>&ndash;&gt;-->
-          <!--</ns-drawer-dialog>-->
+            <div class="editor-content">
+            </div>
+          </ns-drawer-dialog>
         </template>
       </demo-block>
     </div>
-
-    <el-drawer
-      title="我是标题"
-      :append-to-body="true"
-      :visible.sync="form.dialogSw"
-      :direction="form.postion">
-      <span>我来啦!</span>
-    </el-drawer>
   </div>
 </template>
 
 <script>
+  import editorContent from '../Editor/content';
+
   export default {
     name: 'Drawer-dialog',
 
-    data(){
+    data() {
       return {
         postionList: [
           { label: '左', value: 'left' },
@@ -95,16 +101,21 @@
         ],
 
         form: {
-          iptleft: '0',
+          iptleft: '300px',
           iptright: '0',
           ipttop: '0',
-          iptButtom: '0',
+          iptbottom: '0',
           dialogSw: false,
           modal: false,
-          postion: 'ltr',
+          postion: 'right',
+        },
+
+        slipDialogForm: {
+          input: '我爱你中国',
+          content: editorContent.content
         }
-      }
-    }
+      };
+    },
   };
 </script>
 

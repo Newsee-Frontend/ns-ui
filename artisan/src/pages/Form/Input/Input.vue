@@ -6,7 +6,7 @@
       <template slot="content">
         <div v-bind:class="['ns-input--disabled', 'ns-input--primary',{'ns-input__text--disabled': true}]">123123</div>
 
-        <el-input v-model="inoutModel" placeholder="请输入内容1231" @change="change"></el-input>
+        <el-input v-model="inoutModel" placeholder="请输入内容" @change="change"></el-input>
 
 
         <div class="control-block form-block-line">
