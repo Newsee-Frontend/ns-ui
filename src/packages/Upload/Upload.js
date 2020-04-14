@@ -67,10 +67,10 @@ export default create({
       type: Boolean,
       default: true, //是否立即上传
     },
-    onChange: {
-      type: Function,
-      default: () => {},
-    },
+    onChange: Function,
+    onPreview: Function,
+    onRemove: Function,
+    onExceed: Function
   },
 
   computed: {
@@ -145,12 +145,13 @@ export default create({
           'file-list': this.childUpload,
           'auto-upload': this.autoUpload,
           'before-upload': this.beforeAvatarUpload,
-          'on-exceed': this.onExceed.bind(this),
+          'on-exceed': this.onFileExceed.bind(this),
           'on-success': this.onSuccess.bind(this),
           'on-error': this.onError.bind(this),
-          'on-change': this.onChange.bind(this),
           'before-remove': this.beforeRemoveFun.bind(this),
-          'on-remove': this.onRemove.bind(this),
+          'on-remove': this.onFileRemove.bind(this),
+          'on-change': this.onChange,
+          'on-preview': this.onPreview
         },
       },
       [
@@ -240,19 +241,19 @@ export default create({
     },
 
     //移除的钩子
-    onRemove(file, fileList) {
+    onFileRemove(file, fileList) {
       const uid = file.uid;
-      this.childUpload.forEach((item, index) => {
-        if (item.uid === uid) {
-          this.childUpload.splice(index, 1);
-        }
+      (this.childUpload || []).filter( item => {
+        return item.uid !== uid
       });
       this.$emit('input', this.childUpload);
+      this.onRemove && this.onRemove(file, fileList);
     },
 
     // 文件超出个数限制时的钩子
-    onExceed(files, fileList) {
+    onFileExceed(files, fileList) {
       this.$emit('on-exceed');
+      this.onExceed && this.onExceed(files, fileList);
     },
 
     //删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除。
@@ -268,6 +269,19 @@ export default create({
     clearFiles() {
       this.$refs.upload.clearFiles();
     },
+    /**
+     * 外暴方法 取消上传请求
+     */
+    abort(){
+      this.$refs.upload.abort();
+    },
+
+    /**
+     * 外暴方法 手动上传文件列表
+     * */
+    submit(){
+      this.$refs.upload.submit();
+    }
   },
 
   created() {

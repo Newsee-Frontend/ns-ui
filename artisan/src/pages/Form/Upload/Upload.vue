@@ -26,6 +26,8 @@
           type="picture-wall"
           :limit="2"
           exceedLimitHiddenEntrance
+          :on-remove="onRemove"
+          :on-preview="onPreview"
           :action="dynamicUrl"
         >
         </ns-upload>
@@ -41,6 +43,8 @@
           type="file"
           :action="dynamicUrl"
           :limit="3"
+          :on-remove="onRemove"
+          :on-preview="onPreview"
           :beforeRemove="beforeRemove"
         >
           <ns-button type="primary"> 点击上传文件 </ns-button>
@@ -75,7 +79,7 @@
 
     data() {
       return {
-        dynamicUrl: 'http://192.168.1.75/api/fastdfs/fastdfs/uploadFile',
+        dynamicUrl: 'https://httpbin.org/post',
         childItemSingle: [],
         childItemOther: [],
         childItemWall: [
@@ -95,6 +99,14 @@
     methods: {
       changeModel(){
         console.log(this.childItemSingle);
+      },
+
+      onRemove(file, fileList){
+        console.log(file, fileList, 11111111111111);
+      },
+
+      onPreview(file){
+        console.log(file, 11111111111111);
       },
 
       beforeRemove(){
