@@ -1,6 +1,6 @@
 $head_height: 44px;
-.ns-platform-dialog {
-  .el-dialog.ns-biz-platform-dialog {
+.ns-platform-dialog.ns-biz-platform-dialog {
+  .el-dialog {
     .el-dialog__body {
 
       //头部
@@ -64,8 +64,10 @@ $head_height: 44px;
         bottom: 0;
         left: 0;
         right: 0;
-        .slip-footer-container {
-          padding: 0 10px;
+        background-color: #fff;
+        .platform-footer_container {
+          width: 1100px;
+          margin: 0 auto;
           text-align: right;
         }
       }

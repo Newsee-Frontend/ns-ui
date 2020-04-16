@@ -1,7 +1,8 @@
 <template>
   <ns-platform-dialog
+    class="ns-biz-platform-dialog"
     ref="ns-biz-platform-dialog"
-    customClass="ns-biz-platform-dialog"
+
     :visible.sync="showDialog"
 
     :title="title"
@@ -43,7 +44,7 @@
     </div>
 
     <div class="platform-footer">
-      <div class="footer-container clear">
+      <div class="platform-footer_container clear">
         <slot name="footer"></slot>
       </div>
     </div>

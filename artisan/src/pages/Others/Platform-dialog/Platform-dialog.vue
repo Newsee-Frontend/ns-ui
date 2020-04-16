@@ -57,7 +57,6 @@
           <ns-biz-platform-dialog
             :visible.sync="visible2"
             title="工作台弹窗2"
-
             :modal="isShowModal"
             :closeOnClickModal="closeOnClickModal"
 
@@ -74,6 +73,11 @@
               <ns-editor :height="1000" v-model="editorContent"/>
             </div>
 
+            <div slot="footer">
+              <ns-button type="primary">确定</ns-button>
+              <ns-button @click="visible2=false">取消</ns-button>
+
+            </div>
 
           </ns-biz-platform-dialog>
 

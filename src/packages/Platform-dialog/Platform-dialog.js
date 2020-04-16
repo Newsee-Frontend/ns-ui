@@ -7,7 +7,6 @@ export default create({
   components: { Dialog },
   props: {
     visible: { type: Boolean, default: false },
-    'custom-class': { type: String },
     title: { type: String },
     modal: { type: Boolean, default: false }, //是否需要遮罩层
     closeOnClickModal: { type: Boolean, default: false }, //是否可以通过点击 modal 关闭
@@ -87,7 +86,6 @@ export default create({
         class={this.recls()}
         visible={this.show}
         on-update:visible={val => (this.show = val)}
-        custom-class={this.customClass}
         title={this.title}
         fullscreen
         type={'simple'}
