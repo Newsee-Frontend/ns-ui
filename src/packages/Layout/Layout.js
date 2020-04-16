@@ -8,14 +8,14 @@ export default create({
   },
   render(h) {
     return (
-      <div class={'app-wrapper clear'} id={'layout'}>
-        <div class={'header-wrapper fl'}>
+      <div id={'layout'} class={'app-wrapper clear'}>
+        <div id={'header-wrapper'} class={'fl'}>
           <Head>{this.$slots.header}</Head>
         </div>
 
-        <div class="sidebar-wrapper">{this.$slots.sidebar}</div>
+        <div id="sidebar-wrapper">{this.$slots.sidebar}</div>
 
-        <div class="page-tabs-wrapper">{this.$slots['tabs-view']}</div>
+        <div id="page-tabs-wrapper">{this.$slots['tabs-view']}</div>
         <section class="main-container">{this.$slots['app-main']}</section>
         <div class="other">{this.$slots.other}</div>
       </div>

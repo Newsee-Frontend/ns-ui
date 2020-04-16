@@ -6,7 +6,8 @@
         <template slot="title">Fullscreen-dialog - 侧滑对话框</template>
         <template slot="describe">基础用法</template>
         <template slot="content">
-          <el-button @click="buttonClick">点击打开</el-button>
+          <el-button @click="visible1=true">点击打开1</el-button>
+          <el-button @click="visible2=true">点击打开2</el-button>
           <!--参数控制-->
           <div class="control-block form-block-line">
             <span>是否显示遮罩: </span>
@@ -30,7 +31,7 @@
           </div>
 
           <ns-fullscreen-dialog
-            :visible.sync="visible"
+            :visible.sync="visible1"
             :type="type"
             title="全屏弹窗"
             :left="form.iptleft"
@@ -44,7 +45,7 @@
             @close="close"
             @open="open"
 
-            v-if="visible"
+            v-if="visible1"
           >
             <div>
               <h1>fullscreen-dialog-demo</h1>
@@ -80,6 +81,46 @@
               <ns-button @click="buttonClose">关闭</ns-button>
             </div>
           </ns-fullscreen-dialog>
+
+          <workSpaceDialog
+            :visible.sync="visible2"
+            :left="form.iptleft"
+            :right="form.iptright"
+            :top="form.ipttop"
+            :bottom="form.iptbottom"
+          >
+            <div>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+              <h1>fullscreen-dialog-demo</h1>
+            </div>
+          </workSpaceDialog>
+
         </template>
       </demo-block>
     </div>
@@ -87,14 +128,18 @@
 </template>
 
 <script>
+  import workSpaceDialog from '../../../components/NS-biz-platform-dialog/NS-biz-platform-dialog';
 
   export default {
     name: 'fullscreen-dialog-demo',
+    components: { workSpaceDialog },
     data() {
       return {
-        visible: false,
+        visible1: false,
+        visible2: false,
         type: 'normal',//'normal','simple','noFooter','noHeader',nscharts.js
         showClose: true,
+
         form: {
           modal: false,
           iptleft: '50px',
@@ -105,12 +150,6 @@
       };
     },
     methods: {
-      buttonClick() {
-        this.visible = true;
-      },
-      buttonClose() {
-        this.visible = false;
-      },
       open() {
         console.log('fullscreen-dialog-open');
       },

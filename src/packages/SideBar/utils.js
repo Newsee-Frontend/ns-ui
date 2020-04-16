@@ -21,7 +21,7 @@ export const compute = (e, vm, maxheight = 350 || window.screen.height * 0.6) =>
   }
 
   const secNavH = childList[0].offsetHeight; //second nav height
-  const headerH = document.getElementsByClassName('header-wrapper')[0].offsetHeight || 50; //header component height
+  const headerH = document.getElementById('header-wrapper').offsetHeight || 50; //header component height
 
   const CH = document.documentElement.clientHeight; //client height
   const TH = e[targetkey].offsetTop + headerH; //to top

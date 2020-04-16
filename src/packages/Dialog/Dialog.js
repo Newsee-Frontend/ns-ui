@@ -35,6 +35,7 @@ export default create({
 
     modal: { type: Boolean, default: true }, //是否需要遮罩层
     isAppendToBody: { type: Boolean, default: true }, //Dialog 自身是否插入至 body 元素上
+    // 'modal-append-to-body': { type: Boolean, default: true }, //model 遮罩层是否插入至 body 元素上
     'lock-scroll': { type: Boolean, default: true }, //是否在 Dialog 出现时将 body 滚动锁定
 
     'close-on-click-modal': { type: Boolean, default: false }, //是否可以通过点击 modal 关闭 Dialog
@@ -42,7 +43,7 @@ export default create({
     'show-close': { type: Boolean, default: true }, //是否显示关闭按钮
     'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
 
-    isfullscreen: { type: Boolean, default: false },
+    fullscreen: { type: Boolean, default: false },
   },
   watch: {
     visible(val) {
@@ -54,6 +55,7 @@ export default create({
     modalAppendToBody(val) {
       return this.isAppendToBody;
     },
+
     dialogWidth() {
       return this.width || this.sizeMap[this.size];
     },
@@ -86,7 +88,7 @@ export default create({
           'modal-append-to-body': this.modalAppendToBody,
           'append-to-body': this.isAppendToBody,
 
-          fullscreen: this.isfullscreen,
+          fullscreen: this.fullscreen,
 
           'show-close': this.showClose,
           'before-close': this.beforeClose,

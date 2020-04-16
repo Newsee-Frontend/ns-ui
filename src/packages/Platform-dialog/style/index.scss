@@ -1,0 +1,14 @@
+@import '../../../style/mixins/mixins';
+
+@include b(platform-dialog) {
+  &.ns-dialog {
+    .el-dialog {
+      .el-dialog__body {
+        position: relative;
+        padding: 0;
+        height: 100%;
+        background: #fff;
+      }
+    }
+  }
+}

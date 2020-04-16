@@ -70,7 +70,7 @@ export default create({
     onChange: Function,
     onPreview: Function,
     onRemove: Function,
-    onExceed: Function
+    onExceed: Function,
   },
 
   computed: {
@@ -151,7 +151,7 @@ export default create({
           'before-remove': this.beforeRemoveFun.bind(this),
           'on-remove': this.onFileRemove.bind(this),
           'on-change': this.onChange,
-          'on-preview': this.onPreview
+          'on-preview': this.onPreview,
         },
       },
       [
@@ -243,8 +243,8 @@ export default create({
     //移除的钩子
     onFileRemove(file, fileList) {
       const uid = file.uid;
-      (this.childUpload || []).filter( item => {
-        return item.uid !== uid
+      (this.childUpload || []).filter(item => {
+        return item.uid !== uid;
       });
       this.$emit('input', this.childUpload);
       this.onRemove && this.onRemove(file, fileList);
@@ -272,16 +272,16 @@ export default create({
     /**
      * 外暴方法 取消上传请求
      */
-    abort(){
+    abort() {
       this.$refs.upload.abort();
     },
 
     /**
      * 外暴方法 手动上传文件列表
      * */
-    submit(){
+    submit() {
       this.$refs.upload.submit();
-    }
+    },
   },
 
   created() {
