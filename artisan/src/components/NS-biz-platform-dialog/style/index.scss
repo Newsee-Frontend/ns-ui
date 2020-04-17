@@ -1,0 +1,76 @@
+$head_height: 44px;
+.ns-platform-dialog.ns-biz-platform-dialog {
+  .el-dialog {
+    .el-dialog__body {
+
+      //头部
+      .platform-header {
+        position: absolute;
+        height: $head_height;
+        line-height: $head_height;
+        padding: 0 10px;
+        top: 0;
+        left: 0;
+        right: 0;
+        background-color: #EFF0F1;
+
+        .platform-header_title {
+          font-size: 16px;
+          box-sizing: border-box;
+          span {
+            font-weight: bolder;
+            margin-right: 10px;
+          }
+        }
+
+        .platform-header_close {
+          width: 20px;
+          font-size: 20px;
+          border-radius: 50%;
+          margin: 0 5px 0 15px;
+          cursor: pointer;
+        }
+
+        .platform-header_action {
+          .ns-button {
+            margin: 0 5px 0 0;
+          }
+        }
+      }
+      //内容区域
+      .platform-body {
+        position: absolute;
+        top: $head_height;
+        left: 0;
+        right: 0;
+        bottom: $head_height;
+        height: 100%;
+        max-height: calc(100vh - 87px - #{$head_height * 2});
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .platform-body_container {
+          position: relative;
+          width: 1100px;
+          margin: 0 auto;
+        }
+      }
+
+      //尾部
+      .platform-footer {
+        position: absolute;
+        height: $head_height;
+        line-height: $head_height;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        .platform-footer_container {
+          width: 1100px;
+          margin: 0 auto;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

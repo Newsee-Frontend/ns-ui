@@ -20,15 +20,15 @@ export default create({
 
     modal: { type: Boolean, default: true }, //是否含有遮罩层
 
-    showHeader: { type: Boolean, default: false},
+    showHeader: { type: Boolean, default: false },
     title: String,
-    showClose: { type: Boolean, default: true},
+    showClose: { type: Boolean, default: true },
 
     beforeClose: Function,
     wrapperClosable: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
 
   watch: {
@@ -57,45 +57,49 @@ export default create({
   },
 
   render(h) {
-    return h('el-drawer', {
-      class: [this.recls(),  !this.showHeader? 'no-header' : null ],
-      ref: "drawerDialog",
-      props: {
-        visible: this.showDialog,
-        'destroy-on-close': true,
-        direction: this.direction,
-        title: this.title,
-        showClose: this.showClose,
-        modal: this.modal,
-        customClass: this.customClass,
-        'before-close': this.handleClose.bind(this)
+    return h(
+      'el-drawer',
+      {
+        class: [this.recls(), !this.showHeader ? 'no-header' : null],
+        ref: 'drawerDialog',
+        props: {
+          visible: this.showDialog,
+          'destroy-on-close': true,
+          direction: this.direction,
+          title: this.title,
+          showClose: this.showClose,
+          modal: this.modal,
+          customClass: this.customClass,
+          'before-close': this.handleClose.bind(this),
+        },
+        on: {
+          'update:visible': value => {
+            this.showDialog = value;
+          },
+        },
       },
-      on: {
-        'update:visible': value => {
-          this.showDialog = value;
-        }
-      }
-    }, [
-      <div class={this.recls('container')} role={'dialog'}>
-        {this.$slots.default}
-      </div>
-    ]);
+      [
+        <div class={this.recls('container')} role={'dialog'}>
+          {this.$slots.default}
+        </div>,
+      ]
+    );
   },
 
   mounted() {
     this.setDialogSize();
   },
 
-  methods:{
-    handleClose(done){
-      if(this.beforeClose){
-        return this.beforeClose(done)
+  methods: {
+    handleClose(done) {
+      if (this.beforeClose) {
+        return this.beforeClose(done);
       }
       this.showDialog = false;
-      this.$emit('update:visible', this.showDialog)
+      this.$emit('update:visible', this.showDialog);
     },
 
-    setDialogSize(){
+    setDialogSize() {
       if (this.$refs.drawerDialog.$refs.drawer) {
         ['left', 'right', 'top', 'bottom'].forEach(pos => {
           this.$refs.drawerDialog.$refs.drawer.style[pos] = this[pos];
@@ -104,6 +108,6 @@ export default create({
         this.$refs.drawerDialog.$refs.drawer.style.height = 'auto';
         this.$refs.drawerDialog.$refs.drawer.style.overflow = 'auto';
       }
-    }
-  }
+    },
+  },
 });

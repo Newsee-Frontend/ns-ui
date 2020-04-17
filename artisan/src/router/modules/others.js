@@ -31,6 +31,12 @@ export const othersRouter = [
         name: '侧滑对话框',
       },
       {
+        path: 'platform-dialog',
+        component: () => import('../../pages/Others/Platform-dialog/Platform-dialog'),
+        meta: { auth: true, key: 'platform-dialog' },
+        name: '工作台弹窗',
+      },
+      {
         path: 'drawer',
         component: () => import('../../pages/Others/Drawer/Drawer'),
         meta: { auth: true, key: 'drawer' },

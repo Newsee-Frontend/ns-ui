@@ -333,11 +333,19 @@ export default [
         syStatus: 1,
       },
       {
+        funcId: 'platform-dialog',
+        menuMenuname: '工作台对话框',
+        menuMenusubname: 'platform-dialog',
+        menuIconcls: null,
+        menuIndex: 5,
+        syStatus: 1,
+      },
+      {
         funcId: 'drawer',
         menuMenuname: '抽屉',
         menuMenusubname: 'drawer',
         menuIconcls: null,
-        menuIndex: 5,
+        menuIndex: 6,
         syStatus: 1,
       },
       {
@@ -345,7 +353,7 @@ export default [
         menuMenuname: 'carousel 走马灯',
         menuMenusubname: 'carousel',
         menuIconcls: null,
-        menuIndex: 6,
+        menuIndex: 7,
         syStatus: 1,
       },
       {
@@ -353,7 +361,7 @@ export default [
         menuMenuname: 'popover 弹出框',
         menuMenusubname: 'popover',
         menuIconcls: null,
-        menuIndex: 7,
+        menuIndex: 8,
         syStatus: 1,
       },
       {
@@ -361,7 +369,7 @@ export default [
         menuMenuname: 'timeline 时间线',
         menuMenusubname: 'timeline',
         menuIconcls: null,
-        menuIndex: 8,
+        menuIndex: 9,
         syStatus: 1,
       },
       {
@@ -369,7 +377,7 @@ export default [
         menuMenuname: '富文本编辑器',
         menuMenusubname: 'rich-editor',
         menuIconcls: null,
-        menuIndex: 9,
+        menuIndex: 10,
         syStatus: 1,
       },
       {
@@ -377,7 +385,7 @@ export default [
         menuMenuname: '百度地图',
         menuMenusubname: 'baidu-map',
         menuIconcls: null,
-        menuIndex: 10,
+        menuIndex: 11,
         syStatus: 1,
       },
     ],

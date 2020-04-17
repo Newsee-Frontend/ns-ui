@@ -44,6 +44,8 @@ import Dialog from '../../../../src/packages/Dialog/Dialog.js';
 import FullscreenDialog from '../../../../src/packages/Fullscreen-dialog/Fullscreen-dialog.js';
 import SlipDialog from '../../../../src/packages/Slip-dialog/Slip-dialog.js';
 import DrawerDialog from '../../../../src/packages/Drawer-dialog/Drawer-dialog';
+import PlatformDialog from '../../../../src/packages/Platform-dialog/Platform-dialog';
+
 import Drawer from '../../../../src/packages/Drawer/Drawer.js';
 import Carousel from '../../../../src/packages/Carousel/Carousel.js';
 import Popover from '../../../../src/packages/Popover/Popover.js';
@@ -137,6 +139,9 @@ Vue.component('ns-dialog', Dialog);
 Vue.component('ns-fullscreen-dialog', FullscreenDialog);
 Vue.component('ns-slip-dialog', SlipDialog);
 Vue.component('ns-drawer-dialog', DrawerDialog);
+Vue.component('ns-platform-dialog', PlatformDialog);
+
+
 Vue.component('ns-drawer', Drawer);
 
 Vue.component('ns-carousel', Carousel);
@@ -212,6 +217,7 @@ import '../../../../src/packages/Dialog/style/index.scss';
 import '../../../../src/packages/Fullscreen-dialog/style/index.scss';
 import '../../../../src/packages/Slip-dialog/style/index.scss';
 import '../../../../src/packages/Drawer-dialog/style/index.scss';
+import '../../../../src/packages/Platform-dialog/style/index.scss';
 import '../../../../src/packages/Drawer/style/index.scss';
 import '../../../../src/packages/Carousel/style/index.scss';
 import '../../../../src/packages/Timeline/style/index.scss';

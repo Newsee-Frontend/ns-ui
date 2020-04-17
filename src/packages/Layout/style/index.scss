@@ -21,26 +21,29 @@ body {
   height: 100%;
   overflow: hidden;
   /* ------------  顶部模块 ------------  */
-  .header-wrapper {
+  #header-wrapper {
     position: absolute;
     width: 100%;
-    z-index: 1500;
+    z-index: 2000;
   }
   /* ------------ 左侧导航栏模块 ------------*/
-  .sidebar-wrapper {
+  #sidebar-wrapper {
     position: absolute;
     top: $navH;
     bottom: 0;
     left: 0;
-    z-index: 1502;
+    z-index: 2000;
+    &:hover {
+      z-index: 9999;
+    }
   }
 
-  .page-tabs-wrapper {
+  #page-tabs-wrapper {
     position: absolute;
     top: $navH;
     left: $navL;
     right: 0;
-    z-index: 1500;
+    z-index: 2000;
   }
 
   /* ------------ 内容 模块 ------------ */
@@ -54,7 +57,6 @@ body {
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: auto;
-    z-index: 1;
     transition: all, 0.4s, linear;
   }
 }
