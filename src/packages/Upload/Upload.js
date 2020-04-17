@@ -243,7 +243,7 @@ export default create({
     //移除的钩子
     onFileRemove(file, fileList) {
       const uid = file.uid;
-      (this.childUpload || []).filter( item => {
+      this.childUpload = (this.childUpload || []).filter( item => {
         return item.uid !== uid
       });
       this.$emit('input', this.childUpload);

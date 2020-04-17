@@ -26,9 +26,8 @@
           type="picture-wall"
           :limit="2"
           exceedLimitHiddenEntrance
-          :on-remove="onRemove"
-          :on-preview="onPreview"
           :action="dynamicUrl"
+          @input="chaneChildItemWall"
         >
         </ns-upload>
       </template>
@@ -107,6 +106,10 @@
 
       onPreview(file){
         console.log(file, 11111111111111);
+      },
+
+      chaneChildItemWall(){
+        console.log(this.childItemWall,1111111111111);
       },
 
       beforeRemove(){
