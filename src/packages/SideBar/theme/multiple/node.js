@@ -167,10 +167,10 @@ export default class Node {
       const defaultExpandedKeys = store.defaultExpandedKeys;
 
       if (this.key && defaultExpandedKeys && defaultExpandedKeys.indexOf(this.key) !== -1) {
-        console.log(6666666666666666);
-        console.log(defaultExpandedKeys);
-        console.log(this.key);
-        console.log(6666666666666666);
+        // console.log(6666666666666666);
+        // console.log(defaultExpandedKeys);
+        // console.log(this.key);
+        // console.log(6666666666666666);
         this.expanded = true;
       }
     }
