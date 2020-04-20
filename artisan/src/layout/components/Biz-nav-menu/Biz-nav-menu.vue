@@ -56,8 +56,6 @@
     },
     methods: {
       slotRanderFn(h, node) {
-        console.log('slotRanderFn-slotRanderFn');
-        console.log(node);
         if (
           (node.level === 1 && node.index === 0) ||
           (node.level === 3 && node.index === 0)
