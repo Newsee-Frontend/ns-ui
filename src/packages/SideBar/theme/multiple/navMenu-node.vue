@@ -21,6 +21,9 @@
       <span class="menu-node__label oneline-ellipsis">
         {{ node.label }}
       </span>
+      <span class="menu-slot">
+        <slotRender :node="node" :slotRander="node.slotRander"></slotRender>
+      </span>
     </div>
     <collapse-transition>
       <div
@@ -45,11 +48,13 @@
 <script>
 import Emitter from '../../../../mixins/emitter';
 import collapseTransition from './transitions/collapse-transition';
+import slotRender from './slotRender';
 
 export default {
   name: 'nav-menu-node',
   mixins: [Emitter],
   components: {
+    slotRender,
     collapseTransition,
   },
   props: {
@@ -128,7 +133,6 @@ export default {
 
     //remove all
     this.$on('menu-node-click', node => {
-      console.log(6766767676767676767);
       console.log(
         '当前手风琴模式：对 menu-node-click 事件回抛进行接收，判断 节点 node - branchID字段值，并关闭不对应的节点'
       );
