@@ -18,7 +18,7 @@
           'el-icon-caret-right',
         ]"
       ></span>
-      <span class="menu-node__label oneline-ellipsis">
+      <span class="menu-node__label">
         {{ node.label }}
       </span>
       <span class="menu-slot">
