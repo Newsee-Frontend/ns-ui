@@ -12,6 +12,7 @@ module.exports = {
     templateSPA: './artisan/index.html',
     staticPath: './artisan/static',
     port: 8067,
+    host: '192.168.6.182',
     useEslint: false,
   },
   prod: {
