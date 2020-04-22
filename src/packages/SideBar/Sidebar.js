@@ -40,7 +40,7 @@ export default create({
       },
       on: this.$listeners,
       scopedSlots: {
-        'first-slot': item => this.$scopedSlots['first-slot'](item),
+        'first-slot': node => this.$scopedSlots['first-slot'](node),
         // 'second-slot': (item) => this.$scopedSlots['second-slot'](item),
       },
     });

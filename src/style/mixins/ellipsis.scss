@@ -1,3 +1,9 @@
+@mixin oneline-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @mixin multi-ellipsis($lines) {
   overflow: hidden;
   text-overflow: ellipsis;

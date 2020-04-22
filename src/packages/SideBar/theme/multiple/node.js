@@ -1,3 +1,9 @@
+/**
+ * getPropertyFromData
+ * @param node
+ * @param prop
+ * @returns {*}
+ */
 const getPropertyFromData = function(node, prop) {
   const keyRefer = node.store.keyRefer; //当前节点  props 属性（用户可自定义设置更改)
   const data = node.data || {}; //当前节点数据
@@ -62,6 +68,9 @@ export default class Node {
     this.setNodeData(this.data);
 
     const store = this.store;
+
+    //插槽
+    this.slotRander = store.slotRander;
 
     //初始化展开
     this.initExpand(store);
@@ -158,10 +167,10 @@ export default class Node {
       const defaultExpandedKeys = store.defaultExpandedKeys;
 
       if (this.key && defaultExpandedKeys && defaultExpandedKeys.indexOf(this.key) !== -1) {
-        console.log(6666666666666666);
-        console.log(defaultExpandedKeys);
-        console.log(this.key);
-        console.log(6666666666666666);
+        // console.log(6666666666666666);
+        // console.log(defaultExpandedKeys);
+        // console.log(this.key);
+        // console.log(6666666666666666);
         this.expanded = true;
       }
     }

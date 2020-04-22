@@ -4,9 +4,13 @@
     <ns-multiple-navMenu
       :data="navMenuList"
       :keyRefer="keyRefer"
+      :slotRander="slotRanderFn"
+      closeByLeafClick
+      @node-click="nodeClick"
       v-if="navMenuType === 'multiple'"
     >
     </ns-multiple-navMenu>
+
     <!--二级导航栏-->
     <ns-second-navMenu v-if="navMenuType === 'second'"
                        :type="sidebarType"
@@ -28,6 +32,7 @@
         <span v-if="secondNavSlot(scope)">=></span>
       </template>
     </ns-second-navMenu>
+
   </div>
 </template>
 
@@ -50,6 +55,29 @@
       ...mapGetters(['navMenuType', 'navMenuList']),
     },
     methods: {
+      slotRanderFn(h, node) {
+        if (
+          (node.level === 1 && node.index === 0) ||
+          (node.level === 3 && node.index === 0)
+        ) {
+          return h('ns-icon-svg', {
+            'attrs': {
+              iconClass: 'jiantou',
+            },
+            style: {
+              'margin-left': '15px',
+            },
+          });
+        }
+      },
+
+      nodeClick(node, instance) {
+        console.log('nodeClick-nodeClick');
+        console.log(node);
+        console.log(instance);
+      },
+
+
       /**
        * first nav click handle
        * @param firstItem
@@ -110,6 +138,7 @@
       //发起请求菜单栏
       this.$store.dispatch('generateNavMenu', this.navMenuType);
     },
+
   };
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
