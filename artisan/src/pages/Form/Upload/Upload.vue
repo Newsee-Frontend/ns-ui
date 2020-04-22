@@ -24,6 +24,7 @@
         <ns-upload
           v-model="childItemWall"
           type="picture-wall"
+          accept="image/png"
           :limit="2"
           exceedLimitHiddenEntrance
           :action="dynamicUrl"

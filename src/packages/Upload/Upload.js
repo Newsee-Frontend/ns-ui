@@ -59,6 +59,11 @@ export default create({
     beforeUpload: Function,
     beforeRemove: Function,
     limit: Number, //最多上传
+    drag: {
+      type: Boolean,
+      default: false
+    }, //是否可拖拉
+    accept: String,
     exceedLimitHiddenEntrance: {
       type: Boolean,
       default: false,
@@ -138,6 +143,8 @@ export default create({
           name: this.name,
           disabled: this.disabled,
           headers: this.headers,
+          drag: this.drag,
+          accept: this.accept,
           'list-type': this.type === 'picture-wall' ? 'picture-card' : '',
           'with-credentials': true,
           limit: this.limit,
