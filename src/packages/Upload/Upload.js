@@ -65,7 +65,7 @@ export default create({
     limit: Number, //最多上传
     drag: {
       type: Boolean,
-      default: false
+      default: false,
     }, //是否可拖拉
     accept: String,
     exceedLimitHiddenEntrance: {
@@ -255,8 +255,8 @@ export default create({
     //移除的钩子
     onFileRemove(file, fileList) {
       const uid = file.uid;
-      this.childUpload = (this.childUpload || []).filter( item => {
-        return item.uid !== uid
+      this.childUpload = (this.childUpload || []).filter(item => {
+        return item.uid !== uid;
       });
       this.$emit('input', this.childUpload);
       this.onRemove && this.onRemove(file, fileList);
