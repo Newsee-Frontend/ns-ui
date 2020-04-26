@@ -39,6 +39,10 @@ export default create({
       type: String,
       default: 'file',
     },
+    multiple: {
+      type: Boolean,
+      default: false    //是否多选
+    },
     action: { type: String }, //request url
     disabled: { type: Boolean, default: false },
     headers: Object,
@@ -144,6 +148,7 @@ export default create({
           disabled: this.disabled,
           headers: this.headers,
           drag: this.drag,
+          multiple: this.multiple,
           accept: this.accept,
           'list-type': this.type === 'picture-wall' ? 'picture-card' : '',
           'with-credentials': true,
