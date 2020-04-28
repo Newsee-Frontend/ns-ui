@@ -18,19 +18,20 @@ export default create({
     max: { type: Number, default: 5 },
 
     colors: {
-      type: [Array, Object], default: () => {
+      type: [Array, Object],
+      default: () => {
         return ['#99A9BF', '#F7BA2A', '#FF9900'];
       },
     },
 
     texts: {
-      type: Array, default: () => {
+      type: Array,
+      default: () => {
         return ['极差', '失望', '一般', '满意', '惊喜'];
       },
     },
 
     scoreTemplate: { type: String },
-
   },
 
   watch: {
@@ -40,33 +41,30 @@ export default create({
   },
 
   render(h) {
-    return h(
-      'el-rate',
-      {
-        class: this.recls(),
-        domProps: {
-          value: this.value,
+    return h('el-rate', {
+      class: this.recls(),
+      domProps: {
+        value: this.value,
+      },
+      props: {
+        value: this.value,
+        disabled: this.disabled,
+        allowHalf: this.allowHalf,
+        'show-score': this.showScore,
+        showText: this.showText,
+        max: this.max,
+        colors: this.colors,
+        texts: this.texts,
+        scoreTemplate: this.scoreTemplate,
+      },
+      on: {
+        input: val => {
+          this.$emit('input', val);
         },
-        props: {
-          value: this.value,
-          disabled: this.disabled,
-          allowHalf: this.allowHalf,
-          'show-score': this.showScore,
-          'showText': this.showText,
-          max: this.max,
-          colors: this.colors,
-          texts: this.texts,
-          scoreTemplate: this.scoreTemplate,
-        },
-        on: {
-          input: (val) => {
-            this.$emit('input', val);
-          },
-          change: (val) => {
-            this.$emit('change', val);
-          },
+        change: val => {
+          this.$emit('change', val);
         },
       },
-    );
+    });
   },
 });
