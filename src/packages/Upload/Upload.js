@@ -41,7 +41,7 @@ export default create({
     },
     multiple: {
       type: Boolean,
-      default: false    //是否多选
+      default: false, //是否多选
     },
     action: { type: String }, //request url
     disabled: { type: Boolean, default: false },
