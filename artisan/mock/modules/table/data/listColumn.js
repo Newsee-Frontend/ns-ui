@@ -1,5 +1,28 @@
 export const formlistColumn = [
   {
+    'resourcecolumnName': '自定义插槽列',//label
+    'resourcecolumnCode': 'customSlot',//model-key
+    'resourcecolumnXtype': 'slot',//表格列 类型
+    'resourcecolumnWidth': '300',//列的宽度
+    'resourcecolumnOrder': '4',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'editConfig': {
+      'switchType': true,
+      'type': 'slot',
+      'disabled': false,
+      'maxlength': null,
+      'max': 5,
+      'min': 0,
+      'placeHolder': null,
+      'multiple': null,
+      'require': true,
+      'validateRule': null,
+      'errorMsg': '',
+      'options': null,
+    },
+  },
+  {
     'resourcecolumnName': '项目名称',//label
     'resourcecolumnCode': 'taskName',//model-key
     'resourcecolumnXtype': 'link',//表格列 类型
@@ -378,6 +401,29 @@ export const formlistColumn = [
 
 
 export const hugeDataListColumn = [
+  {
+    'resourcecolumnName': '自定义插槽列',//label
+    'resourcecolumnCode': 'customSlot',//model-key
+    'resourcecolumnXtype': 'slot',//表格列 类型
+    'resourcecolumnWidth': '300',//列的宽度
+    'resourcecolumnOrder': '4',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'editConfig': {
+      'switchType': true,
+      'type': 'slot',
+      'disabled': false,
+      'maxlength': null,
+      'max': 5,
+      'min': 0,
+      'placeHolder': null,
+      'multiple': null,
+      'require': true,
+      'validateRule': null,
+      'errorMsg': '',
+      'options': null,
+    },
+  },
   {
     'resourcecolumnName': '项目名称',//label
     'resourcecolumnCode': 'taskName',//model-key

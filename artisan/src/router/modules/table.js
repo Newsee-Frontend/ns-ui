@@ -49,7 +49,12 @@ export const tableRouter = [
         meta: { auth: true, key: 'new-formTable-changeCol' },
         name: '切换表头',
       },
-
+      {
+        path: 'new-formTable-slot',
+        component: () => import('../../pages/Table/New-table-v4/cell-slot/cell-slot'),
+        meta: { auth: true, key: 'new-formTable-slot' },
+        name: '新表格-插槽单元格',
+      },
 
     ],
   },

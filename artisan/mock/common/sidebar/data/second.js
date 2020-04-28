@@ -530,6 +530,14 @@ export default [
         menuIndex: 7,
         syStatus: 1,
       },
+      {
+        funcId: 'new-formTable-slot',
+        menuMenuname: '新表格-插槽单元格',
+        menuMenusubname: 'new-formTable-slot',
+        menuIconcls: null,
+        menuIndex: 8,
+        syStatus: 1,
+      },
     ],
   },
   {

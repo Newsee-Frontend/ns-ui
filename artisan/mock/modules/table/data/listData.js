@@ -48,6 +48,7 @@ export const formTableData = pageSize => {
       fieldArea: [1, 2, 4, 5],//涉猎领域（多选）- 内部数据源（字典项）
       describe: Mock.Random.csentence(), //备注
       email: Mock.Random.email(),
+      customSlot: '@cname',
     });
   });
 };
@@ -74,6 +75,7 @@ export const hugeDataTableData = (pageSize) => {
       isLocked: '是',//是否锁定（单选）
       fieldArea: '互联网',//涉猎领域（多选）
       email: 'Lensgcx@163.com',
+      customSlot: '@cname',
     });
   });
 };

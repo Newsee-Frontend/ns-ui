@@ -25,36 +25,35 @@ export default {
     },
 
     //表单单元格配置信息
-    renderConfig() {
+    formConfig() {
       return this.column['cell-Config'];
     },
-
-    //渲染单元格类型
-    renderType() {
+    //表单单元格类型
+    formType() {
       try {
-        return this.renderConfig.type;
+        return this.formConfig.type;
       } catch (e) {
         return undefined;
       }
     },
     /**
-     *  Is it the correct rendering format：
+     * is form column render:
      *    1、has current column data
      *    2、has right data format （'cell-Config')
-     *    3、current column type in  list（renderColInclude)
+     *    3、current column type in  list（formColInclude)
      * @returns {boolean}
      */
-    isRenderFormat() {
+    isFormRender() {
       try {
         if (!this.column) {
           return false;
         }
 
-        if (!this.renderConfig) {
+        if (!this.formConfig) {
           return false;
         }
 
-        if (this.renderColInclude.indexOf(this.renderType) === -1) {
+        if (this.formColInclude.indexOf(this.formType) === -1) {
           return false;
         }
         return true;
@@ -66,30 +65,40 @@ export default {
   render(h) {
     const injection = {};
 
-    const general = {
-      props: {
-        title: this.column.title,
-        align: this.column.align,
-        fixed: this.column.fixed,
-        'header-class-name': ({ column }) => {
-          return `column-${column.property || column.type}`;
-        },
+    //普通列( 文字列 / 链接列 / 数字 )
+    if (this.normalColInclude.indexOf(this.columnType) > -1) {
+      console.log('普通列( 文字列 / 链接列 / 数字 )');
+      injection.props = {
+        field: this.column.field,
+      };
 
-        /**
-         * special columns use width && type ,other use min-width
-         * @type {string}
-         */
-        ...(this.specialColumns.indexOf(this.columnType) > -1
-          ? {
-              type: this.columnType,
-              width: this.column.width,
-            }
-          : {
-              'min-width': this.column.width,
-            }),
-      },
-    };
+      if (this.isFormRender) {
+        let renderProps = {
+          name: `table-render-${this.formType}`,
+          props: {
+            modelCode: this.modelCode,
+            column: this.column,
+            formConfig: this.formConfig,
+          },
+        };
 
+        if (this.formType === 'link') {
+          injection.props['cell-render'] = {
+            ...renderProps,
+            events: {
+              click: this.cellEvent,
+            },
+          };
+        } else {
+          injection.props['edit-render'] = {
+            ...renderProps,
+            events: {
+              change: this.cellEvent,
+            },
+          };
+        }
+      }
+    }
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
       injection.props = {
@@ -123,84 +132,84 @@ export default {
       };
     }
 
-    //普通列( 文字列 / 数字 )
-    if (this.normalColInclude.indexOf(this.columnType) > -1) {
-      // console.log('普通列( 文字列 / 数字 )');
-      injection.props = {
-        field: this.column.field,
-      };
-
-      /**
-       * cover by formatter config
-       * Note: the current usage only applies to non form rendering (normal text cell render)
-       */
-      if (this.column.formatter) {
-        //add value formatter
-        injection.props.formatter = ({ cellValue }) => {
-          return this.column.formatter[cellValue];
-        };
-      }
-    }
-
-    //渲染( 表单列 / 链接列 / 插槽列 )
-    if (this.renderColInclude.indexOf(this.columnType) > -1) {
-      // console.log('render列( 表单列 / 链接列 / 插槽列 )');
-
+    //内容列( 常规列 / 表单列 / 链接列 )
+    if (this.contentColumns.indexOf(this.columnType) > -1) {
+      console.log('内容列( 常规列 / 表单列 / 链接列 )');
+      console.log(this.columnType);
+      console.log(this.modelCode);
       injection.props = {
         field: this.column.field,
       };
 
       //default column render config
       let renderProps = {
-        name: `table-render-${this.renderType}`,
+        name: `table-render-${this.formType}`,
         props: {
           modelCode: this.modelCode,
           column: this.column,
-          formConfig: this.renderConfig,
+          formConfig: this.formConfig,
         },
       };
 
       //form column
-      if (this.isRenderFormat) {
-        //特殊的渲染列
-        if (['link'].indexOf(this.renderType) > -1) {
+      if (this.isFormRender) {
+        console.log(3333333333333);
+        injection.props['edit-render'] = {
+          ...renderProps,
+          events: {
+            change: this.cellEvent,
+          },
+        };
+      }
+      //normal column
+      else {
+        console.log(4444444444444);
+        //link column
+        if (this.formType === 'link' || this.formType === 'slot') {
           injection.props['cell-render'] = {
             ...renderProps,
             events: {
               click: this.cellEvent,
             },
           };
-
-          /**
-           * cover by formatter config
-           * Note: the current usage only applies to non form rendering (normal text cell render)
-           */
-          if (this.column.formatter) {
-            //add value formatter
-            injection.props.formatter = ({ cellValue }) => {
-              return this.column.formatter[cellValue];
-            };
-          }
-        } else if (['slot'].indexOf(this.renderType) > -1) {
-          return h(
-            `vxe-table-column`,
-            {
-              ...general,
-            },
-            [this.$scopedSlots['cell-slot']]
-          );
         }
-        //基础表单的渲染列
-        else {
-          injection.props['edit-render'] = {
-            ...renderProps,
-            events: {
-              change: this.cellEvent,
-            },
+
+        /**
+         * cover by formatter config
+         * Note: the current usage only applies to non form rendering (normal text cell render)
+         */
+        if (this.column.formatter) {
+          //add value formatter
+          injection.props.formatter = ({ cellValue }) => {
+            return this.column.formatter[cellValue];
           };
         }
       }
     }
+
+    const general = {
+      props: {
+        title: this.column.title,
+        align: this.column.align,
+        fixed: this.column.fixed,
+        'header-class-name': ({ column }) => {
+          return `column-${column.property || column.type}`;
+        },
+
+        /**
+         * special columns use width && type ,other use min-width
+         * @type {string}
+         */
+        ...(this.specialColumns.indexOf(this.columnType) > -1
+          ? {
+              type: this.columnType,
+              width: this.column.width,
+            }
+          : {
+              'min-width': this.column.width,
+            }),
+      },
+    };
 
     return h(`vxe-table-column`, deepObjectMerge(general, injection));
   },
@@ -238,4 +247,5 @@ export default {
       this.$emit('column-setting-submit', column);
     },
   },
+  created() {},
 };
