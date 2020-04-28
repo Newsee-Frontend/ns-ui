@@ -26,8 +26,11 @@
           type="picture-wall"
           accept="image/png"
           :limit="2"
+          :beforeUpload="beforeUpload"
+          :data="data"
           exceedLimitHiddenEntrance
           :action="dynamicUrl"
+          :multiple="true"
           @input="chaneChildItemWall"
         >
         </ns-upload>
@@ -43,9 +46,11 @@
           type="file"
           :action="dynamicUrl"
           :limit="3"
+          :multiple="true"
           :on-remove="onRemove"
           :on-preview="onPreview"
           :beforeRemove="beforeRemove"
+          @on-exceed="onExceed"
         >
           <ns-button type="primary"> 点击上传文件 </ns-button>
         </ns-upload>
@@ -88,6 +93,10 @@
           }
         ],
 
+        data: {
+          a: ''
+        },
+
         childItemCropper: [
           {
             fileUrl: 'http://oa.new-see.com/upload/file/public/upload/file/public/201705/IMG_0680201705230907560.JPG'
@@ -97,6 +106,10 @@
     },
 
     methods: {
+      beforeUpload(){
+        this.data.a = 2;
+      },
+
       changeModel(){
         console.log(this.childItemSingle);
       },
@@ -107,6 +120,10 @@
 
       onPreview(file){
         console.log(file, 11111111111111);
+      },
+
+      onExceed(){
+        console.log('onExceed');
       },
 
       chaneChildItemWall(){
