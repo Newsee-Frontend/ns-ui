@@ -8,6 +8,8 @@ import renderTimePicker from './time-picker';
 import renderDatePicker from './date-picker';
 import renderDateTimePicker from './date-time-picker';
 
+// import renderSlot from './slot';
+
 import renderActionCell from './action-cell';
 
 export default {
@@ -17,8 +19,11 @@ export default {
   renderSelect,
   renderChecButton,
   renderRadioButton,
-  renderActionCell,
   renderTimePicker,
   renderDatePicker,
   renderDateTimePicker,
+
+  // renderSlot,
+
+  renderActionCell,
 };

@@ -109,6 +109,12 @@ export const formRouter = [
         name: '头像',
       },
       {
+        path: 'rate',
+        component: () => import('../../pages/Form/Rate/Rate'),
+        meta: { auth: true, key: 'rate' },
+        name: '评分',
+      },
+      {
         path: 'form',
         component: () => import('../../pages/Form/Form/Form'),
         meta: { auth: true, key: 'form' },

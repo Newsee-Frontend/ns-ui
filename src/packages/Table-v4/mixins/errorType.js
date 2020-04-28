@@ -5,7 +5,7 @@ export default {
       // alert(this.loading);
       if (
         !this.head.some(
-          h => [...this.formColInclude, ...this.normalColInclude].indexOf(h.type) > -1
+          h => [...this.renderColInclude, ...this.normalColInclude].indexOf(h.type) > -1
         )
       ) {
         return 'service-error';

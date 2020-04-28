@@ -37,6 +37,7 @@ import ColorPicker from '../../../../src/packages/ColorPicker/ColorPicker.js';
 import Form from '../../../../src/packages/Form/Form.js';
 import FormItem from '../../../../src/packages/Form-item/Form-item.js';
 import InputTag from '../../../../src/packages/Input-tag/Input-tag.js';
+import Rate from '../../../../src/packages/Rate/Rate.js';
 
 //other
 import PageTabs from '../../../../src/packages/PageTabs/PageTabs.js';
@@ -115,6 +116,7 @@ Vue.component('ns-avatar', Avatar);
 Vue.component('ns-form', Form);
 Vue.component('ns-form-item', FormItem);
 Vue.component('ns-input-tag', InputTag);
+Vue.component('ns-rate', Rate);
 
 // data
 Vue.component('ns-badge', Badge);
@@ -195,6 +197,7 @@ import '../../../../src/packages/Select-tree/style/index.scss';
 import '../../../../src/packages/ColorPicker/style/index.scss';
 import '../../../../src/packages/Avatar/style/index.scss';
 import '../../../../src/packages/Form/style/index.scss';
+import '../../../../src/packages/Rate/style/index.scss';
 
 //data
 import '../../../../src/packages/Tree/style/index.scss';

@@ -25,8 +25,9 @@
 export default {
   data() {
     return {
-      normalColInclude: ['text', 'link', 'number'],
-      formColInclude: [
+      normalColInclude: ['text', 'number'],
+
+      renderColInclude: [
         'input',
         'select',
         'inputNumber',
@@ -35,7 +36,10 @@ export default {
         'date',
         'time',
         'datetime',
+        'link',
+        'slot',
       ],
+
       firstColInclude: ['index', 'checkbox', 'radio'],
       actionColInclude: ['action', 'addRow'],
       settingColInclude: ['setting'],

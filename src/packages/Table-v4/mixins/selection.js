@@ -67,7 +67,7 @@ export default {
      * radio change in column
      */
     radioChange({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }, event) {
-      console.log('单选事件');
+      // console.log('单选事件');
       this.$emit('select-change', { row, $rowIndex, column, $columnIndex }, event);
     },
   },

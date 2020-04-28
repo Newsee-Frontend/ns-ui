@@ -3,7 +3,11 @@
   <div class="biz-table" :style="`height: ${height+38}px`">
 
     <!--表格-->
-    <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent"></ns-table>
+    <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent">
+      <template slot="cell-slot" slot-scope="scope">
+        <slot name="cell-slot" v-bind="scope"></slot>
+      </template>
+    </ns-table>
 
     <!--分页器-->
     <ns-pagination
@@ -316,7 +320,6 @@
         console.log('current-page-change', val);
         this.$emit('reload');
       },
-
     },
     created() {
 
