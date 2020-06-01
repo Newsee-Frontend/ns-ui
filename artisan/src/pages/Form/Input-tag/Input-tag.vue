@@ -68,6 +68,19 @@
     </demo-block>
 
     <demo-block>
+      <template slot="title">Input-tag - Custom width</template>
+      <template slot="content">
+        <ns-input-tag
+          v-model="inputModel2"
+          width="300px"
+          :options="optionsDataTemplate"
+          :suffixIcon="suffixIcon"
+          @iconClick="iconClick"
+        ></ns-input-tag>
+      </template>
+    </demo-block>
+
+    <demo-block>
       <template slot="title">Input-tag in form</template>
       <template slot="content">
         <ns-form label-width="100px"

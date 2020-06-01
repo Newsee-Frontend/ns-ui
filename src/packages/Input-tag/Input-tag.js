@@ -79,6 +79,7 @@ export default create({
         on-click={$event => this.inputTagClick($event)}
         on-mouseenter={this.inputTagMouseenter.bind(this)}
         on-mouseleave={this.inputTagMouseleave.bind(this)}
+        style={this.convert_style}
       >
         {this.prefixIcon ? (
           <div class={this.recls('icon')}>
@@ -101,7 +102,6 @@ export default create({
           multipleLimit={this.multipleLimit}
           collapseTags={this.collapseTags}
           placeholder={this.placeholder}
-          style={this.convert_style}
           popperClass="input-tag-popper"
         >
           {this.options.map(item => {
