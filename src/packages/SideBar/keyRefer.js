@@ -15,7 +15,6 @@ const keyRefer = {
 };
 export default keyRefer;
 
-
 // const keyRefer = {
 //   funcId: 'funcId', //func-ID
 //   menuLabel: 'menuMenuname', //显示名称

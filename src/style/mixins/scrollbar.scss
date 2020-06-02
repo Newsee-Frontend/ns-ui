@@ -19,8 +19,7 @@
   }
 }
 
-@mixin scrollbarStyle($size:10px) {
-
+@mixin scrollbarStyle($size: 10px) {
   /*滚动条垂直方向的宽度*/
   ::-webkit-scrollbar {
     width: $size;
