@@ -41,24 +41,24 @@
     },
 
     props: {
-      loading: { type: Boolean },
-      data: { type: Array },
-      isHugeData: { type: Boolean },//大数据量渲染，不支持表单表格的功能
-      localHead: { type: Array, request: false }, //本地表头数据
+      loading: {type: Boolean},
+      data: {type: Array},
+      isHugeData: {type: Boolean},//大数据量渲染，不支持表单表格的功能
+      localHead: {type: Array, request: false}, //本地表头数据
 
-      total: { type: Number },//总条目
-      searchConditions: { type: Object },//筛选条件
+      total: {type: Number},//总条目
+      searchConditions: {type: Object},//筛选条件
 
       //第一列固定列类型（非自动表头配置）
-      firstColType: { type: String, default: 'checkbox', validator: t => ['index', 'checkbox', 'radio', null].indexOf(t) > -1 },
-      hasActionCol: { type: Boolean, default: true },//是否有操作列
-      showHeadOperation: { type: Boolean, default: true },//表头设置操作模块开关
-      showAddRowOperation: { type: Boolean, default: false },//表头设置 新增行操作模块开关
+      firstColType: {type: String, default: 'checkbox', validator: t => ['index', 'checkbox', 'radio', null].indexOf(t) > -1},
+      hasActionCol: {type: Boolean, default: true},//是否有操作列
+      showHeadOperation: {type: Boolean, default: true},//表头设置操作模块开关
+      showAddRowOperation: {type: Boolean, default: false},//表头设置 新增行操作模块开关
 
-      showFooter: { type: Boolean, default: false },//是否显示表尾合计
-      footerMethod: { type: Function },//表尾合计的计算方法
-      checkMethod: { type: Function },//控制 CheckBox 是否允许勾选的方法，该方法 Function({row}) 的返回值用来决定这一行的 CheckBox 是否可以勾选.
-
+      showFooter: {type: Boolean, default: false},//是否显示表尾合计
+      footerMethod: {type: Function},//表尾合计的计算方法
+      checkMethod: {type: Function},//控制 CheckBox 是否允许勾选的方法，该方法 Function({row}) 的返回值用来决定这一行的 CheckBox 是否可以勾选.
+      emptyText: {type: String},//空数据时的文案
     },
 
     computed: {
@@ -84,6 +84,7 @@
           footerMethod: this.footerMethod,
           checkMethod: this.checkMethod,
           highlightHoverRow: true,
+          emptyText: this.emptyText
         };
         if (!this.isHugeData) {
           props.data = this.data;
@@ -165,8 +166,8 @@
        * @param $columnIndex
        * @param cell
        */
-      editActived({ row, $rowIndex, column, $columnIndex, cell }) {
-        this.$emit('edit-actived', { row, $rowIndex, column, $columnIndex, cell });
+      editActived({row, $rowIndex, column, $columnIndex, cell}) {
+        this.$emit('edit-actived', {row, $rowIndex, column, $columnIndex, cell});
       },
 
       /**
@@ -175,8 +176,8 @@
        *  注释：1、row - 行数据 , 2、rowIndex - 行索引, 3、column - 列数据, 4、columnIndex - 列索引 , 5、rows - 全部表格数据 , 6、columns - 全部列数据
        * @param event
        */
-      cellEvent({ row, rowIndex, column, columnIndex, rows, columns }, event) {
-        this.$emit('cell-event', { row, rowIndex, column, columnIndex, rows, columns }, event);
+      cellEvent({row, rowIndex, column, columnIndex, rows, columns}, event) {
+        this.$emit('cell-event', {row, rowIndex, column, columnIndex, rows, columns}, event);
       },
 
       /**
@@ -203,8 +204,8 @@
        * @param column - 列信息
        * @param columnIndex - 列索引
        */
-      tableAction(info, { row, rowIndex, column, columnIndex }) {
-        this.$emit('table-action', info, { row, rowIndex, column, columnIndex });
+      tableAction(info, {row, rowIndex, column, columnIndex}) {
+        this.$emit('table-action', info, {row, rowIndex, column, columnIndex});
       },
 
       /**
@@ -213,8 +214,8 @@
        * 注意：单选列的情况下，参数：checked, selection 不存在
        * @param event
        */
-      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
-        this.$emit('select-change', { row, $rowIndex, column, $columnIndex, checked, selection }, event);
+      selectChange({row, $rowIndex, column, $columnIndex, checked, selection}, event) {
+        this.$emit('select-change', {row, $rowIndex, column, $columnIndex, checked, selection}, event);
         this.$refs['bizTable'].refreshColumn();
       },
 
@@ -223,8 +224,8 @@
        * @param { selection, checked }
        * @param event
        */
-      selectAll({ selection, checked }, event) {
-        this.$emit('select-all', { selection, checked }, event);
+      selectAll({selection, checked}, event) {
+        this.$emit('select-all', {selection, checked}, event);
       },
 
       /**
