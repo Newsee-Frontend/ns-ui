@@ -9,7 +9,7 @@ import dialogDrag from './mixins/dialogDrag';
 export default create({
   name: 'dialog',
 
-  mixins: [ dialogDrag ],
+  mixins: [dialogDrag],
 
   data() {
     return {
@@ -49,7 +49,7 @@ export default create({
     'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
 
     fullscreen: { type: Boolean, default: false },
-    draggable: { type: Boolean, default: true }  //是否可拖拉
+    draggable: { type: Boolean, default: true }, //是否可拖拉
   },
   watch: {
     visible(val) {
@@ -101,7 +101,7 @@ export default create({
           'before-close': this.beforeClose,
         },
 
-        directives: this.draggable?[{ name: 'dialogDrag', rawName: 'v-dialogDrag' }] : [],
+        directives: this.draggable ? [{ name: 'dialogDrag', rawName: 'v-dialogDrag' }] : [],
 
         on: {
           'update:visible': value => {

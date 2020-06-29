@@ -15,31 +15,31 @@ import img_null from '../../assets/null.jpg';
 
 export default create({
   name: 'table',
-  components: {columnRender, summaryDrop, identifier},
+  components: { columnRender, summaryDrop, identifier },
   mixins: [selection, reRender, validate, namefactory, columntype, errorType],
   props: {
-    loading: {type: Boolean, default: true},
-    keyRefer: {type: Object},
-    data: {type: Array},
+    loading: { type: Boolean, default: true },
+    keyRefer: { type: Object },
+    data: { type: Array },
     head: {
       type: Array,
       default() {
         return [];
       },
     },
-    isHugeData: {type: Boolean, default: false}, //大数据量渲染，不支持表单表格的功能
-    height: {type: Number, default: 300},
-    showFooter: {type: Boolean, default: false},
-    footerMethod: {type: Function},
-    checkMethod: {type: Function},
+    isHugeData: { type: Boolean, default: false }, //大数据量渲染，不支持表单表格的功能
+    height: { type: Number, default: 300 },
+    showFooter: { type: Boolean, default: false },
+    footerMethod: { type: Function },
+    checkMethod: { type: Function },
     editConfig: {
       type: Object,
       default: () => {
-        return {trigger: 'click', mode: 'row', showStatus: true};
+        return { trigger: 'click', mode: 'row', showStatus: true };
       },
     },
-    highlightHoverRow: {type: Boolean, default: true}, //鼠标移到行是否要高亮显示
-    emptyText: {type: String, default: '抱歉, 没有你要的结果'},
+    highlightHoverRow: { type: Boolean, default: true }, //鼠标移到行是否要高亮显示
+    emptyText: { type: String, default: '抱歉, 没有你要的结果' },
   },
   data() {
     return {
@@ -54,7 +54,7 @@ export default create({
   },
   watch: {
     head: {
-      handler: function (val) {
+      handler: function(val) {
         this.customColumns = val.map(item => {
           return {
             field: item.field,
@@ -104,81 +104,81 @@ export default create({
       <div class={this.recls()} style={`height: ${this.height}px`}>
         {this.isMainReady
           ? h(
-            `vxe-table`,
-            {
-              ref: 'main-table',
-              props: props,
-              on: {
-                'edit-actived': this.editActived,
-                'radio-change': this.selectChange,
-                'select-change': this.selectChange,
-                'select-all': this.selectAll,
-                'update:customs': value => {
-                  this.customColumns = value;
-                  this.$nextTick(() => {
-                    this.$refs['main-table'].refreshColumn();
-                  });
+              `vxe-table`,
+              {
+                ref: 'main-table',
+                props: props,
+                on: {
+                  'edit-actived': this.editActived,
+                  'radio-change': this.selectChange,
+                  'select-change': this.selectChange,
+                  'select-all': this.selectAll,
+                  'update:customs': value => {
+                    this.customColumns = value;
+                    this.$nextTick(() => {
+                      this.$refs['main-table'].refreshColumn();
+                    });
+                  },
                 },
-              },
-              scopedSlots: {
-                empty: scope => {
-                  return (
-                    <span class={'error-prompt'}>
-                        <img class={'errorImg'} src={img_null}/>
+                scopedSlots: {
+                  empty: scope => {
+                    return (
+                      <span class={'error-prompt'}>
+                        <img class={'errorImg'} src={img_null} />
                         <p> {this.emptyText} </p>
                       </span>
-                  );
+                    );
+                  },
                 },
               },
-            },
-            [
-              this.head.map((item, $index) => {
-                return h(`column-render`, {
-                  key: `column-render-${$index}`,
-                  props: {
-                    column: item,
-                    columns: this.head,
-                    keyRefer: this.keyRefer,
-                    customColumns: this.customColumns,
-                  },
-                  on: {
-                    ...this.$listeners,
-                    'cell-event': this.cellEvent,
-                    'sync-column-render': data => {
-                      // console.log(data.customColumns);
+              [
+                this.head.map((item, $index) => {
+                  return h(`column-render`, {
+                    key: `column-render-${$index}`,
+                    props: {
+                      column: item,
+                      columns: this.head,
+                      keyRefer: this.keyRefer,
+                      customColumns: this.customColumns,
+                    },
+                    on: {
+                      ...this.$listeners,
+                      'cell-event': this.cellEvent,
+                      'sync-column-render': data => {
+                        // console.log(data.customColumns);
 
-                      const target = this.$refs['main-table'];
-                      ['change', 'lock'].indexOf(data.event) > -1
-                        ? target.refreshColumn()
-                        : target.reloadColumn(data.customColumns);
+                        const target = this.$refs['main-table'];
+                        ['change', 'lock'].indexOf(data.event) > -1
+                          ? target.refreshColumn()
+                          : target.reloadColumn(data.customColumns);
+                      },
                     },
-                  },
-                  scopedSlots: {
-                    'cell-slot': scope => {
-                      return this.$scopedSlots['cell-slot']
-                        ? this.$scopedSlots['cell-slot']({
-                          row: scope.row,
-                          data: scope.data,
-                          column: item,
-                          columns: this.head,
-                          rowIndex: scope.$rowIndex,
-                          columnIndex: scope.$columnIndex,
-                          rendered: true,
-                        })
-                        : scope.row[item.field];
+                    scopedSlots: {
+                      'cell-slot': scope => {
+                        return this.$scopedSlots['cell-slot']
+                          ? this.$scopedSlots['cell-slot']({
+                              row: scope.row,
+                              data: scope.data,
+                              column: item,
+                              columns: this.head,
+                              rowIndex: scope.$rowIndex,
+                              columnIndex: scope.$columnIndex,
+                              rendered: true,
+                            })
+                          : scope.row[item.field];
+                      },
                     },
-                  },
-                });
-              }),
-            ]
-          )
+                  });
+                }),
+              ]
+            )
           : null}
         {this.showFooter
           ? h('summary-drop', {
-            on: {
-              ...this.$listeners,
-            },
-          })
+              on: {
+                ...this.$listeners,
+              },
+            })
           : null}
         {h('identifier', {
           class: this.recls('mask'),
@@ -214,10 +214,10 @@ export default create({
      * @param column
      * @param columnIndex
      */
-    cellEvent({row, rowIndex, column, columnIndex}) {
+    cellEvent({ row, rowIndex, column, columnIndex }) {
       this.$emit(
         'cell-event',
-        {row, rowIndex, column, columnIndex, ...{rows: this.data}, ...{columns: this.head}},
+        { row, rowIndex, column, columnIndex, ...{ rows: this.data }, ...{ columns: this.head } },
         event
       );
     },
@@ -232,8 +232,8 @@ export default create({
      * @param $columnIndex
      * @param cell
      */
-    editActived({row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell}) {
-      this.$emit('edit-actived', {row, $rowIndex, column, $columnIndex, cell});
+    editActived({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }) {
+      this.$emit('edit-actived', { row, $rowIndex, column, $columnIndex, cell });
       // if (this.$refs['main-table']) {
       //   this.$refs['main-table'].refreshColumn();
       // }
@@ -257,6 +257,5 @@ export default create({
     // alert(this.loading)
     // alert(this.data)
   },
-  mounted() {
-  },
+  mounted() {},
 });
