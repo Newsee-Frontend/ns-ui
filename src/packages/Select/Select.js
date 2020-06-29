@@ -96,6 +96,9 @@ export default create({
         {this.options.map(item => {
           return optionRender(item);
         })}
+        <span slot={'default'} class={'select-option-content'}>
+          {this.$slots.default}
+        </span>
       </el-select>
     );
   },
