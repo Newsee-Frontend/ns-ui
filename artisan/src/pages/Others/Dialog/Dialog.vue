@@ -5,15 +5,15 @@
       <!--基础用法示例-->
       <demo-block>
         <template slot="title">Dialog - 对话框</template>
-        <template slot="describe">基础用法</template>
+        <template slot="describe">基础用法, 并不可拖拉</template>
         <template slot="content">
           <el-button @click="buttonClick">点击打开</el-button>
           <ns-dialog
             :visible.sync="visible1"
             title="basic-dialog-demo"
             top="7%"
-
             size="large"
+            :draggable="false"
             autoHeight
 
             :is-append-to-body="false"
@@ -109,7 +109,6 @@
 </template>
 
 <script>
-
   export default {
     name: 'dialog-demo',
     data() {

@@ -4,8 +4,13 @@ import { sizeValidator } from '../../utils/props/validator';
 
 const _dialogtype = ['normal', 'simple', 'noFooter', 'noHeader'];
 
+import dialogDrag from './mixins/dialogDrag';
+
 export default create({
   name: 'dialog',
+
+  mixins: [ dialogDrag ],
+
   data() {
     return {
       show: false,
@@ -44,6 +49,7 @@ export default create({
     'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
 
     fullscreen: { type: Boolean, default: false },
+    draggable: { type: Boolean, default: true }  //是否可拖拉
   },
   watch: {
     visible(val) {
@@ -73,6 +79,7 @@ export default create({
       `el-dialog`,
       {
         class: this.dialogClass,
+
         props: {
           'custom-class': this.customClass,
           visible: this.show,
@@ -93,6 +100,9 @@ export default create({
           'show-close': this.showClose,
           'before-close': this.beforeClose,
         },
+
+        directives: this.draggable?[{ name: 'dialogDrag', rawName: 'v-dialogDrag' }] : [],
+
         on: {
           'update:visible': value => {
             this.show = value;
@@ -100,6 +110,7 @@ export default create({
           close: this.close,
           open: this.open,
         },
+
         scopedSlots: {
           default: slots => this.$slots.default,
         },
