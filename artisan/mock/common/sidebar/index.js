@@ -1,4 +1,4 @@
-import multipleMenuData from './data/multiple';
+import {multipleMenuData1,multipleMenuData2} from './data/multiple';
 import secondMenuData from './data/second';
 
 
@@ -10,7 +10,7 @@ const navmenu = (req, res) => {
 
   let menuList = null;
   if (type === 'multiple') {
-    menuList = multipleMenuData;
+    menuList = multipleMenuData2;
   }
   else if (type === 'second') {
     menuList = secondMenuData;

@@ -68,19 +68,19 @@
   </div>
 </template>
 <script>
-import create from '../../../../create/create';
+import create from '../../create/create';
 
-import Emitter from '../../../../mixins/emitter';
+import Emitter from '../../mixins/emitter';
 
 import collapseTransition from './transitions/collapse-transition';
-import iconClass from '../../../Icon-class/Icon-class';
+import iconClass from '../Icon-class/Icon-class';
 import navMenuNode from './navMenu-node';
 import slotRender from './slotRender';
 
 import MenuStore from './menu-store';
 
 import defaultKeyRefer from './keyRefer';
-import { delaynav } from '../../utils';
+import { delaynav } from '../SideBar/utils';
 
 export default create({
   name: 'multiple-navMenu',
@@ -139,15 +139,6 @@ export default create({
     },
   },
   methods: {
-    slotRanderFn(h, node) {
-      return h('h1', 123);
-      // return `<ns-icon-svg icon-class="jiantou" style="margin-left: 15px"></ns-icon-svg>`;
-
-      // if (this.slotRander) {
-      //   this.slotRander(node);
-      // }
-    },
-
     /**
      * 离开整个菜单栏
      */
@@ -247,6 +238,7 @@ export default create({
   },
 });
 </script>
+
 <style rel="stylesheet/scss" lang="scss">
-@import '../../style/multiple/index';
+@import './style/index';
 </style>

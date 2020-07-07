@@ -1,4 +1,4 @@
-import { addClass, removeClass } from '../../../../../utils/library/class-handle';
+import { addClass, removeClass } from '../../../utils/library/class-handle';
 
 const Transition = {
   beforeEnter(el) {

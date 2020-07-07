@@ -9,8 +9,9 @@ const keyRefer = {
   label: 'menuMenuname', //显示名称
   menuRouter: 'menuMenusubname', //路径符号
   icon: 'menuIconcls', //图标
-  menuIndex: 'syOrderindex', //序号
   children: 'childMenus', //子集菜单
   visible: 'visible', //隐藏
+  isLeaf: 'isLeaf', //是否叶子节点
 };
+
 export default keyRefer;

@@ -5,7 +5,7 @@ import Layout from '../../../../src/packages/Layout/Layout';
 import Skiner from '../../../../src/packages/Skiner/Skiner';
 import UserDropdown from '../../../../src/packages/UserDropdown/UserDropdown';
 import SecondNavMenu from '../../../../src/packages/SideBar/Sidebar';
-import MultipleNavMenu from '../../../../src/packages/SideBar/theme/multiple/multiple-navMenu';
+import MultipleNavMenu from '../../../../src/packages/SideMenu/multiple-navMenu';
 
 
 //basic
@@ -165,8 +165,7 @@ import '../../../../src/style/base.scss';
 //layput
 import '../../../../src/packages/Layout/style/index.scss';
 import '../../../../src/packages/SideBar/style/collapse/index.scss';
-import '../../../../src/packages/SideBar/style/multiple/index.scss';
-
+import '../../../../src/packages/SideMenu/style/index.scss';
 
 import '../../../../src/packages/UserDropdown/style/index.scss';
 

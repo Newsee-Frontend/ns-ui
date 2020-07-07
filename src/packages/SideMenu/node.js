@@ -87,11 +87,6 @@ export default class Node {
     return getPropertyFromData(this, 'visible');
   }
 
-  get isLeaf() {
-    const children = this.childNodes;
-    return !children || !children.length;
-  }
-
   //get label in node
   get label() {
     return getPropertyFromData(this, 'label');
@@ -100,6 +95,13 @@ export default class Node {
   //get icon in node
   get icon() {
     return getPropertyFromData(this, 'icon');
+  }
+
+  get isLeaf() {
+    // const children = this.childNodes;
+    // return !children || !children.length;
+
+    return getPropertyFromData(this, 'isLeaf');
   }
 
   setNodeData(data) {

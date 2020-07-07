@@ -31,6 +31,7 @@
         role="group"
         :aria-expanded="node.expanded"
         v-show="node.expanded"
+        v-if="!node.isLeaf"
       >
         <nav-menu-node
           v-for="(child, index) in node.childNodes"
@@ -46,7 +47,7 @@
 </template>
 
 <script>
-import Emitter from '../../../../mixins/emitter';
+import Emitter from '../../mixins/emitter';
 import collapseTransition from './transitions/collapse-transition';
 import slotRender from './slotRender';
 
@@ -146,5 +147,5 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-@import '../../style/multiple/menu-node';
+@import '../SideMenu/style/menu-node';
 </style>

@@ -1,4 +1,4 @@
-@import '../../../../style/mixins/scrollbar';
+@import '../../../style/mixins/scrollbar';
 @import 'var';
 
 //主菜单（1级)
@@ -32,6 +32,7 @@
       transition: all $transition-speed ease-in-out;
       box-sizing: border-box;
       cursor: pointer;
+      overflow: hidden;
       span {
         display: none;
       }

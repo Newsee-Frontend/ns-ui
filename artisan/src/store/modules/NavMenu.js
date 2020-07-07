@@ -76,7 +76,7 @@ let _filterMenu = list => {
 
 const NavMenu = {
   state: {
-    navMenuType: 'second',//multiple  / second
+    navMenuType: 'multiple',//multiple  / second
     navMenuList: JSON.parse(sessionStorage.getItem('nav')),
   },
   mutations: {
