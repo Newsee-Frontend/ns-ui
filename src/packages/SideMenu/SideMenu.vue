@@ -1,3 +1,4 @@
+<!--多级 - 侧边导航菜单-->
 <template>
   <div
     :class="[
@@ -74,7 +75,7 @@ import Emitter from '../../mixins/emitter';
 
 import collapseTransition from './transitions/collapse-transition';
 import iconClass from '../Icon-class/Icon-class';
-import navMenuNode from './navMenu-node';
+import navMenuNode from './SideMenu-node';
 import slotRender from './slotRender';
 
 import MenuStore from './menu-store';
