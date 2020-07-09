@@ -32,7 +32,7 @@ export default class Node {
     // console.log(this.store);
 
     this.data = null; //树 渲染数据
-    this.parent = null; //父 node 信息
+    this.parentNode = null; //父 node 信息
     this.childNodes = []; //存放  子node节点数据
 
     this.expanded = false; //开闭状态
@@ -49,12 +49,12 @@ export default class Node {
       }
     }
 
-    //若该层存在 parent 字段的内容 （ 非最顶层 )
+    //若该层存在 parentNode 字段的内容 （ 非最顶层 )
     //我们已经约定 最顶层 level = 0 了
-    if (this.parent) {
-      this.level = this.parent.level + 1; //该层级 递增1
+    if (this.parentNode) {
+      this.level = this.parentNode.level + 1; //该层级 递增1
 
-      this.key = (this.parent.key ? this.parent.key + '-' : '') + this.index;
+      this.key = (this.parentNode.key ? this.parentNode.key + '-' : '') + this.index;
     } else {
       // this.key = this.index + '';
     }
@@ -143,7 +143,7 @@ export default class Node {
     // console.log('insertChild');
     // console.log(child)
     objectAssign(child, {
-      parent: this,
+      parentNode: this,
       store: this.store,
       index: index,
     });
@@ -184,10 +184,10 @@ export default class Node {
    */
   setActive(callback) {
     const done = () => {
-      let parent = this.parent;
+      let parent = this.parentNode;
       while (parent.level > 0) {
         parent.active = true;
-        parent = parent.parent;
+        parent = parent.parentNode;
       }
 
       this.active = true;

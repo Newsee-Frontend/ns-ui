@@ -148,5 +148,5 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
-@import '../SideMenu/style/menu-node';
+/*@import '../SideMenu/style/menu-node';*/
 </style>
