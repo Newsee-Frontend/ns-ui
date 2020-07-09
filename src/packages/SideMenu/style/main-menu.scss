@@ -35,6 +35,7 @@
       overflow: hidden;
       span {
         display: none;
+        color: $first-nav-text-color;
       }
       svg {
         width: $nav-icon-width;
@@ -45,14 +46,14 @@
 
       //首项 - 特殊样式标识
       &:first-child {
-        border-top: 1px solid $first-nav-line;
-        border-bottom: 1px solid $first-nav-line;
+        //border-top: 1px solid $first-nav-back-color;
+        //border-bottom: 1px solid $first-nav-back-color;
       }
 
       //选中状态
       &.is-active {
         background-color: $first-nav-back-color-active;
-        border: none;
+        //border: none;
         span {
           color: $first-nav-text-color-active;
         }
@@ -66,7 +67,8 @@
         &:not(.is-active) {
           background-color: $first-nav-back-color-hover;
           span {
-            color: $first-nav-text-color-hover;
+            font-weight: bolder;
+            //color: $first-nav-text-color-hover;
           }
           svg {
             color: $first-nav-icon-color-hover;

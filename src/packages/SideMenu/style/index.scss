@@ -18,12 +18,9 @@
   }
 }
 
-.menu-wrapper {
+@include b(side-menu) {
   position: relative;
   height: 100%;
-
-  @include rb(multiple-navMenu) {
-  }
 
   //主菜单展开状态
   &.is-expand {
@@ -36,7 +33,6 @@
           //标题名称
           span {
             display: inline-block;
-            color: $first-nav-text-color;
           }
           //图标
           svg {

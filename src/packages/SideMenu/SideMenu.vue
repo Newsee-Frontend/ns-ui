@@ -5,7 +5,7 @@
       recls(),
       { 'is-expand': mainExpanded },
       { 'is-collapse': !mainExpanded },
-      'first-nav  menu-wrapper noselect',
+      'first-nav noselect',
     ]"
     @mouseleave="navMouseLeave($event)"
   >
@@ -84,7 +84,7 @@ import defaultKeyRefer from './keyRefer';
 import { delaynav } from '../SideBar/utils';
 
 export default create({
-  name: 'multiple-navMenu',
+  name: 'side-menu',
   mixins: [Emitter],
   components: { iconClass, navMenuNode, slotRender, collapseTransition },
   props: {
