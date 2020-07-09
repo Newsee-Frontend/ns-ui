@@ -13,7 +13,7 @@ export default create({
           <Head>{this.$slots.header}</Head>
         </div>
 
-        <div id="sidebar-wrapper">{this.$slots.sidebar}</div>
+        <div id="side-menu-wrapper">{this.$slots.sidebar}</div>
 
         <div id="page-tabs-wrapper">{this.$slots['tabs-view']}</div>
         <section class="main-container">{this.$slots['app-main']}</section>

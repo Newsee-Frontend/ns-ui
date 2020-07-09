@@ -27,7 +27,7 @@ body {
     z-index: 2000;
   }
   /* ------------ 左侧导航栏模块 ------------*/
-  #sidebar-wrapper {
+  #side-menu-wrapper {
     position: absolute;
     top: $navH;
     bottom: 0;
@@ -47,7 +47,7 @@ body {
   }
 
   /* ------------ 内容 模块 ------------ */
-  .main-container {
+  #main-container {
     position: absolute;
     top: $navH + $tabs;
     bottom: 1px;
