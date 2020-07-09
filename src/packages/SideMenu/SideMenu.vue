@@ -215,6 +215,7 @@ export default create({
 
     toggleExpand() {
       this.mainExpanded = !this.mainExpanded;
+      this.$emit('toggle-expand', this.mainExpanded);
     },
   },
   created() {
