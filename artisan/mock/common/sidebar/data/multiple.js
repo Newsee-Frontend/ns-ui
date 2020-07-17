@@ -2887,7 +2887,7 @@ export const multipleMenuData2 = [
     menuMenusubname: 'dashboard',
     menuIconcls: 'gailan',
     syStatus: '1',
-    isLeaf: true,
+    isLeaf: false,
     childMenus: [],
   },
 
