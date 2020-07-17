@@ -26,7 +26,7 @@ const oauth = (req, res) => {
       userType: 1,
       userPhone: 18768183457,
       userSex: 1,
-      themeColor: '#252836',
+      themeColor: '#591398',
     },
   });
 };
