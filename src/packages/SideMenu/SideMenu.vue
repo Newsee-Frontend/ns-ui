@@ -99,7 +99,7 @@ export default create({
     defaultExpandedKeys: {
       type: Array,
       default: () => {
-        return ['0-1', '10-1'];
+        return [];
       },
     }, //初始化的展开节点key队列,注意：defaultExpandAll必须为false，才能设置
     defaultActive: { type: String, default: '0-0-0' }, //初始化的active的节点key
@@ -135,8 +135,11 @@ export default create({
   },
   watch: {
     //监听组件数据变化
-    data(newVal) {
-      this.store.setNodeData(newVal); //重新设置注入组件数据
+    data: {
+      handler: function(newVal) {
+        this.store.setNodeData(newVal); //重新设置注入组件数据
+      },
+      deep: true,
     },
   },
   methods: {
@@ -213,15 +216,46 @@ export default create({
       this.$emit('node-click', node, instance); //向外抛出 事件 node-expand
     },
 
+    /**
+     * 切换菜单栏展开/收起 状态
+     */
     toggleExpand() {
       this.mainExpanded = !this.mainExpanded;
       this.$emit('toggle-expand', this.mainExpanded);
     },
+
+    /**
+     * set active dynamic in menu node - 根据激活ID设置激活链路节点
+     * 1、find the node（target node) that need to be set
+     * 2、remove all active from root node （loop down)
+     * 3、set active state form target node （loop up)
+     * @param activeId
+     */
+    setActive(activeId) {
+      if (!activeId) return;
+
+      const activeArr = activeId.split('-');
+
+      if (!activeArr || !activeArr.length) return;
+
+      let targetNode = this.root;
+
+      //find the node（target node) that need to be set
+      activeArr.forEach(key => {
+        try {
+          targetNode = targetNode.childNodes[key];
+        } catch (e) {
+          throw `menu active key (${activeId}) is wrong. There is no node level for this active ID`;
+        }
+      });
+
+      //remove all
+      targetNode.removeActive(this.root);
+      //set active state
+      targetNode.setActive();
+    },
   },
   created() {
-    console.log('created-created-created');
-    console.log(this.data);
-
     this.store = new MenuStore({
       data: this.data,
       keyRefer: this.keyRefer,
@@ -233,10 +267,10 @@ export default create({
 
     this.root = this.store.root;
 
-    console.log('root-root');
-    console.log(this.root);
-    console.log(this.root.childNodes);
-    console.log('root-root');
+    // console.log('root-root');
+    // console.log(this.root);
+    // console.log(this.root.childNodes);
+    // console.log('root-root');
   },
 });
 </script>

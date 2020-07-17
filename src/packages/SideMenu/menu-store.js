@@ -14,13 +14,16 @@ export default class TreeStore {
       store: this,
     });
   }
+
   /**
    * set data - 设置注入组件数据
    * @param newVal
    */
   setNodeData(newVal) {
     const isDataChanged = newVal !== this.root.data;
-    console.log(isDataChanged ? '数据变化，前后数据不一样' : '数据变化，前后数据一样');
+    console.log(
+      isDataChanged ? '导航菜单数据变化，前后数据不一样' : '导航菜单数据变化，前后数据一样'
+    );
     if (isDataChanged) {
       //执行 root 中的 setTreeData 方法后，等于重头创建了一个数据root 数据对象
       this.root.setNodeData(newVal);

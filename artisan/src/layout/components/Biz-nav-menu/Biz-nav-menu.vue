@@ -1,10 +1,16 @@
 <template>
   <div style="height: 100%">
+    <a style="color: red" @click="setActive('1')">setActive1</a>
+    <a style="color: #3eff72" @click="setActive('0-0')">  setActive2</a>
+    <a style="color: #ff20b5" @click="setActive('0-1-3')">  setActive3</a>
     <!--多级导航栏-->
     <ns-multiple-navMenu
+      ref="bizSideMenu"
       :data="navMenuList"
       :keyRefer="keyRefer"
       :slotRander="slotRanderFn"
+      :defaultExpandedKeys="defaultExpandedKeys"
+      :defaultActive="defaultActive"
       closeByLeafClick
       @node-click="nodeClick"
       v-if="navMenuType === 'multiple'"
@@ -37,7 +43,7 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+  import {mapGetters} from 'vuex';
   import keyRefer from './keyRefer';
 
   export default {
@@ -48,6 +54,9 @@
         dialogTit: '',
         sidebarType: 'collapse', //bubble,collapse
         jumpByNavEmpty: true,
+        defaultExpandedKeys: ['0-1', '10-1'],//初始化的展开节点key队列,注意：defaultExpandAll必须为false，才能设置
+        defaultActive: '0-0',
+
         keyRefer,
       };
     },
@@ -55,6 +64,12 @@
       ...mapGetters(['navMenuType', 'navMenuList']),
     },
     methods: {
+      setActive(key) {
+        console.log(this.$refs['bizSideMenu'])
+        this.$refs['bizSideMenu'].setActive(key);
+      },
+
+
       slotRanderFn(h, node) {
         if (
           (node.level === 1 && node.index === 0) ||
@@ -96,7 +111,7 @@
           this.dialogSw = false;
         }
 
-        this.$router.push({ path: '/' + firstItem[this.keyRefer.menuRouter] }); //jump
+        this.$router.push({path: '/' + firstItem[this.keyRefer.menuRouter]}); //jump
       },
 
       /**
@@ -112,7 +127,7 @@
         const url = '/' + firstItem[this.keyRefer.menuRouter] + '/' + secondItem[this.keyRefer.menuRouter];
 
         //jump
-        this.$router.push({ path: url });
+        this.$router.push({path: url});
       },
 
       /**
