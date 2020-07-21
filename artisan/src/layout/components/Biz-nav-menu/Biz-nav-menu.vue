@@ -1,8 +1,8 @@
 <template>
   <div style="height: 100%">
-    <a style="color: red" @click="setActive('1')">setActive1</a>
-    <a style="color: #3eff72" @click="setActive('0-0')">  setActive2</a>
-    <a style="color: #ff20b5" @click="setActive('0-1-3')">  setActive3</a>
+    <!--<a style="color: red" @click="setActive('1')">setActive1</a>-->
+    <!--<a style="color: #3eff72" @click="setActive('0-0')">  setActive2</a>-->
+    <!--<a style="color: #ff20b5" @click="setActive('0-1-3')">  setActive3</a>-->
     <!--多级导航栏-->
     <ns-multiple-navMenu
       ref="bizSideMenu"
