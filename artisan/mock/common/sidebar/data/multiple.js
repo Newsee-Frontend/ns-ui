@@ -3405,7 +3405,7 @@ export const multipleMenuData2 = [
   },
   {
     funcId: 'charts',
-    menuMenuname: '图表',
+    menuMenuname: '图表图表图表图表',
     menuMenusubname: 'charts',
     menuIconcls: 'fold',
     syStatus: '1',
