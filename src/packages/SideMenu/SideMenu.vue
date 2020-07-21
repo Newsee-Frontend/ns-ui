@@ -12,20 +12,28 @@
     <!--主菜单部分（1级菜单部分）-->
     <div class="main-menu">
       <ul class="main-menu__content">
-        <li
+        <el-tooltip
+          popper-class="main-menu__tooltip"
+          :content="child.label"
+          placement="right"
+          :disabled="mainExpanded || isSubMenuExist"
+          :hide-after="1000"
           v-for="child in root.childNodes"
           :index="child.index"
           :key="child.key"
-          v-bind:class="['main-menu__item', { 'is-active': child.active }]"
-          @mouseenter="nodeMouseEnter(child, $event)"
-          @mouseleave="nodeMouseLeave(child, $event)"
-          @click="menuNodeClick(child)"
-          v-if="child.visible"
         >
-          <icon-svg :icon-class="child.icon || ''"></icon-svg>
-          <span>{{ child.label }}</span>
-          <slotRender :node="child" :slotRander="slotRander"></slotRender>
-        </li>
+          <li
+            v-bind:class="['main-menu__item', { 'is-active': child.active }]"
+            @mouseenter="nodeMouseEnter(child, $event)"
+            @mouseleave="nodeMouseLeave(child, $event)"
+            @click="menuNodeClick(child)"
+            v-if="child.visible"
+          >
+            <icon-svg :icon-class="child.icon || ''"></icon-svg>
+            <span>{{ child.label }}</span>
+            <slotRender :node="child" :slotRander="slotRander"></slotRender>
+          </li>
+        </el-tooltip>
       </ul>
 
       <div class="main-menu__expanded">
@@ -45,10 +53,7 @@
 
     <!--副菜单部分（ 2-n 级菜单部分）-->
     <transition name="slide-fade">
-      <div
-        :class="['sub-menu', { 'is-expand': hasChildNodes }]"
-        v-if="hasChildNodes && subExpanded"
-      >
+      <div :class="['sub-menu', { 'is-expand': hasChildNodes }]" v-if="isSubMenuExist">
         <div class="sub-menu__title">
           <span>{{ node.label }}</span>
         </div>
@@ -131,6 +136,9 @@ export default create({
   computed: {
     hasChildNodes() {
       return this.node && this.node.childNodes && this.node.childNodes.length > 0;
+    },
+    isSubMenuExist() {
+      return this.hasChildNodes && this.subExpanded;
     },
   },
   watch: {
