@@ -4,10 +4,10 @@
 //主菜单（1级)
 .main-menu {
   height: 100%;
-  width: $first-nav-width-collapse;
+  width: $main-menu-width-collapse;
 
-  color: $first-nav-text-color;
-  background-color: $first-nav-back-color;
+  color: $main-node-text-color;
+  background-color: $main-node-back-color;
 
   transition: width $transition-speed ease-in-out;
 
@@ -25,53 +25,53 @@
 
     li.main-menu__item {
       position: relative;
-      height: $first-nav-item-height;
-      line-height: $first-nav-item-height;
-      padding-left: $first-nav-left-gap;
-      font-size: $first-nav-font-size;
+      height: $main-node-height;
+      line-height: $main-node-height;
+      padding-left: $main-node-left-gap;
+      font-size: $main-menu-font-size;
       transition: all $transition-speed ease-in-out;
       box-sizing: border-box;
       cursor: pointer;
       overflow: hidden;
       span {
         display: none;
-        color: $first-nav-text-color;
+        color: $main-node-text-color;
       }
       svg {
         width: $nav-icon-width;
         height: $nav-icon-height;
         padding: 0;
-        color: $first-nav-icon-color;
+        color: $main-node-icon-color;
       }
 
       //首项 - 特殊样式标识
       &:first-child {
-        //border-top: 1px solid $first-nav-back-color;
-        //border-bottom: 1px solid $first-nav-back-color;
+        //border-top: 1px solid $main-node-back-color;
+        //border-bottom: 1px solid $main-node-back-color;
       }
 
       //选中状态
       &.is-active {
-        background-color: $first-nav-back-color-active;
+        background-color: $main-node-back-color-active;
         //border: none;
         span {
-          color: $first-nav-text-color-active;
+          color: $main-node-text-color-active;
         }
         svg {
-          color: $first-nav-icon-color-active;
+          color: $main-node-icon-color-active;
         }
       }
 
       //鼠标移入
       &:hover {
         &:not(.is-active) {
-          background-color: $first-nav-back-color-hover;
+          background-color: $main-node-back-color-hover;
           span {
             font-weight: bolder;
-            //color: $first-nav-text-color-hover;
+            //color: $main-node-text-color-hover;
           }
           svg {
-            color: $first-nav-icon-color-hover;
+            color: $main-node-icon-color-hover;
           }
         }
 

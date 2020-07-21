@@ -9,11 +9,11 @@
   //内容部分
   .menu-node__content {
     cursor: pointer;
-    line-height: $second-nav-item-height;
+    line-height: $sub-menu-item-height;
     box-sizing: border-box;
 
     &:hover {
-      background-color: #f5f5f5;
+      background-color: $sub-node-back-hover;
     }
 
     //根节点隐藏掉
@@ -24,13 +24,13 @@
     //节点处于激活选中状态
     &.is-active {
       .menu-node__label {
-        color: $first-nav-back-color-active;
+        color: $main-node-back-color-active;
       }
     }
 
     //图标 - 下拉箭头
     .menu-node__expand-icon {
-      color: #666666;
+      color: $sub-expand-icon-color;
       transition: all $transition-speed ease-in-out;
       //叶子节点隐藏掉
       &.is-leaf {
@@ -45,10 +45,10 @@
 
     //显示名称部分
     .menu-node__label {
-      font-size: $second-nav-font-size;
-      color: $second-nav-text-color;
+      font-size: $sub-menu-font-size;
+      color: $sub-node-text-color;
       cursor: pointer;
-      text-indent: $second-nav-item-text-indent;
+      text-indent: $sub-menu-item-text-indent;
     }
   }
 }

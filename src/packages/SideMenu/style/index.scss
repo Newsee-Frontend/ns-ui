@@ -26,13 +26,13 @@
   &.is-expand {
     //主菜单（1级)
     .main-menu {
-      width: $first-nav-width;
+      width: $main-menu-width;
       //内容部分
       .main-menu__content {
         li.main-menu__item {
           //标题名称
           span {
-            display: inline-block;
+            display: inline;
           }
           //图标
           svg {
