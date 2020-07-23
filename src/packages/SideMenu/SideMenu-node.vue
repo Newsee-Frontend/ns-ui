@@ -11,10 +11,14 @@
       ]"
       :style="{ 'padding-left': nodePaddingLeft }"
       @click.stop="menuNodeClick(node)"
+      v-show="node.visible"
     >
       <span
         :class="[
-          { 'is-leaf': node.isLeaf, expanded: !node.isLeaf && node.expanded },
+          {
+            'is-leaf': node.isLeaf || node.isChildrenAllHidden,
+            expanded: !node.isLeaf && node.expanded,
+          },
           'menu-node__expand-icon',
           'el-icon-caret-right',
         ]"
@@ -22,6 +26,10 @@
       <span class="menu-node__label">
         {{ node.label }}
       </span>
+      <span class="menu-node__label">
+        {{ node.isChildrenAllHidden }}
+      </span>
+
       <span class="menu-slot">
         <slotRender :node="node" :slotRander="node.slotRander"></slotRender>
       </span>

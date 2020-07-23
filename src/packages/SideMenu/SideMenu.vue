@@ -53,7 +53,11 @@
 
     <!--副菜单部分（ 2-n 级菜单部分）-->
     <transition name="slide-fade">
-      <div :class="['sub-menu', { 'is-expand': hasChildNodes }]" v-if="isSubMenuExist">
+      <div
+        :class="['sub-menu', { 'is-expand': hasChildNodes }]"
+        v-if="isSubMenuExist"
+        v-show="!node.isChildrenAllHidden"
+      >
         <div class="sub-menu__title">
           <span>{{ node.label }}</span>
         </div>

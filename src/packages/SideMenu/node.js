@@ -25,6 +25,27 @@ const getPropertyFromData = function(node, prop) {
   }
 };
 
+/**
+ * object assign
+ * @param target
+ * @returns {*}
+ */
+export const objectAssign = function(target) {
+  for (let i = 1, j = arguments.length; i < j; i++) {
+    let source = arguments[i] || {};
+    for (let prop in source) {
+      if (source.hasOwnProperty(prop)) {
+        let value = source[prop];
+        if (value !== undefined) {
+          target[prop] = value;
+        }
+      }
+    }
+  }
+
+  return target;
+};
+
 export default class Node {
   constructor(options) {
     // console.log('constructor - options');
@@ -87,6 +108,11 @@ export default class Node {
     return getPropertyFromData(this, 'visible');
   }
 
+  //还否儿子们都不可见
+  get isChildrenAllHidden() {
+    return this.childNodes.every(node => !node.visible);
+  }
+
   //get label in node
   get label() {
     return getPropertyFromData(this, 'label');
@@ -98,9 +124,6 @@ export default class Node {
   }
 
   get isLeaf() {
-    // const children = this.childNodes;
-    // return !children || !children.length;
-
     return getPropertyFromData(this, 'isLeaf');
   }
 
@@ -123,6 +146,7 @@ export default class Node {
     else {
       children = getPropertyFromData(this, 'children') || []; //往下层层遍历的情况下 ，若对象下没有children 字段 ，则赋值为空数组
     }
+
     for (let i = 0, j = children.length; i < j; i++) {
       this.insertChild({ data: children[i] }, i);
       // this.label = children[i].label;
@@ -214,24 +238,4 @@ export default class Node {
 
     done(node);
   }
-
-  // removeActive() {
-  //   this.active = false;
-  // }
 }
-
-export const objectAssign = function(target) {
-  for (let i = 1, j = arguments.length; i < j; i++) {
-    let source = arguments[i] || {};
-    for (let prop in source) {
-      if (source.hasOwnProperty(prop)) {
-        let value = source[prop];
-        if (value !== undefined) {
-          target[prop] = value;
-        }
-      }
-    }
-  }
-
-  return target;
-};
