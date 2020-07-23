@@ -26,10 +26,6 @@
       <span class="menu-node__label">
         {{ node.label }}
       </span>
-      <span class="menu-node__label">
-        {{ node.isChildrenAllHidden }}
-      </span>
-
       <span class="menu-slot">
         <slotRender :node="node" :slotRander="node.slotRander"></slotRender>
       </span>
