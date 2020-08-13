@@ -1,6 +1,6 @@
 import Button from '../../Button/Button';
 import img_error from '../../../assets/error.jpg';
-import img_null from '../../../assets/null.jpg';
+// import img_null from '../../../assets/null.jpg';
 
 export default {
   components: { Button },
@@ -21,8 +21,8 @@ export default {
             <div class="error-prompt-content">
               <img class={'errorImg'} src={img_error} />
               <h4>服务器出错</h4>
-              <p>蛋定！伸个懒腰喝杯水，过会再试试吧</p>
-              <Button type={'primary'} on-click={this.reload}>
+              <p>蛋定！刷新页面再试试吧</p>
+              <Button type={'primary'} on-click={this.reload} style={`display: none`}>
                 刷新试试
               </Button>
             </div>
