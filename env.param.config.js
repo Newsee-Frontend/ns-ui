@@ -1,7 +1,7 @@
 'use strict';
 const path = require('path');
 
-const package_19_07_03 = require('./version/neap/package_19_07_03');//版本：0.0.1-57
+const package_20_08_19 = require('./version/neap/package_20_08_19');//版本：0.0.1-57
 
 // const package_saas_19_12_18 = require('./version/saas/package_saas_19_12_18');
 
@@ -45,7 +45,7 @@ module.exports = {
 
       ],
     },
-    excludes: package_19_07_03, //package_saas_19_8_30,
+    excludes: package_20_08_19, //package_saas_19_8_30,
   },
   base: {
     mockPath: './artisan/mock',
