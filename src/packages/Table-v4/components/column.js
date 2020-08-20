@@ -235,6 +235,9 @@ export default {
      * @param column - column data after setting
      */
     columnSettingSubmit(column) {
+
+      // console.log(column);
+
       this.$emit('column-setting-submit', column);
     },
   },

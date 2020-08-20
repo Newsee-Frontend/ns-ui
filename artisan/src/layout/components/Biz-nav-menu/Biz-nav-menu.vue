@@ -12,6 +12,7 @@
       :defaultExpandedKeys="defaultExpandedKeys"
       :defaultActive="defaultActive"
       closeByLeafClick
+      :trigger="trigger"
       @node-click="nodeClick"
       v-if="navMenuType === 'multiple'"
     >
@@ -56,7 +57,7 @@
         jumpByNavEmpty: true,
         defaultExpandedKeys: ['0-1', '10-1'],//初始化的展开节点key队列,注意：defaultExpandAll必须为false，才能设置
         defaultActive: '0-0',
-
+        trigger:'hover',//'click
         keyRefer,
       };
     },

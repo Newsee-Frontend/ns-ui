@@ -8,6 +8,7 @@
       'first-nav noselect',
     ]"
     @mouseleave="navMouseLeave($event)"
+    @mouseenter="navMouseEnter($event)"
   >
     <!--主菜单部分（1级菜单部分）-->
     <div class="main-menu">
@@ -103,7 +104,7 @@ export default create({
         return [];
       },
     },
-    expanded: { type: Boolean, default: true }, //是否展开
+    expanded: { type: Boolean, default: false }, //是否展开
     defaultExpandAll: { type: Boolean, default: false }, //是否默认展开所有菜单栏节点
     defaultExpandedKeys: {
       type: Array,
@@ -121,7 +122,8 @@ export default create({
       },
     },
     slotRander: { type: Function },
-    closeByLeafClick: { type: Boolean, default: false }, //是否点击叶子节点关闭伸缩副菜单
+    closeByLeafClick: { type: Boolean, default: true }, //是否点击叶子节点关闭伸缩副菜单
+    trigger: { type: String, default: 'hover' }, //'hover / click'
   },
   data() {
     return {
@@ -131,10 +133,10 @@ export default create({
       store: null,
       root: null,
 
-      subNavDelay: true,
-
       mainExpanded: this.expanded,
       subExpanded: false,
+
+      subNavDelay: true,
     };
   },
   computed: {
@@ -143,6 +145,9 @@ export default create({
     },
     isSubMenuExist() {
       return this.hasChildNodes && this.subExpanded;
+    },
+    triggerHover() {
+      return this.trigger === 'hover';
     },
   },
   watch: {
@@ -163,10 +168,28 @@ export default create({
         () => {
           this.subExpanded = false;
           this.node = {};
+          if (this.triggerHover) {
+            this.mainExpandedToggle(false);
+          }
         },
         this.leaveDelay,
         this
       );
+    },
+
+    navMouseEnter() {
+      if (this.triggerHover) {
+        this.mainExpandedToggle(true);
+      }
+    },
+
+    /**
+     * main menu expanded state toggle
+     * @param state
+     */
+    mainExpandedToggle(state) {
+      this.mainExpanded = state;
+      this.$emit('toggle-expand', this.mainExpanded);
     },
 
     /**
@@ -175,7 +198,6 @@ export default create({
      * @param event
      */
     nodeMouseEnter(node, event) {
-      console.log('nodeMouseEnter-nodeMouseEnter');
       this.subExpanded = true;
       this.node = node;
     },
@@ -216,11 +238,14 @@ export default create({
 
         if (this.closeByLeafClick) {
           this.subExpanded = false;
+          if (this.triggerHover) {
+            this.mainExpandedToggle(false);
+          }
         }
       }
 
       /**
-       * 事件广播
+       * event broadcast
        * 需要传入 组件名称  事件名称 当前节点node信息对象
        */
       this.broadcast('menu-node', 'menu-node-click', node);
@@ -232,6 +257,7 @@ export default create({
      * 切换菜单栏展开/收起 状态
      */
     toggleExpand() {
+      if (this.triggerHover) return;
       this.mainExpanded = !this.mainExpanded;
       this.$emit('toggle-expand', this.mainExpanded);
     },
