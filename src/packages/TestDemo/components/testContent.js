@@ -47,5 +47,5 @@ export default {
         {xxx()}
       </div>
     );
-  }
+  },
 };
