@@ -144,13 +144,6 @@ export default create({
       return this.node && this.node.childNodes && this.node.childNodes.length > 0;
     },
     isSubMenuExist() {
-      console.log('isSubMenuExist-isSubMenuExist 发生变化：');
-      console.log('是否有儿子：');
-      console.log(this.hasChildNodes);
-      console.log('二级菜单渲染的node数据：');
-      console.log(this.subExpanded);
-      console.log('=============================');
-
       return this.hasChildNodes && this.subExpanded;
     },
     triggerHover() {
@@ -171,7 +164,7 @@ export default create({
      * 离开整个菜单栏
      */
     navMouseLeave() {
-      console.log('菜单整体鼠标离开');
+      // console.log('菜单整体鼠标离开');
       delaynav(
         () => {
           this.subExpanded = false;
@@ -179,10 +172,10 @@ export default create({
           if (this.triggerHover) {
             this.mainExpandedToggle(false);
           }
-          console.log('二级菜单状态，是否打开：');
-          console.log(this.subExpanded);
-          console.log('二级菜单渲染的node数据：');
-          console.log(this.node);
+          // console.log('二级菜单状态，是否打开：');
+          // console.log(this.subExpanded);
+          // console.log('二级菜单渲染的node数据：');
+          // console.log(this.node);
         },
         this.leaveDelay,
         this
@@ -190,7 +183,7 @@ export default create({
     },
 
     navMouseEnter() {
-      console.log('菜单整体鼠标移入');
+      // console.log('菜单整体鼠标移入');
       if (this.triggerHover) {
         this.mainExpandedToggle(true);
       }
@@ -211,15 +204,14 @@ export default create({
      * @param event
      */
     nodeMouseEnter(node, event) {
-      console.log('菜单节点 - node 鼠标移入');
+      // console.log('菜单节点 - node 鼠标移入');
       this.subExpanded = true;
       this.node = node;
 
-      console.log('二级菜单状态，是否打开：');
-      console.log(this.subExpanded);
-      console.log('二级菜单渲染的node数据：');
-      console.log(this.node);
-      console.log(this.node);
+      // console.log('二级菜单状态，是否打开：');
+      // console.log(this.subExpanded);
+      // console.log('二级菜单渲染的node数据：');
+      // console.log(this.node);
     },
 
     /**
@@ -236,18 +228,13 @@ export default create({
      * @param instance
      */
     menuNodeClick(node, instance) {
-      console.log('菜单节点-node 点击事件');
+      // console.log('菜单节点-node 点击事件');
 
       //首级节点
       if (node.level === 1) {
         this.subExpanded = true;
         this.node = node;
       }
-
-      console.log('二级菜单状态，是否打开：');
-      console.log(this.subExpanded);
-      console.log('二级菜单渲染的node数据：');
-      console.log(this.node);
 
       /**
        * 如果是叶子节点 - 设置active前，先要清除所有的active状态
