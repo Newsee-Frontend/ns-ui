@@ -14,8 +14,6 @@ export default {
   },
   watch: {
     value(val) {
-      console.log('watch');
-      console.log(val);
       this.childInterval = val;
     },
   },
@@ -28,8 +26,6 @@ export default {
         },
         on: {
           input: event => {
-            console.log(2222222);
-            console.log(event);
             // this.$emit('input', event.target.value);
             this.childInterval.ipt = event;
           },
@@ -51,10 +47,5 @@ export default {
         {xxx()}
       </div>
     );
-  },
-  methods: {},
-  created() {
-    console.log(8787878);
-    console.log(this.value);
-  },
+  }
 };

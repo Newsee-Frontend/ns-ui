@@ -60,22 +60,15 @@ export const delaynav = (callback, speed, vm = null) => {
 
 export const debounce = (func, wait, immediate = false) => {
   let timeout, args, context, timestamp, result;
-  console.log(111111111);
   const later = function() {
     const last = +new Date() - timestamp;
-    console.log(last);
-    console.log(timestamp);
-    console.log(wait);
 
     if (last < wait && last > 0) {
-      console.log(111111111);
       timeout = setTimeout(later, wait - last);
     } else {
-      console.log(2222222);
       timeout = null;
 
       if (!immediate) {
-        console.log(33333333);
         result = func.apply(context, args);
         if (!timeout) context = args = null;
       }

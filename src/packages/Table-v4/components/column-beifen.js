@@ -153,7 +153,6 @@ export default {
 
       //form column
       if (this.isFormRender) {
-        console.log(3333333333333);
         injection.props['edit-render'] = {
           ...renderProps,
           events: {

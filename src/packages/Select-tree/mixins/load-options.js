@@ -8,8 +8,6 @@ export default {
 
   methods: {
     loadOptions({ action, parentNode, searchQuery, callback }) {
-      console.log('loadOptions');
-      console.log(action);
       if (action === LOAD_ROOT_OPTIONS) {
         this.$emit('load-root-options', { callback });
       } else if (action === LOAD_CHILDREN_OPTIONS) {

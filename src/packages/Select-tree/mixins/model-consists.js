@@ -28,8 +28,6 @@ export default {
   },
   watch: {
     modelConsists(val) {
-      console.log('watch-modelConsists');
-      console.log(val);
       this.modelConsistsStore = modelConsistsMap[val];
     },
   },
