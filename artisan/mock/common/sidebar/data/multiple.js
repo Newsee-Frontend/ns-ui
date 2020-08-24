@@ -2928,9 +2928,9 @@ export const multipleMenuData2 = [
         childMenus: null,
       },
       {
-        funcId: 'ceshi123',
+        funcId: '测试gcx',
         menuMenuname: '测试测试测试测试测试测试',
-        menuMenusubname: 'ceshi123',
+        menuMenusubname: '测试gcx',
         menuIconcls: null,
         syStatus: '1',
         isLeaf: true,
