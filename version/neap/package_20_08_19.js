@@ -11,4 +11,5 @@ module.exports = [
   'Layout',
   'PageTabs',
   'Header',
+  'Skiner',
 ];

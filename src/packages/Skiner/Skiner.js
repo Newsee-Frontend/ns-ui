@@ -2,11 +2,11 @@ import create from '../../create/create';
 import ColorPicker from '../ColorPicker/ColorPicker';
 import palette from './palette';
 import innerCode from './template';
-import {colorRGBtoHex, colorHexToRgba} from '../../utils/library/color';
+import { colorRGBtoHex, colorHexToRgba } from '../../utils/library/color';
 
 export default create({
   name: 'skiner',
-  components: {ColorPicker},
+  components: { ColorPicker },
   data() {
     return {
       childSkiner: this.value,
@@ -17,7 +17,7 @@ export default create({
   },
   props: {
     value: [String],
-    method: {type: String, default: 'cssparame'},//inline / cssparame
+    method: { type: String, default: 'cssparame' }, //inline / cssparame
     colorFormat: {
       type: String,
       default: 'rgb',
@@ -45,10 +45,10 @@ export default create({
         <li
           class={'fl theme-cycle'}
           key={index}
-          style={{'background-color': theme.color}}
+          style={{ 'background-color': theme.color }}
           on-click={this.changeTheme.bind(this, theme.color, theme.key)}
         >
-          {theme.color === this.childSkiner ? <i class={'el-icon-check'}/> : null}
+          {theme.color === this.childSkiner ? <i class={'el-icon-check'} /> : null}
         </li>
       );
     };
@@ -68,7 +68,7 @@ export default create({
           {<p>设置主题</p>}
           {<ul>{this.palette.commons.map((theme, index) => cycleRender(theme, index))}</ul>}
         </div>
-        <icon-class slot="reference" icon-class={'skin'}/>
+        <icon-class slot="reference" icon-class={'skin'} />
       </el-popover>
     );
   },
