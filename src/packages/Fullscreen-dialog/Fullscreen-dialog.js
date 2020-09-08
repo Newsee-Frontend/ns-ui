@@ -31,6 +31,7 @@ export default create({
     'close-on-press-escape': { type: Boolean, default: false },
     'show-close': { type: Boolean, default: true },
     'before-close': { type: Function },
+    '': {},
   },
 
   computed: {
