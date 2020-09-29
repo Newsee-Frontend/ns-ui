@@ -16,7 +16,6 @@ function baseCompile(component, dir) {
   const importStyleTemp = () => `import './style/index.css';`;
   const exportTemp = () => `export default _${uppercamelize(component)};`;
 
-
   const content = `${utils.tips(packageJson.author)}
   
 ${importVueTemp()}
