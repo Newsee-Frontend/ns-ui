@@ -14,7 +14,7 @@ export default create({
   },
   render(h) {
     return (
-      <icon-class
+      <icon-svg
         class={this.recls()}
         icon-class={this.isFullscreen ? this.quitIcon : this.openIcon}
         on-click={this.click}
