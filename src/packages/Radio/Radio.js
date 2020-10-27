@@ -10,7 +10,7 @@ export default create({
     };
   },
   props: {
-    value: [String, Number],
+    value: [String, Number, Boolean],
     width: [String, Number],
     options: {
       type: Array,
