@@ -7,6 +7,7 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');//编译进度�
 const rules = require("./webpack.rules.conf.js");
 
 module.exports = {
+  //https://www.webpackjs.com/configuration/stats/
   stats: {
     modules: false,
     children: false
