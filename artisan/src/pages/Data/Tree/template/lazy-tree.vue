@@ -3,26 +3,54 @@
     <template slot="title">懒加载叶子节点</template>
     <template slot="describe">lazy懒加， dropJudge</template>
     <template slot="content">
-      <ns-tree
-        style="width: 500px"
-        :data="nodeList"
-        v-model="nodeModel"
-        isObjectData
-        ref="testTree"
-        :draggable="true"
-        :dropJudge="dropJudge"
-        @loadNode="loadNode"
-      >
-        <template slot-scope="{node, parent,index}">
-          <div class="slot-container">
-            <i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>
-            <i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>
-            <div class="title-text">
-              {{node.companyName || node.houseFullName}}
-            </div>
-          </div>
-        </template>
-      </ns-tree>
+      <el-row>
+        <el-col :span="12">
+          <ns-tree
+            style="width: 500px"
+            :data="nodeList"
+            v-model="nodeModel"
+            isObjectData
+            ref="testTree"
+            :draggable="true"
+            :dropJudge="dropJudge"
+            :allowDropGap="false"
+            @loadNode="loadNode"
+          >
+            <template slot-scope="{node, parent,index}">
+              <div class="slot-container">
+                <i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>
+                <i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>
+                <div class="title-text">
+                  {{node.companyName || node.houseFullName}}
+                </div>
+              </div>
+            </template>
+          </ns-tree>
+        </el-col>
+        <el-col :span="12">
+          <ns-tree
+            style="width: 500px"
+            :data="nodeList"
+            v-model="nodeModel"
+            isObjectData
+            ref="testTree"
+            :draggable="true"
+            :dropJudge="dropJudgeGap"
+            :allowDropGap="true"
+            @loadNode="loadNode"
+          >
+            <template slot-scope="{node, parent,index}">
+              <div class="slot-container">
+                <i class="el-icon-delete title-icon" @click.stop="delNode(node,parent,index)"></i>
+                <i class="el-icon-edit title-icon" @click.stop="editNode(node)"></i>
+                <div class="title-text">
+                  {{node.companyName || node.houseFullName}}
+                </div>
+              </div>
+            </template>
+          </ns-tree>
+        </el-col>
+      </el-row>
     </template>
   </demo-block>
 </template>
@@ -42,18 +70,18 @@
     },
 
     methods: {
-      initTree: function () {
+      initTree: function() {
         this.$store.dispatch('getRootTree').then((res) => {
-          this.nodeList = transformKeyFun(res.resultData, keyRefer, {expandedIndex: 2, lazy: true});
+          this.nodeList = transformKeyFun(res.resultData, keyRefer, { expandedIndex: 2, lazy: true });
         });
       },
 
       loadNode(node) {
         this.$set(node, 'loading', true);
-        this.$store.dispatch('getChildTree', {id: node.id}).then((res) => {
+        this.$store.dispatch('getChildTree', { id: node.id }).then((res) => {
           this.$set(node, 'loading', false);
           if (res.resultData.length > 0) {
-            let childNodes = transformKeyFun(res.resultData, keyRefer, {lazy: true});
+            let childNodes = transformKeyFun(res.resultData, keyRefer, { lazy: true });
             this.$refs.testTree.addNodes(node, childNodes);
           }
         });
@@ -68,12 +96,10 @@
 
       //编辑节点
       editNode(node) {
-        this.$prompt('您要修改节点的名称', '提示').then(({value}) => {
-          this.$refs.testTree.updateNode(node, {houseFullName: value});
+        this.$prompt('您要修改节点的名称', '提示').then(({ value }) => {
+          this.$refs.testTree.updateNode(node, { houseFullName: value });
         });
       },
-
-
       //判断是否可拖拉
       dropJudge(node, Pnode, resolve) {
         let name = node.companyName || node.houseFullName;
@@ -84,8 +110,18 @@
           },
         });
       },
-    },
 
+      //判断是否可拖拉
+      dropJudgeGap(dragNode, dropNode, type, resolve) {
+        let name = dragNode.companyName || dragNode.houseFullName;
+        let dName = dropNode.companyName || dropNode.houseFullName;
+        this.$confirm(`是否将节点${name}插入节点${dName}的${type}位置上`, '提示', {
+          callback: action => {
+            resolve(action === 'confirm');
+          },
+        });
+      },
+    },
     created() {
       this.initTree();
     },

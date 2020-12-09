@@ -44,6 +44,13 @@ $disabled-font-color: #c0c4cc;
   .halo-tree li {
     list-style-type: none;
     text-align: left;
+    .active-before{
+      border-top: 1px solid #409EFF;
+    }
+
+    .active-after{
+      border-bottom: 1px solid #409EFF;
+    }
   }
   .halo-tree li {
     margin: 0;
@@ -63,17 +70,17 @@ $disabled-font-color: #c0c4cc;
     border-left: 1px dashed $dash-color;
     bottom: 50px;
     height: 100%;
-    top: -8px;
+    top: -3px;
     width: 1px;
   }
   .halo-tree li:after {
     border-top: 1px dashed $dash-color;
     height: 20px;
-    top: 17px;
-    width: 28px;
+    top: 12px;
+    width: 10px;
   }
   .halo-tree li:last-child::before {
-    height: 26px;
+    height: 16px;
   }
   .halo-tree > li.first-node:before {
     top: 17px;
@@ -101,6 +108,7 @@ $disabled-font-color: #c0c4cc;
     .ns-icon-class {
       color: #999;
       cursor: pointer;
+      padding: 0 3px;
     }
     .el-icon-caret-right {
       cursor: pointer;
@@ -138,8 +146,8 @@ $disabled-font-color: #c0c4cc;
     border-width: 1px;
     border-top: 1px dashed $dash-color;
     height: 20px;
-    top: 17px;
-    width: 25px;
+    top: 12px;
+    width: 9px;
   }
   /*Dynamic style part*/
   .halo-tree-search-box {

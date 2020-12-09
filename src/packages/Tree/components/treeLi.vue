@@ -69,6 +69,7 @@
           :maxLevel="maxLevel"
           :topMustExpand="topMustExpand"
           :dropJudge="dropJudge"
+          :allowDropGap="allowDropGap"
           :allowGetParentNode="allowGetParentNode"
         >
         </TreeUl>
@@ -144,6 +145,7 @@ export default {
     topMustExpand: Boolean,
     allowGetParentNode: Boolean,
     dropJudge: Function,
+    allowDropGap: Boolean,
   },
   inject: ['isLeaf', 'childChecked', 'parentChecked', 'nodeSelected', 'emitEventToTree', 'setAttr'],
   computed: {
@@ -268,3 +270,6 @@ export default {
   },
 };
 </script>
+<style>
+
+</style>

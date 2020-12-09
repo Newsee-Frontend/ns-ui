@@ -1,5 +1,5 @@
 <template>
-  <TreeUl v-bind="childBind" />
+    <TreeUl v-bind="childBind" />
 </template>
 <script>
 import TreeUl from './treeUl';
@@ -69,6 +69,7 @@ export default {
       default: true,
     },
     dropJudge: Function,
+    allowDropGap: Boolean,
     scoped: {
       type: Boolean,
       default: false,
