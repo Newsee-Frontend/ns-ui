@@ -72,7 +72,13 @@ export default {
         align: this.column.align,
         fixed: this.column.fixed,
         'header-class-name': ({ column }) => {
-          return `column-${column.property || column.type}`;
+          console.log(2222222);
+          console.log(column);
+          console.log(this.renderConfig);
+          console.log(2222222);
+          return `column-${column.property} column-${this.columnType} ${
+            this.renderConfig?.require ? 'column-required' : ''
+          }`;
         },
 
         /**
@@ -182,13 +188,11 @@ export default {
             };
           }
         } else if (['slot'].indexOf(this.renderType) > -1) {
-          return h(
-            `vxe-table-column`,
-            {
-              ...general,
-            },
-            [this.$scopedSlots['cell-slot']]
-          );
+          injection.props.field = this.column.field;
+
+          return h(`vxe-table-column`, deepObjectMerge(general, injection), [
+            this.$scopedSlots['cell-slot'],
+          ]);
         }
         //基础表单的渲染列
         else {
@@ -196,6 +200,8 @@ export default {
             ...renderProps,
             events: {
               change: this.cellEvent,
+              blur: this.cellEvent,
+              focus: this.cellEvent,
             },
           };
         }
@@ -211,8 +217,9 @@ export default {
      * @param rowIndex
      * @param column
      * @param columnIndex
+     * @param event
      */
-    cellEvent({ row, rowIndex, column, columnIndex }) {
+    cellEvent({ row, rowIndex, column, columnIndex }, event) {
       this.$emit('cell-event', { row, rowIndex, column, columnIndex }, event);
     },
 

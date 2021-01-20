@@ -110,9 +110,13 @@ export default create({
                 props: props,
                 on: {
                   'edit-actived': this.editActived,
+                  'edit-closed': this.editClosed,
+                  'edit-disabled': this.editDisabled,
+
                   'radio-change': this.selectChange,
                   'select-change': this.selectChange,
                   'select-all': this.selectAll,
+                  'resizable-change': this.resizableChange,
                   'update:customs': value => {
                     this.customColumns = value;
                     this.$nextTick(() => {
@@ -240,6 +244,34 @@ export default create({
     },
 
     /**
+     * form edit closed in table
+     * @param row
+     * @param rowIndex
+     * @param $rowIndex
+     * @param column
+     * @param columnIndex
+     * @param $columnIndex
+     * @param cell
+     */
+    editClosed({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }) {
+      this.$emit('edit-closed', { row, $rowIndex, column, $columnIndex, cell });
+    },
+
+    /**
+     * form edit disabled in table
+     * @param row
+     * @param rowIndex
+     * @param $rowIndex
+     * @param column
+     * @param columnIndex
+     * @param $columnIndex
+     * @param cell
+     */
+    editDisabled({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }) {
+      this.$emit('edit-disabled', { row, $rowIndex, column, $columnIndex, cell });
+    },
+
+    /**
      *set row active state
      */
     setActiveRow(row) {
@@ -251,6 +283,18 @@ export default create({
      */
     clearActived() {
       this.$refs['main-table'].clearActived();
+    },
+
+    /**
+     * column resizable change - 当列宽拖动发生变化时会触发该事件
+     * @param $rowIndex
+     * @param column
+     * @param columnIndex
+     * @param $columnIndex
+     * @param $event
+     */
+    resizableChange({ $rowIndex, column, columnIndex, $columnIndex, $event }) {
+      this.$emit('resizable-change', { $rowIndex, column, columnIndex, $columnIndex, $event });
     },
   },
   created() {

@@ -52,7 +52,12 @@
             @select-change="selectChange"
             @select-all="selectAll"
 
-          ></biz-table-v4>
+          >
+            <template #cell-slot="{column, row, rowIndex}">
+              <span>1231</span>
+              <ns-input></ns-input>
+            </template>
+          </biz-table-v4>
 
           <biz-table-v4
             ref="formTable"
@@ -91,14 +96,14 @@
 
 
 <script>
-  import { tableDataService } from '../../../../service/Table/index';
+  import {tableDataService} from '../../../../service/Table/index';
   import bizTableV4 from '../../../../components/Biz-table/Biz-table-v4/Biz-table-v4';
-  import { listColumnService } from '../../../../service/Table';
+  import {listColumnService} from '../../../../service/Table';
 
 
   export default {
     name: 'formTable-template',
-    components: { bizTableV4 },
+    components: {bizTableV4},
     data() {
       return {
         loading: false,//表格loading 状态
@@ -133,16 +138,16 @@
 
         firstColType: 'checkbox',//checkbox index radio
         firstColTypeOpts: [
-          { label: '索引', value: 'index' },
-          { label: '多选', value: 'checkbox' },
-          { label: '单选', value: 'radio' },
+          {label: '索引', value: 'index'},
+          {label: '多选', value: 'checkbox'},
+          {label: '单选', value: 'radio'},
         ],
 
       };
     },
     watch: {
       'tableData.list': {
-        handler: function(val) {
+        handler: function (val) {
           console.log('tableData.list');
           console.log('tableData.list');
           console.log(val[0].isChecked.picked.value);
@@ -166,7 +171,7 @@
        */
       requestTableData() {
         this.loading = true;
-        tableDataService({ query: this.searchConditions, funcId: 'funcId' }).then(res => {
+        tableDataService({query: this.searchConditions, funcId: 'funcId'}).then(res => {
           this.tableData = res.resultData || {};
 
           console.log('请求到的表格数据：');
@@ -206,12 +211,12 @@
       requestTableHeadData() {
         const mockType = this.searchConditions.mockType;
         if (mockType === 'form-table') {
-          listColumnService({ funcId: 'funcId', mockType: mockType }).then(res => {
+          listColumnService({funcId: 'funcId', mockType: mockType}).then(res => {
             this.localHead = res.resultData.columns || [];
           });
         }
         else if (mockType === 'hugeData-table') {
-          listColumnService({ funcId: 'funcId', mockType: mockType }).then(res => {
+          listColumnService({funcId: 'funcId', mockType: mockType}).then(res => {
             this.localHead = res.resultData.columns || [];
           });
         }
@@ -226,9 +231,9 @@
        * @param $columnIndex
        * @param cell
        */
-      editActived({ row, $rowIndex, column, $columnIndex, cell }) {
+      editActived({row, $rowIndex, column, $columnIndex, cell}) {
         console.log('单元格被激活编辑时会触发该事件');
-        console.log({ row, $rowIndex, column, $columnIndex, cell });
+        console.log({row, $rowIndex, column, $columnIndex, cell});
 
         /**
          * === 示例：激活单元格，为其下拉表单控件新增 options 数据 ===
@@ -243,7 +248,7 @@
            */
           if (!this.isCheckedOptions || !this.isCheckedOptions.length) {
             //模拟数据，这里可以发起服务端请求获取数据
-            this.isCheckedOptions = [{ label: '已审核', value: 1 }, { label: '未审核', value: 0 }];
+            this.isCheckedOptions = [{label: '已审核', value: 1}, {label: '未审核', value: 0}];
           }
 
 
@@ -275,9 +280,9 @@
        *  注释：1、row - 行数据 , 2、rowIndex - 行索引, 3、column - 列数据, 4、columnIndex - 列索引 , 5、rows - 全部表格数据 , 6、columns - 全部列数据
        * @param event
        */
-      cellEvent({ row, rowIndex, column, columnIndex, rows, columns }, event) {
+      cellEvent({row, rowIndex, column, columnIndex, rows, columns}, event) {
         console.log('单元格事件 - 点击/修改');
-        console.log({ row, rowIndex, column, columnIndex, rows, columns });
+        console.log({row, rowIndex, column, columnIndex, rows, columns});
         console.log(event);
         console.log(column);
 
@@ -299,9 +304,9 @@
             columns.forEach(col => {
               if (col.field === 'checkedType') {
                 row.checkedType.options = [
-                  { label: '市级审核', value: 1 },
-                  { label: '省级审核', value: 2 },
-                  { label: '国家级审核', value: 3 },
+                  {label: '市级审核', value: 1},
+                  {label: '省级审核', value: 2},
+                  {label: '国家级审核', value: 3},
                 ];
               }
             });
@@ -338,13 +343,13 @@
           console.log(valid);
           console.log(errMap);
           if (valid) {
-            this.$message({ type: 'success', message: '校验成功！' });
+            this.$message({type: 'success', message: '校验成功！'});
           }
           else {
             let html = '';
             Object.values(errMap).forEach(errList => {
               errList.forEach(params => {
-                let { rowIndex, column, rules } = params;
+                let {rowIndex, column, rules} = params;
                 rules.forEach(rule => {
                   html += `<div style="line-height: 20px">第${rowIndex}行,${column.title}：${rule.message}</div>`;
                 });
@@ -369,10 +374,10 @@
        * @param column - 列信息
        * @param columnIndex - 列索引
        */
-      tableAction(info, { row, rowIndex, column, columnIndex }) {
+      tableAction(info, {row, rowIndex, column, columnIndex}) {
         console.log('操作列按钮点击事件');
         console.log(info);
-        console.log({ row, rowIndex, column, columnIndex });
+        console.log({row, rowIndex, column, columnIndex});
         this.$message({
           type: 'info',
           message: `当前点击按钮信息：1、名称：${info.label}. 2、字段：${info.value}.`,
@@ -397,7 +402,7 @@
        * @param data     - 表数据
        * @returns {*[]}
        */
-      footerMethod({ columns, data }) {
+      footerMethod({columns, data}) {
         // console.log('表尾合计的计算方法');
         // console.log(columns);
         // console.log(data);
@@ -433,7 +438,7 @@
        * 控制 CheckBox 是否允许勾选的方法，
        * @param {row,$rowIndex,column,$columnIndex}
        */
-      checkMethod({ row, $rowIndex, column, $columnIndex }) {
+      checkMethod({row, $rowIndex, column, $columnIndex}) {
         //第一行 checkbox 禁用
         if ($rowIndex === 0) {
           return false;
@@ -448,12 +453,12 @@
        * 注意：单选列的情况下，参数：checked, selection 不存在
        * @param event
        */
-      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
+      selectChange({row, $rowIndex, column, $columnIndex, checked, selection}, event) {
 
         console.log(`当前列操作类型：${this.firstColType}`);
         console.log('当选择项发生变化时会触发该事件');
 
-        console.log({ row, $rowIndex, column, $columnIndex, checked, selection }, event);
+        console.log({row, $rowIndex, column, $columnIndex, checked, selection}, event);
       },
 
       /**
@@ -461,9 +466,9 @@
        * @param { selection, checked }
        * @param event
        */
-      selectAll({ selection, checked }, event) {
+      selectAll({selection, checked}, event) {
         console.log('当用户手动勾选全选 Checkbox 时触发的事件');
-        console.log({ selection, checked }, event);
+        console.log({selection, checked}, event);
       },
 
 
@@ -522,9 +527,9 @@
       setTimeout(() => {
 
         this.gridBtns = [
-          { label: '新增授权人', value: 'addshouquanren' },
-          { label: '编辑', value: 'gridEditBtn' },
-          { label: '删除', value: 'gridRemoveBtn' },
+          {label: '新增授权人', value: 'addshouquanren'},
+          {label: '编辑', value: 'gridEditBtn'},
+          {label: '删除', value: 'gridRemoveBtn'},
         ];
 
         this.dataHandle(this.gridBtns);

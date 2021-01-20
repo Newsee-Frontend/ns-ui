@@ -20,6 +20,8 @@ export default {
           disabled={formConfig.disabled}
           clearable
           on-change={() => events.change({ row, column, rowIndex, columnIndex })}
+          on-blur={() => events.blur({ row, column, rowIndex, columnIndex })}
+          on-focus={() => events.focus({ row, column, rowIndex, columnIndex })}
         />,
       ];
     },

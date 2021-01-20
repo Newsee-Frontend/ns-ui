@@ -24,6 +24,25 @@
       color: $error-prompt_subcolor;
       margin-top: 10px;
     }
+
+    //调整表格必填项 - 表头标识图标及伪类
+    .vxe-header--column .vxe-required-icon {
+      vertical-align: text-top;
+    }
+
+    .column-required.column-slot {
+      & > .c--tooltip {
+        &::before {
+          content: '*';
+          position: relative;
+          display: inline-block;
+          color: #f56c6c;
+          line-height: 16px;
+          font-size: 16px;
+          vertical-align: text-top;
+        }
+      }
+    }
   }
 
   //error / loading identifier content

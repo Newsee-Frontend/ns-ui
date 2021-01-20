@@ -95,12 +95,16 @@
         return {
           reload: this.reload,
           'edit-actived': this.editActived,
+          'edit-closed': this.editClosed,
+          'edit-disabled': this.editDisabled,
+
           'cell-event': this.cellEvent,
           'table-action': this.tableAction,
           'column-setting-submit': this.columnSettingSubmit,
           'select-change': this.selectChange,
           'select-all': this.selectAll,
           'summary-change': this.summaryChange,
+          'resizable-change': this.resizableChange,
         };
       },
     },
@@ -167,8 +171,40 @@
        * @param cell
        */
       editActived({row, $rowIndex, column, $columnIndex, cell}) {
+        console.log('form edit actived in table');
         this.$emit('edit-actived', {row, $rowIndex, column, $columnIndex, cell});
       },
+
+      /**
+       * form edit closed in table
+       * @param row
+       * @param rowIndex
+       * @param $rowIndex
+       * @param column
+       * @param columnIndex
+       * @param $columnIndex
+       * @param cell
+       */
+      editClosed({row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell}) {
+        console.log('form edit closed in table');
+        this.$emit('edit-closed', {row, $rowIndex, column, $columnIndex, cell});
+      },
+
+      /**
+       * form edit disabled in table
+       * @param row
+       * @param rowIndex
+       * @param $rowIndex
+       * @param column
+       * @param columnIndex
+       * @param $columnIndex
+       * @param cell
+       */
+      editDisabled({row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell}) {
+        console.log('form edit closed in table');
+        this.$emit('edit-disabled', {row, $rowIndex, column, $columnIndex, cell});
+      },
+
 
       /**
        * 单元格事件 - 点击/修改
@@ -321,7 +357,24 @@
         console.log('current-page-change', val);
         this.$emit('reload');
       },
+
+      /**
+       * column resizable change - 当列宽拖动发生变化时会触发该事件
+       * @param $rowIndex
+       * @param column
+       * @param columnIndex
+       * @param $columnIndex
+       * @param $event
+       */
+      resizableChange({$rowIndex, column, columnIndex, $columnIndex, $event}) {
+        this.$emit('resizable-change', {$rowIndex, column, columnIndex, $columnIndex, $event});
+
+        console.log({$rowIndex, column, columnIndex, $columnIndex, $event});
+        console.log(`拖动后，当前列宽度为：${column.resizeWidth}`)
+
+      }
     },
+
     created() {
 
     },
