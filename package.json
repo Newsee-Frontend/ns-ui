@@ -40,6 +40,7 @@
     "easings-css": "^1.0.0",
     "fuzzysearch": "^1.0.3",
     "is-promise": "^2.1.0",
+    "jquery": "^3.5.1",
     "js-cookie": "^2.1.4",
     "lodash": "^4.0.0",
     "material-colors": "^1.2.6",
