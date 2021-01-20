@@ -38,7 +38,7 @@
         </span>
         </el-form-item>
 
-        <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">
+        <el-button :loading="loading" type="primary" style="width:100%;margin:20px 0;" @click.native.prevent="handleLogin">
           登录
         </el-button>
       </el-form>
@@ -68,7 +68,7 @@
         }
       };
       return {
-        title: 'UI测试系统登录',
+        title: '新视窗前端UI基础组件',
         loginForm: {
           username: '高仓雄',
           password: 'newsee888',
