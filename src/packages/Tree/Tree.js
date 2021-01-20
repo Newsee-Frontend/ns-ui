@@ -45,7 +45,7 @@ export default create({
     },
 
     allowDropGap: {
-      type: Boolean   // 是否支持 drop 是空隙，不是父节点， 主要用同级别的树节点排序
+      type: Boolean, // 是否支持 drop 是空隙，不是父节点， 主要用同级别的树节点排序
     },
 
     //checkbox 的情况下，在显示复选框的情况下，是否严格的遵循父子不互相关联的做法，默认为 false

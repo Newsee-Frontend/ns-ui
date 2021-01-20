@@ -1,5 +1,5 @@
 //找到ev.target 最里层的 TreeLi组件
-export  const findNearestComponent = function(element, componentName){
+export const findNearestComponent = function(element, componentName) {
   let target = element;
   while (target && target.tagName !== 'BODY') {
     if (target.__vue__ && target.__vue__.$options.name === componentName) {
@@ -8,4 +8,4 @@ export  const findNearestComponent = function(element, componentName){
     target = target.parentNode;
   }
   return null;
-}
+};
