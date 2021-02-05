@@ -29,6 +29,8 @@ export default create({
     autofocus: { type: Boolean, default: false },
     readonly: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
+    max: Number,
+    min: Number
   },
 
   computed: {
@@ -62,6 +64,8 @@ export default create({
         placeholder={this.placeholder}
         disabled={this.disabled}
         rows={this.rows}
+        min={this.min}
+        max={this.max}
         minlength={this.minlength}
         maxlength={this.maxlength}
         autofocus={this.autofocus}

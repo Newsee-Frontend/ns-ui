@@ -1,4 +1,5 @@
 import create from '../../create/create';
+import Dialog from '../Dialog/Dialog';
 
 export default create({
   name: 'form-item',
@@ -46,6 +47,7 @@ export default create({
         rules={this.rules}
       >
         {this.$slots.default}
+        {this.$slots.label?  <span slot={'label'} > {this.$slots.label}</span> : null }
       </el-form-item>
     );
   },

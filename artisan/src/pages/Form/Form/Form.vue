@@ -51,6 +51,11 @@
             <ns-input :rows="3" v-model="formData.decs"  type="textarea" size="medium"></ns-input>
           </ns-form-item>
 
+          <ns-form-item prop="decs">
+            <template #label>这个是自定义的label</template>
+            <ns-input :rows="3" v-model="formData.decs"  type="textarea" size="medium"></ns-input>
+          </ns-form-item>
+
           <ns-form-item label="所属地区：" prop="area">
             <ns-cascader v-model="formData.area" :options="options" size="medium"></ns-cascader>
           </ns-form-item>
