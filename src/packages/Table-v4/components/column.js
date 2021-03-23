@@ -72,10 +72,6 @@ export default {
         align: this.column.align,
         fixed: this.column.fixed,
         'header-class-name': ({ column }) => {
-          console.log(2222222);
-          console.log(column);
-          console.log(this.renderConfig);
-          console.log(2222222);
           return `column-${column.property} column-${this.columnType} ${
             this.renderConfig?.require ? 'column-required' : ''
           }`;
