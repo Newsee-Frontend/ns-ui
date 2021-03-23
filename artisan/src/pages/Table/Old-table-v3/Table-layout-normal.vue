@@ -133,7 +133,6 @@
     created() {
       this.getTableData();
 
-      console.log(2222222222222222);
       console.log('table-layout !!!- beforeDestroy-beforeDestroy');
 
 
@@ -162,8 +161,6 @@
       //   { value: 100 },
       //   { value: 200 }
       // ]);
-
-      console.log(2222222222222222);
     },
     mounted() {
 
