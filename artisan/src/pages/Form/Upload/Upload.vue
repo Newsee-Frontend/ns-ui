@@ -127,7 +127,7 @@
       },
 
       chaneChildItemWall(){
-        console.log(this.childItemWall,1111111111111);
+
       },
 
       beforeRemove(){
