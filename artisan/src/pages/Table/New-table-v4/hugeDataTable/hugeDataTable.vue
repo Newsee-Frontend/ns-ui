@@ -33,6 +33,9 @@
           :searchConditions="searchConditions"
           @select-change="selectChange"
           @reload="getTableData()"
+          :autoResize="false"
+          customHeight="auto"
+          :showPagination="false"
         ></biz-table-v4>
       </div>
     </div>

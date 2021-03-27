@@ -8,8 +8,23 @@ export default {
   },
   props: {
     autoResize: { type: Boolean, default: true }, //表格高度是否自适应窗口变化
-    customHeight: { type: Number, default: 300 },//自定义表格高度
+    customHeight: { type: [Number,String], default: 300 },//自定义表格高度
   },
+
+  watch: {
+    customHeight(val) {
+      this.height = val;
+    },
+  },
+
+  computed: {
+    heightStyle() {
+      return {
+        height: typeof this.height === 'number' ? `${this.height + 38}px` : this.height,
+      };
+    },
+  },
+
   methods: {
 
     //get auto resize height 获取动态计算高度

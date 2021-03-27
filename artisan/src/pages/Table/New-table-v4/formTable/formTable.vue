@@ -33,7 +33,8 @@
             :total="total"
 
             :autoResize="false"
-            :customHeight="300"
+            customHeight="auto"
+            :showPagination="false"
 
             :localHead="localHead"
             :searchConditions="searchConditions"
@@ -59,33 +60,33 @@
             </template>
           </biz-table-v4>
 
-          <biz-table-v4
-            ref="formTable"
-            :loading="loading"
-            :data="tableData.list"
-            :total="total"
+<!--          <biz-table-v4-->
+<!--            ref="formTable"-->
+<!--            :loading="loading"-->
+<!--            :data="tableData.list"-->
+<!--            :total="total"-->
 
-            :autoResize="false"
-            :customHeight="200"
+<!--            :autoResize="false"-->
+<!--            :customHeight="200"-->
 
-            :localHead="localHead"
-            :searchConditions="searchConditions"
+<!--            :localHead="localHead"-->
+<!--            :searchConditions="searchConditions"-->
 
-            :firstColType="firstColType"
+<!--            :firstColType="firstColType"-->
 
-            show-footer
-            :footer-method="footerMethod"
-            :checkMethod="checkMethod"
+<!--            show-footer-->
+<!--            :footer-method="footerMethod"-->
+<!--            :checkMethod="checkMethod"-->
 
-            @edit-actived="editActived"
-            @cell-event="cellEvent"
-            @table-action="tableAction"
-            @reload="requestTableData"
-            @summary-change="summaryChange"
-            @select-change="selectChange"
-            @select-all="selectAll"
+<!--            @edit-actived="editActived"-->
+<!--            @cell-event="cellEvent"-->
+<!--            @table-action="tableAction"-->
+<!--            @reload="requestTableData"-->
+<!--            @summary-change="summaryChange"-->
+<!--            @select-change="selectChange"-->
+<!--            @select-all="selectAll"-->
 
-          ></biz-table-v4>
+<!--          ></biz-table-v4>-->
         </template>
       </demo-block>
 

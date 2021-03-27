@@ -1,6 +1,8 @@
 <!--UI 组件库 - 业务 Table-->
 <template>
-  <div class="biz-table" :style="`height: ${height+38}px`">
+  <div class='biz-table' :style='{
+    ...heightStyle
+  }'>
 
     <!--表格-->
     <ns-table ref="bizTable" v-bind="curProps" v-on="curEvent">
@@ -16,6 +18,7 @@
       :pageSizes="[0, 10, 20, 50, 100,200,1000,5000,10000,50000,100000]"
       @size-change="sizeChange"
       @current-change="currentChange"
+      v-show="showPagination"
     ></ns-pagination>
 
   </div>
@@ -57,6 +60,7 @@
 
       showFooter: {type: Boolean, default: false},//是否显示表尾合计
       footerMethod: {type: Function},//表尾合计的计算方法
+      showPagination: { type: Boolean, default: true },//是否显示分页器
       checkMethod: {type: Function},//控制 CheckBox 是否允许勾选的方法，该方法 Function({row}) 的返回值用来决定这一行的 CheckBox 是否可以勾选.
       emptyText: {type: String},//空数据时的文案
     },
