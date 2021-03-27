@@ -28,7 +28,7 @@ export default create({
       },
     },
     isHugeData: { type: Boolean, default: false }, //大数据量渲染，不支持表单表格的功能
-    height: { type: Number, default: 300 },
+    height: { type: [Number, String], default: 300 },
     showFooter: { type: Boolean, default: false },
     footerMethod: { type: Function },
     checkMethod: { type: Function },

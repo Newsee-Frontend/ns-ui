@@ -47,7 +47,7 @@ export default create({
         rules={this.rules}
       >
         {this.$slots.default}
-        {this.$slots.label?  <span slot={'label'} > {this.$slots.label}</span> : null }
+        {this.$slots.label ? <span slot={'label'}> {this.$slots.label}</span> : null}
       </el-form-item>
     );
   },

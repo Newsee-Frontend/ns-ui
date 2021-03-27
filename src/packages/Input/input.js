@@ -30,7 +30,7 @@ export default create({
     readonly: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
     max: Number,
-    min: Number
+    min: Number,
   },
 
   computed: {
