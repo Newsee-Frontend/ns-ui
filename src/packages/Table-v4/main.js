@@ -99,90 +99,90 @@ export default create({
     if (!this.isHugeData) {
       props.data = this.data;
     }
-
     return (
-      <div class={this.recls()} style={`height: ${this.height}px`}>
+      <div class={this.recls()}
+           style={`height: ${typeof this.height === 'number' ? this.height + 'px' : this.height}`}>
         {this.isMainReady
           ? h(
-              `vxe-table`,
-              {
-                ref: 'main-table',
-                props: props,
-                on: {
-                  'edit-actived': this.editActived,
-                  'edit-closed': this.editClosed,
-                  'edit-disabled': this.editDisabled,
+            `vxe-table`,
+            {
+              ref: 'main-table',
+              props: props,
+              on: {
+                'edit-actived': this.editActived,
+                'edit-closed': this.editClosed,
+                'edit-disabled': this.editDisabled,
 
-                  'radio-change': this.selectChange,
-                  'select-change': this.selectChange,
-                  'select-all': this.selectAll,
-                  'resizable-change': this.resizableChange,
-                  'update:customs': value => {
-                    this.customColumns = value;
-                    this.$nextTick(() => {
-                      this.$refs['main-table'].refreshColumn();
-                    });
-                  },
+                'radio-change': this.selectChange,
+                'select-change': this.selectChange,
+                'select-all': this.selectAll,
+                'resizable-change': this.resizableChange,
+                'update:customs': value => {
+                  this.customColumns = value;
+                  this.$nextTick(() => {
+                    this.$refs['main-table'].refreshColumn();
+                  });
                 },
-                scopedSlots: {
-                  empty: scope => {
-                    return (
-                      <span class={'error-prompt'}>
+              },
+              scopedSlots: {
+                empty: scope => {
+                  return (
+                    <span class={'error-prompt'}>
                         <img class={'errorImg'} src={img_null} />
                         <p> {this.emptyText} </p>
                       </span>
-                    );
-                  },
+                  );
                 },
               },
-              [
-                this.head.map((item, $index) => {
-                  return h(`column-render`, {
-                    key: `column-render-${$index}`,
-                    props: {
-                      column: item,
-                      columns: this.head,
-                      keyRefer: this.keyRefer,
-                      customColumns: this.customColumns,
-                    },
-                    on: {
-                      ...this.$listeners,
-                      'cell-event': this.cellEvent,
-                      'sync-column-render': data => {
-                        // console.log(data.customColumns);
+            },
+            [
+              this.head.map((item, $index) => {
+                return h(`column-render`, {
+                  key: `column-render-${$index}`,
+                  props: {
+                    column: item,
+                    columns: this.head,
+                    keyRefer: this.keyRefer,
+                    customColumns: this.customColumns,
+                  },
+                  on: {
+                    ...this.$listeners,
+                    'cell-event': this.cellEvent,
+                    'sync-column-render': data => {
+                      // console.log(data.customColumns);
 
-                        const target = this.$refs['main-table'];
-                        ['change', 'lock'].indexOf(data.event) > -1
-                          ? target.refreshColumn()
-                          : target.reloadColumn(data.customColumns);
-                      },
+                      const target = this.$refs['main-table'];
+                      ['change', 'lock'].indexOf(data.event) > -1
+                        ? target.refreshColumn()
+                        : target.reloadColumn(data.customColumns);
                     },
-                    scopedSlots: {
-                      'cell-slot': scope => {
-                        return this.$scopedSlots['cell-slot']
-                          ? this.$scopedSlots['cell-slot']({
-                              row: scope.row,
-                              data: scope.data,
-                              column: item,
-                              columns: this.head,
-                              rowIndex: scope.$rowIndex,
-                              columnIndex: scope.$columnIndex,
-                              rendered: true,
-                            })
-                          : scope.row[item.field];
-                      },
+                  },
+                  scopedSlots: {
+                    'cell-slot': scope => {
+                      return this.$scopedSlots['cell-slot']
+                        ? this.$scopedSlots['cell-slot']({
+                          row: scope.row,
+                          data: scope.data,
+                          column: item,
+                          columns: this.head,
+                          rowIndex: scope.$rowIndex,
+                          columnIndex: scope.$columnIndex,
+                          rendered: true,
+                        })
+                        : scope.row[item.field];
                     },
-                  });
-                }),
-              ]
-            )
+                  },
+                });
+              }),
+            ],
+          )
           : null}
         {this.showFooter
           ? h('summary-drop', {
-              on: {
-                ...this.$listeners,
-              },
-            })
+            on: {
+              ...this.$listeners,
+            },
+          })
           : null}
         {h('identifier', {
           class: this.recls('mask'),
@@ -222,7 +222,7 @@ export default create({
       this.$emit(
         'cell-event',
         { row, rowIndex, column, columnIndex, ...{ rows: this.data }, ...{ columns: this.head } },
-        event
+        event,
       );
     },
 
@@ -301,5 +301,6 @@ export default create({
     // alert(this.loading)
     // alert(this.data)
   },
-  mounted() {},
+  mounted() {
+  },
 });
