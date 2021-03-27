@@ -39,6 +39,7 @@ export default create({
       },
     },
     highlightHoverRow: { type: Boolean, default: true }, //鼠标移到行是否要高亮显示
+    showEmptySlot: { type: Boolean, default: true },//显示表格 空数据 时插槽
     emptyText: { type: String, default: '抱歉, 没有你要的结果' },
   },
   data() {
@@ -127,7 +128,7 @@ export default create({
               scopedSlots: {
                 empty: scope => {
                   return (
-                    <span class={'error-prompt'}>
+                    <span class={'error-prompt'} v-show={this.showEmptySlot}>
                         <img class={'errorImg'} src={img_null} />
                         <p> {this.emptyText} </p>
                       </span>
