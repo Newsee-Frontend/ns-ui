@@ -26,7 +26,12 @@ export default {
   },
   render(h) {
     return (
-      <el-dropdown ref={'column-setting-dropdown'} hide-on-click={false} trigger={'click'}>
+      <el-dropdown
+        ref={'column-setting-dropdown'}
+        hide-on-click={false}
+        trigger={'click'}
+        on-visible-change={this.visibleChange}
+      >
         <span class={'el-dropdown-link'} on-click={() => (this.menuRender = true)}>
           <i class={'el-icon-setting'} />
         </span>
@@ -40,9 +45,7 @@ export default {
                 onInput={value => {
                   this.filterModel = value;
 
-                  this.customColumns.forEach(colItem => {
-                    this.filterFn(colItem, this.filterModel);
-                  });
+                  this.setSpecialColumnsByFilter(this.filterModel);
 
                   this.$emit('input', value);
                 }}
@@ -221,6 +224,29 @@ export default {
             ? colItem.title.toLowerCase().indexOf(queryString.toLowerCase()) === -1
             : false
           : true;
+    },
+
+    /**
+     * 根据 输入'filterModel' 重置设置 specialColumns；
+     * @param queryString
+     */
+    setSpecialColumnsByFilter(queryString) {
+      this.customColumns.forEach(colItem => {
+        this.filterFn(colItem, queryString);
+      });
+    },
+
+    /**
+     * drop down 下拉框出现/隐藏时触发
+     * @param state
+     */
+    visibleChange(state) {
+      //关闭且筛选框内有值的情况下，才需要重置
+      if (!state && this.filterModel) {
+        this.filterModel = '';
+        //根据 输入'filterModel' 重置 specialColumns；
+        this.setSpecialColumnsByFilter(this.filterModel);
+      }
     },
   },
   mounted() {},
