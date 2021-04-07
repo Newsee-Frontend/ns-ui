@@ -18,6 +18,7 @@
     th.column-setting {
       .vxe-cell {
         padding: 0 3px;
+
         .el-dropdown-selfdefine {
           font-size: 16px;
           padding: 0;
@@ -30,6 +31,7 @@
       .vxe-table--fixed-right-wrapper {
         @include resizable-line-show(block);
       }
+
       @include resizable-line-show(none);
 
       th.column-setting {
@@ -42,36 +44,56 @@
 }
 
 .column-setting-drag {
-  padding: 10px 0;
+  padding: 15px 0 10px 0;
   text-align: inherit;
+  width: $drap-content__width;
+
   li {
     &.hide {
       display: none;
     }
     line-height: 28px;
     margin: 5px 0;
-    min-width: $drap-label__min-width + 20px + 20px;
+    padding: 0 5px 0 20px;
+
     label {
       overflow: hidden;
-      max-width: $drap-label__max-width;
-      min-width: $drap-label__min-width;
       margin-right: 10px;
     }
+
+    i {
+      margin-right: 0;
+    }
   }
-  .content {
+
+  //列表设置筛选搜索框
+  .column-setting-head {
+    padding: 0 10px;
+    box-sizing: border-box;
+    p.column-setting-reset {
+      margin-top: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  }
+
+  .column-setting-content {
     max-height: $drap-content__max-height;
     margin-bottom: 10px;
     box-sizing: border-box;
     overflow-y: auto;
     font-size: 14px;
     @include scrollbarVisibleHover;
+
     i.iconfont {
       font-size: inherit;
     }
   }
-  .submit {
+
+  .column-setting-submit {
     width: 100%;
     text-align: center;
+
     .ns-button {
       width: 120px;
     }

@@ -119,6 +119,7 @@ export default {
               customColumns={this.customColumns}
               on-sync-column-render={this.syncColRender}
               on-column-setting-submit={this.columnSettingSubmit}
+              on-column-setting-reset={this.columnSettingReset}
             />
           );
         },
@@ -234,6 +235,7 @@ export default {
     },
 
     /**
+     * 列表设置结果提交
      * column setting submit
      * @param column - column data after setting
      */
@@ -241,6 +243,15 @@ export default {
       // console.log(column);
 
       this.$emit('column-setting-submit', column);
+    },
+
+    /**
+     * 列表设置恢复默认
+     * column setting reset
+     * @param column
+     */
+    columnSettingReset(column) {
+      this.$emit('column-setting-reset', this.customColumns);
     },
   },
 };

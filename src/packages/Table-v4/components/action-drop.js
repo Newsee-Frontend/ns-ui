@@ -3,6 +3,7 @@ import columntype from '../mixins/columntype';
 import IconClass from '../../Icon-class/Icon-class';
 import Checkbox from '../../Checkbox/Checkbox';
 import Button from '../../Button/Button';
+import Input from '../../Input/Input';
 
 export default {
   name: 'action-drop',
@@ -12,10 +13,12 @@ export default {
     Checkbox,
     IconClass,
     Button,
+    Input,
   },
   data() {
     return {
       menuRender: false,
+      filterModel: '', //列表设置筛选搜索model
     };
   },
   props: {
@@ -28,62 +31,95 @@ export default {
           <i class={'el-icon-setting'} />
         </span>
         <el-dropdown-menu slot="dropdown" class={'column-setting-drag'}>
-          {this.menuRender ? (
-            <draggable
-              class={'content'}
-              value={this.customColumns}
-              onInput={event => {
-                this.$emit('input', event);
-              }}
-              options={{ disabled: false }}
-              on-start={this.dragHandle}
-              on-end={this.dropHandle}
-            >
-              {this.customColumns.map((item, $index) => {
-                const isHide = this.specialColumns.indexOf(item.type) > -1;
+          {
+            <div class={'column-setting-head'}>
+              {/*<span>{this.filterModel || '请输入'}</span>*/}
+              <Input
+                class={'column-setting-filter'}
+                value={this.filterModel}
+                onInput={value => {
+                  this.filterModel = value;
 
-                return (
-                  <el-dropdown-item key={$index} class={`clear ${isHide ? 'hide' : ''}`}>
-                    {h(
-                      'Checkbox',
-                      {
-                        class: 'fl',
+                  this.customColumns.forEach(colItem => {
+                    this.filterFn(colItem, this.filterModel);
+                  });
+
+                  this.$emit('input', value);
+                }}
+                clearable={true}
+                size={'small'}
+                placeholder={'请搜索查询'}
+                width={'100%'}
+              />
+              <p class={'column-setting-reset'} on-click={this.columnSettingReset}>
+                {'恢复系统默认'}
+              </p>
+            </div>
+          }
+          {this.menuRender ? (
+            this.customColumns && !this.customColumns.every(col => col.hideInDrop) ? (
+              <draggable
+                class={'column-setting-content'}
+                value={this.customColumns}
+                onInput={event => {
+                  this.$emit('input', event);
+                }}
+                options={{ disabled: false }}
+                on-start={this.dragHandle}
+                on-end={this.dropHandle}
+              >
+                {this.customColumns.map((item, $index) => {
+                  this.filterFn(item, this.filterModel);
+
+                  return (
+                    <el-dropdown-item key={$index} class={`clear ${item.hideInDrop ? 'hide' : ''}`}>
+                      {h(
+                        'Checkbox',
+                        {
+                          class: 'fl',
+                          props: {
+                            value: item.visible,
+                            isGroup: false,
+                          },
+                          on: {
+                            input: event => {
+                              this.$emit('input', event);
+                            },
+
+                            change: value => {
+                              item.visible = value;
+                              this.$emit('sync-column-render', {
+                                event: 'change',
+                                customColumns: this.customColumns,
+                              });
+                            },
+                          },
+                        },
+                        item.title
+                      )}
+                      {h('Icon-class', {
+                        class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,
                         props: {
-                          value: item.visible,
-                          isGroup: false,
+                          'icon-class': item.fixed === 'left' ? 'lock ' : 'unlock',
                         },
                         on: {
-                          input: event => {
-                            this.$emit('input', event);
-                          },
-
-                          change: value => {
-                            item.visible = value;
-                            this.$emit('sync-column-render', {
-                              event: 'change',
-                              customColumns: this.customColumns,
-                            });
-                          },
+                          click: _ => this.dropLock($index),
                         },
-                      },
-                      item.title
-                    )}
-                    {h('Icon-class', {
-                      class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,
-                      props: {
-                        'icon-class': item.fixed === 'left' ? 'lock ' : 'unlock',
-                      },
-                      on: {
-                        click: _ => this.dropLock($index),
-                      },
-                    })}
-                  </el-dropdown-item>
-                );
-              })}
-            </draggable>
+                      })}
+                    </el-dropdown-item>
+                  );
+                })}
+              </draggable>
+            ) : (
+              <el-dropdown-item>{'没有匹配的'}</el-dropdown-item>
+            )
           ) : null}
           {
-            <div key={'drop-submit'} class={'submit'} on-click={this.columnSettingSubmit}>
+            <div
+              key={'drop-submit'}
+              class={'column-setting-submit'}
+              on-click={this.columnSettingSubmit}
+            >
               <Button type={'primary'}>确定</Button>
             </div>
           }
@@ -162,9 +198,29 @@ export default {
       });
     },
 
+    //列表设置提交
     columnSettingSubmit() {
       this.$refs['column-setting-dropdown'].hide();
       this.$emit('column-setting-submit', this.customColumns);
+    },
+
+    //列表设置恢复默认
+    columnSettingReset() {
+      this.$emit('column-setting-reset', this.customColumns);
+    },
+
+    /**
+     * 筛选操作方法
+     * @param colItem
+     * @param queryString
+     */
+    filterFn(colItem, queryString) {
+      colItem.hideInDrop =
+        this.specialColumns.indexOf(colItem.type) === -1
+          ? queryString
+            ? colItem.title.toLowerCase().indexOf(queryString.toLowerCase()) === -1
+            : false
+          : true;
     },
   },
   mounted() {},

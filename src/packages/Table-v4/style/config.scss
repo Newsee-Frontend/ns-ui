@@ -20,5 +20,6 @@ $error-prompt_subcolor: #666; //错误提示模块 - 小标题颜色
 
 //========== 表头设置 - 下拉菜单 ==========
 $drap-content__max-height: 300px; //下拉内容区域最大高度
+$drap-content__width: 200px; //下拉内容区域 - 选择label宽度
 $drap-label__max-width: 166px; //下拉内容区域 - 选择label名称最大宽度
-$drap-label__min-width: 80px; //下拉内容区域 - 选择label名称最小宽度
+$drap-label__min-width: 120px; //下拉内容区域 - 选择label名称最小宽度

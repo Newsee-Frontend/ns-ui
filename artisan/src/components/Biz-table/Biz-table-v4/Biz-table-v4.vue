@@ -105,6 +105,7 @@
           'cell-event': this.cellEvent,
           'table-action': this.tableAction,
           'column-setting-submit': this.columnSettingSubmit,
+          'column-setting-reset': this.columnSettingReset,
           'select-change': this.selectChange,
           'select-all': this.selectAll,
           'summary-change': this.summaryChange,
@@ -235,6 +236,17 @@
         console.log('表头设置 - 按钮提交');
         console.log(column);
       },
+
+      /**
+       * column setting reset - 表头设置 - 列表设置恢复默认
+       * @param column - column data after setting
+       */
+      columnSettingReset(column) {
+        console.log('表头设置 - 列表设置恢复默认');
+        console.log(column);
+      },
+
+
 
       /**
        * table action in column - 操作列按钮点击事件
