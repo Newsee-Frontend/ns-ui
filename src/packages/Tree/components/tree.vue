@@ -415,7 +415,7 @@ export default {
       return this.$defVal[attr] || false;
     },
     _dedupe(arr) {
-      return [...new Set(arr)];
+      return [...arr];
     },
     _showSearchNodes(node, matched) {
       matched = matched.map(path => [...path]);
