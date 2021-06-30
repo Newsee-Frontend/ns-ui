@@ -47,8 +47,6 @@ export default create({
     'close-on-press-escape': { type: Boolean, default: false }, //是否可以通过按下 ESC 关闭 Dialog
     'show-close': { type: Boolean, default: true }, //是否显示关闭按钮
     'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
-
-    fullscreen: { type: Boolean, default: false },
     draggable: { type: Boolean, default: true }, //是否可拖拉
   },
   watch: {

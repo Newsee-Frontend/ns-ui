@@ -87,7 +87,6 @@ export default create({
         visible={this.show}
         on-update:visible={val => (this.show = val)}
         title={this.title}
-        fullscreen
         type={'simple'}
         modal={this.modal}
         close-on-click-modal={this.closeOnClickModal}
