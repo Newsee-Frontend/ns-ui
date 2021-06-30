@@ -3,7 +3,7 @@
 @include b(platform-dialog) {
   &.ns-dialog {
     .el-dialog {
-      margin: 0 !important;
+      margin: 0;
       width: 100%;
       height: 100%;
       .el-dialog__body {
