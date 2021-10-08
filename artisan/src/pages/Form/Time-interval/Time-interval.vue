@@ -5,6 +5,7 @@
       <p>时间频率控件1值：</p>
       <pre>{{timeIntervalModel1}}</pre>
       <ns-time-interval
+        timePickerFormat="HH:mm"
         v-model="timeIntervalModel1"
       >
       </ns-time-interval>

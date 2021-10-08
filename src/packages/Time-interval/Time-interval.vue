@@ -1,6 +1,6 @@
 <!--time-interval 选择时间频率-->
 <template>
-  <div class="time-interval" v-model="childTimeInterval" :style="convert_style">
+  <div class="time-interval" :style="convert_style">
     <!--选择执行频率的类型 （年/月/周/日）-->
     <el-select
       class="time-interval-part firstPart fl"
@@ -63,8 +63,8 @@
       class="time-interval-part thirdPart fl"
       v-model="childTimeInterval[keyRefer['time']]"
       placeholder="任意时间点"
-      format="HH:mm:ss"
-      value-format="HH:mm:ss"
+      :format="timePickerFormat"
+      :value-format="timePickerFormat"
       :disabled="disabled"
     >
     </time-picker>
@@ -200,6 +200,7 @@ export default create({
     width: { type: [String, Number] },
     height: { type: [String, Number] },
     disabled: { type: Boolean, default: false }, //禁用
+    timePickerFormat: { type: String, default: 'HH:mm:ss'} //时间控件的格式
   },
 });
 </script>
