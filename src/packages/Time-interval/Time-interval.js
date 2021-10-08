@@ -24,6 +24,7 @@ export default create({
         return defaultKeyRefer;
       },
     },
+    timePickerFormat: { type: String, default: 'HH:mm:ss'} //时间控件的格式
   },
   data() {
     return {
@@ -54,11 +55,6 @@ export default create({
     return (
       <div
         class={[this.recls(), 'clear']}
-        value={this.childInterval}
-        onInput={val => {
-          this.childInterval = val;
-          this.$emit('input', this.childInterval);
-        }}
         style={this.convert_style}
       >
         <Select
@@ -80,8 +76,8 @@ export default create({
           onInput={val => this.inputMethods(val, 'time')}
           size={'small'}
           placeholder={'任意时间点'}
-          format={'HH:mm:ss'}
-          value-format={'HH:mm:ss'}
+          format={this.timePickerFormat}
+          value-format={this.timePickerFormat}
           disabled={this.disabled}
         ></Time-picker>
       </div>
