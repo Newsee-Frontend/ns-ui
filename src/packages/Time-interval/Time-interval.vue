@@ -200,7 +200,7 @@ export default create({
     width: { type: [String, Number] },
     height: { type: [String, Number] },
     disabled: { type: Boolean, default: false }, //禁用
-    timePickerFormat: { type: String, default: 'HH:mm:ss'} //时间控件的格式
+    timePickerFormat: { type: String, default: 'HH:mm:ss' }, //时间控件的格式
   },
 });
 </script>
