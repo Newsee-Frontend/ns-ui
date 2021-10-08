@@ -24,7 +24,7 @@ export default create({
         return defaultKeyRefer;
       },
     },
-    timePickerFormat: { type: String, default: 'HH:mm:ss'} //时间控件的格式
+    timePickerFormat: { type: String, default: 'HH:mm:ss' }, //时间控件的格式
   },
   data() {
     return {
@@ -53,10 +53,7 @@ export default create({
   },
   render(h) {
     return (
-      <div
-        class={[this.recls(), 'clear']}
-        style={this.convert_style}
-      >
+      <div class={[this.recls(), 'clear']} style={this.convert_style}>
         <Select
           class={'time-interval-part fl'}
           value={this.valueMethods('type')}
