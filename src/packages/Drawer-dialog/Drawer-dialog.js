@@ -31,9 +31,8 @@ export default create({
     },
     appendToBody: {
       type: Boolean,
-      default: true
+      default: true,
     },
-
   },
 
   watch: {
