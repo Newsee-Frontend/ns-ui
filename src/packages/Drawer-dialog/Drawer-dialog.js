@@ -29,6 +29,11 @@ export default create({
       type: Boolean,
       default: true,
     },
+    appendToBody: {
+      type: Boolean,
+      default: true
+    },
+
   },
 
   watch: {
@@ -69,6 +74,7 @@ export default create({
           title: this.title,
           showClose: this.showClose,
           modal: this.modal,
+          appendToBody: this.appendToBody,
           customClass: this.customClass,
           'before-close': this.handleClose.bind(this),
         },
