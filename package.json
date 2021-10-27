@@ -1,6 +1,6 @@
 {
   "name": "neap-ui",
-  "version": "0.0.2-27",
+  "version": "0.0.2-28",
   "description": "ns-ui",
   "author": "Broccoli spring( gcx )",
   "private": false,
@@ -63,7 +63,7 @@
     "@vant/compiler": "^1.0.0",
     "axios": "^0.19.0",
     "babel-plugin-import": "^1.12.2",
-    "cx-builder": "0.0.53-36",
+    "cx-builder": "0.0.53-54",
     "dependency-tree": "^6.4.0",
     "echarts": "^4.2.1",
     "element-ui": "2.11.1",
