@@ -4,15 +4,15 @@ import Vue from 'vue';
 import Layout from '../../../../src/packages/Layout/Layout';
 import Skiner from '../../../../src/packages/Skiner/Skiner';
 import UserDropdown from '../../../../src/packages/UserDropdown/UserDropdown';
-import SecondNavMenu from '../../../../src/packages/SideBar/Sidebar';
+import SecondNavMenu from '../../../../src/packages/SideBar/SideBar';
 import MultipleNavMenu from '../../../../src/packages/SideMenu/SideMenu';
 
 
 //basic
 import IconSvg from '../../../../src/packages/Icon-svg/Icon-svg';
 import IconClass from '../../../../src/packages/Icon-class/Icon-class';
-import Col from '../../../../src/packages/Col/col';
-import Row from '../../../../src/packages/Row/row';
+import Col from '../../../../src/packages/Col/Col';
+import Row from '../../../../src/packages/Row/Row';
 import Button from '../../../../src/packages/Button/Button';
 import ButtonGroup from '../../../../src/packages/Button-group/Button-group';
 
