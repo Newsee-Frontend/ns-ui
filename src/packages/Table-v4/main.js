@@ -30,6 +30,12 @@ export default create({
     isHugeData: { type: Boolean, default: false }, //大数据量渲染，不支持表单表格的功能
     height: { type: [Number, String], default: 300 },
     showFooter: { type: Boolean, default: false },
+    footerList: {
+      type: Array,
+      default() {
+        return ['current', 'total']
+      }, //drop list 展示的项， 默认（分页，全部）
+    },
     footerMethod: { type: Function },
     checkMethod: { type: Function },
     editConfig: {
@@ -60,7 +66,6 @@ export default create({
           return {
             field: item.field,
             visible: !item.hidden,
-            zzzzzzzzzz: 123123123,
           };
         });
 
@@ -183,6 +188,9 @@ export default create({
           : null}
         {this.showFooter
           ? h('summary-drop', {
+              props: {
+                footerList: this.footerList
+              },
               on: {
                 ...this.$listeners,
               },
