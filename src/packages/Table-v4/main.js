@@ -33,7 +33,7 @@ export default create({
     footerList: {
       type: Array,
       default() {
-        return ['current', 'total']
+        return ['current', 'total'];
       }, //drop list 展示的项， 默认（分页，全部）
     },
     footerMethod: { type: Function },
@@ -189,7 +189,7 @@ export default create({
         {this.showFooter
           ? h('summary-drop', {
               props: {
-                footerList: this.footerList
+                footerList: this.footerList,
               },
               on: {
                 ...this.$listeners,
