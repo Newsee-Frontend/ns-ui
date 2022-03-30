@@ -15,9 +15,9 @@ export default {
   },
 
   computed: {
-    showSummaryOption({summaryOption, footerList}){
-      return  summaryOption.filter(({ command })=> footerList.indexOf(command) > -1)
-    }
+    showSummaryOption({ summaryOption, footerList }) {
+      return summaryOption.filter(({ command }) => footerList.indexOf(command) > -1);
+    },
   },
   render(h) {
     return (
