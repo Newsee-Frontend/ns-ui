@@ -49,6 +49,7 @@ export const formTableData = pageSize => {
       describe: Mock.Random.csentence(), //备注
       email: Mock.Random.email(),
       customSlot: '@cname',
+      asset: Mock.Random.float(10,100000,1,5)
     });
   });
 };

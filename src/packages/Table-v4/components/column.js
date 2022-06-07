@@ -7,6 +7,7 @@ export default {
   name: '',
   components: { actionDrop },
   mixins: [keyRefer, columntype],
+
   props: {
     column: { type: Object },
     columns: { type: Array },
@@ -16,6 +17,7 @@ export default {
   data() {
     return {};
   },
+
   computed: {
     columnType() {
       return this.column.type;
@@ -130,7 +132,11 @@ export default {
     if (this.normalColInclude.indexOf(this.columnType) > -1) {
       // console.log('普通列( 文字列 / 数字 )');
       injection.props = {
-        field: this.column.field,
+        field:  this.column.field,
+      };
+
+      injection.props.formatter = (cell) => {
+        return cell.cellValue
       };
 
       /**
@@ -140,7 +146,7 @@ export default {
       if (this.column.formatter) {
         //add value formatter
         injection.props.formatter = ({ cellValue }) => {
-          return this.column.formatter[cellValue];
+          return typeof this.column.formatter === 'function'?  this.column.formatter(cellValue) :　this.column.formatter[cellValue];
         };
       }
     }
@@ -208,6 +214,11 @@ export default {
     return h(`vxe-table-column`, deepObjectMerge(general, injection));
   },
   methods: {
+    numberFormat(val, obj) {
+      console.log(val, obj);
+      return val + '12312312'
+    },
+
     /**
      * cell for form-table change event
      * @param row

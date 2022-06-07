@@ -397,6 +397,32 @@ export const formlistColumn = [
       ],
     },
   },
+  {
+    'resourcecolumnName': '资产',//label
+    'resourcecolumnCode': 'asset',
+    'resourcecolumnXtype': 'text',//表格列 类型
+    'resourcecolumnWidth': '100',//列的宽度
+    'resourcecolumnOrder': '6',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'right',//对齐
+    'filterSource': 0,//是否为字典项 0 - 字典，1 - 外部
+    'filterType': 'number',
+    'editConfig': {
+      'switchType': true,
+      'type': 'text',
+      'disabled': false,
+      'maxlength': null,
+      'max': 5,
+      'min': 0,
+      'placeHolder': null,
+      'multiple': null,
+      'require': true,
+      'validateRule': null,
+      'countAfterPoint': 2,
+      'isMakeUpZero': true,
+      'isShowSeparator': true
+    },
+  },
 ];
 
 
