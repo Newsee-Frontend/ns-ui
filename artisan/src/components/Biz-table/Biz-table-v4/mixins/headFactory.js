@@ -1,7 +1,7 @@
 import columnConfig from '../config/column-template-config';
 import keyRefer from '../config/keyRefer';
 import { listColumnService } from '../../../../service/Table';
-
+import { getThousandNum } from '../utils/index'
 /**
  * 关于业务表格表头的一系列操作
  * 1、表头数据获取
@@ -96,6 +96,21 @@ export default {
         }
         else if (key === 'isDictionary') {
           newCol[key] = !col[this.headRefer[key]];
+        }
+        //数字 金额列自定义 formatter
+        else if( key === 'formatter' &&  col.filterType === 'number'){
+          newCol[key] = (val)=>{
+            if(val && col.editConfig.countAfterPoint > -1){
+              val = Number(val.toFixed(col.editConfig.countAfterPoint))
+            }
+            if(val && !col.editConfig.isMakeUpZero){
+              val = parseFloat(val)
+            }
+            if(val && col.editConfig.isShowSeparator){
+              val = getThousandNum(val)
+            }
+            return val
+          }
         }
         //其他字段正常转换
         else {

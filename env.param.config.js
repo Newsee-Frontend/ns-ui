@@ -61,6 +61,15 @@ module.exports = {
       '@': path.resolve('artisan/src'),
     },
 
+    babel: {
+      priority: true,
+      include: [
+        'src', 'mock', 'test', 'artisan',
+        '/node_modules/element-ui/src',
+        '/node_modules/element-ui/packages',
+      ],
+    },
+
     prettier: {
       switch: false,
       files: [
