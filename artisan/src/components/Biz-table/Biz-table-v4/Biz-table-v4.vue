@@ -9,6 +9,14 @@
       <template slot="cell-slot" slot-scope="scope">
         <slot name="cell-slot" v-bind="scope"></slot>
       </template>
+
+      <template slot="header-slot" slot-scope="{ column }">
+        <i style="cursor: pointer" class="el-icon-share" v-if="['age', 'customSlot'].includes(column.field)"></i>
+      </template>
+
+      <template slot="btn-slot" slot-scope="{ row, rowIndex, column, columnIndex }">
+        <action-cell :btnList="row[keyRefer.scope.actionBtnList]" @btnClick=" tableAction($event, {row, rowIndex, column, columnIndex})"></action-cell>
+      </template>
     </ns-table>
 
     <!--分页器-->
@@ -30,12 +38,15 @@
   import resizeHeight from './mixins/resize-height';
   import keyRefer from './config/keyRefer';
   import rulesConfig from './config/rulesInfo';
+  import actionCell from './components/action-cell'
 
 
   export default {
     name: 'biz-table',
     mixins: [dataRender, headFactory, resizeHeight],
-    components: {},
+    components: {
+      actionCell
+    },
     data() {
       return {
         keyRefer,
@@ -103,7 +114,7 @@
           'edit-disabled': this.editDisabled,
 
           'cell-event': this.cellEvent,
-          'table-action': this.tableAction,
+          // 'table-action': this.tableAction,
           'column-setting-submit': this.columnSettingSubmit,
           'column-setting-reset': this.columnSettingReset,
           'select-change': this.selectChange,

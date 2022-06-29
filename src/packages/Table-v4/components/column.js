@@ -92,22 +92,34 @@ export default {
               'min-width': this.column.width,
             }),
       },
+
+      scopedSlots: {
+        header:  scope => {
+          return   <span>
+            {this.column.title}
+            {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}</span>
+        }
+      }
     };
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
-      injection.props = {
-        'cell-render': {
-          name: 'table-render-action-cell',
-          props: {
-            column: this.column,
-            scopeRefer: this.scopeRefer,
-          },
-          events: {
-            click: this.tableAction,
-          },
-        },
-      };
+      // injection.props = {
+      //   'cell-render': {
+      //     name: 'table-render-action-cell',
+      //     props: {
+      //       column: this.column,
+      //       scopeRefer: this.scopeRefer,
+      //     },
+      //     events: {
+      //       click: this.tableAction,
+      //     },
+      //   },
+      // };
+
+      injection.scopedSlots = {
+        default:  this.$scopedSlots['btn-slot']
+      }
     }
     //设置列
     if (this.settingColInclude.indexOf(this.columnType) > -1) {
@@ -192,10 +204,9 @@ export default {
           }
         } else if (['slot'].indexOf(this.renderType) > -1) {
           injection.props.field = this.column.field;
-
-          return h(`vxe-table-column`, deepObjectMerge(general, injection), [
-            this.$scopedSlots['cell-slot'],
-          ]);
+          injection.scopedSlots = {
+            default:  this.$scopedSlots['cell-slot']
+           }
         }
         //基础表单的渲染列
         else {
@@ -210,15 +221,9 @@ export default {
         }
       }
     }
-
     return h(`vxe-table-column`, deepObjectMerge(general, injection));
   },
   methods: {
-    numberFormat(val, obj) {
-      console.log(val, obj);
-      return val + '12312312'
-    },
-
     /**
      * cell for form-table change event
      * @param row

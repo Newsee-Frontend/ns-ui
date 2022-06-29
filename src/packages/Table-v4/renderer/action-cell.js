@@ -10,7 +10,7 @@ export default {
       const btns = row[scopeRefer['actionBtnList']];
 
       /**
-       *  action render
+       *  action render·
        * @param list
        * @param events
        * @param scope  =>  row, column, rowIndex, columnIndex

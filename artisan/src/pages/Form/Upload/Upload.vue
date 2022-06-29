@@ -9,7 +9,7 @@
           v-model="childItemSingle"
           width="100px"
           height="100px"
-          :data="{name:1}"
+          :data="{ name:1}"
           :action="dynamicUrl"
           @change="changeModel"
         >
