@@ -68,6 +68,7 @@ export default {
   render(h) {
     const injection = {};
 
+    //列头配置项
     const general = {
       props: {
         title: this.column.title,
@@ -93,6 +94,7 @@ export default {
             }),
       },
 
+      // 列头插槽
       scopedSlots: {
         header:  scope => {
           return   <span>
@@ -104,6 +106,7 @@ export default {
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
+
       // injection.props = {
       //   'cell-render': {
       //     name: 'table-render-action-cell',
