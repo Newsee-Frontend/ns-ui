@@ -167,7 +167,13 @@ export default create({
                       },
                     },
                     scopedSlots: {
-                      'cell-slot': scope => {
+                     'header-slot': scope => {
+                       return this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({
+                         row: scope.row,
+                         column: item
+                       })
+                     },
+                     'cell-slot': scope => {
                         return this.$scopedSlots['cell-slot']
                           ? this.$scopedSlots['cell-slot']({
                               row: scope.row,
@@ -180,6 +186,17 @@ export default create({
                             })
                           : scope.row[item.field];
                       },
+                     'btn-slot':  scope => {
+                       return this.$scopedSlots['btn-slot'] && this.$scopedSlots['btn-slot']({
+                         row: scope.row,
+                         data: scope.data,
+                         column: item,
+                         columns: this.head,
+                         rowIndex: scope.$rowIndex,
+                         columnIndex: scope.$columnIndex,
+                         rendered: true,
+                       })
+                     },
                     },
                   });
                 }),
