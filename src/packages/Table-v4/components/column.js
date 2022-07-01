@@ -92,17 +92,20 @@ export default {
           : {
               'min-width': this.column.width,
             }),
-      },
+      }
+    };
+
 
       // 列头插槽
-      scopedSlots: {
+    if(this.firstColInclude.indexOf(this.columnType) === -1){
+      general.scopedSlots = {
         header:  scope => {
           return   <span>
             {this.column.title}
             {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}</span>
         }
       }
-    };
+    }
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
