@@ -86,12 +86,12 @@ export default {
          */
         ...(this.specialColumns.indexOf(this.columnType) > -1
           ? {
-            type: this.columnType,
-            width: this.column.width,
-          }
+              type: this.columnType,
+              width: this.column.width,
+            }
           : {
-            'min-width': this.column.width,
-          }),
+              'min-width': this.column.width,
+            }),
       },
     };
 
@@ -100,9 +100,12 @@ export default {
     if (this.firstColInclude.indexOf(this.columnType) === -1) {
       general.scopedSlots = {
         header: scope => {
-          return <span>
-            {this.column.title}
-            {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}</span>;
+          return (
+            <span>
+              {this.column.title}
+              {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}
+            </span>
+          );
         },
       };
     }
