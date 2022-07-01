@@ -86,26 +86,26 @@ export default {
          */
         ...(this.specialColumns.indexOf(this.columnType) > -1
           ? {
-              type: this.columnType,
-              width: this.column.width,
-            }
+            type: this.columnType,
+            width: this.column.width,
+          }
           : {
-              'min-width': this.column.width,
-            }),
-      },
-
-      // 列头插槽
-      scopedSlots: {
-        header: scope => {
-          return (
-            <span>
-              {this.column.title}
-              {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}
-            </span>
-          );
-        },
+            'min-width': this.column.width,
+          }),
       },
     };
+
+    // 列头插槽
+    //判断首列是否是checkbox redio index 等，如果是的话，就不需要列头插槽
+    if (this.firstColInclude.indexOf(this.columnType) === -1) {
+      general.scopedSlots = {
+        header: scope => {
+          return <span>
+            {this.column.title}
+            {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}</span>;
+        },
+      };
+    }
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
