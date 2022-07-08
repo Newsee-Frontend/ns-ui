@@ -22,7 +22,7 @@ export default create({
 
   watch: {
     value(val) {
-      this.childDataPicker = val;
+      this.childOnlyMMDD = val;
     },
   },
 
