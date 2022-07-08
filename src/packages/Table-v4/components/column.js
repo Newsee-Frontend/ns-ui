@@ -92,24 +92,26 @@ export default {
           : {
               'min-width': this.column.width,
             }),
-      }
+      },
     };
 
-
-      // 列头插槽
-    if(this.firstColInclude.indexOf(this.columnType) === -1){
+    // 列头插槽
+    //判断首列是否是checkbox redio index 等，如果是的话，就不需要列头插槽
+    if (this.firstColInclude.indexOf(this.columnType) === -1) {
       general.scopedSlots = {
-        header:  scope => {
-          return   <span>
-            {this.column.title}
-            {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}</span>
-        }
-      }
+        header: scope => {
+          return (
+            <span>
+              {this.column.title}
+              {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}
+            </span>
+          );
+        },
+      };
     }
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
-
       // injection.props = {
       //   'cell-render': {
       //     name: 'table-render-action-cell',
@@ -124,8 +126,8 @@ export default {
       // };
 
       injection.scopedSlots = {
-        default:  this.$scopedSlots['btn-slot']
-      }
+        default: this.$scopedSlots['btn-slot'],
+      };
     }
     //设置列
     if (this.settingColInclude.indexOf(this.columnType) > -1) {
@@ -150,11 +152,11 @@ export default {
     if (this.normalColInclude.indexOf(this.columnType) > -1) {
       // console.log('普通列( 文字列 / 数字 )');
       injection.props = {
-        field:  this.column.field,
+        field: this.column.field,
       };
 
-      injection.props.formatter = (cell) => {
-        return cell.cellValue
+      injection.props.formatter = cell => {
+        return cell.cellValue;
       };
 
       /**
@@ -164,7 +166,9 @@ export default {
       if (this.column.formatter) {
         //add value formatter
         injection.props.formatter = ({ cellValue }) => {
-          return typeof this.column.formatter === 'function'?  this.column.formatter(cellValue) :　this.column.formatter[cellValue];
+          return typeof this.column.formatter === 'function'
+            ? this.column.formatter(cellValue)
+            : this.column.formatter[cellValue];
         };
       }
     }
@@ -211,8 +215,8 @@ export default {
         } else if (['slot'].indexOf(this.renderType) > -1) {
           injection.props.field = this.column.field;
           injection.scopedSlots = {
-            default:  this.$scopedSlots['cell-slot']
-           }
+            default: this.$scopedSlots['cell-slot'],
+          };
         }
         //基础表单的渲染列
         else {
