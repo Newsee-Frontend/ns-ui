@@ -31,6 +31,8 @@ let rootResultData = [
     companyName: 'new see',
     houseId: 0,
     id: 0,
+    iconClass: 'fold',
+    iconTitle: '测hi是别人背后必然herb和',
     childOwnerHouseBaseInfoTreeNodeList: [
       {
         houseId: 114191,
@@ -52,6 +54,8 @@ let rootResultData = [
         parentHouseIds: '',
         childOwnerHouseBaseInfoTreeNodeList: [],
         isHasChild: true,
+        iconClass: 'fold',
+        iconTitle: '',
       },
     ],
     isHasChild: true,
