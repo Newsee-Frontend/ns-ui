@@ -29,6 +29,8 @@ export default create({
     popperClass: { type: String }, //DateTimePicker 下拉框的类名
     rangeSeparator: { type: String, default: ' - ' }, //选择范围时的分隔符
     defaultTime: { type: [String, Array] }, //可选，选择器打开时默认显示的时间
+    unlinkPanels: { type: Boolean, default: true }, //在范围选择器里取消两个日期面板之间的联动
+
     //当前时间日期选择器特有的选项参考下表
     pickerOptions: {
       type: Object,
@@ -68,6 +70,7 @@ export default create({
         placeholder={this.placeholder}
         start-placeholder={this.startPlaceholder}
         end-placeholder={this.endPlaceholder}
+        unlink-panels={this.unlinkPanels}
         format={this.format}
         value-format={this.valueFormat}
         align={this.align}
