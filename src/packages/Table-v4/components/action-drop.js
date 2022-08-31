@@ -98,7 +98,7 @@ export default {
                             },
                           },
                         },
-                        item.title
+                        item.title + (item.params && item.params.subTitle ? `(${item.params.subTitle})`: '')
                       )}
                       {h('Icon-class', {
                         class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,

@@ -462,6 +462,31 @@ export const hugeDataListColumn = [
   },
   {
     'resourcecolumnName': '拥有人',//label
+    'resourcecolumnCode': 'owner',//model-key
+    'resourcecolumnXtype': 'input',//表格列 类型
+    'resourcecolumnWidth': '100',//列的宽度
+    'resourcecolumnOrder': '4',//列的序号
+    'resourcecolumnHidden': '0', //是否隐藏
+    'resourcecolumnAlign': 'left',//对齐
+    'filterSource': 1,//是否为字典项 0 - 字典，1 - 外部
+    'editConfig': {
+      'switchType': true,
+      'type': 'input',
+      'decimal': 2,
+      'disabled': false,
+      'maxlength': null,
+      'max': 0,
+      'min': 0,
+      'placeHolder': '请输入',
+      'multiple': null,
+      'require': true,
+      'validateRule': '',
+      'errorMsg': '输入拥有人',
+      'options': [],
+    },
+  },
+  {
+    'resourcecolumnName': '拥有人',//label
     'resourcecolumnCode': 'ownerName',//model-key
     'resourcecolumnXtype': 'text',//表格列 类型
     'resourcecolumnWidth': '200',//列的宽度

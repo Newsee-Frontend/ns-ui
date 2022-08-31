@@ -74,6 +74,7 @@ export default {
         title: this.column.title,
         align: this.column.align,
         fixed: this.column.fixed,
+        params: this.column.params,
         'header-class-name': ({ column }) => {
           return `column-${column.property} column-${this.columnType} ${
             this.renderConfig?.require ? 'column-required' : ''

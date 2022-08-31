@@ -85,7 +85,7 @@ export default {
      * @param col - 列数据对象
      */
     transformCol(col) {
-      let newCol = {};
+      let newCol = { params : {} };
 
       Object.keys(this.headRefer).forEach(key => {
         /**
@@ -131,6 +131,17 @@ export default {
       }
       else {
         newCol.fixed = undefined;
+      }
+
+      //区分 id， name列
+      let sameTitleCol = this.connectHead.find(i=> {
+       return  i[this.headRefer.title] && i[this.headRefer.title] === newCol.title && i[this.headRefer.field] !==  newCol.field
+      })
+      if(sameTitleCol){
+        if(col[this.headRefer.field] + 'Name' === sameTitleCol[this.headRefer.field]){
+          //存放额外参数
+          newCol.params.subTitle= '编号'
+        }
       }
 
       return newCol;
