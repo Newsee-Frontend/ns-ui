@@ -98,7 +98,8 @@ export default {
                             },
                           },
                         },
-                        item.title + (item.params && item.params.subTitle ? `(${item.params.subTitle})`: '')
+                        item.title +
+                          (item.params && item.params.subTitle ? `(${item.params.subTitle})` : '')
                       )}
                       {h('Icon-class', {
                         class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,

@@ -14,17 +14,22 @@
       </span>
       <!--一般的树图形-->
       <span @click="expandNode(item)" v-else>
-           <el-tooltip v-if="item.iconClass" effect="dark" :content="item.iconTitle" :disabled="!item.iconTitle" placement="top-start">
-               <icon-svg :icon-class="item.iconClass"></icon-svg>
-            </el-tooltip>
+        <el-tooltip
+          v-if="item.iconClass"
+          effect="dark"
+          :content="item.iconTitle"
+          :disabled="!item.iconTitle"
+          placement="top-start"
+        >
+          <icon-svg :icon-class="item.iconClass"></icon-svg>
+        </el-tooltip>
 
-         <icon-class
-           v-else-if="hasChildren || item.async"
-           :icon-class="item.expanded ? 'close-block' : 'open-block'"
-         ></icon-class>
+        <icon-class
+          v-else-if="hasChildren || item.async"
+          :icon-class="item.expanded ? 'close-block' : 'open-block'"
+        ></icon-class>
 
-         <icon-class v-else icon-class="padding-block"></icon-class>
-
+        <icon-class v-else icon-class="padding-block"></icon-class>
       </span>
 
       <!--多选框-->
