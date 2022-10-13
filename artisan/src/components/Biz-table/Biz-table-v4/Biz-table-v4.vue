@@ -121,6 +121,7 @@
           'select-all': this.selectAll,
           'summary-change': this.summaryChange,
           'resizable-change': this.resizableChange,
+          'sort-change': this.sortChange
         };
       },
     },
@@ -398,7 +399,20 @@
 
         console.log({$rowIndex, column, columnIndex, $columnIndex, $event});
         console.log(`拖动后，当前列宽度为：${column.resizeWidth}`)
+      },
 
+      /**
+       * sortChange - 当排序事件触发
+       * @param column
+       * @param property
+       * @param order
+       */
+      sortChange({ column, property, order }){
+        this.searchConditions.orderBy = order
+        this.searchConditions.orderFieldName = order ? property : ''
+        this.searchConditions.pageNum = 1
+
+        this.$emit('reload');
       }
     },
 

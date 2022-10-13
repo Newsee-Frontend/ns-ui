@@ -66,7 +66,12 @@ export default {
 
         listColumnService({ funcId: 'funcId', mockColType: this.searchConditions.mockColType }).then(res => {
           this.tableHead = res.resultData.columns || [];
-
+          const { defaultSortType, field} = this.headRefer
+          let sortItem =   this.tableHead.find( i=> keyRefer.sortMap[i[defaultSortType]])
+          if(sortItem){
+            this.searchConditions.orderBy = keyRefer.sortMap[sortItem[defaultSortType]]
+            this.searchConditions.orderFieldName = sortItem[field]
+          }
           console.log('请求到的表头数据：');
           console.log(this.tableHead);
 
@@ -86,17 +91,22 @@ export default {
      */
     transformCol(col) {
       let newCol = { params : {} };
-
       Object.keys(this.headRefer).forEach(key => {
         /**
          *原返回数据中 resourcecolumnHidden（是否隐藏不显式) 字段值需要转换为： '1' / '0' = > true / false
+         *原返回数据中 resourcecolumnOrder（是否排序) 字段值需要转换为： '1' / '0' = > true / false
          */
-        if (key === 'hidden') {
-          newCol[key] = col[this.headRefer[key]] === true || col.resourcecolumnHidden === '1';
+        if (key === 'hidden' || key === 'sortable') {
+          newCol[key] = col[this.headRefer[key]] === true || col[this.headRefer[key]] === '1';
+        }
+
+        else if ( key === 'defaultSortType'){
+          newCol[key] = keyRefer.sortMap[col[this.headRefer[key]]]
         }
         else if (key === 'isDictionary') {
           newCol[key] = !col[this.headRefer[key]];
         }
+
         //数字 金额列自定义 formatter
         else if( key === 'formatter' &&  col.filterType === 'number'){
           newCol[key] = (val)=>{

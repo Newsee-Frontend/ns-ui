@@ -45,10 +45,10 @@ $table-row__hover: #ecf5ff; //行 - 鼠标移入背景色
     border-color: $table-border__color;
   }
 
-  //内容部分下边框
-  .vxe-body--row .vxe-body--column {
-    border-bottom: 1px solid #ebeef5;
-  }
+  ////内容部分下边框
+  //.vxe-body--row .vxe-body--column {
+  //  border-bottom: 1px solid #ebeef5;
+  //}
 
   // ==== background style change ====
   th.col--gutter {

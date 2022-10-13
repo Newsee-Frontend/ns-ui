@@ -32,7 +32,7 @@ export default {
      */
     setSelection(type, rows, checked) {
       if (type === 'checkbox') {
-        this.$refs['main-table'].setSelection(rows, checked);
+        this.$refs['main-table'].setCheckboxRow(rows, checked);
       } else if (type === 'radio') {
         if (checked) {
           this.$refs['main-table'].setRadioRow(rows);
@@ -48,7 +48,7 @@ export default {
      * @param checked
      */
     setAllSelection(checked) {
-      this.$refs['main-table'].setAllSelection(checked);
+      this.$refs['main-table'].setAllCheckboxRow(checked);
     },
 
     /**
@@ -59,7 +59,7 @@ export default {
       if (type === 'checkbox') {
         this.$refs['main-table'].clearSelection();
       } else if (type === 'radio') {
-        this.$refs['main-table'].clearRadioRow();
+        this.$refs['main-table'].clearCheckboxRow();
       }
     },
 

@@ -12,7 +12,7 @@
             <span>当前页数总条目:</span>
             <ns-input v-model.number="searchConditions.pageSize"></ns-input>
             <ns-button @click="requestTableData">刷新表格数据</ns-button>
-            <ns-select v-model="firstColType" :options="firstColTypeOpts"></ns-select>
+            <ns-select v-model="firstColType" :options="firstColTypeOpts" @change="()=> tableKey= new Date().valueOf() "></ns-select>
             <ns-button @click="scrollTo(200,200)">表格滚动至(200,200)</ns-button>
             <ns-button @click="scrollTo(0,0)">表格滚动复位</ns-button>
 
@@ -27,13 +27,14 @@
             <ns-button @click="clearSelection('checkbox')">清除所有选中状态</ns-button>
           </div>
           <biz-table-v4
+            :key="tableKey"
             ref="formTable"
             :loading="loading"
             :data="tableData.list"
             :total="total"
 
             :autoResize="false"
-            customHeight="auto"
+            customHeight="500px"
             :showPagination="false"
 
             :localHead="localHead"
@@ -52,7 +53,6 @@
             @summary-change="summaryChange"
             @select-change="selectChange"
             @select-all="selectAll"
-
           >
             <template #cell-slot="{column, row, rowIndex}">
               <span>1231</span>
@@ -113,6 +113,7 @@
         summaryState: 'current',//合计行切换状态
 
         localHead: null,
+        tableKey: '',
 
         //筛选器数据
         searchConditions: {
@@ -437,13 +438,9 @@
 
       /**
        * 控制 CheckBox 是否允许勾选的方法，
-       * @param {row,$rowIndex,column,$columnIndex}
+       * @param {row}
        */
-      checkMethod({row, $rowIndex, column, $columnIndex}) {
-        //第一行 checkbox 禁用
-        if ($rowIndex === 0) {
-          return false;
-        }
+      checkMethod({row}) {
         //年龄字段 小于30的禁用
         return row.age > 30;
       },

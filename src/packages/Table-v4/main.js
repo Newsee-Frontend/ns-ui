@@ -58,6 +58,13 @@ export default create({
       //Header data must exist and loading status must be false
       return this.head && this.head.length;
     },
+
+    //默认排序方式
+    defaultSort(){
+      let  defaultSortItem = this.head.find(i=> i.defaultSortType)
+      return defaultSortItem ? { field: defaultSortItem.field, order: defaultSortItem.defaultSortType} : {}
+    }
+
   },
   watch: {
     head: {
@@ -98,9 +105,13 @@ export default create({
         strict: true,
         checkMethod: this.checkMethod,
       },
+      'sort-config': {
+        defaultSort: this.defaultSort,
+        remote: true,
+        orders: ['desc', 'asc', null]
+      },
       'show-footer': this.showFooter,
-      'footer-method': this.footerMethod,
-      customs: this.customColumns,
+      'footer-method': this.footerMethod
     };
 
     if (!this.isHugeData) {
@@ -123,15 +134,10 @@ export default create({
                   'edit-disabled': this.editDisabled,
 
                   'radio-change': this.selectChange,
-                  'select-change': this.selectChange,
-                  'select-all': this.selectAll,
+                  'checkbox-change': this.selectChange,
+                  'checkbox-all': this.selectAll,
                   'resizable-change': this.resizableChange,
-                  'update:customs': value => {
-                    this.customColumns = value;
-                    this.$nextTick(() => {
-                      this.$refs['main-table'].refreshColumn();
-                    });
-                  },
+                  'sort-change': this.sortChangeEvent
                 },
                 scopedSlots: {
                   empty: scope => {
@@ -331,6 +337,17 @@ export default create({
     resizableChange({ $rowIndex, column, columnIndex, $columnIndex, $event }) {
       this.$emit('resizable-change', { $rowIndex, column, columnIndex, $columnIndex, $event });
     },
+
+    /**
+     * 排序事件
+     * @param column 列信息
+     * @param property 排序字段
+     * @param order 排序方式
+     */
+    sortChangeEvent ({ column, property, order }) {
+      this.$emit('sort-change', { column, property, order });
+    }
+
   },
   created() {
     // alert(this.loading)

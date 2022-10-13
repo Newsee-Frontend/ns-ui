@@ -74,6 +74,7 @@ export default {
         title: this.column.title,
         align: this.column.align,
         fixed: this.column.fixed,
+        sortable: this.column.sortable,
         params: this.column.params,
         'header-class-name': ({ column }) => {
           return `column-${column.property} column-${this.columnType} ${
@@ -97,7 +98,7 @@ export default {
     };
 
     // 列头插槽
-    //判断首列是否是checkbox redio index 等，如果是的话，就不需要列头插槽
+    //判断首列是否是checkbox redio index(seq) 等，如果是的话，就不需要列头插槽
     if (this.firstColInclude.indexOf(this.columnType) === -1) {
       general.scopedSlots = {
         header: scope => {
@@ -108,6 +109,10 @@ export default {
             </span>
           );
         },
+      };
+    }else{
+      injection.props = {
+        type: this.column.type,
       };
     }
 
