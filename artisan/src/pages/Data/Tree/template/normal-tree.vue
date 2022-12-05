@@ -39,6 +39,11 @@
     },
 
     methods: {
+      reInitTreeModel(){
+        this.nodeModel =  {}
+      },
+
+
       initTree: function(){
         this.$store.dispatch('getRootTree').then((res)=>{
           this.data = res.resultData;

@@ -46,9 +46,6 @@ export default {
     };
   },
   computed: {
-    contentColumns() {
-      return [...this.normalColInclude, ...this.formColInclude];
-    },
     specialColumns() {
       return [...this.firstColInclude, ...this.actionColInclude, ...this.settingColInclude];
     },

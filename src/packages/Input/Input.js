@@ -73,6 +73,7 @@ export default create({
         clearable={this.clearable}
         on-change={this.change.bind(this)}
         on-blur={this.blur.bind(this)}
+        on-clear={this.clear.bind(this)}
         on-focus={this.focus.bind(this)}
         style={this.convert_style}
       >
@@ -104,6 +105,8 @@ export default create({
     blur(event) {
       this.$emit('blur', event);
     },
+
+
     /**
      * focus
      * @param event
@@ -111,6 +114,15 @@ export default create({
     focus(event) {
       this.$emit('focus', event);
     },
+
+    /**
+     * clear
+     * @param event
+     */
+    clear(event) {
+      this.$emit('clear', event);
+    },
+
     /**
      * icon-click
      * @param type

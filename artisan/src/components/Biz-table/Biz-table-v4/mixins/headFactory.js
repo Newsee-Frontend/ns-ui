@@ -19,69 +19,53 @@ export default {
       firstColInclude: ['index', 'checkbox', 'radio'],
       actionColInclude: ['action', 'add-row'],
       settingColInclude: ['setting'],
+      searchParams: {}
     };
   },
-  computed: {
-    connectHead() {
-      return [
-        ...(this.firstColType ? [columnConfig[this.firstColType]] : []),
-        ...(this.localHead ? this.localHead : this.tableHead) || [],
-        ...(this.hasActionCol ? [columnConfig['action']] : []),
-        ...(this.showAddRowOperation ? [columnConfig['add-row']] : []),
-        ...(this.showHeadOperation ? [columnConfig['setting']] : []),
-      ];
-    },
-  },
+
   watch: {
-    connectHead: {
-      handler: function(val) {
-        this.finalHead = val.map(col => {
-          return this.transformCol(col);
-        });
-      },
-      deep: true,
-      // immediate: true,
-    },
     'searchConditions.mockColType': {
       handler: function(val) {
-        this.getTableHead();
+        this.getTableHead()
       },
       deep: true,
     },
   },
+
   methods: {
     /**
      * get table head data - 获取表头数据
      */
-    getTableHead() {
-      //本地表头数据 （目前只能为本地静态数据)
-      if (this.localHead) {
-        this.finalHead = this.connectHead.map(col => {
-          return this.transformCol(col);
-        });
-      }
-      //异步请求表头数据
-      else {
+    async getTableHead() {
+      try {
+        //异步请求表头数据
         this.headLoading = true;
-
-        listColumnService({ funcId: 'funcId', mockColType: this.searchConditions.mockColType }).then(res => {
+        if ((this.localHead || []).length === 0) {
+          let res =  await  listColumnService({ funcId: 'funcId', mockColType: this.searchConditions.mockColType })
           this.tableHead = res.resultData.columns || [];
-          const { defaultSortType, field} = this.headRefer
-          let sortItem =   this.tableHead.find( i=> keyRefer.sortMap[i[defaultSortType]])
-          if(sortItem){
-            this.searchConditions.orderBy = keyRefer.sortMap[sortItem[defaultSortType]]
-            this.searchConditions.orderFieldName = sortItem[field]
-          }
-          console.log('请求到的表头数据：');
-          console.log(this.tableHead);
+        }
+        //本地表头数据 （目前只能为本地静态数据)
+        this.connectHead = [
+          ...(this.firstColType ? [columnConfig[this.firstColType]] : []),
+          ...(this.localHead ? this.localHead : this.tableHead) || [],
+          ...(this.hasActionCol ? [columnConfig['action']] : []),
+          ...(this.showAddRowOperation ? [columnConfig['add-row']] : []),
+          ...(this.showHeadOperation ? [columnConfig['setting']] : []),
+        ]
 
-          this.$store.dispatch('setTableHead', this.tableHead);//store head data
+        // 筛选器设置默认查询
+        const { defaultSortType, field} = this.headRefer
+        //获取排序字段
+        let sortItem =  this.connectHead.find( i=> keyRefer.sortMap[i[defaultSortType]])
+        if(sortItem){
+          this.searchConditions.orderBy = keyRefer.sortMap[sortItem[defaultSortType]]
+          this.searchConditions.orderFieldName = sortItem[field]
+        }
+        this.finalHead =　this.connectHead.map(  col => this.transformCol(col))
+        await this.$store.dispatch('setTableHead', this.tableHead)//store head data
 
-          this.headLoading = false;
-
-        }).catch(() => {
-          this.headLoading = false;
-        });
+      }finally {
+        this.headLoading = false
       }
     },
 
@@ -105,6 +89,12 @@ export default {
         }
         else if (key === 'isDictionary') {
           newCol[key] = !col[this.headRefer[key]];
+        }
+        else if( key === 'isFilter'){
+          newCol[key] = col[this.headRefer[key]] === 'table';
+        }
+        else if( key === 'filter-Config' || key === 'slot-Config'){
+          newCol.params[key] = col[this.headRefer[key]];
         }
 
         //数字 金额列自定义 formatter
@@ -159,6 +149,6 @@ export default {
 
   },
   created() {
-    this.getTableHead();
+    this.getTableHead()
   },
 };

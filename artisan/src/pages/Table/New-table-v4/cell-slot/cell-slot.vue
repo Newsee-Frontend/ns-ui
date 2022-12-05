@@ -9,40 +9,41 @@
             <span>当前页数总条目:</span>
             <ns-input v-model.number="searchConditions.pageSize"></ns-input>
             <ns-button @click="requestTableData">刷新表格数据</ns-button>
+            <ns-button @click="resetFilter">重置筛选条件</ns-button>
+            <ns-button @click="setFilter">设置筛选条件（拥有人）</ns-button>
           </div>
+<!--          <div class="table-template-block">-->
+<!--            <biz-table-v4-->
+<!--              ref="formTable"-->
+<!--              :loading="loading"-->
+<!--              :data="tableData.list"-->
+<!--              :total="total"-->
+<!--              @select-change="selectChange"-->
+<!--              :autoResize="false"-->
+<!--              :customHeight="300"-->
+<!--              :searchConditions="searchConditions"-->
+<!--              @table-action="tableAction"-->
+<!--              @reload="requestTableData"-->
+<!--            >-->
+
+<!--              <template slot="cell-slot" slot-scope="scope">-->
+
+<!--                &lt;!&ndash;如果插槽内容复杂 - 建议封装子组件，局部引入。&ndash;&gt;-->
+<!--                &lt;!&ndash;简单情况下，直接写在插槽内部&ndash;&gt;-->
+<!--                &lt;!&ndash;scope - 对外暴露的参数&ndash;&gt;-->
+<!--                <cell-slot-component :scope="scope"></cell-slot-component>-->
+
+<!--              </template>-->
+
+<!--            </biz-table-v4>-->
+<!--          </div>-->
+
           <div class="table-template-block">
             <biz-table-v4
               ref="formTable"
               :loading="loading"
               :data="tableData.list"
               :total="total"
-
-              :autoResize="false"
-              :customHeight="300"
-              :searchConditions="searchConditions"
-              @table-action="tableAction"
-              @reload="requestTableData"
-            >
-
-              <template slot="cell-slot" slot-scope="scope">
-
-                <!--如果插槽内容复杂 - 建议封装子组件，局部引入。-->
-                <!--简单情况下，直接写在插槽内部-->
-                <!--scope - 对外暴露的参数-->
-                <cell-slot-component :scope="scope"></cell-slot-component>
-
-              </template>
-
-            </biz-table-v4>
-          </div>
-
-          <div class="table-template-block">
-            <biz-table-v4
-              ref="formTable"
-              :loading="loading"
-              :data="tableData.list"
-              :total="total"
-              isHugeData
               :autoResize="false"
               :customHeight="300"
               :searchConditions="searchConditions"
@@ -81,7 +82,6 @@
   import { tableDataService } from '../../../../service/Table/index';
   import bizTableV4 from '../../../../components/Biz-table/Biz-table-v4/Biz-table-v4';
   import cellSlotComponent from './cell-slot-component';
-
 
   export default {
     name: 'cell-slot',
@@ -142,6 +142,40 @@
       },
 
       /**
+       * 重置筛选条件
+       */
+      resetFilter(){
+        this.$refs.formTable.clearFilter()
+      },
+
+      /**
+       * 设置筛选条件
+       */
+      setFilter(){
+        const xTable = this.$refs.formTable
+        const column = xTable.getColumnByField('ownerName')
+        // 修改第一个选项为勾选状态
+        const option = column.filters[0]
+        option.data = '田洋'
+        option.checked = true
+        // 修改条件之后，需要手动调用 updateData 处理表格数据
+        xTable.updateData()
+      },
+
+      /**
+       * 单选列，多选列 （当选择项发生变化时会触发该事件）
+       * @param { row, $rowIndex, column, $columnIndex, checked, selection }
+       * 注意：单选列的情况下，参数：checked, selection 不存在
+       * @param event
+       */
+      selectChange({ row, $rowIndex, column, $columnIndex, checked, selection }, event) {
+
+        console.log('当选择项发生变化时会触发该事件');
+
+        console.log({ row, $rowIndex, column, $columnIndex, checked, selection }, event);
+      },
+
+      /**
        * 表格加载处理
        * 可在其中做一些业务操作，如：
        *  1、增加权限按钮
@@ -179,12 +213,17 @@
         });
       },
 
+
+
+
       createRgb() {
         const r = Math.floor(Math.random() * 256);
         const g = Math.floor(Math.random() * 256);
         const b = Math.floor(Math.random() * 256);
         return 'rgb(' + r + ',' + g + ',' + b + ')';
       },
+
+
 
 
     },

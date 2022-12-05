@@ -12,7 +12,7 @@ export default {
     column: { type: Object },
     columns: { type: Array },
     customColumns: { type: Array },
-    keyRefer: { type: Object },
+    keyRefer: { type: Object }
   },
   data() {
     return {};
@@ -66,7 +66,10 @@ export default {
     },
   },
   render(h) {
-    const injection = {};
+    const injection = {
+      scopedSlots: {},
+      props: {},
+    };
 
     //列头配置项
     const general = {
@@ -75,6 +78,7 @@ export default {
         align: this.column.align,
         fixed: this.column.fixed,
         sortable: this.column.sortable,
+        visible: !this.column.hidden,
         params: this.column.params,
         'header-class-name': ({ column }) => {
           return `column-${column.property} column-${this.columnType} ${
@@ -88,49 +92,42 @@ export default {
          */
         ...(this.specialColumns.indexOf(this.columnType) > -1
           ? {
-              type: this.columnType,
-              width: this.column.width,
-            }
+            type: this.columnType,
+            width: this.column.width,
+          }
           : {
-              'min-width': this.column.width,
-            }),
+            'min-width': this.column.width,
+          }),
       },
     };
 
+    //根据配置来判断是否塞入塞入筛选条件
+    if (this.column.isFilter) {
+      injection.props.filters = [{ data: '' }];
+      injection.scopedSlots.filter = (scope) => {
+        return (
+          this.$scopedSlots['filter-slot'] && this.$scopedSlots['filter-slot'](scope)
+        );
+      };
+    }
+
     // 列头插槽
     //判断首列是否是checkbox redio index(seq) 等，如果是的话，就不需要列头插槽
-    if (this.firstColInclude.indexOf(this.columnType) === -1) {
-      general.scopedSlots = {
-        header: scope => {
-          return (
-            <span>
-              {this.column.title}
-              {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}
-            </span>
-          );
-        },
+    if (this.firstColInclude.indexOf(this.columnType) !== -1) {
+      injection.scopedSlots.header = scope => {
+        return (
+          <span>
+            {this.column.title}
+            {this.$scopedSlots['header-slot'] && this.$scopedSlots['header-slot']({ scope })}
+          </span>
+        );
       };
-    }else{
-      injection.props = {
-        type: this.column.type,
-      };
+    } else {
+      injection.props.type = this.column.type;
     }
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
-      // injection.props = {
-      //   'cell-render': {
-      //     name: 'table-render-action-cell',
-      //     props: {
-      //       column: this.column,
-      //       scopeRefer: this.scopeRefer,
-      //     },
-      //     events: {
-      //       click: this.tableAction,
-      //     },
-      //   },
-      // };
-
       injection.scopedSlots = {
         default: this.$scopedSlots['btn-slot'],
       };
@@ -157,13 +154,8 @@ export default {
     //普通列( 文字列 / 数字 )
     if (this.normalColInclude.indexOf(this.columnType) > -1) {
       // console.log('普通列( 文字列 / 数字 )');
-      injection.props = {
-        field: this.column.field,
-      };
-
-      injection.props.formatter = cell => {
-        return cell.cellValue;
-      };
+      injection.props.field = this.column.field;
+      injection.props.formatter = cell => cell.cellValue;
 
       /**
        * cover by formatter config
@@ -183,9 +175,7 @@ export default {
     if (this.renderColInclude.indexOf(this.columnType) > -1) {
       // console.log('render列( 表单列 / 链接列 / 插槽列 )');
 
-      injection.props = {
-        field: this.column.field,
-      };
+      injection.props.field = this.column.field;
 
       //default column render config
       let renderProps = {
@@ -220,9 +210,7 @@ export default {
           }
         } else if (['slot'].indexOf(this.renderType) > -1) {
           injection.props.field = this.column.field;
-          injection.scopedSlots = {
-            default: this.$scopedSlots['cell-slot'],
-          };
+          injection.scopedSlots.default = this.$scopedSlots['cell-slot'];
         }
         //基础表单的渲染列
         else {

@@ -13,6 +13,15 @@ import store from './store';
 //load router && page
 import router from './router';
 
+import {
+  getTransformTime,
+  getRangeTime,
+  getFormatTime
+} from './components/Biz-table/Biz-table-v4/utils/time'
+
+Vue.prototype.getTransformTime = getTransformTime
+Vue.prototype.getRangeTime = getRangeTime
+Vue.prototype.getFormatTime = getFormatTime
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

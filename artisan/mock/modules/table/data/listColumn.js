@@ -30,6 +30,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '1',//是否排序
     'resourcecolumnHidden': '1', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 1,//是否为字典项 0 - 字典，1 - 外部
     'editConfig': {
       'type': 'link',//表格中表单的类型，与外层数据Xtype一致
@@ -44,6 +45,9 @@ export const formlistColumn = [
       'errorMsg': '输入项目名称',//验证出错时的 提示消息
       'options': [],//下拉项/展示内容，（只在checkbox，radio，select 中有用)
     },
+    'filterConfig': {
+      type: 'input'
+    }
   },
   {
     'resourcecolumnName': '拥有人',//label
@@ -53,6 +57,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '0',//是否排序
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 1,//是否为字典项 0 - 字典，1 - 外部
     'editConfig': {
       'switchType': true,
@@ -69,6 +74,9 @@ export const formlistColumn = [
       'errorMsg': '输入拥有人',
       'options': [],
     },
+    'filterConfig': {
+      type: 'input'
+    }
   },
   {
     'resourcecolumnName': '年龄',//label
@@ -79,6 +87,7 @@ export const formlistColumn = [
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
     'resourcecolumnIndexType': 1,
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 1,//是否为字典项 0 - 字典，1 - 外部
     'editConfig': {
       'switchType': true,
@@ -95,6 +104,9 @@ export const formlistColumn = [
       'errorMsg': '请选择年龄',
       'options': [],
     },
+    'filterConfig': {
+      type: 'number'
+    }
   },
   {
     'resourcecolumnName': '性别',//label
@@ -104,11 +116,20 @@ export const formlistColumn = [
     'resourcecolumnOrder': '1',//是否排序
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 0,//是否为字典项 0 - 字典，1 - 外部
     'selectMap': {
       0: '男',
       1: '女',
       2: '保密',
+    },
+    'filterConfig': {
+      type: 'select',
+      options: [
+        { label: '男', value: 0 },
+        { label: '女', value: 1 },
+        { label: '保密', value: 2 },
+      ]
     },//单元格过滤转换 - 通常用于字典项值的转换
     'editConfig': null,
   },
@@ -120,6 +141,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '1',//是否排序
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 0,//是否为字典项 0 - 字典，1 - 外部
     'selectMap': {
       0: '较差',
@@ -142,6 +164,15 @@ export const formlistColumn = [
       'errorMsg': '',
       'options': [],
     },
+    'filterConfig': {
+      type: 'select',
+      options: [
+        { label: '较差', value: 0 },
+        { label: '一般', value: 1 },
+        { label: '较好', value: 2 },
+        { label: '优秀', value: 3 }
+      ]
+    },//
   },
   {
     'resourcecolumnName': '学历',//label
@@ -151,7 +182,21 @@ export const formlistColumn = [
     'resourcecolumnOrder': '1',//是否排序
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 0,//是否为字典项 0 - 字典，1 - 外部
+    'filterConfig': {
+      type: 'select',
+      options: [
+        { label: '小学', value: 1 },
+        { label: '初中', value: 2 },
+        { label: '高中', value: 3 },
+        { label: '大专', value: 4 },
+        { label: '本科', value: 5 },
+        { label: '研究生', value: 6 },
+        { label: '博士', value: 7 },
+        { label: '其他', value: 8 },
+      ]
+    },
     'editConfig': {
       'switchType': true,
       'type': 'select',
@@ -232,6 +277,7 @@ export const formlistColumn = [
     'resourcecolumnOrder': '1',//是否排序
     'resourcecolumnHidden': '0', //是否隐藏
     'resourcecolumnAlign': 'left',//对齐
+    'resourcecolumncolumnQueryType':　'table',　//类查询类型
     'filterSource': 1,//是否为字典项 0 - 字典，1 - 外部
     'editConfig': {
       'switchType': true,
@@ -246,6 +292,45 @@ export const formlistColumn = [
       'validateRule': null,
       'errorMsg': '请选择成立日期',
       'options': [],
+    },
+    'filterConfig': {
+      "switchType": false,
+      "type": "date",
+      "require": false,
+      "min": null,
+      "max": null,
+      "maxlength": null,
+      "decimal": null,
+      "placeHolder": null,
+      "validateRule": null,
+      "disabled": false,
+      "filterType": null,
+      "filterSource": null,
+      "options": null,
+      "el": null,
+      "optionsCount": null,
+      "applicationCode": null,
+      "funcinfoFunccode": null,
+      "jeCoreFuncinfoId": null,
+      "iconCls": null,
+      "controlType": null,
+      "labelFields": null,
+      "displayFormat": "datetime",
+      "defaultConfig": null,
+      "isRange": true,
+      "valueFormat": "yyyy-MM-dd HH:mm",
+      "treeCode": null,
+      "treeTitleField": null,
+      "treeCodeField": null,
+      "loadType": null,
+      "isInQuery": 0,
+      "applyCode": null,
+      "countAfterPoint": 0,
+      "frontElement": null,
+      "multiple": false,
+      "range": true,
+      "makeUpZero": false,
+      "showSeparator": false
     },
   },
   {

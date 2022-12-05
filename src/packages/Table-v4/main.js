@@ -10,12 +10,13 @@ import errorType from './mixins/errorType';
 import columnRender from './components/column';
 import identifier from './components/identifier';
 import summaryDrop from './components/summary-drop';
+import checkDrop from './components/check-drop';
 
 import img_null from '../../assets/null.jpg';
 
 export default create({
   name: 'table',
-  components: { columnRender, summaryDrop, identifier },
+  components: { columnRender, summaryDrop, identifier, checkDrop },
   mixins: [selection, reRender, validate, namefactory, columntype, errorType],
   props: {
     loading: { type: Boolean, default: true },
@@ -36,6 +37,7 @@ export default create({
         return ['current', 'total'];
       }, //drop list 展示的项， 默认（分页，全部）
     },
+
     footerMethod: { type: Function },
     checkMethod: { type: Function },
     editConfig: {
@@ -44,13 +46,23 @@ export default create({
         return { trigger: 'click', mode: 'row', showStatus: true };
       },
     },
+
+
+    //快捷菜单配置
+    menuConfig: {
+      type: Object,
+      default: () => {},
+    },
+
     highlightHoverRow: { type: Boolean, default: true }, //鼠标移到行是否要高亮显示
     showEmptySlot: { type: Boolean, default: true }, //显示表格 空数据 时插槽
     emptyText: { type: String, default: '抱歉, 没有你要的结果' },
+    showCheckDrop: { type: Boolean, default: false },     //是否显示checkbox的下拉
   },
   data() {
     return {
       customColumns: [],
+      checkMode: ''
     };
   },
   computed: {
@@ -59,26 +71,26 @@ export default create({
       return this.head && this.head.length;
     },
 
-    //默认排序方式
     defaultSort(){
       let  defaultSortItem = this.head.find(i=> i.defaultSortType)
       return defaultSortItem ? { field: defaultSortItem.field, order: defaultSortItem.defaultSortType} : {}
-    }
-
+    },
+    //显示多选的下拉
+    isShowCheckDrop(){
+      return this.head?.[0]?.type === 'checkbox' && this.showCheckDrop
+    },
   },
   watch: {
     head: {
       handler: function(val) {
-        this.customColumns = val.map(item => {
-          return {
-            field: item.field,
-            visible: !item.hidden,
-          };
-        });
-
         if (this.$refs['main-table']) {
           this.$refs['main-table'].refreshColumn();
         }
+
+        // 获取所有列配置
+        this.$nextTick(() => {
+          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getColumns())
+        })
       },
       deep: true,
       immediate: true,
@@ -87,13 +99,13 @@ export default create({
   render(h) {
     const props = {
       loading: this.loading,
-
       ...this.namefactory,
-
       property: 'setting',
       size: 'small',
       height: this.height,
       resizable: true,
+      'keep-source': true,
+      'auto-resize':　true,
       'highlight-hover-row': this.highlightHoverRow,
       'show-overflow': true,
       'show-header-overflow': true,
@@ -101,15 +113,20 @@ export default create({
       'edit-rules': this.validRules,
       'checkbox-config': {
         checkField: 'checked',
-        trigger: 'default',
+        trigger: 'cell',
         strict: true,
-        checkMethod: this.checkMethod,
+        showHeader: this.checkMode !== 'total',
+        checkMethod: this.checkMethodFun,
       },
       'sort-config': {
         defaultSort: this.defaultSort,
         remote: true,
         orders: ['desc', 'asc', null]
       },
+      'filter-config': {
+        remote: true
+      },
+      'menu-config':  this.menuConfig,
       'show-footer': this.showFooter,
       'footer-method': this.footerMethod
     };
@@ -132,12 +149,13 @@ export default create({
                   'edit-actived': this.editActived,
                   'edit-closed': this.editClosed,
                   'edit-disabled': this.editDisabled,
-
                   'radio-change': this.selectChange,
                   'checkbox-change': this.selectChange,
                   'checkbox-all': this.selectAll,
                   'resizable-change': this.resizableChange,
-                  'sort-change': this.sortChangeEvent
+                  'sort-change': this.sortChangeEvent,
+                  'filter-change': this.filterChangeEvent,
+                  'menu-click': this.menuClick
                 },
                 scopedSlots: {
                   empty: scope => {
@@ -159,12 +177,14 @@ export default create({
                       columns: this.head,
                       keyRefer: this.keyRefer,
                       customColumns: this.customColumns,
+                      showCheckDrop: this.showCheckDrop
                     },
                     on: {
                       ...this.$listeners,
                       'cell-event': this.cellEvent,
                       'sync-column-render': data => {
                         // console.log(data.customColumns);
+
 
                         const target = this.$refs['main-table'];
                         ['change', 'lock'].indexOf(data.event) > -1
@@ -195,6 +215,11 @@ export default create({
                             })
                           : scope.row[item.field];
                       },
+                      'filter-slot':
+                        scope => {
+                          return this.$scopedSlots['filter-slot']
+                            && this.$scopedSlots['filter-slot'](scope);
+                        },
                       'btn-slot': scope => {
                         return (
                           this.$scopedSlots['btn-slot'] &&
@@ -225,6 +250,13 @@ export default create({
               },
             })
           : null}
+
+        {this.isShowCheckDrop ? h('check-drop', {
+          on: {
+            'check-mode-change': this.checkModeEvent,
+          }
+        }) : null}
+
         {h('identifier', {
           class: this.recls('mask'),
           props: {
@@ -239,6 +271,29 @@ export default create({
     );
   },
   methods: {
+    /**
+     * 选择模式切换
+     * @param mode
+     */
+    checkModeEvent(mode){
+      this.checkMode = mode
+      this.$emit('check-mode-change', mode)
+    },
+
+
+
+    checkMethodFun(params){
+      if(this.checkMode === 'total'){
+        return false
+      }else{
+        return !this.checkMethod || (this.checkMethod && this.checkMethod(params))
+      }
+    },
+
+    /**
+     * 校验
+     * @param cb
+     */
     fullValidate(cb) {
       this.$refs['main-table'].fullValidate(cb);
     },
@@ -326,6 +381,50 @@ export default create({
       this.$refs['main-table'].clearActived();
     },
 
+
+    /**
+     * 手动清空筛选条件
+     * （如果不传 column 则清空所有筛选条件），数据会恢复成未筛选的状态
+     * @param column 列信息
+     */
+    clearFilter(){
+      this.$refs['main-table'].clearFilter()
+    },
+
+
+    /**
+     * 用于 filters，修改筛选列表（在筛选条件更新之后可以调用 updateData 函数处理表格数据）
+     * @param column
+     * @param options
+     */
+    setFilter(column, options){
+      this.$refs['main-table'].setFilter(column, options);
+    },
+
+
+    /**
+     * 获取column
+     * @param colName
+     * @returns {*}
+     */
+    getColumnByField(colName){
+      return this.$refs['main-table'].getColumnByField(colName)
+    },
+
+    /**
+     * 更新数据
+     */
+    updateData(){
+      this.$refs['main-table'].updateData()
+    },
+
+    /**
+     * 清除排序
+     */
+    clearSort(){
+      this.$refs['main-table'].clearSort()
+    },
+
     /**
      * column resizable change - 当列宽拖动发生变化时会触发该事件
      * @param $rowIndex
@@ -346,6 +445,31 @@ export default create({
      */
     sortChangeEvent ({ column, property, order }) {
       this.$emit('sort-change', { column, property, order });
+    },
+
+
+    /**
+     * 筛选事件
+     * @param column 列信息
+     * @param property 筛选字段
+     * @param values 筛选values
+     * @param datas  数据
+     * @param filters 所有筛选的条件
+     * @param $table 整个表格控件
+     */
+    filterChangeEvent({ column,  property, values, datas, filters, $table}){
+      this.$emit('filter-change', {column,  property, values, datas, filters, $table });
+    },
+
+
+    /**
+     * 当点击快捷菜单时会触发该事件
+     * @param menu
+     * @param row
+     * @param column
+     */
+    menuClick({ menu, row, column }){
+      this.$emit('menu-click', { menu, row, column });
     }
 
   },

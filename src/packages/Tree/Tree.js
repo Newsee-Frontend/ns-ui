@@ -53,6 +53,13 @@ export default create({
       type: Boolean,
       default: false,
     },
+
+    // context list
+    contextList: {
+      type: Array,
+      default: ()=>[],
+    }
+
   },
 
   watch: {
@@ -94,6 +101,7 @@ export default create({
           tpl={tpl.bind(this)}
           multiple={this.multiple}
           radio={!this.multiple}
+          contextList={this.contextList}
           onAsync-load-nodes={this.asyncLoad}
           onNode-click={this.nodeClick}
           onNode-check={this.nodeCheck}

@@ -34,7 +34,7 @@
           @select-change="selectChange"
           @reload="getTableData()"
           :autoResize="false"
-          customHeight="auto"
+          customHeight="500px"
           :showPagination="false"
         ></biz-table-v4>
       </div>
@@ -60,7 +60,7 @@
           departmentId: '', //部门id
           filterList: [], //条件
           pageNum: 1, //当前页数
-          pageSize: 100, //每页显示条目个数
+          pageSize: 1000, //每页显示条目个数
           orderBy: '', //排序：升序还是降序
           orderFieldName: '', //排序：字段名
           mainSearch: '', //输入框值

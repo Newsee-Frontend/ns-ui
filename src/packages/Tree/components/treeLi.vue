@@ -152,7 +152,7 @@ export default {
     dropJudge: Function,
     allowDropGap: Boolean,
   },
-  inject: ['isLeaf', 'childChecked', 'parentChecked', 'nodeSelected', 'emitEventToTree', 'setAttr'],
+  inject: ['isLeaf', 'childChecked', 'parentChecked', 'nodeSelected', 'emitEventToTree', 'setAttr', 'contextList'],
   computed: {
     itemVisible() {
       const { visible = true } = this.item;

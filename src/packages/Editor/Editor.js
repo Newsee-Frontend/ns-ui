@@ -113,7 +113,7 @@ export default create({
         selector: `#${this.tinymceId}`,
         height: this.height,
         body_class: 'panel-body ',
-        object_resizing: false,
+        object_resizing: true,
         toolbar: this.toolbarConfig,
         menubar: this.menubar,
         plugins: plugins,

@@ -19,7 +19,7 @@ export default {
      */
     selectAll({ selection, checked }, event) {
       if (!checked) {
-        this.$refs['main-table'].clearSelection();
+        this.$refs['main-table'].clearCheckboxRow();
       }
       this.$emit('select-all', { selection, checked }, event);
     },
@@ -56,11 +56,7 @@ export default {
      * @param type - checkbox/radio
      */
     clearSelection(type = 'checkbox') {
-      if (type === 'checkbox') {
-        this.$refs['main-table'].clearSelection();
-      } else if (type === 'radio') {
-        this.$refs['main-table'].clearCheckboxRow();
-      }
+      this.$refs['main-table'].clearCheckboxRow();
     },
 
     /**

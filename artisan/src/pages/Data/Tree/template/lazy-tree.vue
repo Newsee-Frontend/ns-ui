@@ -51,6 +51,9 @@
           </ns-tree>
         </el-col>
       </el-row>
+
+      <ns-button @click="reInitTreeModel">重置树节点</ns-button>
+
     </template>
   </demo-block>
 </template>
@@ -70,6 +73,11 @@
     },
 
     methods: {
+      reInitTreeModel(){
+        this.nodeModel = {}
+
+      },
+
       initTree: function() {
         this.$store.dispatch('getRootTree').then((res) => {
           this.nodeList = transformKeyFun(res.resultData, keyRefer, { expandedIndex: 2, lazy: true });

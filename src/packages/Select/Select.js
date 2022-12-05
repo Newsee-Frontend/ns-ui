@@ -1,5 +1,6 @@
 import create from '../../create/create';
 import { sizeValidator } from '../../utils/props/validator';
+import unionBy from 'lodash/unionBy';
 
 export default create({
   name: 'select',
@@ -26,13 +27,14 @@ export default create({
     multipleLimit: { type: Number, default: 0 },
     popperClass: { type: String },
     collapseTags: { type: Boolean, default: false }, //多选时是否将选中值按文字的形式展示
-    filterable: { type: Boolean, default: false },
+    filterable: { type: Boolean, default: true },  //默认搜索
     filterMethod: { type: Function, default: null }, //自定义过滤方法
     remote: { type: Boolean, default: false }, //是否为远程搜索
     remoteMethod: { type: Function, default: null }, //远程搜索方法
     allowCreate: { type: Boolean, default: false }, //是否允许用户创建新条目，需配合 filterable 使用
     loadingText: { type: String, default: '加载中' },
     noMatchText: { type: String, default: '无匹配数据' },
+    defaultFirstOption: { type: Boolean, default: true },
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
@@ -56,6 +58,8 @@ export default create({
 
   render(h) {
     let { label, value } = this.keyRefer;
+    // 默认去重，防止报错
+    let  options = unionBy(this.options, this.keyRefer.value)
     const optionRender = item => (
       <el-option
         key={item[value]}
@@ -68,7 +72,9 @@ export default create({
       <el-select
         class={this.reClass}
         size="small"
+        ref="select"
         value={this.childSelect}
+        nativeOnKeyup = {this.filterKeyUp.bind(this)}
         onInput={e => this.handleModel(e)}
         onChange={this.change.bind(this)}
         onVisible-change={this.visibleChange.bind(this)}
@@ -87,13 +93,14 @@ export default create({
         loadingText={this.loadingText}
         noMatchText={this.noMatchText}
         remote={this.remote}
+        defaultFirstOption={this.defaultFirstOption}
         remoteMethod={this.remoteMethod}
         allowCreate={this.allowCreate}
         loading={this.loading}
         placeholder={this.placeholder}
         style={this.convert_style}
       >
-        {this.options.map(item => {
+        {options.map(item => {
           return optionRender(item);
         })}
         <span slot={'default'} class={'select-option-content'}>
@@ -104,6 +111,18 @@ export default create({
   },
 
   methods: {
+    /**
+     * defaultFirstOption 在多选 输入中文的情况下失效，手动补充方法
+     */
+    filterKeyUp(e){
+      if(e.code === 'Space' && this.defaultFirstOption && this.multiple){
+        let selectRef = this.$refs.select
+        let { options, query } = selectRef
+        selectRef.hoverIndex = options.findIndex(option =>
+          option.label && option.label.indexOf(query) > -1) || 0
+      }
+    },
+
     /**
      * 同步v-model
      * @param e
