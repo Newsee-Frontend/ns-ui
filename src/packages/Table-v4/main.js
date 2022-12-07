@@ -295,7 +295,10 @@ export default create({
      * @param cb
      */
     fullValidate(cb) {
-      this.$refs['main-table'].fullValidate(cb);
+      this.$refs['main-table'].fullValidate((errMap)=> {
+        let valid = !errMap
+        cb && cb(valid, errMap)
+      });
     },
 
     /**
