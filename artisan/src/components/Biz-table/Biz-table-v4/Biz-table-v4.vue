@@ -114,6 +114,8 @@ export default {
       type: String,
       default: 'id',
     },
+    mergeCells: { type: Array, default: ()=>[]}, //临时合并指定的单元格
+    mergeFooterItems: { type: Array, default: ()=>[]} //临时合并表尾
   },
 
   computed: {
@@ -142,7 +144,9 @@ export default {
         emptyText: this.emptyText,
         showCheckDrop: true,
         menuConfig: this.menuConfig,
-        defaultSort: this.defaultSort
+        defaultSort: this.defaultSort,
+        mergeCells: this.mergeCells,
+        mergeFooterItems: this.mergeFooterItems
       };
       if (!this.isHugeData) {
         props.data = this.data;

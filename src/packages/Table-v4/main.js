@@ -58,6 +58,8 @@ export default create({
     showEmptySlot: { type: Boolean, default: true }, //显示表格 空数据 时插槽
     emptyText: { type: String, default: '抱歉, 没有你要的结果' },
     showCheckDrop: { type: Boolean, default: false },     //是否显示checkbox的下拉
+    mergeCells: { type: Array, default: ()=>[]}, //临时合并指定的单元格
+    mergeFooterItems: { type: Array, default: ()=>[]} //临时合并表尾
   },
   data() {
     return {
@@ -128,7 +130,9 @@ export default create({
       },
       'menu-config':  this.menuConfig,
       'show-footer': this.showFooter,
-      'footer-method': this.footerMethod
+      'footer-method': this.footerMethod,
+      'merge-cells': this.mergeCells,
+      'merge-footer-items': this.mergeFooterItems,
     };
 
     if (!this.isHugeData) {

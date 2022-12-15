@@ -36,6 +36,7 @@
           :autoResize="false"
           customHeight="500px"
           :showPagination="false"
+          :mergeCells="mergeCells"
         ></biz-table-v4>
       </div>
     </div>
@@ -55,6 +56,7 @@
         loading: false,
         tableData: {},
         gridBtns: [],
+        mergeCells: [],
         searchConditions: {
           companyId: '', //公司id
           departmentId: '', //部门id
@@ -98,6 +100,10 @@
           console.log(this.tableData);
 
           this.tableLoader(this.gridBtns);
+          this.mergeCells = [
+            { row: 0, col: 0, rowspan: 2, colspan: 1 },
+            { row: 0, col: 1, rowspan: 2, colspan: 1 }
+          ]
 
           this.loading = false;
 
