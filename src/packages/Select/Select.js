@@ -27,7 +27,7 @@ export default create({
     multipleLimit: { type: Number, default: 0 },
     popperClass: { type: String },
     collapseTags: { type: Boolean, default: false }, //多选时是否将选中值按文字的形式展示
-    filterable: { type: Boolean, default: true },  //默认搜索
+    filterable: { type: Boolean, default: true }, //默认搜索
     filterMethod: { type: Function, default: null }, //自定义过滤方法
     remote: { type: Boolean, default: false }, //是否为远程搜索
     remoteMethod: { type: Function, default: null }, //远程搜索方法
@@ -59,7 +59,7 @@ export default create({
   render(h) {
     let { label, value } = this.keyRefer;
     // 默认去重，防止报错
-    let  options = unionBy(this.options, this.keyRefer.value)
+    let options = unionBy(this.options, this.keyRefer.value);
     const optionRender = item => (
       <el-option
         key={item[value]}
@@ -74,7 +74,7 @@ export default create({
         size="small"
         ref="select"
         value={this.childSelect}
-        nativeOnKeyup = {this.filterKeyUp.bind(this)}
+        nativeOnKeyup={this.filterKeyUp.bind(this)}
         onInput={e => this.handleModel(e)}
         onChange={this.change.bind(this)}
         onVisible-change={this.visibleChange.bind(this)}
@@ -114,12 +114,12 @@ export default create({
     /**
      * defaultFirstOption 在多选 输入中文的情况下失效，手动补充方法
      */
-    filterKeyUp(e){
-      if(e.code === 'Space' && this.defaultFirstOption && this.multiple){
-        let selectRef = this.$refs.select
-        let { options, query } = selectRef
-        selectRef.hoverIndex = options.findIndex(option =>
-          option.label && option.label.indexOf(query) > -1) || 0
+    filterKeyUp(e) {
+      if (e.code === 'Space' && this.defaultFirstOption && this.multiple) {
+        let selectRef = this.$refs.select;
+        let { options, query } = selectRef;
+        selectRef.hoverIndex =
+          options.findIndex(option => option.label && option.label.indexOf(query) > -1) || 0;
       }
     },
 

@@ -47,7 +47,6 @@ export default create({
       },
     },
 
-
     //快捷菜单配置
     menuConfig: {
       type: Object,
@@ -57,14 +56,14 @@ export default create({
     highlightHoverRow: { type: Boolean, default: true }, //鼠标移到行是否要高亮显示
     showEmptySlot: { type: Boolean, default: true }, //显示表格 空数据 时插槽
     emptyText: { type: String, default: '抱歉, 没有你要的结果' },
-    showCheckDrop: { type: Boolean, default: false },     //是否显示checkbox的下拉
-    mergeCells: { type: Array, default: ()=>[]}, //临时合并指定的单元格
-    mergeFooterItems: { type: Array, default: ()=>[]} //临时合并表尾
+    showCheckDrop: { type: Boolean, default: false }, //是否显示checkbox的下拉
+    mergeCells: { type: Array, default: () => [] }, //临时合并指定的单元格
+    mergeFooterItems: { type: Array, default: () => [] }, //临时合并表尾
   },
   data() {
     return {
       customColumns: [],
-      checkMode: ''
+      checkMode: '',
     };
   },
   computed: {
@@ -73,13 +72,15 @@ export default create({
       return this.head && this.head.length;
     },
 
-    defaultSort(){
-      let  defaultSortItem = this.head.find(i=> i.defaultSortType)
-      return defaultSortItem ? { field: defaultSortItem.field, order: defaultSortItem.defaultSortType} : {}
+    defaultSort() {
+      let defaultSortItem = this.head.find(i => i.defaultSortType);
+      return defaultSortItem
+        ? { field: defaultSortItem.field, order: defaultSortItem.defaultSortType }
+        : {};
     },
     //显示多选的下拉
-    isShowCheckDrop(){
-      return this.head?.[0]?.type === 'checkbox' && this.showCheckDrop
+    isShowCheckDrop() {
+      return this.head?.[0]?.type === 'checkbox' && this.showCheckDrop;
     },
   },
   watch: {
@@ -91,8 +92,8 @@ export default create({
 
         // 获取所有列配置
         this.$nextTick(() => {
-          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getColumns())
-        })
+          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getColumns());
+        });
       },
       deep: true,
       immediate: true,
@@ -107,7 +108,7 @@ export default create({
       height: this.height,
       resizable: true,
       'keep-source': true,
-      'auto-resize':　true,
+      'auto-resize': true,
       'highlight-hover-row': this.highlightHoverRow,
       'show-overflow': true,
       'show-header-overflow': true,
@@ -123,12 +124,12 @@ export default create({
       'sort-config': {
         defaultSort: this.defaultSort,
         remote: true,
-        orders: ['desc', 'asc', null]
+        orders: ['desc', 'asc', null],
       },
       'filter-config': {
-        remote: true
+        remote: true,
       },
-      'menu-config':  this.menuConfig,
+      'menu-config': this.menuConfig,
       'show-footer': this.showFooter,
       'footer-method': this.footerMethod,
       'merge-cells': this.mergeCells,
@@ -159,7 +160,7 @@ export default create({
                   'resizable-change': this.resizableChange,
                   'sort-change': this.sortChangeEvent,
                   'filter-change': this.filterChangeEvent,
-                  'menu-click': this.menuClick
+                  'menu-click': this.menuClick,
                 },
                 scopedSlots: {
                   empty: scope => {
@@ -181,14 +182,13 @@ export default create({
                       columns: this.head,
                       keyRefer: this.keyRefer,
                       customColumns: this.customColumns,
-                      showCheckDrop: this.showCheckDrop
+                      showCheckDrop: this.showCheckDrop,
                     },
                     on: {
                       ...this.$listeners,
                       'cell-event': this.cellEvent,
                       'sync-column-render': data => {
                         // console.log(data.customColumns);
-
 
                         const target = this.$refs['main-table'];
                         ['change', 'lock'].indexOf(data.event) > -1
@@ -219,11 +219,12 @@ export default create({
                             })
                           : scope.row[item.field];
                       },
-                      'filter-slot':
-                        scope => {
-                          return this.$scopedSlots['filter-slot']
-                            && this.$scopedSlots['filter-slot'](scope);
-                        },
+                      'filter-slot': scope => {
+                        return (
+                          this.$scopedSlots['filter-slot'] &&
+                          this.$scopedSlots['filter-slot'](scope)
+                        );
+                      },
                       'btn-slot': scope => {
                         return (
                           this.$scopedSlots['btn-slot'] &&
@@ -255,11 +256,13 @@ export default create({
             })
           : null}
 
-        {this.isShowCheckDrop ? h('check-drop', {
-          on: {
-            'check-mode-change': this.checkModeEvent,
-          }
-        }) : null}
+        {this.isShowCheckDrop
+          ? h('check-drop', {
+              on: {
+                'check-mode-change': this.checkModeEvent,
+              },
+            })
+          : null}
 
         {h('identifier', {
           class: this.recls('mask'),
@@ -279,18 +282,16 @@ export default create({
      * 选择模式切换
      * @param mode
      */
-    checkModeEvent(mode){
-      this.checkMode = mode
-      this.$emit('check-mode-change', mode)
+    checkModeEvent(mode) {
+      this.checkMode = mode;
+      this.$emit('check-mode-change', mode);
     },
 
-
-
-    checkMethodFun(params){
-      if(this.checkMode === 'total'){
-        return false
-      }else{
-        return !this.checkMethod || (this.checkMethod && this.checkMethod(params))
+    checkMethodFun(params) {
+      if (this.checkMode === 'total') {
+        return false;
+      } else {
+        return !this.checkMethod || (this.checkMethod && this.checkMethod(params));
       }
     },
 
@@ -299,9 +300,9 @@ export default create({
      * @param cb
      */
     fullValidate(cb) {
-      this.$refs['main-table'].fullValidate((errMap)=> {
-        let valid = !errMap
-        cb && cb(valid, errMap)
+      this.$refs['main-table'].fullValidate(errMap => {
+        let valid = !errMap;
+        cb && cb(valid, errMap);
       });
     },
 
@@ -388,48 +389,45 @@ export default create({
       this.$refs['main-table'].clearActived();
     },
 
-
     /**
      * 手动清空筛选条件
      * （如果不传 column 则清空所有筛选条件），数据会恢复成未筛选的状态
      * @param column 列信息
      */
-    clearFilter(){
-      this.$refs['main-table'].clearFilter()
+    clearFilter() {
+      this.$refs['main-table'].clearFilter();
     },
-
 
     /**
      * 用于 filters，修改筛选列表（在筛选条件更新之后可以调用 updateData 函数处理表格数据）
      * @param column
      * @param options
      */
-    setFilter(column, options){
+    setFilter(column, options) {
       this.$refs['main-table'].setFilter(column, options);
     },
-
 
     /**
      * 获取column
      * @param colName
      * @returns {*}
      */
-    getColumnByField(colName){
-      return this.$refs['main-table'].getColumnByField(colName)
+    getColumnByField(colName) {
+      return this.$refs['main-table'].getColumnByField(colName);
     },
 
     /**
      * 更新数据
      */
-    updateData(){
-      this.$refs['main-table'].updateData()
+    updateData() {
+      this.$refs['main-table'].updateData();
     },
 
     /**
      * 清除排序
      */
-    clearSort(){
-      this.$refs['main-table'].clearSort()
+    clearSort() {
+      this.$refs['main-table'].clearSort();
     },
 
     /**
@@ -450,10 +448,9 @@ export default create({
      * @param property 排序字段
      * @param order 排序方式
      */
-    sortChangeEvent ({ column, property, order }) {
+    sortChangeEvent({ column, property, order }) {
       this.$emit('sort-change', { column, property, order });
     },
-
 
     /**
      * 筛选事件
@@ -464,10 +461,9 @@ export default create({
      * @param filters 所有筛选的条件
      * @param $table 整个表格控件
      */
-    filterChangeEvent({ column,  property, values, datas, filters, $table}){
-      this.$emit('filter-change', {column,  property, values, datas, filters, $table });
+    filterChangeEvent({ column, property, values, datas, filters, $table }) {
+      this.$emit('filter-change', { column, property, values, datas, filters, $table });
     },
-
 
     /**
      * 当点击快捷菜单时会触发该事件
@@ -475,10 +471,9 @@ export default create({
      * @param row
      * @param column
      */
-    menuClick({ menu, row, column }){
+    menuClick({ menu, row, column }) {
       this.$emit('menu-click', { menu, row, column });
-    }
-
+    },
   },
   created() {
     // alert(this.loading)

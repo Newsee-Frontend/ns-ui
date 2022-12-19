@@ -12,7 +12,7 @@ export default {
     column: { type: Object },
     columns: { type: Array },
     customColumns: { type: Array },
-    keyRefer: { type: Object }
+    keyRefer: { type: Object },
   },
   data() {
     return {};
@@ -92,22 +92,20 @@ export default {
          */
         ...(this.specialColumns.indexOf(this.columnType) > -1
           ? {
-            type: this.columnType,
-            width: this.column.width,
-          }
+              type: this.columnType,
+              width: this.column.width,
+            }
           : {
-            'min-width': this.column.width,
-          }),
+              'min-width': this.column.width,
+            }),
       },
     };
 
     //根据配置来判断是否塞入塞入筛选条件
     if (this.column.isFilter) {
       injection.props.filters = [{ data: '' }];
-      injection.scopedSlots.filter = (scope) => {
-        return (
-          this.$scopedSlots['filter-slot'] && this.$scopedSlots['filter-slot'](scope)
-        );
+      injection.scopedSlots.filter = scope => {
+        return this.$scopedSlots['filter-slot'] && this.$scopedSlots['filter-slot'](scope);
       };
     }
 

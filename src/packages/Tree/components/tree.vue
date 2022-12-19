@@ -15,7 +15,7 @@ export default {
       emitEventToTree: this.emitEventToParent,
       nodeSelected: this.nodeSelected,
       setAttr: this.setAttr,
-      contextList: this.contextList
+      contextList: this.contextList,
     };
   },
   data() {
@@ -78,8 +78,8 @@ export default {
     // context list
     contextList: {
       type: Array,
-      default: ()=>[],
-    }
+      default: () => [],
+    },
   },
   beforeCreate() {
     // 默认为false

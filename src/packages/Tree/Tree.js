@@ -57,9 +57,8 @@ export default create({
     // context list
     contextList: {
       type: Array,
-      default: ()=>[],
-    }
-
+      default: () => [],
+    },
   },
 
   watch: {

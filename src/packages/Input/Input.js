@@ -106,7 +106,6 @@ export default create({
       this.$emit('blur', event);
     },
 
-
     /**
      * focus
      * @param event
