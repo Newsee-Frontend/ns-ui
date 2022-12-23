@@ -13,10 +13,11 @@ import summaryDrop from './components/summary-drop';
 import checkDrop from './components/check-drop';
 
 import img_null from '../../assets/null.jpg';
+import actionDrop from './components/action-drop';
 
 export default create({
   name: 'table',
-  components: { columnRender, summaryDrop, identifier, checkDrop },
+  components: { columnRender, summaryDrop, identifier, checkDrop, actionDrop },
   mixins: [selection, reRender, validate, namefactory, columntype, errorType],
   props: {
     loading: { type: Boolean, default: true },
@@ -86,13 +87,9 @@ export default create({
   watch: {
     head: {
       handler: function(val) {
-        if (this.$refs['main-table']) {
-          this.$refs['main-table'].refreshColumn();
-        }
-
         // 获取所有列配置
         this.$nextTick(() => {
-          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getColumns());
+          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
         });
       },
       deep: true,
@@ -176,25 +173,17 @@ export default create({
               [
                 this.head.map((item, $index) => {
                   return h(`column-render`, {
-                    key: `column-render-${$index}`,
+                    key: `column-render-${item.field}`,
                     props: {
                       column: item,
                       columns: this.head,
                       keyRefer: this.keyRefer,
-                      customColumns: this.customColumns,
                       showCheckDrop: this.showCheckDrop,
                     },
                     on: {
                       ...this.$listeners,
                       'cell-event': this.cellEvent,
-                      'sync-column-render': data => {
-                        // console.log(data.customColumns);
-
-                        const target = this.$refs['main-table'];
-                        ['change', 'lock'].indexOf(data.event) > -1
-                          ? target.refreshColumn()
-                          : target.reloadColumn(data.customColumns);
-                      },
+                      'show-setting': this.showSetting,
                     },
                     scopedSlots: {
                       'header-slot': scope => {
@@ -264,6 +253,24 @@ export default create({
             })
           : null}
 
+        {
+          h('action-drop', {
+            ref: 'actionDrop',
+            props: {
+              customColumns: this.customColumns
+            },
+            on: {
+              ...this.$listeners,
+              'sync-column-render': data => {
+                const target = this.$refs['main-table'];
+                ['lock', 'change'].indexOf(data.event) > -1
+                  ? target.refreshColumn()
+                  : target.reloadColumn(this.customColumns);
+              }
+            },
+          })
+        }
+
         {h('identifier', {
           class: this.recls('mask'),
           props: {
@@ -287,6 +294,11 @@ export default create({
       this.$emit('check-mode-change', mode);
     },
 
+    //展开 设置列
+    showSetting(){
+      this.$refs.actionDrop.openSetting()
+    },
+
     checkMethodFun(params) {
       if (this.checkMode === 'total') {
         return false;
@@ -300,6 +312,7 @@ export default create({
      * @param cb
      */
     fullValidate(cb) {
+      console.log(this.$refs['main-table'].fullValidate);
       this.$refs['main-table'].fullValidate(errMap => {
         let valid = !errMap;
         cb && cb(valid, errMap);

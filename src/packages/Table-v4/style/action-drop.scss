@@ -20,7 +20,7 @@
         padding: 0 3px;
 
         .el-dropdown-selfdefine {
-          font-size: 16px;
+          font-size: 15px;
           padding: 0;
           cursor: pointer;
         }
@@ -40,6 +40,13 @@
         }
       }
     }
+  }
+
+  .action-drop{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    z-index: -1;
   }
 }
 

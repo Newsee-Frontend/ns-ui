@@ -26,112 +26,119 @@ export default {
   },
   render(h) {
     return (
-      <el-dropdown
-        ref={'column-setting-dropdown'}
-        hide-on-click={false}
-        trigger={'click'}
-        on-visible-change={this.visibleChange}
-      >
-        <span class={'el-dropdown-link'} on-click={() => (this.menuRender = true)}>
-          <i class={'el-icon-setting'} />
-        </span>
-        <el-dropdown-menu slot="dropdown" class={'column-setting-drag'}>
-          {
-            <div class={'column-setting-head'}>
-              {/*<span>{this.filterModel || '请输入'}</span>*/}
-              <Input
-                class={'column-setting-filter'}
-                value={this.filterModel}
-                onInput={value => {
-                  this.filterModel = value;
+      <div class={'action-drop'}>
+        <el-dropdown
+          ref={'column-setting-dropdown'}
+          hide-on-click={false}
+          trigger={'click'}
+          on-visible-change={this.visibleChange}
+        >
+          <span ref={'setting'} class={['el-dropdown-link','action-drop']} on-click={() => (this.menuRender = true)}>
+            <i class={'el-icon-setting'} />
+          </span>
+          <el-dropdown-menu slot="dropdown" class={'column-setting-drag'}>
+            {
+              <div class={'column-setting-head'}>
+                {/*<span>{this.filterModel || '请输入'}</span>*/}
+                <Input
+                  class={'column-setting-filter'}
+                  value={this.filterModel}
+                  onInput={value => {
+                    this.filterModel = value;
 
-                  this.setSpecialColumnsByFilter(this.filterModel);
+                    this.setSpecialColumnsByFilter(this.filterModel);
 
-                  this.$emit('input', value);
-                }}
-                clearable={true}
-                size={'small'}
-                placeholder={'请搜索查询'}
-                width={'100%'}
-              />
-              <p class={'column-setting-reset'} on-click={this.columnSettingReset}>
-                {'恢复系统默认'}
-              </p>
-            </div>
-          }
-          {this.menuRender ? (
-            this.customColumns && !this.customColumns.every(col => col.hideInDrop) ? (
-              <draggable
-                class={'column-setting-content'}
-                value={this.customColumns}
-                onInput={event => {
-                  this.$emit('input', event);
-                }}
-                options={{ disabled: false }}
-                on-start={this.dragHandle}
-                on-end={this.dropHandle}
-              >
-                {this.customColumns.map((item, $index) => {
-                  this.filterFn(item, this.filterModel);
+                    this.$emit('input', value);
+                  }}
+                  clearable={true}
+                  size={'small'}
+                  placeholder={'请搜索查询'}
+                  width={'100%'}
+                />
+                <p class={'column-setting-reset'} on-click={this.columnSettingReset}>
+                  {'恢复系统默认'}
+                </p>
+              </div>
+            }
+            {this.menuRender ? (
+              this.customColumns && !this.customColumns.every(col => col.hideInDrop) ? (
+                <draggable
+                  class={'column-setting-content'}
+                  value={this.customColumns}
+                  onInput={event => {
+                    this.$emit('input', event);
+                  }}
+                  options={{ disabled: false }}
+                  on-start={this.dragHandle}
+                  on-end={this.dropHandle}
+                >
+                  {this.customColumns.map((item, $index) => {
+                    this.filterFn(item, this.filterModel);
 
-                  return (
-                    <el-dropdown-item key={$index} class={`clear ${item.hideInDrop ? 'hide' : ''}`}>
-                      {h(
-                        'Checkbox',
-                        {
-                          class: 'fl',
+                    return (
+                      <el-dropdown-item key={$index} class={`clear ${item.hideInDrop ? 'hide' : ''}`}>
+                        {h(
+                          'Checkbox',
+                          {
+                            class: 'fl',
+                            props: {
+                              value: item.visible,
+                              isGroup: false,
+                            },
+                            on: {
+                              input: event => {
+                                this.$emit('input', event);
+                              },
+
+                              change: value => {
+                                item.visible = value;
+                                this.$emit('sync-column-render', {
+                                  event: 'change',
+                                  customColumns: this.customColumns,
+                                });
+                              },
+                            },
+                          },
+                          item.title +
+                            (item.params && item.params.subTitle ? `(${item.params.subTitle})` : '')
+                        )}
+                        {h('Icon-class', {
+                          class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,
                           props: {
-                            value: item.visible,
-                            isGroup: false,
+                            'icon-class': item.fixed === 'left' ? 'lock ' : 'unlock',
                           },
                           on: {
-                            input: event => {
-                              this.$emit('input', event);
-                            },
-
-                            change: value => {
-                              item.visible = value;
-                              this.$emit('sync-column-render', {
-                                event: 'change',
-                                customColumns: this.customColumns,
-                              });
-                            },
+                            click: _ => this.dropLock($index),
                           },
-                        },
-                        item.title +
-                          (item.params && item.params.subTitle ? `(${item.params.subTitle})` : '')
-                      )}
-                      {h('Icon-class', {
-                        class: `fr ${item.fixed === 'left' ? 'locked' : ''}`,
-                        props: {
-                          'icon-class': item.fixed === 'left' ? 'lock ' : 'unlock',
-                        },
-                        on: {
-                          click: _ => this.dropLock($index),
-                        },
-                      })}
-                    </el-dropdown-item>
-                  );
-                })}
-              </draggable>
-            ) : (
-              <el-dropdown-item>{'没有匹配的'}</el-dropdown-item>
-            )
-          ) : null}
-          {
-            <div
-              key={'drop-submit'}
-              class={'column-setting-submit'}
-              on-click={this.columnSettingSubmit}
-            >
-              <Button type={'primary'}>确定</Button>
-            </div>
-          }
-        </el-dropdown-menu>
-      </el-dropdown>
+                        })}
+                      </el-dropdown-item>
+                    );
+                  })}
+                </draggable>
+              ) : (
+                <el-dropdown-item>{'没有匹配的'}</el-dropdown-item>
+              )
+            ) : null}
+            {
+              <div
+                key={'drop-submit'}
+                class={'column-setting-submit'}
+                on-click={this.columnSettingSubmit}
+              >
+                <Button type={'primary'}>确定</Button>
+              </div>
+            }
+          </el-dropdown-menu>
+        </el-dropdown>
+      </div>
     );
   },
   methods: {
+    //打开设置
+    openSetting(){
+      this.$refs.setting.click()
+    },
+
     dragHandle() {
       // console.log('dragHandle');
     },

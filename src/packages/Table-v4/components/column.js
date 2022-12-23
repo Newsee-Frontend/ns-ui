@@ -11,7 +11,6 @@ export default {
   props: {
     column: { type: Object },
     columns: { type: Array },
-    customColumns: { type: Array },
     keyRefer: { type: Object },
   },
   data() {
@@ -111,7 +110,7 @@ export default {
 
     // 列头插槽
     //判断首列是否是checkbox redio index(seq) 等，如果是的话，就不需要列头插槽
-    if (this.firstColInclude.indexOf(this.columnType) !== -1) {
+    if ([...this.firstColInclude, ...this.settingColInclude].indexOf(this.columnType) === -1) {
       injection.scopedSlots.header = scope => {
         return (
           <span>
@@ -138,12 +137,9 @@ export default {
         },
         header: scope => {
           return (
-            <action-drop
-              customColumns={this.customColumns}
-              on-sync-column-render={this.syncColRender}
-              on-column-setting-submit={this.columnSettingSubmit}
-              on-column-setting-reset={this.columnSettingReset}
-            />
+            <span class={'el-dropdown-link el-dropdown-selfdefine'} on-click={this.showSettingDrop}>
+              <i class={'el-icon-setting'}/>
+            </span>
           );
         },
       };
@@ -243,33 +239,9 @@ export default {
       this.$emit('table-action', info, { row, rowIndex, column, columnIndex });
     },
 
-    /**
-     * sync column render
-     * @param event
-     * @param customColumns
-     */
-    syncColRender({ event, customColumns }) {
-      this.$emit('sync-column-render', { event, customColumns });
-    },
-
-    /**
-     * 列表设置结果提交
-     * column setting submit
-     * @param column - column data after setting
-     */
-    columnSettingSubmit(column) {
-      // console.log(column);
-
-      this.$emit('column-setting-submit', column);
-    },
-
-    /**
-     * 列表设置恢复默认
-     * column setting reset
-     * @param column
-     */
-    columnSettingReset(column) {
-      this.$emit('column-setting-reset', this.customColumns);
-    },
-  },
+    // 设置点击
+    showSettingDrop(){
+      this.$emit('show-setting');
+    }
+  }
 };

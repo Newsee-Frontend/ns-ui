@@ -11,6 +11,11 @@
         <slot name="cell-slot" v-bind="scope"></slot>
       </template>
 
+      <!--列头插槽-->
+      <template slot="header-slot" slot-scope="{ column }">
+        <ns-biz-icon-tip :info="column.tip"></ns-biz-icon-tip>
+      </template>
+
       <!--表格操作列按钮插槽-->
       <template #btn-slot="{ row, rowIndex, column, columnIndex }">
         <action-cell :btnList="row[keyRefer.scope.actionBtnList]"
@@ -55,6 +60,7 @@ import keyRefer from './config/keyRefer';
 import rulesConfig from './config/rulesInfo';
 import actionCell from './components/action-cell';
 import filterComponents from './components/filter-components';
+import nsBizIconTip from './components/NS-biz-icon-tip';
 
 export default {
   name: 'biz-table',
@@ -62,6 +68,7 @@ export default {
   components: {
     actionCell,
     filterComponents,
+    nsBizIconTip
   },
   data() {
     return {
