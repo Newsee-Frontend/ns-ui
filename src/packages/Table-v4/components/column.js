@@ -138,7 +138,7 @@ export default {
         header: scope => {
           return (
             <span class={'el-dropdown-link el-dropdown-selfdefine'} on-click={this.showSettingDrop}>
-              <i class={'el-icon-setting'}/>
+              <i class={'el-icon-setting'} />
             </span>
           );
         },
@@ -240,8 +240,8 @@ export default {
     },
 
     // 设置点击
-    showSettingDrop(){
+    showSettingDrop() {
       this.$emit('show-setting');
-    }
-  }
+    },
+  },
 };

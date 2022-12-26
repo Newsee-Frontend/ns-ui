@@ -89,7 +89,8 @@ export default create({
       handler: function(val) {
         // 获取所有列配置
         this.$nextTick(() => {
-          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
+          this.$refs['main-table'] &&
+            (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
         });
       },
       deep: true,
@@ -253,23 +254,21 @@ export default create({
             })
           : null}
 
-        {
-          h('action-drop', {
-            ref: 'actionDrop',
-            props: {
-              customColumns: this.customColumns
+        {h('action-drop', {
+          ref: 'actionDrop',
+          props: {
+            customColumns: this.customColumns,
+          },
+          on: {
+            ...this.$listeners,
+            'sync-column-render': data => {
+              const target = this.$refs['main-table'];
+              ['lock', 'change'].indexOf(data.event) > -1
+                ? target.refreshColumn()
+                : target.reloadColumn(this.customColumns);
             },
-            on: {
-              ...this.$listeners,
-              'sync-column-render': data => {
-                const target = this.$refs['main-table'];
-                ['lock', 'change'].indexOf(data.event) > -1
-                  ? target.refreshColumn()
-                  : target.reloadColumn(this.customColumns);
-              }
-            },
-          })
-        }
+          },
+        })}
 
         {h('identifier', {
           class: this.recls('mask'),
@@ -295,8 +294,8 @@ export default create({
     },
 
     //展开 设置列
-    showSetting(){
-      this.$refs.actionDrop.openSetting()
+    showSetting() {
+      this.$refs.actionDrop.openSetting();
     },
 
     checkMethodFun(params) {
