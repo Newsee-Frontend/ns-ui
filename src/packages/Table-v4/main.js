@@ -60,6 +60,11 @@ export default create({
     showCheckDrop: { type: Boolean, default: false }, //是否显示checkbox的下拉
     mergeCells: { type: Array, default: () => [] }, //临时合并指定的单元格
     mergeFooterItems: { type: Array, default: () => [] }, //临时合并表尾
+
+    // 自动跟随某个属性的变化去重新计算表格，和手动调用 recalculate 方法是一样的效果（对于通过某个属性来控制显示/隐藏切换时可能会用到）
+    syncResize: {
+      type: [Boolean, String, Number]
+    }
   },
   data() {
     return {
@@ -111,6 +116,8 @@ export default create({
       'show-header-overflow': true,
       'edit-config': this.editConfig,
       'edit-rules': this.validRules,
+      'sync-resize': this.syncResize,
+      'scroll-x': { gt:-1},
       'checkbox-config': {
         checkField: 'checked',
         trigger: 'cell',
