@@ -63,8 +63,8 @@ export default create({
 
     // 自动跟随某个属性的变化去重新计算表格，和手动调用 recalculate 方法是一样的效果（对于通过某个属性来控制显示/隐藏切换时可能会用到）
     syncResize: {
-      type: [Boolean, String, Number]
-    }
+      type: [Boolean, String, Number],
+    },
   },
   data() {
     return {
@@ -94,7 +94,8 @@ export default create({
       handler: function(val) {
         // 获取所有列配置
         this.$nextTick(() => {
-          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
+          this.$refs['main-table'] &&
+            (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
         });
       },
       deep: true,
@@ -117,7 +118,7 @@ export default create({
       'edit-config': this.editConfig,
       'edit-rules': this.validRules,
       'sync-resize': this.syncResize,
-      'scroll-x': { gt:-1},
+      'scroll-x': { gt: -1 },
       'checkbox-config': {
         checkField: 'checked',
         trigger: 'cell',
@@ -260,23 +261,21 @@ export default create({
             })
           : null}
 
-        {
-          h('action-drop', {
-            ref: 'actionDrop',
-            props: {
-              customColumns: this.customColumns
+        {h('action-drop', {
+          ref: 'actionDrop',
+          props: {
+            customColumns: this.customColumns,
+          },
+          on: {
+            ...this.$listeners,
+            'sync-column-render': data => {
+              const target = this.$refs['main-table'];
+              ['lock', 'change'].indexOf(data.event) > -1
+                ? target.refreshColumn()
+                : target.reloadColumn(this.customColumns);
             },
-            on: {
-              ...this.$listeners,
-              'sync-column-render': data => {
-                const target = this.$refs['main-table'];
-                ['lock', 'change'].indexOf(data.event) > -1
-                  ? target.refreshColumn()
-                  : target.reloadColumn(this.customColumns);
-              }
-            },
-          })
-        }
+          },
+        })}
 
         {h('identifier', {
           class: this.recls('mask'),
@@ -302,8 +301,8 @@ export default create({
     },
 
     //展开 设置列
-    showSetting(){
-      this.$refs.actionDrop.openSetting()
+    showSetting() {
+      this.$refs.actionDrop.openSetting();
     },
 
     checkMethodFun(params) {
