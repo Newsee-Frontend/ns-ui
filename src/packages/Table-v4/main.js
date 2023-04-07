@@ -207,7 +207,7 @@ export default create({
                           ? this.$scopedSlots['cell-slot']({
                               row: scope.row,
                               data: scope.data,
-                              column: item,
+                              column: { ...item, id: scope.column.id, property: scope.column.property},
                               columns: this.head,
                               rowIndex: scope.$rowIndex,
                               columnIndex: scope.$columnIndex,
