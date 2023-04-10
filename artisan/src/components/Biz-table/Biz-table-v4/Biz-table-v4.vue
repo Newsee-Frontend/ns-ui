@@ -122,7 +122,12 @@ export default {
       default: 'id',
     },
     mergeCells: { type: Array, default: ()=>[]}, //临时合并指定的单元格
-    mergeFooterItems: { type: Array, default: ()=>[]} //临时合并表尾
+    mergeFooterItems: { type: Array, default: ()=>[]}, //临时合并表尾
+
+    selectTrigger: {
+      type: String,
+      default: 'cell',
+    }
   },
 
   computed: {
@@ -153,7 +158,8 @@ export default {
         menuConfig: this.menuConfig,
         defaultSort: this.defaultSort,
         mergeCells: this.mergeCells,
-        mergeFooterItems: this.mergeFooterItems
+        mergeFooterItems: this.mergeFooterItems,
+        selectTrigger: this.selectTrigger
       };
       if (!this.isHugeData) {
         props.data = this.data;

@@ -64,6 +64,13 @@ export default create({
     // 自动跟随某个属性的变化去重新计算表格，和手动调用 recalculate 方法是一样的效果（对于通过某个属性来控制显示/隐藏切换时可能会用到）
     syncResize: {
       type: [Boolean, String, Number]
+    },
+
+
+    // 增加行选择的触发
+    selectTrigger: {
+      type: String,
+      default: 'cell'
     }
   },
   data() {
@@ -120,10 +127,14 @@ export default create({
       'scroll-x': { gt:-1},
       'checkbox-config': {
         checkField: 'checked',
-        trigger: 'cell',
+        trigger: this.selectTrigger,
         strict: true,
         showHeader: this.checkMode !== 'total',
         checkMethod: this.checkMethodFun,
+      },
+
+      'radio-config': {
+        trigger: this.selectTrigger
       },
       'sort-config': {
         defaultSort: this.defaultSort,

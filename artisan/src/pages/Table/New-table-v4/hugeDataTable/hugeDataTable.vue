@@ -29,7 +29,8 @@
           :data="tableData.list"
           :total="total"
           isHugeData
-          firstColType="checkbox"
+          selectTrigger="row"
+          firstColType="radio"
           :searchConditions="searchConditions"
           @select-change="selectChange"
           @reload="getTableData()"
