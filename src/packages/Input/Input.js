@@ -10,26 +10,102 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: [String, Number],
+
+    /**
+     * 宽度
+     *  @values 120px; 120都支持
+     */
     width: { type: [String, Number] },
+
+    /**
+     * 高度
+     *  @values 120px; 120都支持
+     */
     height: { type: [String, Number] },
+
+    /**
+     * 原生属性
+     */
     name: { type: String, default: '' },
-    type: { type: String, default: 'text' }, //text，textarea
+
+    /**
+     * 类型
+     * @values text，textarea
+     */
+    type: { type: String, default: 'text' },
+
+    /**
+     * 输入框占位文本
+     */
     placeholder: { type: String, default: null },
+
+    /**
+     * 尺寸
+     * @values 'mini', 'small', 'normal', 'medium', 'large'
+     * @values 该尺寸只改宽度， 高度固定32px
+     */
     size: {
       type: String,
       validator: s => sizeValidator(s),
     },
-    prefixIcon: { type: String }, //输入框头部图标
-    suffixIcon: { type: String }, //输入框尾部图标
+
+    /**
+     * 输入框头部图标
+     */
+    prefixIcon: { type: String },
+
+    /**
+     * 输入框尾部图标
+     */
+    suffixIcon: { type: String },
+
+    /**
+     * 输入框行数，只对 type="textarea" 有效
+     */
     rows: { type: Number, default: 3 },
-    minlength: { type: [Number, String] }, //最小输入长度
-    maxlength: { type: [Number, String], default: 300 }, //最大输入长度
+
+    /**
+     * 原生属性，最小输入长度
+     */
+    minlength: { type: [Number, String] },
+
+    /**
+     * 最大输入长度
+     */
+    maxlength: { type: [Number, String], default: 300 },
+
+    /**
+     * 禁用
+     */
     disabled: { type: Boolean, default: false },
+
+    /**
+     * 原生属性，自动获取焦点
+     */
     autofocus: { type: Boolean, default: false },
+
+    /**
+     * 原生属性，是否只读
+     */
     readonly: { type: Boolean, default: false },
+
+    /**
+     * 是否可清空
+     */
     clearable: { type: Boolean, default: false },
+
+    /**
+     * 原生属性，设置最大值
+     */
     max: Number,
+
+    /**
+     * 原生属性，设置最小值
+     */
     min: Number,
   },
 
@@ -51,7 +127,7 @@ export default create({
   render(h) {
     const ipticon = (type, icon) => {
       return icon ? (
-        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)} />
+        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)}/>
       ) : null;
     };
     return (
@@ -89,28 +165,34 @@ export default create({
   methods: {
     handleModelInput(e) {
       this.childIpt = e;
+      /**
+       * 在 Input 值改变时触发
+       */
       this.$emit('input', this.childIpt);
     },
-    /**
-     * change
-     * @param value
-     */
+
     change(value) {
+      /**
+       * 仅在输入框失去焦点或用户按下回车时触发
+       * @property (value: String|Number)
+       */
       this.$emit('change', value);
     },
-    /**
-     * blur
-     * @param event
-     */
+
+
     blur(event) {
+      /**
+       * 在 Input 失去焦点时触发
+       *  @property (event: Event)
+       */
       this.$emit('blur', event);
     },
 
-    /**
-     * focus
-     * @param event
-     */
     focus(event) {
+      /**
+       * 在 Input 获得焦点时触发
+       *  @property (event: Event)
+       */
       this.$emit('focus', event);
     },
 
@@ -119,14 +201,19 @@ export default create({
      * @param event
      */
     clear(event) {
+      /**
+       * 在点击由 clearable 属性生成的清空按钮时触发
+       */
       this.$emit('clear', event);
     },
 
-    /**
-     * icon-click
-     * @param type
-     */
+
     iconClick(type) {
+      /**
+       * 前后icon的点击事件， 配置prefixIcon、suffixIcon 才会触发
+       * @property (val: String|Number, type:String )
+       * @property type: prefix 前置icon点击; suffix 后置icon点击
+       */
       this.$emit('iconClick', this.childIpt, type);
     },
   },
