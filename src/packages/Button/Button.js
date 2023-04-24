@@ -8,20 +8,62 @@ export default create({
   },
 
   props: {
-    //尺寸可选 medium,small,mini
+    /**
+     * 尺寸
+     * @values medium / small / mini
+     */
     size: {
       type: String,
       validator: s => sizeValidator(s),
     },
-    type: { type: String }, //类型 primary,success,warning,danger,info,text
-    plain: { type: Boolean, default: false }, //是否朴素按钮
-    round: { type: Boolean, default: false }, //是否为原型按钮
-    loading: { type: Boolean, default: false }, //是否加载中状态
-    disabled: { type: Boolean, default: false }, //是否禁用状态
-    icon: { type: String }, //图标，已有的图标库中的图标名
-    autofocus: { type: Boolean, default: false }, //是否默认聚焦
+
+    /**
+     * 类型
+     * @values primary / success / warning / danger / info / text
+     */
+    type: { type: String },
+
+    /**
+     * 是否朴素按钮
+     */
+    plain: { type: Boolean, default: false },
+
+    /**
+     * 是否圆角按钮
+     */
+    round: { type: Boolean, default: false },
+
+    /**
+     * 是否圆形按钮
+     */
+    circle: { type: Boolean, default: false },
+
+    /**
+     * 是否加载中状态
+     */
+    loading: { type: Boolean, default: false },
+
+    /**
+     * 是否禁用状态
+     */
+    disabled: { type: Boolean, default: false },
+
+    /**
+     * 图标，已有的图标库中的图标名
+     */
+    icon: { type: String },
+
+    /**
+     * 是否默认聚焦
+     */
+    autofocus: { type: Boolean, default: false },
+
+    /**
+     * 原生 type 属性
+     * @values button / submit / reset
+     */
+
     'native-type': { type: String, default: 'button' }, //原生 type 属性  button,submit,reset
-    circle: { type: Boolean, default: false }, //尺寸 是否为圆形
   },
 
   render(h) {
@@ -46,6 +88,10 @@ export default create({
 
   methods: {
     click() {
+      /**
+       * 点击事件
+       * @event click
+       */
       this.$emit('click');
     },
   },
