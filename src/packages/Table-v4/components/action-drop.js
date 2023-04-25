@@ -33,7 +33,11 @@ export default {
           trigger={'click'}
           on-visible-change={this.visibleChange}
         >
-          <span ref={'setting'} class={['el-dropdown-link','action-drop']} on-click={() => (this.menuRender = true)}>
+          <span
+            ref={'setting'}
+            class={['el-dropdown-link', 'action-drop']}
+            on-click={() => (this.menuRender = true)}
+          >
             <i class={'el-icon-setting'} />
           </span>
           <el-dropdown-menu slot="dropdown" class={'column-setting-drag'}>
@@ -76,7 +80,10 @@ export default {
                     this.filterFn(item, this.filterModel);
 
                     return (
-                      <el-dropdown-item key={$index} class={`clear ${item.hideInDrop ? 'hide' : ''}`}>
+                      <el-dropdown-item
+                        key={$index}
+                        class={`clear ${item.hideInDrop ? 'hide' : ''}`}
+                      >
                         {h(
                           'Checkbox',
                           {
@@ -135,8 +142,8 @@ export default {
   },
   methods: {
     //打开设置
-    openSetting(){
-      this.$refs.setting.click()
+    openSetting() {
+      this.$refs.setting.click();
     },
 
     dragHandle() {

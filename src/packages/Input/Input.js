@@ -127,7 +127,7 @@ export default create({
   render(h) {
     const ipticon = (type, icon) => {
       return icon ? (
-        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)}/>
+        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)} />
       ) : null;
     };
     return (
@@ -179,7 +179,6 @@ export default create({
       this.$emit('change', value);
     },
 
-
     blur(event) {
       /**
        * 在 Input 失去焦点时触发
@@ -206,7 +205,6 @@ export default create({
        */
       this.$emit('clear', event);
     },
-
 
     iconClick(type) {
       /**
