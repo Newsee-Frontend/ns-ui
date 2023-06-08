@@ -3,6 +3,7 @@ import create from '../../create/create-basic';
 export default create({
   name: 'icon-class',
   props: {
+    // 唯一标识
     iconClass: {
       type: String,
       default: '',
@@ -19,8 +20,11 @@ export default create({
     return <i class={`${this.recls()} ${this.iconName}`} on-click={this.click} />;
   },
   methods: {
-    //click时触发的事件
     click() {
+      /**
+       * 点击事件
+       * @event click
+       */
       this.$emit('click');
     },
   },

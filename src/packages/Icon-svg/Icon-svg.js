@@ -3,6 +3,7 @@ import create from '../../create/create-basic';
 export default create({
   name: 'icon-svg',
   props: {
+    // 唯一标识
     iconClass: {
       type: [String],
       required: true,
@@ -22,6 +23,10 @@ export default create({
     );
   },
   methods: {
+    /**
+     * 点击事件
+     * @event click
+     */
     click() {
       this.$emit('click');
     },

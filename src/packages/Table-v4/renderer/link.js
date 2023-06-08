@@ -12,7 +12,7 @@ export default {
           class={'cell-link'}
           on-click={() => events.click({ row, rowIndex, column, columnIndex })}
         >
-          {formatter ? formatter[value] : value}
+          {formatter ? formatter(value) : value}
         </a>,
       ];
     },

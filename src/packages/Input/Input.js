@@ -17,13 +17,13 @@ export default create({
 
     /**
      * 宽度
-     *  @values 120px; 120都支持
+     *  @values 120px; 120
      */
     width: { type: [String, Number] },
 
     /**
      * 高度
-     *  @values 120px; 120都支持
+     *  @values 120px; 120
      */
     height: { type: [String, Number] },
 
@@ -46,7 +46,6 @@ export default create({
     /**
      * 尺寸
      * @values 'mini', 'small', 'normal', 'medium', 'large'
-     * @values 该尺寸只改宽度， 高度固定32px
      */
     size: {
       type: String,
@@ -156,8 +155,11 @@ export default create({
         {ipticon('prefix', this.prefixIcon)}
         {ipticon('suffix', this.suffixIcon)}
 
-        <template slot="prefix">{this.$slots.prefix}</template>
-        <template slot="suffix">{this.$slots.suffix}</template>
+        <template slot="prefix">
+          {this.$slots.prefix}
+        </template>
+        <template slot="suffix">
+          {this.$slots.suffix}</template>
       </el-input>
     );
   },
@@ -183,7 +185,7 @@ export default create({
     blur(event) {
       /**
        * 在 Input 失去焦点时触发
-       *  @property (event: Event)
+       *  @property {event} Event
        */
       this.$emit('blur', event);
     },
@@ -191,7 +193,7 @@ export default create({
     focus(event) {
       /**
        * 在 Input 获得焦点时触发
-       *  @property (event: Event)
+       * @property {event} Event
        */
       this.$emit('focus', event);
     },
@@ -203,6 +205,7 @@ export default create({
     clear(event) {
       /**
        * 在点击由 clearable 属性生成的清空按钮时触发
+       *  @property {event} Event
        */
       this.$emit('clear', event);
     },
@@ -211,8 +214,8 @@ export default create({
     iconClick(type) {
       /**
        * 前后icon的点击事件， 配置prefixIcon、suffixIcon 才会触发
-       * @property (val: String|Number, type:String )
-       * @property type: prefix 前置icon点击; suffix 后置icon点击
+       * @property {String|Number} val  -更新后的值
+       * @property {String} type -prefix 前置icon点击; suffix 后置icon点击
        */
       this.$emit('iconClick', this.childIpt, type);
     },
@@ -222,3 +225,7 @@ export default create({
     this.childIpt = this.value;
   },
 });
+
+/**
+ * @slot content - The content slot.
+ */
