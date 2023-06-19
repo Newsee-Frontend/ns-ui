@@ -100,13 +100,17 @@ export default {
         //数字 金额列自定义 formatter
         else if( key === 'formatter' &&  col.filterType === 'number'){
           newCol[key] = (val)=>{
-            if(val && col.editConfig.countAfterPoint > -1){
-              val = Number(val.toFixed(col.editConfig.countAfterPoint))
+            let { countAfterPoint, makeUpZero, showSeparator }  = col.editConfig || {}
+            //业务处理过数据 直接返回
+            if(typeof val !== 'number') return val
+
+            if(val && countAfterPoint > 0){
+              val = val.toFixed(countAfterPoint)
             }
-            if(val && !col.editConfig.isMakeUpZero){
+            if(val && !makeUpZero){
               val = parseFloat(val)
             }
-            if(val && col.editConfig.isShowSeparator){
+            if(val && showSeparator){
               val = getThousandNum(val)
             }
             return val
