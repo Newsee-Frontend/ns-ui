@@ -46,9 +46,13 @@
               :total="total"
               :autoResize="false"
               :customHeight="300"
+              first-col-type="index"
               :searchConditions="searchConditions"
+              :draggable="true"
               @table-action="tableAction"
+              @drag-end="dragEnd"
               @reload="requestTableData"
+
             >
               <template slot="cell-slot" slot-scope="scope">
 
@@ -56,8 +60,9 @@
                 <!--简单情况下，直接写在插槽内部-->
                 <!--scope - 对外暴露的参数-->
 
-                <span :style="{
-                'color': createRgb(),
+                <span class="drag-btn"
+                      :style="{
+               'color': createRgb(),
                 'font-weight':600
                 }">
                   {{`${scope.row.customSlot}的插槽` }}
@@ -132,6 +137,7 @@
 
           console.log('请求到的表格数据：');
           console.log(this.tableData);
+          console.log(this.tableData.list.map(i => i.customSlot).join(','));
 
           this.dataHandle(this.gridBtns);
 
@@ -148,6 +154,13 @@
         this.$refs.formTable.clearFilter()
       },
 
+
+      /**
+       * 行拖拽结束
+       */
+      dragEnd({ data, newIndex, oldIndex}){
+        console.log(data, newIndex, oldIndex);
+      },
       /**
        * 设置筛选条件
        */
@@ -222,9 +235,6 @@
         const b = Math.floor(Math.random() * 256);
         return 'rgb(' + r + ',' + g + ',' + b + ')';
       },
-
-
-
 
     },
 
