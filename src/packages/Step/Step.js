@@ -11,9 +11,25 @@ export default create({
     };
   },
   props: {
+    /**
+     * 标题
+     */
     title: String,
+
+    /**
+     * 图标
+     */
     icon: String,
+
+    /**
+     * 描述性文字
+     */
     description: String,
+
+    /**
+     * 设置当前步骤的状态，不设置则根据 steps 确定状态
+     * @values 'wait','process','finish ','error','success'
+     */
     status: String,
   },
 
