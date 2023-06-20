@@ -11,8 +11,19 @@ export default create({
   },
 
   props: {
+    /**
+     * 选中项绑定值
+     */
     value: Array,
+
+    /**
+     * 可选项数据源，键名可通过 Props 属性配置
+     */
     options: Array,
+
+    /**
+     * 配置选项
+     */
     props: {
       type: Object,
       default: () => ({
@@ -21,16 +32,57 @@ export default create({
         children: 'children',
       }),
     },
+
+    /**
+     * 输入框占位文本
+     */
     placeholder: { type: String, default: '请选择' },
-    size: { type: String, validator: s => sizeValidator(s) }, //尺寸
+
+    /**
+     * 尺寸
+     */
+    size: { type: String, validator: s => sizeValidator(s) },
+
+    /**
+     * 宽度
+     */
     width: [String, Number],
+
+    /**
+     * 高度 
+     */
     height: [String, Number],
+
+    /**
+     * 次级菜单的展开方式
+     * @values 'click','hover'
+     */
     expandTrigger: { type: String, default: 'click' },
+
+    /**
+     * 是否禁用
+     */
     disabled: { type: Boolean, default: false },
+
+    /**
+     * 是否支持清空选项
+     */
     clearable: { type: Boolean, default: false },
-    showAllLevels: { type: Boolean, default: true }, //输入框中是否显示选中值的完整路径
-    changeOnSelect: { type: Boolean, default: false }, //是否允许选择任意一级的选项
-    filterable: { type: Boolean, default: false }, //是否可搜索选项
+
+    /**
+     * 输入框中是否显示选中值的完整路径
+     */
+    showAllLevels: { type: Boolean, default: true },
+
+    /**
+     * 是否允许选择任意一级的选项
+     */
+    changeOnSelect: { type: Boolean, default: false }, 
+
+    /**
+     * 是否可搜索选项
+     */
+    filterable: { type: Boolean, default: false },
   },
 
   computed: {
@@ -72,10 +124,20 @@ export default create({
   methods: {
     handleModel: function(e) {
       this.childCascader = e;
+      /**
+       * 当修改值时触发
+       * @event input
+       * @property { Array }  value 选中节点的值
+       */
       this.$emit('input', this.childCascader);
     },
 
     change: function(value) {
+      /**
+       * 当选中节点变化时触发
+       * @event change
+       * @property { Array }  value 选中节点的值
+       */
       this.$emit('change', value);
     },
   },
