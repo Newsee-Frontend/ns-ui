@@ -8,30 +8,69 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: [Number, Array],
-    //是否显示 tooltip
+
+    /**
+     * 是否显示 tooltip
+     */
     showTooltip: { type: Boolean, default: true },
-    //是否禁用
+
+    /**
+     * 是否禁用
+     */
     disabled: { type: Boolean, default: false },
-    //步长
+
+    /**
+     * 步长
+     */
     step: { type: Number, default: 1 },
-    //是否显示间断点
+
+    /**
+     * 是否显示间断点
+     */
     showStops: { type: Boolean, default: false },
-    //是否显示输入框，仅在非范围选择时有效
+
+    /**
+     * 是否显示输入框，仅在非范围选择时有效
+     */
     showInput: { type: Boolean, default: false },
-    //是否为范围选择
+
+    /**
+     * 是否为范围选择
+     */
     range: { type: Boolean, default: false },
-    //最小可选择值
+
+    /**
+     * 最小可选择值
+     */
     min: { type: Number, default: 0 },
-    //最大可选择值
+
+    /**
+     * 最大可选择值
+     */
     max: { type: Number, default: 100 },
-    //是否竖向模式
+
+    /**
+     * 是否竖向模式
+     */
     vertical: { type: Boolean, default: false },
-    //Slider 宽度
+
+    /**
+     * Slider 宽度
+     */
     width: [Number, String],
-    //Slider 高度，竖向模式时必填
+
+    /**
+     * Slider 高度，竖向模式时必填
+     */
     height: [Number, String],
-    //自定义 tooltip message
+
+    /**
+     * 自定义 tooltip message
+     */
     formatTooltip: {
       type: Function,
       default: function(val) {
@@ -75,10 +114,20 @@ export default create({
   methods: {
     handleModel(e) {
       this.childSlider = e;
+      /**
+       * 数据改变时触发（使用鼠标拖曳时，活动过程实时触发）
+       * @event input
+       * @property { Number } value  改变后的值
+       */
       this.$emit('input', this.childSlider);
     },
 
     change(e) {
+      /**
+       * 值改变时触发（使用鼠标拖曳时，只在松开鼠标后触发）
+       * @event change
+       * @property { Number } value  改变后的值
+       */
       this.$emit('change', e);
     },
   },
