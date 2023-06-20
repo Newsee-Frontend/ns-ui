@@ -15,7 +15,14 @@ export default create({
   },
 
   props: {
+    /**
+     * 绑定值
+     */
     value: [Array],
+
+    /**
+     * 文件列表的类型
+     */
     type: {
       type: String,
       default: 'picture-single',
@@ -23,29 +30,65 @@ export default create({
         return uploadTypes.some(t);
       },
     },
+
+    /**
+     * 宽度
+     */
     width: {
       type: [String, Number],
       default: '148px',
     },
+
+    /**
+     * 高度
+     */
     height: {
       type: [String, Number],
       default: '148px',
     },
+
+    /**
+     * 上传时附带的额外参数
+     */
     data: {
       type: Object,
       default: () => {},
     },
+
+    /**
+     * 上传的文件字段名
+     */
     name: {
       type: String,
       default: 'file',
     },
+
+    /**
+     * 是否支持多选文件
+     */
     multiple: {
       type: Boolean,
-      default: false, //是否多选
+      default: false,
     },
-    action: { type: String }, //request url
+
+    /**
+     * 必选参数，上传的地址
+     */
+    action: { type: String },
+
+    /**
+     * 是否禁用
+     */
     disabled: { type: Boolean, default: false },
+
+    /**
+     * 设置上传的请求头部
+     */
     headers: Object,
+
+    /**
+     * 键值映射
+     */
     keyRefer: {
       type: Object,
       default: function() {
@@ -54,31 +97,79 @@ export default create({
         };
       },
     },
+
+    /**
+     * 文件类型
+     */
     fileType: {
       type: Array,
       default: function() {
         return ['jpeg', 'jpg', 'png'];
       },
     },
+
+    /**
+     * 上传文件之前的钩子，参数为上传的文件，若返回 false 或者返回 Promise 且被 reject，则停止上传。
+     */
     beforeUpload: Function,
+
+    /**
+     * 删除文件之前的钩子，参数为上传的文件和文件列表，若返回 false 或者返回 Promise 且被 reject，则停止删除。
+     */
     beforeRemove: Function,
-    limit: Number, //最多上传
+
+    /**
+     * 最大允许上传个数
+     */
+    limit: Number, 
+
+    /**
+     * 是否启用拖拽上传
+     */
     drag: {
       type: Boolean,
       default: false,
-    }, //是否可拖拉
+    }, 
+
+    /**
+     * 接受上传的文件类型
+     */
     accept: String,
+
+    /**
+     * 照片墙超过后是否隐藏入口
+     */
     exceedLimitHiddenEntrance: {
       type: Boolean,
       default: false,
-    }, //照片墙超过后是否隐藏入口
+    }, 
+
+    /**
+     * 是否立即上传
+     */
     autoUpload: {
       type: Boolean,
-      default: true, //是否立即上传
+      default: true,
     },
+
+    /**
+     * 文件状态改变时的钩子，添加文件、上传成功和上传失败时都会被调用
+     */
     onChange: Function,
+
+    /**
+     * 点击文件列表中已上传的文件时的钩子
+     */
     onPreview: Function,
+
+    /**
+     * 文件列表移除文件时的钩子
+     */
     onRemove: Function,
+
+    /**
+     * 文件超出个数限制时的钩子
+     */
     onExceed: Function,
   },
 
@@ -230,6 +321,11 @@ export default create({
     //图片成功
     onSuccess(response, row) {
       let val = response.resultData;
+      /**
+       * 文件上传成功触发
+       * @event success
+       * @property { Array } response 上传成功后的响应信息  
+       */
       this.$emit('success', response);
       if (val instanceof Array) {
         let addAttributeVal = this.addAttribute(val);
@@ -249,6 +345,13 @@ export default create({
 
     //error 图片上传失败
     onError(err, file, fileList) {
+      /**
+       *  图片上传失败
+       * @event error
+       * @property { String } err  错误信息
+       * @property { Object } file 上传失败的文件信息
+       * @property { Array } fileList 文件列表
+       */
       this.$emit('error', err, file, fileList);
     },
 
@@ -264,6 +367,10 @@ export default create({
 
     // 文件超出个数限制时的钩子
     onFileExceed(files, fileList) {
+      /**
+       * 当文件超出个数限制时触发
+       * @event on-exceed
+       */
       this.$emit('on-exceed');
       this.onExceed && this.onExceed(files, fileList);
     },
@@ -276,21 +383,25 @@ export default create({
     },
 
     /**
-     * 外暴方法 清空已上传的文件列表, 不支持在before-upload方法中调用
+     * @public
+     * 清空已上传的文件列表, 不支持在before-upload方法中调用
      */
     clearFiles() {
       this.$refs.upload.clearFiles();
     },
+  
     /**
-     * 外暴方法 取消上传请求
+     * @public
+     * 取消上传请求
      */
     abort() {
       this.$refs.upload.abort();
     },
 
     /**
-     * 外暴方法 手动上传文件列表
-     * */
+     * @public
+     * 手动上传文件列表
+     */
     submit() {
       this.$refs.upload.submit();
     },
