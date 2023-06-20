@@ -47,7 +47,13 @@
     .vxe-table--filter-wrapper {
       padding: 10px;
     }
+
+    .vxe-body--row.sortable-ghost,
+    .vxe-body--row.sortable-chosen {
+      background-color: #dfecfb;
+    }
   }
+
 
   //error / loading identifier content
   @import 'identifier';

@@ -127,6 +127,12 @@ export default {
     selectTrigger: {
       type: String,
       default: 'cell',
+    },
+
+    // 是否可拖拽
+    draggable: {
+      type: Boolean,
+      default: false,
     }
   },
 
@@ -159,7 +165,8 @@ export default {
         defaultSort: this.defaultSort,
         mergeCells: this.mergeCells,
         mergeFooterItems: this.mergeFooterItems,
-        selectTrigger: this.selectTrigger
+        selectTrigger: this.selectTrigger,
+        draggable: this.draggable
       };
       if (!this.isHugeData) {
         props.data = this.data;
@@ -183,7 +190,8 @@ export default {
         'resizable-change': this.resizableChange,
         'sort-change': this.sortChange,
         'filter-change': this.filterChange,
-        'menu-click': this.menuClick
+        'menu-click': this.menuClick,
+        'drag-end': this.dragEnd
       };
     },
   },
@@ -381,6 +389,17 @@ export default {
       console.log(12312312312312312, { selection, checked })
       this.$emit('select-all', { selection, checked }, event);
       this.$refs['bizTable'].refreshColumn();
+    },
+
+
+    /**
+     * 行拖拽结束
+     * @param data
+     * @param newIndex
+     * @param oldIndex
+     */
+    dragEnd({ data, newIndex, oldIndex }){
+      this.$emit('drag-end', { data, newIndex, oldIndex });
     },
 
     /**
