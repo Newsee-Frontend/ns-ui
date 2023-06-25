@@ -147,11 +147,6 @@ export default create({
   methods: {
     handlerModel(e) {
       this.childInputNum = e;
-      /**
-       * 绑定值被改变时触发
-       * @event input 
-       * @property { Number } value  双绑的值
-       */
       this.$emit('input', this.childInputNum);
     },
 

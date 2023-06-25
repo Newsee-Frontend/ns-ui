@@ -97,7 +97,7 @@ export default create({
     isRange: { type: Boolean, default: false }, 
 
     /**
-     * 当前时间日期选择器特有的选项参考下表
+     * 当前时间日期选择器特有的选项
      */
     pickerOptions: {
       type: Object,

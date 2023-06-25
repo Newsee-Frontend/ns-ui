@@ -124,11 +124,6 @@ export default create({
   methods: {
     handleModel: function(e) {
       this.childCascader = e;
-      /**
-       * 当修改值时触发
-       * @event input
-       * @property { Array }  value 选中节点的值
-       */
       this.$emit('input', this.childCascader);
     },
 

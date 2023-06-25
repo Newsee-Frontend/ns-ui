@@ -150,7 +150,7 @@ export default create({
     command(val) {
       /**
        * 点击菜单项触发的事件回调
-       * @event visibleChange 
+       * @event command 
        * @property {String} val  下拉选中的值 
        */
       this.$emit('command', val);

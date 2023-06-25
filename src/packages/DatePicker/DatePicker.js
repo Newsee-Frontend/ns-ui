@@ -107,7 +107,7 @@ export default create({
     unlinkPanels: { type: Boolean, default: true }, 
 
     /**
-     * 当前时间日期选择器特有的选项参考下表
+     * 当前时间日期选择器特有的选项
      */
     pickerOptions: {
       type: Object,
@@ -175,11 +175,6 @@ export default create({
 
     handleModel(e) {
       this.childDataPicker = e;
-      /**
-       * 当修改值时触发
-       * @event input
-       * @property { Array String}  value 组件绑定值
-       */
       this.$emit('input', this.childDataPicker);
     },
     onBlur() {
