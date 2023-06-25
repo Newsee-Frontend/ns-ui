@@ -78,6 +78,10 @@ export default create({
       </el-form-item>
     );
   },
+  /**
+   * @slot label - 标签文本的内容
+   * @slot - 默认插槽，Form Item 的内容
+   */
 
   methods: {
     /**

@@ -181,6 +181,11 @@ export default create({
       ]
     );
   },
+  /**
+   * @slot footer - Dialog 按钮操作区的内容
+   * @slot - 默认插槽，Dialog 的内容
+   */
+
   methods: {
     //Dialog close emit
     close() {

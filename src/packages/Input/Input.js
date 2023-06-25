@@ -163,6 +163,10 @@ export default create({
       </el-input>
     );
   },
+  /**
+   * @slot prefix - 输入框头部内容
+   * @slot suffix - 输入框尾部内容
+   */
 
   methods: {
     handleModelInput(e) {

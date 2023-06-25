@@ -131,6 +131,10 @@ export default create({
       [this.$slots.default, <template slot="reference">{this.$slots.reference}</template>]
     );
   },
+  /**
+   * @slot reference - 触发 Popover 显示的 HTML 元素
+   * @slot - 默认插槽，Popover 内嵌 HTML 文本
+   */
 
   methods: {
     handlemodel: function(e) {
@@ -170,3 +174,4 @@ export default create({
     },
   },
 });
+
