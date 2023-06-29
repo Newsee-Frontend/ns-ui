@@ -131,6 +131,7 @@ export default create({
     };
     return (
       <el-input
+        ref={this.recls()}
         class={this.recls([this.formsize])}
         value={this.childIpt}
         onInput={e => this.handleModelInput(e)}
@@ -147,9 +148,9 @@ export default create({
         readonly={this.readonly}
         clearable={this.clearable}
         on-change={this.change.bind(this)}
-        on-blur={this.blur.bind(this)}
-        on-clear={this.clear.bind(this)}
-        on-focus={this.focus.bind(this)}
+        on-blur={this.inputBlur.bind(this)}
+        on-clear={this.inputClear.bind(this)}
+        on-focus={this.inputFocus.bind(this)}
         style={this.convert_style}
       >
         {ipticon('prefix', this.prefixIcon)}
@@ -182,7 +183,7 @@ export default create({
     },
 
 
-    blur(event) {
+    inputBlur(event) {
       /**
        * 在 Input 失去焦点时触发
        *  @property {event} Event
@@ -190,7 +191,7 @@ export default create({
       this.$emit('blur', event);
     },
 
-    focus(event) {
+    inputFocus(event) {
       /**
        * 在 Input 获得焦点时触发
        * @property {event} Event
@@ -202,7 +203,7 @@ export default create({
      * clear
      * @param event
      */
-    clear(event) {
+    inputClear(event) {
       /**
        * 在点击由 clearable 属性生成的清空按钮时触发
        *  @property {event} Event
@@ -218,6 +219,31 @@ export default create({
        * @property {String} type -prefix 前置icon点击; suffix 后置icon点击
        */
       this.$emit('iconClick', this.childIpt, type);
+    },
+
+
+    /**
+     * @public
+     * 使 input 获取焦点
+     */
+    focus() {
+      this.$refs[this.recls()].focus();
+    },
+
+    /**
+     * @public
+     * 使 input 失去焦点
+     */
+    blur() {
+      this.$refs[this.recls()].blur();
+    },
+
+    /**
+     * @public
+     * 选中 input 中的文字
+     */
+    select() {
+      this.$refs[this.recls()].select();
     },
   },
 

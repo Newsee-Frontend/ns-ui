@@ -112,15 +112,26 @@ export default create({
       this.$emit('focus', event);
     },
 
+
     /**
-     *  method focus
+     * @public
+     * 使 input 获取焦点
      */
     focus() {
       this.$refs[this.recls()].focus();
     },
 
     /**
-     *  method select
+     * @public
+     * 使 input 失去焦点
+     */
+    blur() {
+      this.$refs[this.recls()].blur();
+    },
+
+    /**
+     * @public
+     * 选中 input 中的文字
      */
     select() {
       this.$refs[this.recls()].select();

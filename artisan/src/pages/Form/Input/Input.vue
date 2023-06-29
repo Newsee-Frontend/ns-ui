@@ -1,16 +1,23 @@
 <template>
   <div class="win">
     <demo-block>
-      <template slot="title">Dialog - 对话框</template>
+      <template slot="title">Input - 输入框</template>
       <template slot="describe">基础用法</template>
       <template slot="content">
         <div v-bind:class="['ns-input--disabled', 'ns-input--primary',{'ns-input__text--disabled': true}]">123123</div>
 
-        <el-input v-model="inoutModel" placeholder="请输入内容" @change="change"></el-input>
+        <div style="padding: 20px 0;">
+          <ns-button @click="$refs.input.focus()">focus</ns-button>
+          <ns-button @click="$refs.input.blur()">blur</ns-button>
+          <ns-button @click="$refs.input.select()">select</ns-button>
+        </div>
+
+<!--        <el-input v-model="inoutModel" placeholder="请输入内容" @change="change"></el-input>-->
 
 
         <div class="control-block form-block-line">
           <ns-input
+            ref="input"
             v-model="inoutModel"
             :size='size'
             :type="type"
