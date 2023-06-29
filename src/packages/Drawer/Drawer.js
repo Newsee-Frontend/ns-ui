@@ -9,6 +9,10 @@ export default create({
     };
   },
   props: {
+    /**
+     * Drawer 打开的方向
+     * @values 'left', 'right', 'top', 'bottom'
+     */
     direction: {
       type: String,
       default: 'left',
@@ -16,7 +20,15 @@ export default create({
         return ['left', 'right', 'top', 'bottom'].indexOf(d) > -1;
       },
     },
+
+    /**
+     * 打开的速率
+     */
     speed: { type: String, default: '300ms' },
+
+    /**
+     * 过渡效果
+     */
     transition: { type: String, default: 'linear' },
   },
 
@@ -72,6 +84,10 @@ export default create({
   methods: {
     drwaerHandle() {
       this.isHide = !this.isHide;
+      /**
+       * 当切换收起展开时触发
+       * @event click
+       */
       this.$emit('click');
     },
   },

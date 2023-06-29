@@ -13,14 +13,38 @@ export default create({
     };
   },
   props: {
+    /**
+     * 每个 step 的间距，不填写将自适应间距。支持百分比。
+     */
     space: [Number, String],
+
+    /**
+     * 设置当前激活步骤
+     */
     active: Number,
+
+    /**
+     * 显示方向
+     */
     direction: {
       type: String,
       default: 'horizontal',
     },
+
+    /**
+     * 进行居中对齐
+     */
     alignCenter: Boolean,
+
+    /**
+     * 是否应用简洁风格
+     */
     simple: Boolean,
+
+    /**
+     * 设置结束步骤的状态
+     * @values 'wait','process','finish ','error','success'
+     */
     finishStatus: {
       type: String,
       default: 'finish',
@@ -31,6 +55,12 @@ export default create({
 
   watch: {
     active(newVal, oldVal) {
+      /**
+       * 当激活的步骤条改变时触发
+       * @event change 
+       * @property { Number } newVal  改变后的值 
+       * @property { Number } oldVal  改变前的值
+       */
       this.$emit('change', newVal, oldVal);
     },
 

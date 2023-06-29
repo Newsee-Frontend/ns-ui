@@ -12,6 +12,9 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: [Date, Array, String, Number],
   },
   computed: {
@@ -50,11 +53,22 @@ export default create({
   methods: {
     handleModel(e) {
       this.childOnlyMMDD = e;
+
+      /**
+       * 绑定值被改变时触发
+       * @event input 
+       * @property { String } value 双绑的值
+       */
       this.$emit('input', this.childOnlyMMDD);
     },
 
     onlyMMDDfocus() {
       clearTimeout(tt);
+      /**
+       * 在组件 Input 获得焦点时触发
+       * @event focus 
+       * @property { String } value 双绑的值
+       */
       this.$emit('focus', this.childOnlyMMDD);
 
       let _addClass = () => {
@@ -75,6 +89,11 @@ export default create({
     },
 
     change(value) {
+      /**
+       * 绑定值被改变时触发
+       * @event change 
+       * @property { String } value 双绑的值
+       */
       this.$emit('change', value);
     },
   },

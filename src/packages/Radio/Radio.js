@@ -10,24 +10,68 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: [String, Number, Boolean],
+
+    /**
+     * 宽度
+     */
     width: [String, Number],
+
+    /**
+     * 选择项
+     */
     options: {
       type: Array,
       default: () => [],
     },
-    type: { type: String, default: 'normal' }, //Radio 类型     normal /  button
+
+    /**
+     * 按钮样式
+     * @values 'normal','button'
+     */
+    type: { type: String, default: 'normal' }, 
+
+    /**
+     * 尺寸
+     * @values 'mini', 'small', 'normal', 'medium', 'large'
+     */
     size: { type: String, validator: s => sizeValidator(s) },
-    fill: { type: String, default: '#20a0ff' }, //背景颜色
-    textColor: { type: String, default: '#ffffff' }, //按钮：字体颜色
+
+    /**
+     * 按钮：背景颜色
+     */
+    fill: { type: String, default: '#20a0ff' },
+
+    /**
+     * 按钮：字体颜色
+     */
+    textColor: { type: String, default: '#ffffff' },
+
+    /**
+     * 是否禁用
+     */
     disabled: { type: Boolean, default: false },
+
+    /**
+     * 选择项映射
+     */
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },
-
+    
+    /**
+     * 单选框组
+     */
     isGroup: { type: Boolean, default: true },
-    label: [String, Number, Boolean], //单个
+
+    /**
+     * 非单选框组 Radio 的 value
+     */
+    label: [String, Number, Boolean],
   },
 
   computed: {},
@@ -90,6 +134,10 @@ export default create({
       this.$emit('input', this.childRadio);
     },
     change(value) {
+      /**
+       * 当绑定值变化时触发的事件
+       * @property {String} value  -更新后的值
+       */
       this.$emit('change', value);
     },
   },

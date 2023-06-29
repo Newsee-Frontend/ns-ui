@@ -4,21 +4,60 @@ export default create({
   name: 'col',
 
   props: {
+    /**
+     * 栅格占据的列数
+     */
     span: {
       type: Number,
       default: 24,
     },
+
+    /**
+     * 自定义元素标签
+     */
     tag: {
       type: String,
       default: 'div',
     },
+
+    /**
+     * 栅格左侧的间隔格数
+     */
     offset: Number,
+
+    /**
+     * 栅格向左移动格数
+     */
     pull: Number,
+
+    /**
+     * 栅格向右移动格数
+     */
     push: Number,
+
+    /**
+     * <768px 响应式栅格数或者栅格属性对象
+     */
     xs: [Number, Object],
+
+    /**
+     * ≥768px 响应式栅格数或者栅格属性对象
+     */
     sm: [Number, Object],
+
+    /**
+     * ≥992px 响应式栅格数或者栅格属性对象
+     */
     md: [Number, Object],
+
+    /**
+     * ≥1200px 响应式栅格数或者栅格属性对象
+     */
     lg: [Number, Object],
+
+    /**
+     * ≥1920px 响应式栅格数或者栅格属性对象
+     */
     xl: [Number, Object],
   },
 

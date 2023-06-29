@@ -11,30 +11,117 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: [Array, String, Number],
+
+    /**
+     * 是否正在从远程获取数据
+     */
     loading: { type: Boolean, default: false },
+
+    /**
+     * 选择项
+     */
     options: {
       type: Array,
       default: () => [],
     },
+
+    /**
+     * 宽度
+     */
     width: [String, Number],
-    size: { type: String, validator: s => sizeValidator(s) }, //尺寸
+
+    /**
+     * 输入框尺寸
+     */
+    size: { type: String, validator: s => sizeValidator(s) }, 
+
+    /**
+     * 占位符
+     */
     placeholder: { type: String, default: null },
+
+    /**
+     * select input 的 name 属性
+     */
     name: { type: String },
+
+    /**
+     * 是否可以清空选项
+     */
     clearable: { type: Boolean, default: true },
+
+    /**
+     * 是否禁用
+     */
     disabled: { type: Boolean, default: false },
+
+    /**
+     * 是否多选
+     */
     multiple: { type: Boolean, default: false },
+
+    /**
+     * 多选时用户最多可以选择的项目数，为 0 则不限制
+     */
     multipleLimit: { type: Number, default: 0 },
+
+    /**
+     * Select 下拉框的类名
+     */
     popperClass: { type: String },
-    collapseTags: { type: Boolean, default: false }, //多选时是否将选中值按文字的形式展示
-    filterable: { type: Boolean, default: true }, //默认搜索
-    filterMethod: { type: Function, default: null }, //自定义过滤方法
-    remote: { type: Boolean, default: false }, //是否为远程搜索
-    remoteMethod: { type: Function, default: null }, //远程搜索方法
-    allowCreate: { type: Boolean, default: false }, //是否允许用户创建新条目，需配合 filterable 使用
+
+    /**
+     * 多选时是否将选中值按文字的形式展示
+     */
+    collapseTags: { type: Boolean, default: false },
+
+    /**
+     * 是否可搜索
+     */
+    filterable: { type: Boolean, default: true },
+
+    /**
+     * 自定义搜索方法
+     */
+    filterMethod: { type: Function, default: null }, 
+
+    /**
+     * 是否为远程搜索
+     */
+    remote: { type: Boolean, default: false }, 
+
+    /**
+     * 远程搜索方法
+     */
+    remoteMethod: { type: Function, default: null },
+
+    /**
+     * 是否允许用户创建新条目，需配合 filterable 使用
+     */
+    allowCreate: { type: Boolean, default: false },
+
+    /**
+     * 远程加载时显示的文字
+     */
     loadingText: { type: String, default: '加载中' },
+
+    /**
+     * 搜索条件无匹配时显示的文字
+     */
     noMatchText: { type: String, default: '无匹配数据' },
+
+    /**
+     * 	在输入框按下回车，选择第一个匹配项。需配合 filterable 或 remote 使用
+     */
     defaultFirstOption: { type: Boolean, default: true },
+
+    /**
+     * 键值映射
+     */
     keyRefer: {
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
@@ -136,10 +223,19 @@ export default create({
      * visible-Change （下拉框显示隐藏）
      */
     visibleChange(e) {
+      /**
+       * 下拉框出现/隐藏时触发
+       * @event visible-change
+       * @property { Boolean } e  出现则为 true，隐藏则为 false
+       */
       this.$emit('visible-change', e);
     },
 
     removeTag() {
+      /**
+       * 多选模式下移除tag时触发
+       * @event remove-tag
+       */
       this.$emit('remove-tag');
     },
 
@@ -148,24 +244,40 @@ export default create({
      * @param value
      */
     change(value) {
+      /**
+       * 选中值发生变化时触发
+       * @event change
+       */
       this.$emit('change', value);
     },
     /**
      * on-focus
      */
     onFocus() {
+      /**
+       * 当 input 获得焦点时触发
+       * @event focus
+       */
       this.$emit('focus');
     },
     /**
      * on-blur
      */
     onBlur() {
+      /**
+       * 当 input 失去焦点时触发
+       * @event blur
+       */
       this.$emit('blur');
     },
     /**
      * 清除事件
      */
     onClear() {
+      /**
+       * 可清空的单选模式下用户点击清空按钮时触发
+       * @event clear
+       */
       this.$emit('clear');
     },
   },

@@ -7,7 +7,11 @@ export default create({
   name: 'slip-dialog',
 
   props: {
+    /**
+     * 是否显示Slip-dialog，支持 .sync 修饰符
+     */
     visible: { type: Boolean, default: false },
+
     /**
      * animation type
      * fade普通 --- fade-normal
@@ -18,17 +22,65 @@ export default create({
      * 反弹模式 --- bouncer
      */
     animation: { type: String, default: 'fade-normal' },
-    entrPosition: { type: String, default: 'right' }, //入场位置
+
+    /**
+     * 入场位置
+     */
+    entrPosition: { type: String, default: 'right' },
+
+    /**
+     * Slip-dialog距离左侧的距离
+     */
     left: { type: String, default: '0' },
+
+    /**
+     * Slip-dialog距离右侧的距离
+     */
     right: { type: String, default: '0' },
+
+    /**
+     * Slip-dialog距离顶部的距离
+     */
     top: { type: String, default: '0' },
+
+    /**
+     * Slip-dialog距离底部的距离
+     */
     bottom: { type: String, default: '0' },
-    modal: { type: Boolean, default: false }, //是否含有遮罩层
-    modalSpeed: { type: Number, default: 200 }, //遮罩层速率
-    closeOnClickModal: { type: Boolean, default: true }, //是否可以通过点击 modal 关闭
+
+    /**
+     * 是否含有遮罩层
+     */
+    modal: { type: Boolean, default: false },
+
+    /**
+     * 遮罩层速率
+     */
+    modalSpeed: { type: Number, default: 200 },
+
+    /**
+     * 是否可以通过点击 modal 关闭
+     */
+    closeOnClickModal: { type: Boolean, default: true },
+
+    /**
+     * 提供dom id  点击可关闭Slip-dialog
+     */
     domToClose: { type: String, default: 'app' },
+
+    /**
+     * Slip-dialog 自身是否插入至 body 元素上。嵌套的 Slip-dialog 必须指定该属性并赋值为 true
+     */
     appendToBody: { type: Boolean, default: true },
+
+    /**
+     * 是否可以通过按下 ESC 关闭 Slip-dialog
+     */
     closeOnPressEscape: { type: Boolean, default: true },
+
+    /**
+     * 关闭前的回调，会暂停 Slip-dialog 的关闭
+     */
     beforeClose: { type: Function },
   },
 
@@ -169,26 +221,56 @@ export default create({
     },
     beforeEnter(el) {
       this.activating = false;
+      /**
+       * 在元素被插入到 DOM 之前被触发
+       * @event before-enter
+       * @property { Object } el node
+       */
       this.$emit('before-enter', el);
     },
     enter(el) {
       this.activating = true;
+      /**
+       * 在元素被插入到 DOM 之后的下一帧被触发
+       * @event enter
+       * @property { Object } el node
+       */
       this.$emit('enter', el);
     },
     afterEnter(el) {
       this.activating = false;
+      /**
+       * 当进入过渡完成时触发
+       * @event after-enter
+       * @property { Object } el node
+       */
       this.$emit('after-enter', el);
     },
     beforeLeave(el) {
       this.activating = false;
+      /**
+       * 在 leave 钩子之前触发
+       * @event before-leave
+       * @property { Object } el node
+       */
       this.$emit('before-leave', el);
     },
     leave(el) {
       this.activating = true;
+      /**
+       * 元素离开时被触发
+       * @event leave 
+       * @property { Object } el node
+       */
       this.$emit('leave', el);
     },
     afterLeave(el) {
       this.activating = false;
+      /**
+       * 在离开过渡完成、且元素已从 DOM 中移除时触发
+       * @event after-leave 
+       * @property { Object } el node
+       */
       this.$emit('after-leave', el);
     },
   },

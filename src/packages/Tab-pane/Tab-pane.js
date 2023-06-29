@@ -9,10 +9,29 @@ export default create({
     };
   },
   props: {
+    /**
+     * 选项卡标题
+     */
     label: String,
+
+    /**
+     * 是否禁用
+     */
     disabled: Boolean,
+
+    /**
+     * 与选项卡绑定值 value 对应的标识符，表示选项卡别名
+     */
     name: String,
+
+    /**
+     * 标签是否可关闭
+     */
     closable: Boolean,
+
+    /**
+     * 标签是否延迟渲染
+     */
     lazy: Boolean,
   },
 

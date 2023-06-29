@@ -5,12 +5,24 @@ export default create({
     return {};
   },
   props: {
+    /**
+     * 显示值
+     */
     value: [String, Number],
-    //最大值，超过最大值会显示 '{max}+'，要求 value 是 Number 类型
+
+    /**
+     * 最大值，超过最大值会显示 '{max}+'，要求 value 是 Number 类型
+     */
     max: { type: Number, default: 99 },
-    //小圆点
+
+    /**
+     * 小圆点
+     */
     isDot: { type: Boolean, default: false },
-    //隐藏 badge
+
+    /**
+     * 隐藏 badge
+     */
     hidden: { type: Boolean, default: false },
   },
   render(h) {

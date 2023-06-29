@@ -10,12 +10,39 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: [Date, Array, String, Number],
-    disabled: { type: Boolean, default: false }, //禁用
-    size: { type: String, validator: s => sizeValidator(s) }, //尺寸
+
+    /**
+     * 是否禁用
+     */
+    disabled: { type: Boolean, default: false },
+
+    /**
+     * 尺寸
+     */
+    size: { type: String, validator: s => sizeValidator(s) },
+
+    /**
+     * 是否支持透明度选择
+     */
     showAlpha: { type: Boolean, default: false },
+
+    /**
+     * 写入 v-model 的颜色的格式
+     */
     colorFormat: { type: String },
+
+    /**
+     * ColorPicker 下拉框的类名
+     */
     popperClass: { type: String },
+
+    /**
+     * 预定义颜色
+     */
     predefine: { type: Array },
   },
 
@@ -52,10 +79,20 @@ export default create({
 
   methods: {
     change(value) {
+      /**
+       * 当绑定值变化时触发
+       * @event change
+       * @property { String }  value 当前值
+       */
       this.$emit('change', value);
     },
 
     activeChange(value) {
+      /**
+       * 面板中当前显示的颜色发生改变时触发
+       * @event active-change
+       * @property { String }  value 当前显示的颜色值
+       */
       this.$emit('active-change', value);
     },
   },

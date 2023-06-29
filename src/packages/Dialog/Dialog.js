@@ -18,36 +18,97 @@ export default create({
     };
   },
   props: {
-    //是否显示 Dialog，支持 .sync 修饰符
+    /**
+     * 是否显示 Dialog，支持 .sync 修饰符
+     */
     visible: { type: Boolean, default: false },
-    'custom-class': { type: String }, //Dialog 的自定义类名
-    title: { type: String, default: 'title' }, //Dialog 的标题
+
+    /**
+     * Dialog 的自定义类名
+     */
+    'custom-class': { type: String },
+
+    /**
+     * Dialog 的标题
+     */
+    title: { type: String, default: 'title' },
+
+    /**
+     * 类型 'normal','simple','noFooter'
+     * @values 
+     */
     type: {
       type: String,
       default: 'normal',
       validator: t => {
         return _dialogtype.includes(t);
       },
-    }, //类型（'normal','simple','noFooter'）
-    autoHeight: { type: Boolean, default: false }, //是否自动高度（对话框内容部分由内容撑开)
+    },
+
+    /**
+     * 是否自动高度（对话框内容部分由内容撑开)
+     */
+    autoHeight: { type: Boolean, default: false }, 
+
+    /**
+     * 弹窗尺寸
+     */
     size: {
       type: String,
       validator: s => sizeValidator(s),
     },
 
+    /**
+     * Dialog 的宽度
+     */
     width: { type: String }, //宽度值
-    top: { type: String, default: '7%' }, //	Dialog CSS 中的 top 值（仅在 size 不为 full 时有效）
 
-    modal: { type: Boolean, default: true }, //是否需要遮罩层
-    isAppendToBody: { type: Boolean, default: true }, //Dialog 自身是否插入至 body 元素上
+    /**
+     * Dialog CSS 中的 top 值（仅在 size 不为 full 时有效）
+     */
+    top: { type: String, default: '7%' },
+
+    /**
+     * 是否需要遮罩层
+     */
+    modal: { type: Boolean, default: true },
+
+    /**
+     * Dialog 自身是否插入至 body 元素上
+     */
+    isAppendToBody: { type: Boolean, default: true }, 
+
     // 'modal-append-to-body': { type: Boolean, default: true }, //model 遮罩层是否插入至 body 元素上
-    'lock-scroll': { type: Boolean, default: true }, //是否在 Dialog 出现时将 body 滚动锁定
 
-    'close-on-click-modal': { type: Boolean, default: false }, //是否可以通过点击 modal 关闭 Dialog
-    'close-on-press-escape': { type: Boolean, default: false }, //是否可以通过按下 ESC 关闭 Dialog
-    'show-close': { type: Boolean, default: true }, //是否显示关闭按钮
-    'before-close': { type: Function }, //关闭前的回调，会暂停 Dialog 的关闭
-    draggable: { type: Boolean, default: true }, //是否可拖拉
+    /**
+     * 是否在 Dialog 出现时将 body 滚动锁定
+     */
+    'lock-scroll': { type: Boolean, default: true }, 
+
+    /**
+     * 是否可以通过点击 modal 关闭 Dialog
+     */
+    'close-on-click-modal': { type: Boolean, default: false },
+
+    /**
+     * 是否可以通过按下 ESC 关闭 Dialog
+     */
+    'close-on-press-escape': { type: Boolean, default: false },
+
+    /**
+     * 是否显示关闭按钮
+     */
+    'show-close': { type: Boolean, default: true },
+
+    /**
+     * 关闭前的回调，会暂停 Dialog 的关闭
+     */
+    'before-close': { type: Function },
+
+    /**
+     * 是否可拖拉
+     */
+    draggable: { type: Boolean, default: true },
   },
   watch: {
     visible(val) {
@@ -120,14 +181,27 @@ export default create({
       ]
     );
   },
+  /**
+   * @slot footer - Dialog 按钮操作区的内容
+   * @slot - 默认插槽，Dialog 的内容
+   */
+
   methods: {
     //Dialog close emit
     close() {
+      /**
+       * Dialog 关闭的回调
+       * @event close 
+       */
       this.$emit('close');
       this.$emit('update:visible', false);
     },
     //Dialog open emit
     open() {
+      /**
+       * Dialog 打开的回调
+       * @event open 
+       */
       this.$emit('open');
     },
     turnState(state) {

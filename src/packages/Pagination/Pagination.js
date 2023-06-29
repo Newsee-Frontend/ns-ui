@@ -16,17 +16,35 @@ export default create({
   },
   props: {
     gridID: { type: String },
-    total: { type: Number }, //总条目数
-    layout: { type: String, default: 'total, sizes, prev, pager, next, jumper' }, //组件布局，子组件名用逗号分隔
-    pagerCount: { type: Number, default: 7 }, //页码按钮的数量，当总页数超过该值时会折叠
-    //每页显示个数选择器的选项设置
+
+    /**
+     * 总条目数
+     */
+    total: { type: Number },
+
+    /**
+     * 组件布局，子组件名用逗号分隔
+     */
+    layout: { type: String, default: 'total, sizes, prev, pager, next, jumper' },
+
+    /**
+     * 页码按钮的数量，当总页数超过该值时会折叠
+     */
+    pagerCount: { type: Number, default: 7 },
+
+    /**
+     * 每页显示个数选择器的选项设置
+     */
     pageSizes: {
       type: Array,
       default() {
         return [10, 20, 50, 100];
       },
     },
-    //搜索条件 searchConditions
+
+    /**
+     * 搜索条件 searchConditions
+     */
     searchConditions: {
       type: Object,
       default() {
@@ -85,6 +103,12 @@ export default create({
      */
     sizeChange(val) {
       this.searchConditions.pageSize = val;
+
+      /**
+       * pageSize 改变时会触发
+       * @event size-change
+       * @property { Number }  val 每页条数
+       */
       this.$emit('size-change', val);
     },
     /**
@@ -93,6 +117,12 @@ export default create({
      */
     currentChange(val) {
       this.searchConditions.pageNum = val;
+
+      /**
+       * currentPage 改变时会触发
+       * @event current-change
+       * @property { Number }  val 当前页
+       */
       this.$emit('current-change', val);
     },
   },

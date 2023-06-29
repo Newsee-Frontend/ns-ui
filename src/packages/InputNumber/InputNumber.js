@@ -10,34 +10,93 @@ export default create({
     };
   },
   props: {
+    /**
+     * 绑定值
+     */
     value: {
       type: Number,
       default: 0,
     },
+
+    /**
+     * 计数器宽度
+     */
     width: { type: [String, Number] },
+
+    /**
+     * 计数器高度
+     */
     height: { type: [String, Number] },
+
+    /**
+     * 计数器尺寸
+     */
     size: {
       type: String,
       validator: s => sizeValidator(s),
     },
+
+    /**
+     * 设置计数器允许的最小值
+     */
     min: Number,
+
+    /**
+     * 设置计数器允许的最大值
+     */
     max: Number,
+
+    /**
+     * 计数器步长
+     */
     step: Number,
+
+    /**
+     * 是否只能输入 step 的倍数
+     */
     stepStrictly: {
       type: Boolean,
       default: false,
     },
-    precision: Number, //数值精度
+
+    /**
+     * 数值精度
+     */
+    precision: Number,
+
+    /**
+     * 是否禁用计数器
+     */
     disabled: Boolean,
+
+    /**
+     * 是否使用控制按钮
+     */
     controls: {
       type: Boolean,
       default: true,
     },
+
+    /**
+     * 控制按钮位置
+     */
     controlsPosition: {
       type: String,
     },
+
+    /**
+     * 原生属性
+     */
     name: String,
+
+    /**
+     * 输入框关联的label文字
+     */
     label: String,
+
+    /**
+     * 输入框默认 placeholder
+     */
     placeholder: String,
   },
 
@@ -90,25 +149,31 @@ export default create({
       this.childInputNum = e;
       this.$emit('input', this.childInputNum);
     },
-    /**
-     * change
-     * @param value
-     */
+
     inputChange(value) {
+      /**
+       * 绑定值被改变时触发
+       * @event change
+       * @property { Number } value  双绑的值
+       */
       this.$emit('change', value);
     },
-    /**
-     * blur
-     * @param event
-     */
+
     inputBlur(event) {
+      /**
+       * 在组件 Input 失去焦点时触发
+       * @event blur
+       * @property { Object } event  (event: Event)
+       */
       this.$emit('blur', event);
     },
-    /**
-     * focus
-     * @param event
-     */
+
     inputFocus(event) {
+      /**
+       * 在组件 Input 获得焦点时触发
+       * @event focus
+       * @property { Object } event  (event: Event)
+       */
       this.$emit('focus', event);
     },
 

@@ -3,7 +3,9 @@ import create from '../../create/create-basic';
 export default create({
   name: 'icon-svg',
   props: {
-    // 唯一标识
+    /**
+     * 图标  唯一标识
+     */
     iconClass: {
       type: [String],
       required: true,

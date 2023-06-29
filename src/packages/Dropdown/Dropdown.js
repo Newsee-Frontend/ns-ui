@@ -8,53 +8,73 @@ export default create({
     return {};
   },
   props: {
+    /**
+     * 下拉选项
+     */
     options: {
       type: Array,
       default: () => [],
     },
 
-    //下拉触发元素呈现为按钮组
+    /**
+     * 下拉触发元素呈现为按钮组
+     */
     splitButton: {
       type: Boolean,
       default: false,
     },
 
-    //下拉触发元素呈现为按钮组时 按钮的type
+    /**
+     * 下拉触发元素呈现为按钮组时 按钮的type
+     */
     type: {
       type: String,
     },
 
-    //尺寸可选 medium,small,mini
+    /**
+     * 菜单尺寸，在split-button为 true 的情况下也对触发按钮生效
+     * @values 'medium','small','mini'
+     */
     size: {
       type: String,
       validator: s => sizeValidator(s),
     },
 
-    //菜单弹出位置
+    /**
+     * 菜单弹出位置
+     */
     placement: {
       type: String,
       default: 'bottom-end',
     },
 
-    // 触发下拉的行为
+    /**
+     * 触发下拉的行为
+     */
     trigger: {
       type: String,
       default: 'hover',
     },
 
-    // 是否在点击菜单项后隐藏菜单
+    /**
+     * 是否在点击菜单项后隐藏菜单
+     */
     hideOnClick: {
       type: Boolean,
       default: true,
     },
 
-    // Dropdown 组件的 tabindex
+    /**
+     * Dropdown 组件的 tabindex
+     */
     tabindex: {
       type: Number,
       default: 0,
     },
 
-    //keyRefer
+    /**
+     * 键值映射
+     */
     keyRefer: {
       type: Object,
       default: () => {
@@ -127,27 +147,29 @@ export default create({
   },
 
   methods: {
-    /**
-     * 点击菜单项触发的事件回调
-     * @param val
-     */
     command(val) {
+      /**
+       * 点击菜单项触发的事件回调
+       * @event command 
+       * @property {String} val  下拉选中的值 
+       */
       this.$emit('command', val);
     },
 
-    /**
-     * split-button 为 true 时，点击左侧按钮的回调
-     * @param val
-     */
     click(val) {
+      /**
+       * split-button 为 true 时，点击左侧按钮的回调
+       * @event click 
+       */
       this.$emit('click', val);
     },
 
-    /**
-     * 下拉框出现/隐藏时触发
-     * @param val
-     */
     visibleChange(val) {
+      /**
+       * 下拉框出现/隐藏时触发
+       * @event visibleChange 
+       * @property {Boolean} val  出现则为 true，隐藏则为 false
+       */
       this.$emit('visibleChange', val);
     },
   },

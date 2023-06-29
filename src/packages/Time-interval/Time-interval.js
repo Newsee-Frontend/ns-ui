@@ -14,17 +14,40 @@ export default create({
   components: { Select, TimePicker, TimeIntervalToggle },
   mixins: [modelSimple, reInit],
   props: {
+    /**
+     * 绑定值
+     */
     value: [Object],
+
+    /**
+     * 宽度
+     */
     width: { type: [String, Number] },
+
+    /**
+     *高度 
+     */
     height: { type: [String, Number] },
-    disabled: { type: Boolean, default: false }, //禁用
+
+    /**
+     * 禁用
+     */
+    disabled: { type: Boolean, default: false },
+
+    /**
+     * 键值映射
+     */
     keyRefer: {
       type: Object,
       default() {
         return defaultKeyRefer;
       },
     },
-    timePickerFormat: { type: String, default: 'HH:mm:ss' }, //时间控件的格式
+
+    /**
+     * 时间控件的格式
+     */
+    timePickerFormat: { type: String, default: 'HH:mm:ss' }, 
   },
   data() {
     return {
@@ -82,6 +105,11 @@ export default create({
   },
   methods: {
     typeChange(value) {
+      /**
+       * 当dataType改变时触发
+       * @event change
+       * @property { Boolean } value  改变后的dateType值
+       */
       this.$emit('change', value);
     },
   },
