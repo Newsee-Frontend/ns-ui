@@ -180,7 +180,7 @@ export default create({
                 'edit-actived': this.editActived,
                 'edit-closed': this.editClosed,
                 'edit-disabled': this.editDisabled,
-                'radio-change': this.selectChange,
+                'radio-change': this.radioChange,
                 'checkbox-change': this.selectChange,
                 'checkbox-all': this.selectAll,
                 'resizable-change': this.resizableChange,
