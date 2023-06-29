@@ -125,6 +125,7 @@ export default {
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
+      injection.props['show-overflow'] = 'ellipsis'
       injection.scopedSlots = {
         default: this.$scopedSlots['btn-slot'],
       };

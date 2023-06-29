@@ -35,7 +35,25 @@
           @select-change="selectChange"
           @reload="getTableData()"
           :autoResize="false"
-          customHeight="500px"
+          customHeight="300px"
+          :showPagination="false"
+          :mergeCells="mergeCells"
+          style="margin-bottom: 10px"
+        ></biz-table-v4>
+
+
+        <biz-table-v4
+          ref="hugeDataTable1"
+          :loading="loading"
+          :data="tableData.list"
+          :total="total"
+          selectTrigger="row"
+          firstColType="checkbox"
+          :searchConditions="searchConditions"
+          @select-change="selectChange"
+          @reload="getTableData()"
+          :autoResize="false"
+          customHeight="300px"
           :showPagination="false"
           :mergeCells="mergeCells"
         ></biz-table-v4>
