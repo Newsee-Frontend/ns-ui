@@ -15,6 +15,12 @@ export default create({
     top: { type: String, default: '0' },
     bottom: { type: String, default: '0' },
     'before-close': { type: Function },
+
+    /**
+     * Dialog 自身是否插入至 body 元素上
+     */
+    isAppendToBody: { type: Boolean, default: true },
+
     domsToClose: {
       type: [Array, null],
       default() {
@@ -91,7 +97,7 @@ export default create({
         type={'simple'}
         modal={this.modal}
         close-on-click-modal={this.closeOnClickModal}
-        append-to-body
+        isAppendToBody={this.isAppendToBody}
         show-close={false}
         before-close={this.beforeClose}
         on-close={this.close}

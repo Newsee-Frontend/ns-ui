@@ -1,5 +1,6 @@
 @import './var';
 @import '../../../style/mixins/mixins';
+@import '../../../style/config/public';
 
 //dialog style
 @include b(dialog) {
@@ -23,8 +24,21 @@
       top: 16px;
       .el-dialog__close {
         color: #999999;
+        &:hover{
+          color: $--color-primary;
+        }
+      }
+
+      // 放大 缩小菜单按钮
+      &.dialog-header_menu{
+        right: 40px;
+        > i {
+          padding: 5px;
+        }
       }
     }
+
+
     //内容部分
     .el-dialog__body {
       height: $dialog-body_max_height;

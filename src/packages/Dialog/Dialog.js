@@ -15,6 +15,8 @@ export default create({
     return {
       show: false,
       sizeMap: { mini: '300px', small: '500px', normal: '650px', medium: '764px', large: '900px' },
+
+      dialogType: 'normal',  // min
     };
   },
   props: {
@@ -35,7 +37,7 @@ export default create({
 
     /**
      * 类型 'normal','simple','noFooter'
-     * @values 
+     * @values
      */
     type: {
       type: String,
@@ -48,7 +50,7 @@ export default create({
     /**
      * 是否自动高度（对话框内容部分由内容撑开)
      */
-    autoHeight: { type: Boolean, default: false }, 
+    autoHeight: { type: Boolean, default: false },
 
     /**
      * 弹窗尺寸
@@ -76,14 +78,14 @@ export default create({
     /**
      * Dialog 自身是否插入至 body 元素上
      */
-    isAppendToBody: { type: Boolean, default: true }, 
+    isAppendToBody: { type: Boolean, default: true },
 
     // 'modal-append-to-body': { type: Boolean, default: true }, //model 遮罩层是否插入至 body 元素上
 
     /**
      * 是否在 Dialog 出现时将 body 滚动锁定
      */
-    'lock-scroll': { type: Boolean, default: true }, 
+    'lock-scroll': { type: Boolean, default: true },
 
     /**
      * 是否可以通过点击 modal 关闭 Dialog
@@ -154,7 +156,7 @@ export default create({
           'modal-append-to-body': this.modalAppendToBody,
           'append-to-body': this.isAppendToBody,
 
-          fullscreen: this.fullscreen,
+          fullscreen: this.dialogType === 'fullScreen',
 
           'show-close': this.showClose,
           'before-close': this.beforeClose,
@@ -178,6 +180,17 @@ export default create({
         <span slot={'footer'} class={'dialog-footer'}>
           {this.$slots.footer}
         </span>,
+
+        <div slot={'title'} class={'dialog-header'}>
+          <span class="el-dialog__title">{this.title}</span>
+          <div class="dialog-header_menu el-dialog__headerbtn">
+            <i class="el-icon el-icon-minus el-dialog__close" on-click={ this.handlerSize.bind(this, 'minimize')}></i>
+            <i
+              on-click={ this.handlerSize.bind(this, '')}
+              class= {[ "el-icon", "el-dialog__close", this.dialogType === 'fullScreen'?'el-icon-news':'el-icon-full-screen']}
+            ></i>
+          </div>
+        </div>,
       ]
     );
   },
@@ -191,16 +204,18 @@ export default create({
     close() {
       /**
        * Dialog 关闭的回调
-       * @event close 
+       * @event close
        */
       this.$emit('close');
       this.$emit('update:visible', false);
+      this.dialogType = 'normal'
+
     },
     //Dialog open emit
     open() {
       /**
        * Dialog 打开的回调
-       * @event open 
+       * @event open
        */
       this.$emit('open');
     },
@@ -209,6 +224,22 @@ export default create({
       this.show = state;
       this.$emit('update:visible', state);
     },
+
+
+    /**
+     * 控制放大缩小
+     */
+    handlerSize(val){
+      if(val){
+        this.dialogType = val
+        this.$emit('update:visible', false);
+        this.dialogType = 'normal'
+        this.$emit('minimize');
+      }else{
+        this.dialogType = this.dialogType === 'normal'? 'fullScreen' : 'normal'
+      }
+
+    }
   },
   created() {
     this.show = this.visible;
