@@ -29,7 +29,7 @@
             <div>
               <ns-editor :height="300" v-model="content" model="simple"/>
               <div class="editor-content">
-                <h3>输入内容如下:</h3>{{content}}
+                <h3>输入内容如下:</h3>{{ content }}
               </div>
             </div>
             <div slot="footer">
@@ -52,6 +52,10 @@
               <ns-radio v-model="dialogSize" :options="dialogSizeOptions"></ns-radio>
               <ns-switch v-model="isAutoHeight"></ns-switch>
             </div>
+            <div class="control-block form-block-line">
+              <span>是否打开最大最小化:</span>
+              <ns-switch v-model="maxmin"></ns-switch>
+            </div>
           </div>
           <el-button @click=" visible2=true">点击打开</el-button>
           <ns-dialog
@@ -60,10 +64,14 @@
             :size="dialogSize"
             :autoHeight="isAutoHeight"
             :title="`dialog-demo-${dialogType}`"
+            :maxmin="maxmin"
             close-on-click-modal
+            @minimize="minimize"
           >
+
+            <div slot="title">lalalala 这个是插槽header</div>
             <div>
-              <h1>类型：{{dialogType}}，是否自动高度：{{isAutoHeight}}</h1>
+              <h1>类型：{{ dialogType }}，是否自动高度：{{ isAutoHeight }}</h1>
             </div>
             <div slot="footer">
               <ns-button @click="visible2=false">关闭</ns-button>
@@ -109,60 +117,65 @@
 </template>
 
 <script>
-  export default {
-    name: 'dialog-demo',
-    data() {
-      return {
-        visible1: false,
-        visible2: false,
-        visible3: false,
-        visible4: false,
+export default {
+  name: 'dialog-demo',
+  data() {
+    return {
+      visible1: false,
+      visible2: false,
+      visible3: false,
+      visible4: false,
 
-        closeOnClickModal: false,
-        closeOnPressEscape: true,
-        lockScroll: false,
-        showClose: true,
-        content: '请输入...',
+      closeOnClickModal: false,
+      closeOnPressEscape: true,
+      lockScroll: false,
+      showClose: true,
+      content: '请输入...',
 
 
-        dialogType: 'normal',
-        dialogTypeOptions: [
-          { label: 'normal', value: 'normal' },
-          { label: 'simple', value: 'simple' },
-          { label: 'noFooter', value: 'noFooter' },
-          { label: 'noHeader', value: 'noHeader' },
-        ],
-        dialogSize: 'small',
-        dialogSizeOptions: [
-          { label: 'mini', value: 'mini' },
-          { label: 'small', value: 'small' },
-          { label: 'normal', value: 'normal' },
-          { label: 'medium', value: 'medium' },
-          { label: 'large', value: 'large' },
-        ],
-        isAutoHeight: true,
-      };
+      dialogType: 'normal',
+      dialogTypeOptions: [
+        { label: 'normal', value: 'normal' },
+        { label: 'simple', value: 'simple' },
+        { label: 'noFooter', value: 'noFooter' },
+        { label: 'noHeader', value: 'noHeader' },
+      ],
+      dialogSize: 'small',
+      maxmin: false,
+      dialogSizeOptions: [
+        { label: 'mini', value: 'mini' },
+        { label: 'small', value: 'small' },
+        { label: 'normal', value: 'normal' },
+        { label: 'medium', value: 'medium' },
+        { label: 'large', value: 'large' },
+      ],
+      isAutoHeight: true,
+    };
+  },
+  methods: {
+    buttonClick() {
+      this.visible1 = true;
     },
-    methods: {
-      buttonClick() {
-        this.visible1 = true;
-      },
-      buttonClose() {
-        this.visible1 = false;
-      },
-      open() {
-        console.log('dialog-open');
-      },
-      beforeClose(done) {
-        console.log('dialog-beforeClose');
-        done();
-      },
-      close() {
-        console.log('dialog-close');
-        console.log(this.visible);
-      },
+    buttonClose() {
+      this.visible1 = false;
     },
-  };
+
+    minimize(){
+      console.log('minimize');
+    },
+    open() {
+      console.log('dialog-open');
+    },
+    beforeClose(done) {
+      console.log('dialog-beforeClose');
+      done();
+    },
+    close() {
+      console.log('dialog-close');
+      console.log(this.visible);
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

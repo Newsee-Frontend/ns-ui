@@ -35,7 +35,6 @@ $dialog-body_min_height: 350px; //body内容实际部分最小高度
   //内容部分
   .el-dialog__body {
     box-sizing: border-box;
-    max-height: $dialog-body-max-height;
     padding: $dialog-padding-top $dialog-padding-right $dialog-padding-bottom $dialog-padding_left;
     color: $--color-text-regular;
     line-height: $dialog-line_height;

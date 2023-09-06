@@ -33,7 +33,7 @@
       &.dialog-header_menu{
         right: 40px;
         > i {
-          padding: 5px;
+          padding: 0 5px;
         }
       }
     }
@@ -43,7 +43,6 @@
     .el-dialog__body {
       height: $dialog-body_max_height;
       line-height: $dialog-line_height;
-      max-height: $dialog-body-max-height;
       padding: $dialog-padding-top $dialog-padding-right $dialog-padding-bottom $dialog-padding_left;
       color: #666666;
       overflow-y: auto;
@@ -60,6 +59,27 @@
     .el-dialog__footer {
       border-top: none;
       padding: 22px 42px;
+    }
+  }
+
+  //normal
+  @include ms2link(fullScreen) {
+    .el-dialog {
+      position: relative !important;
+      width: 100% !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      height: 100% !important;
+      overflow: auto !important;
+      left: 0 !important;
+      top: 0 !important;
+      display: flex;
+      flex-direction: column;
+
+      .el-dialog__body{
+        flex: 1;
+      }
+
     }
   }
 

@@ -61,6 +61,15 @@ export default create({
     },
 
     /**
+     * 是否展示最大化 最小化
+     */
+    maxmin: {
+      type: Boolean,
+      default: true,
+    },
+
+
+    /**
      * Dialog 的宽度
      */
     width: { type: String }, //宽度值
@@ -115,6 +124,9 @@ export default create({
   watch: {
     visible(val) {
       this.show = val;
+      if(val){
+        this.dialogType = 'normal'
+      }
     },
   },
   computed: {
@@ -127,7 +139,7 @@ export default create({
       return this.width || this.sizeMap[this.size];
     },
     dialogClass() {
-      const cls = [this.type];
+      const cls = [this.type, this.dialogType];
 
       if (this.autoHeight) {
         cls.push('autoHeight');
@@ -147,7 +159,6 @@ export default create({
           width: this.dialogWidth,
           top: this.top,
           title: this.title,
-
           'lock-scroll': this.lockScroll,
           'close-on-click-modal': this.closeOnClickModal,
           'close-on-press-escape': this.closeOnPressEscape,
@@ -156,13 +167,11 @@ export default create({
           'modal-append-to-body': this.modalAppendToBody,
           'append-to-body': this.isAppendToBody,
 
-          fullscreen: this.dialogType === 'fullScreen',
-
           'show-close': this.showClose,
           'before-close': this.beforeClose,
         },
 
-        directives: this.draggable ? [{ name: 'dialogDrag', rawName: 'v-dialogDrag' }] : [],
+        directives: this.draggable ? [{ name: 'dialogDrag', rawName: 'v-dialogDrag',  value: { visible: this.show, maxmin: this.maxmin} }] : [],
 
         on: {
           'update:visible': value => {
@@ -177,20 +186,40 @@ export default create({
         },
       },
       [
-        <span slot={'footer'} class={'dialog-footer'}>
-          {this.$slots.footer}
-        </span>,
+        h("span", {
+          slot: 'footer',
+          class: 'dialog-footer'
+        }, [this.$slots.footer]),
 
-        <div slot={'title'} class={'dialog-header'}>
-          <span class="el-dialog__title">{this.title}</span>
-          <div class="dialog-header_menu el-dialog__headerbtn">
-            <i class="el-icon el-icon-minus el-dialog__close" on-click={ this.handlerSize.bind(this, 'minimize')}></i>
-            <i
-              on-click={ this.handlerSize.bind(this, '')}
-              class= {[ "el-icon", "el-dialog__close", this.dialogType === 'fullScreen'?'el-icon-news':'el-icon-full-screen']}
-            ></i>
-          </div>
-        </div>,
+
+        h("div", {
+          slot: 'title',
+          class: 'dialog-header'
+        }, [
+
+          h("span",{
+            class: 'el-dialog__title'
+          }, [this.$slots.title ? this.$slots.title : this.title]),
+
+          this.maxmin?   h("div",{
+            class: ["el-dialog-header_menu",  "el-dialog__headerbtn",  "dialog-header_menu"]
+          }, [
+
+            h("i", {
+            "class": "el-icon el-icon-minus el-dialog__close",
+            "on": {
+              "click": this.handlerSize.bind(this, 'minimize')
+            }
+          }),
+
+            h("i", {
+            "on": {
+              "click": this.handlerSize.bind(this, '')
+            },
+            "class": ["el-icon", "el-dialog__close", this.dialogType === 'fullScreen' ? 'el-icon-copy-document' : 'el-icon-full-screen']
+          })])  : null
+
+        ])
       ]
     );
   },
@@ -208,7 +237,6 @@ export default create({
        */
       this.$emit('close');
       this.$emit('update:visible', false);
-      this.dialogType = 'normal'
 
     },
     //Dialog open emit
