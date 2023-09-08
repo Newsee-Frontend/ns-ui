@@ -84,6 +84,15 @@
   }
 
   //normal
+  @include ms2link(noModal) {
+    pointer-events: none;
+
+    .el-dialog {
+      pointer-events: auto;
+    }
+  }
+
+  //normal
   @include ms2link(normal) {
     .el-dialog {
     }

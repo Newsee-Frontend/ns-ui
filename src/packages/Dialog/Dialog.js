@@ -65,7 +65,7 @@ export default create({
      */
     maxmin: {
       type: Boolean,
-      default: true,
+      default: false,
     },
 
 
@@ -125,6 +125,7 @@ export default create({
     visible(val) {
       this.show = val;
       if(val){
+        //状态还原
         this.dialogType = 'normal'
       }
     },
@@ -143,6 +144,9 @@ export default create({
 
       if (this.autoHeight) {
         cls.push('autoHeight');
+      }
+      if(!this.modal){
+        cls.push('noModal');
       }
       return this.recls(cls);
     },
@@ -171,7 +175,7 @@ export default create({
           'before-close': this.beforeClose,
         },
 
-        directives: this.draggable ? [{ name: 'dialogDrag', rawName: 'v-dialogDrag',  value: { visible: this.show, maxmin: this.maxmin} }] : [],
+        directives: this.draggable ? [{ name: 'dialogDrag', rawName: 'v-dialogDrag',  value: { visible: this.show, maxmin: this.maxmin, dialogWidth: this.dialogWidth} }] : [],
 
         on: {
           'update:visible': value => {
@@ -216,8 +220,7 @@ export default create({
             "on": {
               "click": this.handlerSize.bind(this, '')
             },
-            "class": ["el-icon", "el-dialog__close", this.dialogType === 'fullScreen' ? 'el-icon-copy-document' : 'el-icon-full-screen']
-          })])  : null
+              "class": ["el-icon", "el-dialog__close", "icon-maxmin", this.dialogType === 'fullScreen' ? 'el-icon-copy-document' : 'el-icon-full-screen']          })])  : null
 
         ])
       ]
@@ -262,7 +265,7 @@ export default create({
         this.dialogType = val
         this.$emit('update:visible', false);
         this.dialogType = 'normal'
-        this.$emit('minimize');
+          this.$emit('minimize');
       }else{
         this.dialogType = this.dialogType === 'normal'? 'fullScreen' : 'normal'
       }

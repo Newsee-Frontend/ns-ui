@@ -3,15 +3,8 @@ export default {
     // 自定义私有指令
     dialogDrag: {
       bind(el, binding, vnode, oldVnode) {
-        let minWidth = 50
-        let minHeight = 50
-        //初始非全屏
-        let isFullScreen = false
-        //当前宽高
-        let nowWidth = 0
-        let nowHight = 0
-        //当前顶部高度
-        let nowMarginTop = 0
+        let minWidth = 200
+        let minHeight = 100
         //获取弹框头部（这部分可双击全屏）
         const dialogHeaderEl = el.querySelector('.el-dialog__header')
         const dialogFooterEl = el.querySelector('.el-dialog__footer')
@@ -86,30 +79,12 @@ export default {
         }
         dialogHeaderEl.onmousedown = moveDown
         //双击头部效果
-        // dialogHeaderEl.ondblclick = (e) => {
-        //   if(binding.value.maxmin){
-        //     if (isFullScreen == false) {
-        //       nowHight = dragDom.clientHeight
-        //       nowWidth = dragDom.clientWidth
-        //       nowMarginTop = dragDom.style.marginTop
-        //       dragDom.style.left = 0
-        //       dragDom.style.top = 0
-        //       dragDom.style.height = '100VH'
-        //       dragDom.style.width = '100VW'
-        //       dragDom.style.margin = 0
-        //       isFullScreen = true
-        //       dialogHeaderEl.style.cursor = 'initial'
-        //       dialogHeaderEl.onmousedown = null
-        //     } else {
-        //       dragDom.style.height = 'auto'
-        //       dragDom.style.width = nowWidth + 'px'
-        //       dragDom.style.margin = nowMarginTop + ' auto'
-        //       isFullScreen = false
-        //       dialogHeaderEl.style.cursor = 'move'
-        //       dialogHeaderEl.onmousedown = moveDown
-        //     }
-        //   }
-        // }
+        dialogHeaderEl.ondblclick = (e) => {
+          if (binding.value.maxmin) {
+            el.querySelector('.icon-maxmin').click()
+          }
+
+        }
 
         //拉伸
         let resizeEl = document.createElement('div')
@@ -132,20 +107,36 @@ export default {
           const disY = e.clientY - resizeEl.offsetTop - resizeW
           const dialogBodyEl = el.querySelector('.el-dialog__body')
           const dialogHeaderElHeight = dialogHeaderEl.offsetHeight
-          const dialogFooterElHeight = dialogFooterEl.offsetHeight
-
+          const dialogFooterElHeight = dialogFooterEl.offsetHeight// 获取当前视窗的宽高
+          const viewportWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth
+          const viewportHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+          const dragDomLeft = dragDom.style.left
 
           document.onmousemove = function(e) {
             e.preventDefault() // 移动时禁用默认事件
 
-            // 通过事件委托，计算移动的距离
-            const x = e.clientX - disX + (e.clientX - clientX) //这里 由于elementUI的dialog控制居中的，所以水平拉伸效果是双倍
-            const y = e.clientY - disY
 
-            console.log(e.clientY,  disY, dialogHeaderElHeight, dialogFooterElHeight);
+            // 通过事件委托，计算移动的距离
+            let x = e.clientX - disX + (e.clientX - clientX) //这里 由于elementUI的dialog控制居中的，所以水平拉伸效果是双倍
+            let y = e.clientY - disY
+
+            //位置移动后的left的负值处理
+            if (dragDomLeft && parseInt(dragDomLeft) < 0) {
+              //溢出的情况, 处理效果不好
+              if (dragDom.offsetLeft < 4) {
+                x = e.clientX
+                let left = (x - viewportWidth) / 2
+                dragDom.style.left = left + 'px'
+              }
+            }
+
+
+            // 防止超出视窗的宽和高
+            x = Math.min(x, viewportWidth)
+            y = Math.min(y, viewportHeight - dragDom.offsetTop)
             //比较是否小于最小宽高
             const width = Math.max(x, minWidth)
-            const height = Math.max(y - dialogHeaderElHeight - dialogFooterElHeight , minHeight)
+            const height = Math.max(y - dialogHeaderElHeight - dialogFooterElHeight, minHeight)
 
             dragDom.style.width = width +  'px'
             dialogBodyEl.style.height = height + 'px'
@@ -158,18 +149,18 @@ export default {
         }
       },
 
+      update(el,binding){
+        let {visible , dialogWidth } = binding.value
+        let { visible: oldVisible }  = binding.oldValue
 
-
-      componentUpdated(el,binding){
-
-        if(binding.value.visible){
+        if(visible && !oldVisible){
           const dragDom = el.querySelector('.el-dialog')
           const dragDomBody = el.querySelector('.el-dialog__body')
           // 关闭之后所有数据还原
           if(dragDom){
             dragDom.style.left = ''
             dragDom.style.top = ''
-            dragDom.style.width = ''
+            dragDom.style.width = dialogWidth
           }
 
           if(dragDomBody){

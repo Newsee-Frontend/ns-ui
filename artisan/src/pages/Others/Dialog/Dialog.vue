@@ -10,6 +10,8 @@
           <el-button @click="buttonClick">点击打开</el-button>
           <ns-dialog
             :visible.sync="visible1"
+
+
             title="basic-dialog-demo"
             top="7%"
             size="large"
@@ -90,6 +92,7 @@
             :visible.sync="visible3"
             title="嵌套对话框示例（外层）"
             autoHeight
+            :modal="false"
           >
             <div>
               <h1>dialog-demo2</h1>
