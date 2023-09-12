@@ -57,8 +57,8 @@ export default create({
     active(newVal, oldVal) {
       /**
        * 当激活的步骤条改变时触发
-       * @event change 
-       * @property { Number } newVal  改变后的值 
+       * @event change
+       * @property { Number } newVal  改变后的值
        * @property { Number } oldVal  改变前的值
        */
       this.$emit('change', newVal, oldVal);

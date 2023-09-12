@@ -25,7 +25,7 @@ export default create({
     width: { type: [String, Number] },
 
     /**
-     *高度 
+     *高度
      */
     height: { type: [String, Number] },
 
@@ -47,7 +47,7 @@ export default create({
     /**
      * 时间控件的格式
      */
-    timePickerFormat: { type: String, default: 'HH:mm:ss' }, 
+    timePickerFormat: { type: String, default: 'HH:mm:ss' },
   },
   data() {
     return {

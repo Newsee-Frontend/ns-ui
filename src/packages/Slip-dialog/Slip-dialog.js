@@ -259,7 +259,7 @@ export default create({
       this.activating = true;
       /**
        * 元素离开时被触发
-       * @event leave 
+       * @event leave
        * @property { Object } el node
        */
       this.$emit('leave', el);
@@ -268,7 +268,7 @@ export default create({
       this.activating = false;
       /**
        * 在离开过渡完成、且元素已从 DOM 中移除时触发
-       * @event after-leave 
+       * @event after-leave
        * @property { Object } el node
        */
       this.$emit('after-leave', el);

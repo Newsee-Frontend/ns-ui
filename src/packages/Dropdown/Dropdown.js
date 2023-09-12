@@ -150,8 +150,8 @@ export default create({
     command(val) {
       /**
        * 点击菜单项触发的事件回调
-       * @event command 
-       * @property {String} val  下拉选中的值 
+       * @event command
+       * @property {String} val  下拉选中的值
        */
       this.$emit('command', val);
     },
@@ -159,7 +159,7 @@ export default create({
     click(val) {
       /**
        * split-button 为 true 时，点击左侧按钮的回调
-       * @event click 
+       * @event click
        */
       this.$emit('click', val);
     },
@@ -167,7 +167,7 @@ export default create({
     visibleChange(val) {
       /**
        * 下拉框出现/隐藏时触发
-       * @event visibleChange 
+       * @event visibleChange
        * @property {Boolean} val  出现则为 true，隐藏则为 false
        */
       this.$emit('visibleChange', val);

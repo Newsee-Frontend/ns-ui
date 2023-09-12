@@ -27,7 +27,7 @@ export default create({
      * 标签是否可增加
      */
     addable: Boolean,
-    
+
     /**
      * 绑定值，选中选项卡的 name
      */
@@ -116,8 +116,8 @@ export default create({
       this.setCurrentName(tabName);
       /**
        * tab 被选中时触发
-       * @event tab-click 
-       * @property { Object } tab  被选中的标签 tab 实例 
+       * @event tab-click
+       * @property { Object } tab  被选中的标签 tab 实例
        * @property { Object } event event
        */
       this.$emit('tab-click', tab, event);
@@ -126,7 +126,7 @@ export default create({
       if (pane.disabled) return;
       ev.stopPropagation();
       /**
-       * 点击 tabs 的新增按钮或 tab 被关闭后触发 
+       * 点击 tabs 的新增按钮或 tab 被关闭后触发
        * @event edit
        * @property { String } name  标签的 name
        * @property { String } action 行为
@@ -134,7 +134,7 @@ export default create({
       this.$emit('edit', pane.name, 'remove');
 
       /**
-       * 点击 tab 移除按钮后触发 
+       * 点击 tab 移除按钮后触发
        * @event tab-remove
        * @property { String } name  被删除的标签的 name
        */

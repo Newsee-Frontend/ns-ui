@@ -84,7 +84,7 @@ export default create({
     /**
      * 显示在输入框中的格式
      */
-    format: { type: String, default: 'HH:mm:ss' }, 
+    format: { type: String, default: 'HH:mm:ss' },
 
     /**
      * 时间日期绑定值格式，不指定则绑定Data对象
@@ -94,7 +94,7 @@ export default create({
     /**
      * 是否是时间范围
      */
-    isRange: { type: Boolean, default: false }, 
+    isRange: { type: Boolean, default: false },
 
     /**
      * 当前时间日期选择器特有的选项

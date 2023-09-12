@@ -7,7 +7,6 @@ export default {
       { selection, checked, row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell },
       event
     ) {
-
       this.$emit(
         'select-change',
         { row, $rowIndex, column, $columnIndex, checked, selection },
@@ -66,8 +65,9 @@ export default {
     radioChange({ row, rowIndex, $rowIndex, column, columnIndex, $columnIndex, cell }, event) {
       // console.log('单选事件');
       //增加判断， 防止首列类型为checkbox也触发，影响勾选结果
-      const firstCol = this.head[0] ||　{}
-      firstCol.type === 'radio' && this.$emit('select-change', { row, $rowIndex, column, $columnIndex }, event);
+      const firstCol = this.head[0] || {};
+      firstCol.type === 'radio' &&
+        this.$emit('select-change', { row, $rowIndex, column, $columnIndex }, event);
     },
   },
 };

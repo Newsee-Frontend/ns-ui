@@ -74,7 +74,7 @@ export default create({
     /**
      * @public
      * 对整个表单进行校验的方法，参数为一个回调函数。该回调函数会在校验结束后被调用
-     * @param {Function} cb 
+     * @param {Function} cb
      */
     validate: function(cb) {
       this.$refs[this.fromClass].validate(cb);

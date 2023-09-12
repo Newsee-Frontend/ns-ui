@@ -6,11 +6,11 @@ export default {
       let { events } = editRender;
       let value = row[modelCode];
       const formatter = column.formatter;
-      if(formatter){
-        if(typeof formatter === 'function'){
-          value = formatter(value)
-        } else{
-          value = formatter[value]
+      if (formatter) {
+        if (typeof formatter === 'function') {
+          value = formatter(value);
+        } else {
+          value = formatter[value];
         }
       }
 

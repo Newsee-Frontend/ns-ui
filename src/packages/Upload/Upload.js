@@ -121,7 +121,7 @@ export default create({
     /**
      * 最大允许上传个数
      */
-    limit: Number, 
+    limit: Number,
 
     /**
      * 是否启用拖拽上传
@@ -129,7 +129,7 @@ export default create({
     drag: {
       type: Boolean,
       default: false,
-    }, 
+    },
 
     /**
      * 接受上传的文件类型
@@ -142,7 +142,7 @@ export default create({
     exceedLimitHiddenEntrance: {
       type: Boolean,
       default: false,
-    }, 
+    },
 
     /**
      * 是否立即上传
@@ -324,7 +324,7 @@ export default create({
       /**
        * 文件上传成功触发
        * @event success
-       * @property { Array } response 上传成功后的响应信息  
+       * @property { Array } response 上传成功后的响应信息
        */
       this.$emit('success', response);
       if (val instanceof Array) {
@@ -389,7 +389,7 @@ export default create({
     clearFiles() {
       this.$refs.upload.clearFiles();
     },
-  
+
     /**
      * @public
      * 取消上传请求

@@ -81,9 +81,7 @@ export default create({
         circle={this.circle}
         on-click={this.click}
       >
-        {
-          this.$slots.default
-        }
+        {this.$slots.default}
       </el-button>
     );
   },

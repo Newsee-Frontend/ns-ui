@@ -49,7 +49,7 @@ export default create({
     width: [String, Number],
 
     /**
-     * 高度 
+     * 高度
      */
     height: [String, Number],
 
@@ -77,7 +77,7 @@ export default create({
     /**
      * 是否允许选择任意一级的选项
      */
-    changeOnSelect: { type: Boolean, default: false }, 
+    changeOnSelect: { type: Boolean, default: false },
 
     /**
      * 是否可搜索选项

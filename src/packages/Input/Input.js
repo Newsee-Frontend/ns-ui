@@ -126,7 +126,7 @@ export default create({
   render(h) {
     const ipticon = (type, icon) => {
       return icon ? (
-        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)}/>
+        <icon-svg slot={type} icon-class={icon} on-click={this.iconClick.bind(this, type)} />
       ) : null;
     };
     return (
@@ -156,11 +156,8 @@ export default create({
         {ipticon('prefix', this.prefixIcon)}
         {ipticon('suffix', this.suffixIcon)}
 
-        <template slot="prefix">
-          {this.$slots.prefix}
-        </template>
-        <template slot="suffix">
-          {this.$slots.suffix}</template>
+        <template slot="prefix">{this.$slots.prefix}</template>
+        <template slot="suffix">{this.$slots.suffix}</template>
       </el-input>
     );
   },
@@ -185,7 +182,6 @@ export default create({
        */
       this.$emit('change', value);
     },
-
 
     inputBlur(event) {
       /**
@@ -215,7 +211,6 @@ export default create({
       this.$emit('clear', event);
     },
 
-
     iconClick(type) {
       /**
        * 前后icon的点击事件， 配置prefixIcon、suffixIcon 才会触发
@@ -224,7 +219,6 @@ export default create({
        */
       this.$emit('iconClick', this.childIpt, type);
     },
-
 
     /**
      * @public

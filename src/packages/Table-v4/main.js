@@ -52,8 +52,7 @@ export default create({
     //快捷菜单配置
     menuConfig: {
       type: Object,
-      default: () => {
-      },
+      default: () => {},
     },
 
     highlightHoverRow: { type: Boolean, default: true }, //鼠标移到行是否要高亮显示
@@ -68,7 +67,6 @@ export default create({
       type: [Boolean, String, Number],
     },
 
-
     // 增加行选择的触发
     selectTrigger: {
       type: String,
@@ -78,9 +76,8 @@ export default create({
     // 拖拽
     draggable: {
       type: Boolean,
-      default: false
-    }
-
+      default: false,
+    },
   },
   data() {
     return {
@@ -111,8 +108,9 @@ export default create({
       handler: function(val) {
         // 获取所有列配置
         this.$nextTick(() => {
-          this.$refs['main-table'] && (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
-          this.$refs['main-table'] && this.draggable &&!this.sortable  && this.rowDrop();
+          this.$refs['main-table'] &&
+            (this.customColumns = this.$refs['main-table'].getTableColumn()?.fullColumn);
+          this.$refs['main-table'] && this.draggable && !this.sortable && this.rowDrop();
         });
       },
       deep: true,
@@ -172,133 +170,135 @@ export default create({
       >
         {this.isMainReady
           ? h(
-            `vxe-table`,
-            {
-              ref: 'main-table',
-              props: props,
-              on: {
-                'edit-actived': this.editActived,
-                'edit-closed': this.editClosed,
-                'edit-disabled': this.editDisabled,
-                'radio-change': this.radioChange,
-                'checkbox-change': this.selectChange,
-                'checkbox-all': this.selectAll,
-                'resizable-change': this.resizableChange,
-                'sort-change': this.sortChangeEvent,
-                'filter-change': this.filterChangeEvent,
-                'menu-click': this.menuClick,
-              },
-              scopedSlots: {
-                empty: scope => {
-                  return (
-                    <span class={'error-prompt'} v-show={this.showEmptySlot}>
-                        <img class={'errorImg'} src={img_null}/>
+              `vxe-table`,
+              {
+                ref: 'main-table',
+                props: props,
+                on: {
+                  'edit-actived': this.editActived,
+                  'edit-closed': this.editClosed,
+                  'edit-disabled': this.editDisabled,
+                  'radio-change': this.radioChange,
+                  'checkbox-change': this.selectChange,
+                  'checkbox-all': this.selectAll,
+                  'resizable-change': this.resizableChange,
+                  'sort-change': this.sortChangeEvent,
+                  'filter-change': this.filterChangeEvent,
+                  'menu-click': this.menuClick,
+                },
+                scopedSlots: {
+                  empty: scope => {
+                    return (
+                      <span class={'error-prompt'} v-show={this.showEmptySlot}>
+                        <img class={'errorImg'} src={img_null} />
                         <p> {this.emptyText} </p>
                       </span>
-                  );
+                    );
+                  },
                 },
               },
-            },
-            [
-              this.head.map((item, $index) => {
-                return h(`column-render`, {
-                  key: `column-render-${item.field}`,
-                  props: {
-                    column: item,
-                    columns: this.head,
-                    keyRefer: this.keyRefer,
-                    showCheckDrop: this.showCheckDrop,
-                  },
-                  on: {
-                    ...this.$listeners,
-                    'cell-event': this.cellEvent,
-                    'show-setting': this.showSetting,
-                  },
-                  scopedSlots: {
-                    'header-slot': scope => {
-                      return (
-                        this.$scopedSlots['header-slot'] &&
-                        this.$scopedSlots['header-slot']({
-                          row: scope.row,
-                          column: item,
-                        })
-                      );
+              [
+                this.head.map((item, $index) => {
+                  return h(`column-render`, {
+                    key: `column-render-${item.field}`,
+                    props: {
+                      column: item,
+                      columns: this.head,
+                      keyRefer: this.keyRefer,
+                      showCheckDrop: this.showCheckDrop,
                     },
-                    'cell-slot': scope => {
-                      return this.$scopedSlots['cell-slot']
-                        ? this.$scopedSlots['cell-slot']({
-                          row: scope.row,
-                          data: scope.data,
-                          column: { ...item, id: scope.column.id, property: scope.column.property },
-                          columns: this.head,
-                          rowIndex: scope.$rowIndex,
-                          columnIndex: scope.$columnIndex,
-                          rendered: true,
-                        })
-                        : scope.row[item.field];
+                    on: {
+                      ...this.$listeners,
+                      'cell-event': this.cellEvent,
+                      'show-setting': this.showSetting,
                     },
-                    'filter-slot': scope => {
-                      return (
-                        this.$scopedSlots['filter-slot'] &&
-                        this.$scopedSlots['filter-slot'](scope)
-                      );
+                    scopedSlots: {
+                      'header-slot': scope => {
+                        return (
+                          this.$scopedSlots['header-slot'] &&
+                          this.$scopedSlots['header-slot']({
+                            row: scope.row,
+                            column: item,
+                          })
+                        );
+                      },
+                      'cell-slot': scope => {
+                        return this.$scopedSlots['cell-slot']
+                          ? this.$scopedSlots['cell-slot']({
+                              row: scope.row,
+                              data: scope.data,
+                              column: {
+                                ...item,
+                                id: scope.column.id,
+                                property: scope.column.property,
+                              },
+                              columns: this.head,
+                              rowIndex: scope.$rowIndex,
+                              columnIndex: scope.$columnIndex,
+                              rendered: true,
+                            })
+                          : scope.row[item.field];
+                      },
+                      'filter-slot': scope => {
+                        return (
+                          this.$scopedSlots['filter-slot'] &&
+                          this.$scopedSlots['filter-slot'](scope)
+                        );
+                      },
+                      'btn-slot': scope => {
+                        return (
+                          this.$scopedSlots['btn-slot'] &&
+                          this.$scopedSlots['btn-slot']({
+                            row: scope.row,
+                            data: scope.data,
+                            column: item,
+                            columns: this.head,
+                            rowIndex: scope.$rowIndex,
+                            columnIndex: scope.$columnIndex,
+                            rendered: true,
+                          })
+                        );
+                      },
                     },
-                    'btn-slot': scope => {
-                      return (
-                        this.$scopedSlots['btn-slot'] &&
-                        this.$scopedSlots['btn-slot']({
-                          row: scope.row,
-                          data: scope.data,
-                          column: item,
-                          columns: this.head,
-                          rowIndex: scope.$rowIndex,
-                          columnIndex: scope.$columnIndex,
-                          rendered: true,
-                        })
-                      );
-                    },
-                  },
-                });
-              }),
-            ],
-          )
+                  });
+                }),
+              ]
+            )
           : null}
         {this.showFooter
           ? h('summary-drop', {
-            props: {
-              footerList: this.footerList,
-            },
-            on: {
-              ...this.$listeners,
-            },
-          })
+              props: {
+                footerList: this.footerList,
+              },
+              on: {
+                ...this.$listeners,
+              },
+            })
           : null}
 
         {this.isShowCheckDrop
           ? h('check-drop', {
-            on: {
-              'check-mode-change': this.checkModeEvent,
-            },
-          })
+              on: {
+                'check-mode-change': this.checkModeEvent,
+              },
+            })
           : null}
 
-        {
-          h('action-drop', {
-            ref: 'actionDrop',
-            props: {
-              customColumns: this.customColumns,
+        {h('action-drop', {
+          ref: 'actionDrop',
+          props: {
+            customColumns: this.customColumns,
+          },
+          on: {
+            ...this.$listeners,
+            'sync-column-render': data => {
+              const target = this.$refs['main-table'];
+              ['lock', 'change'].indexOf(data.event) > -1
+                ? target.refreshColumn()
+                : target.reloadColumn(this.customColumns);
             },
-            on: {
-              ...this.$listeners,
-              'sync-column-render': data => {
-                const target = this.$refs['main-table'];
-                ['lock', 'change'].indexOf(data.event) > -1
-                  ? target.refreshColumn()
-                  : target.reloadColumn(this.customColumns);
-              },
-            },
-          })
-        }
+          },
+        })}
 
         {h('identifier', {
           class: this.recls('mask'),
@@ -368,7 +368,7 @@ export default create({
       this.$emit(
         'cell-event',
         { row, rowIndex, column, columnIndex, ...{ rows: this.data }, ...{ columns: this.head } },
-        event,
+        event
       );
     },
 
@@ -523,14 +523,17 @@ export default create({
     rowDrop() {
       this.$nextTick(() => {
         const xTable = this.$refs['main-table'];
-        this.sortable = Sortable.create(xTable.$el.querySelector('.body--wrapper>.vxe-table--body tbody'), {
-          handle: '.vxe-body--row',
-          onEnd: ({ newIndex, oldIndex}) => {
-            const currRow = this.data.splice(oldIndex, 1)[0];
-            this.data.splice(newIndex, 0, currRow);
-            this.$emit('drag-end', { data: this.data, newIndex, oldIndex });
-          },
-        });
+        this.sortable = Sortable.create(
+          xTable.$el.querySelector('.body--wrapper>.vxe-table--body tbody'),
+          {
+            handle: '.vxe-body--row',
+            onEnd: ({ newIndex, oldIndex }) => {
+              const currRow = this.data.splice(oldIndex, 1)[0];
+              this.data.splice(newIndex, 0, currRow);
+              this.$emit('drag-end', { data: this.data, newIndex, oldIndex });
+            },
+          }
+        );
       });
     },
   },
@@ -538,8 +541,7 @@ export default create({
     // alert(this.loading)
     // alert(this.data)
   },
-  mounted() {
-  },
+  mounted() {},
 
   beforeDestroy() {
     if (this.sortable) {

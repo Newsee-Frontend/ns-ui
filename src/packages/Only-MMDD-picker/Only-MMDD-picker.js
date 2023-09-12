@@ -56,7 +56,7 @@ export default create({
 
       /**
        * 绑定值被改变时触发
-       * @event input 
+       * @event input
        * @property { String } value 双绑的值
        */
       this.$emit('input', this.childOnlyMMDD);
@@ -66,7 +66,7 @@ export default create({
       clearTimeout(tt);
       /**
        * 在组件 Input 获得焦点时触发
-       * @event focus 
+       * @event focus
        * @property { String } value 双绑的值
        */
       this.$emit('focus', this.childOnlyMMDD);
@@ -91,7 +91,7 @@ export default create({
     change(value) {
       /**
        * 绑定值被改变时触发
-       * @event change 
+       * @event change
        * @property { String } value 双绑的值
        */
       this.$emit('change', value);

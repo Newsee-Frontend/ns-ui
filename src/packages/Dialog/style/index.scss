@@ -24,20 +24,19 @@
       top: 16px;
       .el-dialog__close {
         color: #999999;
-        &:hover{
+        &:hover {
           color: $--color-primary;
         }
       }
 
       // 放大 缩小菜单按钮
-      &.dialog-header_menu{
+      &.dialog-header_menu {
         right: 40px;
         > i {
           padding: 0 5px;
         }
       }
     }
-
 
     //内容部分
     .el-dialog__body {
@@ -76,10 +75,9 @@
       display: flex;
       flex-direction: column;
 
-      .el-dialog__body{
+      .el-dialog__body {
         flex: 1;
       }
-
     }
   }
 

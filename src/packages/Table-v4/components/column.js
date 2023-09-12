@@ -125,7 +125,7 @@ export default {
 
     //操作列
     if (this.actionColInclude.indexOf(this.columnType) > -1) {
-      injection.props['show-overflow'] = 'ellipsis'
+      injection.props['show-overflow'] = 'ellipsis';
       injection.scopedSlots = {
         default: this.$scopedSlots['btn-slot'],
       };
@@ -139,7 +139,7 @@ export default {
         header: scope => {
           return (
             <span class={'el-dropdown-link el-dropdown-selfdefine'} on-click={this.showSettingDrop}>
-              <i class={'el-icon-setting'}/>
+              <i class={'el-icon-setting'} />
             </span>
           );
         },
@@ -241,8 +241,8 @@ export default {
     },
 
     // 设置点击
-    showSettingDrop(){
+    showSettingDrop() {
       this.$emit('show-setting');
-    }
-  }
+    },
+  },
 };

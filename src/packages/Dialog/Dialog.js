@@ -16,7 +16,7 @@ export default create({
       show: false,
       sizeMap: { mini: '300px', small: '500px', normal: '650px', medium: '764px', large: '900px' },
 
-      dialogType: 'normal',  // min
+      dialogType: 'normal', // min
     };
   },
   props: {
@@ -67,7 +67,6 @@ export default create({
       type: Boolean,
       default: false,
     },
-
 
     /**
      * Dialog 的宽度
@@ -124,9 +123,9 @@ export default create({
   watch: {
     visible(val) {
       this.show = val;
-      if(val){
+      if (val) {
         //状态还原
-        this.dialogType = 'normal'
+        this.dialogType = 'normal';
       }
     },
   },
@@ -145,7 +144,7 @@ export default create({
       if (this.autoHeight) {
         cls.push('autoHeight');
       }
-      if(!this.modal){
+      if (!this.modal) {
         cls.push('noModal');
       }
       return this.recls(cls);
@@ -175,7 +174,15 @@ export default create({
           'before-close': this.beforeClose,
         },
 
-        directives: this.draggable ? [{ name: 'dialogDrag', rawName: 'v-dialogDrag',  value: { visible: this.show, maxmin: this.maxmin, dialogWidth: this.dialogWidth} }] : [],
+        directives: this.draggable
+          ? [
+              {
+                name: 'dialogDrag',
+                rawName: 'v-dialogDrag',
+                value: { visible: this.show, maxmin: this.maxmin, dialogWidth: this.dialogWidth },
+              },
+            ]
+          : [],
 
         on: {
           'update:visible': value => {
@@ -190,39 +197,62 @@ export default create({
         },
       },
       [
-        h("span", {
-          slot: 'footer',
-          class: 'dialog-footer'
-        }, [this.$slots.footer]),
+        h(
+          'span',
+          {
+            slot: 'footer',
+            class: 'dialog-footer',
+          },
+          [this.$slots.footer]
+        ),
 
+        h(
+          'div',
+          {
+            slot: 'title',
+            class: 'dialog-header',
+          },
+          [
+            h(
+              'span',
+              {
+                class: 'el-dialog__title',
+              },
+              [this.$slots.title ? this.$slots.title : this.title]
+            ),
 
-        h("div", {
-          slot: 'title',
-          class: 'dialog-header'
-        }, [
+            this.maxmin
+              ? h(
+                  'div',
+                  {
+                    class: ['el-dialog-header_menu', 'el-dialog__headerbtn', 'dialog-header_menu'],
+                  },
+                  [
+                    h('i', {
+                      class: 'el-icon el-icon-minus el-dialog__close',
+                      on: {
+                        click: this.handlerSize.bind(this, 'minimize'),
+                      },
+                    }),
 
-          h("span",{
-            class: 'el-dialog__title'
-          }, [this.$slots.title ? this.$slots.title : this.title]),
-
-          this.maxmin?   h("div",{
-            class: ["el-dialog-header_menu",  "el-dialog__headerbtn",  "dialog-header_menu"]
-          }, [
-
-            h("i", {
-            "class": "el-icon el-icon-minus el-dialog__close",
-            "on": {
-              "click": this.handlerSize.bind(this, 'minimize')
-            }
-          }),
-
-            h("i", {
-            "on": {
-              "click": this.handlerSize.bind(this, '')
-            },
-              "class": ["el-icon", "el-dialog__close", "icon-maxmin", this.dialogType === 'fullScreen' ? 'el-icon-copy-document' : 'el-icon-full-screen']          })])  : null
-
-        ])
+                    h('i', {
+                      on: {
+                        click: this.handlerSize.bind(this, ''),
+                      },
+                      class: [
+                        'el-icon',
+                        'el-dialog__close',
+                        'icon-maxmin',
+                        this.dialogType === 'fullScreen'
+                          ? 'el-icon-copy-document'
+                          : 'el-icon-full-screen',
+                      ],
+                    }),
+                  ]
+                )
+              : null,
+          ]
+        ),
       ]
     );
   },
@@ -240,7 +270,6 @@ export default create({
        */
       this.$emit('close');
       this.$emit('update:visible', false);
-
     },
     //Dialog open emit
     open() {
@@ -256,21 +285,19 @@ export default create({
       this.$emit('update:visible', state);
     },
 
-
     /**
      * 控制放大缩小
      */
-    handlerSize(val){
-      if(val){
-        this.dialogType = val
+    handlerSize(val) {
+      if (val) {
+        this.dialogType = val;
         this.$emit('update:visible', false);
-        this.dialogType = 'normal'
-          this.$emit('minimize');
-      }else{
-        this.dialogType = this.dialogType === 'normal'? 'fullScreen' : 'normal'
+        this.dialogType = 'normal';
+        this.$emit('minimize');
+      } else {
+        this.dialogType = this.dialogType === 'normal' ? 'fullScreen' : 'normal';
       }
-
-    }
+    },
   },
   created() {
     this.show = this.visible;

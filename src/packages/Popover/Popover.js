@@ -152,7 +152,7 @@ export default create({
     afterEnter: function() {
       /**
        * 显示动画播放完毕后触发
-       * @event after-enter 
+       * @event after-enter
        */
       this.$emit('after-enter');
     },
@@ -160,7 +160,7 @@ export default create({
     hide: function() {
       /**
        * 隐藏时触发
-       * @event hide 
+       * @event hide
        */
       this.$emit('hide');
     },
@@ -168,10 +168,9 @@ export default create({
     afterLeave: function() {
       /**
        * 隐藏动画播放完毕后触发
-       * @event after-leave 
+       * @event after-leave
        */
       this.$emit('after-leave');
     },
   },
 });
-

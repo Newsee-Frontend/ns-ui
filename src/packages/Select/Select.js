@@ -37,7 +37,7 @@ export default create({
     /**
      * 输入框尺寸
      */
-    size: { type: String, validator: s => sizeValidator(s) }, 
+    size: { type: String, validator: s => sizeValidator(s) },
 
     /**
      * 占位符
@@ -87,12 +87,12 @@ export default create({
     /**
      * 自定义搜索方法
      */
-    filterMethod: { type: Function, default: null }, 
+    filterMethod: { type: Function, default: null },
 
     /**
      * 是否为远程搜索
      */
-    remote: { type: Boolean, default: false }, 
+    remote: { type: Boolean, default: false },
 
     /**
      * 远程搜索方法

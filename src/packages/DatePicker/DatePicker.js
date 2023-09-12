@@ -34,22 +34,22 @@ export default create({
     /**
      * 禁用
      */
-    disabled: { type: Boolean, default: false }, 
+    disabled: { type: Boolean, default: false },
 
     /**
      * 文本框可输入
      */
-    editable: { type: Boolean, default: false }, 
+    editable: { type: Boolean, default: false },
 
     /**
      * 是否显示清除按钮
      */
-    clearable: { type: Boolean, default: true }, 
+    clearable: { type: Boolean, default: true },
 
     /**
      * 尺寸
      */
-    size: { type: String, validator: s => sizeValidator(s) }, 
+    size: { type: String, validator: s => sizeValidator(s) },
 
     /**
      * 占位内容
@@ -69,22 +69,22 @@ export default create({
     /**
      * 显示类型
      */
-    type: { type: String, default: 'date' }, 
+    type: { type: String, default: 'date' },
 
     /**
      * 显示在输入框中的格式
      */
-    format: { type: String, default: 'yyyy-MM-dd' }, 
+    format: { type: String, default: 'yyyy-MM-dd' },
 
     /**
      * 时间日期绑定值格式，不指定则绑定Data对象
      */
-    valueFormat: { type: String, default: 'yyyy-MM-dd' }, 
+    valueFormat: { type: String, default: 'yyyy-MM-dd' },
 
     /**
      * 对齐方式
      */
-    align: { type: String, default: 'left' }, 
+    align: { type: String, default: 'left' },
 
     /**
      * DatePicker 下拉框的类名
@@ -99,12 +99,12 @@ export default create({
     /**
      * 可选，选择器打开时默认显示的时间
      */
-    defaultTime: { type: [String, Array] }, 
+    defaultTime: { type: [String, Array] },
 
     /**
      * 在范围选择器里取消两个日期面板之间的联动
      */
-    unlinkPanels: { type: Boolean, default: true }, 
+    unlinkPanels: { type: Boolean, default: true },
 
     /**
      * 当前时间日期选择器特有的选项

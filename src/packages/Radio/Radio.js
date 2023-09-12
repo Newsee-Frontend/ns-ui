@@ -32,7 +32,7 @@ export default create({
      * 按钮样式
      * @values 'normal','button'
      */
-    type: { type: String, default: 'normal' }, 
+    type: { type: String, default: 'normal' },
 
     /**
      * 尺寸
@@ -62,7 +62,7 @@ export default create({
       type: Object,
       default: () => ({ label: 'label', value: 'value', disabled: 'disabled' }),
     },
-    
+
     /**
      * 单选框组
      */
