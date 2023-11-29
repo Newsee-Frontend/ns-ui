@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import img_404 from '@/assets/img/404/404.png';
-import img_404_cloud from '@/assets/img/404/404_cloud.png';
+import img_404 from '@/style/img/404/404.png';
+import img_404_cloud from '@/style/img/404/404_cloud.png';
 
 export default {
   data() {

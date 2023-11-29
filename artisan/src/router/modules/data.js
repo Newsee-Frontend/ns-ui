@@ -21,8 +21,14 @@ export const dataRouter = [
       {
         path: 'tree',
         component: () => import('../../pages/Data/Tree/Tree'),
-        meta: { auth: true, key: 'Progress' },
+        meta: { auth: true, key: 'Tree' },
         name: 'Tree树形控件',
+      },
+      {
+        path: 'virtual-tree',
+        component: () => import('../../pages/Data/VirtualTree/VirtualTree'),
+        meta: { auth: true, key: 'virtual-tree' },
+        name: '虚拟Tree树形控件',
       },
       {
         path: 'pagination',

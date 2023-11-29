@@ -56,7 +56,8 @@
     "vxe-table": "2.9.27",
     "vxe-table-plugin-element": "1.5.10",
     "watch-size": "^2.0.0",
-    "xe-utils": "^2.8.1"
+    "xe-utils": "^2.8.1",
+    "vue-virtual-scroller": "~1.0.10"
   },
   "devDependencies": {
     "@babel/polyfill": "^7.4.3",

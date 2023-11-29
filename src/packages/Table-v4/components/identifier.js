@@ -1,6 +1,6 @@
 import Button from '../../Button/Button';
 import img_error from '../../../assets/error.jpg';
-// import img_null from '../../../assets/null.jpg';
+// import img_null from '../../../style/null.jpg';
 
 export default {
   components: { Button },

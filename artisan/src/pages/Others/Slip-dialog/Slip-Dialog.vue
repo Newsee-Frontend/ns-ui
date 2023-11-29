@@ -117,7 +117,7 @@
             appendToBody
           >
             <h2 style="text-align: center;padding: 15px 0 ;margin: 0">全屏窗口</h2>
-            <!--<img src="../../../assets/img/banner/banner.png" alt="banner"/>-->
+            <!--<img src="../../../style/img/banner/banner.png" alt="banner"/>-->
             <div style="text-align: right">
               <el-button @click.stop="form.dialogSw2 = false">关闭窗口</el-button>
             </div>
