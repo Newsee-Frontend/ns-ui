@@ -70,6 +70,7 @@ import ElTreeVirtualNode from './components/virtual-tree-node'
 import emitter from './components/mixins/emitter'
 import { addClass, removeClass } from './components/utils/dom'
 import create from '../../create/create';
+import _ from "lodash"
 export default create({
   name: 'virtual-tree',
 
@@ -794,6 +795,8 @@ export default create({
         console.log(e)
       }
       dragState.draggingNode = treeNode
+      dragState.draggingNode = { node: _.cloneDeep(treeNode.node) }
+
       /**
        * 节点开始拖拽时触发的事件
        * @event node-drag-start
@@ -950,7 +953,8 @@ export default create({
         if (draggingNode && dropNode) {
           const draggingNodeCopy = { data: draggingNode.node.data }
           if (dropType !== 'none') {
-            draggingNode.node.remove()
+            // draggingNode.node.remove()
+            this.store.remove(draggingNode.node.data)
           }
           if (dropType === 'before') {
             dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node)
