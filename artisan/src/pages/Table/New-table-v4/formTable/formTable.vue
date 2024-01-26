@@ -427,7 +427,7 @@
                 });
 
                 //可以进行保留小数等数据处理
-                return val.toFixed(2);
+                return val.toFixed(20);
               }
             }
             return null;

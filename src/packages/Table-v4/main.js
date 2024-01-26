@@ -130,6 +130,7 @@ export default create({
       'highlight-hover-row': this.highlightHoverRow,
       'show-overflow': true,
       'show-header-overflow': true,
+      'show-footer-overflow': true,
       'edit-config': this.editConfig,
       'edit-rules': this.validRules,
       'sync-resize': this.syncResize,
