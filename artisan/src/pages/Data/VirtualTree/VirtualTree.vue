@@ -10,6 +10,7 @@
             v-bind='baseProps'
             :data="nodeList"
             draggable
+            @node-click="nodeClick"
             :dropJudge='dropJudge'
             ref="testTree"
           >
@@ -127,6 +128,11 @@ export default {
       this.$prompt('您要修改节点的名称', '提示').then(({ value }) => {
         data.houseFullName = value
       });
+    },
+
+
+    nodeClick(node){
+      console.log(node);
     }
   },
 

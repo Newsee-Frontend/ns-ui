@@ -64,9 +64,8 @@
           :disabled="!node.data.iconTitle"
           placement="top-start"
         >
-          <ns-icon-svg
-            :class="['el-tree-node__expand-icon', node.data.iconClass]"
-            :icon-class="node.data.iconClass"></ns-icon-svg>
+          <ns-icon-svg  :class="['el-tree-node__expand-icon', node.data.iconClass]"
+                        :icon-class="node.data.iconClass"></ns-icon-svg>
         </el-tooltip>
 
         <ns-icon-class
