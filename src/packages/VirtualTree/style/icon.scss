@@ -1,14 +1,15 @@
-@import "common/var";
+@import 'common/var';
 
-@font-face {  /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+@font-face {
+  /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
   font-weight: normal;
   font-display: $--font-display;
   font-style: normal;
 }
 
 .el-tree.ns-virtual-tree {
-  [class^="el-icon-"],
-  [class*=" el-icon-"] {
+  [class^='el-icon-'],
+  [class*=' el-icon-'] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'element-icons' !important;
     speak: none;
@@ -25,17 +26,16 @@
   }
 
   .el-icon-caret-bottom:before {
-    content: "\e790";
+    content: '\e790';
   }
 
   .el-icon-caret-right:before {
-    content: "\e791";
+    content: '\e791';
   }
 
-
-  .el-tree-node__content> .el-tree-node__expand-icon{
+  .el-tree-node__content > .el-tree-node__expand-icon {
     &.ns-icon-svg,
-    &.ns-icon-class{
+    &.ns-icon-class {
       font-size: 14px;
       color: #999;
       margin: 0 4px;
@@ -43,11 +43,7 @@
     }
   }
 
-  .el-tree-node__content .el-checkbox{
+  .el-tree-node__content .el-checkbox {
     padding: 0 6px 0 0;
   }
 }
-
-
-
-

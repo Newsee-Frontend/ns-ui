@@ -16,25 +16,27 @@ export function isHtmlElement(node) {
  *  - Inspired:
  *    https://github.com/jashkenas/underscore/blob/master/modules/isFunction.js
  */
-let isFunction = (functionToCheck) => {
+let isFunction = functionToCheck => {
   var getType = {};
   return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 };
 
-if (typeof /./ !== 'function' && typeof Int8Array !== 'object' && (Vue.prototype.$isServer || typeof document.childNodes !== 'function')) {
+if (
+  typeof /./ !== 'function' &&
+  typeof Int8Array !== 'object' &&
+  (Vue.prototype.$isServer || typeof document.childNodes !== 'function')
+) {
   isFunction = function(obj) {
     return typeof obj === 'function' || false;
   };
 }
 
-export {
-  isFunction
-};
+export { isFunction };
 
-export const isUndefined = (val)=> {
+export const isUndefined = val => {
   return val === void 0;
 };
 
-export const isDefined = (val) => {
+export const isDefined = val => {
   return val !== undefined && val !== null;
 };

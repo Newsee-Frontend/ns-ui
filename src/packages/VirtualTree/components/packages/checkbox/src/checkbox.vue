@@ -5,7 +5,7 @@
       border && checkboxSize ? 'el-checkbox--' + checkboxSize : '',
       { 'is-disabled': isDisabled },
       { 'is-bordered': border },
-      { 'is-checked': isChecked }
+      { 'is-checked': isChecked },
     ]"
     :id="id"
   >
@@ -15,7 +15,7 @@
         'is-disabled': isDisabled,
         'is-checked': isChecked,
         'is-indeterminate': indeterminate,
-        'is-focus': focus
+        'is-focus': focus,
       }"
       :tabindex="indeterminate ? 0 : false"
       :role="indeterminate ? 'checkbox' : false"
@@ -57,34 +57,30 @@
   </label>
 </template>
 <script>
-import Emitter from "../../../mixins/emitter";
+import Emitter from '../../../mixins/emitter';
 export default {
-  name: "ElCheckbox",
+  name: 'ElCheckbox',
   mixins: [Emitter],
   inject: {
     elForm: {
-      default: ""
+      default: '',
     },
     elFormItem: {
-      default: ""
-    }
+      default: '',
+    },
   },
-  componentName: "ElCheckbox",
+  componentName: 'ElCheckbox',
   data() {
     return {
       selfModel: false,
       focus: false,
-      isLimitExceeded: false
+      isLimitExceeded: false,
     };
   },
   computed: {
     model: {
       get() {
-        return this.isGroup
-          ? this.store
-          : this.value !== undefined
-          ? this.value
-          : this.selfModel;
+        return this.isGroup ? this.store : this.value !== undefined ? this.value : this.selfModel;
       },
       set(val) {
         if (this.isGroup) {
@@ -95,17 +91,16 @@ export default {
           this._checkboxGroup.max !== undefined &&
             val.length > this._checkboxGroup.max &&
             (this.isLimitExceeded = true);
-          this.isLimitExceeded === false &&
-            this.dispatch("ElCheckboxGroup", "input", [val]);
+          this.isLimitExceeded === false && this.dispatch('ElCheckboxGroup', 'input', [val]);
         } else {
-          this.$emit("input", val);
+          this.$emit('input', val);
           this.selfModel = val;
         }
-      }
+      },
     },
     // eslint-disable-next-line vue/return-in-computed-property
     isChecked() {
-      if ({}.toString.call(this.model) === "[object Boolean]") {
+      if ({}.toString.call(this.model) === '[object Boolean]') {
         return this.model;
       } else if (Array.isArray(this.model)) {
         return this.model.indexOf(this.label) > -1;
@@ -116,7 +111,7 @@ export default {
     isGroup() {
       let parent = this.$parent;
       while (parent) {
-        if (parent.$options.componentName !== "ElCheckboxGroup") {
+        if (parent.$options.componentName !== 'ElCheckboxGroup') {
           parent = parent.$parent;
         } else {
           // eslint-disable-next-line vue/no-side-effects-in-computed-properties
@@ -149,12 +144,11 @@ export default {
       return (this.elFormItem || {}).elFormItemSize;
     },
     checkboxSize() {
-      const temCheckboxSize =
-        this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
+      const temCheckboxSize = this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
       return this.isGroup
         ? this._checkboxGroup.checkboxGroupSize || temCheckboxSize
         : temCheckboxSize;
-    }
+    },
   },
   props: {
     value: {},
@@ -168,7 +162,7 @@ export default {
     id: String /* 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系*/,
     controls: String /* 当indeterminate为真时，为controls提供相关连的checkbox的id，表明元素间的控制关系*/,
     border: Boolean,
-    size: String
+    size: String,
   },
   methods: {
     addToStore() {
@@ -186,15 +180,13 @@ export default {
       } else {
         value = this.falseLabel === undefined ? false : this.falseLabel;
       }
-      this.$emit("change", value, ev);
+      this.$emit('change', value, ev);
       this.$nextTick(() => {
         if (this.isGroup) {
-          this.dispatch("ElCheckboxGroup", "change", [
-            this._checkboxGroup.value
-          ]);
+          this.dispatch('ElCheckboxGroup', 'change', [this._checkboxGroup.value]);
         }
       });
-    }
+    },
   },
   created() {
     this.checked && this.addToStore();
@@ -202,13 +194,13 @@ export default {
   mounted() {
     // 为indeterminate元素 添加aria-controls 属性
     if (this.indeterminate) {
-      this.$el.setAttribute("aria-controls", this.controls);
+      this.$el.setAttribute('aria-controls', this.controls);
     }
   },
   watch: {
     value(value) {
-      this.dispatch("ElFormItem", "el.form.change", value);
-    }
-  }
+      this.dispatch('ElFormItem', 'el.form.change', value);
+    },
+  },
 };
 </script>

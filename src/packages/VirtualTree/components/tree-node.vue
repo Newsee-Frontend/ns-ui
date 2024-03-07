@@ -9,7 +9,7 @@
       'is-hidden': !node.visible,
       'is-focusable': !node.disabled,
       'is-checked': !node.disabled && node.checked,
-      'is-showChecked': this.showCheckbox
+      'is-showChecked': this.showCheckbox,
     }"
     role="treeitem"
     tabindex="-1"
@@ -18,7 +18,7 @@
     :aria-checked="node.checked"
     :draggable="tree.draggable"
     @click.stop="handleClick"
-    @contextmenu="($event) => this.handleContextMenu($event)"
+    @contextmenu="$event => this.handleContextMenu($event)"
     @dragstart.stop="handleDragStart"
     @dragover.stop="handleDragOver"
     @dragend.stop="handleDragEnd"
@@ -26,9 +26,7 @@
   >
     <div
       class="el-tree-node__content"
-      :style="`padding-left:${
-        (node.level - 1) * tree.indent
-      }px;height: ${itemSize}px;`"
+      :style="`padding-left:${(node.level - 1) * tree.indent}px;height: ${itemSize}px;`"
     >
       <span
         v-if="showCheckbox"
@@ -50,7 +48,6 @@
 
       <ns-icon-class v-else icon-class="padding-block"></ns-icon-class>
 
-
       <el-checkbox
         v-if="showCheckbox"
         v-model="node.checked"
@@ -59,10 +56,7 @@
         @click.native.stop
         @change="handleCheckChange"
       ></el-checkbox>
-      <span
-        v-if="node.loading"
-        class="el-tree-node__loading-icon el-icon-loading"
-      ></span>
+      <span v-if="node.loading" class="el-tree-node__loading-icon el-icon-loading"></span>
       <node-content :node="node"></node-content>
     </div>
     <el-collapse-transition>
@@ -198,5 +192,4 @@ export default {
   },
 };
 </script>
-<style>
-</style>
+<style></style>

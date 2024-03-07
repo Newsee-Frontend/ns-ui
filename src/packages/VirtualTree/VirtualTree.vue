@@ -5,7 +5,7 @@
       'el-tree--highlight-current': highlightCurrent,
       'is-dragging': !!dragState.draggingNode,
       'is-drop-not-allow': !dragState.allowDrop,
-      'is-drop-inner': dragState.dropType === 'inner'
+      'is-drop-inner': dragState.dropType === 'inner',
     }"
     role="tree"
   >
@@ -14,9 +14,9 @@
       ref="recycleScroller"
       :style="{
         height: height,
-        'overflow': 'auto',
+        overflow: 'auto',
         // 'scroll-behavior': 'smooth',
-        'padding-right': '10px'
+        'padding-right': '10px',
       }"
       key-field="key"
       :items="dataList"
@@ -61,16 +61,16 @@
 </template>
 
 <script>
-import TreeStore from './components/model/tree-store'
-import { RecycleScroller } from 'vue-virtual-scroller'
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
-import { getNodeKey, findNearestComponent } from './components/model/util'
-import ElTreeNode from './components/tree-node'
-import ElTreeVirtualNode from './components/virtual-tree-node'
-import emitter from './components/mixins/emitter'
-import { addClass, removeClass } from './components/utils/dom'
+import TreeStore from './components/model/tree-store';
+import { RecycleScroller } from 'vue-virtual-scroller';
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css';
+import { getNodeKey, findNearestComponent } from './components/model/util';
+import ElTreeNode from './components/tree-node';
+import ElTreeVirtualNode from './components/virtual-tree-node';
+import emitter from './components/mixins/emitter';
+import { addClass, removeClass } from './components/utils/dom';
 import create from '../../create/create';
-import _ from "lodash"
+import _ from 'lodash';
 export default create({
   name: 'virtual-tree',
 
@@ -78,7 +78,7 @@ export default create({
     // VirtualList,
     RecycleScroller,
     ElTreeNode,
-    ElTreeVirtualNode
+    ElTreeVirtualNode,
   },
 
   mixins: [emitter],
@@ -87,7 +87,7 @@ export default create({
      * 展示数据
      */
     data: {
-      type: Array
+      type: Array,
     },
 
     /**
@@ -95,9 +95,9 @@ export default create({
      */
     emptyText: {
       type: String,
-      default () {
-        return '暂无数据'
-      }
+      default() {
+        return '暂无数据';
+      },
     },
 
     /**
@@ -105,7 +105,7 @@ export default create({
      */
     renderAfterExpand: {
       type: Boolean,
-      default: true
+      default: true,
     },
 
     /**
@@ -118,7 +118,7 @@ export default create({
      */
     checkStrictly: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -126,7 +126,7 @@ export default create({
      */
     defaultExpandAll: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -134,32 +134,32 @@ export default create({
      */
     expandOnClickNode: {
       type: Boolean,
-      default: true
+      default: true,
     },
     /**
      * 	是否在点击节点的时候选中节点，默认值为 false，即只有在点击复选框时才会选中节点。
      */
     checkOnClickNode: {
       type: Boolean,
-      default: false
+      default: false,
     },
     checkDescendants: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * 虚拟固定的高度
      */
     itemSize: {
       type: Number,
-      default: 30
+      default: 30,
     },
     /**
      * 展开子节点的时候是否自动展开父节点
      */
     autoExpandParent: {
       type: Boolean,
-      default: true
+      default: true,
     },
     /**
      * 默认勾选的节点的 key 的数组
@@ -186,16 +186,15 @@ export default create({
      */
     showCheckbox: {
       type: Boolean,
-      default: false
+      default: false,
     },
     /**
      * 是否开启拖拽节点功能
      */
     draggable: {
       type: Boolean,
-      default: false
+      default: false,
     },
-
 
     /**
      * 判断节点能否被拖拽
@@ -217,13 +216,13 @@ export default create({
      */
     // eslint-disable-next-line vue/require-prop-types
     props: {
-      default () {
+      default() {
         return {
           children: 'children',
           label: 'label',
-          disabled: 'disabled'
-        }
-      }
+          disabled: 'disabled',
+        };
+      },
     },
 
     /**
@@ -231,7 +230,7 @@ export default create({
      */
     lazy: {
       type: Boolean,
-      default: false
+      default: false,
     },
 
     /**
@@ -259,7 +258,7 @@ export default create({
      */
     indent: {
       type: Number,
-      default: 18
+      default: 18,
     },
 
     /**
@@ -271,7 +270,7 @@ export default create({
      */
     height: {
       type: [String, Number],
-      default: 0
+      default: 0,
     },
 
     /**
@@ -279,11 +278,11 @@ export default create({
      */
     keeps: {
       type: Number,
-      default: 40
-    }
+      default: 40,
+    },
   },
 
-  data () {
+  data() {
     return {
       store: null,
       root: null,
@@ -294,102 +293,100 @@ export default create({
         showDropIndicator: false,
         draggingNode: null,
         dropNode: null,
-        allowDrop: true
+        allowDrop: true,
       },
-      treeNodeName: this.height ? 'ElTreeVirtualNode' : 'ElTreeNode'
-    }
+      treeNodeName: this.height ? 'ElTreeVirtualNode' : 'ElTreeNode',
+    };
   },
 
   computed: {
     children: {
-      set (value) {
-        this.data = value
+      set(value) {
+        this.data = value;
       },
-      get () {
-        return this.data
-      }
+      get() {
+        return this.data;
+      },
     },
 
-    treeItemArray () {
-      return Array.prototype.slice.call(this.treeItems)
+    treeItemArray() {
+      return Array.prototype.slice.call(this.treeItems);
     },
 
-    isEmpty () {
-      const { childNodes } = this.root
-      return (
-        !childNodes ||
-        childNodes.length === 0 ||
-        childNodes.every(({ visible }) => !visible)
-      )
+    isEmpty() {
+      const { childNodes } = this.root;
+      return !childNodes || childNodes.length === 0 || childNodes.every(({ visible }) => !visible);
     },
 
-    visibleChildNodes () {
+    visibleChildNodes() {
       return this.root.childNodes.filter(() => {
-        return !this.isEmpty
-      })
+        return !this.isEmpty;
+      });
     },
 
-    dataList () {
-      return this.smoothTree(this.root.childNodes)
-    }
+    dataList() {
+      return this.smoothTree(this.root.childNodes);
+    },
   },
 
   watch: {
-    defaultCheckedKeys (newVal) {
-      this.store.setDefaultCheckedKey(newVal)
+    defaultCheckedKeys(newVal) {
+      this.store.setDefaultCheckedKey(newVal);
     },
 
-    defaultExpandedKeys (newVal) {
-      this.store.defaultExpandedKeys = newVal
-      this.store.setDefaultExpandedKeys(newVal)
+    defaultExpandedKeys(newVal) {
+      this.store.defaultExpandedKeys = newVal;
+      this.store.setDefaultExpandedKeys(newVal);
     },
 
-    data (newVal) {
-      this.store.setData(newVal)
+    data(newVal) {
+      this.store.setData(newVal);
     },
 
-    currentNodeKey (key) {
+    currentNodeKey(key) {
       if (key) {
-        this.store.setCurrentNodeKey(key)
+        this.store.setCurrentNodeKey(key);
       }
     },
 
-    checkboxItems (val) {
-      Array.prototype.forEach.call(val, (checkbox) => {
-        checkbox.setAttribute('tabindex', -1)
-      })
+    checkboxItems(val) {
+      Array.prototype.forEach.call(val, checkbox => {
+        checkbox.setAttribute('tabindex', -1);
+      });
     },
 
-    checkStrictly (newVal) {
-      this.store.checkStrictly = newVal
-    }
+    checkStrictly(newVal) {
+      this.store.checkStrictly = newVal;
+    },
   },
 
   methods: {
-    smoothTree (treeData) {
+    smoothTree(treeData) {
       return treeData.reduce((smoothArr, data) => {
         if (data.visible) {
           // Mark different types to avoid being optimized out when assembled into the same dom
           data.type = this.showCheckbox
             ? `${data.level}-${data.checked}-${data.indeterminate}`
-            : `${data.level}-${data.expanded}`
-          smoothArr.push(data)
+            : `${data.level}-${data.expanded}`;
+          smoothArr.push(data);
         }
         if (data.expanded && data.childNodes.length) {
-          smoothArr.push(...this.smoothTree(data.childNodes))
+          smoothArr.push(...this.smoothTree(data.childNodes));
         }
 
-        return smoothArr
-      }, [])
+        return smoothArr;
+      }, []);
     },
 
     /**
      * @public
      *  对树节点进行筛选操作
      */
-    filter (value) {
-      if (!this.filterNodeMethod) { throw new Error('[Tree] filterNodeMethod is required when filter') }
-      this.store.filter(value)
+    filter(value) {
+      if (!this.filterNodeMethod) {
+        throw new Error('[Tree] filterNodeMethod is required when filter');
+      }
+      this.store.filter(value);
     },
 
     /**
@@ -397,22 +394,18 @@ export default create({
      *  自定义滚动
      *  @param {String, Number} key 节点key值
      */
-    scrollToItem (key) {
+    scrollToItem(key) {
       if (this.height && !this.isEmpty) {
-        const virtualInstance = this.$children.find(
-          (c) => c.$options.name === 'RecycleScroller'
-        )
+        const virtualInstance = this.$children.find(c => c.$options.name === 'RecycleScroller');
         // Automatically scroll the target item to the top
-        const index = virtualInstance.items.findIndex((e) => {
-          return e.key === key
-        })
+        const index = virtualInstance.items.findIndex(e => {
+          return e.key === key;
+        });
         this.$nextTick(() => {
-          virtualInstance.scrollToItem(index)
-        })
+          virtualInstance.scrollToItem(index);
+        });
       } else {
-        throw new Error(
-          'scrollToItem can only be used when using virtual scrolling'
-        )
+        throw new Error('scrollToItem can only be used when using virtual scrolling');
       }
     },
 
@@ -421,18 +414,14 @@ export default create({
      *  自定义滚动到具体问题
      *  @param {String, Number} y 滚动的高度值
      */
-    scrollToPosition (y) {
+    scrollToPosition(y) {
       if (this.height && !this.isEmpty) {
-        const virtualInstance = this.$children.find(
-          (c) => c.$options.name === 'RecycleScroller'
-        )
+        const virtualInstance = this.$children.find(c => c.$options.name === 'RecycleScroller');
         this.$nextTick(() => {
-          virtualInstance.scrollToPosition(y)
-        })
+          virtualInstance.scrollToPosition(y);
+        });
       } else {
-        throw new Error(
-          'scrollToItem can only be used when using virtual scrolling'
-        )
+        throw new Error('scrollToItem can only be used when using virtual scrolling');
       }
     },
 
@@ -440,20 +429,18 @@ export default create({
      * @public
      *  获取滚动的位置（一般与scrollToPosition结合使用）
      */
-    getPosition () {
-      const virtualInstance = this.$children.find(
-        (c) => c.$options.name === 'RecycleScroller'
-      )
-      let { start } = virtualInstance.getScroll()
-      return start
+    getPosition() {
+      const virtualInstance = this.$children.find(c => c.$options.name === 'RecycleScroller');
+      let { start } = virtualInstance.getScroll();
+      return start;
     },
 
     /**
      * @public
      *  获取节点的key值
      */
-    getNodeKey (node) {
-      return getNodeKey(this.nodeKey, node.data)
+    getNodeKey(node) {
+      return getNodeKey(this.nodeKey, node.data);
     },
 
     /**
@@ -461,17 +448,19 @@ export default create({
      *  获取节点的path值
      *  @param {String, Number} data 节点key值
      */
-    getNodePath (data) {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in getNodePath') }
-      const node = this.store.getNode(data)
-      if (!node) return []
-      const path = [node.data]
-      let parent = node.parent
-      while (parent && parent !== this.root) {
-        path.push(parent.data)
-        parent = parent.parent
+    getNodePath(data) {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in getNodePath');
       }
-      return path.reverse()
+      const node = this.store.getNode(data);
+      if (!node) return [];
+      const path = [node.data];
+      let parent = node.parent;
+      while (parent && parent !== this.root) {
+        path.push(parent.data);
+        parent = parent.parent;
+      }
+      return path.reverse();
     },
 
     /**
@@ -480,8 +469,8 @@ export default create({
      *   @param {Boolean} leafOnly 是否只是叶子节点，默认值为 false
      *   @param {Boolean} includeHalfChecked 是否包含半选节点，默认值为 false
      */
-    getCheckedNodes (leafOnly, includeHalfChecked) {
-      return this.store.getCheckedNodes(leafOnly, includeHalfChecked)
+    getCheckedNodes(leafOnly, includeHalfChecked) {
+      return this.store.getCheckedNodes(leafOnly, includeHalfChecked);
     },
 
     /**
@@ -489,29 +478,30 @@ export default create({
      *  若节点可被选择（即 show-checkbox 为 true），则返回目前被选中的节点的 key 所组成的数组
      *  @param {Boolean} leafOnly 是否只是叶子节点，默认值为 false
      */
-    getCheckedKeys (leafOnly) {
-      return this.store.getCheckedKeys(leafOnly)
+    getCheckedKeys(leafOnly) {
+      return this.store.getCheckedKeys(leafOnly);
     },
 
     /**
      * @public
      * 获取当前被选中节点的 data，若没有节点被选中则返回 null
      */
-    getCurrentNode () {
-      const currentNode = this.store.getCurrentNode()
-      return currentNode ? currentNode.data : null
+    getCurrentNode() {
+      const currentNode = this.store.getCurrentNode();
+      return currentNode ? currentNode.data : null;
     },
-
 
     /**
      * @public
      * 获取当前被选中节点的 key，使用此方法必须设置 node-key 属性，若没有节点被选中则返回 null
      * @returns {*|null}
      */
-    getCurrentKey () {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in getCurrentKey') }
-      const currentNode = this.getCurrentNode()
-      return currentNode ? currentNode[this.nodeKey] : null
+    getCurrentKey() {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in getCurrentKey');
+      }
+      const currentNode = this.getCurrentNode();
+      return currentNode ? currentNode[this.nodeKey] : null;
     },
 
     /**
@@ -520,9 +510,11 @@ export default create({
      * @param nodes 接收勾选节点数据的数组
      * @param leafOnly 是否只是叶子节点，默认值为 false
      */
-    setCheckedNodes (nodes, leafOnly) {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in setCheckedNodes') }
-      this.store.setCheckedNodes(nodes, leafOnly)
+    setCheckedNodes(nodes, leafOnly) {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCheckedNodes');
+      }
+      this.store.setCheckedNodes(nodes, leafOnly);
     },
 
     /**
@@ -531,9 +523,11 @@ export default create({
      * @param keys 勾选节点的 key 的数组
      * @param leafOnly boolean 类型的参数，若为 true 则仅设置叶子节点的选中状态，默认值为 false
      */
-    setCheckedKeys (keys, leafOnly) {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in setCheckedKeys') }
-      this.store.setCheckedKeys(keys, leafOnly)
+    setCheckedKeys(keys, leafOnly) {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCheckedKeys');
+      }
+      this.store.setCheckedKeys(keys, leafOnly);
     },
 
     /**
@@ -543,8 +537,8 @@ export default create({
      * @param checked  boolean 类型，节点是否选中
      * @param deep boolean 类型，是否设置子节点 ，默认为 false
      */
-    setChecked (data, checked, deep) {
-      this.store.setChecked(data, checked, deep)
+    setChecked(data, checked, deep) {
+      this.store.setChecked(data, checked, deep);
     },
 
     /**
@@ -552,8 +546,8 @@ export default create({
      * 设置所有节点的勾选状态
      * @param checked
      */
-    setCheckedAll (checked = true) {
-      this.store.setCheckedAll(checked)
+    setCheckedAll(checked = true) {
+      this.store.setCheckedAll(checked);
     },
 
     /**
@@ -561,8 +555,8 @@ export default create({
      * 若节点可被选择（即 show-checkbox 为 true），则返回目前半选中的节点所组成的数组
      * @returns {*}
      */
-    getHalfCheckedNodes () {
-      return this.store.getHalfCheckedNodes()
+    getHalfCheckedNodes() {
+      return this.store.getHalfCheckedNodes();
     },
 
     /**
@@ -570,8 +564,8 @@ export default create({
      *  若节点可被选择（即 show-checkbox 为 true），则返回目前半选中的节点的 key 所组成的数组
      * @returns {*}
      */
-    getHalfCheckedKeys () {
-      return this.store.getHalfCheckedKeys()
+    getHalfCheckedKeys() {
+      return this.store.getHalfCheckedKeys();
     },
 
     /**
@@ -579,9 +573,11 @@ export default create({
      * 通过 node 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性
      * @param node  待被选节点的 node
      */
-    setCurrentNode (node) {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in setCurrentNode') }
-      this.store.setUserCurrentNode(node)
+    setCurrentNode(node) {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCurrentNode');
+      }
+      this.store.setUserCurrentNode(node);
     },
 
     /**
@@ -589,9 +585,11 @@ export default create({
      * 通过 key 设置某个节点的当前选中状态，使用此方法必须设置 node-key 属性
      * @param key 待被选节点的 key，若为 null 则取消当前高亮的节点
      */
-    setCurrentKey (key) {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in setCurrentKey') }
-      this.store.setCurrentNodeKey(key)
+    setCurrentKey(key) {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in setCurrentKey');
+      }
+      this.store.setCurrentNodeKey(key);
     },
 
     /**
@@ -600,8 +598,8 @@ export default create({
      * @param data 要获得 node 的 key 或者 data
      * @returns {*}
      */
-    getNode (data) {
-      return this.store.getNode(data)
+    getNode(data) {
+      return this.store.getNode(data);
     },
 
     /**
@@ -609,8 +607,8 @@ export default create({
      * 删除 Tree 中的一个节点，使用此方法必须设置 node-key 属性
      * @param data 要删除的节点的 data 或者 node
      */
-    remove (data) {
-      this.store.remove(data)
+    remove(data) {
+      this.store.remove(data);
     },
 
     /**
@@ -619,8 +617,8 @@ export default create({
      * @param data 要追加的子节点的 data
      * @param parentNode 子节点的 parent 的 data、key 或者 node
      */
-    append (data, parentNode) {
-      this.store.append(data, parentNode)
+    append(data, parentNode) {
+      this.store.append(data, parentNode);
     },
 
     /**
@@ -629,8 +627,8 @@ export default create({
      * @param data 要增加的节点的 data
      * @param refNode 要增加的节点的后一个节点的 data、key 或者 node
      */
-    insertBefore (data, refNode) {
-      this.store.insertBefore(data, refNode)
+    insertBefore(data, refNode) {
+      this.store.insertBefore(data, refNode);
     },
 
     /**
@@ -639,13 +637,12 @@ export default create({
      * @param data 要增加的节点的 data
      * @param refNode 要增加的节点的后一个节点的 data、key 或者 node
      */
-    insertAfter (data, refNode) {
-      this.store.insertAfter(data, refNode)
+    insertAfter(data, refNode) {
+      this.store.insertAfter(data, refNode);
     },
 
-
-    handleNodeExpand (nodeData, node, instance) {
-      this.broadcast(this.treeNodeName, 'tree-node-expand', node)
+    handleNodeExpand(nodeData, node, instance) {
+      this.broadcast(this.treeNodeName, 'tree-node-expand', node);
       /**
        * 节点被展开时触发的事件
        * @event node-expand
@@ -653,7 +650,7 @@ export default create({
        * @property node  节点对应的 Node
        * @property instance  节点组件本身
        */
-      this.$emit('node-expand', nodeData, node, instance)
+      this.$emit('node-expand', nodeData, node, instance);
     },
 
     /**
@@ -662,12 +659,14 @@ export default create({
      * @param key  需要更新的父节点的key值
      * @param data  需要更新的内容
      */
-    updateKeyChildren (key, data) {
-      if (!this.nodeKey) { throw new Error('[Tree] nodeKey is required in updateKeyChild') }
+    updateKeyChildren(key, data) {
+      if (!this.nodeKey) {
+        throw new Error('[Tree] nodeKey is required in updateKeyChild');
+      }
 
-      let node = this.getNode(key)
-      node.loaded = true
-      this.store.updateChildren(key, data)
+      let node = this.getNode(key);
+      node.loaded = true;
+      this.store.updateChildren(key, data);
     },
 
     /**
@@ -675,87 +674,80 @@ export default create({
      * 获取最后的树完整的数据
      * @returns {*[]}
      */
-    getFullData () {
-      let res = []
+    getFullData() {
+      let res = [];
 
       const deepS = (root, data) => {
         root.childNodes.forEach(i => {
-          data.push(i.data)
+          data.push(i.data);
 
           if (i.childNodes.length > 0) {
-            i.data[this.props.children] = []
-            deepS(i, i.data[this.props.children])
+            i.data[this.props.children] = [];
+            deepS(i, i.data[this.props.children]);
           }
-        })
-      }
+        });
+      };
 
-      deepS(this.root, res)
-      return res
+      deepS(this.root, res);
+      return res;
     },
 
     /**
      *
      * @returns {*}
      */
-    getExpandKeys () {
-      let nodeList = this.store._getAllNodes()
-      return nodeList.filter(node => node.expanded).map(node => node.data[this.props.id])
+    getExpandKeys() {
+      let nodeList = this.store._getAllNodes();
+      return nodeList.filter(node => node.expanded).map(node => node.data[this.props.id]);
     },
 
-    initTabIndex () {
-      this.treeItems = this.$el.querySelectorAll(
-        '.is-focusable[role=treeitem]'
-      )
-      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]')
-      const checkedItem = this.$el.querySelectorAll(
-        '.is-checked[role=treeitem]'
-      )
+    initTabIndex() {
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+      const checkedItem = this.$el.querySelectorAll('.is-checked[role=treeitem]');
       if (checkedItem.length) {
-        checkedItem[0].setAttribute('tabindex', 0)
-        return
+        checkedItem[0].setAttribute('tabindex', 0);
+        return;
       }
-      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0)
+      this.treeItems[0] && this.treeItems[0].setAttribute('tabindex', 0);
     },
 
-    handleKeydown (ev) {
-      const currentItem = ev.target
-      if (currentItem.className.indexOf('el-tree-node') === -1) return
-      const keyCode = ev.keyCode
-      this.treeItems = this.$el.querySelectorAll(
-        '.is-focusable[role=treeitem]'
-      )
-      const currentIndex = this.treeItemArray.indexOf(currentItem)
-      let nextIndex
+    handleKeydown(ev) {
+      const currentItem = ev.target;
+      if (currentItem.className.indexOf('el-tree-node') === -1) return;
+      const keyCode = ev.keyCode;
+      this.treeItems = this.$el.querySelectorAll('.is-focusable[role=treeitem]');
+      const currentIndex = this.treeItemArray.indexOf(currentItem);
+      let nextIndex;
       if ([38, 40].indexOf(keyCode) > -1) {
         // up、down
-        ev.preventDefault()
+        ev.preventDefault();
         if (keyCode === 38) {
           // up
-          nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0
+          nextIndex = currentIndex !== 0 ? currentIndex - 1 : 0;
         } else {
-          nextIndex =
-            currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0
+          nextIndex = currentIndex < this.treeItemArray.length - 1 ? currentIndex + 1 : 0;
         }
-        this.treeItemArray[nextIndex].focus() // 选中
+        this.treeItemArray[nextIndex].focus(); // 选中
       }
       // 始终使用箭头，避免expand-on-click-node=false时不展开
-      const expandIcon = currentItem.querySelector('[class*="el-icon-"]')
+      const expandIcon = currentItem.querySelector('[class*="el-icon-"]');
       if ([37, 39].indexOf(keyCode) > -1 && expandIcon) {
         // left、right 展开
-        ev.preventDefault()
-        expandIcon.click() // 选中
+        ev.preventDefault();
+        expandIcon.click(); // 选中
       }
-      const hasInput = currentItem.querySelector('[type="checkbox"]')
+      const hasInput = currentItem.querySelector('[type="checkbox"]');
       if ([13, 32].indexOf(keyCode) > -1 && hasInput) {
         // space enter选中checkbox
-        ev.preventDefault()
-        hasInput.click()
+        ev.preventDefault();
+        hasInput.click();
       }
-    }
+    },
   },
 
-  created () {
-    this.isTree = true
+  created() {
+    this.isTree = true;
     this.store = new TreeStore({
       key: this.nodeKey,
       data: this.data,
@@ -769,33 +761,30 @@ export default create({
       defaultExpandedKeys: this.defaultExpandedKeys,
       autoExpandParent: this.autoExpandParent,
       defaultExpandAll: this.defaultExpandAll,
-      filterNodeMethod: this.filterNodeMethod
-    })
+      filterNodeMethod: this.filterNodeMethod,
+    });
 
-    this.root = this.store.root
+    this.root = this.store.root;
 
-    let dragState = this.dragState
+    let dragState = this.dragState;
 
     this.$on('tree-node-drag-start', (event, treeNode) => {
-      if (
-        typeof this.allowDrag === 'function' &&
-        !this.allowDrag(treeNode.node)
-      ) {
-        event.preventDefault()
-        return false
+      if (typeof this.allowDrag === 'function' && !this.allowDrag(treeNode.node)) {
+        event.preventDefault();
+        return false;
       }
-      event.dataTransfer.effectAllowed = 'move'
+      event.dataTransfer.effectAllowed = 'move';
 
       // wrap in try catch to address IE's error when first param is 'text/plain'
       try {
         // setData is required for draggable to work in FireFox
         // the content has to be '' so dragging a node out of the tree won't open a new tab in FireFox
-        event.dataTransfer.setData('text/plain', '')
+        event.dataTransfer.setData('text/plain', '');
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
-      dragState.draggingNode = treeNode
-      dragState.draggingNode = { node: _.cloneDeep(treeNode.node) }
+      dragState.draggingNode = treeNode;
+      dragState.draggingNode = { node: _.cloneDeep(treeNode.node) };
 
       /**
        * 节点开始拖拽时触发的事件
@@ -803,35 +792,28 @@ export default create({
        * @property node  被拖拽节点对应的 Node
        * @property event  event
        */
-      this.$emit('node-drag-start', treeNode.node, event)
-    })
+      this.$emit('node-drag-start', treeNode.node, event);
+    });
 
     this.$on('tree-node-drag-over', (event, treeNode) => {
-      const dropNode = findNearestComponent(
-        event.target,
-        treeNode.$options.name
-      )
-      const oldDropNode = dragState.dropNode
+      const dropNode = findNearestComponent(event.target, treeNode.$options.name);
+      const oldDropNode = dragState.dropNode;
       if (oldDropNode && oldDropNode !== dropNode) {
-        removeClass(oldDropNode.$el, 'is-drop-inner')
+        removeClass(oldDropNode.$el, 'is-drop-inner');
       }
-      const draggingNode = dragState.draggingNode
-      if (!draggingNode || !dropNode) return
+      const draggingNode = dragState.draggingNode;
+      if (!draggingNode || !dropNode) return;
 
-      let dropPrev = true
-      let dropInner = true
-      let dropNext = true
-      let userAllowDropInner = true
+      let dropPrev = true;
+      let dropInner = true;
+      let dropNext = true;
+      let userAllowDropInner = true;
       if (typeof this.allowDrop === 'function') {
-        dropPrev = this.allowDrop(draggingNode.node, dropNode.node, 'prev')
-        userAllowDropInner = dropInner = this.allowDrop(
-          draggingNode.node,
-          dropNode.node,
-          'inner'
-        )
-        dropNext = this.allowDrop(draggingNode.node, dropNode.node, 'next')
+        dropPrev = this.allowDrop(draggingNode.node, dropNode.node, 'prev');
+        userAllowDropInner = dropInner = this.allowDrop(draggingNode.node, dropNode.node, 'inner');
+        dropNext = this.allowDrop(draggingNode.node, dropNode.node, 'next');
       }
-      event.dataTransfer.dropEffect = dropInner ? 'move' : 'none'
+      event.dataTransfer.dropEffect = dropInner ? 'move' : 'none';
       if ((dropPrev || dropInner || dropNext) && oldDropNode !== dropNode) {
         if (oldDropNode) {
           /**
@@ -841,12 +823,7 @@ export default create({
            * @property oldDropNode  所离开节点对应的 Node
            * @property event  event
            */
-          this.$emit(
-            'node-drag-leave',
-            draggingNode.node,
-            oldDropNode.node,
-            event
-          )
+          this.$emit('node-drag-leave', draggingNode.node, oldDropNode.node, event);
         }
         /**
          * 拖拽进入其他节点时触发的事件
@@ -855,84 +832,68 @@ export default create({
          * @property dropNode  所离开节点对应的 Node
          * @property event  event
          */
-        this.$emit('node-drag-enter', draggingNode.node, dropNode.node, event)
+        this.$emit('node-drag-enter', draggingNode.node, dropNode.node, event);
       }
 
       if (dropPrev || dropInner || dropNext) {
-        dragState.dropNode = dropNode
+        dragState.dropNode = dropNode;
       }
 
       if (dropNode.node.nextSibling === draggingNode.node) {
-        dropNext = false
+        dropNext = false;
       }
       if (dropNode.node.previousSibling === draggingNode.node) {
-        dropPrev = false
+        dropPrev = false;
       }
       if (dropNode.node.contains(draggingNode.node, false)) {
-        dropInner = false
+        dropInner = false;
       }
-      if (
-        draggingNode.node === dropNode.node ||
-        draggingNode.node.contains(dropNode.node)
-      ) {
-        dropPrev = false
-        dropInner = false
-        dropNext = false
+      if (draggingNode.node === dropNode.node || draggingNode.node.contains(dropNode.node)) {
+        dropPrev = false;
+        dropInner = false;
+        dropNext = false;
       }
 
-      const targetPosition = dropNode.$el.getBoundingClientRect()
-      const treePosition = this.$el.getBoundingClientRect()
+      const targetPosition = dropNode.$el.getBoundingClientRect();
+      const treePosition = this.$el.getBoundingClientRect();
 
-      let dropType
-      const prevPercent = dropPrev
-        ? dropInner
-          ? 0.25
-          : dropNext
-            ? 0.45
-            : 1
-        : -1
-      const nextPercent = dropNext
-        ? dropInner
-          ? 0.75
-          : dropPrev
-            ? 0.55
-            : 0
-        : 1
+      let dropType;
+      const prevPercent = dropPrev ? (dropInner ? 0.25 : dropNext ? 0.45 : 1) : -1;
+      const nextPercent = dropNext ? (dropInner ? 0.75 : dropPrev ? 0.55 : 0) : 1;
 
-      let indicatorTop = -9999
-      const distance = event.clientY - targetPosition.top
+      let indicatorTop = -9999;
+      const distance = event.clientY - targetPosition.top;
       if (distance < targetPosition.height * prevPercent) {
-        dropType = 'before'
+        dropType = 'before';
       } else if (distance > targetPosition.height * nextPercent) {
-        dropType = 'after'
+        dropType = 'after';
       } else if (dropInner) {
-        dropType = 'inner'
+        dropType = 'inner';
       } else {
-        dropType = 'none'
+        dropType = 'none';
       }
 
       const iconPosition = dropNode.$el
         .querySelector('.el-tree-node__expand-icon')
-        .getBoundingClientRect()
-      const dropIndicator = this.$refs.dropIndicator
+        .getBoundingClientRect();
+      const dropIndicator = this.$refs.dropIndicator;
       if (dropType === 'before') {
-        indicatorTop = iconPosition.top - treePosition.top
+        indicatorTop = iconPosition.top - treePosition.top;
       } else if (dropType === 'after') {
-        indicatorTop = iconPosition.bottom - treePosition.top
+        indicatorTop = iconPosition.bottom - treePosition.top;
       }
-      dropIndicator.style.top = indicatorTop + 'px'
-      dropIndicator.style.left = iconPosition.right - treePosition.left + 'px'
+      dropIndicator.style.top = indicatorTop + 'px';
+      dropIndicator.style.left = iconPosition.right - treePosition.left + 'px';
 
       if (dropType === 'inner') {
-        addClass(dropNode.$el, 'is-drop-inner')
+        addClass(dropNode.$el, 'is-drop-inner');
       } else {
-        removeClass(dropNode.$el, 'is-drop-inner')
+        removeClass(dropNode.$el, 'is-drop-inner');
       }
 
-      dragState.showDropIndicator =
-        dropType === 'before' || dropType === 'after'
-      dragState.allowDrop = dragState.showDropIndicator || userAllowDropInner
-      dragState.dropType = dropType
+      dragState.showDropIndicator = dropType === 'before' || dropType === 'after';
+      dragState.allowDrop = dragState.showDropIndicator || userAllowDropInner;
+      dragState.dropType = dropType;
 
       /**
        * 在拖拽节点时触发的事件（类似浏览器的 mouseover 事件）
@@ -941,33 +902,33 @@ export default create({
        * @property dropNode  所离开节点对应的 Node
        * @property event  event
        */
-      this.$emit('node-drag-over', draggingNode.node, dropNode.node, event)
-    })
+      this.$emit('node-drag-over', draggingNode.node, dropNode.node, event);
+    });
 
-    this.$on('tree-node-drag-end', async (event) => {
-      const { draggingNode, dropType, dropNode } = dragState
-      event.preventDefault()
-      event.dataTransfer.dropEffect = 'move'
+    this.$on('tree-node-drag-end', async event => {
+      const { draggingNode, dropType, dropNode } = dragState;
+      event.preventDefault();
+      event.dataTransfer.dropEffect = 'move';
 
       const done = (draggingNode, dropNode) => {
         if (draggingNode && dropNode) {
-          const draggingNodeCopy = { data: draggingNode.node.data }
+          const draggingNodeCopy = { data: draggingNode.node.data };
           if (dropType !== 'none') {
             // draggingNode.node.remove()
-            this.store.remove(draggingNode.node.data)
+            this.store.remove(draggingNode.node.data);
           }
           if (dropType === 'before') {
-            dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node)
+            dropNode.node.parent.insertBefore(draggingNodeCopy, dropNode.node);
           } else if (dropType === 'after') {
-            dropNode.node.parent.insertAfter(draggingNodeCopy, dropNode.node)
+            dropNode.node.parent.insertAfter(draggingNodeCopy, dropNode.node);
           } else if (dropType === 'inner') {
-            dropNode.node.insertChild(draggingNodeCopy)
+            dropNode.node.insertChild(draggingNodeCopy);
           }
           if (dropType !== 'none') {
-            this.store.registerNode(draggingNodeCopy)
+            this.store.registerNode(draggingNodeCopy);
           }
 
-          removeClass(dropNode.$el, 'is-drop-inner')
+          removeClass(dropNode.$el, 'is-drop-inner');
           /**
            * 拖拽结束时（可能未成功）触发的事件
            * @event node-drop
@@ -976,13 +937,7 @@ export default create({
            * @property dropType  被拖拽节点的放置位置（before、after、inner）
            * @property event  event
            */
-          this.$emit(
-            'node-drag-end',
-            draggingNode.node,
-            dropNode.node,
-            dropType,
-            event
-          )
+          this.$emit('node-drag-end', draggingNode.node, dropNode.node, dropType, event);
           if (dropType !== 'none') {
             /**
              * 拖拽成功完成时触发的事件
@@ -992,13 +947,7 @@ export default create({
              * @property dropType  被拖拽节点的放置位置（before、after、inner）
              * @property event  event
              */
-            this.$emit(
-              'node-drop',
-              draggingNode.node,
-              dropNode.node,
-              dropType,
-              event
-            )
+            this.$emit('node-drop', draggingNode.node, dropNode.node, dropType, event);
           }
         }
         if (draggingNode && !dropNode) {
@@ -1010,37 +959,37 @@ export default create({
            * @property dropType  被拖拽节点的放置位置（before、after、inner）
            * @property event  event
            */
-          this.$emit('node-drag-end', draggingNode.node, null, dropType, event)
+          this.$emit('node-drag-end', draggingNode.node, null, dropType, event);
         }
-      }
+      };
       if (this.dropJudge) {
-        this.dropJudge(draggingNode.node, dropNode.node, (res) => {
+        this.dropJudge(draggingNode.node, dropNode.node, res => {
           if (res) {
-            done(draggingNode, dropNode)
+            done(draggingNode, dropNode);
           }
-        })
+        });
       } else {
-        done(draggingNode, dropNode)
+        done(draggingNode, dropNode);
       }
 
-      dragState.showDropIndicator = false
-      dragState.draggingNode = null
-      dragState.dropNode = null
-      dragState.allowDrop = true
-    })
+      dragState.showDropIndicator = false;
+      dragState.draggingNode = null;
+      dragState.dropNode = null;
+      dragState.allowDrop = true;
+    });
   },
 
-  mounted () {
-    this.initTabIndex()
-    this.$el.addEventListener('keydown', this.handleKeydown)
+  mounted() {
+    this.initTabIndex();
+    this.$el.addEventListener('keydown', this.handleKeydown);
   },
 
-  updated () {
-    this.treeItems = this.$el.querySelectorAll('[role=treeitem]')
-    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]')
-  }
-})
+  updated() {
+    this.treeItems = this.$el.querySelectorAll('[role=treeitem]');
+    this.checkboxItems = this.$el.querySelectorAll('input[type=checkbox]');
+  },
+});
 </script>
 <style lang="scss">
- @import "style/index";
+@import 'style/index';
 </style>

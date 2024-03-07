@@ -2,7 +2,7 @@ $--element-tree-line-color: #c0c4cc !default;
 $--element-tree-line-style: dashed !default;
 $--element-tree-line-width: 1px !default;
 // 添加 el-tree-node__conten 默认没有的 position
-.el-tree.ns-virtual-tree{
+.el-tree.ns-virtual-tree {
   .el-tree-node__content {
     position: relative;
   }
@@ -40,5 +40,4 @@ $--element-tree-line-width: 1px !default;
     align-self: center;
     margin: 0 10px;
   }
-
 }

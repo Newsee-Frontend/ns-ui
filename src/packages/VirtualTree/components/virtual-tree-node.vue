@@ -10,7 +10,7 @@
       'is-focusable': !node.disabled,
       'is-checked': !node.disabled && node.checked,
       'is-selectNode': node.id === tree.currentNodeKey,
-      'is-showChecked': this.showCheckbox
+      'is-showChecked': this.showCheckbox,
     }"
     role="treeitem"
     tabindex="-1"
@@ -19,7 +19,7 @@
     :aria-checked="node.checked"
     :draggable="tree.draggable"
     @click.stop="handleClick"
-    @contextmenu="($event) => this.handleContextMenu($event)"
+    @contextmenu="$event => this.handleContextMenu($event)"
     @dragstart.stop="handleDragStart"
     @dragover.stop="handleDragOver"
     @dragend.stop="handleDragEnd"
@@ -30,7 +30,7 @@
         aria-hidden="true"
         :style="{
           // 'width': (node.level - 1) * tree.indent + 'px',
-          'flex': `0 0 ${(node.level - 1) * tree.indent}px` ,
+          flex: `0 0 ${(node.level - 1) * tree.indent}px`,
         }"
       ></span>
       <span
@@ -47,14 +47,12 @@
         @click.stop="handleExpandIconClick"
       ></span>
 
-
       <ns-icon-class
         class="el-tree-node__expand-icon"
         v-else-if="!node.isLeaf"
         @click.native.stop="handleExpandIconClick"
         :icon-class="expanded ? 'close-block' : 'open-block'"
       ></ns-icon-class>
-
 
       <template v-else>
         <el-tooltip
@@ -64,13 +62,17 @@
           :disabled="!node.data.iconTitle"
           placement="top-start"
         >
-          <ns-icon-svg  :class="['el-tree-node__expand-icon', node.data.iconClass]"
-                        :icon-class="node.data.iconClass"></ns-icon-svg>
+          <ns-icon-svg
+            :class="['el-tree-node__expand-icon', node.data.iconClass]"
+            :icon-class="node.data.iconClass"
+          ></ns-icon-svg>
         </el-tooltip>
 
         <ns-icon-class
           class="el-tree-node__expand-icon"
-          v-else icon-class="padding-block"></ns-icon-class>
+          v-else
+          icon-class="padding-block"
+        ></ns-icon-class>
       </template>
 
       <el-checkbox
@@ -89,15 +91,10 @@
 
       <node-content v-if="showCheckbox" :node="node" showCheckbox></node-content>
 
-      <tree-line
-        v-else
-        :node="node"
-        :showLabelLine="false"
-        :indent="tree.indent"
-      >
+      <tree-line v-else :node="node" :showLabelLine="false" :indent="tree.indent">
         <!-- 自定义label的slot -->
-        <template #node-label  v-if="tree.$scopedSlots.default">
-          <node-content  :node="node"></node-content>
+        <template #node-label v-if="tree.$scopedSlots.default">
+          <node-content :node="node"></node-content>
         </template>
       </tree-line>
     </div>
