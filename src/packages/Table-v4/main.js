@@ -78,6 +78,11 @@ export default create({
       type: Boolean,
       default: false,
     },
+
+    showOverflow: {
+      type: Boolean,
+      default: true
+    }
   },
   data() {
     return {
@@ -128,7 +133,7 @@ export default create({
       'keep-source': true,
       'auto-resize': true,
       'highlight-hover-row': this.highlightHoverRow,
-      'show-overflow': true,
+      'show-overflow': this.showOverflow,
       'show-header-overflow': true,
       'show-footer-overflow': true,
       'edit-config': this.editConfig,
