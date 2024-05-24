@@ -81,8 +81,8 @@ export default create({
 
     showOverflow: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
