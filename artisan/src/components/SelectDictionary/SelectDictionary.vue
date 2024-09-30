@@ -17,6 +17,7 @@
     :name="name"
     :disabled="disabled"
     :size="size"
+    showSelectAll
   ></ns-select>
 </template>
 
@@ -47,7 +48,7 @@
       clearable: {type: Boolean, default: false},
       multiple: { type: Boolean, default: false },
       multipleLimit: { type: Number, default: 0 },
-      collapseTags: { type: Boolean, default: false },//多选时是否将选中值按文字的形式展示
+      collapseTags: { type: Boolean, default: true },//多选时是否将选中值按文字的形式展示
       errorText: {
         type: String,
         default: '请稍后重试'
