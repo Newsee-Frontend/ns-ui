@@ -119,7 +119,6 @@ export default create({
      */
     defaultFirstOption: { type: Boolean, default: true },
 
-
     /**
      * 	是否展示全选（多选才会有）
      */
@@ -142,9 +141,9 @@ export default create({
       return { width: this.convert_width };
     },
 
-    showAll(){
-      return this.showSelectAll && this.multiple && this.multipleLimit === 0
-    }
+    showAll() {
+      return this.showSelectAll && this.multiple && this.multipleLimit === 0;
+    },
   },
 
   watch: {
@@ -158,14 +157,15 @@ export default create({
     // 默认去重，防止报错
     let options = unionBy(this.options, this.keyRefer.value);
     const optionRender = item => {
-      return   <el-option
-        key={item[value]}
-        value={item[value]}
-        label={item[label]}
-        disabled={item.disabled}
-        nativeOnclick={this.clickOption.bind(this, item)}
-      ></el-option>
-
+      return (
+        <el-option
+          key={item[value]}
+          value={item[value]}
+          label={item[label]}
+          disabled={item.disabled}
+          nativeOnclick={this.clickOption.bind(this, item)}
+        ></el-option>
+      );
     };
     return (
       <el-select
@@ -199,7 +199,7 @@ export default create({
         placeholder={this.placeholder}
         style={this.convert_style}
       >
-        { (this.showAll) ? optionRender({ [label]: '全选', [value]: -1}): null}
+        {this.showAll ? optionRender({ [label]: '全选', [value]: -1 }) : null}
 
         {options.map(item => {
           return optionRender(item);
@@ -224,28 +224,26 @@ export default create({
       }
     },
 
-
-    getLastValue(e){
-      return this.multiple? (e ||[]).filter(i=> i !== -1) : e
+    getLastValue(e) {
+      return this.multiple ? (e || []).filter(i => i !== -1) : e;
     },
 
-    getLastChildSelect(val){
-      if(this.showAll){
-        let isAll = this.options.every( item => val.includes(item[this.keyRefer.value]))
-        return isAll? [ -1, ...val] : val
-      }else{
-        return val
+    getLastChildSelect(val) {
+      if (this.showAll) {
+        let isAll = this.options.every(item => val.includes(item[this.keyRefer.value]));
+        return isAll ? [-1, ...val] : val;
+      } else {
+        return val;
       }
     },
 
-
-    clickOption(item){
-      let value = this.keyRefer.value
-      if(item[value] !== -1) return
-      if(!(this.childSelect || []).includes(-1)){
-        this.childSelect = [-1, ...this.options.map(i=> i[value])]
-      }else{
-        this.childSelect = []
+    clickOption(item) {
+      let value = this.keyRefer.value;
+      if (item[value] !== -1) return;
+      if (!(this.childSelect || []).includes(-1)) {
+        this.childSelect = [-1, ...this.options.map(i => i[value])];
+      } else {
+        this.childSelect = [];
       }
     },
 
@@ -271,10 +269,10 @@ export default create({
     },
 
     removeTag(e) {
-      if(e === -1){
-        this.$nextTick(()=>{
+      if (e === -1) {
+        this.$nextTick(() => {
           this.handleModel([]);
-        })
+        });
       }
 
       /**
