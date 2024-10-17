@@ -4,6 +4,12 @@
 
 >  Regular backup branch
 
+## 执行发包镜像同步
+``` bash
+open https://npmmirror.com/sync/neap-ui2
+```
+
+
 ## Build Setup
 
 ``` bash
