@@ -159,9 +159,9 @@ export default create({
     const optionRender = item => {
       return (
         <el-option
-          key={item[value]}
-          value={item[value]}
-          label={item[label]}
+          key={item.noRefer? item.value : item[value]}
+          value={item.noRefer? item.value : item[value]}
+          label={item.noRefer? item.label : item[label]}
           disabled={item.disabled}
           nativeOnclick={this.clickOption.bind(this, item)}
         ></el-option>
@@ -199,7 +199,7 @@ export default create({
         placeholder={this.placeholder}
         style={this.convert_style}
       >
-        {this.showAll ? optionRender({ [label]: '全选', [value]: -1 }) : null}
+        {this.showAll ? optionRender({ label: '全选', value: -1, noRefer: true }) : null}
 
         {options.map(item => {
           return optionRender(item);
@@ -239,7 +239,7 @@ export default create({
 
     clickOption(item) {
       let value = this.keyRefer.value;
-      if (item[value] !== -1) return;
+      if (!item.noRefer) return;
       if (!(this.childSelect || []).includes(-1)) {
         this.childSelect = [-1, ...this.options.map(i => i[value])];
       } else {
