@@ -83,6 +83,12 @@ export default create({
       type: Boolean,
       default: true,
     },
+
+    // 高亮勾选行
+    highlight: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -147,6 +153,7 @@ export default create({
         strict: true,
         showHeader: this.checkMode !== 'total',
         checkMethod: this.checkMethodFun,
+        highlight: this.highlight
       },
       'radio-config': {
         trigger: this.selectTrigger,
