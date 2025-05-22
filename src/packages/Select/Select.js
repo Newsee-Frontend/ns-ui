@@ -159,9 +159,9 @@ export default create({
     const optionRender = item => {
       return (
         <el-option
-          key={item.noRefer? item.value : item[value]}
-          value={item.noRefer? item.value : item[value]}
-          label={item.noRefer? item.label : item[label]}
+          key={item.noRefer ? item.value : item[value]}
+          value={item.noRefer ? item.value : item[value]}
+          label={item.noRefer ? item.label : item[label]}
           disabled={item.disabled}
           nativeOnclick={this.clickOption.bind(this, item)}
         ></el-option>

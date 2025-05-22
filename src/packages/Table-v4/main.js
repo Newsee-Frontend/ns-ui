@@ -153,7 +153,7 @@ export default create({
         strict: true,
         showHeader: this.checkMode !== 'total',
         checkMethod: this.checkMethodFun,
-        highlight: this.highlight
+        highlight: this.highlight,
       },
       'radio-config': {
         trigger: this.selectTrigger,
