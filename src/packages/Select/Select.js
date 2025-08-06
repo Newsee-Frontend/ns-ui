@@ -142,7 +142,7 @@ export default create({
     },
 
     showAll() {
-      return this.showSelectAll && this.multiple && this.multipleLimit === 0;
+      return this.showSelectAll && this.options.length && this.multiple && this.multipleLimit === 0;
     },
   },
 

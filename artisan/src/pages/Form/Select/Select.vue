@@ -50,6 +50,18 @@
           placeholder="请选择"
           width="300px"
         ></ns-select>
+
+
+        <ns-select
+          v-model="selectModels"
+          :options="optionsDataTemplate"
+          :showSelectAll="true"
+          :keyRefer=keyRefer
+          multiple
+          collapseTags
+          placeholder="请选择"
+          width="300px"
+        ></ns-select>
       </template>
     </demo-block>
 
@@ -109,7 +121,9 @@
         keyReferRemote: {
           label: 'houseName',
           value: 'houseId',
-        }
+        },
+
+        optionsTemplate: []
       };
     },
     computed: {
