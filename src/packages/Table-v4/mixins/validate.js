@@ -15,10 +15,16 @@ export default {
           const formConfig = col['cell-Config'];
           const modelCode = col.field; //字段
           const label = col.title; //显示值
+          obj[modelCode] = []
 
           if (formConfig.require) {
-            obj[modelCode] = [{ required: true, message: `请输入/选择${label}` }];
+            obj[modelCode].push({ required: true, message: `请输入/选择${label}`});
           }
+
+          if(formConfig.max || formConfig.min){
+            obj[modelCode].push( {min: formConfig.min, max:formConfig.max, message: `长度在 ${formConfig.min} 到 ${formConfig.max} 个字符`})
+        }
+
 
           if (formConfig.validateRule) {
             //生成正则
@@ -32,12 +38,7 @@ export default {
             if (pattern) {
               config.pattern = pattern;
             }
-
-            if (obj[modelCode]) {
-              obj[modelCode].push(config);
-            } else {
-              obj[modelCode] = [config];
-            }
+            obj[modelCode].push(config);
           }
         });
 
