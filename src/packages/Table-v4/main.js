@@ -49,6 +49,14 @@ export default create({
       },
     },
 
+
+    scrollX: {
+      type: Object,
+      default: () => {
+        return { gt: -1 };
+      },
+    }
+
     //快捷菜单配置
     menuConfig: {
       type: Object,
@@ -145,7 +153,7 @@ export default create({
       'edit-config': this.editConfig,
       'edit-rules': this.validRules,
       'sync-resize': this.syncResize,
-      'scroll-x': { gt: -1 },
+      'scroll-x': this.scrollX,
       'row-key': true,
       'checkbox-config': {
         checkField: 'checked',
