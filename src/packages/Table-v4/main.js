@@ -55,7 +55,7 @@ export default create({
       default: () => {
         return { gt: -1 };
       },
-    }
+    },
 
     //快捷菜单配置
     menuConfig: {
