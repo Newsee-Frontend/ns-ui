@@ -49,7 +49,9 @@ export default create({
       },
     },
 
-
+    /**
+     * 横向虚拟滚动配置（不支持深层结构和展开行）
+     */
     scrollX: {
       type: Object,
       default: () => {
