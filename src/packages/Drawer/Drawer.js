@@ -6,6 +6,8 @@ export default create({
   data() {
     return {
       isHide: false,
+      isDragging: false,
+      drawerSize: null,
     };
   },
   props: {
@@ -30,6 +32,21 @@ export default create({
      * 过渡效果
      */
     transition: { type: String, default: 'linear' },
+
+    /**
+     * 是否可拖拽调整大小
+     */
+    resizable: { type: Boolean, default: true },
+
+    /**
+     * 最小宽度/高度
+     */
+    minSize: { type: Number, default: 100 },
+
+    /**
+     * 最大宽度/高度
+     */
+    maxSize: { type: Number, default: 800 },
   },
 
   computed: {
@@ -43,9 +60,37 @@ export default create({
       ];
     },
     drawerStyle() {
-      return {
-        transition: `all ${this.speed} ${this.transition}`,
+      const style = {
+        transition: this.isDragging ? 'none' : `all ${this.speed} ${this.transition}`,
       };
+      if (this.drawerSize !== null) {
+        if (this.isHorizontal) {
+          style.width = `${this.drawerSize}px`;
+        } else {
+          style.height = `${this.drawerSize}px`;
+        }
+      }
+      return style;
+    },
+    isHorizontal() {
+      return this.direction === 'left' || this.direction === 'right';
+    },
+    resizeEdgeStyle() {
+      const base = {
+        position: 'absolute',
+        zIndex: 10,
+        background: 'transparent',
+      };
+      if (this.direction === 'left') {
+        return { ...base, right: 0, top: 0, width: '2px', height: '100%', cursor: 'ew-resize' };
+      } else if (this.direction === 'right') {
+        return { ...base, left: 0, top: 0, width: '2px', height: '100%', cursor: 'ew-resize' };
+      } else if (this.direction === 'top') {
+        return { ...base, left: 0, bottom: 0, width: '100%', height: '2px', cursor: 'ns-resize' };
+      } else if (this.direction === 'bottom') {
+        return { ...base, left: 0, top: 0, width: '100%', height: '2px', cursor: 'ns-resize' };
+      }
+      return base;
     },
     drawerSwitchCls() {
       return [this.recls('switch')];
@@ -71,15 +116,22 @@ export default create({
   render(h) {
     return (
       <div class={this.drawerCls} style={this.drawerStyle}>
-        <div class="over-hidden">
-          <div class={this.recls('container')}>{this.$slots.default}</div>
+        <div class="over-hidden" ref="overHidden">
+          <div class={this.recls('container')} ref="container">{this.$slots.default}</div>
         </div>
         <div class={this.drawerSwitchCls}>
           <icon-class icon-class={this.iconClass} on-click={this.drwaerHandle} />
         </div>
+        {this.resizable && (
+          <div
+            style={this.resizeEdgeStyle}
+            on-mousedown={this.onMouseDown}
+          />
+        )}
       </div>
     );
   },
+
 
   methods: {
     drwaerHandle() {
@@ -90,5 +142,39 @@ export default create({
        */
       this.$emit('click');
     },
+    onMouseDown(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const rect = this.$el.getBoundingClientRect();
+      this.isDragging = true;
+      this.startPos = this.isHorizontal ? e.clientX : e.clientY;
+      this.startSize = this.isHorizontal ? rect.width : rect.height;
+      document.addEventListener('mousemove', this.onDragging);
+      document.addEventListener('mouseup', this.onDragEnd);
+    },
+    onDragging(e) {
+      if (!this.isDragging) return;
+      const currentPos = this.isHorizontal ? e.clientX : e.clientY;
+      let delta = currentPos - this.startPos;
+      if (this.direction === 'right' || this.direction === 'bottom') {
+        delta = -delta;
+      }
+      let newSize = this.startSize + delta;
+      newSize = Math.max(this.minSize, Math.min(this.maxSize, newSize));
+      this.drawerSize = newSize;
+      this.$emit('resize', newSize);
+    },
+    onDragEnd() {
+      this.isDragging = false;
+      this.$el.style.cursor = '';
+      this.$emit('resizeEnd');
+      document.removeEventListener('mousemove', this.onDragging);
+      document.removeEventListener('mouseup', this.onDragEnd);
+    },
+  },
+
+  beforeDestroy() {
+    document.removeEventListener('mousemove', this.onDragging);
+    document.removeEventListener('mouseup', this.onDragEnd);
   },
 });
