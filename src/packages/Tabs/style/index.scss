@@ -1,8 +1,10 @@
 @import '../../../style/mixins/mixins';
+@import '../../../style/config/var';
 $tabsHeight: 40px; //tabs normal height
 $tabsMl: 6px; //向左偏移值
 $normalColor: #d1e3f8;
 $activeColor: #0a7af8;
+$activeBarSize: 27px; //active bar 尺寸，可通过参数传入
 
 @mixin triangle($color) {
   content: '';
@@ -28,8 +30,24 @@ $activeColor: #0a7af8;
 }
 
 @include b(tabs) {
+  .el-tabs__active-bar{
+    background: linear-gradient(90deg, $--color-primary, #d8eaff);
+    border-radius: 4px;
+
+    // 上下位置：水平渐变
+    &.is-top, &.is-bottom {
+      background: linear-gradient(90deg,$--color-primary , #d8eaff);
+    }
+
+    // 左右位置：垂直渐变
+    &.is-left, &.is-right {
+      background: linear-gradient(180deg,#0a7af8,#d8eaff);
+    }
+  }
+
   &.arrowTabs {
     width: inherit;
+
     .el-tabs__header {
       border: none;
     }

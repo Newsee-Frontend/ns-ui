@@ -1,5 +1,6 @@
 import create from '../../create/create';
 import TabNav from './components/tab-nav';
+
 export default create({
   name: 'tabs',
   components: {
@@ -56,6 +57,14 @@ export default create({
      * 标签的宽度是否自撑开
      */
     stretch: Boolean,
+
+    /**
+     * active bar 的尺寸
+     */
+    activeBarSize: {
+      type: String,
+      default: '30px',
+    },
   },
 
   provide() {
@@ -186,6 +195,7 @@ export default create({
       addable,
       tabPosition,
       stretch,
+      activeBarSize,
     } = this;
 
     const newButton =

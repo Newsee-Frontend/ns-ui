@@ -7,21 +7,28 @@
   // === 常规 ===
   .el-dialog {
     width: $dialog-default_width;
+    box-shadow: 0px 2px 4px 0px rgba(176,176,176,0.25);
+    border-radius: 8px;
     //头部
     .el-dialog__header {
-      padding: 12px 15px 12px 15px;
-      font-size: 14px;
-      background: #f2f2f2;
+      padding: 16px 20px;
+      background: transparent;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0px 2px 4px 0px rgba(176,176,176,0.25);
     }
     //头部 - 标题
     .el-dialog__title {
-      color: #333333;
-      font-size: 14px;
+      color: #333;
       line-height: $dialog-line_height;
     }
     //头部 - 关闭按钮
     .el-dialog__headerbtn {
       top: 16px;
+
+      .el-icon {
+        font-weight: bold;
+      }
       .el-dialog__close {
         color: #999999;
         &:hover {
