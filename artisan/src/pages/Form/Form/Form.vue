@@ -98,6 +98,51 @@
         </ns-form>
       </template>
     </demo-block>
+    <demo-block>
+      <template slot="title">
+        对齐方式
+      </template>
+      <template slot="describe">
+        根据具体目标和制约因素，选择最佳的标签对齐方式。
+      </template>
+      <template slot="content">
+        <el-radio-group v-model="labelPosition" size="small">
+          <el-radio-button label="left">左对齐</el-radio-button>
+          <el-radio-button label="right">右对齐</el-radio-button>
+          <el-radio-button label="top">顶部对齐</el-radio-button>
+          <el-radio-button label="innerTop">框内顶部对齐</el-radio-button>
+          <el-radio-button label="innerLeft">框内左对齐</el-radio-button>
+        </el-radio-group>
+        <ns-form
+          style="width: 600px"
+          label-width="100px"
+          :labelPosition='labelPosition'
+          :model="formVData"
+          :rules="rules"
+          ref="checkVForm"
+        >
+          <ns-form-item label="姓名" prop="name">
+            <ns-input
+              v-model="formVData.name"
+              clearable
+              type='textarea'
+            ></ns-input>
+          </ns-form-item>
+          <ns-form-item label="年龄" prop="age">
+            <ns-input v-model="formVData.age" clearable ></ns-input>
+          </ns-form-item>
+          <ns-form-item label="部门" prop="belong">
+            <ns-date-picker disabled  v-model="formVData.belong" :options="bOptions" type='date'></ns-date-picker>
+          </ns-form-item>
+          <ns-form-item>
+            <ns-button @click="submit" type="primary">submit</ns-button>
+            <ns-button @click="reset">reset</ns-button>
+            <ns-button @click="clear">clear</ns-button>
+          </ns-form-item>
+        </ns-form>
+      </template>
+    </demo-block>
+
   </div>
 </template>
 
@@ -131,9 +176,13 @@
           age: '1',
           belong: '',
         },
+
+
+        labelPosition: 'left',
+
         rules: {
           name: [
-            { required: true, message: '请输入姓名', trigger: 'blur' },
+            { required: true, message: '请输入姓名', trigger: ['blur', 'change'] },
           ],
 
           age: [
