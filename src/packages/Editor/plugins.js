@@ -85,6 +85,7 @@ const allPlugins = [
     'directionality ' +
     'emoticons ' +
     'fullscreen ' +
+    'formatpainter ' +
     'hr ' +
     'image ' +
     'imagetools ' +
