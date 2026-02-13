@@ -16,6 +16,8 @@ es/
 
 /src/index.js
 /src/index.scss
+/.npmrc
+.npmrc
 
 
 .DS_Store
@@ -34,3 +36,4 @@ yarn.lock
 /.vscode/
 /.settings/
 /.project
+

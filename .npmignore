@@ -40,6 +40,7 @@ yarn-error.log*
 *.prettierignore
 *.prettierrc
 *.stylelintignore
+*.npmrc
 
 # Editor directories and files
 .idea
