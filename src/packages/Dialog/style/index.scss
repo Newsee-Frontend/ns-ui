@@ -7,7 +7,7 @@
   // === 常规 ===
   .el-dialog {
     width: $dialog-default_width;
-    box-shadow: 0px 2px 4px 0px rgba(176,176,176,0.25);
+    box-shadow: 0px 2px 4px 0px rgba(176, 176, 176, 0.25);
     border-radius: 8px;
     //头部
     .el-dialog__header {
@@ -15,7 +15,7 @@
       background: transparent;
       font-weight: bold;
       font-size: 16px;
-      box-shadow: 0px 2px 4px 0px rgba(176,176,176,0.25);
+      box-shadow: 0px 2px 4px 0px rgba(176, 176, 176, 0.25);
     }
     //头部 - 标题
     .el-dialog__title {

@@ -136,9 +136,8 @@ export default create({
     inputTagClick(e) {
       stopPropagation(e);
       this.isFocus = true;
-      if(!this.disabled) {
+      if (!this.disabled) {
         this.$emit('click');
-
       }
     },
     inputTagMouseenter() {

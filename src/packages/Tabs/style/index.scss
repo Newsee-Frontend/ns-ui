@@ -30,18 +30,20 @@ $activeBarSize: 27px; //active bar 尺寸，可通过参数传入
 }
 
 @include b(tabs) {
-  .el-tabs__active-bar{
+  .el-tabs__active-bar {
     background: linear-gradient(90deg, $--color-primary, #d8eaff);
     border-radius: 4px;
 
     // 上下位置：水平渐变
-    &.is-top, &.is-bottom {
-      background: linear-gradient(90deg,$--color-primary , #d8eaff);
+    &.is-top,
+    &.is-bottom {
+      background: linear-gradient(90deg, $--color-primary, #d8eaff);
     }
 
     // 左右位置：垂直渐变
-    &.is-left, &.is-right {
-      background: linear-gradient(180deg,#0a7af8,#d8eaff);
+    &.is-left,
+    &.is-right {
+      background: linear-gradient(180deg, #0a7af8, #d8eaff);
     }
   }
 

@@ -117,21 +117,17 @@ export default create({
     return (
       <div class={this.drawerCls} style={this.drawerStyle}>
         <div class="over-hidden" ref="overHidden">
-          <div class={this.recls('container')} ref="container">{this.$slots.default}</div>
+          <div class={this.recls('container')} ref="container">
+            {this.$slots.default}
+          </div>
         </div>
         <div class={this.drawerSwitchCls}>
           <icon-class icon-class={this.iconClass} on-click={this.drwaerHandle} />
         </div>
-        {this.resizable && (
-          <div
-            style={this.resizeEdgeStyle}
-            on-mousedown={this.onMouseDown}
-          />
-        )}
+        {this.resizable && <div style={this.resizeEdgeStyle} on-mousedown={this.onMouseDown} />}
       </div>
     );
   },
-
 
   methods: {
     drwaerHandle() {

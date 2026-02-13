@@ -120,11 +120,11 @@ export default create({
         if (oldFocusOut) item.removeEventListener('focusout', oldFocusOut);
 
         // 添加新的事件监听器
-        const focusInHandler = (e) => {
+        const focusInHandler = e => {
           item.classList.add('is-focused');
         };
 
-        const focusOutHandler = (e) => {
+        const focusOutHandler = e => {
           // 检查焦点是否还在表单项内
           if (!item.contains(e.relatedTarget)) {
             item.classList.remove('is-focused');
@@ -161,7 +161,6 @@ export default create({
         } else {
           item.classList.remove('has-disabled');
         }
-
       });
     },
 
