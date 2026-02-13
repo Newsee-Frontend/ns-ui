@@ -37,7 +37,7 @@
         多选
       </template>
       <template slot="describe">
-        多选， 限制条数
+        多选， 限制条数  {{ selectModels}}
       </template>
       <template slot="content">
         <ns-select

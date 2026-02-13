@@ -245,6 +245,9 @@ export default create({
       } else {
         this.childSelect = [];
       }
+      // 触发 input 和 change 事件更新 value
+      this.$emit('input', this.getLastValue(this.childSelect));
+      this.$emit('change', this.getLastValue(this.childSelect));
     },
 
     /**
