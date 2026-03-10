@@ -75,6 +75,7 @@ export default create({
           modal: this.modal,
           appendToBody: this.appendToBody,
           customClass: this.customClass,
+          wrapperClosable: wrapperClosable,
           'before-close': this.handleClose.bind(this),
         },
         on: {
