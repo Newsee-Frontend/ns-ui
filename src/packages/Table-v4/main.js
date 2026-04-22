@@ -256,8 +256,8 @@ export default create({
                                 property: scope.column.property,
                               },
                               columns: this.head,
-                              rowIndex: scope.$rowIndex,
-                              columnIndex: scope.$columnIndex,
+                              rowIndex: scope.rowIndex,
+                              columnIndex: scope.columnIndex,
                               rendered: true,
                             })
                           : scope.row[item.field];
