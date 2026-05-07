@@ -59,6 +59,16 @@ export default create({
       },
     },
 
+    /**
+     * 纵向虚拟滚动配置（不支持深层结构和展开行）
+     */
+    scrollY: {
+      type: Object,
+      default: () => {
+        return { enabled: true,  gt: 100 };
+      },
+    },
+
     //快捷菜单配置
     menuConfig: {
       type: Object,
@@ -156,6 +166,7 @@ export default create({
       'edit-rules': this.validRules,
       'sync-resize': this.syncResize,
       'scroll-x': this.scrollX,
+      'scroll-y': this.scrollY,
       'row-key': true,
       'checkbox-config': {
         checkField: 'checked',
