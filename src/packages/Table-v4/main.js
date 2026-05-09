@@ -287,8 +287,8 @@ export default create({
                             data: scope.data,
                             column: item,
                             columns: this.head,
-                            rowIndex: scope.$rowIndex,
-                            columnIndex: scope.$columnIndex,
+                            rowIndex: scope.rowIndex,
+                            columnIndex: scope.columnIndex,
                             rendered: true,
                           })
                         );
