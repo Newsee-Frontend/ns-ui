@@ -7,6 +7,7 @@ import toolbar from './toolbar';
 import editorBtn from './components/editor-btn';
 
 import config from './config/config';
+import { patchMediaUploadTab } from './media-upload-tab';
 
 export default create({
   name: 'editor',
@@ -72,13 +73,11 @@ export default create({
         this.$nextTick(() => window.tinymce.get(this.tinymceId).setContent(val || ''));
       }
     },
-    language(val) {
-      this.destroyTinymce();
-      this.$nextTick(() => this.initTinymce());
+    language() {
+      this.reinitTinymce();
     },
-    model(val) {
-      this.destroyTinymce();
-      this.$nextTick(() => this.initTinymce());
+    model() {
+      this.reinitTinymce();
     },
   },
   render(h) {
@@ -149,7 +148,12 @@ export default create({
             xhr.onload = () => {
               if (xhr.status === 200) {
                 success(response(JSON.parse(xhr.response)));
+              } else if (failure) {
+                failure('上传失败: ' + xhr.status);
               }
+            };
+            xhr.onerror = () => {
+              if (failure) failure('上传失败');
             };
           } else {
             success('');
@@ -178,23 +182,33 @@ export default create({
           editor.on('FullscreenStateChanged', e => {
             _this.fullscreen = e.state;
           });
+          patchMediaUploadTab(editor, _this.pluginsConf['editor-media']);
         },
       });
     },
 
     destroyTinymce() {
-      const editor = window.tinymce.get(this.tinymceId);
+      const editor = window.tinymce && window.tinymce.get(this.tinymceId);
+      if (!editor) return;
       if (this.fullscreen) {
-        editor.execCommand('mceFullScreen');
-      }
-
-      if (editor) {
         try {
-          editor.destroy();
-        } catch (e) {
-          editor.destroy();
-        }
+          editor.execCommand('mceFullScreen');
+        } catch (e) {}
       }
+      try {
+        editor.destroy();
+      } catch (e) {
+        try {
+          editor.remove();
+        } catch (err) {}
+      }
+      this.hasInit = false;
+    },
+
+    reinitTinymce() {
+      this.destroyTinymce();
+      this.tinymceId = 'vue-tinymce-' + +new Date() + ((Math.random() * 1000).toFixed(0) + '');
+      this.$nextTick(() => this.initTinymce());
     },
 
     setContent(value) {
