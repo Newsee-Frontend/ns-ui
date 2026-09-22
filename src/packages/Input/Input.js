@@ -93,6 +93,12 @@ export default create({
     readonly: { type: Boolean, default: false },
 
     /**
+     * 原生属性，自动补全
+     * @values on, off
+     */
+    autocomplete: { type: String, default: 'off' },
+
+    /**
      * 是否可清空
      */
     clearable: { type: Boolean, default: false },
@@ -146,6 +152,7 @@ export default create({
         maxlength={this.maxlength}
         autofocus={this.autofocus}
         readonly={this.readonly}
+        autocomplete={this.autocomplete}
         clearable={this.clearable}
         on-change={this.change.bind(this)}
         on-blur={this.inputBlur.bind(this)}
