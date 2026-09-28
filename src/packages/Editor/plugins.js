@@ -58,10 +58,8 @@ const usePlugins = [
     'noneditable ' +
     'nonbreaking ' +
     'paste ' +
-    'powerpaste ' +
     'preview ' +
     'searchreplace ' +
-    'spellchecker ' +
     'tabfocus ' +
     'table ' +
     'template ' +
@@ -96,12 +94,10 @@ const allPlugins = [
     'nonbreaking ' +
     'noneditable ' +
     'pagebreak ' +
-    'powerpaste ' +
     'preview ' +
     'print ' +
     'save ' +
     'searchreplace ' +
-    'spellchecker ' +
     'tabfocus ' +
     'table ' +
     'template ' +
@@ -110,8 +106,6 @@ const allPlugins = [
     'visualblocks ' +
     'visualchars ' +
     'wordcount ' +
-    'fontsizeselect ' +
-    'fontselect ' +
     'lineheight ',
 ];
 

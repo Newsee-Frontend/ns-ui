@@ -11,8 +11,7 @@
           <ns-dialog
             :visible.sync="visible1"
 
-
-            title="basic-dialog-demo"
+            title="基础对话框示例"
             top="7%"
             size="large"
             :draggable="false"
@@ -29,7 +28,11 @@
             @open="open"
           >
             <div>
-              <ns-editor :height="300" v-model="content" model="simple"/>
+              <div class="control-block form-block-line editor-mode-control">
+                <span>编辑器模式:</span>
+                <ns-radio v-model="editorMode" :options="editorModeOptions"></ns-radio>
+              </div>
+              <ns-editor v-model="content" :model="editorMode" :branding="false"/>
               <div class="editor-content">
                 <h3>输入内容如下:</h3>{{ content }}
               </div>
@@ -133,6 +136,12 @@ export default {
       closeOnPressEscape: true,
       lockScroll: false,
       showClose: true,
+      editorMode: 'simple',
+      editorModeOptions: [
+        { label: 'simple', value: 'simple' },
+        { label: 'normal', value: 'normal' },
+        { label: 'rich', value: 'rich' },
+      ],
       content: '请输入...',
 
 

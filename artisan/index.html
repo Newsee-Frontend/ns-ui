@@ -8,7 +8,14 @@
   <title>Artisan for UI-test</title>
 </head>
 <body>
-<script src=<%= BASE_URL %>/tinymce4.7.5/tinymce.min.js></script>
+<script>
+  const tinyMceScript = document.createElement('script')
+  const baseUrl = '<%= BASE_URL %>'
+  tinyMceScript.src = `${baseUrl.replace(/\/?$/, '/')}_NEAP_STATIC/tinymce5.1.0/tinymce.min.js?v=5.1.9`
+  tinyMceScript.async = false
+  document.head.appendChild(tinyMceScript)
+</script>
+
 <div id="app"></div>
 <!-- built files will be auto injected -->
 

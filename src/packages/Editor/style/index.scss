@@ -12,35 +12,10 @@
     z-index: 9999;
   }
 
-  //custom button
-  ul.editor-custom-btn-container {
-    position: absolute;
-    right: 4px;
-    clear: both;
-    li {
-      display: inline-block;
-      float: left;
-      margin-right: 2px;
-      &:last-child {
-        margin-right: 0;
-      }
-      i {
-        padding: 0;
-      }
-    }
-  }
-
-  &.fullscreen {
-    .editor-custom-btn-container {
-      position: fixed;
-      z-index: 10000;
-    }
-  }
-
-  .editor-btn {
-    button {
-      border: none;
-    }
+  .tox-fullscreen {
+    left: 50px;
+    top: 88px;
+    z-index: 9999;
   }
 
   //hide textarea
@@ -60,4 +35,12 @@
 //去除 报错
 .mce-notification-error {
   display: none;
+}
+
+.tox-tinymce-aux {
+  z-index: 3000 !important;
+}
+
+.tox .tox-tbtn--bespoke .tox-tbtn__select-label {
+  width: 3em !important;
 }

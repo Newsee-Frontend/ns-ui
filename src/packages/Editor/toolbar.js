@@ -5,11 +5,11 @@ export default {
   simple: [],
 
   normal: [
-    'bold italic underline strikethrough alignleft aligncenter alignright outdent indent undo redo formatpainter removeformat forecolor backcolor fontsizeselect fontselect lineheight select fullscreen',
+    'bold italic underline strikethrough fontsizeselect fontselect formatpainter removeformat forecolor backcolor alignleft aligncenter alignright outdent indent undo redo lineheight select fullscreen',
   ],
 
   rich: [
-    'searchreplace bold italic underline strikethrough alignleft aligncenter alignright outdent indent  blockquote undo redo formatpainter removeformat subscript superscript code codesample',
-    'hr bullist numlist link image charmap preview anchor pagebreak insertdatetime media forecolor backcolor fontsizeselect fontselect lineheightselect fullscreen',
+    'searchreplace bold italic underline strikethrough fontsizeselect fontselect formatpainter removeformat subscript superscript code codesample',
+    'hr bullist numlist link image media charmap preview anchor pagebreak insertdatetime forecolor backcolor alignleft aligncenter alignright outdent indent undo redo lineheightselect fullscreen',
   ],
 };

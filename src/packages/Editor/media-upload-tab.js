@@ -1,208 +1,176 @@
 const MEDIA_ACCEPT =
-  '.mp4,.webm,.ogg,.ogv,.mp3,.wav,.m4a,.aac,.mov,.avi,.flv,.mkv,.wmv';
+  '.mp4,.webm,.ogg,.ogv,.mp3,.wav,.m4a,.aac,.mov,.avi,.flv,.mkv,.wmv'
 
-const getSelectedFile = evt => {
-  if (!evt || !evt.control) return null;
-  const ctrl = evt.control;
-  const value = typeof ctrl.value === 'function' ? ctrl.value() : ctrl.value;
-  if (value && value.blob && typeof value.blob === 'function') return value.blob();
-  if (value instanceof File || value instanceof Blob) return value;
-  if (value && value[0]) return value[0];
-  return null;
-};
+const MEDIA_DIALOG_TITLES = ['insert/edit media', '插入/编辑媒体']
 
-const DEFAULT_MEDIA_WIDTH = '300';
-const DEFAULT_MEDIA_HEIGHT = '150';
-
-const isAudioUrl = url => {
-  const ext = String(url || '')
-    .split('?')[0]
-    .split('.')
-    .pop()
-    .toLowerCase();
-  return /^(mp3|wav|m4a|aac|ogg)$/.test(ext);
-};
-
-const buildMediaHtml = (url, width, height) => {
-  if (isAudioUrl(url)) {
-    return `<audio controls="controls">\n<source src="${url}">\n</audio>`;
+const resolveEditor = vm => {
+  if (vm && vm.windowManager) return vm
+  if (vm && vm.tinymceId && window.tinymce) {
+    return window.tinymce.get(vm.tinymceId) || vm
   }
-  return (
-    `<video width="${width}" height="${height}" controls="controls">\n` +
-    `<source src="${url}">\n</video>`
-  );
-};
+  return vm
+}
 
-const activateGeneralTab = win => {
-  const tabs = win.find('tabpanel')[0];
-  if (tabs) tabs.activateTab(0);
-};
+const showError = (editor, message) => {
+  if (editor && editor.windowManager && editor.windowManager.alert) {
+    editor.windowManager.alert(message)
+  }
+}
 
-const applyUploadedUrl = (win, url) => {
-  const src = win.find('#source1');
-  const widthCtrl = win.find('#width');
-  const heightCtrl = win.find('#height');
-  const embed = win.find('#embed');
-  const width =
-    (widthCtrl && widthCtrl.length && widthCtrl.value()) || DEFAULT_MEDIA_WIDTH;
-  const height =
-    (heightCtrl && heightCtrl.length && heightCtrl.value()) || DEFAULT_MEDIA_HEIGHT;
+const blockDialog = message => {
+  const dialog = document.querySelector('.tox-dialog')
+  if (!dialog) return () => {}
+  const busy = document.createElement('div')
+  busy.className = 'tox-dialog__busy-spinner'
+  busy.setAttribute('aria-label', message || 'Loading...')
+  const spinner = document.createElement('div')
+  spinner.className = 'tox-spinner'
+  for (let i = 0; i < 3; i++) {
+    spinner.appendChild(document.createElement('div'))
+  }
+  busy.appendChild(spinner)
+  dialog.appendChild(busy)
+  return () => {
+    if (busy.parentNode) {
+      busy.parentNode.removeChild(busy)
+    }
+  }
+}
 
-  if (src && src.length) src.value(url);
-  if (widthCtrl && widthCtrl.length && !widthCtrl.value()) widthCtrl.value(DEFAULT_MEDIA_WIDTH);
-  if (heightCtrl && heightCtrl.length && !heightCtrl.value()) heightCtrl.value(DEFAULT_MEDIA_HEIGHT);
-  if (embed && embed.length) embed.value(buildMediaHtml(url, width, height));
+const uploadMediaFile = (editor, file, uploadConfig, callback) => {
+  if (!file) return
 
-  activateGeneralTab(win);
-  if (src && src.length) src.fire('change');
-  setTimeout(() => activateGeneralTab(win), 0);
-  setTimeout(() => activateGeneralTab(win), 80);
-};
-
-const createThrobber = win => {
-  const Factory = window.tinymce && window.tinymce.ui && window.tinymce.ui.Factory;
-  const Throbber = Factory && Factory.get && Factory.get('Throbber');
-  if (!Throbber || !win.getEl) return null;
-  return new Throbber(win.getEl());
-};
-
-const uploadMediaFile = (editor, win, file, uploadConfig) => {
-  if (!file) return;
-  const { beforeUpload, action, headers, response } = uploadConfig || {};
-  if (beforeUpload && beforeUpload(file) === false) return;
+  const { beforeUpload, action, headers, response } = uploadConfig || {}
+  if (beforeUpload && beforeUpload(file) === false) return
   if (!action) {
-    editor.windowManager.alert('未配置媒体上传地址（editor-media.action）');
-    return;
+    showError(editor, '未配置媒体上传地址（editor-media.action）')
+    return
   }
-  const throbber = createThrobber(win);
-  if (throbber) throbber.show();
-  const hideLoading = () => {
-    if (throbber) throbber.hide();
-  };
 
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('filename', file.name || 'media');
+  const formData = new FormData()
+  formData.append('file', file)
+  formData.append('filename', file.name || 'media')
 
-  const xhr = new XMLHttpRequest();
-  xhr.open('post', action, true);
-  xhr.withCredentials = true;
-  for (let item in headers || {}) {
-    if (headers.hasOwnProperty(item) && headers[item] !== null) {
-      xhr.setRequestHeader(item, headers[item]);
+  const unblockDialog = blockDialog('上传中...')
+  const xhr = new XMLHttpRequest()
+  let completed = false
+  const finish = () => {
+    if (completed) return false
+    completed = true
+    unblockDialog()
+    return true
+  }
+
+  xhr.open('post', action, true)
+  xhr.withCredentials = true
+  Object.keys(headers || {}).forEach(item => {
+    if (headers[item] !== null && headers[item] !== undefined) {
+      xhr.setRequestHeader(item, headers[item])
     }
-  }
+  })
   xhr.onload = () => {
-    hideLoading();
-    if (xhr.status !== 200) {
-      editor.windowManager.alert('上传失败: ' + xhr.status);
-      return;
+    if (!finish()) return
+    if (xhr.status < 200 || xhr.status >= 300) {
+      showError(editor, `上传失败: ${xhr.status}`)
+      return
     }
-    let url = '';
+
+    let url
     try {
-      url = response ? response(JSON.parse(xhr.response)) : '';
+      const result = JSON.parse(xhr.response)
+      url = typeof response === 'function' ? response(result) : ''
     } catch (e) {
-      editor.windowManager.alert('上传成功但解析返回结果失败');
-      return;
+      showError(editor, '上传成功但解析返回结果失败')
+      return
     }
     if (!url) {
-      editor.windowManager.alert('上传成功但未获取到文件地址');
-      return;
+      showError(editor, '上传成功但未获取到文件地址')
+      return
     }
-    applyUploadedUrl(win, url);
-  };
-  xhr.onerror = () => {
-    hideLoading();
-    editor.windowManager.alert('上传失败');
-  };
-  xhr.send(formData);
-};
+    callback(url)
+  }
+  const handleFailure = () => {
+    if (!finish()) return
+    showError(editor, '上传失败')
+  }
+  xhr.onerror = handleFailure
+  xhr.onabort = handleFailure
+  xhr.ontimeout = handleFailure
+  xhr.send(formData)
+}
 
-const bindClickToBrowse = (dropzoneCtrl, accept) => {
-  const el = dropzoneCtrl.getEl && dropzoneCtrl.getEl();
-  if (!el || el._nsMediaBrowseBound) return;
-  el._nsMediaBrowseBound = true;
-  el.style.cursor = 'pointer';
+export const createMediaFilePicker = (vm, uploadConfig) => (callback, value, meta) => {
+  if (meta && meta.filetype !== 'media') return
 
-  const input = document.createElement('input');
-  input.type = 'file';
-  input.accept = accept;
-  input.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0;';
-  document.body.appendChild(input);
+  const input = document.createElement('input')
+  input.type = 'file'
+  input.accept = (uploadConfig && uploadConfig.accept) || MEDIA_ACCEPT
+  input.style.display = 'none'
+  document.body.appendChild(input)
 
-  el.addEventListener('click', evt => {
-    if (evt.target === input) return;
-    evt.preventDefault();
-    input.value = '';
-    input.click();
-  });
+  let cleaned = false
+  const cleanup = () => {
+    if (cleaned) return
+    cleaned = true
+    window.removeEventListener('focus', onFocus)
+    if (input.parentNode) input.parentNode.removeChild(input)
+  }
+  const onFocus = () => {
+    setTimeout(() => {
+      if (!input.files || !input.files.length) cleanup()
+    }, 0)
+  }
+
   input.addEventListener('change', () => {
-    const file = input.files && input.files[0];
-    if (!file) return;
-    dropzoneCtrl.value = () => file;
-    dropzoneCtrl.fire('change');
-  });
-  dropzoneCtrl.on('remove', () => {
-    if (input.parentNode) input.parentNode.removeChild(input);
-  });
-};
-
-const makeUploadTab = (editor, uploadConfig) => {
-  const accept = (uploadConfig && uploadConfig.accept) || MEDIA_ACCEPT;
-  const onFileChange = e => {
-    const file = getSelectedFile(e);
-    uploadMediaFile(editor, e.control.rootControl, file, uploadConfig);
-  };
-  return {
-    title: editor.settings.language === 'zh_CN' ? '上传媒体文件' : 'Upload media file',
-    type: 'form',
-    layout: 'flex',
-    direction: 'column',
-    align: 'stretch',
-    padding: '20 20 20 20',
-    items: [
-      {
-        type: 'dropzone',
-        accept,
-        height: 100,
-        text: editor.settings.language === 'zh_CN' ? '将文件拖放到此处' : 'Drop a file here',
-        onchange: onFileChange,
-        onPostRender() {
-          bindClickToBrowse(this, accept);
-        },
-      },
-    ],
-  };
-};
-
-const injectUploadTab = (editor, args, uploadConfig) => {
-  if (!args || args.title !== 'Insert/edit media' || !args.body || !args.body.length) return;
-  for (let i = 0; i < args.body.length; i++) {
-    const title = args.body[i].title;
-    if (title === 'Upload media file' || title === '上传媒体文件') return;
+    const file = input.files && input.files[0]
+    try {
+      uploadMediaFile(resolveEditor(vm), file, uploadConfig, callback)
+    } finally {
+      cleanup()
+    }
+  })
+  input.addEventListener('cancel', cleanup, { once: true })
+  window.addEventListener('focus', onFocus, { once: true })
+  try {
+    input.click()
+  } catch (error) {
+    cleanup()
+    throw error
   }
-  const insertAt = args.body.length > 2 ? 2 : args.body.length;
-  args.body.splice(insertAt, 0, makeUploadTab(editor, uploadConfig));
-};
+}
 
-export const patchMediaUploadTab = (editor, uploadConfig) => {
-  if (!editor || editor._nsMediaUploadPatched) return;
-  editor._nsMediaUploadPatched = true;
+const makeUploadTab = editor => ({
+  title: editor.settings.language === 'zh_CN' ? '上传媒体文件' : 'Upload media file',
+  name: 'upload',
+  items: [
+    {
+      type: 'urlinput',
+      name: 'source1',
+      filetype: 'media',
+      label: 'Media file URL',
+    },
+  ],
+})
 
-  const applyPatch = () => {
-    if (!editor.windowManager || editor.windowManager._nsMediaUploadPatched) return;
-    const wm = editor.windowManager;
-    wm._nsMediaUploadPatched = true;
-    const origOpen = wm.open;
-    wm.open = function(args) {
-      injectUploadTab(editor, args, uploadConfig);
-      return origOpen.call(this, args);
-    };
-  };
+const injectUploadTab = (editor, args) => {
+  if (!args || !MEDIA_DIALOG_TITLES.includes(String(args.title || '').toLowerCase())) return
 
-  if (editor.windowManager) {
-    applyPatch();
-  } else {
-    editor.on('PostRender', applyPatch);
+  const tabs = args.body && Array.isArray(args.body.tabs) ? args.body.tabs : null
+  if (!tabs || tabs.some(tab => tab && tab.name === 'upload')) return
+
+  const insertAt = tabs.length > 2 ? 2 : tabs.length
+  tabs.splice(insertAt, 0, makeUploadTab(editor))
+}
+
+export const patchMediaUploadTab = editor => {
+  if (!editor || editor._nsMediaUploadPatched) return
+  const wm = editor.windowManager
+  if (!wm || typeof wm.open !== 'function') return
+
+  const originalOpen = wm.open
+  wm.open = function(args) {
+    injectUploadTab(editor, args)
+    return originalOpen.call(this, args)
   }
-};
+  editor._nsMediaUploadPatched = true
+}

@@ -1,17 +1,14 @@
 import create from '../../create/create';
-import editorImage from './components/editor-image';
 import plugins from './plugins';
 import defaultConfig from './plugins-config';
 
 import toolbar from './toolbar';
-import editorBtn from './components/editor-btn';
 
 import config from './config/config';
-import { patchMediaUploadTab } from './media-upload-tab';
+import { createMediaFilePicker, patchMediaUploadTab } from './media-upload-tab';
 
 export default create({
   name: 'editor',
-  components: { editorImage, editorBtn },
   props: {
     value: { type: String, default: '' },
     id: {
@@ -27,6 +24,7 @@ export default create({
         return ['normal', 'simple', 'rich'].indexOf(t) > -1;
       },
     },
+    branding: { type: Boolean, default: false },
     height: { type: Number, required: false, default: 360 },
     toolbar: {
       type: Array,
@@ -44,24 +42,11 @@ export default create({
       hasInit: false,
       tinymceId: this.id,
       fullscreen: false,
-      isEn: false,
-      languageTypeList: {
-        en: 'en',
-        zh: 'zh_CN',
-      },
     };
   },
   computed: {
-    language() {
-      return this.languageTypeList[this.isEn ? 'en' : 'zh'];
-    },
     toolbarConfig() {
       return this.toolbar.length > 0 ? this.toolbar : toolbar[this.model];
-    },
-    customContainerStyle() {
-      return {
-        top: this.toolbarConfig.length * 34 + 4 + (this.fullscreen ? 88 : 0) + 'px',
-      };
     },
     pluginsConf() {
       return Object.assign(defaultConfig, this.pluginsConfig);
@@ -73,9 +58,6 @@ export default create({
         this.$nextTick(() => window.tinymce.get(this.tinymceId).setContent(val || ''));
       }
     },
-    language() {
-      this.reinitTinymce();
-    },
     model() {
       this.reinitTinymce();
     },
@@ -84,22 +66,6 @@ export default create({
     return (
       <div class={`${this.recls()} ${this.fullscreen ? 'fullscreen' : ''}`}>
         <textarea id={this.tinymceId} class={'editor-textarea'} />
-        <ul class={'editor-custom-btn-container'} style={this.customContainerStyle}>
-          <li>
-            <editor-image
-              plugin-config={this.pluginsConf['editor-image']}
-              on-image-submit={this.imageSubmit}
-            />
-          </li>
-          <li>
-            <editor-btn
-              icon-class={'language'}
-              on-editor-btn-click={() => {
-                this.isEn = !this.isEn;
-              }}
-            />
-          </li>
-        </ul>
       </div>
     );
   },
@@ -108,29 +74,43 @@ export default create({
     initTinymce() {
       const _this = this;
       window.tinymce.init({
-        language: this.language,
+        language: 'zh_CN',
         selector: `#${this.tinymceId}`,
+        cache_suffix: '?v=5.1.21',
         height: this.height,
+        branding: this.branding,
         body_class: 'panel-body ',
         object_resizing: true,
         toolbar: this.toolbarConfig,
         menubar: this.menubar,
+        menu: {
+          format: {
+            title: '格式',
+            items: 'bold italic underline strikethrough superscript subscript code | formats blocks fontselect fontsizeselect align lineheightselect | forecolor backcolor | removeformat formatpainter',
+          },
+        },
         plugins: plugins,
         lineheight_formats: config.lineheight_formats,
         fontsize_formats: config.fontsize_formats,
         font_formats: config.font_formats,
         end_container_on_empty_block: true,
         paste_data_images: true,
-        powerpaste_word_import: 'propmt', //clean
-        powerpaste_html_import: 'propmt',
-        powerpaste_allow_local_images: true,
+        automatic_uploads: true,
+        file_picker_types: 'media',
+        file_picker_callback: createMediaFilePicker(this, this.pluginsConf['editor-media']),
         images_upload_handler: (blobInfo, success, failure) => {
           let { beforeUpload, action, headers, response } = this.pluginsConf['editor-image'];
+          const imageFile = blobInfo.blob();
 
-          if ((beforeUpload && beforeUpload(blobInfo.blob())) || !beforeUpload) {
+          if (beforeUpload && beforeUpload(imageFile) === false) {
+            success('');
+            return;
+          }
+
+          if (action) {
             //入参拼接
             const formData = new FormData();
-            formData.append('file', blobInfo.blob());
+            formData.append('file', imageFile);
             formData.append('filename', blobInfo.filename());
 
             //请求发送
@@ -180,9 +160,20 @@ export default create({
         },
         setup(editor) {
           editor.on('FullscreenStateChanged', e => {
-            _this.fullscreen = e.state;
-          });
-          patchMediaUploadTab(editor, _this.pluginsConf['editor-media']);
+            _this.fullscreen = e.state
+          })
+          editor.on('PastePostProcess', () => {
+            setTimeout(() => {
+              const pendingImages = editor.dom.select('img').some(image => {
+                const source = image.getAttribute('src') || ''
+                return source.indexOf('data:image/') === 0
+              })
+              if (pendingImages && typeof editor.uploadImages === 'function') {
+                editor.uploadImages().catch(() => {})
+              }
+            }, 0)
+          })
+          patchMediaUploadTab(editor)
         },
       });
     },
@@ -217,12 +208,6 @@ export default create({
 
     getContent() {
       window.tinymce.get(this.tinymceId).getContent();
-    },
-    imageSubmit(arr) {
-      const _this = this;
-      arr.forEach(v => {
-        window.tinymce.get(_this.tinymceId).insertContent(`<img class="wscnph" src="${v.url}" >`);
-      });
     },
   },
 

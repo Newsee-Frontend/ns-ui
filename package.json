@@ -49,7 +49,7 @@
     "screenfull": "^4.2.0",
     "style-loader": "^1.0.0",
     "svg-sprite-loader": "^4.1.6",
-    "tinymce": "^5.0.6",
+    "tinymce": "5.1.0",
     "vue-cropper": "^0.4.9",
     "vue-virtual-scroll-list": "^1.4.2",
     "vuedraggable": "^2.14.1",
