@@ -166,7 +166,8 @@ export default {
         mergeCells: this.mergeCells,
         mergeFooterItems: this.mergeFooterItems,
         selectTrigger: this.selectTrigger,
-        draggable: this.draggable
+        draggable: this.draggable,
+        'setting-click': this.settingClick
       };
       if (!this.isHugeData) {
         props.data = this.data;
@@ -571,6 +572,11 @@ export default {
      */
     clearFilter(column) {
       this.$refs['bizTable'].clearFilter(column);
+    },
+
+
+    settingClick () {
+      this.$alert('自定义设置弹窗')
     }
 
   },

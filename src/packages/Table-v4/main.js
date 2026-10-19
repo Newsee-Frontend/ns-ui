@@ -21,6 +21,8 @@ export default create({
   components: { columnRender, summaryDrop, identifier, checkDrop, actionDrop },
   mixins: [selection, reRender, validate, namefactory, columntype, errorType],
   props: {
+    // 设置图标点击回调，参数为点击事件 event；传入时调用该方法，未传入时打开默认列设置下拉菜单
+    settingClick: { type: Function },
     loading: { type: Boolean, default: true },
     keyRefer: { type: Object },
     data: { type: Array },
@@ -322,6 +324,7 @@ export default create({
           ref: 'actionDrop',
           props: {
             customColumns: this.customColumns,
+            settingClick: this.settingClick,
           },
           on: {
             ...this.$listeners,

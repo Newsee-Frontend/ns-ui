@@ -23,8 +23,22 @@ export default {
   },
   props: {
     customColumns: { type: Array },
+    settingClick: { type: Function },
   },
   render(h) {
+    if (typeof this.settingClick === 'function') {
+      return (
+        <div class={'action-drop'}>
+          <span
+            ref={'setting'}
+            class={['el-dropdown-link', 'action-drop']}
+            on-click={this.settingClick}
+          >
+            <i class={'el-icon-setting'} />
+          </span>
+        </div>
+      )
+    }
     return (
       <div class={'action-drop'}>
         <el-dropdown
