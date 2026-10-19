@@ -9,6 +9,7 @@ const dev_env = {
   NODE_ENV: '"development"',
   ENV_CONFIG: '"dev"',
   BASE_API: '"http://192.168.1.196"',
+  IP_CONFIG: '"http://192.168.1.143"',
 };
 
 /**
@@ -29,6 +30,7 @@ const mock_local_env = {
   NODE_ENV: '"development"',
   ENV_CONFIG: '"mock"',
   BASE_API: '""',
+  IP_CONFIG: '"http://192.168.1.143"'
 };
 
 /**

@@ -13,6 +13,9 @@ import store from './store';
 //load router && page
 import router from './router';
 
+import loadTinyMCE from '../src/utils/loadTinyMCE'
+
+
 import {
   getTransformTime,
   getRangeTime,
@@ -22,6 +25,11 @@ import {
 Vue.prototype.getTransformTime = getTransformTime;
 Vue.prototype.getRangeTime = getRangeTime;
 Vue.prototype.getFormatTime = getFormatTime;
+
+
+if (typeof window !== 'undefined') {
+  window.__loadTinyMCE = loadTinyMCE
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

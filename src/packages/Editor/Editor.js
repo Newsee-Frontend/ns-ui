@@ -72,6 +72,17 @@ export default create({
   methods: {
     //init
     initTinymce() {
+      if (typeof window.__loadTinyMCE !== 'function') {
+        console.error('TinyMCE 加载器尚未初始化')
+        return
+      }
+      return window.__loadTinyMCE().then(() => {
+        if (!this._isDestroyed) this.createTinymce()
+      }).catch((error) => {
+        console.error('TinyMCE 初始化失败', error)
+      })
+    },
+    createTinymce() {
       const _this = this;
       window.tinymce.init({
         language: 'zh_CN',
@@ -177,6 +188,8 @@ export default create({
         },
       });
     },
+
+
 
     destroyTinymce() {
       const editor = window.tinymce && window.tinymce.get(this.tinymceId);
